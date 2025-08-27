@@ -1,0 +1,154 @@
+#pragma once
+#include <DxLib.h>
+#include <map>				//対応表のため
+#include <unordered_map>	//対応表のため
+#include <string>			//対応キーのため
+#include <vector>			//デバイスを追加するため
+#include <functional>
+#include"InputManager.h"
+#include "../../Template/Singleton.h"
+
+/// <summary>
+/// 入力イベント
+/// </summary>
+enum class INPUT_EVENT
+{
+	OK,		//決定
+	CANCEL,	//キャンセル
+	PAUSE,	//ポーズ
+	RIGHT,	//右へ
+	LEFT,	//左へ
+	UP,		//上へ
+	DOWN,	//下へ
+	MAX
+};
+//入力イベントの最大数
+static constexpr int INPUT_EVENT_MAX = static_cast<int>(INPUT_EVENT::MAX); 
+
+
+/// <summary>
+/// 主変機器種別
+/// </summary>
+enum class PEIPHERAL_TYPE
+{
+	KEYBOARD,	//キーボード
+	GAMEPAD,	//ゲームパッド
+	//MOUSE,		//マウス
+	X_ANALOG,	//XBOXアナログスティック
+	MAX
+};
+
+/// <summary>
+/// アナログ入力種類
+/// </summary>
+enum class ANALOG_INPUT_TYPE
+{
+	NONE,
+	L_UP,		//左スティックの上下
+	L_DOWN,		//左スティックの上下
+	L_RIGHT,	//左スティックの左右
+	L_LEFT,		//左スティックの左右
+	R_UP,		//右スティックの上下
+	R_DOWN,		//右スティックの上下
+	R_RIGHT,	//右スティックの左右
+	R_LEFT,		//右スティックの左右
+	L_TRIGGER,		//左トリガー
+	R_TRIGGER,		//右トリガー
+};
+
+class InputManagerS : public Singleton<InputManagerS>
+{
+	friend class Singleton<InputManagerS>;
+
+public:	
+	
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
+	void Init();
+
+	/// <summary>
+	/// 更新処理
+	/// </summary>
+	void Update();
+
+	/// <summary>
+	/// 解放処理
+	/// </summary>
+	void Release();
+
+	/// <summary>
+	/// 指定されたコードが押された瞬間か
+	/// </summary>
+	/// <param name="inputEvent">入力イベント</param>
+	/// <returns>押された瞬間はtrue,そうでない場合false</returns>
+	bool IsTrgDown(INPUT_EVENT inputEvent) const;
+
+	/// <summary>
+	/// 指定されたコードが押されているか
+	/// </summary>
+	/// <param name="inputEvent">入力イベント</param>
+	/// <returns>押されてる場合true, そうでない場合false</returns>
+	bool IsPressed(INPUT_EVENT inputEvent) const;
+
+	/// <summary>
+	/// 対応表のリセット
+	/// </summary>
+	void ResetTable();
+
+	//Lスティックの角度を取得
+	float GetLStickDeg(InputManager::JOYPAD_NO no) const;
+
+	//Rスティックの角度を取得
+	float GetRStickDeg(InputManager::JOYPAD_NO no) const;
+
+private:
+	//上を0.0度として角度を渡す
+	Vector2 GetKnockLStickSize(InputManager::JOYPAD_NO no) const;
+	Vector2 GetKnockRStickSize(InputManager::JOYPAD_NO no) const;
+
+	//入力イベントの対応表
+	struct InputState
+	{
+		PEIPHERAL_TYPE type;	//デバイスの種類
+		uint32_t code;			//入力コード
+	};
+
+	//入力イベントと実際の入力の対応表
+	using InputTable_t = std::unordered_map<INPUT_EVENT, std::vector<InputState>>;
+	InputTable_t inputTable_;		//イベントと実際の入力の対応表	
+	InputTable_t tmpInputTable_;	//一時的な入力テーブル
+
+	//現在の状態と前の状態を比較するための変数
+	InputState currentState_;		//現在の状態
+	InputState lastState_;			//前の状態
+
+	//現在の入力状態と前の入力状態を保持するための変数
+	using InputData_t = std::unordered_map<INPUT_EVENT, bool>;
+	InputData_t currentInput_;		//そのイベントに対応するボタンが押されてる状態か
+	InputData_t lastInput_;			//そのイベントに対応するボタンが押されてた状態か(直前)
+
+	//入力デバイスのリスト
+	std::string inputListForDisplay_[INPUT_EVENT_MAX] = 
+	{
+		"OK",
+		"Cancel",
+		"Pause",
+		"Right",
+		"Left",
+		"Up",
+		"Down",
+	};
+
+	//アナログ入力の対応表
+	using AnalogInputTable_t = std::unordered_map<ANALOG_INPUT_TYPE, std::function<bool(XINPUT_STATE&)>>;
+	AnalogInputTable_t analogInputTable_;
+
+	//コンストラクタ
+	InputManagerS(); 
+
+	//デストラクタ
+	~InputManagerS() = default;
+
+};
+
