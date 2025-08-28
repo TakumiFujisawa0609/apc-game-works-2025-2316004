@@ -35,8 +35,11 @@ void GameScene::Load(void)
 	pauseScene_ = std::make_shared<PauseScene>();
 	pauseScene_->Load();
 
-	PlayerManager::CreateInstance();
-	PlayerManager::GetInstance().Load();
+	//PlayerManager::CreateInstance();
+	//PlayerManager::GetInstance().Load();
+
+	player_ = std::make_unique<Player>();
+	player_->Load();
 
 	enemy_ = std::make_unique<Enemy>();
 	enemy_->Load();
@@ -44,8 +47,10 @@ void GameScene::Load(void)
 
 void GameScene::Init(void)
 {
-	PlayerManager::GetInstance().Init();
+	//PlayerManager::GetInstance().Init();
+	player_->Init();
 	enemy_->Init();
+	cardSystem_ = std::make_unique<CardSystem>(player_->GetHand(),enemy_->GetHand());
 }
 
 void GameScene::NormalUpdate(void)
@@ -58,7 +63,8 @@ void GameScene::NormalUpdate(void)
 	}
 	
 	//プレイヤーの更新
-	PlayerManager::GetInstance().Update();
+	//PlayerManager::GetInstance().Update();
+	player_->Update();
 	//敵の更新
 	enemy_->Update();
 	//デバッグ処理
@@ -71,7 +77,8 @@ void GameScene::NormalDraw(void)
 	DebagDraw();
 
 	//プレイヤーの描画
-	PlayerManager::GetInstance().Draw();
+	//PlayerManager::GetInstance().Draw();
+	player_->Draw();
 	enemy_->Draw();
 }
 

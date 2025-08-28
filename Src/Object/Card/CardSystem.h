@@ -1,14 +1,18 @@
 #pragma once
-class CardBase;
+#include<vector>
+#include<memory>
+class CardDeck;
 class CardSystem
 {
 public:
-	CardSystem(void);
+	CardSystem(std::weak_ptr<CardDeck>_deck1, std::weak_ptr<CardDeck>_deck2);
 	~CardSystem(void);
 
-	//カード同士を比べる
-	bool CompareCards(CardBase& card1, CardBase& card2);
+	//ストックカードのカードを比較する
+	void CompareCards(void);
 private:
-
+	//手札
+	std::weak_ptr<CardDeck>deck1_;
+	std::weak_ptr<CardDeck>deck2_;
 };
 

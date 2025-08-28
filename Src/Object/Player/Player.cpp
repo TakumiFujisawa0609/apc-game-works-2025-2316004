@@ -27,22 +27,21 @@
 
 
 #include "Player.h"
-Player::Player(int _playerNum, InputManager::CONTROLL_TYPE _cntl)
-	:playerNum_(_playerNum)
-	, cntl_(_cntl)
+Player::Player(void)
+	:playerNum_()
+	, cntl_()
+	, padNum_()
+	, state_()
+	, stateUpdate_()
 {
 	trans_ = Transform();
-
+	playerNum_ = 0;
+	cntl_ = InputManager::CONTROLL_TYPE::ALL;
 	//初めのJOYPADがkey_padなのでパッドの番号に合わせる
 	//パッド番号を設定
 	padNum_ = static_cast<InputManager::JOYPAD_NO>(playerNum_ + 1);
 
-	//プレイヤー状態
-	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive();});
-	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
-	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
-	ChangeState(PLAYER_STATE::ALIVE);
 }
 
 Player::~Player(void)
@@ -80,6 +79,11 @@ void Player::Init(void)
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
 	trans_.pos={ posX,0.0f,0.0f };
 	trans_.localPos = { 0.0f,-Player::RADIUS,0.0f };
+
+	//プレイヤー状態
+	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
+	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
+	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
 	//生存状態
 	ChangeState(PLAYER_STATE::ALIVE);

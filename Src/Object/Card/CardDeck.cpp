@@ -1,4 +1,5 @@
 #include<DxLib.h>
+#include"../../Application.h"
 #include "CardBase.h"
 #include "CardDeck.h"
 
@@ -34,12 +35,8 @@ void CardDeck::Init(void)
 
 void CardDeck::CardUse(void)
 {
-
 	//使うカードを手札に加える
 	hand_.emplace_back(std::move(drawPile_[currentNum_]));
-	//ここでつかえるかどうかを判定して、つかえなかったら手札のカードを捨て札へ
-
-	drawPile_[currentNum_]->Execute();
 }
 
 void CardDeck::CardCharge(void)
@@ -86,6 +83,11 @@ void CardDeck::Draw(void)
 	DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow);
 	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
 	DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
+	for(int i=0;i<hand_.size();i++)
+	{
+		int handCardPow = hand_[i]->GetPow();
+		DrawFormatString(centerPos_.x + (DISTANCE_X*i), centerPos_.y+100, 0xffffff,L"(%d)", handCardPow);
+	}
 }
 
 void CardDeck::Release(void)

@@ -13,6 +13,7 @@ class PlayerOnHit;
 class DateBank;
 class Shadow;
 class Camera;
+class CardDeck;
 class ModelMaterial;
 class ModelRenderer;
 
@@ -81,7 +82,7 @@ public:
 	/// <param name="_playerNum">プレイヤー番号</param>
 	/// <param name="_cntl">コントローラー識別番号</param>
 	/// <param name="_tag">プレイヤーごとのタグ</param>
-	Player(int _playerNum,InputManager::CONTROLL_TYPE _cntl);
+	Player(void);
 
 	// デストラクタ
 	~Player(void);
@@ -126,6 +127,9 @@ public:
 
 	//コントローラー番号
 	inline const InputManager::JOYPAD_NO GetPadNum(void)const { return padNum_; }
+
+	//プレイヤーの手札
+	const std::shared_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
 
 	//******************************************
 	//セッタ

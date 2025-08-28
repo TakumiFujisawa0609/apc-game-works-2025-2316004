@@ -51,44 +51,44 @@ void PlayerManager::Load(void)
 	//	goalTime_.emplace_back(0.0f);
 	//}
 
-	for (int i = 0; i < playerNum_; i++)
-	{
-		//KeyConfig::TYPE cntlType;
-  //		if (playerNum_==1)
-		//{
-		//	cntlType = KeyConfig::TYPE::ALL;
-		//}
-		//else
-		//{
-		//	cntlType = KeyConfig::TYPE::PAD;
-		//}
-		std::unique_ptr<Player> player = std::make_unique<Player>(i, InputManager::CONTROLL_TYPE::ALL);
+	//for (int i = 0; i < playerNum_; i++)
+	//{
+	//	//KeyConfig::TYPE cntlType;
+ // //		if (playerNum_==1)
+	//	//{
+	//	//	cntlType = KeyConfig::TYPE::ALL;
+	//	//}
+	//	//else
+	//	//{
+	//	//	cntlType = KeyConfig::TYPE::PAD;
+	//	//}
+	//	std::unique_ptr<Player> player = std::make_unique<Player>(i, InputManager::CONTROLL_TYPE::ALL);
 
 
-		player->Load();
-		players_.push_back(std::move(player));
-	}
+	//	player->Load();
+	//	players_.push_back(std::move(player));
+	//}
 }
 
 void PlayerManager::Init(void)
 {
-	for (auto& player : players_)
-	{
-		player->Init();
-	}
+	//for (auto& player : players_)
+	//{
+	//	player->Init();
+	//}
 }
 
 void PlayerManager::Update(void)
 {
 	//time_ += SceneManager::GetInstance().GetDeltaTime();
-	for (auto& p : players_)
-	{
-		p->Update();
-	}
-	if (SceneManager::GetInstance().GetSceneID() == SceneManager::SCENE_ID::TITLE)
-	{
-		return;
-	}
+	//for (auto& p : players_)
+	//{
+	//	p->Update();
+	//}
+	//if (SceneManager::GetInstance().GetSceneID() == SceneManager::SCENE_ID::TITLE)
+	//{
+	//	return;
+	//}
 
 	//PlayersCollision();
 
@@ -105,10 +105,10 @@ void PlayerManager::Update(void)
 
 void PlayerManager::Draw(void)
 {
-	for (auto& p : players_)
-	{
-		p->Draw();
-	}
+	//for (auto& p : players_)
+	//{
+	//	p->Draw();
+	//}
 }
 
 
@@ -117,20 +117,20 @@ void PlayerManager::Draw(void)
 Transform PlayerManager::FixTrans(int _playerNum)
 {
 	Transform trans = Transform();
-	//モデルできたら番号ごとで設定する
-	ResourceManager& resIns = ResourceManager::GetInstance();
-	//番号でモデルを変える(予定)
-	//trans.SetModel(resIns.LoadModelDuplicate(ResourceManager::SRC::CHICKEN));
+	////モデルできたら番号ごとで設定する
+	//ResourceManager& resIns = ResourceManager::GetInstance();
+	////番号でモデルを変える(予定)
+	////trans.SetModel(resIns.LoadModelDuplicate(ResourceManager::SRC::CHICKEN));
 
-	//transの初期化
-	PLAYER num = static_cast<PLAYER>(_playerNum);
-	
-	trans.quaRot = Quaternion();
-	trans.scl = MODEL_SCL;
-	trans.quaRotLocal =
-		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(180.0f), 0.0f });
+	////transの初期化
+	//PLAYER num = static_cast<PLAYER>(_playerNum);
+	//
+	//trans.quaRot = Quaternion();
+	//trans.scl = MODEL_SCL;
+	//trans.quaRotLocal =
+	//	Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(180.0f), 0.0f });
 
-	trans.localPos = { 0.0f,-Player::RADIUS,0.0f };
+	//trans.localPos = { 0.0f,-Player::RADIUS,0.0f };
 	return trans;
 }
 

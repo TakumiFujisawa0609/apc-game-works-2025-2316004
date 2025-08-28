@@ -85,6 +85,8 @@ public:
 	//プレイヤーの角度Y
 	const Quaternion GetPlayerRotY(void) { return playerRotY_; }
 
+	//手札
+	const std::shared_ptr<CardDeck> GetHand(void) { return deck_;}
 
 	//ジャンプ中
 	const bool GetIsJump(void) { return isJump_; }

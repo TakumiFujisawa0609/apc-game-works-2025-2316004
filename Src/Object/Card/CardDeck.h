@@ -34,6 +34,10 @@ public:
 	/// </summary>
 	/// <param name="_pow">追加したいカードの強さ</param>
 	void AddDrawPile(const int _pow);
+
+	//手札のカード取得
+	
+
 private:
 	//メンバ関数
 	//カードを選択したときの制限

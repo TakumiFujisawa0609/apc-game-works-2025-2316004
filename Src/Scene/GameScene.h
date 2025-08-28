@@ -3,7 +3,9 @@
 #include "SceneBase.h"
 
 class PauseScene;
+class Player;
 class Enemy;
+class CardSystem;
 class GameScene : public SceneBase
 {
 
@@ -28,8 +30,14 @@ private:
 	//ポーズ画面
 	std::shared_ptr<PauseScene> pauseScene_;
 
+	//プレイヤー
+	std::unique_ptr<Player>player_;
+
 	//敵
 	std::unique_ptr<Enemy>enemy_;
+
+	//カードシステム
+	std::unique_ptr<CardSystem>cardSystem_;
 
 	//更新関数
 	void NormalUpdate(void) override;

@@ -58,11 +58,11 @@ public:
 	//*****************************************
 	//ゲッタ
 	//*****************************************
-	//モデル情報ゲッタ
-	const Transform& GetPlayerTransform(const int _num) { return players_[_num]->GetTransform(); }
+	////モデル情報ゲッタ
+	//const Transform& GetPlayerTransform(const int _num) { return players_[_num]->GetTransform(); }
 
-	//プレイヤー情報
-	std::vector<std::unique_ptr<Player>>&GetPlayers(void) { return players_; }
+	////プレイヤー情報
+	//std::vector<std::unique_ptr<Player>>&GetPlayers(void) { return players_; }
 
 
 	//ゴールタイムのゲッタ
@@ -95,7 +95,7 @@ private:
 	//メンバ変数
 	//*****************************************
 	//プレイヤー
-	std::vector<std::unique_ptr<Player>> players_;
+	//std::vector<std::unique_ptr<Player>> players_;
 
 	//プレイヤー人数
 	int playerNum_;
