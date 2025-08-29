@@ -36,7 +36,7 @@ public:
 	void AddDrawPile(const int _pow);
 
 	//手札のカード取得
-	
+	std::vector<std::weak_ptr<CardBase>> GetHand(void);
 
 private:
 	//メンバ関数
@@ -48,7 +48,7 @@ private:
 	//std::vector<std::unique_ptr<CardBase>>drawPile_;
 	std::vector<std::unique_ptr<CardBase>>drawPile_;
 	//今使っているカード
-	std::vector<std::unique_ptr<CardBase>>hand_;
+	std::vector<std::shared_ptr<CardBase>>hand_;
 	//std::vector<CardBase&>hand_;
 	//チャージ中カード
 	std::vector<std::unique_ptr<CardBase>>chargeCard_;

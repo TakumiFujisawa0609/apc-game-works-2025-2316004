@@ -86,7 +86,7 @@ public:
 	const Quaternion GetPlayerRotY(void) { return playerRotY_; }
 
 	//ŽèŽD
-	const std::shared_ptr<CardDeck> GetHand(void) { return deck_;}
+	const std::weak_ptr<CardDeck> GetHand(void) { return deck_;}
 
 	//ƒWƒƒƒ“ƒv’†
 	const bool GetIsJump(void) { return isJump_; }

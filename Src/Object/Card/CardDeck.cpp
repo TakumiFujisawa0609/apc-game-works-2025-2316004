@@ -100,6 +100,16 @@ void CardDeck::AddDrawPile(const int _pow)
 	drawPile_.emplace_back(std::move(card));
 }
 
+std::vector<std::weak_ptr<CardBase>> CardDeck::GetHand(void)
+{
+	std::vector<std::weak_ptr<CardBase>> hand;
+	for (int i = 0; i < hand_.size(); i++)
+	{
+		hand.emplace_back(hand_[i]);
+	}
+	return hand;
+}
+
 void CardDeck::CardMoveLimit(void)
 {
 	if (currentNum_ < 0)

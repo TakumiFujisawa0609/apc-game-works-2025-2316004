@@ -129,7 +129,7 @@ public:
 	inline const InputManager::JOYPAD_NO GetPadNum(void)const { return padNum_; }
 
 	//プレイヤーの手札
-	const std::shared_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
+	const std::weak_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
 
 	//******************************************
 	//セッタ

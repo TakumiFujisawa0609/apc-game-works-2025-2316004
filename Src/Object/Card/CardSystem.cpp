@@ -18,7 +18,7 @@ void CardSystem::CompareCards(void)
 	int hand1Size = deck1_.lock()->GetHand().size();
 	int hand1CardPow = -1;
 	int hand2CardPow = -1;
-	int hand2Size = hand2_.size();
+	int hand2Size = deck2_.lock()->GetHand().size();
 	
 	//お互いに手札が0枚なら処理を抜ける
 	if (hand1Size == 0 && hand2Size == 0)
@@ -35,27 +35,27 @@ void CardSystem::CompareCards(void)
 		hand2CardPow = 0;
 	}
 	//複数ある手札のカードの強さを合計する
-	for(int i=0;i< hand1_.size(); i++)
+	for(int i=0;i< hand1Size; i++)
 	{
-		hand1CardPow += hand1_[i].GetPow();
+		hand1CardPow += deck1_.lock()->GetHand()[i].lock()->GetPow();
 	}
-	for(int i=0;i< hand2_.size(); i++)
+	for(int i=0;i< hand2Size; i++)
 	{
-		hand2CardPow += hand2_[i].GetPow();
+		hand2CardPow += deck2_.lock()->GetHand()[i].lock()->GetPow();
 	}
 	//強さを比較し、勝った方のカードに勝利フラグを立てる
 	if (hand1CardPow > hand2CardPow)
 	{
-		for(int i=0;i< hand1_.size(); i++)
+		for(int i=0;i< hand1Size; i++)
 		{
-			hand1_[i].SetIsWin(true);
+			deck1_.lock()->GetHand()[i].lock()->SetIsWin(true);
 		}
 	}
 	else if (hand2CardPow < hand1CardPow)
 	{
-		for (int i = 0; i < hand1_.size(); i++)
+		for (int i = 0; i < hand2Size; i++)
 		{
-			hand2_[i].SetIsWin(true);
+			deck2_.lock()->GetHand()[i].lock()->SetIsWin(true);
 		}
 	}
 }

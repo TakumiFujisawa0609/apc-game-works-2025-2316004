@@ -7,6 +7,8 @@
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/FontManager.h"
 
+#include"../Object/Card/CardSystem.h"
+
 #include"../Object/Enemy/Enemy.h"	
 
 #include "PauseScene.h"
