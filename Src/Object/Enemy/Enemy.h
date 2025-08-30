@@ -22,6 +22,8 @@ public:
 	//格納するカードの強さ
 	static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
 
+
+
 	const std::shared_ptr<CardDeck> GetHand(void)const { return deck_; }
 
 	Enemy(void);
@@ -32,6 +34,9 @@ public:
 	void Draw(void) override;
 
 private:
+	//定数
+	//敵番号(デッキで判定する用)
+	static constexpr int ENEMY_NUM = 1;
 	Vector2 cardCenterPos_; //カードの中心座標
 	//メンバ関数
 	void DrawDebug(void);

@@ -1,14 +1,18 @@
 #include<DxLib.h>
 #include"../../Application.h"
 #include "CardBase.h"
+
+#include"./CardSystem.h"
+
 #include "CardDeck.h"
 
-CardDeck::CardDeck(Vector2& _centerPos):
+CardDeck::CardDeck(Vector2& _centerPos, int _playerNum):
 	drawPile_(),
 	currentNum_(0),
 	nextNum_(0),
 	prevNum_(0),
-	centerPos_(_centerPos)
+	centerPos_(_centerPos),
+	playerNum_(_playerNum)
 {
 	currentNum_ = 0;
 	nextNum_ = 0;
@@ -35,8 +39,27 @@ void CardDeck::Init(void)
 
 void CardDeck::CardUse(void)
 {
+	//場にカードを出星南い状態なら処理を抜ける
+	if (CardSystem::GetInstance().GetCanPut() == false)return;
+
 	//使うカードを手札に加える
+	int cardPow = 0;
 	hand_.emplace_back(std::move(drawPile_[currentNum_]));
+
+	drawPile_.resize(drawPile_.size() - 1);
+	//現在選んでいるカードを次のカードにする
+	currentNum_++;
+	nextNum_ = currentNum_ + 1;
+
+	//手札の合計値を出す
+	for(auto& it:hand_)
+	{
+		cardPow += it->GetPow();
+	}
+
+	//カードを場に出してシステム側で処理をする
+	CardSystem::GetInstance().PutCard(cardPow);
+	
 }
 
 void CardDeck::CardCharge(void)

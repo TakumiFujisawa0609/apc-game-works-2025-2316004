@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Enemy\EnemyAction.cpp" />
     <ClCompile Include="Src\Object\Player\Process\EnemyInput.cpp" />
     <ClCompile Include="Src\Object\Enemy\Enemy.cpp" />
     <ClCompile Include="Src\Object\Player\Process\InputBase.cpp" />
@@ -60,6 +61,7 @@
     <ClCompile Include="Src\Utility\UtilityDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Enemy\EnemyAction.h" />
     <ClInclude Include="Src\Object\Player\Process\EnemyInput.h" />
     <ClInclude Include="Src\Object\Enemy\Enemy.h" />
     <ClInclude Include="Src\Object\Player\Process\InputBase.h" />

@@ -60,7 +60,7 @@ void PlayerAction::Init(void)
 
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
-	deck_ = std::make_shared<CardDeck>(cardCenterPos_);
+	deck_ = std::make_shared<CardDeck>(cardCenterPos_,PLAYER_NUM);
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{

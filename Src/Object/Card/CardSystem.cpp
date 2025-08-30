@@ -3,59 +3,54 @@
 #include"CardDeck.h"
 #include "CardSystem.h"
 
-CardSystem::CardSystem(std::weak_ptr<CardDeck>_deck1, std::weak_ptr<CardDeck>_deck2):
-	deck1_(_deck1),
-	deck2_(_deck2)
+CardSystem::CardSystem(void):
+	putCardPow_{-1,-1},
+	canPut_(true)
 {
+	
 }
 
-CardSystem::~CardSystem(void)
-{
-}
 
 void CardSystem::CompareCards(void)
 {
-	int hand1Size = deck1_.lock()->GetHand().size();
-	int hand1CardPow = -1;
-	int hand2CardPow = -1;
-	int hand2Size = deck2_.lock()->GetHand().size();
-	
+	if (putCardPow_[PLAYER_NO] == -1 || putCardPow_[CPU_NO] == -1)
+	{
+		canPut_ = true;
+	}
+	else
+	{
+		canPut_ = false;
+	}
 	//お互いに手札が0枚なら処理を抜ける
-	if (hand1Size == 0 && hand2Size == 0)
+	if (putCardPow_[PLAYER_NO]==-1 && putCardPow_[CPU_NO] ==-1)
 	{
 		return;
 	}
-	//手札が0枚以上ならカードの強さを0に初期化する
-	if (hand1Size > 0)
+	//以下、2つのカードの強さを比較
+	if (putCardPow_[PLAYER_NO] == putCardPow_[CPU_NO])
 	{
-		hand1CardPow = 0;
+		//引き分け
 	}
-	if (hand2Size > 0)
+	else if (putCardPow_[PLAYER_NO] > putCardPow_[CPU_NO])
 	{
-		hand2CardPow = 0;
+		//プレイヤーの勝ち
 	}
-	//複数ある手札のカードの強さを合計する
-	for(int i=0;i< hand1Size; i++)
+	else if (putCardPow_[PLAYER_NO] < putCardPow_[CPU_NO])
 	{
-		hand1CardPow += deck1_.lock()->GetHand()[i].lock()->GetPow();
+		//CPUの勝ち
 	}
-	for(int i=0;i< hand2Size; i++)
+}
+
+void CardSystem::PutCard(const int pow)
+{
+	//playerNoは0か1のどちらかで、それ以外の数値が来た場合は処理を抜ける
+	//カードの強さをセットする
+	for(int i=0; i < ARRAY_NUM; i++)
 	{
-		hand2CardPow += deck2_.lock()->GetHand()[i].lock()->GetPow();
-	}
-	//強さを比較し、勝った方のカードに勝利フラグを立てる
-	if (hand1CardPow > hand2CardPow)
-	{
-		for(int i=0;i< hand1Size; i++)
+		if(putCardPow_[i] == -1)
 		{
-			deck1_.lock()->GetHand()[i].lock()->SetIsWin(true);
-		}
-	}
-	else if (hand2CardPow < hand1CardPow)
-	{
-		for (int i = 0; i < hand2Size; i++)
-		{
-			deck2_.lock()->GetHand()[i].lock()->SetIsWin(true);
+			putCardPow_[i] = pow;
+			break;
 		}
 	}
 }

@@ -36,8 +36,6 @@ private:
 	//敵
 	std::unique_ptr<Enemy>enemy_;
 
-	//カードシステム
-	std::unique_ptr<CardSystem>cardSystem_;
 
 	//更新関数
 	void NormalUpdate(void) override;

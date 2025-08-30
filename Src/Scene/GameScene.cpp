@@ -52,7 +52,7 @@ void GameScene::Init(void)
 	//PlayerManager::GetInstance().Init();
 	player_->Init();
 	enemy_->Init();
-	cardSystem_ = std::make_unique<CardSystem>(player_->GetHand(),enemy_->GetHand());
+	CardSystem::CreateInstance();
 }
 
 void GameScene::NormalUpdate(void)
@@ -69,6 +69,9 @@ void GameScene::NormalUpdate(void)
 	player_->Update();
 	//敵の更新
 	enemy_->Update();
+
+	//カードシステムの比較実行
+	CardSystem::GetInstance().CompareCards();
 	//デバッグ処理
 	DebagUpdate();
 }
