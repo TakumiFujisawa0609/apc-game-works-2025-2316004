@@ -9,17 +9,23 @@ class CardSystem : public Singleton<CardSystem>
 {
 	friend class Singleton<CardSystem>;
 public:
-	//プレイヤーの番号
+	//プレイヤーの配列番号
 	static constexpr int PLAYER_NO = 0;
 
-	//CPUの番号
+	//CPUのの配列番号
 	static constexpr int CPU_NO = 1;
+
+	//先出しの番号
+	static constexpr int FIRST_ATK = 0;
+
+	//後だしの番号
+	static constexpr int SECOND_ATK = 1;
 
 	//配列数
 	static constexpr int ARRAY_NUM = 2;
 
 	//返す勝敗判定
-	enum class BATLE_RESULT
+	enum class BATTLE_RESULT
 	{
 		NONE,
 		SUCCESS_USE,		//成功
@@ -30,7 +36,7 @@ public:
 		SUCCESS_REFLECT,	//成功(反射)
 		NOTHING,
 
-		GIVE_DRAW,		//引き分け
+		GIVE_DRAW,		//引き分けにした
 		BE_DRAW,		//引き分けにされた
 
 		RELOAD			//リロード
@@ -48,6 +54,13 @@ public:
 	/// <param name=""></param>
 	/// <returns>true:場に出せる false:場に出せない</returns>
 	const bool GetCanPut(void) const { return canPut_; }
+
+	/// <summary>
+	/// 勝敗結果の取得
+	/// </summary>
+	/// <param name="_cardPlayerNo"></param>
+	/// <returns>カード勝負プレイヤーの番号</returns>
+	const BATTLE_RESULT GetResult(int _cardPlayerNo)const;
 private:
 
 	CardSystem(void);
@@ -58,5 +71,11 @@ private:
 
 	//カードを場に出せるか
 	bool canPut_;
+
+	//勝敗結果
+	BATTLE_RESULT result_[ARRAY_NUM];
+
+	//結果返す時のプレイヤーの識別
+	BATTLE_RESULT playerResult_[ARRAY_NUM];
 };
 

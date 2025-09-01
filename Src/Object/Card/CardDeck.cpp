@@ -39,7 +39,7 @@ void CardDeck::Init(void)
 
 void CardDeck::CardUse(void)
 {
-	//場にカードを出星南い状態なら処理を抜ける
+	//場にカードをだせない状態なら処理を抜ける
 	if (CardSystem::GetInstance().GetCanPut() == false)return;
 
 	//使うカードを手札に加える
