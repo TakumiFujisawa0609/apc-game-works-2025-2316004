@@ -45,8 +45,12 @@ public:
 	//ストックカードのカードを比較する
 	void CompareCards(void);
 
-	//場にカードを出す
-	void PutCard(const int pow);
+	/// <summary>
+	/// カードを場に出す
+	/// </summary>
+	/// <param name="_pow">カードの強さ</param>
+	/// <param name="_playerNum">プレイヤー番号(誰の結果にセットするか)</param>
+	void PutCard(const int _pow,const int _playerNum);
 
 	/// <summary>
 	/// カードを場に出せるかの取得
@@ -63,9 +67,15 @@ public:
 	const BATTLE_RESULT GetResult(int _cardPlayerNo)const;
 private:
 
+
+	//メンバ関数
+	//------------------------------------------------
+	//再利用を防ぐ
 	CardSystem(void);
 	~CardSystem(void) = default;
 
+	//メンバ変数
+	//-------------------------------------------------
 	//場に出ているカード
 	int putCardPow_[ARRAY_NUM];
 
@@ -77,5 +87,8 @@ private:
 
 	//結果返す時のプレイヤーの識別
 	BATTLE_RESULT playerResult_[ARRAY_NUM];
+
+	//先出しかどうか true:先出し
+	bool isFirstAtk_[ARRAY_NUM];
 };
 

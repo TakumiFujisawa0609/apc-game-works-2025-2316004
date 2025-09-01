@@ -6,6 +6,9 @@
 #include "../../Manager/Generic/Camera.h"
 #include "../../Manager/Generic/SceneManager.h"
 #include "../../Manager/Resource/ResourceManager.h"
+
+#include"../Object/Card/CardSystem.h"
+
 //#include "../../Object/Common/EffectController.h"
 #include "../../Object/Common/AnimationController.h"
 
@@ -25,6 +28,7 @@ PlayerAction::PlayerAction(Player& _player, SceneManager& _scnMng, AnimationCont
 	changeAction_.emplace(ATK_ACT::MOVE, [this]() {ChangeMove(); });
 	changeAction_.emplace(ATK_ACT::INPUT, [this]() {ChangeInput(); });
  	changeAction_.emplace(ATK_ACT::JUMP, [this]() {ChangeJump(); });
+ 	changeAction_.emplace(ATK_ACT::CARD_USE, [this]() {ChangeCardUse(); });
 
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
@@ -125,8 +129,6 @@ void PlayerAction::Update(void)
 	//プレイヤーの方向とスピードの更新
 	UpdateMoveDirAndPow();
 
-	//カード関連
-	CardUseUpdate();
 	CardChargeUpdate();
 	CardMove();
 }
@@ -152,12 +154,18 @@ void PlayerAction::ChangeNone(void)
 void PlayerAction::ActionInputUpdate(void)
 {
 	//入力に応じてアクションを変える
+	//移動
 	using ACT_CNTL = PlayerInput::ACT_CNTL;
 	if (input_->CheckAct(ACT_CNTL::MOVE))
 	{
 		ChangeAction(ATK_ACT::MOVE);
 		return;
 	}
+	if (input_->CheckAct(ACT_CNTL::CARD_USE))
+	{
+		ChangeAction(ATK_ACT::CARD_USE);
+	}
+
 }
 
 void PlayerAction::ChangeAction(ATK_ACT _act)
@@ -178,25 +186,12 @@ void PlayerAction::MoveUpdate(void)
 {
 	Speed();
 	//移動中に入力が入った時の状態遷移
-	if (CheckJumpInput())
-	{
-		ChangeAction(ATK_ACT::JUMP);
-		return;
-	}
+
 	if (input_->CheckAct(PlayerInput::ACT_CNTL::MOVE))
 	{
 		ChangeAction(ATK_ACT::MOVE);
 	}
-	if (input_->CheckAct(PlayerInput::ACT_CNTL::DASHMOVE))
-	{
-		ChangeAction(ATK_ACT::DASHMOVE);
-	}
-	else if (input_->CheckAct(PlayerInput::ACT_CNTL::PUNCH))
-	{
-		speed_ = 0.0f;
-		ChangeAction(ATK_ACT::PUNCH);
-		return;
-	}
+
 	else if (!input_->CheckAct(PlayerInput::ACT_CNTL::MOVE)
 		&&!input_->CheckAct(PlayerInput::ACT_CNTL::DASHMOVE))
 	{
@@ -250,6 +245,26 @@ void PlayerAction::ChangeDashMove(void)
 	actionUpdate_ = [this]() {MoveUpdate(); };
 }
 
+void PlayerAction::ChangeJump(void)
+{
+	//ジャンプ関係
+	isJump_ = true;
+	stepJump_ = 0.0f;
+
+	//プレイヤーの情報
+	Transform trans = player_.GetTransform();
+	//エフェクトのスケール
+	const VECTOR EFF_SCL = { 10.0f,10.0f,10.0f };
+
+	//状態遷移
+	actionUpdate_ = [this]() {JumpUpdate(); };
+}
+
+void PlayerAction::ChangeCardUse(void)
+{
+	actionUpdate_ = [this]() {CardUseUpdate(); };
+}
+
 
 
 void PlayerAction::UpdateMoveDirAndPow(void)
@@ -284,6 +299,7 @@ void PlayerAction::JumpUpdate(void)
 	//ジャンプ処理
 	Jump();
 }
+
 
 void PlayerAction::Jump(void)
 {
@@ -333,28 +349,10 @@ void PlayerAction::Jump(void)
 	}
 }
 
-void PlayerAction::ChangeJump(void)
-{
-	//ジャンプ関係
-  	isJump_ = true;
-	stepJump_ = 0.0f;
-
-	//プレイヤーの情報
-	Transform trans = player_.GetTransform();
-	//エフェクトのスケール
-	const VECTOR EFF_SCL = { 10.0f,10.0f,10.0f };
-
-	//状態遷移
-	actionUpdate_ = [this]() {JumpUpdate(); };
-}
 
 void PlayerAction::CardUseUpdate(void)
 {
-	if (input_->CheckAct(PlayerInput::ACT_CNTL::_CARD_USE))
-	{
-		deck_->CardUse();
-	}
-	
+	deck_->CardUse();
 }
 
 void PlayerAction::CardChargeUpdate(void)

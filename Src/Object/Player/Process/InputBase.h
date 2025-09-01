@@ -12,7 +12,7 @@ public:
         , PUNCH         //パンチ
         , JUMP          //ジャンプ
         , CARD_CHARGE   //カードチャージ
-        , _CARD_USE      //カード使用
+        , CARD_USE      //カード使用
         , CARD_MOVE_LEFT //カード左
         , CARD_MOVE_RIGHT//カード右
     };

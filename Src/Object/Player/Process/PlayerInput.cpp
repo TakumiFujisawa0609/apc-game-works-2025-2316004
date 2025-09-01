@@ -96,7 +96,7 @@ void PlayerInput::InputKeyBoard(void)
 	if (ins.IsTrgDown(CARD_CHARGE_KEY)) { actCntl_ = ACT_CNTL::CARD_CHARGE; }
 
 	//ジャンプキー
-	if (ins.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::_CARD_USE; }
+	if (ins.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::CARD_USE; }
 }
 
 void PlayerInput::InputAll(void)
@@ -155,7 +155,7 @@ void PlayerInput::InputAll(void)
 	if (ins.IsPadBtnTrgDown(padNum_,CARD_CHARGE_BTN)|| ins.IsTrgDown(CARD_CHARGE_KEY)) { actCntl_ = ACT_CNTL::CARD_CHARGE; }
 
 	//ジャンプキー
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_USE_BTN)|| ins.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::_CARD_USE; }
+	if (ins.IsPadBtnTrgDown(padNum_, CARD_USE_BTN)|| ins.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::CARD_USE; }
 
 
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN)|| ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) { actCntl_ = ACT_CNTL::CARD_MOVE_LEFT; }

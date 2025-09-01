@@ -26,9 +26,9 @@ void EnemyInput::Update(void)
 	{
 		actCntl_ = ACT_CNTL::CARD_MOVE_RIGHT;
 	}
-	else if(InputManager::GetInstance().IsTrgDown(KEY_INPUT_LCONTROL))
+	else if(InputManager::GetInstance().IsTrgDown(KEY_INPUT_RCONTROL))
 	{
-		actCntl_ = ACT_CNTL::_CARD_USE;
+		actCntl_ = ACT_CNTL::CARD_USE;
 	}
 
 

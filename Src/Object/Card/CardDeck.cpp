@@ -58,7 +58,18 @@ void CardDeck::CardUse(void)
 	}
 
 	//カードを場に出してシステム側で処理をする
-	CardSystem::GetInstance().PutCard(cardPow);
+	CardSystem& cardSystem = CardSystem::GetInstance();
+	CardSystem::BATTLE_RESULT result = cardSystem.GetResult(playerNum_);
+	cardSystem.PutCard(cardPow,playerNum_);
+	cardSystem.CompareCards();
+
+	if (IsCardFailure())
+	{
+		for (auto& hand : hand_)
+		{
+			disCard_.emplace_back(std::move(hand));
+		}
+	}
 	
 }
 
@@ -123,15 +134,15 @@ void CardDeck::AddDrawPile(const int _pow)
 	drawPile_.emplace_back(std::move(card));
 }
 
-std::vector<std::weak_ptr<CardBase>> CardDeck::GetHand(void)
-{
-	std::vector<std::weak_ptr<CardBase>> hand;
-	for (int i = 0; i < hand_.size(); i++)
-	{
-		hand.emplace_back(hand_[i]);
-	}
-	return hand;
-}
+//std::vector<std::weak_ptr<CardBase>> CardDeck::GetHand(void)
+//{
+//	std::vector<std::weak_ptr<CardBase>> hand;
+//	for (int i = 0; i < hand_.size(); i++)
+//	{
+//		hand.emplace_back(hand_[i]);
+//	}
+//	return hand;
+//}
 
 void CardDeck::CardMoveLimit(void)
 {
@@ -151,4 +162,12 @@ void CardDeck::CardMoveLimit(void)
 	{
 		prevNum_ = CARD_NUM_MAX - 1;
 	}
+}
+
+bool CardDeck::IsCardFailure(void)
+{
+	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(playerNum_);
+	using RESULT = CardSystem::BATTLE_RESULT;
+	return result == RESULT::FAILURE_USE_BE_REFLECTED || result == RESULT::BE_DRAW
+		|| result == RESULT::GIVE_DRAW;
 }

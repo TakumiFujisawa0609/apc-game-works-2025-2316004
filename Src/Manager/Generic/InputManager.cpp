@@ -38,6 +38,7 @@ void InputManager::Init(void)
 
 	//カード使用
 	InputManager::GetInstance().Add(KEY_INPUT_F);
+	InputManager::GetInstance().Add(KEY_INPUT_RCONTROL);
 	//カードチャージ
 	InputManager::GetInstance().Add(KEY_INPUT_R);
 	//---------------------------------------------------

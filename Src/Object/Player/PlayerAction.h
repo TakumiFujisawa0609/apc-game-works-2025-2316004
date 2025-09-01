@@ -33,7 +33,8 @@ public:
 		DASHMOVE,//ダッシュ
 		PUNCH,	//パンチ
 		KNOCKBACK,//パンチされた状態
-		JUMP
+		JUMP,
+		CARD_USE
 	};
 
 	enum class ACT_SE
@@ -252,20 +253,29 @@ private:
 
 	//入力
 	void ActionInputUpdate(void);
-	void ChangeInput(void);
 
 	//何もなし
 	void ChangeNone(void);
 
-	//移動状態の更新
-	void MoveUpdate(void);
-	//入力方向に応じて方向を決める
-	void MoveDirFronInput(void);
+	//更新
+	void MoveUpdate(void);		//移動
+	void JumpUpdate(void);		//ジャンプ
+	void CardUseUpdate(void);	//カード使用
+	void CardChargeUpdate(void);//ストック
+
+	//状態遷移
+	void ChangeJump(void);		//ジャンプ
+	void ChangeInput(void);		//入力
+	void ChangeDashMove(void);	//ダッシュ
+	void ChangeCardUse(void);	//カード使用
+
+
 	//移動状態変更
 	void ChangeMove(void);
 
+	//入力方向に応じて方向を決める
+	void MoveDirFronInput(void);
 	//ダッシュ
-	void ChangeDashMove(void);
 
 	//毎フレーム移動方向とスピードを更新する
 	void UpdateMoveDirAndPow(void);
@@ -273,15 +283,11 @@ private:
 	void Speed(void);
 
 	//ジャンプ
-	void JumpUpdate(void);
 	void Jump(void);
-	void ChangeJump(void);
 
 	//カード関連
 	//カード使用
-	void CardUseUpdate(void);
 	//カードチャージ
-	void CardChargeUpdate(void);
 	//カード選択
 	void CardMove(void);
 

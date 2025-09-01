@@ -3,12 +3,6 @@
 #include"CardDeck.h"
 #include "CardSystem.h"
 
-
-const CardSystem::BATTLE_RESULT CardSystem::GetResult(int _cardPlayerNo) const
-{
-	return BATTLE_RESULT();
-}
-
 CardSystem::CardSystem(void):
 	putCardPow_{-1,-1},
 	canPut_(true)
@@ -16,12 +10,14 @@ CardSystem::CardSystem(void):
 	
 }
 
+
 const CardSystem::BATTLE_RESULT CardSystem::GetResult(int _cardPlayerNo) const
 {
 	//配列数より大きい数字を指定されたら何も返さない
-	if (_cardPlayerNo > ARRAY_NUM)return;
+	if (_cardPlayerNo > ARRAY_NUM)return CardSystem::BATTLE_RESULT::NONE;
+	CardSystem::BATTLE_RESULT result = playerResult_[_cardPlayerNo];
 
-	return playerResult_[_cardPlayerNo];
+	return result;
 }
 
 
@@ -66,18 +62,34 @@ void CardSystem::CompareCards(void)
 		result_[FIRST_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
 		result_[SECOND_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
 	}
+
+	//各プレイヤーの結果に判定結果を反映する
+	for (int i = 0; i < ARRAY_NUM; i++)
+	{
+		if (isFirstAtk_[i])
+		{
+			playerResult_[i] = result_[FIRST_ATK];
+		}
+		else
+		{
+			playerResult_[i] = result_[SECOND_ATK];
+		}
+	}
+
 }
 
-void CardSystem::PutCard(const int pow)
+void CardSystem::PutCard(const int _pow, const int _playerNum)
 {
-	//playerNoは0か1のどちらかで、それ以外の数値が来た場合は処理を抜ける
+	//すでに強さが代入されていれば処理を抜ける
+	if (putCardPow_[PLAYER_NO] != -1 && putCardPow_[CPU_NO] != -1)return;
 	//カードの強さをセットする
 	for(int i=0; i < ARRAY_NUM; i++)
 	{
+		if (i == FIRST_ATK) { isFirstAtk_[_playerNum] = true; }
+		else { isFirstAtk_[_playerNum] = false; }
 		if(putCardPow_[i] == -1)
 		{
-			playerResult_[]
-			putCardPow_[i] = pow;
+			putCardPow_[i] = _pow;
 			break;
 		}
 	}

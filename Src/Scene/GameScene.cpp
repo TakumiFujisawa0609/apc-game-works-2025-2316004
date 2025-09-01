@@ -65,7 +65,6 @@ void GameScene::NormalUpdate(void)
 	}
 	
 	//プレイヤーの更新
-	//PlayerManager::GetInstance().Update();
 	player_->Update();
 	//敵の更新
 	enemy_->Update();

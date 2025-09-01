@@ -51,7 +51,7 @@ void Enemy::Update(void)
 	{
 		deck_->CardMoveRight();
 	}
-	else if (input_->CheckAct(EnemyInput::ACT_CNTL::_CARD_USE))
+	else if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_USE))
 	{
 		deck_->CardUse();
 	}
