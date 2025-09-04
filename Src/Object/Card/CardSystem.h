@@ -64,7 +64,7 @@ public:
 	/// </summary>
 	/// <param name="_cardPlayerNo"></param>
 	/// <returns>カード勝負プレイヤーの番号</returns>
-	const BATTLE_RESULT GetResult(int _cardPlayerNo)const;
+	const BATTLE_RESULT GetResult(const int _cardPlayerNo)const;
 private:
 
 

@@ -85,5 +85,13 @@ public:
 /// <param name="_localPos">相対座標</param>
 	VECTOR AddPosRotate(VECTOR _followPos, Quaternion _followRot, VECTOR _localPos);
 
+	/// <summary>
+	/// 目的の座標を超えたか
+	/// </summary>
+	/// <param name="_startPos">初期座標</param>
+	/// <param name="_goalPos">目的の座標</param>
+	/// <param name="_mydir">自分の方向</param>
+	/// <returns></returns>
+	bool IsBeyondGoalPos(const VECTOR _startPos, const VECTOR _goalPos, const VECTOR _mydir);
 };
 

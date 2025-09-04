@@ -11,10 +11,10 @@ CardSystem::CardSystem(void):
 }
 
 
-const CardSystem::BATTLE_RESULT CardSystem::GetResult(int _cardPlayerNo) const
+const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) const
 {
 	//”z—ñ”‚æ‚è‘å‚«‚¢”Žš‚ðŽw’è‚³‚ê‚½‚ç‰½‚à•Ô‚³‚È‚¢
-	if (_cardPlayerNo > ARRAY_NUM)return CardSystem::BATTLE_RESULT::NONE;
+	if (_cardPlayerNo >= ARRAY_NUM)return CardSystem::BATTLE_RESULT::NONE;
 	CardSystem::BATTLE_RESULT result = playerResult_[_cardPlayerNo];
 
 	return result;
