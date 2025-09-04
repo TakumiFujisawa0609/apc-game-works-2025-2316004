@@ -235,6 +235,11 @@ VECTOR Utility3D::AddPosRotate(VECTOR _followPos, Quaternion _followRot, VECTOR 
     return VAdd(_followPos, addPos);
 }
 
+bool Utility3D::IsBeyondGoalPos(const VECTOR _startPos, const VECTOR _goalPos, const VECTOR _mydir)
+{
+    return false;
+}
+
 
 
 
