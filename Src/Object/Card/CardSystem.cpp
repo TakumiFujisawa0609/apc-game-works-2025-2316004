@@ -75,7 +75,6 @@ void CardSystem::CompareCards(void)
 			playerResult_[i] = result_[SECOND_ATK];
 		}
 	}
-
 }
 
 void CardSystem::PutCard(const int _pow, const int _playerNum)

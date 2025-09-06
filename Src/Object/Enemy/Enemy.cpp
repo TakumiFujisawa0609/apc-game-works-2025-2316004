@@ -53,8 +53,10 @@ void Enemy::Update(void)
 	}
 	else if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_USE))
 	{
-		deck_->CardUse();
+		deck_->MoveHandToCharge();
+		
 	}
+	deck_->CardUseUpdate();
 }
 
 void Enemy::Draw(void)

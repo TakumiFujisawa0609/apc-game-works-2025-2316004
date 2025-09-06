@@ -79,19 +79,11 @@ void PlayerAction::Init(void)
 	jumpDeceralation_ = POW_JUMP;
   	movePow_ = Utility3D::VECTOR_ZERO;
 
+	isCardAct_ = false;
+	cardActTime_ = 0.0f;
 	//スピード
 	speed_ = 0.0f;
 
-	isPunchHitTime_ = false;
-
-	//if (scnMng_.GetInstance().GetSceneID() == SceneManager::SCENE_ID::TITLE)
-	//{
-	//	cameraNo_ = 0;
-	//}
-	//else
-	//{
-	//	cameraNo_ = player_.GetPlayerNum();
-	//}
 	act_ = ATK_ACT::NONE;
 	ChangeAction(ATK_ACT::INPUT);
 }
@@ -260,11 +252,6 @@ void PlayerAction::ChangeJump(void)
 	actionUpdate_ = [this]() {JumpUpdate(); };
 }
 
-void PlayerAction::ChangeCardUse(void)
-{
-	actionUpdate_ = [this]() {CardUseUpdate(); };
-}
-
 
 
 void PlayerAction::UpdateMoveDirAndPow(void)
@@ -349,10 +336,34 @@ void PlayerAction::Jump(void)
 	}
 }
 
+void PlayerAction::ChangeCardUse(void)
+{
+	//手札に移動
+	deck_->MoveHandToCharge();
+
+	//アクション中にする
+	isCardAct_ = true;
+
+	//カード使用状態へ
+	actionUpdate_ = [this]() {CardUseUpdate(); };
+}
 
 void PlayerAction::CardUseUpdate(void)
 {
-	deck_->CardUse();
+	if (cardActTime_ < CARD_ACT_TIME_MAX)
+	{
+		cardActTime_ += SceneManager::GetInstance().GetDeltaTime();
+		deck_->CardUseUpdate();
+	}
+	else
+	{
+		//アクション終了
+		isCardAct_ = false;
+		cardActTime_ = 0.0f;
+		ChangeAction(ATK_ACT::INPUT);
+		return;
+	}
+	
 }
 
 void PlayerAction::CardChargeUpdate(void)

@@ -128,6 +128,11 @@ public:
 	float GetJumpDecel(void) { return jumpDeceralation_; }
 	float GetStepJump(void) { return stepJump_; }
 
+#ifdef _DEBUG
+	static constexpr float CARD_ACT_TIME_MAX = 5.0f; //カードアクション時間(デバッグ用)
+#endif // _DEBUG
+
+
 private:
 	//*******************************************
 	//定数
@@ -208,6 +213,10 @@ private:
 
 	//状態
 	ATK_ACT act_;
+
+	bool isCardAct_;	//カードアクション中かどうか
+
+	float cardActTime_; //カードアクション時間(デバッグ用)
 
 	//素材関連
 	//------------------------

@@ -37,19 +37,13 @@ void CardDeck::Init(void)
 	Vector2 pos = centerPos_;
 }
 
-void CardDeck::CardUse(void)
+void CardDeck::CardUseUpdate(void)
 {
 	//場にカードをだせない状態なら処理を抜ける
 	if (CardSystem::GetInstance().GetCanPut() == false)return;
 
 	//使うカードを手札に加える
 	int cardPow = 0;
-	hand_.emplace_back(std::move(drawPile_[currentNum_]));
-
-	drawPile_.resize(drawPile_.size() - 1);
-	//現在選んでいるカードを次のカードにする
-	currentNum_++;
-	nextNum_ = currentNum_ + 1;
 
 	//手札の合計値を出す
 	for(auto& it:hand_)
@@ -117,11 +111,17 @@ void CardDeck::Draw(void)
 	DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow);
 	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
 	DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
-	for(int i=0;i<hand_.size();i++)
+
+	//手札の表示
+	if (hand_.size() > 0)
 	{
-		int handCardPow = hand_[i]->GetPow();
-		DrawFormatString(centerPos_.x + (DISTANCE_X*i), centerPos_.y+100, 0xffffff,L"(%d)", handCardPow);
+		for (int i = 0; i < hand_.size(); i++)
+		{
+			int handCardPow = hand_[i]->GetPow();
+			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0xffffff, L"(%d)", handCardPow);
+		}
 	}
+
 }
 
 void CardDeck::Release(void)
@@ -132,6 +132,18 @@ void CardDeck::AddDrawPile(const int _pow)
 {
 	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_pow);
 	drawPile_.emplace_back(std::move(card));
+}
+
+void CardDeck::MoveHandToCharge(void)
+{
+	//山札にあるカードを手札に加える
+	hand_.emplace_back(std::move(drawPile_[currentNum_]));
+
+	//山札からカードを削除する
+	drawPile_.resize(drawPile_.size() - 1);
+	//現在選んでいるカードを次のカードにする
+	currentNum_++;
+	nextNum_ = currentNum_ + 1;
 }
 
 //std::vector<std::weak_ptr<CardBase>> CardDeck::GetHand(void)

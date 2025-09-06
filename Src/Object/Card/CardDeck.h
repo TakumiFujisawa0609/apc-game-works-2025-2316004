@@ -16,7 +16,7 @@ public:
 	//初期化
 	void Init(void);
 	//カード使用
-	void CardUse(void);
+	void CardUseUpdate(void);
 	//カードチャージ
 	void CardCharge(void);
 	//カードを捨て札に
@@ -35,6 +35,8 @@ public:
 	/// <param name="_pow">追加したいカードの強さ</param>
 	void AddDrawPile(const int _pow);
 
+	//カードを使用札に移動
+	void MoveHandToCharge(void);
 	//手札のカード取得
 	//std::vector<std::weak_ptr<CardBase>> GetHand(void);
 
