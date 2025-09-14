@@ -1,10 +1,12 @@
 #pragma once
 #include <DxLib.h>
 #include"../Common/Quaternion.h"
+class SceneManager;
+class InputBase;
 class ActionBase
 {
 public:
-	ActionBase(void);
+	ActionBase(InputBase& _input );
 	virtual ~ActionBase();
 
 	virtual void Init(void) = 0;
@@ -29,6 +31,9 @@ public:
 	{
 
 	};
+
+	
+
 protected:
 	//移動
 //------------------------
@@ -42,15 +47,28 @@ protected:
 	Quaternion goalQuaRot_;		//目的の回転
 	float stepRotTime_;			//補完時間
 
-
-
 	//ジャンプ
 	//-----------------------
 	bool isJump_;			// ジャンプ判定
 	float stepJump_;		// ジャンプの入力受付時間
 	VECTOR jumpPow_;		// ジャンプ量
 	float jumpDeceralation_;	//ジャンプ減衰量
-private:
 
+	//メンバ関数
+	//入力方向に応じて方向を決める
+	void MoveDirFronInput(void);
+	
+	//シングルトンクラス
+	SceneManager& scnMng_;
+	InputBase& input_;
+
+	//ゴール角度をセット
+	void SetGoalRotate(const double _deg);
+	//回転処理
+	void Rotate(void);
+
+private:
+	// 回転完了までの時間
+	static constexpr float TIME_ROT = 0.1f;
 };
 

@@ -1,19 +1,19 @@
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
 #include"Player.h"
-#include"Process/PlayerInput.h"
+#include"./PlayerInput.h"
 //#include "../../Manager/Game/GravityManager.h"
-#include "../../Manager/Generic/Camera.h"
-#include "../../Manager/Generic/SceneManager.h"
-#include "../../Manager/Resource/ResourceManager.h"
+#include "../../../Manager/Generic/Camera.h"
+#include "../../../Manager/Generic/SceneManager.h"
+#include "../../../Manager/Resource/ResourceManager.h"
 
 #include"../Object/Card/CardSystem.h"
 
 //#include "../../Object/Common/EffectController.h"
-#include "../../Object/Common/AnimationController.h"
+#include "../../../Object/Common/AnimationController.h"
 
-#include"../Card/CardDeck.h"
-#include"../Card/CardBase.h"
+#include"../../Card/CardDeck.h"
+#include"../../Card/CardBase.h"
 
 #include "PlayerAction.h"
 

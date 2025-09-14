@@ -224,6 +224,9 @@ private:
 
 	//移動
 	//------------------------
+
+
+
 	float speed_;			// 移動スピード
 	VECTOR moveDir_;		// 移動方向
 	VECTOR movePow_;		// 移動量

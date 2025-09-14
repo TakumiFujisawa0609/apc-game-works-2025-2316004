@@ -141,13 +141,13 @@
     <ClCompile Include="Src\Common\Vector2F.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Player\Process\PlayerInput.cpp">
+    <ClCompile Include="Src\Object\Character\Player\PlayerInput.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Player\Player.cpp">
+    <ClCompile Include="Src\Object\Character\Player\Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Player\PlayerAction.cpp">
+    <ClCompile Include="Src\Object\Character\Player\PlayerAction.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Manager\Game\PlayerManager.cpp">
@@ -165,19 +165,19 @@
     <ClCompile Include="Src\Object\Card\CardSystem.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Player\Process\InputBase.cpp">
+    <ClCompile Include="Src\Object\Character\Base\InputBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Enemy\Enemy.cpp">
+    <ClCompile Include="Src\Object\Character\Enemy\Enemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Player\Process\EnemyInput.cpp">
+    <ClCompile Include="Src\Object\Character\Enemy\EnemyInput.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Enemy\EnemyAction.cpp">
+    <ClCompile Include="Src\Object\Character\Enemy\EnemyAction.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\ActionBase.cpp">
+    <ClCompile Include="Src\Object\Character\Base\ActionBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Object\Action\Run.cpp">
@@ -413,13 +413,13 @@
     <ClInclude Include="Src\Common\Vector2F.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Player\Process\PlayerInput.h">
+    <ClInclude Include="Src\Object\Character\Player\PlayerInput.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Player\Player.h">
+    <ClInclude Include="Src\Object\Character\Player\Player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Player\PlayerAction.h">
+    <ClInclude Include="Src\Object\Character\Player\PlayerAction.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Manager\Game\PlayerManager.h">
@@ -437,19 +437,19 @@
     <ClInclude Include="Src\Object\Card\CardSystem.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Player\Process\InputBase.h">
+    <ClInclude Include="Src\Object\Character\Base\InputBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Enemy\Enemy.h">
+    <ClInclude Include="Src\Object\Character\Enemy\Enemy.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Player\Process\EnemyInput.h">
+    <ClInclude Include="Src\Object\Character\Enemy\EnemyInput.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Enemy\EnemyAction.h">
+    <ClInclude Include="Src\Object\Character\Enemy\EnemyAction.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\ActionBase.h">
+    <ClInclude Include="Src\Object\Character\Base\ActionBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Object\Action\Run.h">

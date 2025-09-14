@@ -1,6 +1,6 @@
 #pragma once
-#include "../ObjectBase.h"
-#include"../../Common/Vector2.h"
+#include "../../ObjectBase.h"
+#include"../../../Common/Vector2.h"
 #include<memory>
 class CardDeck;
 class EnemyInput;

@@ -1,5 +1,5 @@
 #pragma once
-#include "InputBase.h"
+#include "../Base/InputBase.h"
 class EnemyInput :
     public InputBase
 {

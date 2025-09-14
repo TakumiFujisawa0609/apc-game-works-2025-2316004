@@ -1,9 +1,9 @@
 #pragma once
 #include <map>
 #include <functional>
-#include"./Process/PlayerInput.h"
+#include"../../Character/Player/PlayerInput.h"
 #include"./PlayerAction.h"
-#include "../ObjectBase.h"
+#include "../../ObjectBase.h"
 
 #define DEBUG_ON
 class AnimationController;

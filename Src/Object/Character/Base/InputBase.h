@@ -26,6 +26,11 @@ public:
 
     //コントロール判定
     bool CheckAct(ACT_CNTL _actCntl) { return actCntl_ == _actCntl ? true : false; }
+	//移動角度の取得
+    const VECTOR GetDir(void) { return moveDir_; }
+	//移動角度の取得
+	const float GetMoveDeg(void) { return moveDeg_; }
+
 protected:
 	//メンバ変数
 	//-----------------------------------------------------------------------

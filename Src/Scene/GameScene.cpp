@@ -9,7 +9,7 @@
 
 #include"../Object/Card/CardSystem.h"
 
-#include"../Object/Enemy/Enemy.h"	
+#include"../Object/Character/Enemy/Enemy.h"	
 
 #include "PauseScene.h"
 

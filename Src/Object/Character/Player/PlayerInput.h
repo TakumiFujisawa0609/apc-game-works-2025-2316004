@@ -5,7 +5,7 @@
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/Generic/InputManagerS.h"
 #include"../Utility/Utility3D.h"
-#include"./InputBase.h"
+#include"../Base/InputBase.h"
 //#define DEBUG_ON
 class PlayerBase;
 class PlayerInput:public InputBase
@@ -101,7 +101,7 @@ public:
     ACT_CNTL GetAct(void) { return actCntl_; }
     float GetStickDeg(void){ return stickDeg_; }
     float GetMoveDeg(void) { return moveDeg_; }
-    VECTOR GetDir(void) { return moveDir_; }
+    const VECTOR GetDir(void) { return moveDir_; }
 private:
     //ƒƒ“ƒoŠÖ”
     void InputKeyBoard(void);

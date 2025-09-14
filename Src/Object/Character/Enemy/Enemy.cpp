@@ -1,8 +1,8 @@
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
-#include"../../Application.h"
-#include"../Card/CardDeck.h"
-#include"../Player/Process/EnemyInput.h"
+#include"../../../Application.h"
+#include"../../Card/CardDeck.h"
+#include"../Enemy/EnemyInput.h"
 
 
 #include "Enemy.h"

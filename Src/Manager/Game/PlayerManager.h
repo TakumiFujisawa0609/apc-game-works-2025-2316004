@@ -2,8 +2,8 @@
 #include<memory>
 #include<vector>
 #include"../../Object/Common/Transform.h"
-#include"../../Object/Player/Player.h"
-#include"../../Object/Player/Process/PlayerInput.h"
+#include"../../Object/Character/Player/Player.h"
+#include"../../Object/Character/Player/PlayerInput.h"
 //#include"../../Object/Common/Capsule.h"
 class Player;
 class PlayerManager

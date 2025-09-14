@@ -1,15 +1,15 @@
-#include "../../Utility/Utility3D.h"
-#include "../../Utility/UtilityCommon.h"
+#include "../../../Utility/Utility3D.h"
+#include "../../../Utility/UtilityCommon.h"
 #include "../Application.h"
 
 //#include "../../Manager/Game/GravityManager.h"
-#include "../../Manager/Game/PlayerManager.h"
-#include "../../Manager/Resource/ResourceManager.h"
+#include "../../../Manager/Game/PlayerManager.h"
+#include "../../../Manager/Resource/ResourceManager.h"
 //#include "../../Manager/System/SoundManager.h"
-#include "../../Manager/Generic/SceneManager.h"
+#include "../../../Manager/Generic/SceneManager.h"
 //#include"../../Manager/System/DateBank.h"
 
-#include "../../Manager/Generic/Camera.h"
+#include "../../../Manager/Generic/Camera.h"
 
 //#include "../../Renderer/ModelMaterial.h"
 //#include "../../Renderer/ModelRenderer.h"
@@ -19,10 +19,10 @@
 //#include"../../Object/Common/Geometry/Model.h"
 //#include"../../Object/Common/EffectController.h"
 
-#include "../../Object/Common/AnimationController.h"
+#include "../../../Object/Common/AnimationController.h"
 #include"./PlayerAction.h"
 //#include"./PlayerOnHit.h"
-#include "./Process/PlayerInput.h"
+#include "./PlayerInput.h"
 #include<algorithm>
 
 
@@ -144,7 +144,6 @@ void Player::DrawDebug(void)
 	const int HIGH = 10;
 	const int WIDTH = 200;
 	DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
-
 }
 
 #endif // DEBUG_ON
