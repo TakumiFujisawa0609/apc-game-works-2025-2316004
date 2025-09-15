@@ -9,6 +9,9 @@ class PlayerInput;
 class AnimationController;
 class CardDeck;
 class CardBase;
+class ActionBase;
+class Idle;
+class Run;
 class PlayerAction
 {
 public:
@@ -80,7 +83,7 @@ public:
 	//ゲッタ
 	//*****************************************
 	//移動量
-	const VECTOR GetMovePow(void) { return movePow_; }
+	const VECTOR GetMovePow(void);
 
 	//ジャンプ力
 	const VECTOR GetJumpPow(void) { return jumpPow_; }
@@ -222,9 +225,9 @@ private:
 	//------------------------
 
 
-	//移動
+	//アクション関連
 	//------------------------
-
+	std::shared_ptr<ActionBase>action_;
 
 
 	float speed_;			// 移動スピード

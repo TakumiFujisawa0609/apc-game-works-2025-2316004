@@ -1,5 +1,5 @@
 #pragma once
-#include "../Character/Base/ActionBase.h"
+#include "../Base/ActionBase.h"
 class Run :
     public ActionBase
 {

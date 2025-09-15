@@ -100,8 +100,6 @@ public:
     //----------------------------------------------------------------
     ACT_CNTL GetAct(void) { return actCntl_; }
     float GetStickDeg(void){ return stickDeg_; }
-    float GetMoveDeg(void) { return moveDeg_; }
-    const VECTOR GetDir(void) { return moveDir_; }
 private:
     //メンバ関数
     void InputKeyBoard(void);
@@ -122,8 +120,6 @@ private:
 
 
     float stickDeg_;            //パッドのスティックの角度
-    float moveDeg_;             //移動方向
-    VECTOR moveDir_;            //移動方向
 
     InputManager::CONTROLL_TYPE cntl_;                 //入力デバイス
     InputManager::JOYPAD_NO padNum_;                //パッド番号

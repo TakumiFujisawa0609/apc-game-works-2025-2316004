@@ -13,6 +13,13 @@ ActionBase::ActionBase(InputBase& _input):
 	dir_ = {};
 	moveDir_ = {};
 	movePow_ = {};
+
+	isJump_ = false;
+	jumpDeceralation_ = 0.0f;
+	jumpPow_ = {};
+	stepJump_ = 0.0f;
+	stepRotTime_ = 0.0f;
+
 }
 
 ActionBase::~ActionBase()

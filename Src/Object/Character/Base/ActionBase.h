@@ -32,7 +32,7 @@ public:
 
 	};
 
-	
+	inline VECTOR GetMovePow(void) { return movePow_; }
 
 protected:
 	//ˆÚ“®

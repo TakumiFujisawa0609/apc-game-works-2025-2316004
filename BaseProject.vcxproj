@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Object\Action\Run.cpp" />
+    <ClCompile Include="Src\Object\Character\Action\Idle.cpp" />
+    <ClCompile Include="Src\Object\Character\Action\Run.cpp" />
     <ClCompile Include="Src\Object\Character\Base\ActionBase.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyAction.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyInput.cpp" />
@@ -63,7 +64,8 @@
     <ClCompile Include="Src\Utility\UtilityDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Object\Action\Run.h" />
+    <ClInclude Include="Src\Object\Character\Action\Idle.h" />
+    <ClInclude Include="Src\Object\Character\Action\Run.h" />
     <ClInclude Include="Src\Object\Character\Base\ActionBase.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyAction.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyInput.h" />

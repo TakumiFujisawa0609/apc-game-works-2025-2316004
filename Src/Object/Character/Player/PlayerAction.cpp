@@ -15,6 +15,10 @@
 #include"../../Card/CardDeck.h"
 #include"../../Card/CardBase.h"
 
+#include"../Base/ActionBase.h"
+#include"../Action/Idle.h"
+#include"../Action/Run.h"
+
 #include "PlayerAction.h"
 
 PlayerAction::PlayerAction(Player& _player, SceneManager& _scnMng, AnimationController& _animationController):
@@ -22,14 +26,6 @@ PlayerAction::PlayerAction(Player& _player, SceneManager& _scnMng, AnimationCont
 	,scnMng_(_scnMng)
 	,animationController_(_animationController)
 {
-	//操作関連
-	//----------------------------------------------------
-	changeAction_.emplace(ATK_ACT::NONE, [this]() {ChangeNone(); });
-	changeAction_.emplace(ATK_ACT::MOVE, [this]() {ChangeMove(); });
-	changeAction_.emplace(ATK_ACT::INPUT, [this]() {ChangeInput(); });
- 	changeAction_.emplace(ATK_ACT::JUMP, [this]() {ChangeJump(); });
- 	changeAction_.emplace(ATK_ACT::CARD_USE, [this]() {ChangeCardUse(); });
-
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
 	
@@ -61,6 +57,26 @@ void PlayerAction::Init(void)
 	//入力
 	input_ = std::make_unique<PlayerInput>(num, cntl);
 	input_->Init();
+
+	//操作関連
+//----------------------------------------------------
+	//changeAction_.emplace(ATK_ACT::NONE, [this]() {ChangeNone(); });
+	changeAction_.emplace(ATK_ACT::NONE, [this]() {
+		action_ = std::make_shared<Idle>(*input_);
+		ChangeInput();
+		});
+	//changeAction_.emplace(ATK_ACT::MOVE, [this]() {ChangeMove(); });
+	changeAction_.emplace(ATK_ACT::MOVE, [this]() {
+		action_ = std::make_shared<Run>(*input_);
+		ChangeMove();
+		});
+	changeAction_.emplace(ATK_ACT::INPUT, [this]() {
+		action_ = std::make_shared<Idle>(*input_);
+		ChangeInput(); 
+		});
+	changeAction_.emplace(ATK_ACT::JUMP, [this]() {ChangeJump(); });
+	changeAction_.emplace(ATK_ACT::CARD_USE, [this]() {ChangeCardUse(); });
+
 
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
@@ -114,6 +130,7 @@ void PlayerAction::Update(void)
 
 	//各アクションの更新
 	actionUpdate_();
+	action_->Update();
 
 	//プレイヤーの回転
 	Rotate();
@@ -167,6 +184,11 @@ void PlayerAction::ChangeAction(ATK_ACT _act)
 	changeAction_[act_]();
  }
 
+const VECTOR PlayerAction::GetMovePow(void)
+{
+	return action_->GetMovePow();
+}
+
 void PlayerAction::ChangeInput(void)
 {
 	actionUpdate_ = std::bind(&PlayerAction::ActionInputUpdate, this);
@@ -195,7 +217,7 @@ void PlayerAction::MoveUpdate(void)
 	float animationSpeed = Player::DEFAULT_ANIM_SPD * (speed_ / MOVE_SPEED)*3.0f;
 
 	//入力方向の移動
-	MoveDirFronInput();
+	//MoveDirFronInput();
 }
 
 void PlayerAction::MoveDirFronInput(void)
