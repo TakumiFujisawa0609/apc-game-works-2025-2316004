@@ -198,7 +198,6 @@ void PlayerAction::ChangeInput(void)
 
 void PlayerAction::MoveUpdate(void)
 {
-	Speed();
 	//ˆÚ“®’†‚É“ü—Í‚ª“ü‚Á‚½Žž‚Ìó‘Ô‘JˆÚ
 
 	if (input_->CheckAct(PlayerInput::ACT_CNTL::MOVE))
@@ -214,32 +213,8 @@ void PlayerAction::MoveUpdate(void)
 		return;
 	}
 
-	float animationSpeed = Player::DEFAULT_ANIM_SPD * (speed_ / MOVE_SPEED)*3.0f;
-
-	//“ü—Í•ûŒü‚ÌˆÚ“®
-	//MoveDirFronInput();
 }
 
-void PlayerAction::MoveDirFronInput(void)
-{
-	//ˆÚ“®—Ê‚ð0‚ÉƒŠƒZƒbƒg
-	movePow_ = Utility3D::VECTOR_ZERO;
-
-	//ƒvƒŒƒCƒ„[“ü—ÍƒNƒ‰ƒX‚©‚çŠp“x‚ðŽæ“¾
-	VECTOR getDir = input_->GetDir();
-	float deg = input_->GetMoveDeg();
-
-	//ƒJƒƒ‰‚ÌŠp“x‚Ç“ü—ÍŠp“x‚ÅƒvƒŒƒCƒ„[‚Ì•ûŒü‚ð•Ï‚¦‚é
-	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
-	dir_ = cameraRot.PosAxis(getDir);
-	dir_ = VNorm(dir_);
-
-	if (!Utility3D::EqualsVZero(dir_))
-	{
-		//•âŠ®Šp“x‚ÌÝ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
-		SetGoalRotate(deg);
-	}
-}
 
 void PlayerAction::ChangeMove(void)
 {
@@ -414,33 +389,7 @@ bool PlayerAction::CheckJumpInput(void)
 	return input_->CheckAct(PlayerInput::ACT_CNTL::JUMP);
 }
 
-void PlayerAction::Rotate(void)
-{
-	stepRotTime_ -= SceneManager::GetInstance().GetDeltaTime();
-	// ‰ñ“]‚Ì‹…–Ê•âŠÔ
-	playerRotY_ = Quaternion::Slerp(
-		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
-}
 
-void PlayerAction::SetGoalRotate(double _deg)
-{
-	//ƒJƒƒ‰‚ÌŠp“x‚ðŽæ“¾
-	VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
-	Quaternion axis = Quaternion::AngleAxis(
-		(double)cameraRot.y + UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
-
-
-	 //Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚é‰ñ“]‚Æ‚ÌŠp“x·‚ðŽæ‚é
-	double angleDiff = Quaternion::Angle(axis, goalQuaRot_);
-
-	constexpr double ANGLE_THRESHOLD = 0.1;
-	// ‚µ‚«‚¢’l
-	if (angleDiff > ANGLE_THRESHOLD)
-	{
-		stepRotTime_ = TIME_ROT;
-	}
-	goalQuaRot_ = axis;
-}
 
 void PlayerAction::StopResource(void)
 {
