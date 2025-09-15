@@ -133,7 +133,7 @@ void PlayerAction::Update(void)
 	action_->Update();
 
 	//プレイヤーの回転
-	Rotate();
+	//Rotate();
 
 	//プレイヤーの方向とスピードの更新
 	UpdateMoveDirAndPow();
@@ -296,7 +296,7 @@ void PlayerAction::Jump(void)
 	//	, JUMP_ANIM_LOOP_END_FRAME, JUMP_ANIM_ATTACK_BLEND_TIME);
 
 	//ジャンプ中も移動できるようにする
-	MoveDirFronInput();
+	//MoveDirFronInput();
 
 	//ジャンプカウントが0以上なら
 	if (stepJump_ > 0.0f)
