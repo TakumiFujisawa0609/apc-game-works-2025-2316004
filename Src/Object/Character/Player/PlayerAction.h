@@ -12,6 +12,7 @@ class CardBase;
 class ActionBase;
 class Idle;
 class Run;
+class Jump;
 class PlayerAction
 {
 public:
@@ -294,11 +295,10 @@ private:
 
 	//毎フレーム移動方向とスピードを更新する
 	void UpdateMoveDirAndPow(void);
-	//移動速度
-	void Speed(void);
 
-	//ジャンプ
-	void Jump(void);
+
+	////ジャンプ
+	//void Jump(void);
 
 	//カード関連
 	//カード使用

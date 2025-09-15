@@ -18,6 +18,7 @@
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
 #include"../Action/Run.h"
+#include"../Action/Jump.h"
 
 #include "PlayerAction.h"
 
@@ -28,19 +29,6 @@ PlayerAction::PlayerAction(Player& _player, SceneManager& _scnMng, AnimationCont
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
-	
-	//ジャンプ関係
-	isJump_ = false;
-	stepJump_ = 0.0f;
-	jumpPow_ = Utility3D::VECTOR_ZERO;
-	jumpDeceralation_ = POW_JUMP;
-	stepRotTime_ = 0.0f;
-	speed_ = 0.0f;
-	punchPos_ = {};
-	punchedCnt_ = 0.0f;
-	punchCoolCnt_ = 0.0f;
-
-	isPunchHitTime_ = false;
 	input_ = nullptr;
 }
 
@@ -60,12 +48,10 @@ void PlayerAction::Init(void)
 
 	//操作関連
 //----------------------------------------------------
-	//changeAction_.emplace(ATK_ACT::NONE, [this]() {ChangeNone(); });
 	changeAction_.emplace(ATK_ACT::NONE, [this]() {
 		action_ = std::make_shared<Idle>(*input_);
 		ChangeInput();
 		});
-	//changeAction_.emplace(ATK_ACT::MOVE, [this]() {ChangeMove(); });
 	changeAction_.emplace(ATK_ACT::MOVE, [this]() {
 		action_ = std::make_shared<Run>(*input_);
 		ChangeMove();
@@ -74,7 +60,9 @@ void PlayerAction::Init(void)
 		action_ = std::make_shared<Idle>(*input_);
 		ChangeInput(); 
 		});
-	changeAction_.emplace(ATK_ACT::JUMP, [this]() {ChangeJump(); });
+	changeAction_.emplace(ATK_ACT::JUMP, [this]() {
+		action_ = std::make_shared<Jump>(*input_);
+		ChangeJump(); });
 	changeAction_.emplace(ATK_ACT::CARD_USE, [this]() {ChangeCardUse(); });
 
 
@@ -88,13 +76,6 @@ void PlayerAction::Init(void)
 	}
 	deck_->Init();
 
-	//ジャンプ関係
-	isJump_ = false;
-	stepJump_ = 0.0f;
-	jumpPow_ = Utility3D::VECTOR_ZERO;
-	jumpDeceralation_ = POW_JUMP;
-  	movePow_ = Utility3D::VECTOR_ZERO;
-
 	isCardAct_ = false;
 	cardActTime_ = 0.0f;
 	//スピード
@@ -106,12 +87,7 @@ void PlayerAction::Init(void)
 
 void PlayerAction::Load(void)
 {
-	//auto& res = ResourceManager::GetInstance();
-	//actSE_.emplace(ACT_SE::DASH,SoundManager::SRC::PLAYER_DASH_START);
-	//actSE_.emplace(ACT_SE::JUMP,SoundManager::SRC::PLAYER_JUMP);
-	//actSE_.emplace(ACT_SE::PUNCH, SoundManager::SRC::PLAYER_PUNCH_MOTION);
-	//actSE_.emplace(ACT_SE::SLIME, SoundManager::SRC::SLIME_SE);
-	//actSE_.emplace(ACT_SE::PUNCH_HIT, SoundManager::SRC::PLAYER_PUNCH_HIT);
+
 }
 
 void PlayerAction::Update(void)
@@ -131,12 +107,6 @@ void PlayerAction::Update(void)
 	//各アクションの更新
 	actionUpdate_();
 	action_->Update();
-
-	//プレイヤーの回転
-	//Rotate();
-
-	//プレイヤーの方向とスピードの更新
-	UpdateMoveDirAndPow();
 
 	CardChargeUpdate();
 	CardMove();
@@ -259,78 +229,11 @@ void PlayerAction::UpdateMoveDirAndPow(void)
 	
 }
 
-void PlayerAction::Speed(void)
-{
-	if (input_->CheckAct(PlayerInput::ACT_CNTL::MOVE))
-	{
-		speed_ = MOVE_SPEED;
-	}
-	else if (input_->CheckAct(PlayerInput::ACT_CNTL::DASHMOVE))
-	{
-		speed_ = DASH_SPEED;
-	}
-	else
-	{
-		speed_ = 0.0f;
-	}
-}
-
 void PlayerAction::JumpUpdate(void)
 {
-	//移動入力があったらスピードセット
-	Speed();
-	//ジャンプ処理
-	Jump();
+	//ここでジャンプ終了を受け取って状態遷移
 }
 
-
-void PlayerAction::Jump(void)
-{
-	//ステップジャンプを基準にジャンプ減衰量を決める
-	float deltaTime = SceneManager::GetInstance().GetDeltaTime();
-	stepJump_ += deltaTime;
-
-	////空中アニメーションステップのループ設定
-	//animationController_.SetEndLoop(JUMP_ANIM_LOOP_START_FRAME
-	//	, JUMP_ANIM_LOOP_END_FRAME, JUMP_ANIM_ATTACK_BLEND_TIME);
-
-	//ジャンプ中も移動できるようにする
-	//MoveDirFronInput();
-
-	//ジャンプカウントが0以上なら
-	if (stepJump_ > 0.0f)
-	{
-		stepJump_ += deltaTime;
-		//プレイヤーが落下していたら
-		if (jumpDeceralation_ < 0.0f)
-		{
-			//animationController_.Play(static_cast<int>(Player::ANIM_TYPE::LAND));
-		}
-		//減衰量の計算
-		float deceralation = stepJump_ * TIME_JUMP_SCALE;
-		jumpDeceralation_ -= deceralation;
-
-		//ジャンプ量に掛ける
-		jumpPow_ = VScale(player_.GetTransform().GetUp(), jumpDeceralation_);
-	}
-
-	//地面に着いたらジャンプ関係の変数リセット
-	if (!isJump_)
-	{
-		jumpDeceralation_ = POW_JUMP;
-		jumpPow_ = Utility3D::VECTOR_ZERO;
-		stepJump_ = 0.0f;
-
-		//着地エフェクト
-		Transform trans = player_.GetTransform();
-		const float EFF_SCL = 30.0f;
-
-		//動いていた場合の移動量リセット
-		speed_ = 0.0f;
-		ChangeAction(ATK_ACT::INPUT);
-		return;
-	}
-}
 
 void PlayerAction::ChangeCardUse(void)
 {
@@ -388,16 +291,7 @@ bool PlayerAction::CheckJumpInput(void)
 	return input_->CheckAct(PlayerInput::ACT_CNTL::JUMP);
 }
 
-
-
 void PlayerAction::StopResource(void)
 {
-	//SEの停止
-	//SoundManager::GetInstance().Stop(actSE_[ACT_SE::DASH]);
-	//SoundManager::GetInstance().Stop(actSE_[ACT_SE::JUMP]);
-	//SoundManager::GetInstance().Stop(actSE_[ACT_SE::PUNCH]);
-	//SoundManager::GetInstance().Stop(actSE_[ACT_SE::SLIME]);
-	//SoundManager::GetInstance().Stop(actSE_[ACT_SE::PUNCH_HIT]);
-	//エフェクトの停止
-	//effect_->StopAll();
+
 }
