@@ -212,7 +212,6 @@ void PlayerAction::MoveUpdate(void)
 		ChangeAction(ATK_ACT::INPUT);
 		return;
 	}
-
 }
 
 
