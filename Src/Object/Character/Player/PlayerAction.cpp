@@ -57,15 +57,6 @@ void PlayerAction::Init(void)
 	changeAction_.emplace(ACTION_TYPE::CARD_ACTION, [this]() {ChangeCardUse(); });
 	ChangeAction(ACTION_TYPE::INPUT);
 
-	//カードデッキ
-	cardCenterPos_ = { 140,140 };//カードの中心位置
-	//deck_ = std::make_shared<CardDeck>(cardCenterPos_,PLAYER_NUM);
-	////デッキに山札追加
-	//for (int i = 0; i < CARD_NUM_MAX; i++)
-	//{
-	//	deck_.AddDrawPile(CARD_POWS[i]);
-	//}
-	//deck_.Init();
 
 	isCardAct_ = false;
 	cardActTime_ = 0.0f;

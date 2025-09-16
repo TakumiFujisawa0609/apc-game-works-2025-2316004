@@ -16,19 +16,20 @@ void EnemyInput::Init(void)
 
 void EnemyInput::Update(void)
 {
-	actCntl_ = ACT_CNTL::NONE; //初期状態は何も入力されてない
+	//すべての行動フラグをリセット
+	isAct_ = {};
 	//デバッグ用の入力処理
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
 	{
-		actCntl_ = ACT_CNTL::CARD_MOVE_LEFT;
+		isAct_.isCardMoveLeft = true;
 	}
 	else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RIGHT))
 	{
-		actCntl_ = ACT_CNTL::CARD_MOVE_RIGHT;
+		isAct_.isCardMoveRight = true;
 	}
 	else if(InputManager::GetInstance().IsTrgDown(KEY_INPUT_RCONTROL))
 	{
-		actCntl_ = ACT_CNTL::CARD_USE;
+		isAct_.isCardUse = true;
 	}
 
 
