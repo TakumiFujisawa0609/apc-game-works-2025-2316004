@@ -17,6 +17,15 @@ public:
         , CARD_MOVE_RIGHT//カード右
     };
 
+
+    struct ACT_FLAG
+    {
+        bool isCardMoveLeft = false;
+        bool isCardMoveRight = false;
+        bool isCardUse = false;
+        bool isCardCharge = false;
+    };
+
     InputBase(void);
 	virtual ~InputBase(void);
     //変更時の初期化
@@ -30,6 +39,8 @@ public:
     const VECTOR GetDir(void) { return moveDir_; }
 	//移動角度の取得
 	const float GetMoveDeg(void) { return moveDeg_; }
+    //アクション入力の取得
+    const ACT_FLAG GetIsAct(void) { return isAct_; }
 
 protected:
 	//メンバ変数
@@ -39,5 +50,8 @@ protected:
 
 	float moveDeg_;             //移動角度
 	VECTOR moveDir_;            //移動方向ベクトル
+
+    //アクション入力がされたかどうか
+    ACT_FLAG isAct_;
 };
 

@@ -1,7 +1,6 @@
 #include "../../../Utility/Utility3D.h"
 #include "../../../Utility/UtilityCommon.h"
 #include "../Application.h"
-
 //#include "../../Manager/Game/GravityManager.h"
 #include "../../../Manager/Game/PlayerManager.h"
 #include "../../../Manager/Resource/ResourceManager.h"
@@ -18,11 +17,11 @@
 //#include "../../Object/Common/Geometry/Line.h"
 //#include"../../Object/Common/Geometry/Model.h"
 //#include"../../Object/Common/EffectController.h"
-
+#include"../Object/Card/CardDeck.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./PlayerAction.h"
 //#include"./PlayerOnHit.h"
-#include "./PlayerInput.h"
+#include "./InputController.h"
 #include<algorithm>
 
 
@@ -50,21 +49,22 @@ Player::~Player(void)
 
 void Player::Load(void)
 {
-	////アニメーションでmodelIdを使うので先にモデルセットする
-	//trans_.SetModel(ResourceManager::GetInstance().LoadModelDuplicate(ResourceManager::SRC::CHICKEN));
+	//プレイヤー入力
+	input_ = std::make_unique<InputController>(padNum_, InputManager::CONTROLL_TYPE::ALL);
+	input_->Init();
 
-	////リソースの読み込みなど
-	//animationController_ = std::make_unique<AnimationController>(trans_.modelId);
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), DEFAULT_ANIM_SPD);
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::WALK), DEFAULT_ANIM_SPD);
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::FALL), DEFAULT_ANIM_SPD);
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), DEFAULT_ANIM_SPD);
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::LAND), DEFAULT_ANIM_SPD);
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::GOAL), DEFAULT_ANIM_SPD);
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::PUNCH), DEFAULT_ANIM_SPD / PlayerAction::PUNCH_TIME_MAX);
+	//カードデッキ
+	cardCenterPos_ = { 140,140 };//カードの中心位置
+	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
+	//デッキに山札追加
+	for (int i = 0; i < CARD_NUM_MAX; i++)
+	{
+		deck_->AddDrawPile(CARD_POWS[i]);
+	}
+	deck_->Init();
 
 	//アクション
-	action_ = std::make_unique<PlayerAction>(*this, scnMng_, *animationController_);
+	action_ = std::make_unique<PlayerAction>(*input_,trans_,*deck_,padNum_);
 	action_->Load();
 }
 
@@ -182,13 +182,8 @@ void Player::GoalUpdate(void)
 void Player::Action(void)
 {
 	//アクション関係の更新
+	input_->Update();
 	action_->Update();
-	//
-	////死んだら何もしないようにする
-	//if (IsDeath())
-	//{
-	//	//何もできないようにする
-	//	action_->ChangeAction(PlayerAction::ATK_ACT::NONE);
-	//}
+
 }
 

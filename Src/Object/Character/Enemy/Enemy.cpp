@@ -2,8 +2,10 @@
 #include"../Utility/UtilityCommon.h"
 #include"../../../Application.h"
 #include"../../Card/CardDeck.h"
+#include"../Player/PlayerAction.h"
 #include"../Enemy/EnemyInput.h"
 
+#include"../Manager/Generic/InputManager.h"
 
 #include "Enemy.h"
 
@@ -30,6 +32,10 @@ void Enemy::Init(void)
 	deck_->Init();
 	input_ = std::make_unique<EnemyInput>();
 	input_->Init();
+
+	action_ = std::make_unique<PlayerAction>(*input_, trans_, *deck_, InputManager::JOYPAD_NO::PAD1);
+	action_->Init();
+
 	//Transform‚ÌÝ’è
 	trans_.quaRot = Quaternion();
 	trans_.scl = MODEL_SCL;
@@ -43,19 +49,20 @@ void Enemy::Init(void)
 void Enemy::Update(void)
 {
 	input_->Update();
-	if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_MOVE_LEFT))
-	{
-		deck_->CardMoveLeft();
-	}
-	else if(input_->CheckAct(EnemyInput::ACT_CNTL::CARD_MOVE_RIGHT) )
-	{
-		deck_->CardMoveRight();
-	}
-	else if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_USE))
-	{
-		deck_->MoveHandToCharge();
-		
-	}
+	action_->Update();
+	//if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_MOVE_LEFT))
+	//{
+	//	deck_->CardMoveLeft();
+	//}
+	//else if(input_->CheckAct(EnemyInput::ACT_CNTL::CARD_MOVE_RIGHT) )
+	//{
+	//	deck_->CardMoveRight();
+	//}
+	//else if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_ACTION))
+	//{
+	//	deck_->MoveHandToCharge();
+	//	
+	//}
 	deck_->CardUseUpdate();
 }
 

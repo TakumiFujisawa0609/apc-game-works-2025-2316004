@@ -8,7 +8,7 @@
 #include"../Base/InputBase.h"
 //#define DEBUG_ON
 class PlayerBase;
-class PlayerInput:public InputBase
+class InputController:public InputBase
 {
 public:
     //*************************************************
@@ -69,7 +69,7 @@ public:
     //    , PUNCH         //パンチ
     //    , JUMP          //ジャンプ
     //    , CARD_CHARGE   //カードチャージ
-    //    ,CARD_USE      //カード使用
+    //    ,CARD_ACTION      //カード使用
     //    ,CARD_MOVE_LEFT //カード左
     //    ,CARD_MOVE_RIGHT//カード右
     //};
@@ -80,9 +80,10 @@ public:
         KEYBOARD,
         PAD
     };
+
     //シングルトン化するために外部で生成されないようにする
-    PlayerInput(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
-    ~PlayerInput(void)override;
+    InputController(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
+    ~InputController(void)override;
 
     //変更時の初期化
 	void Init(void)override;

@@ -35,7 +35,7 @@
     <ClCompile Include="Src\Manager\Generic\DataBank.cpp" />
     <ClCompile Include="Src\Object\Character\Player\Player.cpp" />
     <ClCompile Include="Src\Object\Character\Player\PlayerAction.cpp" />
-    <ClCompile Include="Src\Object\Character\Player\PlayerInput.cpp" />
+    <ClCompile Include="Src\Object\Character\Player\InputController.cpp" />
     <ClCompile Include="Src\Scene\PauseScene.cpp" />
     <ClCompile Include="Src\Manager\Generic\InputManagerS.cpp" />
     <ClCompile Include="Src\Manager\Resource\FontManager.cpp" />
@@ -81,7 +81,7 @@
     <ClInclude Include="Src\Manager\Generic\DataBank.h" />
     <ClInclude Include="Src\Object\Character\Player\Player.h" />
     <ClInclude Include="Src\Object\Character\Player\PlayerAction.h" />
-    <ClInclude Include="Src\Object\Character\Player\PlayerInput.h" />
+    <ClInclude Include="Src\Object\Character\Player\InputController.h" />
     <ClInclude Include="Src\Scene\PauseScene.h" />
     <ClInclude Include="Src\Template\Singleton.h" />
     <ClInclude Include="Src\Manager\Generic\InputManagerS.h" />

@@ -1,7 +1,7 @@
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
 #include"Player.h"
-#include"./PlayerInput.h"
+#include"./InputController.h"
 //#include "../../Manager/Game/GravityManager.h"
 #include "../../../Manager/Generic/Camera.h"
 #include "../../../Manager/Generic/SceneManager.h"
@@ -22,14 +22,15 @@
 
 #include "PlayerAction.h"
 
-PlayerAction::PlayerAction(Player& _player, SceneManager& _scnMng, AnimationController& _animationController):
-	player_(_player)
-	,scnMng_(_scnMng)
-	,animationController_(_animationController)
+PlayerAction::PlayerAction(InputBase& _input, Transform& _trans, CardDeck& _deck, InputManager::JOYPAD_NO _padNum):
+	input_(_input)
+	,trans_(_trans)
+	,deck_(_deck)
+	,padNum_(_padNum)
+	,scnMng_(SceneManager::GetInstance())
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
-	input_ = nullptr;
 }
 
 PlayerAction::~PlayerAction(void)
@@ -39,50 +40,37 @@ PlayerAction::~PlayerAction(void)
 
 void PlayerAction::Init(void)
 {
-	auto num = player_.GetPadNum();
 	//auto cntl = player_.GetCntl();
 	auto cntl = InputManager::CONTROLL_TYPE::ALL;
-	//入力
-	input_ = std::make_unique<PlayerInput>(num, cntl);
-	input_->Init();
 
-	//操作関連
-//----------------------------------------------------
-	changeAction_.emplace(ATK_ACT::NONE, [this]() {
-		action_ = std::make_shared<Idle>(*input_);
-		ChangeInput();
-		});
-	changeAction_.emplace(ATK_ACT::MOVE, [this]() {
-		action_ = std::make_shared<Run>(*input_);
-		ChangeMove();
-		});
-	changeAction_.emplace(ATK_ACT::INPUT, [this]() {
-		action_ = std::make_shared<Idle>(*input_);
-		ChangeInput(); 
-		});
-	changeAction_.emplace(ATK_ACT::JUMP, [this]() {
-		action_ = std::make_shared<Jump>(*input_);
-		ChangeJump(); });
-	changeAction_.emplace(ATK_ACT::CARD_USE, [this]() {ChangeCardUse(); });
+	actionObject_[ACTION_TYPE::NONE]= std::make_unique<Idle>(input_);
+	actionObject_[ACTION_TYPE::INPUT]= std::make_unique<Idle>(input_);
+	actionObject_[ACTION_TYPE::MOVE] = std::make_unique<Run>(input_);
+	actionObject_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(input_);
+	actionObject_[ACTION_TYPE::CARD_ACTION] = std::make_unique<Idle>(input_);
 
+	act_ = ACTION_TYPE::NONE;
+	changeAction_.emplace(ACTION_TYPE::NONE, [this]() {ChangeInput();});
+	changeAction_.emplace(ACTION_TYPE::MOVE, [this]() {ChangeMove();});
+	changeAction_.emplace(ACTION_TYPE::INPUT, [this]() {ChangeInput(); });
+	changeAction_.emplace(ACTION_TYPE::JUMP, [this]() {ChangeJump(); });
+	changeAction_.emplace(ACTION_TYPE::CARD_ACTION, [this]() {ChangeCardUse(); });
+	ChangeAction(ACTION_TYPE::INPUT);
 
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
-	deck_ = std::make_shared<CardDeck>(cardCenterPos_,PLAYER_NUM);
-	//デッキに山札追加
-	for (int i = 0; i < CARD_NUM_MAX; i++)
-	{
-		deck_->AddDrawPile(CARD_POWS[i]);
-	}
-	deck_->Init();
+	//deck_ = std::make_shared<CardDeck>(cardCenterPos_,PLAYER_NUM);
+	////デッキに山札追加
+	//for (int i = 0; i < CARD_NUM_MAX; i++)
+	//{
+	//	deck_.AddDrawPile(CARD_POWS[i]);
+	//}
+	//deck_.Init();
 
 	isCardAct_ = false;
 	cardActTime_ = 0.0f;
 	//スピード
 	speed_ = 0.0f;
-
-	act_ = ATK_ACT::NONE;
-	ChangeAction(ATK_ACT::INPUT);
 }
 
 void PlayerAction::Load(void)
@@ -92,21 +80,19 @@ void PlayerAction::Load(void)
 
 void PlayerAction::Update(void)
 {
-	//入力更新
-	input_->Update();
-
 	////エフェクト更新
 	//effect_->Update();
 
 	//プレイヤーの下を設定
-	static VECTOR dirDown = player_.GetTransform().GetDown();
+	static VECTOR dirDown = trans_.GetDown();
 
 	////重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown,jumpPow_, GRAVITY_PER);
 
 	//各アクションの更新
 	actionUpdate_();
-	action_->Update();
+	//action_->Update();
+	actionObject_[act_]->Update();
 
 	CardChargeUpdate();
 	CardMove();
@@ -115,8 +101,8 @@ void PlayerAction::Update(void)
 void PlayerAction::DrawDebug(void)
 {
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
-	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)input_->GetAct(), dashSeCnt);
-	deck_->Draw();
+	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)input_.GetAct(), dashSeCnt);
+	deck_.Draw();
 	
 }
 
@@ -134,20 +120,20 @@ void PlayerAction::ActionInputUpdate(void)
 {
 	//入力に応じてアクションを変える
 	//移動
-	using ACT_CNTL = PlayerInput::ACT_CNTL;
-	if (input_->CheckAct(ACT_CNTL::MOVE))
+	using ACT_CNTL = InputBase::ACT_CNTL;
+	if (input_.GetMoveDeg() >= 0.0f)
 	{
-		ChangeAction(ATK_ACT::MOVE);
+		ChangeAction(ACTION_TYPE::MOVE);
 		return;
 	}
-	if (input_->CheckAct(ACT_CNTL::CARD_USE))
+	if (input_.GetIsAct().isCardUse)
 	{
-		ChangeAction(ATK_ACT::CARD_USE);
+		ChangeAction(ACTION_TYPE::CARD_ACTION);
 	}
 
 }
 
-void PlayerAction::ChangeAction(ATK_ACT _act)
+void PlayerAction::ChangeAction(ACTION_TYPE _act)
 {
 	if (act_ == _act)return;
 	act_ = _act;
@@ -156,7 +142,7 @@ void PlayerAction::ChangeAction(ATK_ACT _act)
 
 const VECTOR PlayerAction::GetMovePow(void)
 {
-	return action_->GetMovePow();
+	return actionObject_[act_]->GetMovePow();
 }
 
 void PlayerAction::ChangeInput(void)
@@ -169,17 +155,9 @@ void PlayerAction::ChangeInput(void)
 void PlayerAction::MoveUpdate(void)
 {
 	//移動中に入力が入った時の状態遷移
-
-	if (input_->CheckAct(PlayerInput::ACT_CNTL::MOVE))
+	if (input_.GetMoveDeg() < 0.0f)
 	{
-		ChangeAction(ATK_ACT::MOVE);
-	}
-
-	else if (!input_->CheckAct(PlayerInput::ACT_CNTL::MOVE)
-		&&!input_->CheckAct(PlayerInput::ACT_CNTL::DASHMOVE))
-	{
-		speed_ = 0.0f;
-		ChangeAction(ATK_ACT::INPUT);
+		ChangeAction(ACTION_TYPE::INPUT);
 		return;
 	}
 }
@@ -194,10 +172,8 @@ void PlayerAction::ChangeMove(void)
 
 void PlayerAction::ChangeDashMove(void)
 {
-	speed_ = DASH_SPEED;
 	//animationController_.Play(static_cast<int>(Player::ANIM_TYPE::WALK));
 
-	auto& trans = player_.GetTransform();
 	const float SCL = 10.0f;
 	//effect_->Play(EffectController::EFF_TYPE::DASH, trans.pos, trans.quaRot, { SCL,SCL,SCL }, false, 1.0f);
 	actionUpdate_ = [this]() {MoveUpdate(); };
@@ -205,12 +181,6 @@ void PlayerAction::ChangeDashMove(void)
 
 void PlayerAction::ChangeJump(void)
 {
-	//ジャンプ関係
-	isJump_ = true;
-	stepJump_ = 0.0f;
-
-	//プレイヤーの情報
-	Transform trans = player_.GetTransform();
 	//エフェクトのスケール
 	const VECTOR EFF_SCL = { 10.0f,10.0f,10.0f };
 
@@ -238,7 +208,7 @@ void PlayerAction::JumpUpdate(void)
 void PlayerAction::ChangeCardUse(void)
 {
 	//手札に移動
-	deck_->MoveHandToCharge();
+	deck_.MoveHandToCharge();
 
 	//アクション中にする
 	isCardAct_ = true;
@@ -252,14 +222,14 @@ void PlayerAction::CardUseUpdate(void)
 	if (cardActTime_ < CARD_ACT_TIME_MAX)
 	{
 		cardActTime_ += SceneManager::GetInstance().GetDeltaTime();
-		deck_->CardUseUpdate();
+		deck_.CardUseUpdate();
 	}
 	else
 	{
 		//アクション終了
 		isCardAct_ = false;
 		cardActTime_ = 0.0f;
-		ChangeAction(ATK_ACT::INPUT);
+		ChangeAction(ACTION_TYPE::INPUT);
 		return;
 	}
 	
@@ -267,28 +237,28 @@ void PlayerAction::CardUseUpdate(void)
 
 void PlayerAction::CardChargeUpdate(void)
 {
-	if (input_->CheckAct(PlayerInput::ACT_CNTL::CARD_CHARGE))
+	if (input_.GetIsAct().isCardCharge)
 	{
-		deck_->CardCharge();
+		deck_.CardCharge();
 	}
 	
 }
 
 void PlayerAction::CardMove(void)
 {
-	if (input_->CheckAct(PlayerInput::ACT_CNTL::CARD_MOVE_LEFT))
+	if (input_.GetIsAct().isCardMoveLeft)
 	{
-		deck_->CardMoveLeft();
+		deck_.CardMoveLeft();
 	}
-	else if (input_->CheckAct(PlayerInput::ACT_CNTL::CARD_MOVE_RIGHT))
+	else if (input_.GetIsAct().isCardMoveRight)
 	{
-		deck_->CardMoveRight();
+		deck_.CardMoveRight();
 	}
 }
 
 bool PlayerAction::CheckJumpInput(void)
 {
-	return input_->CheckAct(PlayerInput::ACT_CNTL::JUMP);
+	return input_.CheckAct(InputBase::ACT_CNTL::JUMP);
 }
 
 void PlayerAction::StopResource(void)

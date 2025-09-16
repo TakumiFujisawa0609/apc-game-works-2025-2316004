@@ -1,7 +1,8 @@
 #pragma once
 #include <map>
 #include <functional>
-#include"../../Character/Player/PlayerInput.h"
+#include <memory>
+#include"../../Character/Player/InputController.h"
 #include"./PlayerAction.h"
 #include "../../ObjectBase.h"
 
@@ -129,7 +130,10 @@ public:
 	inline const InputManager::JOYPAD_NO GetPadNum(void)const { return padNum_; }
 
 	//プレイヤーの手札
-	const std::weak_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
+	//const std::weak_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
+
+	//手札
+	const std::weak_ptr<CardDeck> GetHand(void) { return deck_; }
 
 	//******************************************
 	//セッタ
@@ -152,34 +156,30 @@ private:
 	//***********************************************
 	//重力の割合
 	static constexpr float GRAVITY_PER = 20.0f;
-
 	//プレイヤー１のX座標
 	static constexpr float PLAYER_ONE_POS_X = -20.0f;
-
 	//座標の間隔
 	static constexpr float DISTANCE_POS = 50.0f;
-
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
-
 	//落ちるアニメーションのスタート
 	static constexpr float FALL_ANIM_START = 32.0f;
 	//落ちるアニメーションの終わり
 	static constexpr float FALL_ANIM_END = 59.0f;
-
 	//死ぬ判定の座標の基準
 	static constexpr float DEATH_POS_Y = -600.0f;
-
 	//死んだときのパッド振動時間
 	static constexpr int DEATH_PAD_VIBRATION_TIME = 300;
-
 	//死んだときのパッド振動の強さ
 	static constexpr int DEATH_PAD_VIBRATION_POW = 300;
-
 	//プレイヤーの大きさ
 	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
 	//パンチの範囲
 	static constexpr float PUNCH_RADIUS = 50.0f;
+	//プレイヤーナンバー(デッキクラスで判定用)
+	static constexpr int PLAYER_NUM = 0;
+	//カード最大枚数
+	static constexpr int CARD_NUM_MAX = 20;
 
 	//--------------------------------------------------
 	//当たり判定
@@ -203,48 +203,41 @@ private:
 
 	//当たり判定を行う範囲
 	static constexpr int COL_RANGE = 1;
-	//******************************************
-	//メンバ変数
-	//******************************************
+
 	//入力デバイス
 	InputManager::CONTROLL_TYPE cntl_;
-
 	//ゲームパッド番号
 	InputManager::JOYPAD_NO padNum_;
-
-	//オブジェクト関連
-	//--------------------------------------------
-		//行動系
+	//入力
+	std::unique_ptr<InputController>input_;
+	//行動系
 	std::unique_ptr<PlayerAction>action_;
-
 	// アニメーション
 	std::unique_ptr<AnimationController> animationController_;
-
 	//カメラ
 	std::weak_ptr<Camera>camera_;
+
+	std::shared_ptr<CardDeck>deck_;
 
 	//メンバ変数
 	//--------------------------------------------
 	//プレイヤー単体が持っているもの
 	int playerNum_;			//プレイヤー番号
-
 	//計測用
 	float time_;
-
 	//ゴール時間格納
 	float goalTime_;
-
 	//プレイヤー状態
 	PLAYER_STATE state_;	//プレイヤーの状態(生存状態)
-
 	//プレイヤーの状態遷移
 	std::map<PLAYER_STATE, std::function<void(void)>>changeStates_;
-
 	//状態更新
 	std::function<void(void)>stateUpdate_;
 
 	float finishDelay_;	//ゲーム終了時の待機時間
-				
+	Vector2 cardCenterPos_;	//カードの位置
+	//プレイヤーナンバー(カードデッキで判定する用)
+
 
 	//--------------------------------------------
 	//******************************************

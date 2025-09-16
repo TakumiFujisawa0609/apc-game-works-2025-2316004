@@ -4,6 +4,9 @@
 #include<memory>
 class CardDeck;
 class EnemyInput;
+
+class PlayerAction;
+
 class Enemy :public ObjectBase
 {
 public:
@@ -44,7 +47,12 @@ private:
 	//敵の行動
 	std::unique_ptr<EnemyInput>input_; //敵の入力クラス
 
+	//
+	std::unique_ptr<PlayerAction>action_;
+
 	//メンバ変数
 	std::shared_ptr<CardDeck>deck_;
+
+	//デバッグ用で
 };
 

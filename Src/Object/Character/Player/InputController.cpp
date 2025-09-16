@@ -1,8 +1,8 @@
 #include"../Object/Character/Player/Player.h"
 #include"../Utility/Utility3D.h"
-#include "PlayerInput.h"
+#include "InputController.h"
 
-PlayerInput::PlayerInput(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):padNum_(_padNum),cntl_(_cntl)
+InputController::InputController(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):padNum_(_padNum),cntl_(_cntl)
 {
 	actCntl_ = ACT_CNTL::NONE;
 	leftStickX_ = -1;
@@ -15,11 +15,11 @@ PlayerInput::PlayerInput(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL
 	inputUpdates_[InputManager::CONTROLL_TYPE::CONTROLLER] = [this]() {InputPad(); };
 }
 
-PlayerInput::~PlayerInput(void)
+InputController::~InputController(void)
 {
 }
 
-void PlayerInput::Init(void)
+void InputController::Init(void)
 {
 	actCntl_ = ACT_CNTL::NONE;
 	leftStickX_ = -1;
@@ -29,31 +29,16 @@ void PlayerInput::Init(void)
 	moveDir_ = Utility3D::VECTOR_ZERO;
 }
 
-void PlayerInput::Update(void)
+void InputController::Update(void)
 {
 	inputUpdates_[cntl_]();
-	//InputKeyBoard();
-	//InputPad();
-	//switch (cntl_)
-	//{
-	//case DateBank::TYPE::ERORE:
-	//	break;
-	//case DateBank::TYPE::ALL:
-	//	InputKeyBoard();
-	//	break;
-	//case DateBank::TYPE::CONTROLLER:
-	//	InputPad();
-	//	break;
-	//default:
-	//	break;
-	//}
 }
 
-void PlayerInput::InputKeyBoard(void)
+void InputController::InputKeyBoard(void)
 {
 	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
-	actCntl_ = ACT_CNTL::NONE;
+	//actCntl_ = ACT_CNTL::NONE;
 
 #ifdef _DEBUG
 	//if (ins.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
@@ -65,25 +50,21 @@ void PlayerInput::InputKeyBoard(void)
 	//移動角度を決める
 	if (ins.IsNew(MOVE_FRONT_KEY))
 	{ 
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = FLONT_DEG;
 		moveDir_ = Utility3D::DIR_F;
 	}
 	else if (ins.IsNew(MOVE_LEFT_KEY))
 	{ 
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = LEFT_DEG; 
 		moveDir_ = Utility3D::DIR_L;
 	} 
 	else if (ins.IsNew(MOVE_BACK_KEY))
 	{ 
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = BACK_DEG; 
 		moveDir_ = Utility3D::DIR_B;
 	}
 	else if (ins.IsNew(MOVE_RIGHT_KEY))
 	{
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = RIGHT_DEG; 
 		moveDir_ = Utility3D::DIR_R;
 	}
@@ -99,35 +80,31 @@ void PlayerInput::InputKeyBoard(void)
 	if (ins.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::CARD_USE; }
 }
 
-void PlayerInput::InputAll(void)
+void InputController::InputAll(void)
 {
 	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
-	actCntl_ = ACT_CNTL::NONE;
-
-
+	//角度の初期化
+	moveDeg_ = -1.0f;
+	isAct_ = {};
 	//移動角度を決める
 	if (ins.IsNew(MOVE_FRONT_KEY))
 	{
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = FLONT_DEG;
 		moveDir_ = Utility3D::DIR_F;
 	}
 	else if (ins.IsNew(MOVE_LEFT_KEY))
 	{
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = LEFT_DEG;
 		moveDir_ = Utility3D::DIR_L;
 	}
 	else if (ins.IsNew(MOVE_BACK_KEY))
 	{
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = BACK_DEG;
 		moveDir_ = Utility3D::DIR_B;
 	}
 	else if (ins.IsNew(MOVE_RIGHT_KEY))
 	{
-		actCntl_ = ACT_CNTL::MOVE;
 		moveDeg_ = RIGHT_DEG;
 		moveDir_ = Utility3D::DIR_R;
 	}
@@ -139,10 +116,6 @@ void PlayerInput::InputAll(void)
 		|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
 	{
 		actCntl_ = ACT_CNTL::MOVE;
-		//if (ins.IsNew(InputManager::CONTROLL_TYPE::PLAYER_DASH, padNum_, InputManager::TYPE::PAD))
-		//{
-		//	actCntl_ = ACT_CNTL::DASHMOVE;
-		//}
 		//スティックの角度を求める
 		stickDeg_ = inputS.GetLStickDeg(padNum_);
 		//スティックの角度によって移動方向を決める
@@ -152,17 +125,15 @@ void PlayerInput::InputAll(void)
 		moveDir_ = VNorm(stickDir);
 	}
 	//カード使用
-	if (ins.IsPadBtnTrgDown(padNum_,CARD_CHARGE_BTN)|| ins.IsTrgDown(CARD_CHARGE_KEY)) { actCntl_ = ACT_CNTL::CARD_CHARGE; }
-
+	if (ins.IsPadBtnTrgDown(padNum_, CARD_CHARGE_BTN) || ins.IsTrgDown(CARD_CHARGE_KEY)) { isAct_.isCardCharge = true; }
 	//ジャンプキー
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_USE_BTN)|| ins.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::CARD_USE; }
+	if (ins.IsPadBtnTrgDown(padNum_, CARD_USE_BTN) || ins.IsTrgDown(CARD_USE_KEY)) { isAct_.isCardUse = true; }
 
-
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN)|| ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) { actCntl_ = ACT_CNTL::CARD_MOVE_LEFT; }
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) { actCntl_ = ACT_CNTL::CARD_MOVE_RIGHT; }
+	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) { isAct_.isCardMoveLeft = true; }
+	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) { isAct_.isCardMoveRight = true; }
 }
 
-void PlayerInput::InputPad(void)
+void InputController::InputPad(void)
 {
 	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
@@ -204,21 +175,12 @@ void PlayerInput::InputPad(void)
 	VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
 	//moveDir_ = { leftStickX_ ,0.0f,leftStickX_ };
 	moveDir_ = VNorm(stickDir);
-
-	//if (ins.IsTrgDown(InputManager::CONTROL_TYPE::PLAYER_PUNCH,padNum_,InputManager::TYPE::PAD) )
-	//{ 
-	//	actCntl_ = ACT_CNTL::PUNCH; 
-	//}
-	//if(ins.IsTrgDown(InputManager::CONTROL_TYPE::PLAYER_JUMP, padNum_, InputManager::TYPE::PAD))
-	//{
-	//	actCntl_ = ACT_CNTL::JUMP; 
-	//}
 }
 
-void PlayerInput::KeyBoard(void)
+void InputController::KeyBoard(void)
 {
 }
 
-void PlayerInput::Pad(void)
+void InputController::Pad(void)
 {
 }
