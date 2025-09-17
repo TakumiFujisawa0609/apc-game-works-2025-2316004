@@ -16,7 +16,7 @@ void EnemyInput::Init(void)
 
 void EnemyInput::Update(void)
 {
-	//初期化
+	//すべての行動フラグをリセット
 	isAct_ = {};
 	//デバッグ用の入力処理
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
@@ -25,7 +25,7 @@ void EnemyInput::Update(void)
 	}
 	else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RIGHT))
 	{
-		isAct_.isCardMoveRight= true;
+		isAct_.isCardMoveRight = true;
 	}
 	else if(InputManager::GetInstance().IsTrgDown(KEY_INPUT_RCONTROL))
 	{

@@ -14,7 +14,7 @@ public:
 	virtual~CardBase(void);
 
 	virtual void Execute(void);
-
+	
 	//ƒJ[ƒh‚ÌˆĞ—Í‚Ìæ“¾
 	inline const int GetPow(void)const { return pow_; }
 
