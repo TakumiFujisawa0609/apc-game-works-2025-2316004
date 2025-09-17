@@ -1,13 +1,14 @@
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
 #include"../Manager/Generic/SceneManager.h"
-#include"../Base/InputBase.h"
 #include"../../../Manager/Generic/Camera.h"
+#include"../Player/ActionController.h"
+#include"../Base/InputBase.h"
 #include "ActionBase.h"
 
-ActionBase::ActionBase(InputBase& _input):
+ActionBase::ActionBase(ActionController& _actCntl):
 	scnMng_(SceneManager::GetInstance()),
-	input_(_input)
+	actionCntl_(_actCntl)
 {
 	speed_ = 0.0f;
 	dir_ = {};
@@ -26,19 +27,26 @@ ActionBase::~ActionBase()
 {
 }
 
-void ActionBase::ChangeAction(ActionBase* action)
+void ActionBase::Init(void)
 {
+}
+
+void ActionBase::Update(void)
+{
+	MoveDirFronInput();
+	Rotate();
+	DirAndMovePowUpdate();
 }
 
 
 void ActionBase::MoveDirFronInput(void)
 {
-	//移動量を0にリセット
-	movePow_ = Utility3D::VECTOR_ZERO;
+	//入力情報を取得
+	InputBase& input = actionCntl_.GetInput();
 
 	//プレイヤー入力クラスから角度を取得
-	VECTOR getDir = input_.GetDir();
-	float deg = input_.GetMoveDeg();
+	VECTOR getDir = input.GetDir();
+	float deg = input.GetMoveDeg();
 
 	//カメラの角度ど入力角度でプレイヤーの方向を変える
 	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
@@ -58,6 +66,14 @@ void ActionBase::Rotate(void)
 	// 回転の球面補間
 	playerRotY_ = Quaternion::Slerp(
 		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
+}
+
+void ActionBase::DirAndMovePowUpdate(void)
+{
+	//方向の更新
+	moveDir_ = dir_;
+	//移動量の更新
+	movePow_ = VScale(moveDir_, speed_);
 }
 
 void ActionBase::SetGoalRotate(const double _deg)

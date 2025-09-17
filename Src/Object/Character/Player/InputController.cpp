@@ -115,7 +115,6 @@ void InputController::InputAll(void)
 	if (inputS.IsPressed(INPUT_EVENT::UP) || inputS.IsPressed(INPUT_EVENT::DOWN)
 		|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
 	{
-		actCntl_ = ACT_CNTL::MOVE;
 		//スティックの角度を求める
 		stickDeg_ = inputS.GetLStickDeg(padNum_);
 		//スティックの角度によって移動方向を決める
@@ -129,7 +128,8 @@ void InputController::InputAll(void)
 	//ジャンプキー
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_USE_BTN) || ins.IsTrgDown(CARD_USE_KEY)) { isAct_.isCardUse = true; }
 
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) { isAct_.isCardMoveLeft = true; }
+	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) {
+		isAct_.isCardMoveLeft = true; }
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) { isAct_.isCardMoveRight = true; }
 }
 

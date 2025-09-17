@@ -4,7 +4,7 @@ class Idle :
     public ActionBase
 {
 public:
-    Idle(InputBase& _input);
+    Idle(ActionController& _actCntl);
     ~Idle(void)override;
     void Init(void) override;
     void Update() override;

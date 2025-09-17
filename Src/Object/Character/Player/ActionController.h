@@ -17,7 +17,9 @@ class InputBase;
 class Idle;
 class Run;
 class Jump;
-class PlayerAction
+class CardAction;
+
+class ActionController
 {
 
 public:
@@ -32,14 +34,15 @@ public:
 	//プレイヤーの入力される種類
 	enum class ACTION_TYPE
 	{
-		NONE,	//何もなし
-		INPUT,	//入力
-		MOVE,	//移動
-		DASHMOVE,//ダッシュ
-		KNOCKBACK,//パンチされた状態
-		JUMP,
-		CARD_ACTION
+		IDLE,		//何もしてない
+		MOVE,		//移動
+		DASHMOVE,	//ダッシュ
+		KNOCKBACK,	//パンチされた状態
+		JUMP,		//ジャンプ
+		CARD_ACTION	//カードアクション
 	};
+
+
 
 	enum class ACT_SE
 	{
@@ -50,8 +53,8 @@ public:
 		SLIME,	//スライム
 	};
 
-	PlayerAction(InputBase& _input,Transform& _trans,CardDeck& _deck, InputManager::JOYPAD_NO _padNum);
-	~PlayerAction(void);
+	ActionController(InputBase& _input,Transform& _trans,CardDeck& _deck, InputManager::JOYPAD_NO _padNum);
+	~ActionController(void);
 
 	/// <summary>
 	/// 初期化
@@ -78,21 +81,10 @@ public:
 
 	//移動量
 	const VECTOR GetMovePow(void);
-
-	//プレイヤーの角度Y
-	const Quaternion GetPlayerRotY(void) { return playerRotY_; }
-
 	//状態
 	const ACTION_TYPE GetAct(void)const { return act_; }
-
-	//移動量
-	void SetMovePow(const VECTOR _movePow) { movePow_ = _movePow; }
-
-	//スピード
-	void SetSpeed(const float _spd) { speed_ = _spd; }
-
-	//方向
-	void SetDir(const VECTOR _dir) { dir_ = _dir; }
+	//入力クラスの取得
+	InputBase& GetInput(void) { return input_; }
 
 	//再生しているリソースをすべて止める
 	void StopResource(void);
@@ -105,40 +97,7 @@ public:
 private:
 	//プレイヤーナンバー(カードデッキで判定する用)
 	static constexpr int PLAYER_NUM = 0;
-	//重力の割合
-	static constexpr float GRAVITY_PER = 20.0f;
-	//移動
-	static constexpr float MOVE_SPEED = 6.0f;	//移動スピード
-	//落ちているときの重力制限(jumpPowに加算しているのでjumpPowに適用)
-	static constexpr float LIMIT_GRAVITY = -20.0f;
-	//ダッシュアニメーションスピード
-	static constexpr float DASH_ANIM_SPEED = 200.0f;
-	//ダッシュSE間隔
-	static constexpr float DASH_SE_TIME = 0.2f;
 
-	//----------------------------------
-	//ジャンプ
-	//----------------------------------
-	//ジャンプ加速の倍率
-	static constexpr float TIME_JUMP_SCALE = 1.0f;
-	//スライム床上でのジャンプ力
-	static constexpr float SLIME_FLOOR_JUMP_POW = 10.0f;
-	//ジャンプアニメーションループ開始
-	static constexpr float JUMP_ANIM_LOOP_START_FRAME = 23.0f;
-	//ジャンプアニメーションループ完了
-	static constexpr float JUMP_ANIM_LOOP_END_FRAME = 25.0f;
-	//ジャンプアニメーションループ中のスピード
-	static constexpr float JUMP_ANIM_ATTACK_BLEND_TIME = 5.0f;
-
-	//ジャンプ開始アニメステップ
-	static constexpr float JUMP_ANIM_START_FRAME = 10.0f;
-	static constexpr float JUMP_ANIM_END_FRAME = 60.0f;
-
-	//ジャンプ力
-	static constexpr float POW_JUMP = 20.0f;
-
-	// 回転完了までの時間
-	static constexpr float TIME_ROT = 0.1f;
 
 	// シーンマネージャ参照
 	SceneManager& scnMng_;
@@ -160,21 +119,10 @@ private:
 	//------------------------
 
 
-	//アクション関連
-	//------------------------
-	std::unique_ptr<ActionBase>action_;
-	std::map<ACTION_TYPE, std::unique_ptr<ActionBase>>actionObject_;
-
-	float speed_;			// 移動スピード
-	VECTOR moveDir_;		// 移動方向
-	VECTOR movePow_;		// 移動量
-	VECTOR dir_;			//方向
-
-	//回転
-	Quaternion playerRotY_;		//プレイヤーY角度
-	Quaternion goalQuaRot_;		//目的の回転
-	float stepRotTime_;			//補完時間
-
+	//プレイヤーのメインとなるアクション(移動やジャンプなど)
+	std::map<ACTION_TYPE, std::unique_ptr<ActionBase>>mainAction_;
+	//サブアクション(カードセレクトなど同時並行となるもの)
+	std::map<ACTION_TYPE, std::unique_ptr<ActionBase>>subAction_;
 
 	//山札(デッキクラスに格納用)
 	std::vector<std::shared_ptr<CardBase>>drawPile_;
@@ -182,35 +130,12 @@ private:
 	//-------------------------------------------------
 	//メンバ関数
 	//-------------------------------------------------
-	//何もしない
-	void NoneUpdate(void);
-
-	//入力
-	void ActionInputUpdate(void);
-
-	//何もなし
-	void ChangeNone(void);
-
-	//更新
-	void MoveUpdate(void);		//移動
-	void JumpUpdate(void);		//ジャンプ
 	void CardUseUpdate(void);	//カード使用
 	void CardChargeUpdate(void);//ストック
 
 	//状態遷移
-	void ChangeJump(void);		//ジャンプ
-	void ChangeInput(void);		//入力
-	void ChangeDashMove(void);	//ダッシュ
 	void ChangeCardUse(void);	//カード使用
 
-
-	//移動状態変更
-	void ChangeMove(void);
-
-	//ダッシュ
-
-	//毎フレーム移動方向とスピードを更新する
-	void UpdateMoveDirAndPow(void);
 
 
 	////ジャンプ

@@ -39,32 +39,23 @@ void CardDeck::Init(void)
 
 void CardDeck::CardUseUpdate(void)
 {
-	//場にカードをだせない状態なら処理を抜ける
-	if (CardSystem::GetInstance().GetCanPut() == false)return;
+	////場にカードをだせない状態なら処理を抜ける
+	bool isCanput = CardSystem::GetInstance().GetCanPut();
+	if (isCanput == false)return;
 
-	//使うカードを手札に加える
-	int cardPow = 0;
-
-	//手札の合計値を出す
-	for(auto& it:hand_)
-	{
-		cardPow += it->GetPow();
-	}
-
-	//カードを場に出してシステム側で処理をする
 	CardSystem& cardSystem = CardSystem::GetInstance();
-	CardSystem::BATTLE_RESULT result = cardSystem.GetResult(playerNum_);
-	cardSystem.PutCard(cardPow,playerNum_);
 	cardSystem.CompareCards();
 
-	if (IsCardFailure())
+	bool isFail = IsCardFailure();
+
+	if (isFail)
 	{
 		for (auto& hand : hand_)
 		{
 			disCard_.emplace_back(std::move(hand));
 		}
+		hand_.resize(hand_.size() - 1);
 	}
-	
 }
 
 void CardDeck::CardCharge(void)
@@ -113,9 +104,10 @@ void CardDeck::Draw(void)
 	DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
 
 	//手札の表示
-	if (hand_.size() > 0)
+	int handSize = hand_.size();
+	if (handSize > 0)
 	{
-		for (int i = 0; i < hand_.size(); i++)
+		for (int i = 0; i < handSize; i++)
 		{
 			int handCardPow = hand_[i]->GetPow();
 			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0xffffff, L"(%d)", handCardPow);
@@ -144,6 +136,25 @@ void CardDeck::MoveHandToCharge(void)
 	//現在選んでいるカードを次のカードにする
 	currentNum_++;
 	nextNum_ = currentNum_ + 1;
+	//システム側の処理
+	DrawCardFromDeck();
+}
+
+void CardDeck::DrawCardFromDeck(void)
+{
+	//使うカードを手札に加える
+	int cardPow = 0;
+
+	//手札の合計値を出す
+	for (auto& it : hand_)
+	{
+		cardPow += it->GetPow();
+	}
+
+	//カードを場に出してシステム側で処理をする
+	CardSystem& cardSystem = CardSystem::GetInstance();
+	CardSystem::BATTLE_RESULT result = cardSystem.GetResult(playerNum_);
+	cardSystem.PutCard(cardPow, playerNum_);
 }
 
 //std::vector<std::weak_ptr<CardBase>> CardDeck::GetHand(void)

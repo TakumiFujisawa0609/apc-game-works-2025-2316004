@@ -40,10 +40,9 @@ public:
 	//手札のカード取得
 	//std::vector<std::weak_ptr<CardBase>> GetHand(void);
 
-private:
-	//メンバ関数
-	//カードを選択したときの制限
-	void CardMoveLimit(void);
+	//デッキからカードを引く
+	void DrawCardFromDeck(void);
+
 
 	/// <summary>
 	/// カード失敗フラグ
@@ -51,6 +50,12 @@ private:
 	/// <param name=""></param>
 	/// <returns></returns>
 	bool IsCardFailure(void);
+
+private:
+	//メンバ関数
+	//カードを選択したときの制限
+	void CardMoveLimit(void);
+
 
 	//札関連
 	//山札

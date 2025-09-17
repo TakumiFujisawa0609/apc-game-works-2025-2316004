@@ -19,7 +19,7 @@
 //#include"../../Object/Common/EffectController.h"
 #include"../Object/Card/CardDeck.h"
 #include "../../../Object/Common/AnimationController.h"
-#include"./PlayerAction.h"
+#include"./ActionController.h"
 //#include"./PlayerOnHit.h"
 #include "./InputController.h"
 #include<algorithm>
@@ -64,7 +64,7 @@ void Player::Load(void)
 	deck_->Init();
 
 	//ƒAƒNƒVƒ‡ƒ“
-	action_ = std::make_unique<PlayerAction>(*input_,trans_,*deck_,padNum_);
+	action_ = std::make_unique<ActionController>(*input_,trans_,*deck_,padNum_);
 	action_->Load();
 }
 
@@ -105,7 +105,7 @@ void Player::Update(void)
 	stateUpdate_();
 
 	//‰ñ“]‚Ì“¯Šú
-	trans_.quaRot = action_->GetPlayerRotY();
+	//trans_.quaRot = action_->GetPlayerRotY();
 	
 	trans_.pos = VAdd(trans_.pos, action_->GetMovePow());
 

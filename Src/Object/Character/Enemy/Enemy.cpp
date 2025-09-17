@@ -2,7 +2,7 @@
 #include"../Utility/UtilityCommon.h"
 #include"../../../Application.h"
 #include"../../Card/CardDeck.h"
-#include"../Player/PlayerAction.h"
+#include"../Player/ActionController.h"
 #include"../Enemy/EnemyInput.h"
 
 #include"../Manager/Generic/InputManager.h"
@@ -33,7 +33,7 @@ void Enemy::Init(void)
 	input_ = std::make_unique<EnemyInput>();
 	input_->Init();
 
-	action_ = std::make_unique<PlayerAction>(*input_, trans_, *deck_, InputManager::JOYPAD_NO::PAD1);
+	action_ = std::make_unique<ActionController>(*input_, trans_, *deck_, InputManager::JOYPAD_NO::PAD1);
 	action_->Init();
 
 	//Transform‚ÌÝ’è
@@ -50,20 +50,6 @@ void Enemy::Update(void)
 {
 	input_->Update();
 	action_->Update();
-	//if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_MOVE_LEFT))
-	//{
-	//	deck_->CardMoveLeft();
-	//}
-	//else if(input_->CheckAct(EnemyInput::ACT_CNTL::CARD_MOVE_RIGHT) )
-	//{
-	//	deck_->CardMoveRight();
-	//}
-	//else if (input_->CheckAct(EnemyInput::ACT_CNTL::CARD_ACTION))
-	//{
-	//	deck_->MoveHandToCharge();
-	//	
-	//}
-	deck_->CardUseUpdate();
 }
 
 void Enemy::Draw(void)

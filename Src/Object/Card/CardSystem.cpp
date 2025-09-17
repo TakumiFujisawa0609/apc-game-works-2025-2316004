@@ -23,11 +23,13 @@ const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) c
 
 void CardSystem::CompareCards(void)
 {
+	//‚Ç‚¿‚ç‚©‚ÉƒJ[ƒh‚ª“ü‚Á‚Ä‚¢‚È‚¯‚ê‚Îˆø‚¯‚é
 	if (putCardPow_[FIRST_ATK] == -1 || putCardPow_[SECOND_ATK] == -1)
 	{
 		canPut_ = true;
 	}
-	else
+	//‚Ç‚¿‚ç‚à“ü‚Á‚Ä‚¢‚ê‚Îˆø‚¯‚È‚¢
+	else if(putCardPow_[FIRST_ATK] != -1 && putCardPow_[SECOND_ATK] != -1)
 	{
 		canPut_ = false;
 	}

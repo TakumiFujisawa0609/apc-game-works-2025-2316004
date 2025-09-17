@@ -1,10 +1,11 @@
 #include "../Base/ActionBase.h"
 #include"../../../Utility/Utility3D.h"
 #include"../../../Manager/Generic/SceneManager.h"
+#include"../Player/ActionController.h"
 #include "Jump.h"
 
-Jump::Jump(InputBase& _input):
-	ActionBase(_input)
+Jump::Jump(ActionController& _actCntl):
+	ActionBase(_actCntl)
 {
 }
 
@@ -18,17 +19,14 @@ void Jump::Init(void)
 
 void Jump::Update(void)
 {
-	//ステップジャンプを基準にジャンプ減衰量を決める
-	float deltaTime = scnMng_.GetDeltaTime();
-	stepJump_ += deltaTime;
-
-	////空中アニメーションステップのループ設定
-	//animationController_.SetEndLoop(JUMP_ANIM_LOOP_START_FRAME
-	//	, JUMP_ANIM_LOOP_END_FRAME, JUMP_ANIM_ATTACK_BLEND_TIME);
-
 	//ジャンプ中も移動できるようにする
 	MoveDirFronInput();
 
+	ActionBase::Update();
+
+	//ステップジャンプを基準にジャンプ減衰量を決める
+	float deltaTime = scnMng_.GetDeltaTime();
+	stepJump_ += deltaTime;
 	//ジャンプカウントが0以上なら
 	if (stepJump_ > 0.0f)
 	{
@@ -62,4 +60,6 @@ void Jump::Update(void)
 		//ChangeAction(ACTION_TYPE::INPUT);
 		return;
 	}
+
+	
 }

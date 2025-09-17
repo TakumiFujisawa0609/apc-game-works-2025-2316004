@@ -3,13 +3,13 @@
 #include <functional>
 #include <memory>
 #include"../../Character/Player/InputController.h"
-#include"./PlayerAction.h"
+#include"./ActionController.h"
 #include "../../ObjectBase.h"
 
 #define DEBUG_ON
 class AnimationController;
 class Camera;
-class PlayerAction;
+class ActionController;
 class PlayerOnHit;
 class DateBank;
 class Shadow;
@@ -211,7 +211,7 @@ private:
 	//入力
 	std::unique_ptr<InputController>input_;
 	//行動系
-	std::unique_ptr<PlayerAction>action_;
+	std::unique_ptr<ActionController>action_;
 	// アニメーション
 	std::unique_ptr<AnimationController> animationController_;
 	//カメラ

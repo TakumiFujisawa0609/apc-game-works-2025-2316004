@@ -1,8 +1,10 @@
 #include "../Base/ActionBase.h"
+#include"../Base/InputBase.h"
+#include"../Player/ActionController.h"
 #include "Run.h"
 
-Run::Run(InputBase& _input):
-	ActionBase(_input)
+Run::Run(ActionController& _actCntl):
+	ActionBase(_actCntl)
 {
 	speed_ = MOVE_SPEED;
 }
@@ -18,12 +20,13 @@ void Run::Init(void)
 
 void Run::Update(void)
 {
-	//移動
-	//入力方向の移動
-	MoveDirFronInput();
+	//移動中に入力が入った時の状態遷移
+	ActionBase::Update();
+	if (actionCntl_.GetInput().GetMoveDeg() < 0.0f)
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		return;
+	}
+	
 
-	//方向の更新
-	moveDir_ = dir_;
-	//移動量の更新
-	movePow_ = VScale(moveDir_, speed_);
 }

@@ -5,7 +5,7 @@
 class CardDeck;
 class EnemyInput;
 
-class PlayerAction;
+class ActionController;
 
 class Enemy :public ObjectBase
 {
@@ -48,7 +48,7 @@ private:
 	std::unique_ptr<EnemyInput>input_; //“G‚Ì“ü—ÍƒNƒ‰ƒX
 
 	//
-	std::unique_ptr<PlayerAction>action_;
+	std::unique_ptr<ActionController>action_;
 
 	//ƒƒ“ƒo•Ï”
 	std::shared_ptr<CardDeck>deck_;

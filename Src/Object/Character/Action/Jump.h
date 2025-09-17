@@ -4,7 +4,7 @@ class Jump :
     public ActionBase
 {
 public:
-    Jump(InputBase& _input);
+    Jump(ActionController& _actCntl);
     ~Jump(void)override;
     void Init(void) override;
     void Update(void) override;

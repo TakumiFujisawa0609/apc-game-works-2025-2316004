@@ -2,17 +2,18 @@
 #include <DxLib.h>
 #include"../Common/Quaternion.h"
 class SceneManager;
-class InputBase;
+class ActionController;
+class InputController;
+
 class ActionBase
 {
 public:
-	ActionBase(InputBase& _input );
+	ActionBase(ActionController& _actCntl);
 	virtual ~ActionBase();
 
-	virtual void Init(void) = 0;
-	virtual void Update(void) = 0;
+	virtual void Init(void);
+	virtual void Update(void);
 	
-	void ChangeAction(ActionBase* action);
 
 	enum TYPE
 	{
@@ -54,18 +55,22 @@ protected:
 	VECTOR jumpPow_;		// ジャンプ量
 	float jumpDeceralation_;	//ジャンプ減衰量
 
+
 	//メンバ関数
 	//入力方向に応じて方向を決める
 	void MoveDirFronInput(void);
 	
 	//シングルトンクラス
 	SceneManager& scnMng_;
-	InputBase& input_;
+	//アクションコントローラー
+	ActionController& actionCntl_;
 
 	//ゴール角度をセット
 	void SetGoalRotate(const double _deg);
 	//回転処理
 	void Rotate(void);
+	//方向と移動量の更新
+	void DirAndMovePowUpdate(void);
 
 private:
 	// 回転完了までの時間

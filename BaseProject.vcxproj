@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Character\Action\CardAction.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Jump.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Idle.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Run.cpp" />
@@ -34,7 +35,7 @@
     <ClCompile Include="Src\Manager\Game\PlayerManager.cpp" />
     <ClCompile Include="Src\Manager\Generic\DataBank.cpp" />
     <ClCompile Include="Src\Object\Character\Player\Player.cpp" />
-    <ClCompile Include="Src\Object\Character\Player\PlayerAction.cpp" />
+    <ClCompile Include="Src\Object\Character\Player\ActionController.cpp" />
     <ClCompile Include="Src\Object\Character\Player\InputController.cpp" />
     <ClCompile Include="Src\Scene\PauseScene.cpp" />
     <ClCompile Include="Src\Manager\Generic\InputManagerS.cpp" />
@@ -65,6 +66,7 @@
     <ClCompile Include="Src\Utility\UtilityDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Character\Action\CardAction.h" />
     <ClInclude Include="Src\Object\Character\Action\Jump.h" />
     <ClInclude Include="Src\Object\Character\Action\Idle.h" />
     <ClInclude Include="Src\Object\Character\Action\Run.h" />
@@ -80,7 +82,7 @@
     <ClInclude Include="Src\Manager\Game\PlayerManager.h" />
     <ClInclude Include="Src\Manager\Generic\DataBank.h" />
     <ClInclude Include="Src\Object\Character\Player\Player.h" />
-    <ClInclude Include="Src\Object\Character\Player\PlayerAction.h" />
+    <ClInclude Include="Src\Object\Character\Player\ActionController.h" />
     <ClInclude Include="Src\Object\Character\Player\InputController.h" />
     <ClInclude Include="Src\Scene\PauseScene.h" />
     <ClInclude Include="Src\Template\Singleton.h" />
