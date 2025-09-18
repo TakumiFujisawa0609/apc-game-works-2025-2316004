@@ -24,12 +24,24 @@ AnimationController::~AnimationController(void)
 	}
 }
 
-void AnimationController::Add(int type, const std::wstring& path, float speed)
+void AnimationController::Add(int type, const float speed, int modelId)
 {
 
 	Animation anim;
+	if (modelId != -1)
+	{
+		//リソースマネージャでロードしたものを使う
+		anim.model = modelId;
+	}
+	else
+	{
+		//持ち主のモデル
+		anim.model = modelId_;
+	}
+	anim.animIndex = type;
+	anim.speed = speed;
 
-	anim.model = MV1LoadModel(path.c_str());
+	//anim.model = MV1LoadModel(path.c_str());
 	anim.animIndex = type;
 	anim.speed = speed;
 

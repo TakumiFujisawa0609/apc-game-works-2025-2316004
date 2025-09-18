@@ -73,24 +73,46 @@ public:
 	/// <param name=""></param>
 	void Update(void);
 
-
-	void DrawDebug(void);
-
-	//状態遷移
+	/// <summary>
+	/// 状態遷移
+	/// </summary>
+	/// <param name="_act">遷移したいアクション</param>
 	void ChangeAction(ACTION_TYPE _act);
 
-	//移動量
+	/// <summary>
+	/// 移動量の取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>移動量</returns>
 	const VECTOR GetMovePow(void);
-	//状態
+
+	/// <summary>
+	/// 状態の取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>状態</returns>
 	const ACTION_TYPE GetAct(void)const { return act_; }
-	//入力クラスの取得
+	/// <summary>
+	/// 入力クラスの取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>入力クラス</returns>
 	InputBase& GetInput(void) { return input_; }
 
-	//再生しているリソースをすべて止める
+	
+
+	/// <summary>
+	/// 再生しているリソースをすべて止める
+	/// </summary>
+	/// <param name=""></param>
 	void StopResource(void);
 
+	//デバッグb
+	void DrawDebug(void);
+
 #ifdef _DEBUG
-	static constexpr float CARD_ACT_TIME_MAX = 5.0f; //カードアクション時間(デバッグ用)
+	//カードアクション時間(デバッグ用)
+	static constexpr float CARD_ACT_TIME_MAX = 5.0f; 
 #endif // _DEBUG
 
 
@@ -107,17 +129,22 @@ private:
 	std::map<ACTION_TYPE, std::function<void(void)>>changeAction_;
 	//状態更新
 	std::function<void(void)>actionUpdate_;
+	//カードデッキ
+	CardDeck& deck_;
 
 	//状態
 	ACTION_TYPE act_;
+	//パッド番号
+	InputManager::JOYPAD_NO padNum_;		
+	//カード関連
 	bool isCardAct_;	//カードアクション中かどうか
 	float cardActTime_; //カードアクション時間(デバッグ用)
-	InputManager::JOYPAD_NO padNum_;		//パッド番号
-	Transform& trans_;	//モデル情報
-	InputBase& input_;	//各キャラクターの入力情報
-	//素材関連
-	//------------------------
 
+	//モデル情報
+	Transform& trans_;	
+
+	//各キャラクターの入力情報
+	InputBase& input_;	
 
 	//プレイヤーのメインとなるアクション(移動やジャンプなど)
 	std::map<ACTION_TYPE, std::unique_ptr<ActionBase>>mainAction_;
@@ -126,32 +153,14 @@ private:
 
 	//山札(デッキクラスに格納用)
 	std::vector<std::shared_ptr<CardBase>>drawPile_;
-	Vector2 cardCenterPos_;	//カードの位置
-	//-------------------------------------------------
-	//メンバ関数
-	//-------------------------------------------------
-	void CardUseUpdate(void);	//カード使用
-	void CardChargeUpdate(void);//ストック
+	//カードの位置
+	Vector2 cardCenterPos_;	
 
-	//状態遷移
-	void ChangeCardUse(void);	//カード使用
-
-
-
-	////ジャンプ
-	//void Jump(void);
-
-	//カード関連
-	//カード使用
-	//カードチャージ
 	//カード選択
 	void CardMove(void);
 
-	//ジャンプができる条件
-	bool CheckJumpInput(void);
-
-	//カードデッキ
-	CardDeck& deck_;
+	//カードチャージ
+	void CardChargeUpdate(void);
 
 	/// <summary>
 	/// 再生させたいSE以外すべて止める

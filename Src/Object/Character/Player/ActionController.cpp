@@ -23,12 +23,15 @@
 
 #include "ActionController.h"
 
-ActionController::ActionController(InputBase& _input, Transform& _trans, CardDeck& _deck, InputManager::JOYPAD_NO _padNum):
+ActionController::ActionController(InputBase& _input, Transform& _trans, CardDeck& _deck, InputManager::JOYPAD_NO _padNum) :
 	input_(_input)
-	,trans_(_trans)
-	,deck_(_deck)
-	,padNum_(_padNum)
-	,scnMng_(SceneManager::GetInstance())
+	, trans_(_trans)
+	, deck_(_deck)
+	, padNum_(_padNum)
+	, scnMng_(SceneManager::GetInstance())
+	, act_(ACTION_TYPE::IDLE)
+	, cardActTime_(0.0f)
+	,isCardAct_(false)
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
@@ -91,39 +94,6 @@ const VECTOR ActionController::GetMovePow(void)
 {
 	return mainAction_[act_]->GetMovePow();
 }
-
-
-
-//
-//void ActionController::ChangeCardUse(void)
-//{
-//	//手札に移動
-//	deck_.MoveHandToCharge();
-//
-//	//アクション中にする
-//	isCardAct_ = true;
-//
-//	//カード使用状態へ
-//	actionUpdate_ = [this]() {CardUseUpdate(); };
-//}
-//
-//void ActionController::CardUseUpdate(void)
-//{
-//	if (cardActTime_ < CARD_ACT_TIME_MAX)
-//	{
-//		cardActTime_ += SceneManager::GetInstance().GetDeltaTime();
-//		deck_.CardUseUpdate();
-//	}
-//	else
-//	{
-//		//アクション終了
-//		isCardAct_ = false;
-//		cardActTime_ = 0.0f;
-//		//ChangeAction(ACTION_TYPE::INPUT);
-//		return;
-//	}
-//	
-//}
 
 void ActionController::CardChargeUpdate(void)
 {

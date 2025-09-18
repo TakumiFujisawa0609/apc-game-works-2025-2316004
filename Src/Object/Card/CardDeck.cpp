@@ -44,18 +44,8 @@ void CardDeck::CardUseUpdate(void)
 	if (isCanput == false)return;
 
 	CardSystem& cardSystem = CardSystem::GetInstance();
+	//ƒJ[ƒh“¯m‚ğ”ä‚×‚é
 	cardSystem.CompareCards();
-
-	bool isFail = IsCardFailure();
-
-	if (isFail)
-	{
-		for (auto& hand : hand_)
-		{
-			disCard_.emplace_back(std::move(hand));
-		}
-		hand_.resize(hand_.size() - 1);
-	}
 }
 
 void CardDeck::CardCharge(void)
@@ -65,6 +55,11 @@ void CardDeck::CardCharge(void)
 
 void CardDeck::DisCard(void)
 {
+	for (auto& hand : hand_)
+	{
+		disCard_.emplace_back(std::move(hand));
+	}
+	hand_.resize(hand_.size() - 1);
 }
 
 void CardDeck::CardMoveRight(void)

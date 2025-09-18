@@ -23,6 +23,7 @@ public:
 	//-------------------------------------------
 	static const std::wstring PATH_IMAGE;
 	static const std::wstring PATH_MODEL;
+	static const std::wstring PATH_ANIM;
 	static const std::wstring PATH_EFFECT;
 	static const std::wstring PATH_SOUND;
 	static const std::wstring PATH_FONT;

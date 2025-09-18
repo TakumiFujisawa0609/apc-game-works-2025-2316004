@@ -25,7 +25,7 @@ public :
 	~AnimationController(void);
 
 	// アニメーション追加
-	void Add(int type, const std::wstring& path, float speed);
+	void Add(int type, const float speed, int modelId);
 
 	// アニメーション再生
 	void Play(int type, bool isLoop = true, 

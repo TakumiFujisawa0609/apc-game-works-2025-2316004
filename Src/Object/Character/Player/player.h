@@ -23,9 +23,7 @@ class EffectController;
 class Player :public ObjectBase
 {
 public:
-	//******************************************
-	//定数
-	//******************************************
+
 	//半径
 	static constexpr float RADIUS = 25.0f;
 	//デフォルトのアニメーションスピード
@@ -118,26 +116,37 @@ public:
 	///// <param name="_hitColTag">相手側の当たり判定</param>
 	//void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 
-	//ゲッタ
-	//******************************************
-	//プレイヤー番号
+	/// <summary>
+	/// プレイヤー番号
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>プレイヤー番号</returns>
 	inline const int GetPlayerNum(void)const { return playerNum_; }
 
-	//使用するコントローラー
+	/// <summary>
+	/// 使用するコントローラー
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>使用するコントローラー</returns>
 	inline const InputManager::CONTROLL_TYPE GetCntl(void)const { return cntl_; }
 
-	//コントローラー番号
+	/// <summary>
+	/// コントローラー番号
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>コントローラー番号</returns>
 	inline const InputManager::JOYPAD_NO GetPadNum(void)const { return padNum_; }
 
 	//プレイヤーの手札
 	//const std::weak_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
 
-	//手札
+	/// <summary>
+	/// 手札
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>手札</returns>
 	const std::weak_ptr<CardDeck> GetHand(void) { return deck_; }
 
-	//******************************************
-	//セッタ
-	//******************************************
 	/// <summary>
 	/// 座標
 	/// </summary>
@@ -145,15 +154,8 @@ public:
 	//void SetPos(const VECTOR _worldPos);
 
 
-	//*****************************************
-
-
-
-
 private:
-	//***********************************************
-	//定数
-	//***********************************************
+
 	//重力の割合
 	static constexpr float GRAVITY_PER = 20.0f;
 	//プレイヤー１のX座標
@@ -193,7 +195,6 @@ private:
 	//--------------------------------------------------
 	//ゲームオーバーの待機時間
 	static constexpr float DEATH_DELAY = 2.0f;
-
 	//ゴール時の待機時間
 	static constexpr float GOAL_DELAY = 1.0f;
 
@@ -238,16 +239,10 @@ private:
 	Vector2 cardCenterPos_;	//カードの位置
 	//プレイヤーナンバー(カードデッキで判定する用)
 
-
-	//--------------------------------------------
-	//******************************************
-	//メンバ関数
-	//******************************************
 #ifdef DEBUG_ON
 	void DrawDebug(void);
 #endif // DEBUG_ON
 	//プレイヤー状態
-	//**************************************************
 	//状態遷移
 	void ChangeState(PLAYER_STATE _state);
 	//生存しているとき
@@ -268,7 +263,5 @@ private:
 	
 	//アクション関係
 	void Action(void);
-
-
 };
 

@@ -35,9 +35,8 @@ void CardAction::Update()
 		//アクション終了
 		isCardAct_ = false;
 		cardActTime_ = 0.0f;
+		deck_.DisCard();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
-
-	
 }

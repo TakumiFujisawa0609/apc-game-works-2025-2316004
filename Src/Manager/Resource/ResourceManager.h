@@ -18,6 +18,12 @@ public:
 	{
 		NONE,
 		TEST,
+		//モデル
+		PLAYER,
+		//アニメーション
+		IDLE,
+		RUN,
+		P_ATTACK1,
 	};
 
 	/// <summary>

@@ -11,15 +11,13 @@ class PlayerBase;
 class InputController:public InputBase
 {
 public:
-    //*************************************************
     //各アクション操作ボタン
-    //*************************************************]
     using JOYPAD_BTN = InputManager::JOYPAD_BTN;
     //移動
-    static constexpr int MOVE_FRONT_KEY = KEY_INPUT_W;
-    static constexpr int MOVE_LEFT_KEY = KEY_INPUT_A;
-    static constexpr int MOVE_BACK_KEY = KEY_INPUT_S;
-    static constexpr int MOVE_RIGHT_KEY = KEY_INPUT_D;
+    static constexpr int MOVE_FRONT_KEY = KEY_INPUT_W;      //前
+    static constexpr int MOVE_LEFT_KEY = KEY_INPUT_A;       //左
+    static constexpr int MOVE_BACK_KEY = KEY_INPUT_S;       //後ろ
+    static constexpr int MOVE_RIGHT_KEY = KEY_INPUT_D;      //右
 
     //カード選択
     //右
@@ -87,7 +85,10 @@ public:
 
     //変更時の初期化
 	void Init(void)override;
-
+    /// <summary>
+    /// 更新
+    /// </summary>
+    /// <param name=""></param>
     void Update(void)override;
 
     ////コントロール判定
@@ -102,27 +103,23 @@ public:
     ACT_CNTL GetAct(void) { return actCntl_; }
     float GetStickDeg(void){ return stickDeg_; }
 private:
-    //メンバ関数
-    void InputKeyBoard(void);
-    void InputAll(void);
-    void InputPad(void);
+    //入力デバイス別の更新
+    void InputKeyBoard(void);   //キーボード
+    void InputAll(void);        //両対応
+    void InputPad(void);        //パッド
 
     void KeyBoard(void);
     void Pad(void);
 
-    //メンバ変数
-    //-----------------------------------------------------------------------
+    //スティック
     float leftStickX_;          //スティックの角度X
     float leftStickY_;          //スティックの角度Y
 
     //スティックの角度(0～1000を返す)
     Vector2 LStickAngleSize_;
-
-
-
     float stickDeg_;            //パッドのスティックの角度
 
-    InputManager::CONTROLL_TYPE cntl_;                 //入力デバイス
+    InputManager::CONTROLL_TYPE cntl_;              //入力デバイス
     InputManager::JOYPAD_NO padNum_;                //パッド番号
 
     std::map<InputManager::CONTROLL_TYPE, std::function<void(void)>>inputUpdates_;

@@ -7,12 +7,23 @@ void ResourceManager::Init(void)
 {
 	static std::wstring PATH_IMG = Application::PATH_IMAGE;
 	static std::wstring PATH_MDL = Application::PATH_MODEL;
+	static std::wstring PATH_ANIM = Application::PATH_ANIM;
 	static std::wstring PATH_EFF = Application::PATH_EFFECT;
 
 	std::unique_ptr<Resource> res;
 
 	res = std::make_unique<Resource>(Resource::TYPE::IMG, PATH_IMG + L"test.png");
 	resourcesMap_.emplace(SRC::TEST, std::move(res));
+
+	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_MDL + L"Player.mv1");
+	resourcesMap_.emplace(SRC::PLAYER, std::move(res));
+
+	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"Idle.mv1");
+	resourcesMap_.emplace(SRC::IDLE, std::move(res));
+
+	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"SlowRun.mv1");
+	resourcesMap_.emplace(SRC::RUN, std::move(res));
+
 }
 
 void ResourceManager::SceneChangeRelease(void)

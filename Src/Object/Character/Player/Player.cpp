@@ -49,6 +49,11 @@ Player::~Player(void)
 
 void Player::Load(void)
 {
+	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::PLAYER));
+	trans_.quaRot = Quaternion();
+	trans_.quaRotLocal =
+		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(180.0f), 0.0f });
+
 	//プレイヤー入力
 	input_ = std::make_unique<InputController>(padNum_, InputManager::CONTROLL_TYPE::ALL);
 	input_->Init();
@@ -115,18 +120,8 @@ void Player::Update(void)
 
 void Player::Draw(void)
 {
-	//if (IsDeath())return;
-	//モデル描画のZBufferを無効にする
-	MV1SetWriteZBuffer(trans_.modelId, false);
-
-	////アウトライン描画
-	//renderer_->Draw();
-
-	////モデル描画のZBufferを戻す
-	//MV1SetWriteZBuffer(trans_.modelId, true);
-
 	//通常描画
-	//MV1DrawModel(trans_.modelId);
+	MV1DrawModel(trans_.modelId);
 
 	action_->DrawDebug();
 	

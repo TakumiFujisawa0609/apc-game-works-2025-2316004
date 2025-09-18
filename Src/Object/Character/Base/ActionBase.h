@@ -32,7 +32,11 @@ public:
 	{
 
 	};
-
+	/// <summary>
+	/// ˆÚ“®—Ê‚ÌŽæ“¾
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>ˆÚ“®—Ê</returns>
 	inline VECTOR GetMovePow(void) { return movePow_; }
 
 protected:

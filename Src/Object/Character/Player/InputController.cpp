@@ -2,7 +2,9 @@
 #include"../Utility/Utility3D.h"
 #include "InputController.h"
 
-InputController::InputController(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):padNum_(_padNum),cntl_(_cntl)
+InputController::InputController(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):
+	padNum_(_padNum),
+	cntl_(_cntl)
 {
 	actCntl_ = ACT_CNTL::NONE;
 	leftStickX_ = -1;

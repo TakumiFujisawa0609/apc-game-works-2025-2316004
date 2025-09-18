@@ -47,7 +47,7 @@ private:
 	//敵の行動
 	std::unique_ptr<EnemyInput>input_; //敵の入力クラス
 
-	//
+	//アクションコントローラー
 	std::unique_ptr<ActionController>action_;
 
 	//メンバ変数
