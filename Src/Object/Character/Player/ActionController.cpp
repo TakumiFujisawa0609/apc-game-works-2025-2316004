@@ -70,6 +70,10 @@ void ActionController::Update(void)
 	//GravityManager::GetInstance().CalcGravity(dirDown,jumpPow_, GRAVITY_PER);
 	mainAction_[act_]->Update();
 
+	MoveDirFronInput();
+	Rotate();
+	DirAndMovePowUpdate();
+
 	CardChargeUpdate();
 	CardMove();
 }
@@ -92,7 +96,7 @@ void ActionController::ChangeAction(const ACTION_TYPE _act)
 
 const VECTOR ActionController::GetMovePow(void)
 {
-	return mainAction_[act_]->GetMovePow();
+	return movePow_;
 }
 
 void ActionController::CardChargeUpdate(void)
@@ -117,7 +121,66 @@ void ActionController::CardMove(void)
 }
 
 
+const Quaternion ActionController::GetPlayerRotY(void)
+{
+	return playerRotY_;
+}
+
 void ActionController::StopResource(void)
 {
 
+}
+
+void ActionController::MoveDirFronInput(void)
+{
+	//プレイヤー入力クラスから角度を取得
+	VECTOR getDir = input_.GetDir();
+	float deg = input_.GetMoveDeg();
+
+	//カメラの角度ど入力角度でプレイヤーの方向を変える
+	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
+	dir_ = cameraRot.PosAxis(getDir);
+	dir_ = VNorm(dir_);
+
+	if (!Utility3D::EqualsVZero(dir_))
+	{
+		//補完角度の設定(入力角度まで方向転換する)
+		SetGoalRotate(deg);
+	}
+}
+
+void ActionController::Rotate(void)
+{
+	stepRotTime_ -= SceneManager::GetInstance().GetDeltaTime();
+	// 回転の球面補間
+	playerRotY_ = Quaternion::Slerp(
+		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
+}
+
+void ActionController::DirAndMovePowUpdate(void)
+{
+	//方向の更新
+	moveDir_ = dir_;
+	float speed = mainAction_[act_]->GetSpeed();
+	//移動量の更新
+	movePow_ = VScale(moveDir_, speed);
+}
+
+void ActionController::SetGoalRotate(const double _deg)
+{
+	//カメラの角度を取得
+	VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
+	Quaternion axis = Quaternion::AngleAxis(
+		(double)cameraRot.y + UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
+
+	//現在設定されている回転との角度差を取る
+	double angleDiff = Quaternion::Angle(axis, goalQuaRot_);
+
+	constexpr double ANGLE_THRESHOLD = 0.1;
+	// しきい値
+	if (angleDiff > ANGLE_THRESHOLD)
+	{
+		stepRotTime_ = TIME_ROT;
+	}
+	goalQuaRot_ = axis;
 }

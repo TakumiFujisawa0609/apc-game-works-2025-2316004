@@ -52,7 +52,9 @@ void Player::Load(void)
 	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::PLAYER));
 	trans_.quaRot = Quaternion();
 	trans_.quaRotLocal =
-		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(180.0f), 0.0f });
+		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
+
+	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
 
 	//ƒvƒŒƒCƒ„[“ü—Í
 	input_ = std::make_unique<InputController>(padNum_, InputManager::CONTROLL_TYPE::ALL);
@@ -110,7 +112,7 @@ void Player::Update(void)
 	stateUpdate_();
 
 	//‰ñ“]‚Ì“¯Šú
-	//trans_.quaRot = action_->GetPlayerRotY();
+	trans_.quaRot = action_->GetPlayerRotY();
 	
 	trans_.pos = VAdd(trans_.pos, action_->GetMovePow());
 
@@ -120,8 +122,14 @@ void Player::Update(void)
 
 void Player::Draw(void)
 {
+	// —¼–Ê•`‰æ‚ğ—LŒø‚É‚·‚é
+	SetUseBackCulling(FALSE);
+
 	//’Êí•`‰æ
 	MV1DrawModel(trans_.modelId);
+
+	// Œ³‚É–ß‚·
+	SetUseBackCulling(TRUE);
 
 	action_->DrawDebug();
 	

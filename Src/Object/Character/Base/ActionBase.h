@@ -11,8 +11,8 @@ public:
 	ActionBase(ActionController& _actCntl);
 	virtual ~ActionBase();
 
-	virtual void Init(void);
-	virtual void Update(void);
+	virtual void Init(void) = 0;
+	virtual void Update(void) = 0;
 	
 
 	enum TYPE
@@ -38,6 +38,11 @@ public:
 	/// <param name=""></param>
 	/// <returns>ˆÚ“®—Ê</returns>
 	inline VECTOR GetMovePow(void) { return movePow_; }
+
+	//Šp“xY‚ÌŽæ“¾
+	const Quaternion GetPlayerRotY(void) { return playerRotY_; }
+
+	const float GetSpeed(void) { return speed_; }
 
 protected:
 	//ˆÚ“®

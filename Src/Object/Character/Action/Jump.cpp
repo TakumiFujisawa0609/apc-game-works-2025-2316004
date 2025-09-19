@@ -19,10 +19,8 @@ void Jump::Init(void)
 
 void Jump::Update(void)
 {
-	//ジャンプ中も移動できるようにする
-	MoveDirFronInput();
-
-	ActionBase::Update();
+	////ジャンプ中も移動できるようにする
+	//MoveDirFronInput();
 
 	//ステップジャンプを基準にジャンプ減衰量を決める
 	float deltaTime = scnMng_.GetDeltaTime();

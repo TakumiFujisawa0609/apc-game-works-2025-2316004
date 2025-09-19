@@ -99,8 +99,8 @@ public:
 	/// <returns>入力クラス</returns>
 	InputBase& GetInput(void) { return input_; }
 
-	
-
+	//角度Yを取得
+	const Quaternion GetPlayerRotY(void);
 	/// <summary>
 	/// 再生しているリソースをすべて止める
 	/// </summary>
@@ -120,6 +120,8 @@ private:
 	//プレイヤーナンバー(カードデッキで判定する用)
 	static constexpr int PLAYER_NUM = 0;
 
+	// 回転完了までの時間
+	static constexpr float TIME_ROT = 0.1f;
 
 	// シーンマネージャ参照
 	SceneManager& scnMng_;
@@ -146,6 +148,19 @@ private:
 	//各キャラクターの入力情報
 	InputBase& input_;	
 
+	float speed_;			// 移動スピード
+	VECTOR moveDir_;		// 移動方向
+	VECTOR movePow_;		// 移動量
+	VECTOR dir_;			//方向
+
+	//回転
+	Quaternion playerRotY_;		//プレイヤーY角度
+	Quaternion goalQuaRot_;		//目的の回転
+	float stepRotTime_;			//補完時間
+
+
+
+
 	//プレイヤーのメインとなるアクション(移動やジャンプなど)
 	std::map<ACTION_TYPE, std::unique_ptr<ActionBase>>mainAction_;
 	//サブアクション(カードセレクトなど同時並行となるもの)
@@ -167,5 +182,19 @@ private:
 	/// </summary>
 	/// <param name="_se">現在再生させたいSE</param>
 	//void StopSe(const ACT_SE _se);
+
+
+
+	//入力方向に応じて方向を決める
+	void MoveDirFronInput(void);
+	//ゴール角度をセット
+	void SetGoalRotate(const double _deg);
+	//回転処理
+	void Rotate(void);
+	//方向と移動量の更新
+	void DirAndMovePowUpdate(void);
+
+
+
 };
 

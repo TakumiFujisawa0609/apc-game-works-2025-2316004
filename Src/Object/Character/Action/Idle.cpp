@@ -1,4 +1,5 @@
 #include"../Player/ActionController.h"
+#include"../Utility/Utility3D.h"
 #include"../Base/InputBase.h"
 #include "Idle.h"
 
@@ -17,10 +18,8 @@ void Idle::Init(void)
 
 void Idle::Update(void)
 {
-	//‹¤’Êˆ—‚ÌXV
-	ActionBase::Update();
 	//ˆÚ“®
-	if (actionCntl_.GetInput().GetMoveDeg() >= 0.0f)
+	if (!Utility3D::EqualsVZero(actionCntl_.GetInput().GetDir()))
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::MOVE);
 		return;

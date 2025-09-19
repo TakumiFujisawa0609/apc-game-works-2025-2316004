@@ -1,5 +1,6 @@
 #include "../Base/ActionBase.h"
 #include"../Base/InputBase.h"
+#include"../Utility/Utility3D.h"
 #include"../Player/ActionController.h"
 #include "Run.h"
 
@@ -20,13 +21,12 @@ void Run::Init(void)
 
 void Run::Update(void)
 {
-	//ˆÚ“®’†‚É“ü—Í‚ª“ü‚Á‚½‚Ìó‘Ô‘JˆÚ
-	ActionBase::Update();
-	if (actionCntl_.GetInput().GetMoveDeg() < 0.0f)
+	//if (actionCntl_.GetInput().GetMoveDeg() < 0.0f)
+	if (Utility3D::EqualsVZero(actionCntl_.GetInput().GetDir()))
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
-	
-
+	////ˆÚ“®’†‚É“ü—Í‚ª“ü‚Á‚½‚Ìó‘Ô‘JˆÚ
+	//ActionBase::Update();
 }

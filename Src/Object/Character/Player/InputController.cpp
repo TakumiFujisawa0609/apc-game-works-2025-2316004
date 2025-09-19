@@ -86,9 +86,8 @@ void InputController::InputAll(void)
 {
 	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
-	//Šp“x‚Ì‰Šú‰»
-	moveDeg_ = -1.0f;
 	isAct_ = {};
+	moveDir_ = Utility3D::VECTOR_ZERO;
 	//ˆÚ“®Šp“x‚ğŒˆ‚ß‚é
 	if (ins.IsNew(MOVE_FRONT_KEY))
 	{
