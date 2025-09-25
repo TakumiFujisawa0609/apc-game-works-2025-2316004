@@ -117,4 +117,6 @@ public:
 	/// <returns></returns>wstringオブジェクト
 	static std::wstring GetWStringFromString(const std::string& str);
 
+
+
 };

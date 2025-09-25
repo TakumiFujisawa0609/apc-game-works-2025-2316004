@@ -18,6 +18,9 @@ public:
 	//カードの威力の取得
 	inline const int GetPow(void)const { return pow_; }
 
+	//カードの種類の取得
+	inline const CARD_TYPE GetCardType(void)const { return type_; }
+
 	//カードの勝利の取得
 	inline void SetIsWin(const bool _isWin) { isWin_ = _isWin; }
 

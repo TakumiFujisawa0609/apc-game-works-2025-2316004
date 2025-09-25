@@ -3,7 +3,8 @@
 CardBase::CardBase(const int _pow):
 	pow_(_pow)
 {
-
+	//‚Æ‚è‚ ‚¦‚¸UŒ‚ƒJ[ƒh‚ğ¶¬
+	type_ = CARD_TYPE::ATTACK;
 }
 
 CardBase::~CardBase(void)

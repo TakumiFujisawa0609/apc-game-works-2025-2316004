@@ -3,6 +3,7 @@
 #include "SceneBase.h"
 
 class PauseScene;
+class CharacterBase;
 class Player;
 class Enemy;
 class CardSystem;

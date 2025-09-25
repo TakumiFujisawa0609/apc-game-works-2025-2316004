@@ -9,13 +9,30 @@ class InputBase;
 class CharacterBase :public ObjectBase
 {
 public:
+	//アニメーション速度
+	static constexpr float ANIM_SPEED = 40.0f;
 	// アニメーション種別
 	enum class ANIM_TYPE
 	{
 		NONE,
 		IDLE,
 		RUN,
+		ATTACK,
 	};
+
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	/// <param name=""></param>
+	CharacterBase(void);
+
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	/// <param name=""></param>
+	virtual ~CharacterBase(void)override = 0;
+
 	/// <summary>
 /// 読み込み
 /// </summary>
@@ -45,7 +62,7 @@ protected:
 	//行動系
 	std::unique_ptr<ActionController>action_;
 	// アニメーション
-	std::unique_ptr<AnimationController> animationController_;
+	std::unique_ptr<AnimationController>animationController_;
 	//デッキ
 	std::shared_ptr<CardDeck>deck_;
 private:

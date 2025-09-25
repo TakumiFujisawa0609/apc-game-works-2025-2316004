@@ -1,3 +1,4 @@
+#include<algorithm>
 #include "../../../Utility/Utility3D.h"
 #include "../../../Utility/UtilityCommon.h"
 #include "../Application.h"
@@ -22,7 +23,6 @@
 #include"./ActionController.h"
 //#include"./PlayerOnHit.h"
 #include "./InputController.h"
-#include<algorithm>
 
 
 #include "Player.h"
@@ -55,8 +55,9 @@ void Player::Load(void)
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
 
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
-	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), 20.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), 20.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK1));
 
 	//animType_.emplace(
 	//	{ ANIM_TYPE::IDLE,static_cast<int>(ANIM_TYPE::IDLE) }

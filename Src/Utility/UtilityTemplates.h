@@ -19,4 +19,17 @@ public:
     {
         return std::find(vec.begin(), vec.end(), value) != vec.end();
     }
+
+    /// <summary>
+    /// “®“I”z—ñ‚Ì‹ó‚É‚È‚Á‚½”z—ñ‚ğÁ‚·
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name=""></param>
+    /// <returns></returns>
+    template<typename T>
+    static int EraseVectorArray(std::vector<T>& vec)
+    {
+        int ret= static_cast<int>(std::erase_if(vec, [](auto& a) {return a == nullptr; }));
+        return ret;
+    }
 };

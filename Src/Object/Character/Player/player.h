@@ -31,7 +31,6 @@ public:
 
 	//格納するカードの強さ
 	static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
-	//******************************************
 
 
 	enum class FLOOR_COL
@@ -68,7 +67,7 @@ public:
 	Player(void);
 
 	// デストラクタ
-	~Player(void);
+	~Player(void)override;
 
 	/// <summary>
 	/// 読み込み

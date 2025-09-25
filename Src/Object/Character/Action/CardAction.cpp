@@ -2,7 +2,9 @@
 #include"../Player/ActionController.h"
 #include"../../Common/AnimationController.h"
 #include"../../Card/CardDeck.h"
+#include"../../Card/CardBase.h"
 #include"../../Card/CardSystem.h"
+#include"../Base/CharacterBase.h"
 #include"../Base/InputBase.h"
 #include "CardAction.h"
 
@@ -24,13 +26,22 @@ void CardAction::Init(void)
 	deck_.MoveHandToCharge();
 	//アクション中にする
 	isCardAct_ = true;
+	//カードの属性を受け取ってアニメーションを再生
+	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetCardType();
+	int handCardTypeSize = deck_.GetCardType().size();
+	if (handCardTypeSize == 1&&cardTypes[0]==CardBase::CARD_TYPE::ATTACK)
+	{
+		anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK),false);
+	}
 }
 
 void CardAction::Update()
 {
 	deck_.CardUseUpdate();
+	//デバッグ用
 	cardActTime_ += scnMng_.GetDeltaTime();
-	if (deck_.IsCardFailure()||cardActTime_>= CARD_ACT_TIME_MAX)
+
+	if (deck_.IsCardFailure()||anim_.IsEnd())
 	{
 		//アクション終了
 		isCardAct_ = false;

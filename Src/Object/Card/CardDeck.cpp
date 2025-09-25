@@ -1,8 +1,8 @@
 #include<DxLib.h>
 #include"../../Application.h"
 #include "CardBase.h"
-
 #include"./CardSystem.h"
+#include"../Utility/UtilityTemplates.h"
 
 #include "CardDeck.h"
 
@@ -21,6 +21,10 @@ CardDeck::CardDeck(Vector2& _centerPos, int _playerNum):
 
 CardDeck::~CardDeck(void)
 {
+	drawPile_.clear();
+	hand_.clear();
+	chargeCard_.clear();
+	disCard_.clear();
 }
 
 void CardDeck::Init(void)
@@ -59,7 +63,8 @@ void CardDeck::DisCard(void)
 	{
 		disCard_.emplace_back(std::move(hand));
 	}
-	hand_.resize(hand_.size() - 1);
+	UtilityTemplates::EraseVectorArray(hand_);
+	//std::erase_if(hand_,[](auto& hand) {hand == nullptr; });
 }
 
 void CardDeck::CardMoveRight(void)
@@ -108,7 +113,6 @@ void CardDeck::Draw(void)
 			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0xffffff, L"(%d)", handCardPow);
 		}
 	}
-
 }
 
 void CardDeck::Release(void)
@@ -127,10 +131,20 @@ void CardDeck::MoveHandToCharge(void)
 	hand_.emplace_back(std::move(drawPile_[currentNum_]));
 
 	//山札からカードを削除する
-	drawPile_.resize(drawPile_.size() - 1);
+	UtilityTemplates::EraseVectorArray(drawPile_);
+	if (currentNum_ == 0)
+	{
+		prevNum_ = static_cast<int>(drawPile_.size()) - 1;
+	}
+	else if (currentNum_ == static_cast<int>(drawPile_.size()) - 1)
+	{
+		currentNum_ = 0;
+	}
+	//drawPile_.resize(drawPile_.size() - 1);
+
 	//現在選んでいるカードを次のカードにする
-	currentNum_++;
-	nextNum_ = currentNum_ + 1;
+	//currentNum_++;
+	//nextNum_ = currentNum_ + 1;
 	//システム側の処理
 	DrawCardFromDeck();
 }
@@ -152,6 +166,7 @@ void CardDeck::DrawCardFromDeck(void)
 	cardSystem.PutCard(cardPow, playerNum_);
 }
 
+
 //std::vector<std::weak_ptr<CardBase>> CardDeck::GetHand(void)
 //{
 //	std::vector<std::weak_ptr<CardBase>> hand;
@@ -162,23 +177,35 @@ void CardDeck::DrawCardFromDeck(void)
 //	return hand;
 //}
 
+std::vector<CardBase::CARD_TYPE> CardDeck::GetCardType(void)
+{
+	std::vector<CardBase::CARD_TYPE>handCardTypes;
+	for (auto& h : hand_)
+	{
+		CardBase::CARD_TYPE type = h->GetCardType();
+		handCardTypes.emplace_back(type);
+	}
+	return handCardTypes;
+}
+
 void CardDeck::CardMoveLimit(void)
 {
+	int cardMax = static_cast<int>(drawPile_.size());
 	if (currentNum_ < 0)
 	{
-		currentNum_ = CARD_NUM_MAX - 1;
+		currentNum_ = cardMax - 1;
 	}
-	else if (currentNum_ >= CARD_NUM_MAX)
+	else if (currentNum_ >= cardMax)
 	{
 		currentNum_ = 0;
 	}
-	if (nextNum_ > CARD_NUM_MAX - 1)
+	if (nextNum_ > cardMax - 1)
 	{
 		nextNum_ = 0;
 	}
 	if (prevNum_ < 0)
 	{
-		prevNum_ = CARD_NUM_MAX - 1;
+		prevNum_ = cardMax - 1;
 	}
 }
 

@@ -24,6 +24,9 @@ void ResourceManager::Init(void)
 	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"SlowRun.mv1");
 	resourcesMap_.emplace(SRC::RUN, std::move(res));
 
+	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"PlayerAttack.mv1");
+	resourcesMap_.emplace(SRC::P_ATTACK1, std::move(res));
+
 }
 
 void ResourceManager::SceneChangeRelease(void)
