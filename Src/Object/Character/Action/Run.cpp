@@ -2,6 +2,8 @@
 #include"../Base/InputBase.h"
 #include"../Utility/Utility3D.h"
 #include"../Player/ActionController.h"
+#include"../Base/CharacterBase.h"
+#include"../../Common/AnimationController.h"
 #include "Run.h"
 
 Run::Run(ActionController& _actCntl):
@@ -16,7 +18,7 @@ Run::~Run(void)
 
 void Run::Init(void)
 {
-	
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUN));
 }
 
 void Run::Update(void)

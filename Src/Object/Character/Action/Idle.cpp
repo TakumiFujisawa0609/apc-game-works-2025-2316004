@@ -1,4 +1,6 @@
 #include"../Player/ActionController.h"
+#include"../../Common/AnimationController.h"
+#include"../Base/CharacterBase.h"
 #include"../Utility/Utility3D.h"
 #include"../Base/InputBase.h"
 #include "Idle.h"
@@ -14,6 +16,7 @@ Idle::~Idle(void)
 
 void Idle::Init(void)
 {
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::IDLE));
 }
 
 void Idle::Update(void)

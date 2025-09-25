@@ -38,8 +38,6 @@ void AnimationController::Add(int type, const float speed, int modelId)
 		//‚¿å‚Ìƒ‚ƒfƒ‹
 		anim.model = modelId_;
 	}
-	anim.animIndex = type;
-	anim.speed = speed;
 
 	//anim.model = MV1LoadModel(path.c_str());
 	anim.animIndex = type;

@@ -3,6 +3,7 @@
 #include"../../../Application.h"
 #include"../../Card/CardDeck.h"
 #include"../Player/ActionController.h"
+#include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyInput.h"
 
 #include"../Manager/Generic/InputManager.h"
@@ -33,9 +34,12 @@ void Enemy::Init(void)
 	input_ = std::make_unique<EnemyInput>();
 	input_->Init();
 
-	action_ = std::make_unique<ActionController>(*input_, trans_, *deck_, InputManager::JOYPAD_NO::PAD1);
-	action_->Init();
 
+	//アニメーション
+	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
+
+	action_ = std::make_unique<ActionController>(*input_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
+	action_->Init();
 	//Transformの設定
 	trans_.quaRot = Quaternion();
 	trans_.scl = MODEL_SCL;
@@ -48,6 +52,7 @@ void Enemy::Init(void)
 
 void Enemy::Update(void)
 {
+	animationController_->Update();
 	input_->Update();
 	action_->Update();
 }

@@ -23,10 +23,11 @@
 
 #include "ActionController.h"
 
-ActionController::ActionController(InputBase& _input, Transform& _trans, CardDeck& _deck, InputManager::JOYPAD_NO _padNum) :
+ActionController::ActionController(InputBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum) :
 	input_(_input)
 	, trans_(_trans)
 	, deck_(_deck)
+	, anim_(_anim)
 	, padNum_(_padNum)
 	, scnMng_(SceneManager::GetInstance())
 	, act_(ACTION_TYPE::IDLE)
@@ -51,6 +52,7 @@ void ActionController::Init(void)
 	mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
 	mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
 	mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<CardAction>(*this,deck_);
+	mainAction_[act_]->Init();
 
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
@@ -94,11 +96,6 @@ void ActionController::ChangeAction(const ACTION_TYPE _act)
 	mainAction_[act_]->Init();
  }
 
-const VECTOR ActionController::GetMovePow(void)
-{
-	return movePow_;
-}
-
 void ActionController::CardChargeUpdate(void)
 {
 	if (input_.GetIsAct().isCardCharge)
@@ -119,6 +116,8 @@ void ActionController::CardMove(void)
 		deck_.CardMoveRight();
 	}
 }
+
+
 
 
 const Quaternion ActionController::GetPlayerRotY(void)

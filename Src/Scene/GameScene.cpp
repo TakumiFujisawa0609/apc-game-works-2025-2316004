@@ -8,7 +8,7 @@
 #include "../Manager/Resource/FontManager.h"
 
 #include"../Object/Card/CardSystem.h"
-
+#include"../Manager/Generic/Camera.h"
 #include"../Object/Character/Enemy/Enemy.h"	
 
 #include "PauseScene.h"
@@ -42,6 +42,9 @@ void GameScene::Load(void)
 
 	player_ = std::make_unique<Player>();
 	player_->Load();
+
+	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform());
 
 	enemy_ = std::make_unique<Enemy>();
 	enemy_->Load();

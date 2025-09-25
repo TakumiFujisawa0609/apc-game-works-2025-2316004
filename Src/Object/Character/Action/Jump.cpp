@@ -1,6 +1,7 @@
 #include "../Base/ActionBase.h"
 #include"../../../Utility/Utility3D.h"
 #include"../../../Manager/Generic/SceneManager.h"
+#include"../../Common/AnimationController.h"
 #include"../Player/ActionController.h"
 #include "Jump.h"
 

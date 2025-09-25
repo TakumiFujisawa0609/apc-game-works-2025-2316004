@@ -3,6 +3,7 @@
 #include"../Common/Quaternion.h"
 class SceneManager;
 class ActionController;
+class AnimationController;
 class InputController;
 
 class ActionBase
@@ -33,15 +34,17 @@ public:
 
 	};
 	/// <summary>
-	/// 移動量の取得
+	/// 移動量の取得(ベクトル)
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>移動量</returns>
 	inline VECTOR GetMovePow(void) { return movePow_; }
 
-	//角度Yの取得
-	const Quaternion GetPlayerRotY(void) { return playerRotY_; }
-
+	/// <summary>
+	/// 1方向に動く移動量
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>1方向に動く移動量</returns>
 	const float GetSpeed(void) { return speed_; }
 
 protected:
@@ -52,11 +55,6 @@ protected:
 	VECTOR movePow_;		// 移動量
 	VECTOR dir_;			//方向
 
-	//回転
-	Quaternion playerRotY_;		//プレイヤーY角度
-	Quaternion goalQuaRot_;		//目的の回転
-	float stepRotTime_;			//補完時間
-
 	//ジャンプ
 	//-----------------------
 	bool isJump_;			// ジャンプ判定
@@ -64,22 +62,13 @@ protected:
 	VECTOR jumpPow_;		// ジャンプ量
 	float jumpDeceralation_;	//ジャンプ減衰量
 
-
-	//メンバ関数
-	//入力方向に応じて方向を決める
-	void MoveDirFronInput(void);
-	
 	//シングルトンクラス
 	SceneManager& scnMng_;
 	//アクションコントローラー
 	ActionController& actionCntl_;
+	//アニメーション
+	AnimationController& anim_;
 
-	//ゴール角度をセット
-	void SetGoalRotate(const double _deg);
-	//回転処理
-	void Rotate(void);
-	//方向と移動量の更新
-	void DirAndMovePowUpdate(void);
 
 private:
 	// 回転完了までの時間

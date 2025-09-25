@@ -55,6 +55,14 @@ void Player::Load(void)
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
 
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), 20.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), 20.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+
+	//animType_.emplace(
+	//	{ ANIM_TYPE::IDLE,static_cast<int>(ANIM_TYPE::IDLE) }
+	//	, { ANIM_TYPE::RUN,static_cast<int>(ANIM_TYPE::RUN) }
+	//)
+
 
 	//プレイヤー入力
 	input_ = std::make_unique<InputController>(padNum_, InputManager::CONTROLL_TYPE::ALL);
@@ -71,7 +79,7 @@ void Player::Load(void)
 	deck_->Init();
 
 	//アクション
-	action_ = std::make_unique<ActionController>(*input_,trans_,*deck_,padNum_);
+	action_ = std::make_unique<ActionController>(*input_,trans_,*deck_,*animationController_,padNum_);
 	action_->Load();
 }
 
@@ -108,6 +116,8 @@ void Player::Update(void)
 	//CubeMove();
 #endif // DEBUG_ON
 
+	animationController_->Update();
+
 	//プレイヤー状態更新
 	stateUpdate_();
 
@@ -122,14 +132,8 @@ void Player::Update(void)
 
 void Player::Draw(void)
 {
-	// 両面描画を有効にする
-	SetUseBackCulling(FALSE);
-
 	//通常描画
 	MV1DrawModel(trans_.modelId);
-
-	// 元に戻す
-	SetUseBackCulling(TRUE);
 
 	action_->DrawDebug();
 	

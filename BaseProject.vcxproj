@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Character\Base\CharacterBase.cpp" />
     <ClCompile Include="Src\Object\Character\Action\CardAction.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Jump.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Idle.cpp" />
@@ -66,6 +67,7 @@
     <ClCompile Include="Src\Utility\UtilityDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Character\Base\CharacterBase.h" />
     <ClInclude Include="Src\Object\Character\Action\CardAction.h" />
     <ClInclude Include="Src\Object\Character\Action\Jump.h" />
     <ClInclude Include="Src\Object\Character\Action\Idle.h" />

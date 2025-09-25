@@ -2,25 +2,25 @@
 #include <map>
 #include <functional>
 #include <memory>
-#include"../../Character/Player/InputController.h"
+//#include"../../Character/Player/InputController.h"
 #include"./ActionController.h"
-#include "../../ObjectBase.h"
+#include "../Base/CharacterBase.h"
 
 #define DEBUG_ON
 class AnimationController;
-class Camera;
 class ActionController;
-class PlayerOnHit;
+class CardDeck;
+class InputController;
 class DateBank;
+class Camera;
 class Shadow;
 class Camera;
-class CardDeck;
 class ModelMaterial;
 class ModelRenderer;
 
 class EffectController;
 
-class Player :public ObjectBase
+class Player :public CharacterBase
 {
 public:
 
@@ -56,22 +56,6 @@ public:
 		ALIVE
 		,DEATH
 		,GOAL
-	};
-
-	// アニメーション種別
-	enum class ANIM_TYPE
-	{
-		NONE = 0,
-		IDLE = 1,
-		WALK = 2,
-		FALL = 4,
-		HAND_UP = 5,
-		HAND_WAVE = 6,
-		DAMAGE = 9,
-		PUNCH = 12,
-		JUMP = 13,
-		LAND=14,
-		GOAL=6,
 	};
 
 	
@@ -147,11 +131,7 @@ public:
 	/// <returns>手札</returns>
 	const std::weak_ptr<CardDeck> GetHand(void) { return deck_; }
 
-	/// <summary>
-	/// 座標
-	/// </summary>
-	/// <param name="_worldPos">ワールド座標</param>
-	//void SetPos(const VECTOR _worldPos);
+
 
 
 private:
@@ -164,16 +144,6 @@ private:
 	static constexpr float DISTANCE_POS = 50.0f;
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
-	//落ちるアニメーションのスタート
-	static constexpr float FALL_ANIM_START = 32.0f;
-	//落ちるアニメーションの終わり
-	static constexpr float FALL_ANIM_END = 59.0f;
-	//死ぬ判定の座標の基準
-	static constexpr float DEATH_POS_Y = -600.0f;
-	//死んだときのパッド振動時間
-	static constexpr int DEATH_PAD_VIBRATION_TIME = 300;
-	//死んだときのパッド振動の強さ
-	static constexpr int DEATH_PAD_VIBRATION_POW = 300;
 	//プレイヤーの大きさ
 	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
 	//パンチの範囲
@@ -183,20 +153,6 @@ private:
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
 
-	//--------------------------------------------------
-	//当たり判定
-	//--------------------------------------------------
-	//ラインの長さ
-	static constexpr float LINE_RANGE = 10.0f;
-	//プレイヤーの上の座標
-	static constexpr VECTOR LOCAL_UP_POS = { 0.0f,RADIUS+ LINE_RANGE,0.0f };
-	//プレイヤーの下
-	static constexpr VECTOR LOCAL_DOWN_POS = { 0.0f,-RADIUS- LINE_RANGE,0.0f };
-	//--------------------------------------------------
-	//ゲームオーバーの待機時間
-	static constexpr float DEATH_DELAY = 2.0f;
-	//ゴール時の待機時間
-	static constexpr float GOAL_DELAY = 1.0f;
 
 	//***********************************
 	//アニメーション関連
@@ -209,16 +165,10 @@ private:
 	InputManager::CONTROLL_TYPE cntl_;
 	//ゲームパッド番号
 	InputManager::JOYPAD_NO padNum_;
-	//入力
-	std::unique_ptr<InputController>input_;
-	//行動系
-	std::unique_ptr<ActionController>action_;
-	// アニメーション
-	std::unique_ptr<AnimationController> animationController_;
 	//カメラ
 	std::weak_ptr<Camera>camera_;
 
-	std::shared_ptr<CardDeck>deck_;
+
 
 	//メンバ変数
 	//--------------------------------------------

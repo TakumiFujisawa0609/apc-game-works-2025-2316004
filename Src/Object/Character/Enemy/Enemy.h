@@ -1,30 +1,33 @@
 #pragma once
-#include "../../ObjectBase.h"
-#include"../../../Common/Vector2.h"
 #include<memory>
+#include "../Base/CharacterBase.h"
+#include"../../../Common/Vector2.h"
+
 class CardDeck;
 class EnemyInput;
-
 class ActionController;
+class AnimationController;
 
-class Enemy :public ObjectBase
+class Enemy :public CharacterBase
 {
 public:
 	//定数
 	static constexpr int RADIUS = 25; //敵のサイズ
-
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
-
 	//プレイヤーの大きさ
 	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
-
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
-
 	//格納するカードの強さ
 	static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
-
+	// アニメーション種別
+	enum class ANIM_TYPE
+	{
+		NONE,
+		IDLE,
+		RUN,
+	};
 
 
 	const std::shared_ptr<CardDeck> GetHand(void)const { return deck_; }
@@ -44,14 +47,6 @@ private:
 	//メンバ関数
 	void DrawDebug(void);
 
-	//敵の行動
-	std::unique_ptr<EnemyInput>input_; //敵の入力クラス
-
-	//アクションコントローラー
-	std::unique_ptr<ActionController>action_;
-
-	//メンバ変数
-	std::shared_ptr<CardDeck>deck_;
 
 	//デバッグ用で
 };

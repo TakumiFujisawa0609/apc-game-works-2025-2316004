@@ -53,7 +53,7 @@ public:
 		SLIME,	//スライム
 	};
 
-	ActionController(InputBase& _input,Transform& _trans,CardDeck& _deck, InputManager::JOYPAD_NO _padNum);
+	ActionController(InputBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
 	~ActionController(void);
 
 	/// <summary>
@@ -84,7 +84,7 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>移動量</returns>
-	const VECTOR GetMovePow(void);
+	const VECTOR GetMovePow(void){ return movePow_; }
 
 	/// <summary>
 	/// 状態の取得
@@ -92,12 +92,20 @@ public:
 	/// <param name=""></param>
 	/// <returns>状態</returns>
 	const ACTION_TYPE GetAct(void)const { return act_; }
+
 	/// <summary>
 	/// 入力クラスの取得
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>入力クラス</returns>
 	InputBase& GetInput(void) { return input_; }
+
+	/// <summary>
+	/// アニメーションの再生
+	/// </summary>
+	/// <param name="_animType"></param>
+	AnimationController& GetAnimation(void) { return anim_; }
+	
 
 	//角度Yを取得
 	const Quaternion GetPlayerRotY(void);
@@ -126,7 +134,7 @@ private:
 	// シーンマネージャ参照
 	SceneManager& scnMng_;
 	//アニメーションコントローラー
-	//AnimationController& animationController_;
+	AnimationController& anim_;
 	//状態遷移
 	std::map<ACTION_TYPE, std::function<void(void)>>changeAction_;
 	//状態更新
@@ -144,7 +152,6 @@ private:
 
 	//モデル情報
 	Transform& trans_;	
-
 	//各キャラクターの入力情報
 	InputBase& input_;	
 

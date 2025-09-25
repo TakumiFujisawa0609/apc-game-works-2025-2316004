@@ -1,11 +1,12 @@
 #pragma once
 #include <DxLib.h>
 #include "../../Common/Quaternion.h"
+#include"../Template/Singleton.h"
 class Transform;
 
 class Camera
 {
-
+	friend class Singleton<Camera>;
 public:
 
 	// カメラスピード(度)

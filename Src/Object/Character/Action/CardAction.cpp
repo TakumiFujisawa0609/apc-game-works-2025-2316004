@@ -1,5 +1,6 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Player/ActionController.h"
+#include"../../Common/AnimationController.h"
 #include"../../Card/CardDeck.h"
 #include"../../Card/CardSystem.h"
 #include"../Base/InputBase.h"
@@ -21,7 +22,6 @@ void CardAction::Init(void)
 {
 	//ŽèŽD‚ÉˆÚ“®
 	deck_.MoveHandToCharge();
-
 	//ƒAƒNƒVƒ‡ƒ“’†‚É‚·‚é
 	isCardAct_ = true;
 }
