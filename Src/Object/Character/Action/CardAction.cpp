@@ -38,8 +38,6 @@ void CardAction::Init(void)
 void CardAction::Update()
 {
 	deck_.CardUseUpdate();
-	//デバッグ用
-	cardActTime_ += scnMng_.GetDeltaTime();
 
 	if (deck_.IsCardFailure()||anim_.IsEnd())
 	{
@@ -50,4 +48,28 @@ void CardAction::Update()
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
+}
+
+void CardAction::UpdateAttackOne(void)
+{
+}
+
+void CardAction::UpdateAttackTwo(void)
+{
+}
+
+void CardAction::UpdateAttackThree(void)
+{
+}
+
+void CardAction::ChangeAttackOne(void)
+{
+}
+
+void CardAction::ChangeAttackTwo(void)
+{
+}
+
+void CardAction::ChangeAttackThree(void)
+{
 }
