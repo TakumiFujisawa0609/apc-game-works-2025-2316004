@@ -1,6 +1,7 @@
 #include "AttackCard.h"
 
-AttackCard::AttackCard(const int _pow)
+AttackCard::AttackCard(const int _pow):
+	CardBase(_pow)
 {
 }
 

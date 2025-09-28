@@ -30,7 +30,8 @@ public:
 	static constexpr float DEFAULT_ANIM_SPD = 60.0f;
 
 	//äiî[Ç∑ÇÈÉJÅ[ÉhÇÃã≠Ç≥
-	static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
+	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
+	static constexpr int CARD_POWS[20] = { 0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9 };
 
 
 	enum class FLOOR_COL

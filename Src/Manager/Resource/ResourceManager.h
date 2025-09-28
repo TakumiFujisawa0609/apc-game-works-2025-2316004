@@ -23,7 +23,9 @@ public:
 		//アニメーション
 		IDLE,
 		RUN,
-		P_ATTACK1,
+		P_ATTACK_1,
+		P_ATTACK_2,
+		P_ATTACK_3,
 	};
 
 	/// <summary>

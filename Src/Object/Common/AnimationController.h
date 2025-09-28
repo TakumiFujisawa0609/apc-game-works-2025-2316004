@@ -39,6 +39,12 @@ public :
 	// 再生中のアニメーション
 	int GetPlayType(void) const;
 
+	//アニメーションステップゲッタ
+	const float GetAnimStep(void)const;
+
+	//アニメーションスピードセッタ
+	void SetAnimSpeed(const float _spd);
+
 	// 再生終了
 	bool IsEnd(void) const;
 

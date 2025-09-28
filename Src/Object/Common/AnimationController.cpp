@@ -196,6 +196,16 @@ int AnimationController::GetPlayType(void) const
 	return playType_;
 }
 
+const float AnimationController::GetAnimStep(void) const
+{
+	return playAnim_.step;
+}
+
+void AnimationController::SetAnimSpeed(const float _spd)
+{
+	playAnim_.speed = _spd;
+}
+
 bool AnimationController::IsEnd(void) const
 {
 

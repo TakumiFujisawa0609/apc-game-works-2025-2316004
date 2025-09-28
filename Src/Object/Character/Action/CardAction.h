@@ -28,6 +28,9 @@ public:
     void Update() override;
 
 public:
+    //攻撃判定
+	static constexpr float ATTACK_COL_START_ANIM_CNT = 14.0f;   //攻撃当たり判定開始アニメーションカウント
+	static constexpr float ATTACK_COL_END_ANIM_CNT = 25.0f;     //攻撃当たり判定終了アニメーションカウント
 
     //カードデッキ
     CardDeck& deck_;
@@ -40,12 +43,15 @@ public:
 	//カードアクション遷移
     std::map<ACT_STATE, std::function<void(void)>>changeAction_;
 
-    //アタックアクション更新
+    //攻撃条件
+    bool IsAttackable(void);
+
+    //更新系
 	void UpdateAttackOne(void);         //攻撃アクション1回目
 	void UpdateAttackTwo(void);         //攻撃アクション2回目
 	void UpdateAttackThree(void);       //攻撃アクション3回目
 
-    //アタックアクション遷移
+    //遷移系
 	void ChangeAttackOne(void);         //攻撃アクション1回目
 	void ChangeAttackTwo(void);         //攻撃アクション2回目
 	void ChangeAttackThree(void);       //攻撃アクション3回目
