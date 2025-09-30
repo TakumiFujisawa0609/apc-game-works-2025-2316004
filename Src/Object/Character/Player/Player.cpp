@@ -282,6 +282,7 @@ void Player::LoadPos(const std::wstring _fileName)
 	}
 
 	json j;
+	//ファイルの中身をローカル変数jに格納
 	inFile >> j;
 	//JSONファイルの読み込み
 	if (j.contains("Position"))
@@ -301,20 +302,16 @@ void Player::LoadPos(const std::wstring _fileName)
 
 	if (j.contains("Rotation"))
 	{
-		//std::vector<VECTOR>rotations;
-		//for (const auto& rot : j["Rotation"])
-		//{
-			VECTOR rotation;
-			rotation.x = j["Rotation"]["x"].get<float>();
-			rotation.y = j["Rotation"]["y"].get<float>();
-			rotation.z = j["Rotation"]["z"].get<float>();
-		//}
+
+		VECTOR rotation;
+		rotation.x = j["Rotation"]["x"].get<float>();
+		rotation.y = j["Rotation"]["y"].get<float>();
+		rotation.z = j["Rotation"]["z"].get<float>();
 		trans_.rot = rotation;
 	}
 
 	if (j.contains("QuaRot"))
 	{
-
 		Quaternion q;
 		q.x = j["QuaRot"]["x"].get<float>();
 		q.y = j["QuaRot"]["y"].get<float>();
@@ -322,7 +319,6 @@ void Player::LoadPos(const std::wstring _fileName)
 		q.w = j["QuaRot"]["w"].get<float>();
 
 		trans_.quaRot = q;
-
 	}
 }
 
