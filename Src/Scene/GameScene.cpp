@@ -72,8 +72,6 @@ void GameScene::NormalUpdate(void)
 	//敵の更新
 	enemy_->Update();
 
-	//カードシステムの比較実行
-	CardSystem::GetInstance().CompareCards();
 	//デバッグ処理
 	DebagUpdate();
 }

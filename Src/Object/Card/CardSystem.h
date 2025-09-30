@@ -65,6 +65,18 @@ public:
 	/// <param name="_cardPlayerNo"></param>
 	/// <returns>カード勝負プレイヤーの番号</returns>
 	const BATTLE_RESULT GetResult(const int _cardPlayerNo)const;
+
+	/// <summary>
+	/// 勝敗結果に使用するカードの強さの初期化
+	/// </summary>
+	/// <param name=""></param>
+	void InitPutCardPow(const int _playerNo);
+
+	/// <summary>
+	/// 先出し後出しの判定
+	/// </summary>
+	/// <param name="_playerNo"></param>
+	void JudgeIsFirstAtk(const int _playerNo);
 private:
 
 

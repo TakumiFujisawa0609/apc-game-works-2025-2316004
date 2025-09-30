@@ -20,6 +20,7 @@ public:
 		TEST,
 		//モデル
 		PLAYER,
+		ENEMY_1,
 		//アニメーション
 		IDLE,
 		RUN,

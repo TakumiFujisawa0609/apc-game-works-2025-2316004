@@ -42,8 +42,9 @@ void CardAction::Init(void)
 
 void CardAction::Update()
 {
+	//カードの勝敗判定
 	deck_.CardUseUpdate();
-	cardActFunc_();
+	//相手のカードに負けたらノックバックする
 	if (deck_.IsCardFailure())
 	{
 		//アクション終了
@@ -53,6 +54,7 @@ void CardAction::Update()
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
+	cardActFunc_();
 }
 
 bool CardAction::IsAttackable(void)
@@ -76,6 +78,7 @@ void CardAction::UpdateAttackOne(void)
 		//CardSystem::GetInstance().SetAttackCol(false);
 		if (IsAttackable()&&actionCntl_.GetInput().GetIsAct().isCardUse)
 		{
+			//現在使っているカードを捨てる
 			deck_.DisCard();
 			changeAction_[ACT_STATE::ATTACK_TWO]();
 		}

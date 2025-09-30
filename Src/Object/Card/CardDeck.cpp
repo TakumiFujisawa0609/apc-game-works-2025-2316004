@@ -43,9 +43,9 @@ void CardDeck::Init(void)
 
 void CardDeck::CardUseUpdate(void)
 {
-	////場にカードをだせない状態なら処理を抜ける
-	bool isCanput = CardSystem::GetInstance().GetCanPut();
-	if (isCanput == false)return;
+	//////場にカードをだせない状態なら処理を抜ける
+	//bool isCanput = CardSystem::GetInstance().GetCanPut();
+	//if (!isCanput)return;
 
 	CardSystem& cardSystem = CardSystem::GetInstance();
 	//カード同士を比べる
@@ -63,8 +63,12 @@ void CardDeck::DisCard(void)
 	{
 		disCard_.emplace_back(std::move(hand));
 	}
+
+	//使ったカードの配列を消す
 	UtilityTemplates::EraseVectorArray(hand_);
-	//std::erase_if(hand_,[](auto& hand) {hand == nullptr; });
+
+	//カードを捨てるときに勝敗判定のカードの強さを初期化する
+	CardSystem::GetInstance().InitPutCardPow(playerNum_);
 }
 
 void CardDeck::CardMoveRight(void)
@@ -162,7 +166,10 @@ void CardDeck::DrawCardFromDeck(void)
 
 	//カードを場に出してシステム側で処理をする
 	CardSystem& cardSystem = CardSystem::GetInstance();
-	CardSystem::BATTLE_RESULT result = cardSystem.GetResult(playerNum_);
+
+	//先出し後だしの判定
+	cardSystem.JudgeIsFirstAtk(playerNum_);
+
 	cardSystem.PutCard(cardPow, playerNum_);
 }
 

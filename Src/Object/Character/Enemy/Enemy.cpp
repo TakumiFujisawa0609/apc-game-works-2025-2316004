@@ -5,7 +5,7 @@
 #include"../Player/ActionController.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyInput.h"
-
+#include"../Manager/Resource/ResourceManager.h"
 #include"../Manager/Generic/InputManager.h"
 
 #include "Enemy.h"
@@ -19,8 +19,20 @@ Enemy::~Enemy(void)
 }
 void Enemy::Load(void)
 {
+	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::ENEMY_1));
+	trans_.quaRot = Quaternion();
+	trans_.quaRotLocal =
+		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
+
+	//アニメーション
+	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 }
-	//Transform
+
 void Enemy::Init(void)
 {
 	//カードデッキ
@@ -33,10 +45,6 @@ void Enemy::Init(void)
 	deck_->Init();
 	input_ = std::make_unique<EnemyInput>();
 	input_->Init();
-
-
-	//アニメーション
-	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
 
 	action_ = std::make_unique<ActionController>(*input_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
 	action_->Init();
@@ -59,6 +67,13 @@ void Enemy::Update(void)
 
 void Enemy::Draw(void)
 {
-	DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	//通常描画
+	MV1DrawModel(trans_.modelId);
 	deck_->Draw();
 }
+#ifdef _DEBUG
+void Enemy::DrawDebug(void)
+{
+	DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+}
+#endif // _DEBUG

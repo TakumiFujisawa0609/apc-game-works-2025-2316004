@@ -5,7 +5,8 @@
 
 CardSystem::CardSystem(void):
 	putCardPow_{-1,-1},
-	canPut_(true)
+	canPut_(true),
+	isFirstAtk_{ false,false }
 {
 	
 }
@@ -18,6 +19,19 @@ const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) c
 	CardSystem::BATTLE_RESULT result = playerResult_[_cardPlayerNo];
 
 	return result;
+}
+
+void CardSystem::InitPutCardPow(const int _playerNo)
+{
+	putCardPow_[_playerNo]=-1;
+}
+
+void CardSystem::JudgeIsFirstAtk(const int _playerNo)
+{
+	if (putCardPow_[FIRST_ATK] == -1 && putCardPow_[SECOND_ATK] == -1)
+	{
+		isFirstAtk_[_playerNo] = true;
+	}
 }
 
 
@@ -44,9 +58,8 @@ void CardSystem::CompareCards(void)
 	{
 		result_[FIRST_ATK] = BATTLE_RESULT::SUCCESS_USE;
 	}
-
 	//先出しと後出しカードが同じ強さの時はドロー
-	if (putCardPow_[FIRST_ATK] == putCardPow_[SECOND_ATK])
+	else if (putCardPow_[FIRST_ATK] == putCardPow_[SECOND_ATK])
 	{
 		//引き分け
 		result_[FIRST_ATK] = BATTLE_RESULT::BE_DRAW;
@@ -84,15 +97,13 @@ void CardSystem::PutCard(const int _pow, const int _playerNum)
 	//すでに強さが代入されていれば処理を抜ける
 	if (putCardPow_[PLAYER_NO] != -1 && putCardPow_[CPU_NO] != -1)return;
 	//カードの強さをセットする
-	for(int i=0; i < ARRAY_NUM; i++)
+	if (isFirstAtk_[_playerNum])
 	{
-		if (i == FIRST_ATK) { isFirstAtk_[_playerNum] = true; }
-		else { isFirstAtk_[_playerNum] = false; }
-		if(putCardPow_[i] == -1)
-		{
-			putCardPow_[i] = _pow;
-			break;
-		}
+		putCardPow_[FIRST_ATK] = _pow;
+	}
+	else
+	{
+		putCardPow_[SECOND_ATK] = _pow;
 	}
 }
 

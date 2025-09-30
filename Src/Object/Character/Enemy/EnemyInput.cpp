@@ -31,7 +31,5 @@ void EnemyInput::Update(void)
 	{
 		isAct_.isCardUse = true;
 	}
-
-
 }
 

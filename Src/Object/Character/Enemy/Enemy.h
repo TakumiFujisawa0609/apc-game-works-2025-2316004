@@ -27,6 +27,9 @@ public:
 		NONE,
 		IDLE,
 		RUN,
+		ATTACK_1,
+		ATTACK_2,
+		ATTACK_3,
 	};
 
 
@@ -44,8 +47,13 @@ private:
 	//敵番号(デッキで判定する用)
 	static constexpr int ENEMY_NUM = 1;
 	Vector2 cardCenterPos_; //カードの中心座標
-	//メンバ関数
+
+#ifdef _DEBUG
 	void DrawDebug(void);
+#endif // _DEBUG
+
+	//メンバ関数
+	
 
 
 	//デバッグ用で
