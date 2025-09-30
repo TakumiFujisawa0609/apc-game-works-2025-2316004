@@ -13,10 +13,11 @@ class SceneManager;
 class CardDeck;
 class CardBase;
 class ActionBase;
-class InputBase;
+class LogicBase;
 class Idle;
 class Run;
 class Jump;
+class React;
 class CardAction;
 
 class ActionController
@@ -37,7 +38,7 @@ public:
 		IDLE,		//何もしてない
 		MOVE,		//移動
 		DASHMOVE,	//ダッシュ
-		KNOCKBACK,	//パンチされた状態
+		REACT,	//パンチされた状態
 		JUMP,		//ジャンプ
 		CARD_ACTION	//カードアクション
 	};
@@ -53,7 +54,7 @@ public:
 		SLIME,	//スライム
 	};
 
-	ActionController(InputBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
+	ActionController(LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
 	~ActionController(void);
 
 	/// <summary>
@@ -98,7 +99,7 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>入力クラス</returns>
-	InputBase& GetInput(void) { return input_; }
+	LogicBase& GetInput(void) { return logic_; }
 
 	/// <summary>
 	/// アニメーションの再生
@@ -153,7 +154,7 @@ private:
 	//モデル情報
 	Transform& trans_;	
 	//各キャラクターの入力情報
-	InputBase& input_;	
+	LogicBase& logic_;	
 
 	float speed_;			// 移動スピード
 	VECTOR moveDir_;		// 移動方向

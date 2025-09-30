@@ -4,7 +4,7 @@
 class SceneManager;
 class ActionController;
 class AnimationController;
-class InputController;
+class PlayerLogic;
 
 class ActionBase
 {
@@ -47,6 +47,13 @@ public:
 	/// <returns>1方向に動く移動量</returns>
 	const float GetSpeed(void) { return speed_; }
 
+	/// <summary>
+	/// 方向転換可能かどうかの取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>方向転換可能かどうか</returns>
+	const bool GetIsTurnable(void) { return isTurnable_; }
+
 protected:
 	//移動
 //------------------------
@@ -69,6 +76,8 @@ protected:
 	//アニメーション
 	AnimationController& anim_;
 
+	//方向転換可能かどうか
+	bool isTurnable_;
 
 private:
 	// 回転完了までの時間

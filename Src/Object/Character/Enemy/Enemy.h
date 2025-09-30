@@ -27,6 +27,7 @@ public:
 		NONE,
 		IDLE,
 		RUN,
+		REACT,
 		ATTACK_1,
 		ATTACK_2,
 		ATTACK_3,

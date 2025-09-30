@@ -5,6 +5,7 @@ class AnimationController;
 class ActionController;
 class CardDeck;
 class InputBase;
+class Capsule;
 
 class CharacterBase :public ObjectBase
 {
@@ -17,6 +18,7 @@ public:
 		NONE,
 		IDLE,
 		RUN,
+		REACT,
 		ATTACK_1,
 		ATTACK_2,
 		ATTACK_3,
@@ -60,13 +62,15 @@ public:
 	virtual void Draw(void)override = 0;
 protected:
 	//入力
-	std::unique_ptr<InputBase>input_;
+	std::unique_ptr<LogicBase>logic_;
 	//行動系
 	std::unique_ptr<ActionController>action_;
 	// アニメーション
 	std::unique_ptr<AnimationController>animationController_;
 	//デッキ
 	std::shared_ptr<CardDeck>deck_;
+	//当たり判定用のカプセル
+	std::unique_ptr<Capsule>cap_;
 private:
 
 };

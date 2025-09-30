@@ -2,7 +2,7 @@
 #include"../../Common/AnimationController.h"
 #include"../Base/CharacterBase.h"
 #include"../Utility/Utility3D.h"
-#include"../Base/InputBase.h"
+#include"../Base/LogicBase.h"
 #include "Idle.h"
 
 Idle::Idle(ActionController& _actCntl):

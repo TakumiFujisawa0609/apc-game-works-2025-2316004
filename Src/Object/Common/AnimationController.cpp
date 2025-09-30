@@ -69,6 +69,7 @@ void AnimationController::Play(int type, bool isLoop,
 		{
 			// モデルからアニメーションを外す
 			playAnim_.attachNo = MV1DetachAnim(modelId_, playAnim_.attachNo);
+			//MV1ResetFrameUserLocalWorldMatrix(modelId_, HIP_FRAME_NO);
 		}
 
 		// アニメーション種別を変更
@@ -178,9 +179,24 @@ void AnimationController::Update(void)
 		}
 
 	}
+	//アニメーション進行前のルートのローカル座標
+	VECTOR pre = MV1GetAttachAnimFrameLocalPosition(modelId_, playAnim_.attachNo, HIP_FRAME_NO);
 
-	// アニメーション設定
+	// アニメーション設定（進行）
 	MV1SetAttachAnimTime(modelId_, playAnim_.attachNo, playAnim_.step);
+
+	//アニメーション進行後のルートのローカル座標
+	VECTOR post = MV1GetAttachAnimFrameLocalPosition(modelId_, playAnim_.attachNo, HIP_FRAME_NO);
+
+	//アニメーション移動量を取得
+	playAnim_.movePow = VSub(post, pre);
+
+	// 腰の位置がずれるので補正
+	playAnim_.firstPos.y = post.y;
+
+	// 移動量を打ち消す
+	//SetFrameLocalMatrixPos(modelId_, HIP_FRAME_NO, playAnim_.firstPos);
+	SetFrameAnimAttachLocalMatrixPos(modelId_, playAnim_.attachNo, HIP_FRAME_NO, playAnim_.firstPos);
 
 }
 
@@ -226,4 +242,78 @@ bool AnimationController::IsEnd(void) const
 
 	return ret;
 
+}
+
+void AnimationController::SetFrameLocalMatrixPos(const int _modelId, const int _frameIdx, VECTOR& _pos)
+{
+	VECTOR tmpScl;
+	MATRIX tmpMatRot;
+	VECTOR tmpPos;
+
+	// 対象フレームのワールド行列を大きさ・回転・位置に分解してを取得する
+	GetFrameLocalMatrix(_modelId, _frameIdx, tmpScl, tmpMatRot, tmpPos);
+
+	// 合成
+	MATRIX ret = MGetIdent();
+	ret = MMult(ret, MGetScale(tmpScl));
+	ret = MMult(ret, tmpMatRot);
+	ret = MMult(ret, MGetTranslate(_pos));
+
+	// 対象フレームにワールド行列をセット
+	MV1SetFrameUserLocalMatrix(_modelId, _frameIdx, ret);
+}
+
+void AnimationController::SetFrameAnimAttachLocalMatrixPos(int modelId, int attachNo, int frameIdx, VECTOR& pos)
+{
+	VECTOR tmpScl;
+	MATRIX tmpMatRot;
+	VECTOR tmpPos;
+
+	// 対象フレームのローカル行列を大きさ・回転・位置に分解してを取得する
+	GetFrameAnimAttachLocalMatrix(modelId, attachNo, frameIdx, tmpScl, tmpMatRot, tmpPos);
+
+	// 合成
+	MATRIX ret = MGetIdent();
+	ret = MMult(ret, MGetScale(tmpScl));
+	ret = MMult(ret, tmpMatRot);
+	ret = MMult(ret, MGetTranslate(pos));
+
+	// 対象フレームにローカル行列をセット
+	MV1SetFrameUserLocalMatrix(modelId, frameIdx, ret);
+}
+
+void AnimationController::GetFrameLocalMatrix(const int _modelId, int _frameIdx, VECTOR& _scl, MATRIX& _matRot, VECTOR& _pos)
+{
+	// 対象フレームのローカル行列を取得する
+	auto mat = MV1GetFrameLocalMatrix(_modelId, _frameIdx);
+
+	// 拡大縮小成分
+	_scl = MGetSize(mat);
+
+	// 回転成分＋拡大縮小成分
+	_matRot = MGetRotElem(mat);
+	// 回転成分のみにする
+	auto revScl = VGet(1.0f / _scl.x, 1.0f / _scl.y, 1.0f / _scl.z);
+	_matRot = MMult(_matRot, MGetScale(revScl));
+
+	// 移動成分
+	_pos = MGetTranslateElem(mat);
+}
+
+void AnimationController::GetFrameAnimAttachLocalMatrix(int modelId, int attachNo, int frameIdx, VECTOR& scl, MATRIX& matRot, VECTOR& pos)
+{
+	// 対象フレームのローカル行列を取得する
+	auto mat = MV1GetAttachAnimFrameLocalMatrix(modelId, attachNo, frameIdx);
+
+	// 拡大縮小成分
+	scl = MGetSize(mat);
+
+	// 回転成分＋拡大縮小成分
+	matRot = MGetRotElem(mat);
+	// 回転成分のみにする
+	auto revScl = VGet(1.0f / scl.x, 1.0f / scl.y, 1.0f / scl.z);
+	matRot = MMult(matRot, MGetScale(revScl));
+
+	// 移動成分
+	pos = MGetTranslateElem(mat);
 }

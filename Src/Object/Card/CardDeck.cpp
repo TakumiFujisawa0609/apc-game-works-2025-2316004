@@ -170,6 +170,7 @@ void CardDeck::DrawCardFromDeck(void)
 	//先出し後だしの判定
 	cardSystem.JudgeIsFirstAtk(playerNum_);
 
+	//カードを場に出す
 	cardSystem.PutCard(cardPow, playerNum_);
 }
 

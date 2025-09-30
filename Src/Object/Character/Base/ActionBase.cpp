@@ -5,13 +5,14 @@
 #include"../Player/ActionController.h"
 #include "../../../Object/Common/AnimationController.h"
 #include "../Base/CharacterBase.h"
-#include"../Base/InputBase.h"
+#include"../Base/LogicBase.h"
 #include "ActionBase.h"
 
 ActionBase::ActionBase(ActionController& _actCntl):
 	scnMng_(SceneManager::GetInstance()),
 	actionCntl_(_actCntl),
-	anim_(_actCntl.GetAnimation())
+	anim_(_actCntl.GetAnimation()),
+	isTurnable_(true)
 {
 	speed_ = 0.0f;
 	dir_ = {};

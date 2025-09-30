@@ -4,7 +4,8 @@
 #include"../../Card/CardDeck.h"
 #include"../Player/ActionController.h"
 #include"../Object/Common/AnimationController.h"
-#include"../Enemy/EnemyInput.h"
+#include"../Enemy/EnemyLogic.h"
+#include"../../Common/Capsule.h"
 #include"../Manager/Resource/ResourceManager.h"
 #include"../Manager/Generic/InputManager.h"
 
@@ -28,6 +29,7 @@ void Enemy::Load(void)
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
@@ -43,11 +45,17 @@ void Enemy::Init(void)
 		deck_->AddDrawPile(CARD_POWS[i]);
 	}
 	deck_->Init();
-	input_ = std::make_unique<EnemyInput>();
-	input_->Init();
+	logic_ = std::make_unique<EnemyLogic>();
+	logic_->Init();
 
-	action_ = std::make_unique<ActionController>(*input_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
+	action_ = std::make_unique<ActionController>(*logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
 	action_->Init();
+
+	cap_ = std::make_unique<Capsule>(trans_);
+	cap_->SetLocalPosTop({ 0.0f,200.0f,0.0f });
+	cap_->SetLocalPosDown({ 0.0f,0.0f,0.0f });
+	cap_->SetRadius(20.0f);
+
 	//Transform‚ÌÝ’è
 	trans_.quaRot = Quaternion();
 	trans_.scl = MODEL_SCL;
@@ -61,7 +69,7 @@ void Enemy::Init(void)
 void Enemy::Update(void)
 {
 	animationController_->Update();
-	input_->Update();
+	logic_->Update();
 	action_->Update();
 }
 
@@ -70,10 +78,16 @@ void Enemy::Draw(void)
 	//’Êí•`‰æ
 	MV1DrawModel(trans_.modelId);
 	deck_->Draw();
+
+#ifdef _DEBUG
+	DrawDebug();
+#endif // _DEBUG
+
 }
 #ifdef _DEBUG
 void Enemy::DrawDebug(void)
 {
-	DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	cap_->Draw();
 }
 #endif // _DEBUG

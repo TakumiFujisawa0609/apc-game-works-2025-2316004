@@ -3,7 +3,7 @@
 #include<vector>
 #include"../../Object/Common/Transform.h"
 #include"../../Object/Character/Player/Player.h"
-#include"../../Object/Character/Player/InputController.h"
+#include"../../Object/Character/Player/PlayerLogic.h"
 //#include"../../Object/Common/Capsule.h"
 class Player;
 class PlayerManager

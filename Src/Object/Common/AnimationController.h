@@ -1,4 +1,5 @@
 #pragma once
+#include<DxLib.h>
 #include <string>
 #include <map>
 class SceneManager;
@@ -17,6 +18,8 @@ public :
 		float speed = 0.0f;
 		float totalTime = 0.0f;
 		float step = 0.0f;
+		VECTOR firstPos = {};
+		VECTOR movePow = {};
 	};
 
 	// コンストラクタ
@@ -48,7 +51,22 @@ public :
 	// 再生終了
 	bool IsEnd(void) const;
 
+	//フレームの行列ローカル座標のセット
+	void SetFrameLocalMatrixPos(const int _modelId, const int frameIdx, VECTOR& pos);
+
+
+	void SetFrameAnimAttachLocalMatrixPos(int modelId, int attachNo, int frameIdx, VECTOR& pos);
+
+
+	void GetFrameLocalMatrix(const int _modelId, int _frameIdx, VECTOR& _scl, MATRIX& _matRot, VECTOR& _pos);
+
+
+	void GetFrameAnimAttachLocalMatrix(int modelId, int attachNo, int frameIdx, VECTOR& scl, MATRIX& matRot, VECTOR& pos);
+
 private :
+	//ヒップフレームの番号
+	static constexpr int HIP_FRAME_NO = 0;
+
 
 	// モデルのハンドルID
 	int modelId_;

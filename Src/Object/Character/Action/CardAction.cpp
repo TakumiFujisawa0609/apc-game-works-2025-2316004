@@ -5,7 +5,7 @@
 #include"../../Card/CardBase.h"
 #include"../../Card/CardSystem.h"
 #include"../Base/CharacterBase.h"
-#include"../Base/InputBase.h"
+#include"../Base/LogicBase.h"
 #include "CardAction.h"
 
 CardAction::CardAction(ActionController& _actCntl, CardDeck& _deck):
@@ -13,6 +13,7 @@ CardAction::CardAction(ActionController& _actCntl, CardDeck& _deck):
 	deck_(_deck)
 {
 	isCardAct_ = false;
+	isTurnable_ = false;
 	cardActTime_ = 0.0f;
 	changeAction_={
 		{ ACT_STATE::ATTACK_ONE, [this]() {ChangeAttackOne(); }},
@@ -51,7 +52,7 @@ void CardAction::Update()
 		isCardAct_ = false;
 		cardActTime_ = 0.0f;
 		deck_.DisCard();
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return;
 	}
 	cardActFunc_();

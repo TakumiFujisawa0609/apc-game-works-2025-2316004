@@ -47,7 +47,7 @@ public:
 		INPUT,	//入力
 		MOVE,	//移動
 		PUNCH,	//パンチ
-		KNOCKBACK,//パンチされた状態
+		REACT,//パンチされた状態
 		JUMP
 	};
 
@@ -152,6 +152,8 @@ private:
 	static constexpr int PLAYER_NUM = 0;
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
+	//プレイヤーの腰のフレーム番号
+	static constexpr int SPINE_FRAME_NO = 0;
 
 
 	//***********************************

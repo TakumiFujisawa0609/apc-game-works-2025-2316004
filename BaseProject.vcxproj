@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Character\Action\React.cpp" />
     <ClCompile Include="Src\Object\Card\AttackCard.cpp" />
     <ClCompile Include="Src\Object\Character\Base\CharacterBase.cpp" />
     <ClCompile Include="Src\Object\Character\Action\CardAction.cpp" />
@@ -27,9 +28,9 @@
     <ClCompile Include="Src\Object\Character\Action\Run.cpp" />
     <ClCompile Include="Src\Object\Character\Base\ActionBase.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyAction.cpp" />
-    <ClCompile Include="Src\Object\Character\Enemy\EnemyInput.cpp" />
+    <ClCompile Include="Src\Object\Character\Enemy\EnemyLogic.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\Enemy.cpp" />
-    <ClCompile Include="Src\Object\Character\Base\InputBase.cpp" />
+    <ClCompile Include="Src\Object\Character\Base\LogicBase.cpp" />
     <ClCompile Include="Src\Object\Card\CardSystem.cpp" />
     <ClCompile Include="Src\Object\Card\CardDeck.cpp" />
     <ClCompile Include="Src\Object\Card\CardBase.cpp" />
@@ -38,7 +39,7 @@
     <ClCompile Include="Src\Manager\Generic\DataBank.cpp" />
     <ClCompile Include="Src\Object\Character\Player\Player.cpp" />
     <ClCompile Include="Src\Object\Character\Player\ActionController.cpp" />
-    <ClCompile Include="Src\Object\Character\Player\InputController.cpp" />
+    <ClCompile Include="Src\Object\Character\Player\PlayerLogic.cpp" />
     <ClCompile Include="Src\Scene\PauseScene.cpp" />
     <ClCompile Include="Src\Manager\Generic\InputManagerS.cpp" />
     <ClCompile Include="Src\Manager\Resource\FontManager.cpp" />
@@ -68,6 +69,7 @@
     <ClCompile Include="Src\Utility\UtilityDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Character\Action\React.h" />
     <ClInclude Include="Src\Object\Card\AttackCard.h" />
     <ClInclude Include="Src\Object\Character\Base\CharacterBase.h" />
     <ClInclude Include="Src\Object\Character\Action\CardAction.h" />
@@ -76,9 +78,9 @@
     <ClInclude Include="Src\Object\Character\Action\Run.h" />
     <ClInclude Include="Src\Object\Character\Base\ActionBase.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyAction.h" />
-    <ClInclude Include="Src\Object\Character\Enemy\EnemyInput.h" />
+    <ClInclude Include="Src\Object\Character\Enemy\EnemyLogic.h" />
     <ClInclude Include="Src\Object\Character\Enemy\Enemy.h" />
-    <ClInclude Include="Src\Object\Character\Base\InputBase.h" />
+    <ClInclude Include="Src\Object\Character\Base\LogicBase.h" />
     <ClInclude Include="Src\Object\Card\CardSystem.h" />
     <ClInclude Include="Src\Object\Card\CardDeck.h" />
     <ClInclude Include="Src\Object\Card\CardBase.h" />
@@ -87,7 +89,7 @@
     <ClInclude Include="Src\Manager\Generic\DataBank.h" />
     <ClInclude Include="Src\Object\Character\Player\Player.h" />
     <ClInclude Include="Src\Object\Character\Player\ActionController.h" />
-    <ClInclude Include="Src\Object\Character\Player\InputController.h" />
+    <ClInclude Include="Src\Object\Character\Player\PlayerLogic.h" />
     <ClInclude Include="Src\Scene\PauseScene.h" />
     <ClInclude Include="Src\Template\Singleton.h" />
     <ClInclude Include="Src\Manager\Generic\InputManagerS.h" />

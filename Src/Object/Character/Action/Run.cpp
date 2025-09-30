@@ -1,5 +1,5 @@
 #include "../Base/ActionBase.h"
-#include"../Base/InputBase.h"
+#include"../Base/LogicBase.h"
 #include"../Utility/Utility3D.h"
 #include"../Player/ActionController.h"
 #include"../Base/CharacterBase.h"
@@ -23,10 +23,17 @@ void Run::Init(void)
 
 void Run::Update(void)
 {
-	//if (actionCntl_.GetInput().GetMoveDeg() < 0.0f)
+	//入力方向が0だった場合、アイドル状態移行
 	if (Utility3D::EqualsVZero(actionCntl_.GetInput().GetDir()))
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		return;
+	}
+
+	//カードを場に出す処理
+	if (actionCntl_.GetInput().GetIsAct().isCardUse)
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::CARD_ACTION);
 		return;
 	}
 	////移動中に入力が入った時の状態遷移

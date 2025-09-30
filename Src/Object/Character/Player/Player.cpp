@@ -18,11 +18,12 @@
 //#include "../../Object/Common/Geometry/Line.h"
 //#include"../../Object/Common/Geometry/Model.h"
 //#include"../../Object/Common/EffectController.h"
+#include"../../Common/Capsule.h"
 #include"../Object/Card/CardDeck.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
 //#include"./PlayerOnHit.h"
-#include "./InputController.h"
+#include "./PlayerLogic.h"
 
 
 #include "Player.h"
@@ -57,6 +58,7 @@ void Player::Load(void)
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
@@ -68,8 +70,8 @@ void Player::Load(void)
 
 
 	//プレイヤー入力
-	input_ = std::make_unique<InputController>(padNum_, InputManager::CONTROLL_TYPE::ALL);
-	input_->Init();
+	logic_ = std::make_unique<PlayerLogic>(padNum_, InputManager::CONTROLL_TYPE::ALL);
+	logic_->Init();
 
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
@@ -82,7 +84,7 @@ void Player::Load(void)
 	deck_->Init();
 
 	//アクション
-	action_ = std::make_unique<ActionController>(*input_,trans_,*deck_,*animationController_,padNum_);
+	action_ = std::make_unique<ActionController>(*logic_,trans_,*deck_,*animationController_,padNum_);
 	action_->Load();
 }
 
@@ -97,6 +99,11 @@ void Player::Init(void)
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
 	trans_.pos={ posX,0.0f,0.0f };
 	trans_.localPos = { 0.0f,-Player::RADIUS,0.0f };
+
+	cap_ = std::make_unique<Capsule>(trans_);
+	cap_->SetLocalPosTop({ 0.0f,150.0f,0.0f });
+	cap_->SetLocalPosDown({ 0.0f,0.0f,0.0f });
+	cap_->SetRadius(25.0f);
 
 	//プレイヤー状態
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
@@ -129,7 +136,6 @@ void Player::Update(void)
 	
 	trans_.pos = VAdd(trans_.pos, action_->GetMovePow());
 
-
 	trans_.Update();
 }
 
@@ -153,7 +159,8 @@ void Player::DrawDebug(void)
 	unsigned int color = 0xffffff;
 	const int HIGH = 10;
 	const int WIDTH = 200;
-	DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	cap_->Draw();
 }
 
 #endif // DEBUG_ON
@@ -192,7 +199,7 @@ void Player::GoalUpdate(void)
 void Player::Action(void)
 {
 	//アクション関係の更新
-	input_->Update();
+	logic_->Update();
 	action_->Update();
 
 }

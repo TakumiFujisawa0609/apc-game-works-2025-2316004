@@ -1,7 +1,7 @@
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
 #include"Player.h"
-#include"./InputController.h"
+#include"./PlayerLogic.h"
 //#include "../../Manager/Game/GravityManager.h"
 #include "../../../Manager/Generic/Camera.h"
 #include "../../../Manager/Generic/SceneManager.h"
@@ -19,12 +19,13 @@
 #include"../Action/Idle.h"
 #include"../Action/Run.h"
 #include"../Action/Jump.h"
+#include"../Action/React.h"
 #include"../Action/CardAction.h"
 
 #include "ActionController.h"
 
-ActionController::ActionController(InputBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum) :
-	input_(_input)
+ActionController::ActionController(LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum) :
+	logic_(_input)
 	, trans_(_trans)
 	, deck_(_deck)
 	, anim_(_anim)
@@ -51,6 +52,7 @@ void ActionController::Init(void)
 	mainAction_[ACTION_TYPE::IDLE]= std::make_unique<Idle>(*this);
 	mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
 	mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
+	mainAction_[ACTION_TYPE::REACT] = std::make_unique<React>(*this);
 	mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<CardAction>(*this,deck_);
 	mainAction_[act_]->Init();
 
@@ -83,7 +85,7 @@ void ActionController::Update(void)
 void ActionController::DrawDebug(void)
 {
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
-	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)input_.GetAct(), dashSeCnt);
+	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)logic_.GetAct(), dashSeCnt);
 	deck_.Draw();
 	
 }
@@ -98,7 +100,7 @@ void ActionController::ChangeAction(const ACTION_TYPE _act)
 
 void ActionController::CardChargeUpdate(void)
 {
-	if (input_.GetIsAct().isCardCharge)
+	if (logic_.GetIsAct().isCardCharge)
 	{
 		deck_.CardCharge();
 	}
@@ -107,11 +109,11 @@ void ActionController::CardChargeUpdate(void)
 
 void ActionController::CardMove(void)
 {
-	if (input_.GetIsAct().isCardMoveLeft)
+	if (logic_.GetIsAct().isCardMoveLeft)
 	{
 		deck_.CardMoveLeft();
 	}
-	else if (input_.GetIsAct().isCardMoveRight)
+	else if (logic_.GetIsAct().isCardMoveRight)
 	{
 		deck_.CardMoveRight();
 	}
@@ -133,15 +135,15 @@ void ActionController::StopResource(void)
 void ActionController::MoveDirFronInput(void)
 {
 	//プレイヤー入力クラスから角度を取得
-	VECTOR getDir = input_.GetDir();
-	float deg = input_.GetMoveDeg();
+	VECTOR getDir = logic_.GetDir();
+	float deg = logic_.GetMoveDeg();
 
 	//カメラの角度ど入力角度でプレイヤーの方向を変える
 	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
 	dir_ = cameraRot.PosAxis(getDir);
 	dir_ = VNorm(dir_);
 
-	if (!Utility3D::EqualsVZero(dir_))
+	if (!Utility3D::EqualsVZero(dir_)&&mainAction_[act_]->GetIsTurnable())
 	{
 		//補完角度の設定(入力角度まで方向転換する)
 		SetGoalRotate(deg);
