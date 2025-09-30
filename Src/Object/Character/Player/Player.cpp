@@ -256,6 +256,7 @@ void Player::SavePos(const std::wstring _fileName)
 	//JSONファイルに書き込み
 	std::ofstream outFile(Application::PATH_JSON+_fileName.c_str());
 	//outFile.open(Application::PATH_JSON + _fileName.c_str());
+	//isOpenでファイルを開けているので、openは不要
 	if(outFile.is_open())
 	{
 		//playerData["Position"]=posArray;
