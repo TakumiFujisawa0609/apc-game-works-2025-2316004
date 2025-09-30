@@ -2,6 +2,7 @@
 #include <map>
 #include <functional>
 #include <memory>
+#include<string>
 //#include"../../Character/Player/InputController.h"
 #include"./ActionController.h"
 #include "../Base/CharacterBase.h"
@@ -215,5 +216,10 @@ private:
 	
 	//アクション関係
 	void Action(void);
+
+	//Jsonでプレイヤーの座標を保存してみる
+	void SavePos(const std::wstring _fileName);
+
+	void LoadPos(const std::wstring _fileName);
 };
 

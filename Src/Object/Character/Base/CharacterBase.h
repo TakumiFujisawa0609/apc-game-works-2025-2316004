@@ -24,6 +24,14 @@ public:
 		ATTACK_3,
 	};
 
+	//キャラクターの種類
+	enum class CHARA_TYPE
+	{
+		PLAYER,
+		ENEMY,
+		MAX
+	};
+
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
@@ -71,6 +79,9 @@ protected:
 	std::shared_ptr<CardDeck>deck_;
 	//当たり判定用のカプセル
 	std::unique_ptr<Capsule>cap_;
+
+	//キャラクターの種類
+	std::string charaNames_[static_cast<int>(CHARA_TYPE::MAX)];
 private:
 
 };

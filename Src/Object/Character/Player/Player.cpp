@@ -1,4 +1,7 @@
 #include<algorithm>
+#include<iostream>
+#include<fstream>
+#include "../../Src/Lib/nlohmann/json.hpp"
 #include "../../../Utility/Utility3D.h"
 #include "../../../Utility/UtilityCommon.h"
 #include "../Application.h"
@@ -25,6 +28,7 @@
 //#include"./PlayerOnHit.h"
 #include "./PlayerLogic.h"
 
+using json = nlohmann::json;
 
 #include "Player.h"
 Player::Player(void)
@@ -41,11 +45,12 @@ Player::Player(void)
 	//パッド番号を設定
 	padNum_ = static_cast<InputManager::JOYPAD_NO>(playerNum_ + 1);
 
-
+	
 }
 
 Player::~Player(void)
 {
+	SavePos(L"PlayerPos.json");
 }
 
 void Player::Load(void)
@@ -117,6 +122,8 @@ void Player::Init(void)
 
 	//更新
 	trans_.Update();
+
+	LoadPos(L"PlayerPos.json");
 }
 
 void Player::Update(void)
@@ -202,5 +209,120 @@ void Player::Action(void)
 	logic_->Update();
 	action_->Update();
 
+}
+
+void Player::SavePos(const std::wstring _fileName)
+{
+	json playerData;
+	json posArray;
+	json rotArray;
+	json quaRotAttay;
+
+	playerData["Position"]["x"] = trans_.pos.x;
+	playerData["Position"]["y"] = trans_.pos.y;
+	playerData["Position"]["z"] = trans_.pos.z;
+
+	//	{	//格納
+	//		{"x",trans_.pos.x},
+	//		{"y",trans_.pos.y},
+	//		{"z",trans_.pos.z}
+	//	}
+	//);
+	//角度情報
+	playerData["Rotation"]["x"] = trans_.rot.x;
+	playerData["Rotation"]["y"] = trans_.rot.y;
+	playerData["Rotation"]["z"] = trans_.rot.z;
+	//rotArray.push_back(
+	//	{	//格納
+	//		{"x",trans_.rot.x},
+	//		{"y",trans_.rot.y},
+	//		{"z",trans_.rot.z}
+	//	}
+	//);
+	//クォータニオン回転
+	playerData["QuaRot"]["x"] = trans_.quaRot.x;
+	playerData["QuaRot"]["y"] = trans_.quaRot.y;
+	playerData["QuaRot"]["z"] = trans_.quaRot.z;
+	playerData["QuaRot"]["w"] = trans_.quaRot.w;
+	//quaRotAttay.push_back(
+	//	{
+	//		{"x",trans_.quaRot.x},
+	//		{"y",trans_.quaRot.y},
+	//		{"z",trans_.quaRot.z},
+	//		{"w",trans_.quaRot.w}
+	//	}
+	//);
+
+	//JSONファイルに書き込み
+	std::ofstream outFile(Application::PATH_JSON+_fileName.c_str());
+	//outFile.open(Application::PATH_JSON + _fileName.c_str());
+	if(outFile.is_open())
+	{
+		//playerData["Position"]=posArray;
+		//playerData["Rotation"].push_back(rotArray);
+		//playerData["QuaRot"].push_back(quaRotAttay);
+		auto dmp = playerData.dump(4);
+		outFile.write(dmp.c_str(), dmp.size());
+		outFile.close();
+	}
+	else
+	{
+		std::cout << "ファイルが開けません" << std::endl;
+	}
+}
+
+void Player::LoadPos(const std::wstring _fileName)
+{
+	std::ifstream inFile(Application::PATH_JSON + _fileName.c_str());
+	//inFile.open(Application::PATH_JSON + _fileName.c_str());
+	if (!inFile.is_open())
+	{
+		//std::cerr << "ファイルが開けません" << std::endl;
+		return;
+	}
+
+	json j;
+	inFile >> j;
+	//JSONファイルの読み込み
+	if (j.contains("Position"))
+	{
+		//std::vector<VECTOR>positions;
+		//for (const auto& pos : j["Position"])
+		//{
+			VECTOR position;
+			position.x = j["Position"]["x"].get<float>();
+			position.y = j["Position"]["y"].get<float>();
+			position.z = j["Position"]["z"].get<float>();
+		//}
+		trans_.pos = position;
+	}
+	
+	
+
+	if (j.contains("Rotation"))
+	{
+		//std::vector<VECTOR>rotations;
+		//for (const auto& rot : j["Rotation"])
+		//{
+			VECTOR rotation;
+			rotation.x = j["Rotation"]["x"].get<float>();
+			rotation.y = j["Rotation"]["y"].get<float>();
+			rotation.z = j["Rotation"]["z"].get<float>();
+		//}
+		trans_.rot = rotation;
+	}
+
+	if (j.contains("QuaRot"))
+	{
+
+		Quaternion q;
+		q.x = j["QuaRot"]["x"].get<float>();
+		q.y = j["QuaRot"]["y"].get<float>();
+		q.z = j["QuaRot"]["z"].get<float>();
+		q.w = j["QuaRot"]["w"].get<float>();
+
+		trans_.quaRot = q;
+
+	}
 }
 
