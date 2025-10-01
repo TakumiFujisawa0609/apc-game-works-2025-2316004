@@ -4,6 +4,7 @@
 #include <memory>
 //#include"../../Character/Player/InputController.h"
 #include"./ActionController.h"
+#include"../../Card/CardBase.h"
 #include "../Base/CharacterBase.h"
 
 #define DEBUG_ON
@@ -23,7 +24,7 @@ class EffectController;
 class Player :public CharacterBase
 {
 public:
-
+	using CARD_TYPE = CardBase::CARD_TYPE;
 	//半径
 	static constexpr float RADIUS = 25.0f;
 	//デフォルトのアニメーションスピード
@@ -31,7 +32,29 @@ public:
 
 	//格納するカードの強さ
 	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
-	static constexpr int CARD_POWS[20] = { 0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9 };
+	static constexpr CardBase::CARD_STATUS CARD_POWS[20] = {
+		{0,CARD_TYPE::ATTACK},
+		{1,CARD_TYPE::ATTACK},
+		{2,CARD_TYPE::ATTACK},
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK},
+		{6,CARD_TYPE::ATTACK},
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK},
+		{0,CARD_TYPE::ATTACK},
+		{1,CARD_TYPE::ATTACK},
+		{2,CARD_TYPE::ATTACK},
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK},
+		{6,CARD_TYPE::ATTACK},
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK}
+	};
+
 
 
 	enum class FLOOR_COL

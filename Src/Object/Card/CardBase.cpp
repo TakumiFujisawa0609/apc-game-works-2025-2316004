@@ -1,10 +1,11 @@
 #include "CardBase.h"
 
-CardBase::CardBase(const int _pow):
-	pow_(_pow)
+CardBase::CardBase(const CARD_STATUS _status):
+	status_(_status),
+	isWin_(false)
 {
-	//とりあえず攻撃カードを生成
-	type_ = CARD_TYPE::ATTACK;
+	////とりあえず攻撃カードを生成
+	//type_ = CARD_TYPE::ATTACK;
 }
 
 CardBase::~CardBase(void)

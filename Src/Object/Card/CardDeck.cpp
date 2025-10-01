@@ -97,9 +97,9 @@ void CardDeck::Update(void)
 
 void CardDeck::Draw(void)
 {
-	int currentCardPow = drawPile_[currentNum_]->GetPow();
-	int nextCardPow = drawPile_[nextNum_]->GetPow();
-	int prevCardPow = drawPile_[prevNum_]->GetPow();
+	int currentCardPow = drawPile_[currentNum_]->GetCardStatus().pow_;
+	int nextCardPow = drawPile_[nextNum_]->GetCardStatus().pow_;
+	int prevCardPow = drawPile_[prevNum_]->GetCardStatus().pow_;
 
 	const float DISTANCE_X = 40;
 
@@ -113,7 +113,7 @@ void CardDeck::Draw(void)
 	{
 		for (int i = 0; i < handSize; i++)
 		{
-			int handCardPow = hand_[i]->GetPow();
+			int handCardPow = hand_[i]->GetCardStatus().pow_;
 			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0xffffff, L"(%d)", handCardPow);
 		}
 	}
@@ -123,10 +123,12 @@ void CardDeck::Release(void)
 {
 }
 
-void CardDeck::AddDrawPile(const int _pow)
+void CardDeck::AddDrawPile(const CardBase::CARD_STATUS _status)
 {
-	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_pow);
+	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_status);
+	std::unique_ptr<CardBase>roloadCard = std::make_unique<CardBase>(-1,CardBase::CARD_TYPE::RELOAD);
 	drawPile_.emplace_back(std::move(card));
+	drawPile_.emplace_back(std::move(roloadCard));
 }
 
 void CardDeck::MoveHandToCharge(void)
@@ -147,11 +149,6 @@ void CardDeck::MoveHandToCharge(void)
 		prevNum_= currentNum_-1;
 		nextNum_ = 0;
 	}
-	//drawPile_.resize(drawPile_.size() - 1);
-
-	//現在選んでいるカードを次のカードにする
-	//currentNum_++;
-	//nextNum_ = currentNum_ + 1;
 	//システム側の処理
 	DrawCardFromDeck();
 }
@@ -164,7 +161,7 @@ void CardDeck::DrawCardFromDeck(void)
 	//手札の合計値を出す
 	for (auto& it : hand_)
 	{
-		cardPow += it->GetPow();
+		cardPow += it->GetCardStatus().pow_;
 	}
 
 	//カードを場に出してシステム側で処理をする
@@ -193,7 +190,7 @@ std::vector<CardBase::CARD_TYPE> CardDeck::GetCardType(void)
 	std::vector<CardBase::CARD_TYPE>handCardTypes;
 	for (auto& h : hand_)
 	{
-		CardBase::CARD_TYPE type = h->GetCardType();
+		CardBase::CARD_TYPE type = h->GetCardStatus().type_;
 		handCardTypes.emplace_back(type);
 	}
 	return handCardTypes;

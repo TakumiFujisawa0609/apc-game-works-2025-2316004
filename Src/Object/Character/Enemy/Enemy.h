@@ -1,6 +1,7 @@
 #pragma once
 #include<memory>
 #include "../Base/CharacterBase.h"
+#include"../../Card/CardBase.h"
 #include"../../../Common/Vector2.h"
 
 class CardDeck;
@@ -11,6 +12,7 @@ class AnimationController;
 class Enemy :public CharacterBase
 {
 public:
+	using CARD_TYPE = CardBase::CARD_TYPE;
 	//定数
 	static constexpr int RADIUS = 25; //敵のサイズ
 	//プレイヤーのローカル角度
@@ -20,7 +22,28 @@ public:
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
 	//格納するカードの強さ
-	static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
+	static constexpr CardBase::CARD_STATUS CARD_POWS[20] = {
+		{0,CARD_TYPE::ATTACK},
+		{1,CARD_TYPE::ATTACK},
+		{2,CARD_TYPE::ATTACK},
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK},
+		{6,CARD_TYPE::ATTACK},
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK},
+		{0,CARD_TYPE::ATTACK},
+		{1,CARD_TYPE::ATTACK},
+		{2,CARD_TYPE::ATTACK},
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK},
+		{6,CARD_TYPE::ATTACK},
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK}
+	};
 	// アニメーション種別
 	enum class ANIM_TYPE
 	{

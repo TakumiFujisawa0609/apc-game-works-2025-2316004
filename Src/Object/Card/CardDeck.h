@@ -38,7 +38,7 @@ public:
 	/// 山札にカード追加
 	/// </summary>
 	/// <param name="_pow">追加したいカードの強さ</param>
-	void AddDrawPile(const int _pow);
+	void AddDrawPile(const CardBase::CARD_STATUS _status);
 
 	/// <summary>
 	/// カードを使用札に移動

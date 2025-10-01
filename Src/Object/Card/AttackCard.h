@@ -5,7 +5,7 @@ class AttackCard :
 {
 public:
 	//コンストラクタ
-	AttackCard(const int _pow);
+	AttackCard(const CardBase::CARD_STATUS _status);
 	//デストラクタ
 	~AttackCard(void)override;
 
