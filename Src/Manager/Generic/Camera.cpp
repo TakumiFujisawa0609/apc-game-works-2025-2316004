@@ -1,9 +1,11 @@
 #include <math.h>
 #include <DxLib.h>
 #include <EffekseerForDXLib.h>
+#include"../Application.h"
 #include "../../Utility/Utility3D.h"
 #include "../../Utility//UtilityCommon.h"
 #include "../../Object/Common/Transform.h"
+#include"../../Manager/Generic/InputManager.h"
 #include "Camera.h"
 
 Camera::Camera(void)
@@ -172,6 +174,28 @@ void Camera::SyncFollow(void)
 
 void Camera::ProcessRot(void)
 {
+	//int x_t, y_t;
+	Vector2 mPos;
+	mPos = InputManager::GetInstance().GetMousePos();
+	//GetMousePoint(&x_t, &y_t);
+	//マウスの移動量をクランプして、カメラの角度に反映する
+	angles_.y += float(std::clamp(mPos.x - Application::SCREEN_SIZE_X / 2, -120, 120)) * FOV_PER / GetFPS();
+	angles_.x += float(std::clamp(mPos.y - Application::SCREEN_SIZE_Y / 2, -120, 120)) * FOV_PER / GetFPS();
+
+	// マウスの位置を画面中央に戻す
+	SetMousePoint(Application::SCREEN_SIZE_X / 2, Application::SCREEN_SIZE_Y / 2);
+
+	// マウスを表示状態にする
+	//SetMouseDispFlag(FALSE);
+
+	if (angles_.x >= LIMIT_X_UP_RAD)
+	{
+		angles_.x = LIMIT_X_UP_RAD;
+	}
+	else if (angles_.x <= LIMIT_X_DW_RAD)
+	{
+		angles_.x = LIMIT_X_DW_RAD;
+	}
 }
 
 void Camera::SetBeforeDrawFixedPoint(void)
@@ -183,7 +207,7 @@ void Camera::SetBeforeDrawFollow(void)
 {
 
 	// カメラ操作
-	ProcessRot();
+	//ProcessRot();
 
 	// 追従対象との相対位置を同期
 	SyncFollow();

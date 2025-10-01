@@ -36,7 +36,7 @@ void CardDeck::Init(void)
 	//}
 	currentNum_ = 0;
 	nextNum_ = currentNum_ + 1;
-	prevNum_ = CARD_NUM_MAX - 1;
+	prevNum_ = static_cast<int>(drawPile_.size()) - 1;
 
 	Vector2 pos = centerPos_;
 }
@@ -139,10 +139,13 @@ void CardDeck::MoveHandToCharge(void)
 	if (currentNum_ == 0)
 	{
 		prevNum_ = static_cast<int>(drawPile_.size()) - 1;
+		nextNum_ = currentNum_ + 1;
 	}
-	else if (currentNum_ == static_cast<int>(drawPile_.size()) - 1)
+	else if (currentNum_ >= static_cast<int>(drawPile_.size()) - 1)
 	{
-		currentNum_ = 0;
+		currentNum_--;
+		prevNum_= currentNum_-1;
+		nextNum_ = 0;
 	}
 	//drawPile_.resize(drawPile_.size() - 1);
 
@@ -203,18 +206,29 @@ void CardDeck::CardMoveLimit(void)
 	{
 		currentNum_ = cardMax - 1;
 	}
-	else if (currentNum_ >= cardMax)
+	else if (currentNum_ > cardMax - 1)
 	{
 		currentNum_ = 0;
 	}
-	if (nextNum_ > cardMax - 1)
+
+	if (currentNum_ == 0)
 	{
-		nextNum_ = 0;
-	}
-	if (prevNum_ < 0)
-	{
+		nextNum_ = currentNum_ + 1;
 		prevNum_ = cardMax - 1;
 	}
+	else if (currentNum_ == cardMax - 1)
+	{
+		nextNum_ = 0;
+		prevNum_ = currentNum_ - 1;
+	}
+	//if (nextNum_ > cardMax - 1)
+	//{
+	//	nextNum_ = 0;
+	//}
+	//else if (prevNum_ < 0)
+	//{
+	//	prevNum_ = cardMax - 1;
+	//}
 }
 
 bool CardDeck::IsCardFailure(void)

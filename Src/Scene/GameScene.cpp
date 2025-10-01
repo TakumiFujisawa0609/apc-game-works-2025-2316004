@@ -26,6 +26,8 @@ GameScene::GameScene(void)
 GameScene::~GameScene(void)
 {
 	//インスタンスの削除
+	CardSystem::GetInstance().Destroy();
+
 }
 
 void GameScene::Load(void)

@@ -12,8 +12,12 @@ int WINAPI WinMain(
 	_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	_In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
+#ifdef _DEBUG
 	// メモリリークを検出
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	//_CrtSetBreakAlloc(17988);
+#endif // _DEBUG
 
 	// インスタンスの生成
 	Application::CreateInstance();	

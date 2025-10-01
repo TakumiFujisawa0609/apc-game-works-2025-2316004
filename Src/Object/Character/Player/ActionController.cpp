@@ -143,7 +143,7 @@ void ActionController::MoveDirFronInput(void)
 	dir_ = cameraRot.PosAxis(getDir);
 	dir_ = VNorm(dir_);
 
-	if (!Utility3D::EqualsVZero(dir_)&&mainAction_[act_]->GetIsTurnable())
+	if (!Utility3D::EqualsVZero(movePow_)&&mainAction_[act_]->GetIsTurnable())
 	{
 		//•âŠ®Šp“x‚Ìİ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
 		SetGoalRotate(deg);
