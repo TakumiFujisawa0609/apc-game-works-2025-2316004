@@ -27,6 +27,7 @@ void Idle::Update(void)
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::MOVE);
 		return;
 	}
+	//カード使用
 	if (actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::CARD_ACTION);

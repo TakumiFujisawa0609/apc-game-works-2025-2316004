@@ -54,6 +54,7 @@ void PlayerLogic::InputKeyBoard(void)
 	{ 
 		moveDeg_ = FLONT_DEG;
 		moveDir_ = Utility3D::DIR_F;
+
 	}
 	else if (ins.IsNew(MOVE_LEFT_KEY))
 	{ 
@@ -132,6 +133,7 @@ void PlayerLogic::InputAll(void)
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) {
 		isAct_.isCardMoveLeft = true; }
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) { isAct_.isCardMoveRight = true; }
+	if (ins.IsPadBtnNew(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsNew(CARD_MOVE_RIGHT_KEY)) { isAct_.isCardMoveRight = true; }
 }
 
 void PlayerLogic::InputPad(void)

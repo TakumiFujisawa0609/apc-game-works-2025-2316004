@@ -104,7 +104,6 @@ void ActionController::CardChargeUpdate(void)
 	{
 		deck_.CardCharge();
 	}
-	
 }
 
 void ActionController::CardMove(void)

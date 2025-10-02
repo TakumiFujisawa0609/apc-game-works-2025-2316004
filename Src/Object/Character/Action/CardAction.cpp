@@ -19,6 +19,7 @@ CardAction::CardAction(ActionController& _actCntl, CardDeck& _deck):
 		{ ACT_STATE::ATTACK_ONE, [this]() {ChangeAttackOne(); }},
 		{ ACT_STATE::ATTACK_TWO, [this]() {ChangeAttackTwo(); }},
 		{ ACT_STATE::ATTACK_THREE, [this]() {ChangeAttackThree(); }},
+		{ ACT_STATE::RELOAD, [this]() {ChangeReload(); }},
 	};
 }
 
@@ -34,14 +35,31 @@ void CardAction::Init(void)
 	isCardAct_ = true;
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetCardType();
-	int handCardTypeSize = deck_.GetCardType().size();
+	attackStageNum_ = 0;
 	if (IsAttackable())
 	{
 		changeAction_[ACT_STATE::ATTACK_ONE]();
 	}
+	else if (deck_.IsReloadCard())
+	{
+		changeAction_[ACT_STATE::RELOAD];
+	}
 }
 
 void CardAction::Update()
+{
+	//cardActFunc_();
+	cardFuncs_.front()();
+}
+
+bool CardAction::IsAttackable(void)
+{
+	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetCardType();
+	int handCardTypeSize = deck_.GetCardType().size();
+	return handCardTypeSize == 1 && cardTypes[0] == CardBase::CARD_TYPE::ATTACK;
+}
+
+bool CardAction::IsCardFailure(void)
 {
 	//カードの勝敗判定
 	deck_.CardUseUpdate();
@@ -53,20 +71,16 @@ void CardAction::Update()
 		cardActTime_ = 0.0f;
 		deck_.DisCard();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-		return;
+		return true;
 	}
-	cardActFunc_();
+	return false;
 }
 
-bool CardAction::IsAttackable(void)
+void CardAction::UpdateAttack(void)
 {
-	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetCardType();
-	int handCardTypeSize = deck_.GetCardType().size();
-	return handCardTypeSize == 1 && cardTypes[0] == CardBase::CARD_TYPE::ATTACK;
-}
+	//攻撃中にカード負けしたら処理を飛ばす
+	if (IsCardFailure())return;
 
-void CardAction::UpdateAttackOne(void)
-{
 	if(anim_.GetAnimStep()>=ATTACK_COL_START_ANIM_CNT&&
 		anim_.GetAnimStep()<=ATTACK_COL_END_ANIM_CNT)
 	{
@@ -79,9 +93,14 @@ void CardAction::UpdateAttackOne(void)
 		//CardSystem::GetInstance().SetAttackCol(false);
 		if (IsAttackable()&&actionCntl_.GetInput().GetIsAct().isCardUse)
 		{
-			//現在使っているカードを捨てる
-			deck_.DisCard();
-			changeAction_[ACT_STATE::ATTACK_TWO]();
+			if (attackStageNum_ == static_cast<int>(ACT_STATE::ATTACK_ONE))
+			{
+				changeAction_[ACT_STATE::ATTACK_TWO]();
+			}
+			else if (attackStageNum_ == static_cast<int>(ACT_STATE::ATTACK_TWO))
+			{
+				changeAction_[ACT_STATE::ATTACK_THREE]();
+			}
 		}
 		else if (anim_.IsEnd())
 		{
@@ -95,73 +114,51 @@ void CardAction::UpdateAttackOne(void)
 	}
 }
 
-void CardAction::UpdateAttackTwo(void)
+void CardAction::UpdateReload(void)
 {
-	if (anim_.GetAnimStep() >= ATTACK_COL_START_ANIM_CNT &&
-		anim_.GetAnimStep() <= ATTACK_COL_END_ANIM_CNT)
+	if (actionCntl_.GetInput().GetIsAct().isCardPushKeep)
 	{
-		////攻撃判定有効
-		//CardSystem::GetInstance().SetAttackCol(true);
+		pushReloadCnt_ += scnMng_.GetDeltaTime();
 	}
-	else if (anim_.GetAnimStep() > ATTACK_COL_END_ANIM_CNT)
+	if (pushReloadCnt_ >= RELOAD_TIME)
 	{
-		////攻撃判定無効
-		//CardSystem::GetInstance().SetAttackCol(false);
-		if (IsAttackable() && actionCntl_.GetInput().GetIsAct().isCardUse)
-		{
-			deck_.DisCard();
-			changeAction_[ACT_STATE::ATTACK_THREE]();
-		}
-		else if(anim_.IsEnd())
-		{
-			//アクション終了
-			isCardAct_ = false;
-			cardActTime_ = 0.0f;
-			deck_.DisCard();
-			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-			return;
-		}
+
 	}
 }
 
-void CardAction::UpdateAttackThree(void)
-{
-	if (anim_.GetAnimStep() >= ATTACK_COL_START_ANIM_CNT &&
-		anim_.GetAnimStep() <= ATTACK_COL_END_ANIM_CNT)
-	{
-		////攻撃判定有効
-		//CardSystem::GetInstance().SetAttackCol(true);
-	}
-	else if (anim_.IsEnd())
-	{
-		//アクション終了
-		isCardAct_ = false;
-		cardActTime_ = 0.0f;
-		deck_.DisCard();
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-		return;
-	}
-}
 
 void CardAction::ChangeAttackOne(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
-	cardActFunc_ = [this]() {UpdateAttackOne(); };
+	//cardActFunc_ = [this]() {UpdateAttack(); };
+	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
 void CardAction::ChangeAttackTwo(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_2), false);
-	//手札に移動
-	
+	//攻撃段階を増やす
+	attackStageNum_++;
+	//現在使っているカードを捨てる
+	deck_.DisCard();
+	//新たにカードを移動させる
 	deck_.MoveHandToCharge();
-	cardActFunc_ = [this]() {UpdateAttackTwo(); };
+	cardFuncs_.pop();
+	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
 void CardAction::ChangeAttackThree(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false);
+	attackStageNum_++;
+	//現在使っているカードを捨てる
+	deck_.DisCard();
 	//手札に移動
 	deck_.MoveHandToCharge();
-	cardActFunc_ = [this]() {UpdateAttackThree(); };
+	cardFuncs_.pop();
+	cardFuncs_.push([this]() {UpdateAttack(); });
+}
+
+void CardAction::ChangeReload(void)
+{
 }

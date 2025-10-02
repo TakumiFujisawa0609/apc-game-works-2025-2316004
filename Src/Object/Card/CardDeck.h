@@ -68,6 +68,11 @@ public:
 	/// <param name=""></param>
 	/// <returns>カードの種類</returns>
 	std::vector<CardBase::CARD_TYPE> GetCardType(void);
+
+	/// <summary>
+	/// 現在選択中のカードがリロードカードかを返す
+	/// </summary>
+	const bool IsReloadCard(void);
 private:
 	//メンバ関数
 	//カードを選択したときの制限

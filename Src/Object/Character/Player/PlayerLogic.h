@@ -8,6 +8,8 @@
 #include"../Base/LogicBase.h"
 //#define DEBUG_ON
 class PlayerBase;
+class Command;
+
 class PlayerLogic:public LogicBase
 {
 public:
@@ -123,7 +125,6 @@ private:
     InputManager::JOYPAD_NO padNum_;                //ÉpÉbÉhî‘çÜ
 
     std::map<InputManager::CONTROLL_TYPE, std::function<void(void)>>inputUpdates_;
-
 
 };
 

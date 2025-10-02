@@ -29,11 +29,11 @@ CardDeck::~CardDeck(void)
 
 void CardDeck::Init(void)
 {
-	//for (int i = 0; i < CARD_NUM_MAX; i++)
-	//{
-	//	std::unique_ptr<CardBase> card = std::make_unique<CardBase>(CARD_POWS[i]);
-	//	drawPile_.emplace_back(std::move(card));
-	//}
+	//カードの最後の配列にリロードカードを入れる(リロード用のカードで、勝敗はない)
+	CardBase::CARD_STATUS reloadStatus = { -1, CardBase::CARD_TYPE::RELOAD };
+	std::unique_ptr<CardBase>roloadCard = std::make_unique<CardBase>(reloadStatus);
+	drawPile_.emplace_back(std::move(roloadCard));
+
 	currentNum_ = 0;
 	nextNum_ = currentNum_ + 1;
 	prevNum_ = static_cast<int>(drawPile_.size()) - 1;
@@ -97,13 +97,13 @@ void CardDeck::Update(void)
 
 void CardDeck::Draw(void)
 {
-	int currentCardPow = drawPile_[currentNum_]->GetCardStatus().pow_;
-	int nextCardPow = drawPile_[nextNum_]->GetCardStatus().pow_;
-	int prevCardPow = drawPile_[prevNum_]->GetCardStatus().pow_;
+	CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
+	CardBase::CARD_STATUS nextCardPow = drawPile_[nextNum_]->GetCardStatus();
+	CardBase::CARD_STATUS prevCardPow = drawPile_[prevNum_]->GetCardStatus();
 
 	const float DISTANCE_X = 40;
 
-	DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow);
+	DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow.pow_);
 	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
 	DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
 
@@ -126,9 +126,7 @@ void CardDeck::Release(void)
 void CardDeck::AddDrawPile(const CardBase::CARD_STATUS _status)
 {
 	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_status);
-	std::unique_ptr<CardBase>roloadCard = std::make_unique<CardBase>(-1,CardBase::CARD_TYPE::RELOAD);
 	drawPile_.emplace_back(std::move(card));
-	drawPile_.emplace_back(std::move(roloadCard));
 }
 
 void CardDeck::MoveHandToCharge(void)
@@ -194,6 +192,11 @@ std::vector<CardBase::CARD_TYPE> CardDeck::GetCardType(void)
 		handCardTypes.emplace_back(type);
 	}
 	return handCardTypes;
+}
+
+const bool CardDeck::IsReloadCard(void)
+{
+	return drawPile_[currentNum_]->GetCardStatus().type_==CardBase::CARD_TYPE::RELOAD;
 }
 
 void CardDeck::CardMoveLimit(void)
