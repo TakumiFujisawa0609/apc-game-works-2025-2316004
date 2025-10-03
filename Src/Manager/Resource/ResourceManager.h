@@ -28,6 +28,8 @@ public:
 		P_ATTACK_2,
 		P_ATTACK_3,
 		REACT,
+		//çUåÇÉJÅ[Éh
+		ATTACK_CARD,
 	};
 
 	/// <summary>

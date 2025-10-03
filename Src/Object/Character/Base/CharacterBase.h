@@ -61,6 +61,11 @@ public:
 	/// <param name=""></param>
 	virtual void Draw(void)override = 0;
 protected:
+	//カプセル関連
+	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
+	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
+	static constexpr float CAP_RADIUS = 25.0f;
+
 	//入力
 	std::unique_ptr<LogicBase>logic_;
 	//行動系

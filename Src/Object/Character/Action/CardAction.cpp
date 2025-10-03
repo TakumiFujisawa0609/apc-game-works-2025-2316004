@@ -10,7 +10,8 @@
 
 CardAction::CardAction(ActionController& _actCntl, CardDeck& _deck):
 	ActionBase(_actCntl),
-	deck_(_deck)
+	deck_(_deck),
+	pushReloadCnt_()
 {
 	isCardAct_ = false;
 	isTurnable_ = false;
@@ -29,20 +30,21 @@ CardAction::~CardAction(void)
 
 void CardAction::Init(void)
 {
-	//手札に移動
-	deck_.MoveHandToCharge();
 	//アクション中にする
 	isCardAct_ = true;
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetCardType();
 	attackStageNum_ = 0;
-	if (IsAttackable())
+	//手札に移動
+	
+	if (deck_.IsReloadCard() == CardBase::CARD_TYPE::ATTACK)
 	{
+		deck_.MoveHandToCharge();
 		changeAction_[ACT_STATE::ATTACK_ONE]();
 	}
-	else if (deck_.IsReloadCard())
+	else if (deck_.IsReloadCard()==CardBase::CARD_TYPE::RELOAD)
 	{
-		changeAction_[ACT_STATE::RELOAD];
+		changeAction_[ACT_STATE::RELOAD]();
 	}
 }
 
@@ -69,7 +71,7 @@ bool CardAction::IsCardFailure(void)
 		//アクション終了
 		isCardAct_ = false;
 		cardActTime_ = 0.0f;
-		deck_.DisCard();
+		deck_.EraseHandCard();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return true;
 	}
@@ -107,7 +109,8 @@ void CardAction::UpdateAttack(void)
 			//アクション終了
 			isCardAct_ = false;
 			cardActTime_ = 0.0f;
-			deck_.DisCard();
+			deck_.EraseHandCard();
+			cardFuncs_.pop();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 			return;
 		}
@@ -122,7 +125,9 @@ void CardAction::UpdateReload(void)
 	}
 	if (pushReloadCnt_ >= RELOAD_TIME)
 	{
-
+		deck_.Reload();
+		cardFuncs_.pop();
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
 }
 
@@ -140,7 +145,7 @@ void CardAction::ChangeAttackTwo(void)
 	//攻撃段階を増やす
 	attackStageNum_++;
 	//現在使っているカードを捨てる
-	deck_.DisCard();
+	deck_.EraseHandCard();
 	//新たにカードを移動させる
 	deck_.MoveHandToCharge();
 	cardFuncs_.pop();
@@ -152,7 +157,7 @@ void CardAction::ChangeAttackThree(void)
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false);
 	attackStageNum_++;
 	//現在使っているカードを捨てる
-	deck_.DisCard();
+	deck_.EraseHandCard();
 	//手札に移動
 	deck_.MoveHandToCharge();
 	cardFuncs_.pop();
@@ -161,4 +166,10 @@ void CardAction::ChangeAttackThree(void)
 
 void CardAction::ChangeReload(void)
 {
+	if (!cardFuncs_.empty())
+	{
+		cardFuncs_.pop();
+	}
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), true);
+	cardFuncs_.push([this]() {UpdateReload(); });
 }

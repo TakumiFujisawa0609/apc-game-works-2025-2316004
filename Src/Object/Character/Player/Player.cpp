@@ -18,7 +18,7 @@
 //#include "../../Object/Common/Geometry/Line.h"
 //#include"../../Object/Common/Geometry/Model.h"
 //#include"../../Object/Common/EffectController.h"
-#include"../../Common/Capsule.h"
+#include"../../Common/Geometry/Capsule.h"
 #include"../Object/Card/CardDeck.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
@@ -100,10 +100,9 @@ void Player::Init(void)
 	trans_.pos={ posX,0.0f,0.0f };
 	trans_.localPos = { 0.0f,-Player::RADIUS,0.0f };
 
-	cap_ = std::make_unique<Capsule>(trans_);
-	cap_->SetLocalPosTop({ 0.0f,150.0f,0.0f });
-	cap_->SetLocalPosDown({ 0.0f,0.0f,0.0f });
-	cap_->SetRadius(25.0f);
+	//const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosTop, const VECTOR _localPosDown, const float _radius
+
+	cap_ = std::make_unique<Capsule>(trans_.pos,trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN,CAP_RADIUS);
 
 	//ÉvÉåÉCÉÑÅ[èÛë‘
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
@@ -152,6 +151,10 @@ void Player::Draw(void)
 #ifdef DEBUG_ON
 	DrawDebug();
 #endif // DEBUG_ON
+}
+void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
+{
+
 }
 #ifdef DEBUG_ON
 void Player::DrawDebug(void)

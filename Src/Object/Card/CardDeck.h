@@ -24,8 +24,8 @@ public:
 	void CardUseUpdate(void);
 	//カードチャージ
 	void CardCharge(void);
-	//カードを捨て札に
-	void DisCard(void);
+	//使用中のカードを消す
+	void EraseHandCard(void);
 	//カード選択
 	void CardMoveLeft(void);
 	void CardMoveRight(void);
@@ -72,7 +72,12 @@ public:
 	/// <summary>
 	/// 現在選択中のカードがリロードカードかを返す
 	/// </summary>
-	const bool IsReloadCard(void);
+	const CardBase::CARD_TYPE IsReloadCard(void);
+
+	/// <summary>
+	///リロードする
+	/// </summary>
+	void Reload(void);
 private:
 	//メンバ関数
 	//カードを選択したときの制限
@@ -80,8 +85,9 @@ private:
 
 
 	//札関連
+	//初期札
+	std::vector<std::unique_ptr<CardBase>>initDeck_;
 	//山札
-	//std::vector<std::unique_ptr<CardBase>>drawPile_;
 	std::vector<std::unique_ptr<CardBase>>drawPile_;
 	//今使っているカード
 	std::vector<std::unique_ptr<CardBase>>hand_;

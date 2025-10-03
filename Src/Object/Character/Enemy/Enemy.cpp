@@ -5,7 +5,7 @@
 #include"../Player/ActionController.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
-#include"../../Common/Capsule.h"
+#include"../../Common/Geometry/Capsule.h"
 #include"../Manager/Resource/ResourceManager.h"
 #include"../Manager/Generic/InputManager.h"
 
@@ -51,10 +51,7 @@ void Enemy::Init(void)
 	action_ = std::make_unique<ActionController>(*logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
 	action_->Init();
 
-	cap_ = std::make_unique<Capsule>(trans_);
-	cap_->SetLocalPosTop({ 0.0f,200.0f,0.0f });
-	cap_->SetLocalPosDown({ 0.0f,0.0f,0.0f });
-	cap_->SetRadius(20.0f);
+	cap_ = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
 
 	//TransformÇÃê›íË
 	trans_.quaRot = Quaternion();

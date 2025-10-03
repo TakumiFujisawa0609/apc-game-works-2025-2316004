@@ -25,6 +25,7 @@ CardDeck::~CardDeck(void)
 	hand_.clear();
 	chargeCard_.clear();
 	disCard_.clear();
+	initDeck_.clear();
 }
 
 void CardDeck::Init(void)
@@ -32,7 +33,10 @@ void CardDeck::Init(void)
 	//カードの最後の配列にリロードカードを入れる(リロード用のカードで、勝敗はない)
 	CardBase::CARD_STATUS reloadStatus = { -1, CardBase::CARD_TYPE::RELOAD };
 	std::unique_ptr<CardBase>roloadCard = std::make_unique<CardBase>(reloadStatus);
+	std::unique_ptr<CardBase>initReloadCard = std::make_unique<CardBase>(reloadStatus);
 	drawPile_.emplace_back(std::move(roloadCard));
+	initDeck_.emplace_back(std::move(initReloadCard));
+
 
 	currentNum_ = 0;
 	nextNum_ = currentNum_ + 1;
@@ -57,12 +61,9 @@ void CardDeck::CardCharge(void)
 	int i = 0;
 }
 
-void CardDeck::DisCard(void)
+void CardDeck::EraseHandCard(void)
 {
-	for (auto& hand : hand_)
-	{
-		disCard_.emplace_back(std::move(hand));
-	}
+	hand_.clear();
 
 	//使ったカードの配列を消す
 	UtilityTemplates::EraseVectorArray(hand_);
@@ -121,12 +122,15 @@ void CardDeck::Draw(void)
 
 void CardDeck::Release(void)
 {
+
 }
 
 void CardDeck::AddDrawPile(const CardBase::CARD_STATUS _status)
 {
 	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_status);
-	drawPile_.emplace_back(std::move(card));
+	std::unique_ptr<CardBase>initCard = std::make_unique<CardBase>(_status);
+	drawPile_.emplace_back(std::move(card)); 
+	initDeck_.emplace_back(std::move(initCard));
 }
 
 void CardDeck::MoveHandToCharge(void)
@@ -194,9 +198,24 @@ std::vector<CardBase::CARD_TYPE> CardDeck::GetCardType(void)
 	return handCardTypes;
 }
 
-const bool CardDeck::IsReloadCard(void)
+const CardBase::CARD_TYPE CardDeck::IsReloadCard(void)
 {
-	return drawPile_[currentNum_]->GetCardStatus().type_==CardBase::CARD_TYPE::RELOAD;
+	return drawPile_[currentNum_]->GetCardStatus().type_;
+}
+
+void CardDeck::Reload(void)
+{
+	drawPile_.clear();
+	for (auto& deck : initDeck_)
+	{
+		CardBase* newCard = new CardBase(*deck);
+		std::unique_ptr<CardBase>deckPtr(newCard);
+		drawPile_.emplace_back(std::move(deckPtr));
+	}
+	//それぞれの番号の初期化
+	currentNum_ = 0;
+	nextNum_ = currentNum_ + 1;
+	prevNum_ = static_cast<int>(drawPile_.size()) - 1;
 }
 
 void CardDeck::CardMoveLimit(void)

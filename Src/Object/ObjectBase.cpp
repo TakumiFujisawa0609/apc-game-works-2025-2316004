@@ -1,5 +1,6 @@
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Game/CollisionManager.h"
 #include "ObjectBase.h"
 
 ObjectBase::ObjectBase(void)
@@ -11,3 +12,53 @@ ObjectBase::ObjectBase(void)
 ObjectBase::~ObjectBase(void)
 {
 }
+void ObjectBase::OnHit(const std::weak_ptr<Collider> _hitCol)
+{
+
+}
+
+void ObjectBase::MakeCollider(const std::vector<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::vector<Collider::TAG> _notHitTags)
+{
+	//当たり判定情報
+	ColParam colParam;
+
+	//形状情報の挿入
+	colParam.geometry_ = std::move(_geometry);
+
+	//情報を使ってコライダの作成
+	colParam.collider_ = std::make_shared<Collider>(*this, _tag, *colParam.geometry_, _notHitTags);
+
+	//コライダを管理マネージャーに追加
+	CollisionManager::GetInstance().AddCollider(colParam.collider_);
+
+	//配列にセット
+	colParam_.push_back(std::move(colParam));
+}
+
+void ObjectBase::DeleteCollider(const int _arrayNum)
+{
+	//配列番号-1
+	int arrayNum = _arrayNum - 1;
+
+	//コライダの削除
+	colParam_[_arrayNum].collider_->Kill();
+
+	//配列の削除
+	colParam_.erase(colParam_.begin() + arrayNum);
+}
+
+void ObjectBase::DeleteAllCollider(void)
+{
+	for (auto& col : colParam_)
+	{
+		//当たり判定が存在しないならスキップ
+		if (col.collider_ == nullptr)continue;
+
+		//コライダの削除
+		col.collider_->Kill();
+	}
+
+	//当たり判定情報の削除
+	colParam_.clear();
+}
+

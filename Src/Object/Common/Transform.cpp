@@ -69,10 +69,8 @@ void Transform::Update(void)
 	}
 
 	// è’ìÀîªíËÇÃçXêV
-	if (collider != nullptr)
-	{
-		MV1RefreshCollInfo(modelId);
-	}
+	MV1RefreshCollInfo(modelId);
+
 
 }
 
@@ -81,18 +79,18 @@ void Transform::SetModel(int model)
 	modelId = model;
 }
 
-void Transform::MakeCollider(Collider::TYPE type)
-{
-
-	if (modelId == -1)
-	{
-		return;
-	}
-
-	collider = std::make_shared<Collider>(type, modelId);
-	int ret = MV1SetupCollInfo(modelId, -1, 1, 1, 1);
-
-}
+//void Transform::MakeCollider(Collider::TYPE type)
+//{
+//
+//	if (modelId == -1)
+//	{
+//		return;
+//	}
+//
+//	collider = std::make_shared<Collider>(type, modelId);
+//	int ret = MV1SetupCollInfo(modelId, -1, 1, 1, 1);
+//
+//}
 
 VECTOR Transform::GetForward(void) const
 {

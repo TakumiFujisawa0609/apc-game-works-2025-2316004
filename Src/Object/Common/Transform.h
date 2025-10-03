@@ -2,7 +2,7 @@
 #include <memory>
 #include <DxLib.h>
 #include "../../Common/Quaternion.h"
-#include "Collider.h"
+#include "../Collider.h"
 
 /// <summary>
 /// ƒ‚ƒfƒ‹§Œä‚ÌŠî–{î•ñ
@@ -53,7 +53,6 @@ public:
 	void Update(void);
 
 	void SetModel(int modelHId);
-	void MakeCollider(Collider::TYPE type);
 
 	// ‘O•û•ûŒü‚ğæ“¾
 	VECTOR GetForward(void) const;

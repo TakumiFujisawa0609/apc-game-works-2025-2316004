@@ -2,7 +2,7 @@
 #include"../Object/Common/AnimationController.h"
 #include"../Object/Character/Player/ActionController.h"
 #include"../Object/Character/Base/LogicBase.h"
-#include"../../Common/Capsule.h"
+#include"../../Common/Geometry/Capsule.h"
 
 #include "CharacterBase.h"
 

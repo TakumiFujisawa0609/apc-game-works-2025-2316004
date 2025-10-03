@@ -60,8 +60,8 @@ public:
 	enum class FLOOR_COL
 	{
 		NONE
-		,SIDE
-		,TOP
+		, SIDE
+		, TOP
 	};
 
 	enum class ATK_ACT
@@ -77,11 +77,11 @@ public:
 	enum class PLAYER_STATE
 	{
 		ALIVE
-		,DEATH
-		,GOAL
+		, DEATH
+		, GOAL
 	};
 
-	
+
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
@@ -154,7 +154,11 @@ public:
 	/// <returns>手札</returns>
 	const std::weak_ptr<CardDeck> GetHand(void) { return deck_; }
 
-
+	/// <summary>
+	/// 当たった時の処理
+	/// </summary>
+	/// <param name="_hitCol"></param>
+	void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 
 
 private:
@@ -177,6 +181,11 @@ private:
 	static constexpr int CARD_NUM_MAX = 20;
 	//プレイヤーの腰のフレーム番号
 	static constexpr int SPINE_FRAME_NO = 0;
+
+	//カプセル関連
+	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
+	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
+	static constexpr float CAP_RADIUS = 25.0f;						//半径
 
 
 	//***********************************

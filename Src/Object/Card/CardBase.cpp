@@ -2,7 +2,8 @@
 
 CardBase::CardBase(const CARD_STATUS _status):
 	status_(_status),
-	isWin_(false)
+	isWin_(false),
+	isUsed_(false)
 {
 	////‚Æ‚è‚ ‚¦‚¸UŒ‚ƒJ[ƒh‚ğ¶¬
 	//type_ = CARD_TYPE::ATTACK;

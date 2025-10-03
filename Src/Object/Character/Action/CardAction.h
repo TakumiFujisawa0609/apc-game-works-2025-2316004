@@ -56,8 +56,8 @@ public:
     //攻撃段階
     int attackStageNum_;
 
-    //リロード
-    int pushReloadCnt_;
+    //リロードカウント
+    float pushReloadCnt_;
 
     //攻撃条件
     bool IsAttackable(void);

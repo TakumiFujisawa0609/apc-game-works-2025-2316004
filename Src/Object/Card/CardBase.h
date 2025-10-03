@@ -31,6 +31,11 @@ public:
 
 	//カードの勝利の取得
 	inline void SetIsWin(const bool _isWin) { isWin_ = _isWin; }
+	/// <summary>
+	/// カード使用済みのセット
+	/// </summary>
+	/// <param name="_isUsed">true:使用済み　false:未使用</param>
+	inline void SetIsUsed(const bool _isUsed) { isUsed_ = _isUsed; }
 
 protected:
 	//カードの強さ
@@ -40,6 +45,8 @@ protected:
 	CARD_STATUS status_;
 	//カードの勝敗
 	bool isWin_;
+	//使用済みかどうか
+	bool isUsed_;
 private:
 };
 
