@@ -17,7 +17,7 @@ void ObjectBase::OnHit(const std::weak_ptr<Collider> _hitCol)
 
 }
 
-void ObjectBase::MakeCollider(const std::vector<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::vector<Collider::TAG> _notHitTags)
+void ObjectBase::MakeCollider(const std::set<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::set<Collider::TAG> _notHitTags)
 {
 	//“–‚½‚è”»’èî•ñ
 	ColParam colParam;

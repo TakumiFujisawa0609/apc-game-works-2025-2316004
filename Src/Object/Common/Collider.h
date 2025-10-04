@@ -14,8 +14,8 @@ public :
 	enum class TAG
 	{
 		PLAYER1,		//プレイヤー1
-		ENEMY1,			//敵
-		SWORD,			//プレイヤーの剣
+		ENEMY1,			//敵1
+		SWORD,			//剣
 	};
 
 	/// <summary>

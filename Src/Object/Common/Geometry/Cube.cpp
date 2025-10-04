@@ -1,7 +1,7 @@
 ﻿#include<algorithm>
 #include<cassert>
 #include"../../../Common/Quaternion.h"
-#include"../../../Utility/AsoUtility.h"
+#include"../../../Utility/Utility3D.h"
 #include"Model.h"
 #include"Sphere.h"
 #include"Capsule.h"
@@ -331,7 +331,7 @@ float Cube::ClosestSegmentAABB(const VECTOR& segA, const VECTOR& segB, const VEC
 			std::max(aabbMin.z, std::min(point.z, aabbMax.z))
 		};
 
-		float distSq = AsoUtility::SqrMagnitudeF(VSub(point, clamped));
+		float distSq = Utility3D::SqrMagnitudeF(VSub(point, clamped));
 		if (distSq < minDistSq)
 		{
 			minDistSq = distSq;
