@@ -5,6 +5,7 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include"../Manager/Game/CollisionManager.h"
 #include "../Manager/Resource/FontManager.h"
 
 #include"../Object/Card/CardSystem.h"
@@ -19,14 +20,13 @@ GameScene::GameScene(void)
 	updataFunc_ = std::bind(&GameScene::LoadingUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&GameScene::LoadingDraw, this);
-
-	
 }
 
 GameScene::~GameScene(void)
 {
 	//インスタンスの削除
 	CardSystem::GetInstance().Destroy();
+	CollisionManager::GetInstance().Destroy();
 
 }
 
@@ -73,7 +73,10 @@ void GameScene::NormalUpdate(void)
 	player_->Update();
 	//敵の更新
 	enemy_->Update();
-
+	//終了した当たり判定の消去
+	CollisionManager::GetInstance().Sweep();
+	//更新はアクション中のみ
+	CollisionManager::GetInstance().Update();
 	//デバッグ処理
 	DebagUpdate();
 }
