@@ -1,0 +1,26 @@
+#include "../Manager/Resource/ResourceManager.h"
+#include "../Utility/Utility3D.h"
+#include "Stage.h"
+
+void Stage::Load(void)
+{
+}
+
+void Stage::Init(void)
+{
+	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::STAGE));
+	trans_.pos = Utility3D::VECTOR_ZERO;
+	trans_.quaRotLocal =
+		Quaternion::Euler({ 0.0f,0.0f, 0.0f });
+
+	trans_.scl = { STAGE_SCL ,STAGE_SCL ,STAGE_SCL };
+}
+
+void Stage::Update(void)
+{
+}
+
+void Stage::Draw(void)
+{
+	MV1DrawModel(trans_.modelId);
+}

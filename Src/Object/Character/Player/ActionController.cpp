@@ -33,7 +33,11 @@ ActionController::ActionController(LogicBase& _input, Transform& _trans, CardDec
 	, scnMng_(SceneManager::GetInstance())
 	, act_(ACTION_TYPE::IDLE)
 	, cardActTime_(0.0f)
-	,isCardAct_(false)
+	, isCardAct_(false)
+	, stepRotTime_(0.0f)
+	, speed_(0.0f)
+	, movePow_(Utility3D::VECTOR_ZERO)
+	,dir_(Utility3D::VECTOR_ZERO)
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
@@ -120,6 +124,11 @@ void ActionController::CardMove(void)
 
 
 
+
+const bool ActionController::GetIsAtkColAlive(void)
+{
+	return mainAction_[act_]->GetIsAliveAtkCol();
+}
 
 const Quaternion ActionController::GetPlayerRotY(void)
 {

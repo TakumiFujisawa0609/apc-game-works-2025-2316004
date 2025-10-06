@@ -6,6 +6,7 @@ class PauseScene;
 class CharacterBase;
 class Player;
 class Enemy;
+class Stage;
 class CardSystem;
 class GameScene : public SceneBase
 {
@@ -27,6 +28,9 @@ public:
 private:
 
 	int frame_;
+
+	//ステージ
+	std::unique_ptr<Stage>stage_;
 
 	//ポーズ画面
 	std::shared_ptr<PauseScene> pauseScene_;

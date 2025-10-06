@@ -19,10 +19,11 @@
 //#include"../../Object/Common/Geometry/Model.h"
 //#include"../../Object/Common/EffectController.h"
 #include"../../Common/Geometry/Capsule.h"
+#include"../../Common/Geometry/Line.h"
 #include"../Object/Card/CardDeck.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
-//#include"./PlayerOnHit.h"
+#include"./PlayerOnHit.h"
 #include "./PlayerLogic.h"
 
 
@@ -100,9 +101,16 @@ void Player::Init(void)
 	trans_.pos={ posX,0.0f,0.0f };
 	trans_.localPos = { 0.0f,-Player::RADIUS,0.0f };
 
-	//const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosTop, const VECTOR _localPosDown, const float _radius
+	tag_ = Collider::TAG::PLAYER1;
 
-	cap_ = std::make_unique<Capsule>(trans_.pos,trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN,CAP_RADIUS);
+	//カプセル
+	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
+	MakeCollider({ tag_ }, std::move(geo));
+	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
+	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
+	MakeCollider({ tag_ }, std::move(geo));
+
+	onHit_ = std::make_unique<PlayerOnHit>(movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
 
 	//プレイヤー状態
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
@@ -133,8 +141,17 @@ void Player::Update(void)
 	//回転の同期
 	trans_.quaRot = action_->GetPlayerRotY();
 	
-	trans_.pos = VAdd(trans_.pos, action_->GetMovePow());
+	if (action_->GetIsAtkColAlive())
+	{
+		MakeAttackCol(tag_);
+	}
+	else if()
+	{
+		DeleteCollider(ATK_COL_NO);
+	}
 
+	//trans_.pos = VAdd(trans_.pos, action_->GetMovePow());
+	UpdatePost();
 	trans_.Update();
 }
 
@@ -154,7 +171,7 @@ void Player::Draw(void)
 }
 void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
-
+	onHit_->OnHitUpdate(_hitCol);
 }
 #ifdef DEBUG_ON
 void Player::DrawDebug(void)
@@ -163,7 +180,26 @@ void Player::DrawDebug(void)
 	const int HIGH = 10;
 	const int WIDTH = 200;
 	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
-	cap_->Draw();
+	for (auto& colParam : colParam_)
+	{
+		colParam.geometry_->Draw();
+	}
+
+
+	// フレームの取得
+	int frmNo = MV1SearchFrame(trans_.modelId, L"Maria_sword");
+	if (frmNo == -1) {
+		// エラー処理またはログ出力
+		return;
+	}
+
+
+
+	// 手の位置とグローバルマトリクスを取得
+	const auto& posFream = MV1GetFramePosition(trans_.modelId, frmNo);
+	
+	DrawSphere3D(posFream, 10, 10, 0xffffff, 0xffffff, false);
+
 }
 
 #endif // DEBUG_ON

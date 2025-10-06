@@ -35,6 +35,34 @@ void ObjectBase::MakeCollider(const std::set<Collider::TAG> _tag, std::unique_pt
 	colParam_.push_back(std::move(colParam));
 }
 
+void ObjectBase::MakeCol(const Collider::TAG _chataTag, const Collider::TAG _tag)
+{
+	//事前に配列のサイズを取得する
+	auto ParamSize = colParam_.size();
+
+	for (int i = 0; i < ParamSize; i++)
+	{
+		auto tags = colParam_[i].collider_->GetTags();
+		auto tagSize = colParam_[i].collider_->GetTags().size();
+		for (int j = 0; j < tagSize; j++)
+		{
+			auto tagSize = colParam_[i].collider_->GetTags().size();
+			//i,jの値が最後まで行ったとき
+			if (i == ParamSize - 1 && j == tagSize - 1)
+			{
+				//コライダのパンチがなかったら生成する
+				//if (tags[j] != _tag)
+				//{
+				//	//プレイヤーの手(パンチの当たり判定)
+				//	std::unique_ptr<Sphere>handSphereGeo = std::make_unique<Sphere>(action_->GetPunchPos(), PUNCH_RADIUS);
+				//	MakeCollider({ tag_,Collider::TAG::PUNCH }, std::move(handSphereGeo));
+				//	return;
+				//}
+			}
+		}
+	}
+}
+
 void ObjectBase::DeleteCollider(const int _arrayNum)
 {
 	//配列番号-1

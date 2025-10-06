@@ -12,7 +12,8 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	scnMng_(SceneManager::GetInstance()),
 	actionCntl_(_actCntl),
 	anim_(_actCntl.GetAnimation()),
-	isTurnable_(true)
+	isTurnable_(true),
+	isAliveAtkCol_(false)
 {
 	speed_ = 0.0f;
 	dir_ = {};

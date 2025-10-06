@@ -18,3 +18,7 @@ void CardBase::Execute(void)
 	//デバッグ用
 	int i = 0;
 }
+
+void CardBase::Draw(void)
+{
+}

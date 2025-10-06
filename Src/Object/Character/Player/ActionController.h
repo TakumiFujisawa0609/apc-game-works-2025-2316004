@@ -106,9 +106,20 @@ public:
 	/// </summary>
 	/// <param name="_animType"></param>
 	AnimationController& GetAnimation(void) { return anim_; }
+
+	/// <summary>
+	/// 攻撃当たり判定が生きているか
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
+	const bool GetIsAtkColAlive(void);
 	
 
-	//角度Yを取得
+	/// <summary>
+	/// 角度Yを取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
 	const Quaternion GetPlayerRotY(void);
 	/// <summary>
 	/// 再生しているリソースをすべて止める

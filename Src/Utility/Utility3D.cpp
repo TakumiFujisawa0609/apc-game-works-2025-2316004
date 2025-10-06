@@ -226,13 +226,15 @@ const VECTOR Utility3D::GetRotAxisToTarget(const VECTOR _pos, const VECTOR _targ
     return ret;
 }
 
-VECTOR Utility3D::AddPosRotate(VECTOR _followPos, Quaternion _followRot, VECTOR _localPos)
+const VECTOR Utility3D::AddPosRotate(const VECTOR _followPos, const Quaternion _followRot, const VECTOR _localPos)
 {
     //ç¿ïWâÒì]
     VECTOR addPos = _followRot.PosAxis(_localPos);
 
+    VECTOR ret = VAdd(_followPos, addPos);
+
     //ë´ÇµÇΩÇ‡ÇÃÇï‘Ç∑
-    return VAdd(_followPos, addPos);
+    return ret;
 }
 
 bool Utility3D::IsBeyondGoalPos(const VECTOR _startPos, const VECTOR _goalPos, const VECTOR _mydir)

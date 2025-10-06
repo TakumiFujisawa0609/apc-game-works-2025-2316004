@@ -37,7 +37,15 @@ void ResourceManager::Init(void)
 	resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
 	
 	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"PlayerReact.mv1");
-	resourcesMap_.emplace(SRC::REACT, std::move(res));
+	resourcesMap_.emplace(SRC::REACT, std::move(res));	
+
+
+
+
+	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_MDL + L"EmaBeni.mv1");
+	resourcesMap_.emplace(SRC::STAGE, std::move(res));
+
+
 
 	res = std::make_unique<Resource>(Resource::TYPE::IMGS, PATH_IMG + L"AttackCards.png");
 	resourcesMap_.emplace(SRC::ATTACK_CARD, std::move(res));

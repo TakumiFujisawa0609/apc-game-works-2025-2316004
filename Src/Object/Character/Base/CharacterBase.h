@@ -6,6 +6,7 @@ class ActionController;
 class CardDeck;
 class InputBase;
 class Capsule;
+class PlayerOnHit;
 
 class CharacterBase :public ObjectBase
 {
@@ -60,11 +61,46 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	virtual void Draw(void)override = 0;
+
+	/// <summary>
+	/// 当たった時の処理
+	/// </summary>
+	/// <param name="_hitCol"></param>
+	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override = 0;
+	
+	/// <summary>
+	/// 攻撃の当たり判定生成
+	/// </summary>
+	/// <param name="_charaTag">どのキャラクターか</param>
+	void MakeAttackCol(const Collider::TAG _charaTag);
+
+	/// <summary>
+	/// 移動後座標などの更新
+	/// </summary>
+	/// <param name=""></param>
+	void UpdatePost(void);
+
+	/// <summary>
+	/// キャラタグの取得
+	/// </summary>
+	const Collider::TAG GetCharaTag(void) { return tag_; }
+
+
+
 protected:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
-	static constexpr float CAP_RADIUS = 25.0f;
+	static constexpr float CAP_RADIUS = 25.0f;						//カプセル球の半径
+
+	//当たり判定
+	static constexpr int CUPSULE_COL_NO = 0;
+	static constexpr int MOVE_LINE_COL_NO = 1;
+	static constexpr int ATK_COL_NO = 2;
+	//移動量ラインオフセット
+	static constexpr float MOVE_LINE_Y_OFFSET = - 1.0f;
+	//移動量更新条件の移動ラインの長さ
+	static constexpr float MOVE_LINE_Y_CHECK_VALUE =  1.5f;
 
 	//入力
 	std::unique_ptr<LogicBase>logic_;
@@ -76,6 +112,12 @@ protected:
 	std::shared_ptr<CardDeck>deck_;
 	//当たり判定用のカプセル
 	std::unique_ptr<Capsule>cap_;
+	//当たった時の処理
+	std::unique_ptr<PlayerOnHit>onHit_;
+
+	//当たり判定の要素
+	VECTOR movedPos_;		//移動後座標
+	VECTOR moveDiff_;		//移動前座標
 private:
 
 };

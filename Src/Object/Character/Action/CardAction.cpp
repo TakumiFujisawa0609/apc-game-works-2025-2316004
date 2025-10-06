@@ -50,14 +50,13 @@ void CardAction::Init(void)
 
 void CardAction::Update()
 {
-	//cardActFunc_();
 	cardFuncs_.front()();
 }
 
 bool CardAction::IsAttackable(void)
 {
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetCardType();
-	int handCardTypeSize = deck_.GetCardType().size();
+	int handCardTypeSize = static_cast<int>(deck_.GetCardType().size());
 	return handCardTypeSize == 1 && cardTypes[0] == CardBase::CARD_TYPE::ATTACK;
 }
 
@@ -87,12 +86,12 @@ void CardAction::UpdateAttack(void)
 		anim_.GetAnimStep()<=ATTACK_COL_END_ANIM_CNT)
 	{
 		////çUåÇîªíËóLå¯
-		//CardSystem::GetInstance().SetAttackCol(true);
+		isAliveAtkCol_ = true;
 	}
 	else if (anim_.GetAnimStep() > ATTACK_COL_END_ANIM_CNT)
 	{
 		////çUåÇîªíËñ≥å¯
-		//CardSystem::GetInstance().SetAttackCol(false);
+		isAliveAtkCol_ = false;
 		if (IsAttackable()&&actionCntl_.GetInput().GetIsAct().isCardUse)
 		{
 			if (attackStageNum_ == static_cast<int>(ACT_STATE::ATTACK_ONE))

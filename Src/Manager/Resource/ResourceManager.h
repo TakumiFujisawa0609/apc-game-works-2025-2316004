@@ -19,6 +19,7 @@ public:
 		NONE,
 		TEST,
 		//モデル
+		STAGE,
 		PLAYER,
 		ENEMY_1,
 		//アニメーション

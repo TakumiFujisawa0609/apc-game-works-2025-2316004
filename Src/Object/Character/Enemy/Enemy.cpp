@@ -3,9 +3,11 @@
 #include"../../../Application.h"
 #include"../../Card/CardDeck.h"
 #include"../Player/ActionController.h"
+#include"../Player/PlayerOnHit.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
 #include"../../Common/Geometry/Capsule.h"
+#include"../../Common/Geometry/Line.h"
 #include"../Manager/Resource/ResourceManager.h"
 #include"../Manager/Generic/InputManager.h"
 
@@ -50,8 +52,16 @@ void Enemy::Init(void)
 
 	action_ = std::make_unique<ActionController>(*logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
 	action_->Init();
+	tag_ = Collider::TAG::ENEMY1;
 
-	cap_ = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
+	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
+	MakeCollider({ tag_ }, std::move(geo));
+
+	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
+	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
+	MakeCollider({ tag_ }, std::move(geo));
+
+	onHit_ = std::make_unique<PlayerOnHit>(movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
 
 	//Transformの設定
 	trans_.quaRot = Quaternion();
@@ -68,6 +78,11 @@ void Enemy::Update(void)
 	animationController_->Update();
 	logic_->Update();
 	action_->Update();
+	//回転の同期
+	trans_.quaRot = action_->GetPlayerRotY();
+
+	UpdatePost();
+	trans_.Update();
 }
 
 void Enemy::Draw(void)
@@ -81,10 +96,17 @@ void Enemy::Draw(void)
 #endif // _DEBUG
 
 }
+void Enemy::OnHit(const std::weak_ptr<Collider> _hitCol)
+{
+	onHit_->OnHitUpdate(_hitCol);
+}
 #ifdef _DEBUG
 void Enemy::DrawDebug(void)
 {
 	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
-	cap_->Draw();
+	for (auto& colParam : colParam_)
+	{
+		colParam.geometry_->Draw();
+	}
 }
 #endif // _DEBUG

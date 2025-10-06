@@ -83,7 +83,7 @@ public:
 /// <param name="_followPos">追従対象の座標</param>
 /// <param name="_followRot">追従対象の角度</param>
 /// <param name="_localPos">相対座標</param>
-	VECTOR AddPosRotate(VECTOR _followPos, Quaternion _followRot, VECTOR _localPos);
+	static const VECTOR AddPosRotate(const VECTOR _followPos, const Quaternion _followRot, const VECTOR _localPos);
 
 	/// <summary>
 	/// 目的の座標を超えたか

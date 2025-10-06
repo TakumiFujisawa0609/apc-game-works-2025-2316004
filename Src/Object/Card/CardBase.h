@@ -23,6 +23,7 @@ public:
 
 	virtual void Execute(void);
 	
+	virtual void Draw(void);
 	//ƒJ[ƒh‚ÌˆĞ—Í‚Ìæ“¾
 	inline const CARD_STATUS GetCardStatus(void)const { return status_; }
 

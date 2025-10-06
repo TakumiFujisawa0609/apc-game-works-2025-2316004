@@ -66,6 +66,11 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 
+	/// <summary>
+	/// オブジェクトに当たった時の処理
+	/// </summary>
+	void OnHit(const std::weak_ptr<Collider> _hitCol)override;
+
 private:
 	//定数
 	//敵番号(デッキで判定する用)

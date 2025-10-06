@@ -11,6 +11,7 @@
 #include"../Object/Card/CardSystem.h"
 #include"../Manager/Generic/Camera.h"
 #include"../Object/Character/Enemy/Enemy.h"	
+#include"../Object/Stage.h"	
 
 #include "PauseScene.h"
 
@@ -41,6 +42,8 @@ void GameScene::Load(void)
 
 	//PlayerManager::CreateInstance();
 	//PlayerManager::GetInstance().Load();
+	stage_ = std::make_unique<Stage>();
+	
 
 	player_ = std::make_unique<Player>();
 	player_->Load();
@@ -54,10 +57,12 @@ void GameScene::Load(void)
 
 void GameScene::Init(void)
 {
-	//PlayerManager::GetInstance().Init();
+	CollisionManager::CreateInstance();
+	CardSystem::CreateInstance();
+	stage_->Init();
 	player_->Init();
 	enemy_->Init();
-	CardSystem::CreateInstance();
+
 }
 
 void GameScene::NormalUpdate(void)
@@ -88,6 +93,7 @@ void GameScene::NormalDraw(void)
 
 	//ƒvƒŒƒCƒ„[‚Ì•`‰æ
 	//PlayerManager::GetInstance().Draw();
+	stage_->Draw();
 	player_->Draw();
 	enemy_->Draw();
 }

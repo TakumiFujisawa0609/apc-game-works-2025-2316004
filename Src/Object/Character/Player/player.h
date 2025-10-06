@@ -12,10 +12,11 @@ class AnimationController;
 class ActionController;
 class CardDeck;
 class InputController;
-class DateBank;
 class Camera;
-class Shadow;
-class Camera;
+class Geometry;
+class Cupsule;
+class Line;
+class PlayerOnHit;
 class ModelMaterial;
 class ModelRenderer;
 
@@ -157,7 +158,7 @@ public:
 	/// <summary>
 	/// 当たった時の処理
 	/// </summary>
-	/// <param name="_hitCol"></param>
+	/// <param name="_hitCol">相手のコライダ</param>
 	void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 
 
@@ -217,10 +218,9 @@ private:
 	std::map<PLAYER_STATE, std::function<void(void)>>changeStates_;
 	//状態更新
 	std::function<void(void)>stateUpdate_;
+	//カードの位置
+	Vector2 cardCenterPos_;
 
-	float finishDelay_;	//ゲーム終了時の待機時間
-	Vector2 cardCenterPos_;	//カードの位置
-	//プレイヤーナンバー(カードデッキで判定する用)
 
 #ifdef DEBUG_ON
 	void DrawDebug(void);

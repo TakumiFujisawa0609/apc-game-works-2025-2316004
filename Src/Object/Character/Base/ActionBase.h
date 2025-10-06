@@ -54,6 +54,13 @@ public:
 	/// <returns>方向転換可能かどうか</returns>
 	const bool GetIsTurnable(void) { return isTurnable_; }
 
+	/// <summary>
+	/// 攻撃当たり判定中かの取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns>true：攻撃当たり判定が生きている false:死んでいる</returns>
+	const bool GetIsAliveAtkCol(void) { return isAliveAtkCol_; }
+
 protected:
 	//移動
 //------------------------
@@ -75,9 +82,10 @@ protected:
 	ActionController& actionCntl_;
 	//アニメーション
 	AnimationController& anim_;
-
 	//方向転換可能かどうか
 	bool isTurnable_;
+	//攻撃の当たり判定中か
+	bool isAliveAtkCol_;
 
 private:
 	// 回転完了までの時間
