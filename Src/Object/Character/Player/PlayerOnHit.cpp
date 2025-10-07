@@ -23,7 +23,7 @@ PlayerOnHit::PlayerOnHit(VECTOR& _movedPos, VECTOR& _moveDiff, ActionController&
 	using TAG = Collider::TAG;
 	colUpdates_.emplace(TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
 	colUpdates_.emplace(TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
-	colUpdates_.emplace(TAG::SWORD, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
+	colUpdates_.emplace(TAG::SWORD, [this](const std::weak_ptr<Collider> _hitCol) {CollSword(_hitCol); });
 
 	////プレイヤー同士の当たり判定のタグをNoneに設定
 	//int playerNum = DateBank::GetInstance().GetPlayerNum();
@@ -88,7 +88,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 
 void PlayerOnHit::CollSword(const std::weak_ptr<Collider> _hitCol)
 {
-	int i = 0;
+	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
 #ifdef DEBUG_ON

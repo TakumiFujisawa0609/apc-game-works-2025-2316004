@@ -6,6 +6,7 @@
 #include"../Manager/Generic/InputManager.h"
 #include"../Object/Common/Transform.h"
 
+class CharacterBase;
 class Player;
 class PlayerInput;
 class AnimationController;
@@ -54,7 +55,7 @@ public:
 		SLIME,	//スライム
 	};
 
-	ActionController(LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
+	ActionController(CharacterBase& _charaObj,LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
 	~ActionController(void);
 
 	/// <summary>
@@ -141,7 +142,7 @@ private:
 	static constexpr int PLAYER_NUM = 0;
 
 	// 回転完了までの時間
-	static constexpr float TIME_ROT = 0.1f;
+	static constexpr float TIME_ROT = 0.0f;
 
 	// シーンマネージャ参照
 	SceneManager& scnMng_;
@@ -153,7 +154,8 @@ private:
 	std::function<void(void)>actionUpdate_;
 	//カードデッキ
 	CardDeck& deck_;
-
+	//オブジェクト(当たり判定用)
+	CharacterBase& charaObj_;
 	//状態
 	ACTION_TYPE act_;
 	//パッド番号

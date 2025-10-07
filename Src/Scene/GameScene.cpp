@@ -51,7 +51,7 @@ void GameScene::Load(void)
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
 	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform());
 
-	enemy_ = std::make_unique<Enemy>();
+	enemy_ = std::make_unique<Enemy>(*player_);
 	enemy_->Load();
 }
 

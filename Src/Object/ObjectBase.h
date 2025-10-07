@@ -69,8 +69,14 @@ protected:
 	/// <param name="_notHitTags">衝突させないタグ</param>
 	void MakeCollider(const std::set<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::set<Collider::TAG> _notHitTags = {});
 
+	/// <summary>
+	/// 特定のオブジェクトがあるかどうかを判定する
+	/// </summary>
+	/// <param name="_chataTag">自身のタグ</param>
+	/// <param name="_tag">作りたいタグ</param>
+	/// <param name="_geo">作りたい形状</param>
+	const bool IsAliveCollider(const Collider::TAG _chataTag, const Collider::TAG _tag);
 
-	void MakeCol(const Collider::TAG _chataTag, const Collider::TAG _tag);
 
 	//特定の配列番号の当たり判定の削除
 	void DeleteCollider(const int _arrayNum);

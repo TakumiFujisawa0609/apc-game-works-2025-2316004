@@ -161,6 +161,17 @@ public:
 	/// <param name="_hitCol">相手のコライダ</param>
 	void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 
+	/// <summary>
+	/// 入力方向に応じて方向を決める
+	/// </summary>
+	/// <param name=""></param>
+	void MoveDirFronInput(void)override;
+	/// <summary>
+	/// ゴール角度をセット
+	/// </summary>
+	/// <param name="_deg"></param>
+	void SetGoalRotate(const double _deg);
+
 
 private:
 
@@ -186,7 +197,7 @@ private:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
-	static constexpr float CAP_RADIUS = 25.0f;						//半径
+	//static constexpr float CAP_RADIUS = 25.0f;						//半径
 
 
 	//***********************************

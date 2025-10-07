@@ -6,6 +6,7 @@ class ActionController;
 class CardDeck;
 class InputBase;
 class Capsule;
+class LogicBase;
 class PlayerOnHit;
 
 class CharacterBase :public ObjectBase
@@ -72,7 +73,14 @@ public:
 	/// 攻撃の当たり判定生成
 	/// </summary>
 	/// <param name="_charaTag">どのキャラクターか</param>
-	void MakeAttackCol(const Collider::TAG _charaTag);
+	void MakeAttackCol(const Collider::TAG _charaTag,VECTOR& _atkPos);
+
+	/// <summary>
+	/// 攻撃の当たり判定削除
+	/// </summary>
+	/// <param name="_charaTag"></param>
+	/// <param name="_atkPos"></param>
+	void DeleteAttackCol(const Collider::TAG _charaTag);
 
 	/// <summary>
 	/// 移動後座標などの更新
@@ -85,13 +93,25 @@ public:
 	/// </summary>
 	const Collider::TAG GetCharaTag(void) { return tag_; }
 
+	/// <summary>
+	/// 入力方向に応じて方向を決める
+	/// </summary>
+	/// <param name=""></param>
+	virtual void MoveDirFronInput(void);
+	/// <summary>
+	/// ゴール角度をセット
+	/// </summary>
+	/// <param name="_deg"></param>
+	virtual void SetGoalRotate(const double _deg);
+
 
 
 protected:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
-	static constexpr float CAP_RADIUS = 25.0f;						//カプセル球の半径
+	static constexpr float CAP_RADIUS = 20.0f;						//カプセル球の半径
+	static constexpr float ATK_SPHE_RADIUS = 120.0f;						//カプセル球の半径
 
 	//当たり判定
 	static constexpr int CUPSULE_COL_NO = 0;

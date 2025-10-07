@@ -24,8 +24,9 @@
 
 #include "ActionController.h"
 
-ActionController::ActionController(LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum) :
-	logic_(_input)
+ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum) :
+	charaObj_(_charaObj)
+	, logic_(_input)
 	, trans_(_trans)
 	, deck_(_deck)
 	, anim_(_anim)
@@ -37,6 +38,7 @@ ActionController::ActionController(LogicBase& _input, Transform& _trans, CardDec
 	, stepRotTime_(0.0f)
 	, speed_(0.0f)
 	, movePow_(Utility3D::VECTOR_ZERO)
+	, moveDir_(Utility3D::VECTOR_ZERO)
 	,dir_(Utility3D::VECTOR_ZERO)
 {
 	//ÉGÉtÉFÉNÉg
@@ -57,7 +59,7 @@ void ActionController::Init(void)
 	mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
 	mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
 	mainAction_[ACTION_TYPE::REACT] = std::make_unique<React>(*this);
-	mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<CardAction>(*this,deck_);
+	mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<CardAction>(charaObj_,*this,deck_);
 	mainAction_[act_]->Init();
 
 	//ÉJÅ[ÉhÉfÉbÉL
@@ -146,16 +148,19 @@ void ActionController::MoveDirFronInput(void)
 	VECTOR getDir = logic_.GetDir();
 	float deg = logic_.GetMoveDeg();
 
-	//ÉJÉÅÉâÇÃäpìxÇ«ì¸óÕäpìxÇ≈ÉvÉåÉCÉÑÅ[ÇÃï˚å¸ÇïœÇ¶ÇÈ
+	//ÉJÉÅÉâÇÃì¸óÕäpìxÇ≈ÉvÉåÉCÉÑÅ[ÇÃï˚å¸ÇïœÇ¶ÇÈ
 	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
 	dir_ = cameraRot.PosAxis(getDir);
 	dir_ = VNorm(dir_);
+	dir_ = getDir;
 
 	if (!Utility3D::EqualsVZero(movePow_)&&mainAction_[act_]->GetIsTurnable())
 	{
-		//ï‚äÆäpìxÇÃê›íË(ì¸óÕäpìxÇ‹Ç≈ï˚å¸ì]ä∑Ç∑ÇÈ)
-		SetGoalRotate(deg);
+		////ï‚äÆäpìxÇÃê›íË(ì¸óÕäpìxÇ‹Ç≈ï˚å¸ì]ä∑Ç∑ÇÈ)
+		//SetGoalRotate(deg);
 	}
+	//ï‚äÆäpìxÇÃê›íË(ì¸óÕäpìxÇ‹Ç≈ï˚å¸ì]ä∑Ç∑ÇÈ)
+	SetGoalRotate(deg);
 }
 
 void ActionController::Rotate(void)
@@ -164,6 +169,7 @@ void ActionController::Rotate(void)
 	// âÒì]ÇÃãÖñ ï‚ä‘
 	playerRotY_ = Quaternion::Slerp(
 		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
+	playerRotY_ = goalQuaRot_;
 }
 
 void ActionController::DirAndMovePowUpdate(void)
@@ -180,16 +186,17 @@ void ActionController::SetGoalRotate(const double _deg)
 	//ÉJÉÅÉâÇÃäpìxÇéÊìæ
 	VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
 	Quaternion axis = Quaternion::AngleAxis(
-		(double)cameraRot.y + UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
+		/*(double)cameraRot.y + */UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
 
 	//åªç›ê›íËÇ≥ÇÍÇƒÇ¢ÇÈâÒì]Ç∆ÇÃäpìxç∑ÇéÊÇÈ
 	double angleDiff = Quaternion::Angle(axis, goalQuaRot_);
 
-	constexpr double ANGLE_THRESHOLD = 0.1;
+	constexpr double ANGLE_THRESHOLD = 0.0;
 	// ÇµÇ´Ç¢íl
 	if (angleDiff > ANGLE_THRESHOLD)
 	{
 		stepRotTime_ = TIME_ROT;
 	}
+	
 	goalQuaRot_ = axis;
 }

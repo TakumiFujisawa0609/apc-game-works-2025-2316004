@@ -1,17 +1,20 @@
-#include"../Manager/Generic/SceneManager.h"
-#include"../Player/ActionController.h"
-#include"../../Common/AnimationController.h"
-#include"../../Card/CardDeck.h"
-#include"../../Card/CardBase.h"
-#include"../../Card/CardSystem.h"
-#include"../Base/CharacterBase.h"
-#include"../Base/LogicBase.h"
+#include "../Utility/Utility3D.h"
+#include "../Manager/Generic/SceneManager.h"
+#include "../Player/ActionController.h"
+#include "../../Common/AnimationController.h"
+#include "../../Card/CardDeck.h"
+#include "../../Card/CardBase.h"
+#include "../../Card/CardSystem.h"
+#include "../Base/CharacterBase.h"
+#include "../Base/LogicBase.h"
 #include "CardAction.h"
 
-CardAction::CardAction(ActionController& _actCntl, CardDeck& _deck):
+CardAction::CardAction(CharacterBase& _charaObj,ActionController& _actCntl, CardDeck& _deck):
 	ActionBase(_actCntl),
+	charaObj_(_charaObj),
 	deck_(_deck),
-	pushReloadCnt_()
+	pushReloadCnt_(),
+	atkPos_()
 {
 	isCardAct_ = false;
 	isTurnable_ = false;
@@ -85,13 +88,17 @@ void CardAction::UpdateAttack(void)
 	if(anim_.GetAnimStep()>=ATTACK_COL_START_ANIM_CNT&&
 		anim_.GetAnimStep()<=ATTACK_COL_END_ANIM_CNT)
 	{
-		////çUåÇîªíËóLå¯
+		//
+		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, { 0.0f,50.0f,100.0f });
+		//çUåÇîªíËóLå¯
 		isAliveAtkCol_ = true;
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), atkPos_);
+		
 	}
 	else if (anim_.GetAnimStep() > ATTACK_COL_END_ANIM_CNT)
 	{
 		////çUåÇîªíËñ≥å¯
-		isAliveAtkCol_ = false;
+		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
 		if (IsAttackable()&&actionCntl_.GetInput().GetIsAct().isCardUse)
 		{
 			if (attackStageNum_ == static_cast<int>(ACT_STATE::ATTACK_ONE))
@@ -111,6 +118,7 @@ void CardAction::UpdateAttack(void)
 			deck_.EraseHandCard();
 			cardFuncs_.pop();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+			charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
 			return;
 		}
 	}

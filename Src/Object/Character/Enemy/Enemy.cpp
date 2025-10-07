@@ -3,6 +3,10 @@
 #include"../../../Application.h"
 #include"../../Card/CardDeck.h"
 #include"../Player/ActionController.h"
+
+#include"../Player/Player.h"
+
+
 #include"../Player/PlayerOnHit.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
@@ -13,7 +17,8 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy(void)
+Enemy::Enemy(CharacterBase& _playerChara):
+	playerChara_(_playerChara)
 {
 }
 
@@ -25,7 +30,7 @@ void Enemy::Load(void)
 	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::ENEMY_1));
 	trans_.quaRot = Quaternion();
 	trans_.quaRotLocal =
-		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
+		Quaternion::Euler({ 0.0f,UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
 	//アニメーション
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
@@ -47,10 +52,10 @@ void Enemy::Init(void)
 		deck_->AddDrawPile(CARD_POWS[i]);
 	}
 	deck_->Init();
-	logic_ = std::make_unique<EnemyLogic>();
+	logic_ = std::make_unique<EnemyLogic>(playerChara_,trans_);
 	logic_->Init();
 
-	action_ = std::make_unique<ActionController>(*logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
+	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
 	action_->Init();
 	tag_ = Collider::TAG::ENEMY1;
 
@@ -79,9 +84,9 @@ void Enemy::Update(void)
 	logic_->Update();
 	action_->Update();
 	//回転の同期
-	trans_.quaRot = action_->GetPlayerRotY();
-
-	UpdatePost();
+	//trans_.quaRot = action_->GetPlayerRotY();
+	trans_.quaRot = Quaternion::Euler(Utility3D::GetRotAxisToTarget(trans_.pos, playerChara_.GetTransform().pos, Utility3D::AXIS_Y));
+	//UpdatePost();
 	trans_.Update();
 }
 
@@ -104,6 +109,8 @@ void Enemy::OnHit(const std::weak_ptr<Collider> _hitCol)
 void Enemy::DrawDebug(void)
 {
 	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	VECTOR euler = trans_.quaRot.ToEuler();
+	DrawFormatString(100, 100, 0xffffff, L"(%f,%f,%f)", euler.x, logic_->GetMoveDeg(), euler.z);
 	for (auto& colParam : colParam_)
 	{
 		colParam.geometry_->Draw();

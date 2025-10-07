@@ -23,7 +23,7 @@ public:
         NUM,
 	};
 
-    CardAction(ActionController& _actCntl,CardDeck& _deck);
+    CardAction(CharacterBase& _charaObj,ActionController& _actCntl,CardDeck& _deck);
     ~CardAction(void)override;
     void Init(void) override;
     void Update() override;
@@ -48,6 +48,12 @@ public:
     std::map<ACT_STATE, std::function<void(void)>>changeAction_;
     //アタックのQueue配列
     std::queue<std::function<void(void)>>cardFuncs_;
+
+    //オブジェクト
+    CharacterBase& charaObj_;
+
+    //攻撃座標
+    VECTOR atkPos_;
 
     //攻撃の当たり判定始まりカウント
     float attackStartAnimcnt_;

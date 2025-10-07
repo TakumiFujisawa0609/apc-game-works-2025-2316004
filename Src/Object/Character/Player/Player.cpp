@@ -19,6 +19,7 @@
 //#include"../../Object/Common/Geometry/Model.h"
 //#include"../../Object/Common/EffectController.h"
 #include"../../Common/Geometry/Capsule.h"
+#include"../../Common/Geometry/Sphere.h"
 #include"../../Common/Geometry/Line.h"
 #include"../Object/Card/CardDeck.h"
 #include "../../../Object/Common/AnimationController.h"
@@ -85,7 +86,7 @@ void Player::Load(void)
 	deck_->Init();
 
 	//アクション
-	action_ = std::make_unique<ActionController>(*logic_,trans_,*deck_,*animationController_,padNum_);
+	action_ = std::make_unique<ActionController>(*this,*logic_,trans_,*deck_,*animationController_,padNum_);
 	action_->Load();
 }
 
@@ -140,17 +141,7 @@ void Player::Update(void)
 
 	//回転の同期
 	trans_.quaRot = action_->GetPlayerRotY();
-	
-	if (action_->GetIsAtkColAlive())
-	{
-		MakeAttackCol(tag_);
-	}
-	else if()
-	{
-		DeleteCollider(ATK_COL_NO);
-	}
 
-	//trans_.pos = VAdd(trans_.pos, action_->GetMovePow());
 	UpdatePost();
 	trans_.Update();
 }
@@ -173,6 +164,13 @@ void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
 	onHit_->OnHitUpdate(_hitCol);
 }
+void Player::MoveDirFronInput(void)
+{
+
+}
+void Player::SetGoalRotate(const double _deg)
+{
+}
 #ifdef DEBUG_ON
 void Player::DrawDebug(void)
 {
@@ -186,19 +184,19 @@ void Player::DrawDebug(void)
 	}
 
 
-	// フレームの取得
-	int frmNo = MV1SearchFrame(trans_.modelId, L"Maria_sword");
-	if (frmNo == -1) {
-		// エラー処理またはログ出力
-		return;
-	}
+	//// フレームの取得
+	//int frmNo = MV1SearchFrame(trans_.modelId, L"Maria_sword");
+	//if (frmNo == -1) {
+	//	// エラー処理またはログ出力
+	//	return;
+	//}
 
 
 
-	// 手の位置とグローバルマトリクスを取得
-	const auto& posFream = MV1GetFramePosition(trans_.modelId, frmNo);
-	
-	DrawSphere3D(posFream, 10, 10, 0xffffff, 0xffffff, false);
+	//// 手の位置とグローバルマトリクスを取得
+	//const auto& posFream = MV1GetFramePosition(trans_.modelId, frmNo);
+	VECTOR atkPos = Utility3D::AddPosRotate(trans_.pos, trans_.quaRot, { 0.0f,100.0f,40.0f });
+	DrawSphere3D(atkPos, 10, 10, 0xffffff, 0xffffff, false);
 
 }
 

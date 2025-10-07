@@ -20,12 +20,18 @@ CharacterBase::~CharacterBase(void)
 {
 }
 
-void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag)
+void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, VECTOR& _atkPos)
 {
-	VECTOR localPos = {0.0f,30.0f,0.0f};
-	VECTOR atkPos = Utility3D::AddPosRotate(trans_.pos, trans_.quaRot, localPos);
-	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(atkPos, CAP_RADIUS);
+	//ìñÇΩÇËîªíËÇ™ë∂ç›ÇµÇΩÇÁçÌèúÇ∑ÇÈ
+	if (IsAliveCollider(_charaTag, Collider::TAG::SWORD))return;
+	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, ATK_SPHE_RADIUS);
 	MakeCollider({ _charaTag,Collider::TAG::SWORD }, std::move(sphere));
+}
+
+void CharacterBase::DeleteAttackCol(const Collider::TAG _charaTag)
+{
+	if (!IsAliveCollider(_charaTag, Collider::TAG::SWORD))return;
+	DeleteCollider(ATK_COL_NO);
 }
 
 void CharacterBase::UpdatePost(void)
@@ -48,4 +54,12 @@ void CharacterBase::UpdatePost(void)
 	moveDiff_ = trans_.pos;
 	//à⁄ìÆ
 	trans_.pos = movedPos_;
+}
+
+void CharacterBase::MoveDirFronInput(void)
+{
+}
+
+void CharacterBase::SetGoalRotate(const double _deg)
+{
 }

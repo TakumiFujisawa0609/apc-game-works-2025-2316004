@@ -174,12 +174,12 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 				return false;
 			}
 
-			//設定されたタグか
-			if (!JudgeIsColTag(tag1, tag2))
-			{
-				//設定されたタグではなかった
-				return false;
-			}
+			////設定されたタグか
+			//if (!JudgeIsColTag(tag1, tag2))
+			//{
+			//	//設定されたタグではなかった
+			//	return false;
+			//}
 		}
 	}
 

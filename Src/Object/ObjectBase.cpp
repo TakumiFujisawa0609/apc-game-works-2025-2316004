@@ -35,7 +35,7 @@ void ObjectBase::MakeCollider(const std::set<Collider::TAG> _tag, std::unique_pt
 	colParam_.push_back(std::move(colParam));
 }
 
-void ObjectBase::MakeCol(const Collider::TAG _chataTag, const Collider::TAG _tag)
+const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Collider::TAG _tag)
 {
 	//事前に配列のサイズを取得する
 	auto ParamSize = colParam_.size();
@@ -43,36 +43,30 @@ void ObjectBase::MakeCol(const Collider::TAG _chataTag, const Collider::TAG _tag
 	for (int i = 0; i < ParamSize; i++)
 	{
 		auto tags = colParam_[i].collider_->GetTags();
-		auto tagSize = colParam_[i].collider_->GetTags().size();
-		for (int j = 0; j < tagSize; j++)
+		//特定のタグを見つけるまでイテレータを回す
+		//発見できなかった場合、最後まで回る
+		auto it = tags.find(_chataTag);
+		if (it != tags.end())
 		{
-			auto tagSize = colParam_[i].collider_->GetTags().size();
-			//i,jの値が最後まで行ったとき
-			if (i == ParamSize - 1 && j == tagSize - 1)
+			//キャラタグを発見したら、さらに攻撃の当たり判定を探す
+			auto it2 = tags.find(_tag);
+			if (it2 != tags.end())
 			{
-				//コライダのパンチがなかったら生成する
-				//if (tags[j] != _tag)
-				//{
-				//	//プレイヤーの手(パンチの当たり判定)
-				//	std::unique_ptr<Sphere>handSphereGeo = std::make_unique<Sphere>(action_->GetPunchPos(), PUNCH_RADIUS);
-				//	MakeCollider({ tag_,Collider::TAG::PUNCH }, std::move(handSphereGeo));
-				//	return;
-				//}
+				return true;
 			}
 		}
 	}
+	return false;
 }
+
 
 void ObjectBase::DeleteCollider(const int _arrayNum)
 {
-	//配列番号-1
-	int arrayNum = _arrayNum - 1;
-
 	//コライダの削除
 	colParam_[_arrayNum].collider_->Kill();
 
 	//配列の削除
-	colParam_.erase(colParam_.begin() + arrayNum);
+	std::erase_if(colParam_, [](ColParam& colParam) {return colParam.collider_->IsDead(); });
 }
 
 void ObjectBase::DeleteAllCollider(void)

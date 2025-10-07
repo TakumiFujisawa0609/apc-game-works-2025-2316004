@@ -59,7 +59,7 @@ public:
 
 	const std::shared_ptr<CardDeck> GetHand(void)const { return deck_; }
 
-	Enemy(void);
+	Enemy(CharacterBase& _playerChara);
 	~Enemy(void)override;
 	void Load(void) override;
 	void Init(void) override;
@@ -76,6 +76,7 @@ private:
 	//敵番号(デッキで判定する用)
 	static constexpr int ENEMY_NUM = 1;
 	Vector2 cardCenterPos_; //カードの中心座標
+	CharacterBase& playerChara_;
 
 #ifdef _DEBUG
 	void DrawDebug(void);
