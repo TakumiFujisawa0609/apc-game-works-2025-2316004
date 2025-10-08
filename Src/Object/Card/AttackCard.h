@@ -9,7 +9,7 @@ public:
 	//デストラクタ
 	~AttackCard(void)override;
 
-	void Execute(void)override;
+	/*void Execute(void)override;*/
 private:
 
 };

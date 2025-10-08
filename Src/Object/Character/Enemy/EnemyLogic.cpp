@@ -1,10 +1,12 @@
 #include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/SceneManager.h"
 #include "../Utility/Utility3D.h"
 #include "../Object/Character/Base/CharacterBase.h"
 #include "EnemyLogic.h"
 
 EnemyLogic::EnemyLogic(CharacterBase& _playerChara, Transform& _myTrans):
 	playerChara_(_playerChara)
+	,scnMng_(SceneManager::GetInstance())
 	,myTrans_(_myTrans)
 {
 }
@@ -22,16 +24,23 @@ void EnemyLogic::Update(void)
 {
 	//すべての行動フラグをリセット
 	isAct_ = {};
-	//moveDir_ = Utility3D::VECTOR_ZERO;
+	moveDir_ = Utility3D::VECTOR_ZERO;
 	VECTOR playerPos = playerChara_.GetTransform().pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos,playerPos);
 	float dis = Utility3D::Distance(myTrans_.pos, playerPos);
 	//moveDir_ = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
-	moveDir_ = Utility3D::GetMoveVec(playerPos, myTrans_.pos);
+
 	moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
+
+	cardCoolCnt_ -= scnMng_.GetDeltaTime();
 	if (dis > 200.0f)
 	{
 		moveDir_ = targetVec;
+	}
+	else if (cardCoolCnt_ < 0.0f)
+	{
+		//isAct_.isCardUse = true;
+		cardCoolCnt_ = CARD_COOL_TIME;
 	}
 
 

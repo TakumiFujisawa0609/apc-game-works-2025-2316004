@@ -18,65 +18,73 @@ public:
 	CardDeck(Vector2& _centerPos,int _playerNum);
 	~CardDeck(void);
 
-	//初期化
+	/// @brief ロード
+	/// @param  
+	void Load(void);
+
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
-	//カード使用
+
+	/// @brief カード使用
+	/// @param  
 	void CardUseUpdate(void);
-	//カードチャージ
+
+	/// @brief カードチャージ
+	/// @param  
 	void CardCharge(void);
-	//使用中のカードを消す
+
+	/// @brief 使用中のカードを消す
+	/// @param  
 	void EraseHandCard(void);
-	//カード選択
+
+	/// @brief カード選択
+	/// @param  
 	void CardMoveLeft(void);
 	void CardMoveRight(void);
+
+	/// @brief 更新
+	/// @param  
 	void Update(void);
-	//描画
+
+	/// @brief 描画
+	/// @param  
 	void Draw(void);
 	void Release(void);
 
-	/// <summary>
-	/// 山札にカード追加
-	/// </summary>
-	/// <param name="_pow">追加したいカードの強さ</param>
+	
+	/// @brief 山札にカード追加
+	/// @param _status 追加したいカードの強さ
 	void AddDrawPile(const CardBase::CARD_STATUS _status);
 
-	/// <summary>
-	/// カードを使用札に移動
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief カードを使用札に移動
+	/// @param  
 	void MoveHandToCharge(void);
 	//手札のカード取得
 	//std::vector<std::weak_ptr<CardBase>> GetHand(void);
 
-	/// <summary>
-	/// デッキからカードを引く
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief デッキからカードを引く
+	/// @param  
 	void DrawCardFromDeck(void);
-
-
-	/// <summary>
-	/// カード失敗フラグ
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>true:負け　false:勝ち</returns>
+	
+	/// @brief カード失敗フラグ
+	/// @param  
+	/// @return true:負け　false:勝ち
 	bool IsCardFailure(void);
-
-	/// <summary>
-	/// カードの種類(アタックカードか魔法カードか)の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>カードの種類</returns>
+	
+	/// @brief カードの種類(アタックカードか魔法カードか)の取得
+	/// @param  
+	/// @return カードの種類
 	std::vector<CardBase::CARD_TYPE> GetCardType(void);
 
-	/// <summary>
-	/// 現在選択中のカードがリロードカードかを返す
-	/// </summary>
+	
+	/// @brief 現在選択中のカードがリロードカードかを返す
+	/// @param  
+	/// @return 現在選択中のカード
 	const CardBase::CARD_TYPE IsReloadCard(void);
 
-	/// <summary>
-	///リロードする
-	/// </summary>
+	/// @brief リロードする
+	/// @param  
 	void Reload(void);
 private:
 	//メンバ関数

@@ -29,43 +29,39 @@ public:
 		P_ATTACK_2,
 		P_ATTACK_3,
 		REACT,
-		//攻撃カード
-		ATTACK_CARD,
+		//画像
+		NUMBERS_IMG,	//カード番号
+		ATK_CARD_IMG,	//番号なしアタックカード
 	};
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
-
-	/// <summary>
-	/// 解放(シーン切替時に一旦解放)
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 解放(シーン切替時に一旦解放)
+	/// @param  
 	void SceneChangeRelease(void);
-
-	/// <summary>
-	/// リソースの完全解放
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief リソースの完全解放
+	/// @param  
 	void Release(void);
-
-	/// <summary>
-	/// リソースのロード
-	/// </summary>
-	/// <param name="src">読み込むリソース</param>
-	/// <returns>リソース</returns>
+	
+	/// @brief リソースのロード
+	/// @param src 読み込むリソース
+	/// @return リソース
 	const Resource& Load(SRC src);
-
-	/// <summary>
-	/// リソースの複製ロード(モデル用)
-	/// </summary>
-	/// <param name="src">複製したいリソース</param>
-	/// <returns>複製したリソース</returns>
+	
+	/// @brief リソースの複製ロード(モデル用)
+	/// @param src 複製したいリソース
+	/// @return 複製したリソース
 	int LoadModelDuplicate(SRC src);
 
 private:
+	//カード番号画像
+	static constexpr int CARD_NO_X = 5;	//横の数
+	static constexpr int CARD_NO_Y = 2;	//縦の数
+	static constexpr int CARD_NO_SIZE_X = 180;
+	static constexpr int CARD_NO_SIZE_Y = 222;
 
 	// リソース管理の対象
 	std::map<SRC, std::unique_ptr<Resource>> resourcesMap_;

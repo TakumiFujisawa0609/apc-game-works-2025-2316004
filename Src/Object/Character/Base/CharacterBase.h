@@ -12,8 +12,13 @@ class PlayerOnHit;
 class CharacterBase :public ObjectBase
 {
 public:
+
 	//アニメーション速度
 	static constexpr float ANIM_SPEED = 40.0f;
+
+	// 回転完了までの時間
+	static constexpr float TIME_ROT = 0.1f;
+
 	// アニメーション種別
 	enum class ANIM_TYPE
 	{
@@ -24,6 +29,15 @@ public:
 		ATTACK_1,
 		ATTACK_2,
 		ATTACK_3,
+	};
+
+	struct ROTATION
+	{
+		//回転
+		Quaternion playerRotY_;		//プレイヤーY角度
+		Quaternion goalQuaRot_;		//目的の回転
+		float stepRotTime_;			//補完時間
+		VECTOR dir_;			//方向
 	};
 
 	/// <summary>
@@ -91,7 +105,7 @@ public:
 	/// <summary>
 	/// キャラタグの取得
 	/// </summary>
-	const Collider::TAG GetCharaTag(void) { return tag_; }
+	const Collider::TAG GetCharaTag(void)const { return tag_; }
 
 	/// <summary>
 	/// 入力方向に応じて方向を決める
@@ -104,7 +118,18 @@ public:
 	/// <param name="_deg"></param>
 	virtual void SetGoalRotate(const double _deg);
 
+	/// <summary>
+	/// 方向関連の変数の取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
+	const ROTATION GetRotation(void)const { return charaRot_; }
 
+	/// <summary>
+	/// 角度更新
+	/// </summary>
+	/// <param name=""></param>
+	void Rotate(void);
 
 protected:
 	//カプセル関連
@@ -138,6 +163,12 @@ protected:
 	//当たり判定の要素
 	VECTOR movedPos_;		//移動後座標
 	VECTOR moveDiff_;		//移動前座標
+	
+	//角度関連
+	ROTATION charaRot_;
+
+
+
 private:
 
 };

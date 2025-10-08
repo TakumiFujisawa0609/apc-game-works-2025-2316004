@@ -28,6 +28,11 @@ CardDeck::~CardDeck(void)
 	initDeck_.clear();
 }
 
+void CardDeck::Load(void)
+{
+	drawPile_[0]->Load();
+}
+
 void CardDeck::Init(void)
 {
 	//カードの最後の配列にリロードカードを入れる(リロード用のカードで、勝敗はない)
@@ -107,6 +112,9 @@ void CardDeck::Draw(void)
 	DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow.pow_);
 	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
 	DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
+
+	drawPile_[0]->Draw();
+
 
 	//手札の表示
 	int handSize = hand_.size();

@@ -1,12 +1,13 @@
+#include "../Manager/Generic/SceneManager.h"
 //スマートポインタをデストラクタで解放するためのインクルード
-#include"../Object/Common/AnimationController.h"
-#include"../Object/Character/Player/ActionController.h"
-#include"../Object/Character/Base/LogicBase.h"
-#include"../Object/Character/Player/PlayerOnHit.h"
-#include"../../../Utility/Utility3D.h"
-#include"../../Common/Geometry/Capsule.h"
-#include"../../Common/Geometry/Sphere.h"
-#include"../../Common/Geometry/Line.h"
+#include "../Object/Common/AnimationController.h"
+#include "../Object/Character/Player/ActionController.h"
+#include "../Object/Character/Base/LogicBase.h"
+#include "../Object/Character/Player/PlayerOnHit.h"
+#include "../../../Utility/Utility3D.h"
+#include "../../Common/Geometry/Capsule.h"
+#include "../../Common/Geometry/Sphere.h"
+#include "../../Common/Geometry/Line.h"
 
 #include "CharacterBase.h"
 
@@ -62,4 +63,13 @@ void CharacterBase::MoveDirFronInput(void)
 
 void CharacterBase::SetGoalRotate(const double _deg)
 {
+}
+
+void CharacterBase::Rotate(void)
+{
+	charaRot_.stepRotTime_ -= scnMng_.GetDeltaTime();
+	// 回転の球面補間
+	charaRot_.playerRotY_ = Quaternion::Slerp(
+		charaRot_.playerRotY_, charaRot_.goalQuaRot_, (TIME_ROT - charaRot_.stepRotTime_) / TIME_ROT);
+	//charaRot_.playerRotY_ = charaRot_.goalQuaRot_;
 }

@@ -47,8 +47,13 @@ void ResourceManager::Init(void)
 
 
 
-	res = std::make_unique<Resource>(Resource::TYPE::IMGS, PATH_IMG + L"AttackCards.png");
-	resourcesMap_.emplace(SRC::ATTACK_CARD, std::move(res));
+	res = std::make_unique<Resource>(Resource::TYPE::IMGS, PATH_IMG + L"CardNumber.png",CARD_NO_X, CARD_NO_Y,CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
+	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
+
+	res = std::make_unique<Resource>(Resource::TYPE::IMG, PATH_IMG + L"AttackCard.png");
+	resourcesMap_.emplace(SRC::ATK_CARD_IMG, std::move(res));
+
+
 
 }
 

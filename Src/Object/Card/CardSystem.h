@@ -42,21 +42,18 @@ public:
 		RELOAD			//リロード
 	};
 
-	//ストックカードのカードを比較する
+	/// @brief ストックカードのカードを比較する
+	/// @param  
 	void CompareCards(void);
-
-	/// <summary>
-	/// カードを場に出す
-	/// </summary>
-	/// <param name="_pow">カードの強さ</param>
-	/// <param name="_playerNum">プレイヤー番号(誰の結果にセットするか)</param>
+	
+	/// @brief カードを場に出す
+	/// @param _pow カードの強さ
+	/// @param _playerNum プレイヤー番号(誰の結果にセットするか)
 	void PutCard(const int _pow,const int _playerNum);
-
-	/// <summary>
-	/// カードを場に出せるかの取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>true:場に出せる false:場に出せない</returns>
+	
+	/// @brief カードを場に出せるかの取得
+	/// @param  
+	/// @return true:場に出せる false:場に出せない
 	const bool GetCanPut(void) const { return canPut_; }
 
 	/// <summary>
@@ -64,18 +61,18 @@ public:
 	/// </summary>
 	/// <param name="_cardPlayerNo"></param>
 	/// <returns>カード勝負プレイヤーの番号</returns>
+	
+	/// @brief 勝敗結果の取得
+	/// @param _cardPlayerNo カード勝負プレイヤーの番号
+	/// @return 勝敗結果
 	const BATTLE_RESULT GetResult(const int _cardPlayerNo)const;
-
-	/// <summary>
-	/// 勝敗結果に使用するカードの強さの初期化
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 勝敗結果に使用するカードの強さの初期化
+	/// @param _playerNo 
 	void InitPutCardPow(const int _playerNo);
-
-	/// <summary>
-	/// 先出し後出しの判定
-	/// </summary>
-	/// <param name="_playerNo"></param>
+	
+	/// @brief 先出し後出しの判定
+	/// @param _playerNo 
 	void JudgeIsFirstAtk(const int _playerNo);
 private:
 

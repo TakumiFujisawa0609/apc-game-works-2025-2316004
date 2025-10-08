@@ -81,7 +81,7 @@ void ActionController::Update(void)
 	mainAction_[act_]->Update();
 
 	MoveDirFronInput();
-	Rotate();
+	charaObj_.Rotate();
 	DirAndMovePowUpdate();
 
 	CardChargeUpdate();
@@ -144,23 +144,16 @@ void ActionController::StopResource(void)
 
 void ActionController::MoveDirFronInput(void)
 {
-	//ƒvƒŒƒCƒ„[“ü—ÍƒNƒ‰ƒX‚©‚çŠp“x‚ðŽæ“¾
-	VECTOR getDir = logic_.GetDir();
+	charaObj_.MoveDirFronInput();
+
 	float deg = logic_.GetMoveDeg();
-
-	//ƒJƒƒ‰‚Ì“ü—ÍŠp“x‚ÅƒvƒŒƒCƒ„[‚Ì•ûŒü‚ð•Ï‚¦‚é
-	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
-	dir_ = cameraRot.PosAxis(getDir);
-	dir_ = VNorm(dir_);
-	dir_ = getDir;
-
 	if (!Utility3D::EqualsVZero(movePow_)&&mainAction_[act_]->GetIsTurnable())
 	{
-		////•âŠ®Šp“x‚ÌÝ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
-		//SetGoalRotate(deg);
+		//•âŠ®Šp“x‚ÌÝ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
+		charaObj_.SetGoalRotate(deg);
 	}
-	//•âŠ®Šp“x‚ÌÝ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
-	SetGoalRotate(deg);
+	////•âŠ®Šp“x‚ÌÝ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
+	//SetGoalRotate(deg);
 }
 
 void ActionController::Rotate(void)
@@ -169,13 +162,13 @@ void ActionController::Rotate(void)
 	// ‰ñ“]‚Ì‹…–Ê•âŠÔ
 	playerRotY_ = Quaternion::Slerp(
 		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
-	playerRotY_ = goalQuaRot_;
 }
 
 void ActionController::DirAndMovePowUpdate(void)
 {
 	//•ûŒü‚ÌXV
-	moveDir_ = dir_;
+	//moveDir_ = charaObj_.GetRotation().dir_;
+	moveDir_ = logic_.GetDir();
 	float speed = mainAction_[act_]->GetSpeed();
 	//ˆÚ“®—Ê‚ÌXV
 	movePow_ = VScale(moveDir_, speed);
@@ -183,20 +176,20 @@ void ActionController::DirAndMovePowUpdate(void)
 
 void ActionController::SetGoalRotate(const double _deg)
 {
-	//ƒJƒƒ‰‚ÌŠp“x‚ðŽæ“¾
-	VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
-	Quaternion axis = Quaternion::AngleAxis(
-		/*(double)cameraRot.y + */UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
+	////ƒJƒƒ‰‚ÌŠp“x‚ðŽæ“¾
+	//VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
+	//Quaternion axis = Quaternion::AngleAxis(
+	//	/*(double)cameraRot.y + */UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
 
-	//Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚é‰ñ“]‚Æ‚ÌŠp“x·‚ðŽæ‚é
-	double angleDiff = Quaternion::Angle(axis, goalQuaRot_);
+	////Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚é‰ñ“]‚Æ‚ÌŠp“x·‚ðŽæ‚é
+	//double angleDiff = Quaternion::Angle(axis, goalQuaRot_);
 
-	constexpr double ANGLE_THRESHOLD = 0.0;
-	// ‚µ‚«‚¢’l
-	if (angleDiff > ANGLE_THRESHOLD)
-	{
-		stepRotTime_ = TIME_ROT;
-	}
-	
-	goalQuaRot_ = axis;
+	//constexpr double ANGLE_THRESHOLD = 0.0;
+	//// ‚µ‚«‚¢’l
+	//if (angleDiff > ANGLE_THRESHOLD)
+	//{
+	//	stepRotTime_ = TIME_ROT;
+	//}
+	//
+	//goalQuaRot_ = axis;
 }

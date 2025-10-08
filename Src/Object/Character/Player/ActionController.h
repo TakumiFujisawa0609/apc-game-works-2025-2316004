@@ -172,12 +172,12 @@ private:
 	float speed_;			// 移動スピード
 	VECTOR moveDir_;		// 移動方向
 	VECTOR movePow_;		// 移動量
-	VECTOR dir_;			//方向
 
 	//回転
 	Quaternion playerRotY_;		//プレイヤーY角度
 	Quaternion goalQuaRot_;		//目的の回転
 	float stepRotTime_;			//補完時間
+	VECTOR dir_;			//方向
 
 
 

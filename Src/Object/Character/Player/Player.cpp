@@ -83,6 +83,7 @@ void Player::Load(void)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
 	}
+	deck_->Load();
 	deck_->Init();
 
 	//アクション
@@ -140,7 +141,7 @@ void Player::Update(void)
 	stateUpdate_();
 
 	//回転の同期
-	trans_.quaRot = action_->GetPlayerRotY();
+	trans_.quaRot = charaRot_.playerRotY_;
 
 	UpdatePost();
 	trans_.Update();
@@ -166,10 +167,33 @@ void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 }
 void Player::MoveDirFronInput(void)
 {
+	//プレイヤー入力クラスから角度を取得
+	VECTOR getDir = logic_->GetDir();
+	//カメラの入力角度でプレイヤーの方向を変える
+	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
+	charaRot_.dir_ = cameraRot.PosAxis(getDir);
+	charaRot_.dir_ = VNorm(charaRot_.dir_);
+	charaRot_.dir_ = getDir;
 
 }
 void Player::SetGoalRotate(const double _deg)
 {
+	//カメラの角度を取得
+	VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
+	Quaternion axis = Quaternion::AngleAxis(
+		static_cast<double >(cameraRot.y) + UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
+
+	//現在設定されている回転との角度差を取る
+	double angleDiff = Quaternion::Angle(axis, charaRot_.goalQuaRot_);
+
+	constexpr double ANGLE_THRESHOLD = 0.1;
+	// しきい値
+	if (angleDiff > ANGLE_THRESHOLD)
+	{
+		charaRot_.stepRotTime_ = TIME_ROT;
+	}
+
+	charaRot_.goalQuaRot_ = axis;
 }
 #ifdef DEBUG_ON
 void Player::DrawDebug(void)

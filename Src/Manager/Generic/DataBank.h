@@ -5,44 +5,31 @@
 class DataBank
 {
 public:	
-	/// <summary>
-	/// 明示的にインステンスを生成する
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 明示的にインステンスを生成する
+	/// @param  
 	static void CreateInstance(void);
-
-	/// <summary>
-	/// 静的インスタンスの取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>インスタンスを返す</returns>
+	
+	/// @brief 静的インスタンスの取得
+	/// @param  
+	/// @return インスタンスを返す
 	static DataBank& GetInstance(void);
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
 
-	/// <summary>
-	/// 解放処理
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 解放処理
+	/// @param  
 	void Destroy(void);
-
-	/// <summary>
-	/// プレイヤー人数を設定
-	/// </summary>
-	/// <param name="num">プレイヤー人数</param>
-	/// <returns>正しく設定できればtrue,問題が起きればfalse</returns>
+	
+	/// @brief プレイヤー人数を設定
+	/// @param _num プレイヤー人数を設定
+	/// @return 正しく設定できればtrue,問題が起きればfalse
 	bool SetPlayerNum(int _num);
 	
-
-	/// <summary>
-	/// プレイヤー人数を返す
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>プレイヤー人数</returns>
+	/// @brief  プレイヤー人数を返す
+	/// @param  
+	/// @return プレイヤー人数
 	int GetPlayerNum(void);
 
 

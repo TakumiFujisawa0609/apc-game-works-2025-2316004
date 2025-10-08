@@ -170,7 +170,7 @@ public:
 	/// ゴール角度をセット
 	/// </summary>
 	/// <param name="_deg"></param>
-	void SetGoalRotate(const double _deg);
+	void SetGoalRotate(const double _deg)override;
 
 
 private:

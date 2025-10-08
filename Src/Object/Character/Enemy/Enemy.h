@@ -71,6 +71,17 @@ public:
 	/// </summary>
 	void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 
+	/// <summary>
+	/// 入力方向に応じて方向を決める
+	/// </summary>
+	/// <param name=""></param>
+	void MoveDirFronInput(void)override;
+	/// <summary>
+	/// ゴール角度をセット
+	/// </summary>
+	/// <param name="_deg"></param>
+	void SetGoalRotate(const double _deg)override;
+
 private:
 	//定数
 	//敵番号(デッキで判定する用)

@@ -21,17 +21,34 @@ public:
 	//デストラクタ
 	virtual~CardBase(void);
 
-	virtual void Execute(void);
+	/// @brief ロード
+	/// @param  
+	virtual void Load(void);
+
+	/// @brief 初期化
+	/// @param  
+	virtual void Init(void);
 	
+	/// @brief 更新
+	/// @param  
+	virtual void Update(void);
+	
+	/// @brief 描画
+	/// @param  
 	virtual void Draw(void);
-	//カードの威力の取得
+
+	/// @brief カードの威力の取得
+	/// @param  
+	/// @return カードのステータス
 	inline const CARD_STATUS GetCardStatus(void)const { return status_; }
 
 	//カードの種類の取得
 	//inline const CARD_TYPE GetCardType(void)const { return type_; }
 
-	//カードの勝利の取得
+	/// @brief カードの勝利の取得
+	/// @param _isWin 
 	inline void SetIsWin(const bool _isWin) { isWin_ = _isWin; }
+
 	/// <summary>
 	/// カード使用済みのセット
 	/// </summary>
@@ -48,6 +65,9 @@ protected:
 	bool isWin_;
 	//使用済みかどうか
 	bool isUsed_;
+	//カード番号イメージ
+	int* cardNoImgs_;
+	int atkCardImg_;
 private:
 };
 

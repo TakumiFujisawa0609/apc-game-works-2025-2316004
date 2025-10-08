@@ -26,42 +26,33 @@ public:
 		TITLE,
 		GAME
 	};
+	
+	/// @brief 初期化
+	/// @param  
+	void Init(void);
+	
+	/// @brief 3D関連の初期化
+	/// @param  
+	void Init3D(void);
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	void Init();
+	/// @brief 更新
+	/// @param  
+	void Update(void);
 
-	/// <summary>
-	/// 3D関連の初期化
-	/// </summary>
-	void Init3D();
+	/// @brief 描画
+	/// @param  
+	void Draw(void);
 
-	/// <summary>
-	/// 更新
-	/// </summary>
-	void Update();
-
-	/// <summary>
-	/// 描画
-	/// </summary>
-	void Draw();
-
-	/// <summary>
-	/// リソースの破棄
-	/// </summary>
-	void Release();
-
-	/// <summary>
-	/// 先頭の（Updataが呼ばれる）シーンを切り替える
-	/// </summary>
-	/// <param name="scene">切り替え先のシーン</param>
+	/// @brief  リソースの破棄
+	/// @param  
+	void Release(void);
+	
+	/// @brief 先頭の（Updataが呼ばれる）シーンを切り替える
+	/// @param scene 切り替え先のシーン
 	void CreateScene(std::shared_ptr<SceneBase> scene);
-
-	/// <summary>
-	/// すべてのシーンを切り替える
-	/// </summary>
-	/// <param name="scene">切り替え先のシーン</param>
+	
+	/// @brief すべてのシーンを切り替える
+	/// @param scene 切り替え先のシーン
 	void ChangeAllScene(std::shared_ptr<SceneBase> scene);
 
 	/// <summary>
@@ -69,48 +60,44 @@ public:
 	/// 一番上のシーンのUpdataしか呼ばれません。
 	/// </summary>
 	/// <param name="scene">積むシーン</param>
+	
+	/// @brief シーンをプッシュする。スタックの数が増える
+	/// 一番上のシーンのUpdataしか呼ばれません。
+	/// @param scene 
 	void PushScene(std::shared_ptr<SceneBase> scene);
-
-	/// <summary>
-	/// スタックの頭のシーンを削除する。
+	
+	/// @brief スタックの頭のシーンを削除する。
 	/// ただし、スタック上にシーンが一つしかない場合は、削除しない。
-	/// </summary>
-	void PopScene();
-
-	/// <summary>
-	/// シーン遷移
-	/// </summary>
-	/// <param name="nextId">変更先のシーン</param>
+	/// @param  
+	void PopScene(void);
+	
+	/// @brief シーン遷移
+	/// @param nextId 変更先のシーン
 	void ChangeScene(SCENE_ID nextId);
 	
-	/// <summary>
-	/// フェードを始める
-	/// </summary>
-	void StartFadeIn();
-
-	/// <summary>
-	/// 現在のシーンIDを返す
-	/// </summary>
-	/// <returns>現在のシーンID</returns>
-	inline SCENE_ID GetSceneID() const { return sceneId_; }
-
-	/// <summary>
-	/// デルタタイムを返す
-	/// </summary>
-	/// <returns>デルタタイム</returns>
-	inline float GetDeltaTime() const { return deltaTime_; }
-
-	/// <summary>
-	/// 経過時間を返す
-	/// </summary>
-	/// <returns>経過時間</returns>
-	inline float GetTotalTime() const { return totalTime_; }
-
-	/// <summary>
-	/// カメラを返す
-	/// </summary>
-	/// <returns>カメラ</returns>
-	std::weak_ptr<Camera> GetCamera() const { return camera_; }
+	/// @brief フェードを始める
+	/// @param  
+	void StartFadeIn(void);
+	
+	/// @brief 現在のシーンIDを返す
+	/// @param  
+	/// @return 現在のシーンID
+	inline SCENE_ID GetSceneID(void) const { return sceneId_; }
+	
+	/// @brief デルタタイムを返す
+	/// @param  
+	/// @return デルタタイム
+	inline float GetDeltaTime(void) const { return deltaTime_; }
+	
+	/// @brief 経過時間を返す
+	/// @param  
+	/// @return 経過時間
+	inline float GetTotalTime(void) const { return totalTime_; }
+	
+	/// @brief カメラを返す
+	/// @param  
+	/// @return カメラ
+	std::weak_ptr<Camera> GetCamera(void) const { return camera_; }
 
 private:
 

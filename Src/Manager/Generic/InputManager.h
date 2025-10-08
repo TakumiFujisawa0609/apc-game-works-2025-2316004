@@ -83,57 +83,102 @@ public:
 		,ALL			//すべての入力を受け付ける
 	};
 
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
+
+	/// @brief 更新
+	/// @param  
 	void Update(void);
 
-	// リソースの破棄
+	/// @brief  リソースの破棄
+	/// @param  
 	void Release(void);
 
-	// 判定を行うキーを追加
+	/// @brief 判定を行うキーを追加
+	/// @param key 
 	void Add(int key);
 
-	// 判定を行うキーをクリア
+	/// @brief 判定を行うキーをクリア
+	/// @param  
 	void Clear(void);
 
-	// キーの押下判定
+	/// @brief キーの押下判定
+	/// @param key 
+	/// @return 
 	bool IsNew(int key) const;
 
-	// キーの押下判定(押しっぱなしはNG)
+	/// @brief  キーの押下判定(押しっぱなしはNG)
+	/// @param key キー
+	/// @return 
 	bool IsTrgDown(int key) const;
 
-	// キーを離した時の判定
+	/// @brief キーを離した時の判定
+	/// @param key キー
+	/// @return 
 	bool IsTrgUp(int key) const;
 
-	// マウス座標の取得
+	/// @brief  マウス座標の取得
+	/// @param  
+	/// @return マウス座標
 	Vector2 GetMousePos(void) const;
 
-	// マウスのクリック状態を取得(MOUSE_INPUT_LEFT、RIGHT)
+	/// @brief マウスのクリック状態を取得(MOUSE_INPUT_LEFT、RIGHT)
+	/// @param  
+	/// @return マウスのクリック状態
 	int GetMouse(void) const;
 
-	// マウスが左クリックされたか
+	/// @brief マウスが左クリックされたか
+	/// @param  
+	/// @return 
 	bool IsClickMouseLeft(void) const;
 
-	// マウスが右クリックされたか
+	/// @brief マウスが右クリックされたか
+	/// @param  
+	/// @return 
 	bool IsClickMouseRight(void) const;
 
-	// マウスが左クリックされたか(押しっぱなしはNG)
+	/// @brief マウスが左クリックされたか(押しっぱなしはNG)
+	/// @param  
+	/// @return 
 	bool IsTrgMouseLeft(void) const;
 
-	// マウスが右クリックされたか(押しっぱなしはNG)
+	/// @brief  マウスが右クリックされたか(押しっぱなしはNG)
+	/// @param  
+	/// @return 
 	bool IsTrgMouseRight(void) const;
 
-	// コントローラの入力情報を取得する
+	/// @brief コントローラの入力情報を取得する
+	/// @param no 
+	/// @return 
 	JOYPAD_IN_STATE GetJPadInputState(JOYPAD_NO no);
 
-	// ボタンが押された
+	/// @brief ボタンが押された
+	/// @param no コントローラー番号
+	/// @param btn ボタン
+	/// @return 
 	bool IsPadBtnNew(JOYPAD_NO no, JOYPAD_BTN btn) const;
+
+	/// @brief ボタンが押された(押しっぱなしNG)
+	/// @param no コントローラー番号
+	/// @param btn ボタン
+	/// @return 
 	bool IsPadBtnTrgDown(JOYPAD_NO no, JOYPAD_BTN btn) const;
+
+	/// @brief ボタンが離された
+	/// @param no コントローラー番号
+	/// @param btn ボタン
+	/// @return 
 	bool IsPadBtnTrgUp(JOYPAD_NO no, JOYPAD_BTN btn) const;
 
-	// コントローラの入力情報を取得する
+	/// @brief  コントローラの入力情報を取得する
+	/// @param no コントローラー番号
+	/// @return 
 	DINPUT_JOYSTATE GetJPadDInputState(JOYPAD_NO no);
 
-	// コントローラ(XBOX)の入力情報を取得する
+	/// @brief  コントローラ(XBOX)の入力情報を取得する
+	/// @param no コントローラー番号
+	/// @return 
 	XINPUT_STATE GetJPadXInputState(JOYPAD_NO no);
 
 private:

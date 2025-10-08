@@ -62,44 +62,40 @@ class InputManagerS : public Singleton<InputManagerS>
 
 public:	
 	
-	/// <summary>
-	/// 初期化処理
-	/// </summary>
-	void Init();
-
-	/// <summary>
-	/// 更新処理
-	/// </summary>
-	void Update();
-
-	/// <summary>
-	/// 解放処理
-	/// </summary>
-	void Release();
-
-	/// <summary>
-	/// 指定されたコードが押された瞬間か
-	/// </summary>
-	/// <param name="inputEvent">入力イベント</param>
-	/// <returns>押された瞬間はtrue,そうでない場合false</returns>
+	/// @brief 初期化
+	/// @param  
+	void Init(void);
+	
+	/// @brief 更新
+	/// @param  
+	void Update(void);
+	
+	/// @brief 解放
+	/// @param  
+	void Release(void);
+	
+	/// @brief 指定されたコードが押された瞬間か
+	/// @param inputEvent 入力イベント
+	/// @return 押された瞬間はtrue,そうでない場合fals
 	bool IsTrgDown(INPUT_EVENT inputEvent) const;
-
-	/// <summary>
-	/// 指定されたコードが押されているか
-	/// </summary>
-	/// <param name="inputEvent">入力イベント</param>
-	/// <returns>押されてる場合true, そうでない場合false</returns>
+	
+	/// @brief 指定されたコードが押されているか
+	/// @param inputEvent 入力イベント
+	/// @return 押されてる場合true, そうでない場合false
 	bool IsPressed(INPUT_EVENT inputEvent) const;
+	
+	/// @brief 対応表のリセット
+	/// @param  
+	void ResetTable(void);
 
-	/// <summary>
-	/// 対応表のリセット
-	/// </summary>
-	void ResetTable();
-
-	//Lスティックの角度を取得
+	/// @brief Lスティックの角度を取得
+	/// @param no コントローラー番号
+	/// @return 
 	float GetLStickDeg(InputManager::JOYPAD_NO no) const;
 
-	//Rスティックの角度を取得
+	/// @brief Rスティックの角度を取得
+	/// @param no コントローラー番号
+	/// @return 
 	float GetRStickDeg(InputManager::JOYPAD_NO no) const;
 
 private:

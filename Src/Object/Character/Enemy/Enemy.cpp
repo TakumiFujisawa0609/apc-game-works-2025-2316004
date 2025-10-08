@@ -84,9 +84,8 @@ void Enemy::Update(void)
 	logic_->Update();
 	action_->Update();
 	//‰ñ“]‚Ì“¯Šú
-	//trans_.quaRot = action_->GetPlayerRotY();
-	trans_.quaRot = Quaternion::Euler(Utility3D::GetRotAxisToTarget(trans_.pos, playerChara_.GetTransform().pos, Utility3D::AXIS_Y));
-	//UpdatePost();
+	trans_.quaRot = charaRot_.playerRotY_;
+	UpdatePost();
 	trans_.Update();
 }
 
@@ -104,6 +103,33 @@ void Enemy::Draw(void)
 void Enemy::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
 	onHit_->OnHitUpdate(_hitCol);
+}
+void Enemy::MoveDirFronInput(void)
+{
+	//ƒvƒŒƒCƒ„[“ü—ÍƒNƒ‰ƒX‚©‚çŠp“x‚ðŽæ“¾
+	VECTOR getDir = logic_->GetDir();
+	Quaternion playerRot = playerChara_.GetTransform().quaRot;
+	charaRot_.dir_ = playerRot.PosAxis(getDir);
+	charaRot_.dir_ = VNorm(charaRot_.dir_);
+	//charaRot_.dir_ = getDir;
+}
+void Enemy::SetGoalRotate(const double _deg)
+{
+	//Quaternion axis = Quaternion::AngleAxis(
+	//	UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
+
+	Quaternion axis= Quaternion::Euler(Utility3D::GetRotAxisToTarget(trans_.pos, playerChara_.GetTransform().pos, Utility3D::AXIS_Y));
+
+	//Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚é‰ñ“]‚Æ‚ÌŠp“x·‚ðŽæ‚é
+	double angleDiff = Quaternion::Angle(axis, charaRot_.goalQuaRot_);
+
+	constexpr double ANGLE_THRESHOLD = 0.1;
+	// ‚µ‚«‚¢’l
+	if (angleDiff > ANGLE_THRESHOLD)
+	{
+		charaRot_.stepRotTime_ = TIME_ROT;
+	}
+	charaRot_.goalQuaRot_ = axis;
 }
 #ifdef _DEBUG
 void Enemy::DrawDebug(void)

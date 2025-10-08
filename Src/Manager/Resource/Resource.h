@@ -31,13 +31,16 @@ public:
 	// デストラクタ
 	~Resource(void) = default;
 
-	// 読み込み
+	/// @brief 読み込み
+	/// @param  
 	void Load(void);
 
-	// 解放
+	/// @brief 解放
+	/// @param  
 	void Release(void);
 
-	// 複数画像ハンドルを別配列にコピー
+	/// @brief 複数画像ハンドルを別配列にコピー
+	/// @param imgs 
 	void CopyHandle(int* imgs);
 
 	// リソースタイプ
