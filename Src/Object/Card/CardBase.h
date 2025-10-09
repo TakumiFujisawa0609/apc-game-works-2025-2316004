@@ -1,7 +1,10 @@
 #pragma once
+#include"../Common/Vector2F.h"
+
 class CardBase
 {
 public:
+
 	enum class CARD_TYPE
 	{
 		ATTACK
@@ -56,10 +59,10 @@ public:
 	inline void SetIsUsed(const bool _isUsed) { isUsed_ = _isUsed; }
 
 protected:
-	//カードの強さ
-	//int pow_;
+
+	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
+
 	////カードの種類
-	//CARD_TYPE type_;
 	CARD_STATUS status_;
 	//カードの勝敗
 	bool isWin_;
@@ -67,7 +70,14 @@ protected:
 	bool isUsed_;
 	//カード番号イメージ
 	int* cardNoImgs_;
+	//攻撃カード画像
 	int atkCardImg_;
+	//カードの大きさ
+	double cardScl_;
+	//カードの座標
+	Vector2F cardPos_;
+	//カードナンバー座標
+	Vector2F numPos_;
 private:
 };
 

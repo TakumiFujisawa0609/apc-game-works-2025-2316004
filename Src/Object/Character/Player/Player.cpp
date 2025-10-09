@@ -22,6 +22,7 @@
 #include"../../Common/Geometry/Sphere.h"
 #include"../../Common/Geometry/Line.h"
 #include"../Object/Card/CardDeck.h"
+#include"../Object/Card/CardUI.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
 #include"./PlayerOnHit.h"
@@ -78,13 +79,16 @@ void Player::Load(void)
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
+
+	cardUI_ = std::make_unique<CardUI>();
+	cardUI_->Load();
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
+		cardUI_->AddCardUi(CARD_POWS[i]);
 	}
 	deck_->Load();
-	deck_->Init();
 
 	//アクション
 	action_ = std::make_unique<ActionController>(*this,*logic_,trans_,*deck_,*animationController_,padNum_);
@@ -123,6 +127,8 @@ void Player::Init(void)
 	ChangeState(PLAYER_STATE::ALIVE);
 
 	action_->Init();
+	deck_->Init();
+	cardUI_->Init();
 
 	//更新
 	trans_.Update();
@@ -140,6 +146,8 @@ void Player::Update(void)
 	//プレイヤー状態更新
 	stateUpdate_();
 
+	cardUI_->Update();
+
 	//回転の同期
 	trans_.quaRot = charaRot_.playerRotY_;
 
@@ -154,8 +162,8 @@ void Player::Draw(void)
 
 	action_->DrawDebug();
 	
-	////影の描画
-	//shadow_->Draw();
+	//カードUI描画
+	cardUI_->Draw();
 
 #ifdef DEBUG_ON
 	DrawDebug();
@@ -201,7 +209,7 @@ void Player::DrawDebug(void)
 	unsigned int color = 0xffffff;
 	const int HIGH = 10;
 	const int WIDTH = 200;
-	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	//DrawSphere3D(trans_.cardPos, RADIUS, 4, 0xff0000, 0xff0000, true);
 	for (auto& colParam : colParam_)
 	{
 		colParam.geometry_->Draw();

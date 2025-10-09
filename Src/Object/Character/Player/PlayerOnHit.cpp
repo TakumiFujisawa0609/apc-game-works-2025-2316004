@@ -134,7 +134,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 //		action_.SetIsJump(false);
 //
 //		//現在座標の更新
-//		trans_.pos = movedPos_;
+//		trans_.cardPos = movedPos_;
 //		return;
 //	}
 //	//プレイヤーの接地
@@ -169,7 +169,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 //	Collider::TAG tag = _hitCol.lock()->GetTags()[0];
 //	//移動後座標を一回格納し、移動前をとる
 //	Transform trans = Transform(trans_);
-//	trans.pos = movedPos_;
+//	trans.cardPos = movedPos_;
 //	trans.Update();
 //	isSide_ = false;
 //	//プレイヤーの体の球が当たったら
@@ -186,7 +186,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 //			//一定回数の押し出し処理をする
 //			for (int tryCnt = 0; tryCnt < COL_TRY_CNT_MAX; tryCnt++)
 //			{
-//				int pHit = HitCheck_Sphere_Triangle(trans.pos, RADIUS
+//				int pHit = HitCheck_Sphere_Triangle(trans.cardPos, RADIUS
 //					, hit.Position[0], hit.Position[1], hit.Position[2]);
 //				if (pHit)
 //				{
@@ -196,7 +196,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 // 					movedPos_ = VAdd(movedPos_, VScale(normal, HIT_NORMAL_OFFSET));
 //					
 //					//カプセルを移動させる
-//					trans.pos = movedPos_;
+//					trans.cardPos = movedPos_;
 //					trans.Update();
 //					continue;
 //				}
@@ -222,7 +222,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 //	}
 //
 //	////移動前の座標を格納する
-//	moveDiff_ = trans_.pos;
+//	moveDiff_ = trans_.cardPos;
 //	//移動
-//	trans_.pos = movedPos_;
+//	trans_.cardPos = movedPos_;
 }

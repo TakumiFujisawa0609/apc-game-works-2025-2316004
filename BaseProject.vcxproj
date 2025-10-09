@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Card\CardUI.cpp" />
     <ClCompile Include="Src\Manager\Game\CollisionManager.cpp" />
     <ClCompile Include="Src\Object\Character\Action\React.cpp" />
     <ClCompile Include="Src\Object\Card\AttackCard.cpp" />
@@ -78,6 +79,7 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Card\CardUI.h" />
     <ClInclude Include="Src\Manager\Game\CollisionManager.h" />
     <ClInclude Include="Src\Object\Character\Action\React.h" />
     <ClInclude Include="Src\Object\Card\AttackCard.h" />

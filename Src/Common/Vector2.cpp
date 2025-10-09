@@ -2,30 +2,30 @@
 #include "Vector2.h"
 #include "Vector2F.h"
 
-// コンストラクタ
-Vector2::Vector2(void)
-{
-	x = 0;
-	y = 0;
-}
+//// コンストラクタ
+//Vector2::Vector2(void)
+//{
+//	x = 0;
+//	y = 0;
+//}
+//
+//// コンストラクタ
+//Vector2::Vector2(int vX, int vY)
+//{
+//	x = vX;
+//	y = vY;
+//}
 
-// コンストラクタ
-Vector2::Vector2(int vX, int vY)
-{
-	x = vX;
-	y = vY;
-}
+//Vector2::~Vector2(void)
+//{
+//}
 
-Vector2::~Vector2(void)
-{
-}
-
-Vector2F Vector2::ToVector2F(void)
+Vector2F ToVector2F(Vector2 _v)
 {
 	Vector2F ret;
 
-	ret.x = static_cast<float>(round(x));
-	ret.y = static_cast<float>(round(y));
+	ret.x = static_cast<float>(round(_v.x));
+	ret.y = static_cast<float>(round(_v.y));
 
 	return ret;
 }
@@ -33,12 +33,12 @@ Vector2F Vector2::ToVector2F(void)
 Vector2 Vector2::Normalize(void) const
 {
 	float len = Length();
-	return (len != 0) ? Vector2(x / len, y / len) : Vector2(0, 0);
+	return (len != 0) ? Vector2(static_cast<int>(x / len), static_cast<int>(y / len)) : Vector2(0, 0);
 }
 
 float Vector2::Length(void) const
 {
-	return std::sqrt(x * x + y * y);
+	return static_cast<float>(std::sqrt(x * x + y * y));
 }
 
 bool Vector2::IsVector2(const Vector2 value1, const Vector2 value2)
@@ -63,26 +63,40 @@ bool Vector2::IsSameVector2(const Vector2 value1, const Vector2 value2)
 	return false;
 }
 
-Vector2 Vector2::AddVector2(const Vector2 value1, const Vector2 value2)
+const Vector2 Vector2::operator+(const Vector2 _value)const
 {
-	Vector2 ret;
-	ret.x = value1.x + value2.x;
-	ret.y = value1.y + value2.y;
-	return ret;
+	return { x + _value.x,y + _value.y };
+}
+void Vector2::operator+=(const Vector2 _value)
+{
+	x += _value.x;
+	y += _value.y;
+}
+const Vector2 Vector2::operator-(const Vector2 _value)const
+{
+	return { x - _value.x,y - _value.y };
+}
+void Vector2::operator-=(const Vector2 _value)
+{
+	x -= _value.x;
+	y -= _value.y;
+}
+const Vector2 Vector2::operator*(const Vector2 _value)const
+{
+	return { x * _value.x,y * _value.y };
 }
 
-Vector2 Vector2::SubVector2(const Vector2 value1, const Vector2 value2)
+void Vector2::operator*=(const Vector2 _value)
 {
-	Vector2 ret;
-	ret.x = value1.x - value2.x;
-	ret.y = value1.y - value2.y;
-	return ret;
+	x *= _value.x;
+	y *= _value.y;
 }
-
-Vector2 Vector2::MultiVector2(const Vector2 value1, const Vector2 value2)
+const Vector2 Vector2::operator/(const Vector2 _value)const
 {
-	Vector2 ret;
-	ret.x = value1.x * value2.x;
-	ret.y = value1.y * value2.y;
-	return ret;
+	return { x / _value.x,y / _value.y };
+}
+void Vector2::operator/=(const Vector2 _value)
+{
+	x /= _value.x;
+	y /= _value.y;
 }

@@ -2,11 +2,13 @@
 #include "../Manager/Resource/ResourceManager.h"
 #include "CardBase.h"
 
-CardBase::CardBase(const CARD_STATUS _status):
+CardBase::CardBase(const CARD_STATUS _status) :
 	status_(_status),
 	isWin_(false),
 	isUsed_(false),
-	atkCardImg_(-1)
+	atkCardImg_(-1),
+	cardPos_({ 100,100 }),
+	cardScl_(1.4)
 {
 	//複数画像はコンストラクタで初期化必須
 	int i = -1;
@@ -32,10 +34,13 @@ void CardBase::Init(void)
 
 void CardBase::Update(void)
 {
+
 }
 
 void CardBase::Draw(void)
 {
-	DrawRotaGraph(200, 200, 1.0, 0.0f, atkCardImg_, true);
-	DrawRotaGraph(200, 200, 1.0, 0.0f, cardNoImgs_[status_.pow_], true);
+	numPos_ = cardPos_ + (NUM_LOCAL_POS*cardScl_);
+	constexpr double NUM_SCL = 0.18;
+	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, atkCardImg_, true);
+	DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_* NUM_SCL, 0.0f, cardNoImgs_[status_.pow_], true);
 }

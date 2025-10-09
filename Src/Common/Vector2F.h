@@ -1,46 +1,137 @@
 #pragma once
-
-class Vector2;
-
-class Vector2F
+struct Vector2F
 {
-public:
-
-	//デフォルトコンストラクタ
-	Vector2F(void);
-
-	//コンストラクタ
-	Vector2F(float ix, float iy);
-
-	//デストラクタ
-	~Vector2F(void);
+	//各座標
+	float x;
+	float y;
 
 	//Vector2へ変換する関数
-	Vector2 ToVector2(void);
+	//Vector2 ToVector2(void);
 
-	//ベクトル線を作る
-	Vector2F CreateVectorLine(Vector2 value1, Vector2 value2);
+	////ベクトル線を作る
+	//Vector2F CreateVectorLine(Vector2 value1, Vector2 value2);
 
 	//Vector2F同士の比較
 	static bool IsVector2F(const Vector2F value1, const Vector2F value2);
 
+	//Vector2F同士の演算
+	const Vector2F operator+(const Vector2F _value)const;
+	void operator+=(const Vector2F _value);
+	const Vector2F operator-(const Vector2F _value)const;
+	void operator-=(const Vector2F _value);
+	const Vector2F operator*(const Vector2F _value)const;
+	void operator*=(const Vector2F _value);
+	const Vector2F operator/(const Vector2F _value)const;
+	void operator/=(const Vector2F _value);
+
+	//一つの数での演算
+	template<typename T>
+	const Vector2F operator+(const T _value)const
+	{
+		return{ x + _value,_value.y + _value };
+	}
+	template<typename T>
+	void operator+=(const T _value)const
+	{
+		x += _value;
+		y += _value;
+
+	}
+	template<typename T>
+	const Vector2F operator-(const T _value)const
+	{
+		return { static_cast<float>(x - _value),static_cast<float>(y - _value) };
+	}
+	template<typename T>
+	void operator-=(const T _value)const
+	{
+		x -= _value;
+		y -= _value;
+	}
+	template<typename T>
+	const Vector2F operator*(const T _value)const
+	{
+		return { static_cast<float>(x * _value),static_cast<float>(y * _value) };
+	}
+	template<typename T>
+	void operator*=(const T _value)const
+	{
+		x *= _value;
+		y *= _value;
+	}
+	template<typename T>
+	const Vector2F operator/(const T _value)const
+	{
+		return { static_cast<float>(x / _value),static_cast<float>(y / _value) };
+	}
+	template<typename T>
+	void operator/=(const T _value)const
+	{
+		x /= _value;
+		y /= _value;
+	}
+
 	//Vector2F同士の値が同じか比較
 	static bool IsSameVector2F(const Vector2F value1, const Vector2F value2);
 
-	//Vector2F同士の加算
-	static Vector2F AddVector2F(Vector2F value1, Vector2F value2);
+	////Vector2F同士の加算
+	//static Vector2F AddVector2F(Vector2F value1, Vector2F value2);
 
-	//Vector2F同士の減算
-	static Vector2F SubVector2F(Vector2F value1, Vector2F value2);
+	////Vector2F同士の減算
+	//static Vector2F SubVector2F(Vector2F value1, Vector2F value2);
 
-	//Vector2F同士の乗算
-	static Vector2F MulVector2F(Vector2F value1, Vector2F value2);
+	////Vector2F同士の乗算
+	//static Vector2F MulVector2F(Vector2F value1, Vector2F value2);
 
-	//Vector2F同士の除算
-	static Vector2F DivVector2F(Vector2F value1, Vector2F value2);
-
-	float x;
-	float y;
-
-private:
+	////Vector2F同士の除算
+	//static Vector2F DivVector2F(Vector2F value1, Vector2F value2);
 };
+
+
+//class Vector2;
+//
+//class Vector2F
+//{
+//public:
+//
+//	//デフォルトコンストラクタ
+//	Vector2F(void);
+//
+//	//コンストラクタ
+//	Vector2F(float ix, float iy);
+//
+//	//デストラクタ
+//	~Vector2F(void);
+//
+//	//各座標
+//	float x;
+//	float y;
+//
+//	//Vector2へ変換する関数
+//	Vector2 ToVector2(void);
+//
+//	//ベクトル線を作る
+//	Vector2F CreateVectorLine(Vector2 value1, Vector2 value2);
+//
+//	//Vector2F同士の比較
+//	static bool IsVector2F(const Vector2F value1, const Vector2F value2);
+//
+//	//Vector2F同士の値が同じか比較
+//	static bool IsSameVector2F(const Vector2F value1, const Vector2F value2);
+//
+//	//Vector2F同士の加算
+//	static Vector2F AddVector2F(Vector2F value1, Vector2F value2);
+//
+//	//Vector2F同士の減算
+//	static Vector2F SubVector2F(Vector2F value1, Vector2F value2);
+//
+//	//Vector2F同士の乗算
+//	static Vector2F MulVector2F(Vector2F value1, Vector2F value2);
+//
+//	//Vector2F同士の除算
+//	static Vector2F DivVector2F(Vector2F value1, Vector2F value2);
+//
+//
+//
+//private:
+//};

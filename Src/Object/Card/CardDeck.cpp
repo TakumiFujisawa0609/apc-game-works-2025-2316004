@@ -113,11 +113,11 @@ void CardDeck::Draw(void)
 	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
 	DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
 
-	drawPile_[0]->Draw();
+	//drawPile_[0]->Draw();
 
 
 	//ŽèŽD‚Ì•\Ž¦
-	int handSize = hand_.size();
+	int handSize = static_cast<int>(hand_.size());
 	if (handSize > 0)
 	{
 		for (int i = 0; i < handSize; i++)

@@ -17,6 +17,7 @@ class Geometry;
 class Cupsule;
 class Line;
 class PlayerOnHit;
+class CardUI;
 class ModelMaterial;
 class ModelRenderer;
 
@@ -31,30 +32,6 @@ public:
 	//デフォルトのアニメーションスピード
 	static constexpr float DEFAULT_ANIM_SPD = 60.0f;
 
-	//格納するカードの強さ
-	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
-	static constexpr CardBase::CARD_STATUS CARD_POWS[20] = {
-		{0,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{2,CARD_TYPE::ATTACK},
-		{3,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK},
-		{5,CARD_TYPE::ATTACK},
-		{6,CARD_TYPE::ATTACK},
-		{7,CARD_TYPE::ATTACK},
-		{8,CARD_TYPE::ATTACK},
-		{9,CARD_TYPE::ATTACK},
-		{0,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{2,CARD_TYPE::ATTACK},
-		{3,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK},
-		{5,CARD_TYPE::ATTACK},
-		{6,CARD_TYPE::ATTACK},
-		{7,CARD_TYPE::ATTACK},
-		{8,CARD_TYPE::ATTACK},
-		{9,CARD_TYPE::ATTACK}
-	};
 
 
 
@@ -189,8 +166,7 @@ private:
 	static constexpr float PUNCH_RADIUS = 50.0f;
 	//プレイヤーナンバー(デッキクラスで判定用)
 	static constexpr int PLAYER_NUM = 0;
-	//カード最大枚数
-	static constexpr int CARD_NUM_MAX = 20;
+
 	//プレイヤーの腰のフレーム番号
 	static constexpr int SPINE_FRAME_NO = 0;
 
@@ -198,6 +174,36 @@ private:
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
 	//static constexpr float CAP_RADIUS = 25.0f;						//半径
+
+		//カード最大枚数
+	static constexpr int CARD_NUM_MAX = 6;
+
+	//格納するカードの強さ
+	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
+	static constexpr CardBase::CARD_STATUS CARD_POWS[CARD_NUM_MAX] = {
+		{0,CARD_TYPE::ATTACK},
+		{1,CARD_TYPE::ATTACK},
+		{2,CARD_TYPE::ATTACK},
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK}
+		//{6,CARD_TYPE::ATTACK},
+		//{7,CARD_TYPE::ATTACK},
+		//{8,CARD_TYPE::ATTACK},
+		//{9,CARD_TYPE::ATTACK},
+		//{0,CARD_TYPE::ATTACK},
+		//{1,CARD_TYPE::ATTACK},
+		//{2,CARD_TYPE::ATTACK},
+		//{3,CARD_TYPE::ATTACK},
+		//{4,CARD_TYPE::ATTACK},
+		//{5,CARD_TYPE::ATTACK},
+		//{6,CARD_TYPE::ATTACK},
+		//{7,CARD_TYPE::ATTACK},
+		//{8,CARD_TYPE::ATTACK},
+		//{9,CARD_TYPE::ATTACK}
+	};
+
+
 
 
 	//***********************************
@@ -231,6 +237,14 @@ private:
 	std::function<void(void)>stateUpdate_;
 	//カードの位置
 	Vector2 cardCenterPos_;
+
+
+
+
+
+	//カードUI(とりあえず)
+	std::unique_ptr<CardUI>cardUI_;
+
 
 
 #ifdef DEBUG_ON
