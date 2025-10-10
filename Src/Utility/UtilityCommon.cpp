@@ -216,6 +216,20 @@ Vector2 UtilityCommon::Lerp(const Vector2& start, const Vector2& end, float t)
     return ret;
 }
 
+Vector2F UtilityCommon::Lerp(const Vector2F& start, const Vector2F& end, float t)
+{
+    // üŒ`•âŠÔ
+    if (t >= 1.0f)
+    {
+        return end;
+    }
+
+    Vector2F ret = start;
+    ret.x += t * (end.x - start.x);
+    ret.y +=t * (end.y - start.y);
+    return ret;
+}
+
 VECTOR UtilityCommon::Lerp(const VECTOR& start, const VECTOR& end, float t)
 {
     // üŒ`•âŠÔ

@@ -148,6 +148,18 @@ void Player::Update(void)
 
 	cardUI_->Update();
 
+	if (logic_->GetIsAct().isCardMoveLeft)
+	{
+		cardUI_->CardMoveSelect(CardUI::CARD_SELECT::LEFT);
+
+	}
+	else if (logic_->GetIsAct().isCardMoveRight)
+	{
+		cardUI_->CardMoveSelect(CardUI::CARD_SELECT::RIGHT);
+	}
+
+
+
 	//‰ñ“]‚Ì“¯Šú
 	trans_.quaRot = charaRot_.playerRotY_;
 
@@ -209,7 +221,7 @@ void Player::DrawDebug(void)
 	unsigned int color = 0xffffff;
 	const int HIGH = 10;
 	const int WIDTH = 200;
-	//DrawSphere3D(trans_.cardPos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	//DrawSphere3D(trans_.cardPos, RADIUS_X, 4, 0xff0000, 0xff0000, true);
 	for (auto& colParam : colParam_)
 	{
 		colParam.geometry_->Draw();

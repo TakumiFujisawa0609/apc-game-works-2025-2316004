@@ -130,10 +130,15 @@ void CardAction::UpdateReload(void)
 	{
 		pushReloadCnt_ += scnMng_.GetDeltaTime();
 	}
+	else
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+	}
 	if (pushReloadCnt_ >= RELOAD_TIME)
 	{
 		deck_.Reload();
 		cardFuncs_.pop();
+		pushReloadCnt_ = 0.0f;
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
 }

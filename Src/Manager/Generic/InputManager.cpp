@@ -328,13 +328,6 @@ InputManager::JOYPAD_IN_STATE InputManager::GetJPadInputState(JOYPAD_NO no)
 		ret.AKeyRX = d.Rx;
 		ret.AKeyRY = d.Ry;
 
-		// 左スティック
-		ret.AKeyLX = d.X;
-		ret.AKeyLY = d.Y;
-		
-		// 右スティック
-		ret.AKeyRX = d.Rx;
-		ret.AKeyRY = d.Ry;
 
 	}
 		break;

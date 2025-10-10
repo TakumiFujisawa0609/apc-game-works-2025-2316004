@@ -117,6 +117,7 @@ void ActionController::CardMove(void)
 	if (logic_.GetIsAct().isCardMoveLeft)
 	{
 		deck_.CardMoveLeft();
+
 	}
 	else if (logic_.GetIsAct().isCardMoveRight)
 	{

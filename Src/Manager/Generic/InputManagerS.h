@@ -25,6 +25,8 @@ enum class INPUT_EVENT
 //入力イベントの最大数
 static constexpr int INPUT_EVENT_MAX = static_cast<int>(INPUT_EVENT::MAX); 
 
+//入力サイズ
+static constexpr int INPUTABLE_STICK_SIZE = 50000;
 
 /// <summary>
 /// 主変機器種別
@@ -98,10 +100,11 @@ public:
 	/// @return 
 	float GetRStickDeg(InputManager::JOYPAD_NO no) const;
 
-private:
+
 	//上を0.0度として角度を渡す
 	Vector2 GetKnockLStickSize(InputManager::JOYPAD_NO no) const;
 	Vector2 GetKnockRStickSize(InputManager::JOYPAD_NO no) const;
+private:
 
 	//入力イベントの対応表
 	struct InputState

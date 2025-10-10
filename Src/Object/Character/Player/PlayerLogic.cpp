@@ -117,12 +117,17 @@ void PlayerLogic::InputAll(void)
 	if (inputS.IsPressed(INPUT_EVENT::UP) || inputS.IsPressed(INPUT_EVENT::DOWN)
 		|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
 	{
+		//スティックサイズの取得
+		LStickAngleSize_ = inputS.GetKnockLStickSize(padNum_);
+
 		//スティックの角度を求める
 		stickDeg_ = inputS.GetLStickDeg(padNum_);
+
 		//スティックの角度によって移動方向を決める
 		moveDeg_ = stickDeg_;
+
+		//ベクトルの計算
 		VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y)};
-		//moveDir_ = { leftStickX_ ,0.0f,leftStickX_ };
 		moveDir_ = VNorm(stickDir);
 	}
 	//カード使用
@@ -148,15 +153,6 @@ void PlayerLogic::InputPad(void)
 	//	ChangeInput(InputManager::TYPE::ALL);
 	//}
 #endif // _DEBUG
-
-
-
-
-	// 左スティックの横軸
-	//leftStickX_ = ins.GetJPadInputState(padNum_).AKeyLX;
-	//縦軸
-	//leftStickY_ = ins.GetJPadInputState(padNum_).AKeyLY;
-	//auto stickRad = static_cast<float>(atan2(static_cast<double>(leftStickY_), static_cast<double>(leftStickX_)));
 
 	auto& inputS = InputManagerS::GetInstance();
 

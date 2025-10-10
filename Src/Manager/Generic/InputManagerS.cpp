@@ -8,35 +8,35 @@ void InputManagerS::Init()
 	//アナログ入力の対応表を初期化
 	analogInputTable_[ANALOG_INPUT_TYPE::L_UP] = [](const XINPUT_STATE& state) 
 		{
-		return state.ThumbLY > 10000;
+		return state.ThumbLY > INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::L_DOWN] = [](const XINPUT_STATE& state) 
 		{
-		return state.ThumbLY < -10000;
+		return state.ThumbLY < -INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::L_RIGHT] = [](const XINPUT_STATE& state)
 		{
-		return state.ThumbLX > 10000;
+		return state.ThumbLX > INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::L_LEFT] = [](const XINPUT_STATE& state)
 		{
-		return state.ThumbLX < -10000;
+		return state.ThumbLX < -INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::R_UP] = [](const XINPUT_STATE& state)
 		{
-		return state.ThumbRY > 10000;
+		return state.ThumbRY > INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::R_DOWN] = [](const XINPUT_STATE& state) 
 		{
-		return state.ThumbRY < -10000;
+		return state.ThumbRY < -INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::R_RIGHT] = [](const XINPUT_STATE& state)
 		{
-		return state.ThumbRX > 10000;
+		return state.ThumbRX > INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::R_LEFT] = [](const XINPUT_STATE& state) 
 		{
-		return state.ThumbRX < -10000;
+		return state.ThumbRX < -INPUTABLE_STICK_SIZE;
 		};
 	analogInputTable_[ANALOG_INPUT_TYPE::L_TRIGGER] = [](const XINPUT_STATE& state) 
 		{

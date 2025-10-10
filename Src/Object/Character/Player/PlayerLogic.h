@@ -113,6 +113,11 @@ private:
     void KeyBoard(void);
     void Pad(void);
 
+    /// @brief 一定の大きさ以上スティックが動いているか
+    /// @param  
+    /// @return 
+    bool IsStickMoved(void);
+
     //スティック
     float leftStickX_;          //スティックの角度X
     float leftStickY_;          //スティックの角度Y
