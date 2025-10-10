@@ -246,7 +246,7 @@ VECTOR UtilityCommon::Lerp(const VECTOR& start, const VECTOR& end, float t)
     return ret;
 }
 
-double UtilityCommon::LerpDeg(double start, double end, double t)
+double UtilityCommon::LerpDeg(double& start, double& end, double t)
 {
 
     double ret;
@@ -268,6 +268,39 @@ double UtilityCommon::LerpDeg(double start, double end, double t)
         if (ret < 0.0)
         {
             ret += 360.0;
+        }
+    }
+    else
+    {
+        ret = Lerp(start, end, t);
+    }
+
+    return ret;
+
+}
+
+float UtilityCommon::LerpDeg(float& start, float& end, float t)
+{
+
+    float ret;
+
+    float diff = end - start;
+    if (diff < -180.0f)
+    {
+        end += 360.0;
+        ret = Lerp(start, end, t);
+        if (ret >= 360.0f)
+        {
+            ret -= 360.0f;
+        }
+    }
+    else if (diff > 180.0f)
+    {
+        end -= 360.0;
+        ret = Lerp(start, end, t);
+        if (ret < 0.0)
+        {
+            ret += 360.0f;
         }
     }
     else

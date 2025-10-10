@@ -67,7 +67,8 @@ public:
 	static VECTOR Lerp(const VECTOR& start, const VECTOR& end, float t);
 
 	// 角度の線形補間
-	static double LerpDeg(double start, double end, double t);
+	static double LerpDeg(double& start, double& end, double t);
+	static float LerpDeg(float& start, float& end, float t);
 
 	// 色の線形補間
 	static COLOR_F Lerp(const COLOR_F& start, const COLOR_F& end, float t);

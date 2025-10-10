@@ -81,18 +81,18 @@ void CardUI::Update(void)
 
 	int size = static_cast<int>(visibleCards_.size());
 	int i = 0;
-	for (auto& card : visibleCards_)
-	{
-		//card.currentAngle = (endAngle - startAngle) * (size - i) / size + startAngle;
-		card.currentAngle = (endAngle - startAngle) * angleOff;
-		card.cardPos.x = CENTER_X + std::cos(uiInfos_[i].currentAngle) * radius_.x;
-		card.cardPos.y = CENTER_Y + std::sin(uiInfos_[i].currentAngle) * (-radius_.y);
-		//常に強さ番号座標をローカル座標分追従させる
-		card.numPos = card.cardPos + (NUM_LOCAL_POS * cardScl_);
+	//for (auto& card : visibleCards_)
+	//{
+	//	//card.currentAngle = (endAngle - startAngle) * (size - i) / size + startAngle;
+	//	card.currentAngle = (card.endAngle - startAngle) * angleOff;
+	//	card.cardPos.x = CENTER_X + std::cos(uiInfos_[i].currentAngle) * radius_.x;
+	//	card.cardPos.y = CENTER_Y + std::sin(uiInfos_[i].currentAngle) * (-radius_.y);
+	//	//常に強さ番号座標をローカル座標分追従させる
+	//	card.numPos = card.cardPos + (NUM_LOCAL_POS * cardScl_);
 
-		//更新回数を回す
-		i++;
-	} 
+	//	//更新回数を回す
+	//	i++;
+	//} 
 
 	//カード状態
 	cardUpdate_();
@@ -155,14 +155,21 @@ void CardUI::AddCardUi(const CardBase::CARD_STATUS _status)
 	uiInfos_.emplace_back(info);
 }
 
-void CardUI::CardMoveSelect(CARD_SELECT _select)
+void CardUI::CardMoveSelect(const CARD_SELECT _select)
 {
+	if (cardMoveCnt_ < SELECT_MOVE_CARD_TIME)return;
 	select_ = _select;
 	changeMoveState_[select_]();
 }
 
 void CardUI::ChangeNone(void)
 {
+	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
+	//目標角度を現在の角度にする
+	for (auto& card : visibleCards_)
+	{
+		card.goalAngle = 0.0f;
+	}
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
 
@@ -171,7 +178,7 @@ void CardUI::ChangeLeft(void)
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
 	for (auto& card : visibleCards_)
 	{
-		card.goalAngle += VISIBLE_ANGLE_OFFSET;
+		card.goalAngle += card.currentAngle+UtilityCommon::Deg2RadF(VISIBLE_ANGLE_OFFSET);
 	}
 	cardUpdate_ = [this]() {UpdateLeft(); };
 }
@@ -181,7 +188,7 @@ void CardUI::ChangeRight(void)
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
 	for (auto& card : visibleCards_)
 	{
-		card.goalAngle -= VISIBLE_ANGLE_OFFSET;
+		card.goalAngle -= UtilityCommon::Deg2RadF(VISIBLE_ANGLE_OFFSET);
 	}
 	cardUpdate_ = [this]() {UpdateRight(); };
 }
@@ -193,16 +200,26 @@ void CardUI::UpdateNone(void)
 
 void CardUI::UpdateLeft(void)
 {
-	for (auto& card : visibleCards_)
-	{
-		card.currentAngle = UtilityCommon::Deg2RadF(UtilityCommon::LerpDeg(card.currentAngle, card.goalAngle
-			, SELECT_MOVE_CARD_TIME - cardMoveCnt_ / SELECT_MOVE_CARD_TIME));
-	}
-	cardMoveCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	cardMoveCnt_ -= 1.0f / 60.0f;
 	if (cardMoveCnt_ < 0.0f)
 	{
 		changeMoveState_[CARD_SELECT::NONE]();
 		return;
+	}
+	for (auto& card : visibleCards_)
+	{
+		float time = (SELECT_MOVE_CARD_TIME - cardMoveCnt_) / SELECT_MOVE_CARD_TIME;
+		float startDeg = UtilityCommon::Rad2DegF(card.currentAngle);
+		float goalDeg = UtilityCommon::Rad2DegF(card.goalAngle);
+		card.currentAngle = UtilityCommon::Deg2RadF(UtilityCommon::LerpDeg(startDeg
+			, goalDeg, time));
+
+		card.cardPos.x = CENTER_X + std::cos(card.currentAngle) * radius_.x;
+		card.cardPos.y = CENTER_Y + std::sin(card.currentAngle) * (-radius_.y);
+
+		//常に強さ番号座標をローカル座標分追従させる
+		card.numPos = card.cardPos + (NUM_LOCAL_POS * cardScl_);
+		//card.currentAngle = rad;
 	}
 }
 
@@ -210,7 +227,9 @@ void CardUI::UpdateRight(void)
 {
 	for (auto& card : visibleCards_)
 	{
-		card.currentAngle = UtilityCommon::Deg2RadF(UtilityCommon::LerpDeg(card.currentAngle, card.goalAngle
+		double startDeg = static_cast<double>(UtilityCommon::Rad2DegF(card.currentAngle));
+		double goalDeg = static_cast<double>(UtilityCommon::Rad2DegF(card.goalAngle));
+		card.currentAngle = UtilityCommon::Deg2RadF(UtilityCommon::LerpDeg(startDeg, goalDeg
 			, SELECT_MOVE_CARD_TIME - cardMoveCnt_ / SELECT_MOVE_CARD_TIME));
 	}
 	if (cardMoveCnt_ < 0.0f)

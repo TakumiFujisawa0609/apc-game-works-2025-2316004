@@ -1,9 +1,9 @@
 #pragma once
+#include<functional>
+#include<map>
 #include<memory>
 #include<vector>
 #include<list>
-#include<functional>
-#include<map>
 #include"./CardBase.h"
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
@@ -32,7 +32,7 @@ public:
 		Vector2F numPos = {};
 		int typeImg = -1;
 		float currentAngle = 0.0f;
-		float goalAngle = 0.0f;
+		float goalAngle = currentAngle;
 		CardBase::CARD_STATUS status;
 		CARD_STATE state=CARD_STATE::DRAW_PILE;
 	};
@@ -64,7 +64,9 @@ public:
 	/// @param _status 
 	void AddCardUi(const CardBase::CARD_STATUS _status);
 
-	void CardMoveSelect(CARD_SELECT _select);
+	/// @brief カード状態選択
+	/// @param _select 
+	void CardMoveSelect(const CARD_SELECT _select);
 
 private:
 
@@ -81,7 +83,7 @@ private:
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.4f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.5f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 
 	
 
@@ -94,7 +96,7 @@ private:
 	//カードUI状態
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
-	std::map<CARD_SELECT, std::function<void>(void)>changeMoveState_;
+	std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
 
 	//見せるカード
 	std::list<CARD_UI_INFO>visibleCards_;
