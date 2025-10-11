@@ -78,15 +78,18 @@ private:
 	//楕円中心
 	static constexpr float CENTER_X = 50.0f;
 	static constexpr float CENTER_Y = 640.0f;
+	//static constexpr float CENTER_X = 200.0f;
+	//static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
-	static constexpr int VISIBLE_CARD_MAX = 7;
+	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔
-	static constexpr float VISIBLE_ANGLE_OFFSET = 22.4f;
+	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
 	//カードセレクト時間
 	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
-
-	
-
+	//始点角度
+	static constexpr float START_ANGLE = 0.0f;
+	//終点角度
+	static constexpr float END_ANGLE = 135.0f;
 
 	//カードのステータス
 	std::vector<CARD_UI_INFO>uiInfos_;
@@ -115,7 +118,14 @@ private:
 	//カードセレクトの動き時間
 	float cardMoveCnt_;
 	//状態
-	CARD_SELECT select_;
+	CARD_SELECT selectState_;
+	//セレクト中のカード配列
+	int selectCardIndex_;
+	//末尾のカードインデックス
+	int visibleEndCardIndex_;
+	//先頭のカードインデックス
+	int visibleStartCardIndex_;
+
 	//カード状態遷移
 	void ChangeNone(void);
 	void ChangeLeft(void);
