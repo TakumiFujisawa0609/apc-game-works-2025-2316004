@@ -80,7 +80,7 @@ void CardDeck::EraseHandCard(void)
 void CardDeck::CardMoveRight(void)
 {
 	//指令はプレイヤーやエネミーから出す
-	currentNum_++;
+	currentNum_--;
 	nextNum_ = currentNum_ + 1;
 	prevNum_ = currentNum_ - 1;
 	//カード制限
@@ -90,7 +90,7 @@ void CardDeck::CardMoveRight(void)
 void CardDeck::CardMoveLeft(void)
 {
 	//指令はプレイヤーやエネミーから出す
-	currentNum_--;
+	currentNum_++;
 	nextNum_ = currentNum_ + 1;
 	prevNum_ = currentNum_ - 1;
 	//カード制限

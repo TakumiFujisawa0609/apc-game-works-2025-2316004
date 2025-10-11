@@ -140,7 +140,7 @@ void CardUI::ChangeLeft(void)
 {
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
 	visibleEndCardIndex_++;
-	if(visibleEndCardIndex_>=static_cast<int>(uiInfos_.size())-1)
+	if(visibleEndCardIndex_>=static_cast<int>(uiInfos_.size()))
 	{
 		visibleEndCardIndex_ = 0;
 	}
@@ -191,6 +191,7 @@ void CardUI::UpdateLeft(void)
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_front();
+		//visibleStartCardIndex_++;
 		changeMoveState_[CARD_SELECT::NONE]();
 		return;
 	}
@@ -216,6 +217,7 @@ void CardUI::UpdateRight(void)
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_back();
+		//visibleEndCardIndex_--;
 		changeMoveState_[CARD_SELECT::NONE]();
 		return;
 	}
