@@ -93,9 +93,6 @@ void CardUI::Draw(void)
 		DrawLine(CENTER_X, CENTER_Y, card.cardPos.x, card.cardPos.y, 0xFFFFFF);
 
 	}
-
-
-
 }
 
 
@@ -140,10 +137,16 @@ void CardUI::ChangeLeft(void)
 {
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
 	visibleEndCardIndex_++;
+	visibleStartCardIndex_++;
 	if(visibleEndCardIndex_>=static_cast<int>(uiInfos_.size()))
 	{
-		visibleEndCardIndex_ = 0;
+		visibleEndCardIndex_ = visibleEndCardIndex_ - uiInfos_.size();
 	}
+	if (visibleStartCardIndex_ >= static_cast<int>(uiInfos_.size()))
+	{
+		visibleStartCardIndex_ = visibleStartCardIndex_ - uiInfos_.size();
+	}
+	
 	visibleCards_.emplace_back(uiInfos_[visibleEndCardIndex_]);
 	for (auto& card : visibleCards_)
 	{
@@ -156,9 +159,14 @@ void CardUI::ChangeRight(void)
 {
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
 	visibleStartCardIndex_--;
+	visibleEndCardIndex_--;
 	if (visibleStartCardIndex_ < 0)
 	{
-		visibleStartCardIndex_ = static_cast<int>(uiInfos_.size()) - 1;
+		visibleStartCardIndex_ = static_cast<int>(uiInfos_.size()) + visibleStartCardIndex_;
+	}
+	if (visibleEndCardIndex_ < 0)
+	{
+		visibleEndCardIndex_ = static_cast<int>(uiInfos_.size()) + visibleEndCardIndex_;
 	}
 	visibleCards_.emplace_front(uiInfos_[visibleStartCardIndex_]);
 	for (auto& card : visibleCards_)
