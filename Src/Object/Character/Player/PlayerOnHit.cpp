@@ -4,14 +4,15 @@
 #include "../../../Manager/Resource/ResourceManager.h"
 #include "../../../Object/Common/Geometry/Line.h"
 #include"../../../Object/Common/Geometry/Model.h"
-
+#include "../Object/Character/Base/CharacterBase.h"
 #include"../../../Utility/Utility3D.h"
 
 #include"./Player.h"
 #include"./ActionController.h"
 #include "PlayerOnHit.h"
 
-PlayerOnHit::PlayerOnHit(VECTOR& _movedPos, VECTOR& _moveDiff, ActionController& _action, std::vector<ObjectBase::ColParam>& _colParam, Transform& _trans, Collider::TAG _tag):
+PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff, ActionController& _action, std::vector<ObjectBase::ColParam>& _colParam, Transform& _trans, Collider::TAG _tag):
+	charaObj_(_chara),
 	movedPos_(_movedPos),
 	moveDiff_(_moveDiff),
 	action_(_action),
@@ -89,6 +90,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 void PlayerOnHit::CollSword(const std::weak_ptr<Collider> _hitCol)
 {
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+	
 }
 
 #ifdef DEBUG_ON

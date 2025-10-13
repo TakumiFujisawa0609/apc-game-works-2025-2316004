@@ -1,5 +1,6 @@
 #pragma once
 class ActionController;
+class CharacterBase;
 #include"../Object/ObjectBase.h"
 
 class PlayerOnHit
@@ -14,7 +15,7 @@ public:
 	/// <param name="_colParam">当たり判定情報</param>
 	/// <param name="_trans">モデル情報</param>
 	/// <param name="_tag">当たり判定タグ</param>
-	PlayerOnHit(VECTOR& _movedPos,VECTOR& _moveDiff, ActionController& _action, std::vector<ObjectBase::ColParam>&_colParam,Transform& _trans,Collider::TAG _tag);
+	PlayerOnHit(CharacterBase& _chara,VECTOR& _movedPos,VECTOR& _moveDiff, ActionController& _action, std::vector<ObjectBase::ColParam>&_colParam,Transform& _trans,Collider::TAG _tag);
 
 	/// <summary>
 	/// デストラクタ
@@ -162,7 +163,8 @@ private:
 	//当たり判定関係
 	std::vector<ObjectBase::ColParam>& colParam_;
 	Collider::TAG tag_;	//プレイヤーの当たり判定タグ
-
+	//キャラクターの情報
+	CharacterBase& charaObj_;
 	//ゴール判定
 	bool isGoal_;
 	//死亡判定

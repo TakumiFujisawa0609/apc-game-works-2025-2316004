@@ -32,6 +32,7 @@ public:
 		//画像
 		NUMBERS_IMG,	//カード番号
 		ATK_CARD_IMG,	//番号なしアタックカード
+		RELOAD_CARD_IMG,//リロードカード
 	};
 	
 	/// @brief 初期化

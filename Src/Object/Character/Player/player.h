@@ -176,7 +176,7 @@ private:
 	//static constexpr float CAP_RADIUS = 25.0f;						//半径
 
 		//カード最大枚数
-	static constexpr int CARD_NUM_MAX = 7;
+	static constexpr int CARD_NUM_MAX = 20;
 
 	//格納するカードの強さ
 	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
@@ -188,19 +188,19 @@ private:
 		{4,CARD_TYPE::ATTACK},
 		{5,CARD_TYPE::ATTACK},
 		{6,CARD_TYPE::ATTACK},
-		//{7,CARD_TYPE::ATTACK},
-		//{8,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{0,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{2,CARD_TYPE::ATTACK},
-		//{3,CARD_TYPE::ATTACK},
-		//{4,CARD_TYPE::ATTACK},
-		//{5,CARD_TYPE::ATTACK},
-		//{6,CARD_TYPE::ATTACK},
-		//{7,CARD_TYPE::ATTACK},
-		//{8,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK}
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK},
+		{0,CARD_TYPE::ATTACK},
+		{1,CARD_TYPE::ATTACK},
+		{2,CARD_TYPE::ATTACK},
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK},
+		{6,CARD_TYPE::ATTACK},
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK}
 	};
 
 
@@ -237,11 +237,6 @@ private:
 	std::function<void(void)>stateUpdate_;
 	//カードの位置
 	Vector2 cardCenterPos_;
-
-
-
-
-
 	//カードUI(とりあえず)
 	std::unique_ptr<CardUI>cardUI_;
 

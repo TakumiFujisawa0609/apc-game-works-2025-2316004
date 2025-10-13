@@ -116,7 +116,7 @@ void Player::Init(void)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
 	MakeCollider({ tag_ }, std::move(geo));
 
-	onHit_ = std::make_unique<PlayerOnHit>(movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
+	onHit_ = std::make_unique<PlayerOnHit>(*this,movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
 
 	//ƒvƒŒƒCƒ„[ó‘Ô
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
@@ -150,12 +150,16 @@ void Player::Update(void)
 
 	if (logic_->GetIsAct().isCardMoveLeft)
 	{
-		cardUI_->CardMoveSelect(CardUI::CARD_SELECT::LEFT);
+		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::LEFT);
 
 	}
 	else if (logic_->GetIsAct().isCardMoveRight)
 	{
-		cardUI_->CardMoveSelect(CardUI::CARD_SELECT::RIGHT);
+		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
+	}
+	else if(logic_->GetIsAct().isCardUse)
+	{
+		cardUI_->CardDisition();
 	}
 
 

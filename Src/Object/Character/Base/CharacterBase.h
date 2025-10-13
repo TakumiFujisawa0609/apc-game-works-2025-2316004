@@ -40,6 +40,14 @@ public:
 		VECTOR dir_;			//方向
 	};
 
+	struct STATUS
+	{
+		int hp_;			//体力
+		int maxHp_;		//最大体力
+		int atk_;		//攻撃力
+		//int def_;		//防御力
+	};
+
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
@@ -166,6 +174,8 @@ protected:
 	
 	//角度関連
 	ROTATION charaRot_;
+	//ステータス
+	STATUS status_;
 
 
 

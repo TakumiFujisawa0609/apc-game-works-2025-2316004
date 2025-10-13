@@ -7,6 +7,7 @@
 #include"./CardBase.h"
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
+#include"../Application.h"
 class CardUI
 {
 
@@ -24,17 +25,18 @@ public:
 		NONE
 		, LEFT
 		, RIGHT
+		, DISITION
 	};
 
 	struct CARD_UI_INFO
 	{
-		Vector2F cardPos={};
-		Vector2F numPos = {};
-		int typeImg = -1;
-		float currentAngle = 0.0f;
-		float goalAngle = currentAngle;
-		CardBase::CARD_STATUS status;
-		CARD_STATE state=CARD_STATE::DRAW_PILE;
+		Vector2F cardPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの座標(画面外で初期化)
+		Vector2F numPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの強さ番号座標(画面外で初期化)
+		int typeImg = -1;																				//カードの種類画像
+		float currentAngle = 0.0f;																		//カードの現在の角度
+		float goalAngle = currentAngle;																	//カードの目標の角度
+		CardBase::CARD_STATUS status;																	//カードのステータス
+		CARD_STATE state = CARD_STATE::DRAW_PILE;														//カードの状態
 	};
 
 	/// @brief コンストラクタ
@@ -66,7 +68,11 @@ public:
 
 	/// @brief カード状態選択
 	/// @param _select 
-	void CardMoveSelect(const CARD_SELECT _select);
+	void ChangeSelectState(const CARD_SELECT _select);
+
+	/// @brief カードの決定
+	/// @param  
+	void CardDisition(void);
 
 private:
 
@@ -91,6 +97,9 @@ private:
 	//終点角度
 	static constexpr float END_ANGLE = 135.0f;
 
+	//選択カード番号
+	static constexpr int SELECT_CARD_NO = 2;
+
 	//カードのステータス
 	std::vector<CARD_UI_INFO>uiInfos_;
 
@@ -109,6 +118,8 @@ private:
 	int* cardNoImgs_;
 	//攻撃カード画像
 	int atkCardImg_;
+	//リロードカード画像
+	int reloadCardImg_;
 	//カードの大きさ
 	double cardScl_;
 	//カードの座標
@@ -121,20 +132,28 @@ private:
 	CARD_SELECT selectState_;
 	//セレクト中のカード配列
 	int selectCardIndex_;
+	//決定後のカウント
+	float disitionCnt_;
+	
 	//末尾のカードインデックス
 	int visibleEndCardIndex_;
 	//先頭のカードインデックス
 	int visibleStartCardIndex_;
 
 	//カード状態遷移
-	void ChangeNone(void);
-	void ChangeLeft(void);
-	void ChangeRight(void);
+	void ChangeNone(void);		//通常
+	void ChangeLeft(void);		//左に移動
+	void ChangeRight(void);		//右に移動
+	void ChangeDisition(void);	//決定
 
 	void UpdateNone(void);
 	void UpdateLeft(void);
 	void UpdateRight(void);
+	void UpdateDisition(void);
 
+	//カード移動
+	void MoveCard(void);
+	//
 
 };
 

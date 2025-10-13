@@ -66,7 +66,7 @@ void Enemy::Init(void)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
 	MakeCollider({ tag_ }, std::move(geo));
 
-	onHit_ = std::make_unique<PlayerOnHit>(movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
+	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
 
 	//TransformÇÃê›íË
 	trans_.quaRot = Quaternion();
