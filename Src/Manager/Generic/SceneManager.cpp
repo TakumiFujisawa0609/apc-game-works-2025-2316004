@@ -3,6 +3,7 @@
 #include <EffekseerForDXLib.h>
 #include "../../Scene/TitleScene.h"
 #include "../../Scene/GameScene.h"
+#include "../../Scene/GameClearScene.h"
 #include "../Resource/ResourceManager.h"
 #include "SceneManager.h"
 #include "Camera.h"
@@ -167,6 +168,8 @@ void SceneManager::Release(void)
 
 void SceneManager::ChangeScene(SCENE_ID nextId)
 {
+	//シーン遷移中は処理抜け(無限にシーン遷移を防ぐため)
+	if (isSceneChanging_)return;
 
 	// フェード処理が終わってからシーンを変える場合もあるため、
 	// 遷移先シーンをメンバ変数に保持
@@ -236,6 +239,9 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME:
 		CreateScene(std::make_unique<GameScene>());
+		break;
+	case SCENE_ID::GAME_CLEAR:
+		CreateScene(std::make_unique<GameClearScene>());
 		break;
 	}
 

@@ -16,6 +16,8 @@ cardMoveCnt_(SELECT_MOVE_CARD_TIME)
 	int i = -1;
 	//複数画像はコンストラクタで初期化必須
 	cardNoImgs_ = &i;
+
+
 }
 
 CardUI::~CardUI(void)
@@ -42,8 +44,10 @@ void CardUI::Init(void)
 	changeMoveState_.emplace(CARD_SELECT::NONE, [this]() {ChangeNone(); });
 	changeMoveState_.emplace(CARD_SELECT::LEFT, [this]() {ChangeLeft(); });
 	changeMoveState_.emplace(CARD_SELECT::RIGHT, [this]() {ChangeRight(); });
+	changeMoveState_.emplace(CARD_SELECT::DISITION, [this]() {ChangeDisition(); });
 
 	ChangeSelectState(CARD_SELECT::NONE);
+
 
 	for (int i = 0; i < VISIBLE_CARD_MAX+1; i++)
 	{
@@ -58,18 +62,12 @@ void CardUI::Init(void)
 		{
 			visibleCards_.emplace_back(uiInfos_[i]);
 		}
-		////リロードカードを入れる
-		//else if (i == VISIBLE_CARD_MAX - 1)
-		//{
-		//	visibleCards_.emplace_front(uiInfos_[i]);
-		//}
-
 	}
-	CARD_UI_INFO info = {};
-	info.status.pow_ = -1;
-	info.status.type_ = CardBase::CARD_TYPE::RELOAD;
-	info.typeImg = reloadCardImg_;
-	uiInfos_.emplace_back(info);
+	//CARD_UI_INFO info = {};
+	//info.status.pow_ = -1;
+	//info.status.type_ = CardBase::CARD_TYPE::RELOAD;
+	//info.typeImg = reloadCardImg_;
+	//uiInfos_.emplace_back(info);
 	visibleEndCardIndex_ = static_cast<int>(visibleCards_.size()) - 1;
 }
 
@@ -77,6 +75,12 @@ void CardUI::Update(void)
 {
 	//カード状態
 	cardUpdate_();
+
+	//常に強さ番号座標をローカル座標分追従させる
+	for (auto& card : visibleCards_)
+	{
+		card.numPos = card.cardPos + (NUM_LOCAL_POS * cardScl_);
+	}
 }
 
 void CardUI::Draw(void)
@@ -87,15 +91,31 @@ void CardUI::Draw(void)
 
 	//描画の時のみ逆に回す
 	visibleCards.reverse();
+	int i = VISIBLE_CARD_MAX - 1;
 	for (auto& card : visibleCards)
 	{
 		DrawRotaGraphF(card.cardPos.x, card.cardPos.y, cardScl_, 0.0f, card.typeImg, true);
 
 		int num = card.status.pow_ - 1;
-		if (num < 0)num = 9;
-
+		if (num == -1) { num = 9; }
 		DrawRotaGraphF(card.numPos.x, card.numPos.y, cardScl_ * NUM_SCL, 0.0f, cardNoImgs_[num], true);
 		DrawLine(CENTER_X, CENTER_Y, card.cardPos.x, card.cardPos.y, 0xFFFFFF);
+	}
+	visibleCards.reverse();
+	i = 0;
+	for (auto& card : visibleCards)
+	{
+		if (i == SELECT_CARD_NO)
+		{
+			DrawRotaGraphF(card.cardPos.x, card.cardPos.y, cardScl_, 0.0f, card.typeImg, true);
+
+			int num = card.status.pow_ - 1;
+			if (num == -1) { num = 9; }
+			DrawRotaGraphF(card.numPos.x, card.numPos.y, cardScl_ * NUM_SCL, 0.0f, cardNoImgs_[num], true);
+			DrawLine(CENTER_X, CENTER_Y, card.cardPos.x, card.cardPos.y, 0xFFFFFF);
+			break;
+		}
+		i++;
 	}
 }
 
@@ -193,6 +213,8 @@ void CardUI::ChangeRight(void)
 
 void CardUI::ChangeDisition(void)
 {
+	disitionCnt_ = DISITION_MOVE_CARD_TIME;
+	cardUpdate_ = [this]() {UpdateDisition(); };
 }
 
 void CardUI::UpdateNone(void)
@@ -207,19 +229,16 @@ void CardUI::UpdateNone(void)
 		card.currentAngle = (END_ANGLE - START_ANGLE) * (visible - i) / visible - VISIBLE_ANGLE_OFFSET*2;
 		card.cardPos.x = CENTER_X + std::cos(card.currentAngle) * radius_.x;
 		card.cardPos.y = CENTER_Y + std::sin(card.currentAngle) * (-radius_.y);
-		//常に強さ番号座標をローカル座標分追従させる
-		card.numPos = card.cardPos + (NUM_LOCAL_POS * cardScl_);
 		i++;
 	}
 }
 
 void CardUI::UpdateLeft(void)
 {
-	cardMoveCnt_ -= 1.0f / 60.0f;
+	cardMoveCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_front();
-		//visibleStartCardIndex_++;
 		changeMoveState_[CARD_SELECT::NONE]();
 		return;
 	}
@@ -228,11 +247,10 @@ void CardUI::UpdateLeft(void)
 
 void CardUI::UpdateRight(void)
 {
-	cardMoveCnt_ -= 1.0f / 60.0f;
+	cardMoveCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_back();
-		//visibleEndCardIndex_--;
 		changeMoveState_[CARD_SELECT::NONE]();
 		return;
 	}
@@ -242,14 +260,16 @@ void CardUI::UpdateRight(void)
 void CardUI::UpdateDisition(void)
 {
 	int i = 0;
-	disitionCnt_ += 1.0f / 60.0f;
+	disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 	int cardSize = static_cast<int>(visibleCards_.size());
 	for (auto& card : visibleCards_)
 	{
 		if (i == SELECT_CARD_NO)
 		{
 			//選択したカードの情報を取得
-			card.cardPos = UtilityCommon::Lerp(card.cardPos, Vector2F{ Application::SCREEN_HALF_X,Application::SCREEN_HALF_Y }, 0.1f);
+			card.state = CARD_STATE::USING;
+			card.cardPos = UtilityCommon::Lerp(card.cardPos, DISITON_CARD_POS,
+				(DISITION_MOVE_CARD_TIME-disitionCnt_)/DISITION_MOVE_CARD_TIME);
 			i++;
 			continue;
 		}
@@ -269,8 +289,5 @@ void CardUI::MoveCard(void)
 
 		card.cardPos.x = CENTER_X + std::cos(card.currentAngle) * radius_.x;
 		card.cardPos.y = CENTER_Y + std::sin(card.currentAngle) * (-radius_.y);
-
-		//常に強さ番号座標をローカル座標分追従させる
-		card.numPos = card.cardPos + (NUM_LOCAL_POS * cardScl_);
 	}
 }

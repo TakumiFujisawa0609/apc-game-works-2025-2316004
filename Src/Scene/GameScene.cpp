@@ -73,7 +73,11 @@ void GameScene::NormalUpdate(void)
 		scnMng_.PushScene(pauseScene_);
 		return;
 	}
-	
+	//とりあえず敵が倒れたら
+	if (enemy_->GetStatus().hp_ <= 0)
+	{
+		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+	}
 	//プレイヤーの更新
 	player_->Update();
 	//敵の更新

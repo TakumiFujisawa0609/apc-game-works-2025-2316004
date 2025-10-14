@@ -2,6 +2,7 @@
 #include"../Utility/UtilityCommon.h"
 #include"../../../Application.h"
 #include"../../Card/CardDeck.h"
+#include"../Object/Card/CardUI.h"
 #include"../Player/ActionController.h"
 
 #include"../Player/Player.h"
@@ -68,6 +69,9 @@ void Enemy::Init(void)
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
 
+	//ìGÇÃÉJÅ[ÉhUIê∂ê¨
+	cardUI_ = std::make_unique<CardUI>();
+
 	//TransformÇÃê›íË
 	trans_.quaRot = Quaternion();
 	trans_.scl = MODEL_SCL;
@@ -86,6 +90,9 @@ void Enemy::Update(void)
 	//âÒì]ÇÃìØä˙
 	trans_.quaRot = charaRot_.playerRotY_;
 	UpdatePost();
+
+
+
 	trans_.Update();
 }
 
@@ -95,6 +102,16 @@ void Enemy::Draw(void)
 	MV1DrawModel(trans_.modelId);
 	deck_->Draw();
 
+	const int BOX_START_X = 200;
+	const int BOX_START_Y = 50;
+	const int BOX_END_X = BOX_START_X+400;
+	const int BOX_END_Y = BOX_START_Y+30;
+
+	float hpPer = static_cast<float>(status_.hp_) / static_cast<float>(status_.maxHp_);
+	float hpBoxEnd= hpPer * 400.0f;
+	int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
+	DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
+	DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1);
 #ifdef _DEBUG
 	DrawDebug();
 #endif // _DEBUG

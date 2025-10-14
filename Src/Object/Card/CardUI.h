@@ -78,27 +78,31 @@ private:
 
 	//倍率1の時のカードの強さの描画座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
+	//決定したカードの座標
+	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };
 	//楕円の半径
 	static constexpr float RADIUS_X = 186.0f;	//横半径
 	static constexpr float RADIUS_Y = 214.0f;	//横半径
 	//楕円中心
-	static constexpr float CENTER_X = 50.0f;
-	static constexpr float CENTER_Y = 640.0f;
-	//static constexpr float CENTER_X = 200.0f;
-	//static constexpr float CENTER_Y = 440.0f;
+	//static constexpr float CENTER_X = 50.0f;
+	//static constexpr float CENTER_Y = 640.0f;
+	static constexpr float CENTER_X = 200.0f;
+	static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
 	//カードセレクト時間
 	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
+	//カード決定UI時間
+	static constexpr float DISITION_MOVE_CARD_TIME = 0.1f;
 	//始点角度
 	static constexpr float START_ANGLE = 0.0f;
 	//終点角度
 	static constexpr float END_ANGLE = 135.0f;
 
 	//選択カード番号
-	static constexpr int SELECT_CARD_NO = 2;
+	static constexpr int SELECT_CARD_NO = 1;
 
 	//カードのステータス
 	std::vector<CARD_UI_INFO>uiInfos_;

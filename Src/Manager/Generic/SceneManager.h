@@ -24,7 +24,8 @@ public:
 	{
 		NONE,
 		TITLE,
-		GAME
+		GAME,
+		GAME_CLEAR,
 	};
 	
 	/// @brief ‰Šú‰»

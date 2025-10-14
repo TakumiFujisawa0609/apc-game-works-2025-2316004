@@ -36,11 +36,11 @@ void CardDeck::Load(void)
 void CardDeck::Init(void)
 {
 	//カードの最後の配列にリロードカードを入れる(リロード用のカードで、勝敗はない)
-	CardBase::CARD_STATUS reloadStatus = { -1, CardBase::CARD_TYPE::RELOAD };
-	std::unique_ptr<CardBase>roloadCard = std::make_unique<CardBase>(reloadStatus);
-	std::unique_ptr<CardBase>initReloadCard = std::make_unique<CardBase>(reloadStatus);
-	drawPile_.emplace_back(std::move(roloadCard));
-	initDeck_.emplace_back(std::move(initReloadCard));
+	//CardBase::CARD_STATUS reloadStatus = { -1, CardBase::CARD_TYPE::RELOAD };
+	//std::unique_ptr<CardBase>roloadCard = std::make_unique<CardBase>(reloadStatus);
+	//std::unique_ptr<CardBase>initReloadCard = std::make_unique<CardBase>(reloadStatus);
+	//drawPile_.emplace_back(std::move(roloadCard));
+	//initDeck_.emplace_back(std::move(initReloadCard));
 
 
 	currentNum_ = 0;

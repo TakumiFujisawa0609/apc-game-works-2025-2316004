@@ -4,6 +4,7 @@
 #include "../Object/Character/Player/ActionController.h"
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Object/Character/Player/PlayerOnHit.h"
+#include"../Object/Card/CardUI.h"
 #include "../../../Utility/Utility3D.h"
 #include "../../Common/Geometry/Capsule.h"
 #include "../../Common/Geometry/Sphere.h"
@@ -72,4 +73,9 @@ void CharacterBase::Rotate(void)
 	charaRot_.playerRotY_ = Quaternion::Slerp(
 		charaRot_.playerRotY_, charaRot_.goalQuaRot_, (TIME_ROT - charaRot_.stepRotTime_) / TIME_ROT);
 	//charaRot_.playerRotY_ = charaRot_.goalQuaRot_;
+}
+
+void CharacterBase::Damage(const int _dam)
+{
+	status_.hp_ -= _dam;
 }

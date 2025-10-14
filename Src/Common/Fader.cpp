@@ -17,7 +17,7 @@ void Fader::SetFade(STATE state)
 	state_ = state;
 	if (state_ != STATE::NONE)
 	{
-		isPreEnd_ = false;
+ 		isPreEnd_ = false;
 		isEnd_ = false;
 	}
 }

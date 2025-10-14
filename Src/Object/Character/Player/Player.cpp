@@ -82,6 +82,10 @@ void Player::Load(void)
 
 	cardUI_ = std::make_unique<CardUI>();
 	cardUI_->Load();
+	
+	//デッキの先頭にリロードカード追加
+	deck_->AddDrawPile(RELOAD_CARD_STATUS);
+	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
@@ -159,7 +163,7 @@ void Player::Update(void)
 	}
 	else if(logic_->GetIsAct().isCardUse)
 	{
-		cardUI_->CardDisition();
+		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 	}
 
 

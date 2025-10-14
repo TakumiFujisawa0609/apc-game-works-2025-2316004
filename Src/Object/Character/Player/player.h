@@ -237,8 +237,7 @@ private:
 	std::function<void(void)>stateUpdate_;
 	//カードの位置
 	Vector2 cardCenterPos_;
-	//カードUI(とりあえず)
-	std::unique_ptr<CardUI>cardUI_;
+
 
 
 

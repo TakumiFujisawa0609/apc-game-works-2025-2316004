@@ -1,9 +1,11 @@
 #pragma once
+#include"../../Card/CardBase.h"
 #include"../Object/ObjectBase.h"
 
 class AnimationController;
 class ActionController;
 class CardDeck;
+class CardUI;
 class InputBase;
 class Capsule;
 class LogicBase;
@@ -18,6 +20,9 @@ public:
 
 	// 回転完了までの時間
 	static constexpr float TIME_ROT = 0.1f;
+
+	//最大ＨＰ
+	static constexpr int HP_MAX = 200;
 
 	// アニメーション種別
 	enum class ANIM_TYPE
@@ -42,10 +47,10 @@ public:
 
 	struct STATUS
 	{
-		int hp_;			//体力
-		int maxHp_;		//最大体力
-		int atk_;		//攻撃力
-		//int def_;		//防御力
+		int maxHp_= HP_MAX;			//最大体力
+		int hp_ = maxHp_;	//体力
+		int atk_;			//攻撃力
+		//int def_;			//防御力
 	};
 
 	/// <summary>
@@ -131,13 +136,27 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	const ROTATION GetRotation(void)const { return charaRot_; }
+	inline const ROTATION GetRotation(void)const { return charaRot_; }
 
 	/// <summary>
 	/// 角度更新
 	/// </summary>
 	/// <param name=""></param>
 	void Rotate(void);
+
+	/// @brief ダメージ処理
+	/// @param _dam ダメージ数
+	void Damage(const int _dam);
+	/// @brief ステータス取得
+	/// @param  
+	/// @return 
+	inline const STATUS GetStatus(void) { return status_; }
+
+	/// @brief カードUI
+	/// @param  
+	/// @return 
+	inline CardUI& GetCardUI(void) { return *cardUI_; }
+	
 
 protected:
 	//カプセル関連
@@ -154,6 +173,8 @@ protected:
 	static constexpr float MOVE_LINE_Y_OFFSET = - 1.0f;
 	//移動量更新条件の移動ラインの長さ
 	static constexpr float MOVE_LINE_Y_CHECK_VALUE =  1.5f;
+	//リロードカードステータス
+	static constexpr CardBase::CARD_STATUS RELOAD_CARD_STATUS = { -1,CardBase::CARD_TYPE::RELOAD };
 
 	//入力
 	std::unique_ptr<LogicBase>logic_;
@@ -176,7 +197,8 @@ protected:
 	ROTATION charaRot_;
 	//ステータス
 	STATUS status_;
-
+	//カードUI(とりあえず)
+	std::unique_ptr<CardUI>cardUI_;
 
 
 private:
