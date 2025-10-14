@@ -43,10 +43,6 @@ void EnemyLogic::Update(void)
 		cardCoolCnt_ = CARD_COOL_TIME;
 	}
 
-
-
-
-
 	//デバッグ用の入力処理
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
 	{

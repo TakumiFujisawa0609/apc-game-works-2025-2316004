@@ -6,6 +6,7 @@
 #include "../../Utility//UtilityCommon.h"
 #include "../../Object/Common/Transform.h"
 #include"../../Manager/Generic/InputManager.h"
+#include"../../Manager/Generic/InputManagerS.h"
 #include "Camera.h"
 
 Camera::Camera(void)
@@ -186,7 +187,12 @@ void Camera::ProcessRot(void)
 	SetMousePoint(Application::SCREEN_SIZE_X / 2, Application::SCREEN_SIZE_Y / 2);
 
 	// マウスを表示状態にする
-	//SetMouseDispFlag(FALSE);
+	SetMouseDispFlag(FALSE);
+
+	auto rStick = InputManagerS::GetInstance().GetKnockRStickSize(InputManager::JOYPAD_NO::PAD1);
+	float rotPow = SPEED_PAD;
+	angles_.x += UtilityCommon::Deg2RadF(rStick.y * rotPow);
+	angles_.y += UtilityCommon::Deg2RadF(rStick.x * rotPow);
 
 	if (angles_.x >= LIMIT_X_UP_RAD)
 	{
@@ -207,7 +213,7 @@ void Camera::SetBeforeDrawFollow(void)
 {
 
 	// カメラ操作
-	//ProcessRot();
+	ProcessRot();
 
 	// 追従対象との相対位置を同期
 	SyncFollow();

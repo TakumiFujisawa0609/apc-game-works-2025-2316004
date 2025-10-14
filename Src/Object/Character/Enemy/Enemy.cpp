@@ -14,6 +14,8 @@
 #include"../../Common/Geometry/Capsule.h"
 #include"../../Common/Geometry/Line.h"
 #include"../Manager/Resource/ResourceManager.h"
+#include"../Manager/Generic/Camera.h"
+#include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
 
 #include "Enemy.h"
@@ -128,14 +130,12 @@ void Enemy::MoveDirFronInput(void)
 	Quaternion playerRot = playerChara_.GetTransform().quaRot;
 	charaRot_.dir_ = playerRot.PosAxis(getDir);
 	charaRot_.dir_ = VNorm(charaRot_.dir_);
-	//charaRot_.dir_ = getDir;
+	charaRot_.dir_ = getDir;
 }
 void Enemy::SetGoalRotate(const double _deg)
 {
-	//Quaternion axis = Quaternion::AngleAxis(
-	//	UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
-
-	Quaternion axis= Quaternion::Euler(Utility3D::GetRotAxisToTarget(trans_.pos, playerChara_.GetTransform().pos, Utility3D::AXIS_Y));
+	Quaternion axis= Quaternion::Euler
+	(Utility3D::GetRotAxisToTarget(trans_.pos, playerChara_.GetTransform().pos, Utility3D::AXIS_Y));
 
 	//åªç›ê›íËÇ≥ÇÍÇƒÇ¢ÇÈâÒì]Ç∆ÇÃäpìxç∑ÇéÊÇÈ
 	double angleDiff = Quaternion::Angle(axis, charaRot_.goalQuaRot_);

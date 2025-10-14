@@ -4,6 +4,7 @@
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "CardUI.h"
 
 CardUI::CardUI(void):
@@ -30,7 +31,7 @@ void CardUI::Load(void)
 	cardNoImgs_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
-
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
 }
 
 void CardUI::Init(void)
@@ -183,6 +184,7 @@ void CardUI::ChangeLeft(void)
 	{
 		card.goalAngle = card.currentAngle + UtilityCommon::Deg2RadF(VISIBLE_ANGLE_OFFSET);
 	}
+	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
 	cardUpdate_ = [this]() {UpdateLeft(); };
 }
 
@@ -208,6 +210,9 @@ void CardUI::ChangeRight(void)
 	{
 		card.goalAngle = card.currentAngle - UtilityCommon::Deg2RadF(VISIBLE_ANGLE_OFFSET);
 	}
+
+	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+
 	cardUpdate_ = [this]() {UpdateRight(); };
 }
 

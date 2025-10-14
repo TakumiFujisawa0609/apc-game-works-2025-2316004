@@ -168,8 +168,8 @@ void ActionController::Rotate(void)
 void ActionController::DirAndMovePowUpdate(void)
 {
 	//方向の更新
-	//moveDir_ = charaObj_.GetRotation().dir_;
-	moveDir_ = logic_.GetDir();
+	moveDir_ = charaObj_.GetRotation().dir_;
+	//moveDir_ = logic_.GetDir();
 	float speed = mainAction_[act_]->GetSpeed();
 	//移動量の更新
 	movePow_ = VScale(moveDir_, speed);

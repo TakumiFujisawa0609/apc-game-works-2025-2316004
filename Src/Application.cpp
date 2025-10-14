@@ -5,6 +5,7 @@
 #include "Manager/Generic/InputManagerS.h"
 #include "Manager/Resource/ResourceManager.h"
 #include "Manager/Resource/FontManager.h"
+#include "Manager/Resource/SoundManager.h"
 #include "FpsControl/FpsControl.h"
 #include "Application.h"
 
@@ -12,7 +13,8 @@ const std::wstring Application::PATH_IMAGE = L"Data/Image/";
 const std::wstring Application::PATH_MODEL = L"Data/Model/";
 const std::wstring Application::PATH_ANIM = L"Data/Model/Animation/";
 const std::wstring Application::PATH_EFFECT = L"Data/Effect/";
-const std::wstring Application::PATH_SOUND = L"Data/Sound/";
+const std::wstring Application::PATH_SOUND_BGM = L"Data/Sound/BGM/";
+const std::wstring Application::PATH_SOUND_SE = L"Data/Sound/SE/";
 const std::wstring Application::PATH_FONT = L"Data/Font/";
 const std::wstring Application::PATH_TEXT = L"Data/Text/";
 const std::wstring Application::PATH_JSON = L"Data/JSON/";
@@ -53,6 +55,10 @@ bool Application::Init()
 	// シーン管理初期化
 	SceneManager::CreateInstance();		
 	SceneManager::GetInstance().Init();	
+
+	//サウンド管理初期化
+	SoundManager::CreateInstance();
+	SoundManager::GetInstance().Init();
 
 	// FPS初期化
 	fps_ = std::make_unique<FpsControl>();

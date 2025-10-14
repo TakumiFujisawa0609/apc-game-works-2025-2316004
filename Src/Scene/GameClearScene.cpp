@@ -57,7 +57,7 @@ void GameClearScene::NormalDraw(void)
 	DrawFormatString(
 		0, 0,
 		0x000000,
-		L"GameClearScee"
+		L"GameClearScene"
 	);
 }
 

@@ -201,7 +201,7 @@ void Player::MoveDirFronInput(void)
 	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
 	charaRot_.dir_ = cameraRot.PosAxis(getDir);
 	charaRot_.dir_ = VNorm(charaRot_.dir_);
-	charaRot_.dir_ = getDir;
+	//charaRot_.dir_ = getDir;
 
 }
 void Player::SetGoalRotate(const double _deg)
@@ -209,7 +209,7 @@ void Player::SetGoalRotate(const double _deg)
 	//ƒJƒƒ‰‚ÌŠp“x‚ğæ“¾
 	VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
 	Quaternion axis = Quaternion::AngleAxis(
-		static_cast<double >(cameraRot.y) + UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
+		static_cast<double>(cameraRot.y) + UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
 
 	//Œ»İİ’è‚³‚ê‚Ä‚¢‚é‰ñ“]‚Æ‚ÌŠp“x·‚ğæ‚é
 	double angleDiff = Quaternion::Angle(axis, charaRot_.goalQuaRot_);

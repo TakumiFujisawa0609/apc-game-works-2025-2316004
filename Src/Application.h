@@ -25,7 +25,8 @@ public:
 	static const std::wstring PATH_MODEL;
 	static const std::wstring PATH_ANIM;
 	static const std::wstring PATH_EFFECT;
-	static const std::wstring PATH_SOUND;
+	static const std::wstring PATH_SOUND_BGM;
+	static const std::wstring PATH_SOUND_SE;
 	static const std::wstring PATH_FONT;
 	static const std::wstring PATH_TEXT;
 	static const std::wstring PATH_JSON;

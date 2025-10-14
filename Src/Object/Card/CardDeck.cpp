@@ -43,7 +43,7 @@ void CardDeck::Init(void)
 	//initDeck_.emplace_back(std::move(initReloadCard));
 
 
-	currentNum_ = 0;
+	currentNum_ = 1;
 	nextNum_ = currentNum_ + 1;
 	prevNum_ = static_cast<int>(drawPile_.size()) - 1;
 
@@ -104,14 +104,14 @@ void CardDeck::Update(void)
 void CardDeck::Draw(void)
 {
 	CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
-	CardBase::CARD_STATUS nextCardPow = drawPile_[nextNum_]->GetCardStatus();
-	CardBase::CARD_STATUS prevCardPow = drawPile_[prevNum_]->GetCardStatus();
+	//CardBase::CARD_STATUS nextCardPow = drawPile_[nextNum_]->GetCardStatus();
+	//CardBase::CARD_STATUS prevCardPow = drawPile_[prevNum_]->GetCardStatus();
 
 	const float DISTANCE_X = 40;
 
-	DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow.pow_);
+	//DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow.pow_);
 	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
-	DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
+	//DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
 
 	//drawPile_[0]->Draw();
 
