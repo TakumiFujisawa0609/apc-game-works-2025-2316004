@@ -213,7 +213,7 @@ void Camera::SetBeforeDrawFollow(void)
 {
 
 	// ƒJƒƒ‰‘€ì
-	ProcessRot();
+	//ProcessRot();
 
 	// ’Ç]‘ÎÛ‚Æ‚Ì‘Š‘ÎˆÊ’u‚ğ“¯Šú
 	SyncFollow();

@@ -65,6 +65,11 @@ void CardUI::Init(void)
 		}
 	}
 	visibleEndCardIndex_ = static_cast<int>(visibleCards_.size()) - 1;
+	if (!visibleCards_.empty()) {
+		current_ = visibleCards_.begin();
+		current_++;
+	}
+
 }
 
 void CardUI::Update(void)
@@ -163,8 +168,10 @@ void CardUI::ChangeNone(void)
 void CardUI::ChangeLeft(void)
 {
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
+	//カードの範囲変数を更新する
 	visibleEndCardIndex_++;
 	visibleStartCardIndex_++;
+	current_++;
 	if(visibleEndCardIndex_>=static_cast<int>(uiInfos_.size()))
 	{
 		visibleEndCardIndex_ = visibleEndCardIndex_ - uiInfos_.size();
@@ -189,6 +196,9 @@ void CardUI::ChangeRight(void)
 	//描画するカードのインデックスをずらす
 	visibleStartCardIndex_--;
 	visibleEndCardIndex_--;
+	//visible配列に入れる前に現在の番地を引くことで、
+	//結果的に1番目が選択されていることになる
+	current_--;
 	//負の数になったら配列の最後に戻す
 	if (visibleStartCardIndex_ < 0)
 	{
@@ -262,18 +272,14 @@ void CardUI::UpdateDisition(void)
 	int i = 0;
 	disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 	int cardSize = static_cast<int>(visibleCards_.size());
-	for (auto& card : visibleCards_)
+	auto& card = *current_;
+		//選択したカードの情報を取得
+		card.state = CARD_STATE::USING;
+		card.cardPos = UtilityCommon::Lerp(card.cardPos, DISITON_CARD_POS,
+			(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME);
+	if (disitionCnt_ < 0.0f)
 	{
-		if (i == SELECT_CARD_NO)
-		{
-			//選択したカードの情報を取得
-			card.state = CARD_STATE::USING;
-			card.cardPos = UtilityCommon::Lerp(card.cardPos, DISITON_CARD_POS,
-				(DISITION_MOVE_CARD_TIME-disitionCnt_)/DISITION_MOVE_CARD_TIME);
-			i++;
-			continue;
-		}
-		i++;
+		//visible
 	}
 }
 

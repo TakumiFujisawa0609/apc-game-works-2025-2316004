@@ -113,7 +113,8 @@ private:
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
 	std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
-
+	//出すカード
+	std::list<CARD_UI_INFO>handCard_;
 	//見せるカード
 	std::list<CARD_UI_INFO>visibleCards_;
 	//円形UIの中心座標
@@ -138,7 +139,9 @@ private:
 	int selectCardIndex_;
 	//決定後のカウント
 	float disitionCnt_;
-	
+	//現在選択中のカード
+	std::list<CARD_UI_INFO>::iterator current_;
+
 	//末尾のカードインデックス
 	int visibleEndCardIndex_;
 	//先頭のカードインデックス
