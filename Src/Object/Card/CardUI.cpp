@@ -64,11 +64,6 @@ void CardUI::Init(void)
 			visibleCards_.emplace_back(uiInfos_[i]);
 		}
 	}
-	//CARD_UI_INFO info = {};
-	//info.status.pow_ = -1;
-	//info.status.type_ = CardBase::CARD_TYPE::RELOAD;
-	//info.typeImg = reloadCardImg_;
-	//uiInfos_.emplace_back(info);
 	visibleEndCardIndex_ = static_cast<int>(visibleCards_.size()) - 1;
 }
 

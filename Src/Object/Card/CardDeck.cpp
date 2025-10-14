@@ -42,7 +42,7 @@ void CardDeck::Init(void)
 	//drawPile_.emplace_back(std::move(roloadCard));
 	//initDeck_.emplace_back(std::move(initReloadCard));
 
-
+	//カードUIの選択番号が1番なので1に初期化する
 	currentNum_ = 1;
 	nextNum_ = currentNum_ + 1;
 	prevNum_ = static_cast<int>(drawPile_.size()) - 1;
