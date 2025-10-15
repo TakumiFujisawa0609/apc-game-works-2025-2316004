@@ -85,6 +85,7 @@ private:
 	static constexpr float RADIUS_Y = 214.0f;	//横半径
 	//楕円中心
 	static constexpr float CENTER_X = 50.0f;
+	///*static constexpr float CENTER_X = 0.0f;*/
 	static constexpr float CENTER_Y = 640.0f;
 	//static constexpr float CENTER_X = 200.0f;
 	//static constexpr float CENTER_Y = 440.0f;
@@ -93,9 +94,9 @@ private:
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 2.0f;
 	//カード決定UI時間
-	static constexpr float DISITION_MOVE_CARD_TIME = 0.1f;
+	static constexpr float DISITION_MOVE_CARD_TIME =0.1f;
 	//始点角度
 	static constexpr float START_ANGLE = 0.0f;
 	//終点角度
@@ -104,7 +105,7 @@ private:
 	//選択カード番号
 	static constexpr int SELECT_CARD_NO = 1;
 
-	//カードのステータス
+	//初期カード
 	std::vector<CARD_UI_INFO>uiInfos_;
 
 	Vector2F radius_;
@@ -113,10 +114,12 @@ private:
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
 	std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
-	//出すカード
-	std::list<CARD_UI_INFO>handCard_;
+	//手札
+	std::list<CARD_UI_INFO>handCards_;
 	//見せるカード
 	std::list<CARD_UI_INFO>visibleCards_;
+	//アクション中カード
+	std::list<CARD_UI_INFO>actions_;
 	//円形UIの中心座標
 	Vector2 centerPos_;
 	//カード番号イメージ
@@ -158,9 +161,18 @@ private:
 	void UpdateRight(void);
 	void UpdateDisition(void);
 
-	//カード移動
-	void MoveCard(void);
-	//
+	//すべてのカードの移動
+	void MoveCardAll(void);
+	//特定のカードのみの移動
+	void MoveSpecificCard(CARD_UI_INFO& _card);
 
+	//範囲インデックスの計算
+	void AddIndex(int& _index);	//足し算
+	void SubIndex(int& _index);	//引き算
+	
+	//カード描画
+	void DrawCard(const CARD_UI_INFO _card);
+	//角度を現在角度に設定
+	void CurrentAngle(void);
 };
 
