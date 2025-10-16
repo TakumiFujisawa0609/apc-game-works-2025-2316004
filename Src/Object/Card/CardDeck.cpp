@@ -153,9 +153,9 @@ void CardDeck::MoveHandToCharge(void)
 		prevNum_ = static_cast<int>(drawPile_.size()) - 1;
 		nextNum_ = currentNum_ + 1;
 	}
-	else if (currentNum_ >= static_cast<int>(drawPile_.size()) - 1)
+	else if (currentNum_ > static_cast<int>(drawPile_.size()) - 1)
 	{
-		currentNum_--;
+		currentNum_ = 0;
 		prevNum_= currentNum_-1;
 		nextNum_ = 0;
 	}

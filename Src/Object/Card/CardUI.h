@@ -102,6 +102,8 @@ private:
 	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = 0.1f;
+	//先頭に追加するときの戻る枚数
+	static constexpr int PREV_CARD_COUNT = 2;
 	//始点角度
 	static constexpr float START_ANGLE = 0.0f;
 	//終点角度

@@ -191,7 +191,8 @@ void CardUI::ChangeLeft(void)
 	//先頭に追加
 	auto it = handCurrent_;
 	const int NEXT_CARD_NO = 5;
-	for (int i = 0; i < NEXT_CARD_NO;i++)
+	const int rupeNum = visibleCards_.size() - 1;
+	for (int i = 0; i < rupeNum;i++)
 	{
 		it++;
 		if (it == handCards_.end())
@@ -228,7 +229,8 @@ void CardUI::ChangeRight(void)
 
 	//先頭に追加
 	auto it = handCurrent_;
-	for (int i = 0; i < 2; i++)
+	//現在位置より２枚遡って配列に入れる
+	for (int i = 0; i < PREV_CARD_COUNT; i++)
 	{
 		if (it == handCards_.begin())
 		{
@@ -236,8 +238,8 @@ void CardUI::ChangeRight(void)
 		}
 		it--;
 	}
-	//std::advance(it, visibleStartCardIndex_);
-	it->currentAngle = -ARROUND_PER_RAD * 2;
+	
+	it->currentAngle = -ARROUND_PER_RAD * PREV_CARD_COUNT;
 	visibleCards_.emplace_front(*it);
 
 	//手札選択カードを更新
@@ -269,8 +271,8 @@ void CardUI::ChangeDisition(void)
 	visibleCards_.erase(prev);
 
 
-	
-	if (handCards_.size() > VISIBLE_CARD_MAX)
+	int size = static_cast<int>(handCards_.size());
+	if (size > VISIBLE_CARD_MAX)
 	{
 		//先頭に追加
 		auto endit = handCurrent_;
@@ -286,6 +288,12 @@ void CardUI::ChangeDisition(void)
 		//次の角度を現在角度に代入
 		endit->currentAngle = ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD;
 		visibleCards_.emplace_back(*endit);
+	}
+	else if (size <= PREV_CARD_COUNT)
+	{
+		auto prev = std::prev(current_);
+		prev->goalAngle= prev->currentAngle + ARROUND_PER_RAD;
+		return;
 	}
 
 
@@ -303,12 +311,17 @@ void CardUI::ChangeDisition(void)
 
 
 	//カードの範囲変数を更新する
-
 	auto it = std::next(current_);
 	for (; it != visibleCards_.end(); it++)
 	{
-		it->goalAngle+= it->currentAngle - ARROUND_PER_RAD;
+		it->goalAngle += it->currentAngle - ARROUND_PER_RAD;
 	}
+	
+	//else if(it == visibleCards_.end())
+	//{
+	//	int o = 0;
+	//}
+
 	cardUpdate_ = [this]() {UpdateDisition(); };
 }
 
