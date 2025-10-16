@@ -74,6 +74,11 @@ public:
 	/// @param  
 	void CardDisition(void);
 
+#ifdef _DEBUG
+	void DrawDebug(void);
+#endif // _DEBUG
+
+
 private:
 
 	//倍率1の時のカードの強さの描画座標
@@ -84,23 +89,32 @@ private:
 	static constexpr float RADIUS_X = 186.0f;	//横半径
 	static constexpr float RADIUS_Y = 214.0f;	//横半径
 	//楕円中心
-	static constexpr float CENTER_X = 50.0f;
+	//static constexpr float CENTER_X = 50.0f;
+	//static constexpr float CENTER_Y = 640.0f;
 	///*static constexpr float CENTER_X = 0.0f;*/
-	static constexpr float CENTER_Y = 640.0f;
-	//static constexpr float CENTER_X = 200.0f;
-	//static constexpr float CENTER_Y = 440.0f;
+	static constexpr float CENTER_X = 200.0f;
+	static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 2.0f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//カード決定UI時間
-	static constexpr float DISITION_MOVE_CARD_TIME =0.1f;
+	static constexpr float DISITION_MOVE_CARD_TIME = 0.1f;
 	//始点角度
 	static constexpr float START_ANGLE = 0.0f;
 	//終点角度
 	static constexpr float END_ANGLE = 135.0f;
+	//カード角度関連
+	static constexpr int ARROUND_NUM = 16;			//一周当たりの枚数		
+	static constexpr int ARROUND_NUM_PER_QUAD = ARROUND_NUM / 4;//90度当たりの枚数
+	static constexpr float ARROUND_PER_DEG = 360.0f / ARROUND_NUM;	//１枚当たりの角度
+	static constexpr float ARROUND_PER_RAD = ARROUND_PER_DEG * DX_PI_F / 180.0f;//ラジアン変換
+	static constexpr float ARROUND_PER_QUAD_DEG = ARROUND_PER_DEG * ARROUND_NUM_PER_QUAD;//90度当たりの枚数
+	static constexpr float ARROUND_PER_QUAD_RAD = ARROUND_PER_QUAD_DEG * DX_PI_F / 180.0f;//90度当たりの枚数
+
+	//手札の選択カードと
 
 	//選択カード番号
 	static constexpr int SELECT_CARD_NO = 1;
@@ -144,9 +158,11 @@ private:
 	float disitionCnt_;
 	//現在選択中のカード
 	std::list<CARD_UI_INFO>::iterator current_;
+	//手札の現在選択中カード
+	std::list<CARD_UI_INFO>::iterator handCurrent_;
 
-	//末尾のカードインデックス
-	int visibleEndCardIndex_;
+	//末尾に入れるカードインデックス
+	int visibleEndPushIndex_;
 	//先頭のカードインデックス
 	int visibleStartCardIndex_;
 
@@ -169,6 +185,14 @@ private:
 	//範囲インデックスの計算
 	void AddIndex(int& _index);	//足し算
 	void SubIndex(int& _index);	//引き算
+
+
+	//手札選択カードの計算
+	void AddHandCurrent(void);	//足し算
+	void SubHandCurrent(void);	//引き算
+
+	//使い終わったカードを配列から削除
+	void EraseArray(std::list<CARD_UI_INFO>& _list, std::list<CARD_UI_INFO>::iterator _itr);
 	
 	//カード描画
 	void DrawCard(const CARD_UI_INFO _card);

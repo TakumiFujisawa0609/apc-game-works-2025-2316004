@@ -314,32 +314,35 @@ float UtilityCommon::LerpDeg(float& start, float& end, float t)
 
 float UtilityCommon::LerpRad(float& start, float& end, float t)
 {
-    float ret;
-    float diff = end - start;
-    if (diff < -DX_PI_F)
-    {
-        end += DX_TWO_PI_F;
-        ret = Lerp(start, end, t);
-        if (ret >= DX_TWO_PI_F)
-        {
-            ret -= DX_TWO_PI_F;
-        }
-    }
-    else if (diff > DX_PI_F)
-    {
-        end -= DX_TWO_PI_F;
-        ret = Lerp(start, end, t);
-        if (ret < 0.0)
-        {
-            ret += DX_TWO_PI_F;
-        }
-    }
-    else
-    {
-        ret = Lerp(start, end, t);
-    }
+    //float ret;
+    //float diff = end - start;
+    //if (diff < -DX_PI_F)
+    //{
+    //    end += DX_TWO_PI_F;
+    //    ret = Lerp(start, end, t);
+    //    if (ret >= DX_TWO_PI_F)
+    //    {
+    //        ret -= DX_TWO_PI_F;
+    //    }
+    //}
+    //else if (diff > DX_PI_F)
+    //{
+    //    end -= DX_TWO_PI_F;
+    //    ret = Lerp(start, end, t);
+    //    if (ret < 0.0)
+    //    {
+    //        ret += DX_TWO_PI_F;
+    //    }
+    //}
+    //else
+    //{
+    //    ret = Lerp(start, end, t);
+    //}
 
-    return ret;
+    //return ret;
+    float diff = remainder(end - start, 2.0f * DX_PI_F);
+
+    return start + diff * t;
 
 }
 
