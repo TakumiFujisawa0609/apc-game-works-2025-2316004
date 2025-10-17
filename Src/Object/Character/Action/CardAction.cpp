@@ -4,6 +4,7 @@
 #include "../../Common/AnimationController.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
+#include "../../Card/CardUI.h"
 #include "../../Card/CardSystem.h"
 #include "../Base/CharacterBase.h"
 #include "../Base/LogicBase.h"
@@ -29,6 +30,10 @@ CardAction::CardAction(CharacterBase& _charaObj,ActionController& _actCntl, Card
 
 CardAction::~CardAction(void)
 {
+	changeAction_.clear();
+	//カード機能配列の解放
+	std::queue<std::function<void(void)>> empty;
+	std::swap(cardFuncs_, empty);
 }
 
 void CardAction::Init(void)
@@ -43,6 +48,7 @@ void CardAction::Init(void)
 	if (deck_.IsReloadCard() == CardBase::CARD_TYPE::ATTACK)
 	{
 		deck_.MoveHandToCharge();
+		charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 		changeAction_[ACT_STATE::ATTACK_ONE]();
 	}
 	else if (deck_.IsReloadCard()==CardBase::CARD_TYPE::RELOAD)
@@ -97,10 +103,12 @@ void CardAction::UpdateAttack(void)
 	}
 	else if (anim_.GetAnimStep() > ATTACK_COL_END_ANIM_CNT)
 	{
-		////攻撃判定無効
+		//攻撃判定無効
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
 		if (IsAttackable()&&actionCntl_.GetInput().GetIsAct().isCardUse)
 		{
+			if (charaObj_.GetCardUI().GetSelectState() == CardUI::CARD_SELECT::DISITION)return;
+			charaObj_.GetCardUI().ChangeUsedActionCard();
 			if (attackStageNum_ == static_cast<int>(ACT_STATE::ATTACK_ONE))
 			{
 				changeAction_[ACT_STATE::ATTACK_TWO]();
@@ -117,8 +125,9 @@ void CardAction::UpdateAttack(void)
 			cardActTime_ = 0.0f;
 			deck_.EraseHandCard();
 			cardFuncs_.pop();
-			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 			charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
+			charaObj_.GetCardUI().ChangeUsedActionCard();
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 			return;
 		}
 	}
@@ -129,12 +138,16 @@ void CardAction::UpdateReload(void)
 	if (actionCntl_.GetInput().GetIsAct().isCardPushKeep)
 	{
 		pushReloadCnt_ += scnMng_.GetDeltaTime();
+		float per = pushReloadCnt_ / RELOAD_TIME;
+
+		charaObj_.GetCardUI().SetReloadCount(per);
 	}
 	else
 	{
+		
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
-	if (pushReloadCnt_ >= RELOAD_TIME)
+	if (pushReloadCnt_ > RELOAD_TIME)
 	{
 		deck_.Reload();
 		cardFuncs_.pop();
@@ -160,6 +173,7 @@ void CardAction::ChangeAttackTwo(void)
 	deck_.EraseHandCard();
 	//新たにカードを移動させる
 	deck_.MoveHandToCharge();
+	charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 	cardFuncs_.pop();
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
@@ -172,6 +186,7 @@ void CardAction::ChangeAttackThree(void)
 	deck_.EraseHandCard();
 	//手札に移動
 	deck_.MoveHandToCharge();
+	charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 	cardFuncs_.pop();
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
@@ -183,5 +198,10 @@ void CardAction::ChangeReload(void)
 		cardFuncs_.pop();
 	}
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), true);
+
+	float per = pushReloadCnt_ / RELOAD_TIME;
+	charaObj_.GetCardUI().SetReloadCount(per);
+	charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::RELOAD);
+	
 	cardFuncs_.push([this]() {UpdateReload(); });
 }

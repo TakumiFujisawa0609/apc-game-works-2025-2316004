@@ -128,10 +128,18 @@ public:
 	/// <param name=""></param>
 	void StopResource(void);
 
-	//デバッグb
-	void DrawDebug(void);
+	/// @brief カード選択条件
+	/// @param  
+	/// @return true:カード選択できる
+	const bool IsCardDisitionControll(void);
+
+
+
+
 
 #ifdef _DEBUG
+	//デバッグb
+	void DrawDebug(void);
 	//カードアクション時間(デバッグ用)
 	static constexpr float CARD_ACT_TIME_MAX = 5.0f; 
 #endif // _DEBUG

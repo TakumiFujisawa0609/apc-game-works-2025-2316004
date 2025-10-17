@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-class Resource
+class ResourceData
 {
 
 public:
@@ -22,14 +22,14 @@ public:
 	};
 
 	// コンストラクタ
-	Resource(void);
+	ResourceData(void);
 	// コンストラクタ
-	Resource(TYPE type, const std::wstring& path);
+	ResourceData(TYPE type, const std::wstring& path);
 	// コンストラクタ(IMGS用)
-	Resource(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY);
+	ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY);
 
 	// デストラクタ
-	~Resource(void) = default;
+	~ResourceData(void);
 
 	/// @brief 読み込み
 	/// @param  

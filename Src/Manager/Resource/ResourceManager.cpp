@@ -10,47 +10,47 @@ void ResourceManager::Init(void)
 	static std::wstring PATH_ANIM = Application::PATH_ANIM;
 	static std::wstring PATH_EFF = Application::PATH_EFFECT;
 
-	std::unique_ptr<Resource> res;
+	std::unique_ptr<ResourceData> res;
 
-	res = std::make_unique<Resource>(Resource::TYPE::IMG, PATH_IMG + L"test.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"test.png");
 	resourcesMap_.emplace(SRC::TEST, std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_MDL + L"Player.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Player.mv1");
 	resourcesMap_.emplace(SRC::PLAYER, std::move(res));
 	
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_MDL + L"Mutant.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Mutant.mv1");
 	resourcesMap_.emplace(SRC::ENEMY_1, std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"Idle.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM + L"Idle.mv1");
 	resourcesMap_.emplace(SRC::IDLE, std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"SlowRun.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM + L"SlowRun.mv1");
 	resourcesMap_.emplace(SRC::RUN, std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"PlayerAttack.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM + L"PlayerAttack.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_1, std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"PlayerAttack2.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM + L"PlayerAttack2.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_2 , std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"PlayerAttack3.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM + L"PlayerAttack3.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
 	
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_ANIM + L"PlayerReact.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM + L"PlayerReact.mv1");
 	resourcesMap_.emplace(SRC::REACT, std::move(res));	
 
-	res = std::make_unique<Resource>(Resource::TYPE::MODEL, PATH_MDL + L"EmaBeni.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"EmaBeni.mv1");
 	resourcesMap_.emplace(SRC::STAGE, std::move(res));
 
 
 
-	res = std::make_unique<Resource>(Resource::TYPE::IMGS, PATH_IMG + L"CardNumber.png",CARD_NO_X, CARD_NO_Y,CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",CARD_NO_X, CARD_NO_Y,CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
 	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::IMG, PATH_IMG + L"AttackCard.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"AttackCard.png");
 	resourcesMap_.emplace(SRC::ATK_CARD_IMG, std::move(res));
 
-	res = std::make_unique<Resource>(Resource::TYPE::IMG, PATH_IMG + L"ReloadCard.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadCard.png");
 	resourcesMap_.emplace(SRC::RELOAD_CARD_IMG, std::move(res));
 
 
@@ -73,10 +73,10 @@ void ResourceManager::Release(void)
 	resourcesMap_.clear();
 }
 
-const Resource& ResourceManager::Load(SRC src)
+const ResourceData& ResourceManager::Load(SRC src)
 {
-	Resource& res = _Load(src);
-	if (res.type_ == Resource::TYPE::NONE)
+	ResourceData& res = _Load(src);
+	if (res.type_ == ResourceData::TYPE::NONE)
 	{
 		return dummy_;
 	}
@@ -85,8 +85,8 @@ const Resource& ResourceManager::Load(SRC src)
 
 int ResourceManager::LoadModelDuplicate(SRC src)
 {
-	Resource& res = _Load(src);
-	if (res.type_ == Resource::TYPE::NONE)
+	ResourceData& res = _Load(src);
+	if (res.type_ == ResourceData::TYPE::NONE)
 	{
 		return -1;
 	}
@@ -101,7 +101,7 @@ ResourceManager::ResourceManager(void)
 {
 }
 
-Resource& ResourceManager::_Load(SRC src)
+ResourceData& ResourceManager::_Load(SRC src)
 {
 
 	// ロード済みチェック

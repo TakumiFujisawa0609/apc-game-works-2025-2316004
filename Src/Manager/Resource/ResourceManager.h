@@ -50,7 +50,7 @@ public:
 	/// @brief リソースのロード
 	/// @param src 読み込むリソース
 	/// @return リソース
-	const Resource& Load(SRC src);
+	const ResourceData& Load(SRC src);
 	
 	/// @brief リソースの複製ロード(モデル用)
 	/// @param src 複製したいリソース
@@ -65,12 +65,12 @@ private:
 	static constexpr int CARD_NO_SIZE_Y = 222;
 
 	// リソース管理の対象
-	std::map<SRC, std::unique_ptr<Resource>> resourcesMap_;
+	std::map<SRC, std::unique_ptr<ResourceData>> resourcesMap_;
 
 	// 読み込み済みリソース
-	std::map<SRC, Resource&> loadedMap_;
+	std::map<SRC, ResourceData&> loadedMap_;
 
-	Resource dummy_;
+	ResourceData dummy_;
 
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
@@ -78,6 +78,6 @@ private:
 	~ResourceManager(void) = default;
 
 	// 内部ロード
-	Resource& _Load(SRC src);
+	ResourceData& _Load(SRC src);
 
 };

@@ -4,7 +4,7 @@
 #include <cassert>
 #include "Resource.h"
 
-Resource::Resource(void)
+ResourceData::ResourceData(void)
 {
 	type_ = TYPE::NONE;
 	path_ = L"";
@@ -18,7 +18,7 @@ Resource::Resource(void)
 	handleIds_ = nullptr;
 }
 
-Resource::Resource(TYPE type, const std::wstring& path)
+ResourceData::ResourceData(TYPE type, const std::wstring& path)
 {
 	type_ = type;
 	path_ = path;
@@ -32,7 +32,7 @@ Resource::Resource(TYPE type, const std::wstring& path)
 	handleIds_ = nullptr;
 }
 
-Resource::Resource(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY)
+ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY)
 {
 	type_ = type;
 	path_ = path;
@@ -45,17 +45,22 @@ Resource::Resource(TYPE type, const std::wstring& path, int numX, int numY, int 
 	handleIds_ = nullptr;
 }
 
-void Resource::Load(void)
+ResourceData::~ResourceData(void)
+{
+	duplicateModelIds_.clear();
+}
+
+void ResourceData::Load(void)
 {
 
 	switch (type_)
 	{
-	case Resource::TYPE::IMG:
+	case ResourceData::TYPE::IMG:
 		// 画像
 		handleId_ = LoadGraph(path_.c_str());
 		break;
 
-	case Resource::TYPE::IMGS:
+	case ResourceData::TYPE::IMGS:
 		// 複数画像
 		handleIds_ = new int[numX_ * numY_];
 		LoadDivGraph(
@@ -66,32 +71,32 @@ void Resource::Load(void)
 			&handleIds_[0]);
 		break;
 
-	case Resource::TYPE::MODEL:
+	case ResourceData::TYPE::MODEL:
 		// モデル
 		handleId_ = MV1LoadModel(path_.c_str());
 		break;
 
-	case Resource::TYPE::EFFEKSEER:
+	case ResourceData::TYPE::EFFEKSEER:
 		//エフェクト
 		handleId_ = LoadEffekseerEffect(path_.c_str());
 		break;
 
-	case Resource::TYPE::FONT:
+	case ResourceData::TYPE::FONT:
 		//フォント
 		handleId_ = AddFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
 		break;
 
-	case Resource::TYPE::VERTEX_SHADER:
+	case ResourceData::TYPE::VERTEX_SHADER:
 		//頂点シェーダー
 		handleId_ = LoadVertexShader(path_.c_str());
 		break;
 
-	case Resource::TYPE::PIXEL_SHADER:
+	case ResourceData::TYPE::PIXEL_SHADER:
 		//ピクセルシェーダー
 		handleId_ = LoadPixelShader(path_.c_str());
 		break;
 
-	case Resource::TYPE::SOUND:
+	case ResourceData::TYPE::SOUND:
 		//音声
 		handleId_ = LoadSoundMem(path_.c_str());
 		break;
@@ -102,16 +107,16 @@ void Resource::Load(void)
 
 }
 
-void Resource::Release(void)
+void ResourceData::Release(void)
 {
 
 	switch (type_)
 	{
-	case Resource::TYPE::IMG:
+	case ResourceData::TYPE::IMG:
 		DeleteGraph(handleId_);
 		break;
 
-	case Resource::TYPE::IMGS:
+	case ResourceData::TYPE::IMGS:
 	{
 		int num = numX_ * numY_;
 		for (int i = 0; i < num; i++)
@@ -122,7 +127,7 @@ void Resource::Release(void)
 	}
 		break;
 
-	case Resource::TYPE::MODEL:
+	case ResourceData::TYPE::MODEL:
 	{
 		MV1DeleteModel(handleId_);
 		auto ids = duplicateModelIds_;
@@ -133,30 +138,30 @@ void Resource::Release(void)
 	}
 		break;
 
-	case Resource::TYPE::EFFEKSEER:
+	case ResourceData::TYPE::EFFEKSEER:
 		DeleteEffekseerEffect(handleId_);
 		break;
 
-	case Resource::TYPE::FONT:
+	case ResourceData::TYPE::FONT:
 		RemoveFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
 		break;
 
-	case Resource::TYPE::VERTEX_SHADER:
+	case ResourceData::TYPE::VERTEX_SHADER:
 		DeleteShader(handleId_);
 		break;
 
-	case Resource::TYPE::PIXEL_SHADER:
+	case ResourceData::TYPE::PIXEL_SHADER:
 		DeleteShader(handleId_);
 		break;
 
-	case Resource::TYPE::SOUND:
+	case ResourceData::TYPE::SOUND:
 		DeleteSoundMem(handleId_);
 		break;
 	}
 
 }
 
-void Resource::CopyHandle(int* imgs)
+void ResourceData::CopyHandle(int* imgs)
 {
 
 	if (handleIds_ == nullptr)

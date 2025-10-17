@@ -108,6 +108,7 @@ bool Application::Release()
 	InputManagerS::GetInstance().Release();
 	ResourceManager::GetInstance().Release();
 	SceneManager::GetInstance().Release();
+	SoundManager::GetInstance().Release();
 
 	//インスタンスの破棄
 	fontMng_->Destroy();
@@ -115,6 +116,7 @@ bool Application::Release()
 	InputManagerS::GetInstance().Destroy();
 	ResourceManager::GetInstance().Destroy();
 	SceneManager::GetInstance().Destroy();
+	SoundManager::GetInstance().Destroy();
 
 	// Effekseerを終了する。
 	Effkseer_End();

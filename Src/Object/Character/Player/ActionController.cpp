@@ -14,6 +14,7 @@
 
 #include"../../Card/CardDeck.h"
 #include"../../Card/CardBase.h"
+#include"../../Card/CardUI.h"
 
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
@@ -40,6 +41,7 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 	, movePow_(Utility3D::VECTOR_ZERO)
 	, moveDir_(Utility3D::VECTOR_ZERO)
 	,dir_(Utility3D::VECTOR_ZERO)
+	,cardCenterPos_({0,0})
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
@@ -48,6 +50,9 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 ActionController::~ActionController(void)
 {
 	StopResource();
+	mainAction_.clear();
+	subAction_.clear();
+	changeAction_.clear();
 }
 
 void ActionController::Init(void)
@@ -114,19 +119,22 @@ void ActionController::CardChargeUpdate(void)
 
 void ActionController::CardMove(void)
 {
+	CardUI& cardUI = charaObj_.GetCardUI();
+	if (cardUI.GetSelectState() == CardUI::CARD_SELECT::DISITION
+		||cardUI.GetSelectState()==CardUI::CARD_SELECT::LEFT
+		||cardUI.GetSelectState()==CardUI::CARD_SELECT::RIGHT)return;
 	if (logic_.GetIsAct().isCardMoveLeft)
 	{
 		deck_.CardMoveLeft();
+		cardUI.ChangeSelectState(CardUI::CARD_SELECT::LEFT);
 
 	}
 	else if (logic_.GetIsAct().isCardMoveRight)
 	{
 		deck_.CardMoveRight();
+		cardUI.ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
 	}
 }
-
-
-
 
 const bool ActionController::GetIsAtkColAlive(void)
 {
@@ -141,6 +149,13 @@ const Quaternion ActionController::GetPlayerRotY(void)
 void ActionController::StopResource(void)
 {
 
+}
+
+const bool ActionController::IsCardDisitionControll(void)
+{
+	CardUI& cardUI = charaObj_.GetCardUI();
+	const CardUI::CARD_SELECT selectState = cardUI.GetSelectState();
+	return selectState !=CardUI::CARD_SELECT::LEFT&& selectState != CardUI::CARD_SELECT::RIGHT;
 }
 
 void ActionController::MoveDirFronInput(void)

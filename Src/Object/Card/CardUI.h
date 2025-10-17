@@ -18,6 +18,7 @@ public:
 		, MOVE_DRAW
 		, USING
 		, REACT
+		, USED
 	};
 
 	enum class CARD_SELECT
@@ -26,15 +27,19 @@ public:
 		, LEFT
 		, RIGHT
 		, DISITION
+		, RELOAD
 	};
-
+	//カードサイズ補完時間
+	static constexpr double SCL_LERP_TIME = 0.5;
 	struct CARD_UI_INFO
 	{
 		Vector2F cardPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの座標(画面外で初期化)
 		Vector2F numPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの強さ番号座標(画面外で初期化)
 		int typeImg = -1;																				//カードの種類画像
 		float currentAngle = 0.0f;																		//カードの現在の角度
-		float goalAngle = currentAngle;																	//カードの目標の角度
+		float goalAngle = currentAngle;	//カードの目標の角度
+		double cardScl = 1.0;
+		double sclCnt = SCL_LERP_TIME;
 		CardBase::CARD_STATUS status;																	//カードのステータス
 		CARD_STATE state = CARD_STATE::DRAW_PILE;														//カードの状態
 	};
@@ -74,6 +79,19 @@ public:
 	/// @param  
 	void CardDisition(void);
 
+	/// @brief アクションカード配列の状態を使用済みにする
+	/// @param  
+	void ChangeUsedActionCard(void);
+
+	/// @brief リロードカウントセット
+	/// @param _cnt 
+	void SetReloadCount(const float _cnt) { reloadPer_ = _cnt; };
+
+	/// @brief カードリボルバーの状態の取得
+	/// @param  
+	/// @return カードリボルバーの状態
+	const CARD_SELECT GetSelectState(void)const { return selectState_; }
+
 #ifdef _DEBUG
 	void DrawDebug(void);
 #endif // _DEBUG
@@ -89,11 +107,11 @@ private:
 	static constexpr float RADIUS_X = 186.0f;	//横半径
 	static constexpr float RADIUS_Y = 214.0f;	//横半径
 	//楕円中心
-	//static constexpr float CENTER_X = 50.0f;
-	//static constexpr float CENTER_Y = 640.0f;
+	static constexpr float CENTER_X = 80.0f;
+	static constexpr float CENTER_Y = 640.0f;
 	///*static constexpr float CENTER_X = 0.0f;*/
-	static constexpr float CENTER_X = 200.0f;
-	static constexpr float CENTER_Y = 440.0f;
+	//static constexpr float CENTER_X = 200.0f;
+	//static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔
@@ -101,7 +119,8 @@ private:
 	//カードセレクト時間
 	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//カード決定UI時間
-	static constexpr float DISITION_MOVE_CARD_TIME = 0.1f;
+	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
+
 	//先頭に追加するときの戻る枚数
 	static constexpr int PREV_CARD_COUNT = 2;
 	//始点角度
@@ -152,32 +171,33 @@ private:
 	Vector2F numPos_;
 	//カードセレクトの動き時間
 	float cardMoveCnt_;
-	//状態
-	CARD_SELECT selectState_;
-	//セレクト中のカード配列
-	int selectCardIndex_;
 	//決定後のカウント
 	float disitionCnt_;
+	//カードのサイズの動き時間
+	double sclSmallCnt_;
+	//リロード割合(カードのゲージ計算用)
+	float reloadPer_;
+	//状態
+	CARD_SELECT selectState_;
 	//現在選択中のカード
-	std::list<CARD_UI_INFO>::iterator current_;
+	std::list<CARD_UI_INFO>::iterator visibleCurrent_;
 	//手札の現在選択中カード
 	std::list<CARD_UI_INFO>::iterator handCurrent_;
 
-	//末尾に入れるカードインデックス
-	int visibleEndPushIndex_;
-	//先頭のカードインデックス
-	int visibleStartCardIndex_;
-
+	//表示カードと手札の初期化
+	void InitVisibleAndHand(void);
 	//カード状態遷移
 	void ChangeNone(void);		//通常
 	void ChangeLeft(void);		//左に移動
 	void ChangeRight(void);		//右に移動
 	void ChangeDisition(void);	//決定
+	void ChangeReloadWait(void);
 
 	void UpdateNone(void);
 	void UpdateLeft(void);
 	void UpdateRight(void);
 	void UpdateDisition(void);
+	void UpdateReloadWait(void);
 
 	//すべてのカードの移動
 	void MoveCardAll(void);
@@ -188,17 +208,27 @@ private:
 	void AddIndex(int& _index);	//足し算
 	void SubIndex(int& _index);	//引き算
 
-
 	//手札選択カードの計算
 	void AddHandCurrent(void);	//足し算
 	void SubHandCurrent(void);	//引き算
 
-	//使い終わったカードを配列から削除
-	void EraseArray(std::list<CARD_UI_INFO>& _list, std::list<CARD_UI_INFO>::iterator _itr);
-	
 	//カード描画
 	void DrawCard(const CARD_UI_INFO _card);
 	//角度を現在角度に設定
 	void CurrentAngle(void);
+	//現在選択中のカード更新
+	void UpdateVisibleCurrent(void);
+	//見せるカードの更新
+	void UpdateVisibleCard(void);
+	//カード番号座標の追従
+	void UpdateCardNumPost(void);
+	//手札の消去
+	void EraseHandCard(void);
+	//カード使用時のカード角度の更新
+	void DesideGoalAngle(void);
+
+	//使用済みのカードを消す
+	void UpdateUsedCard(void);
+
 };
 

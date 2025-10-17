@@ -44,8 +44,6 @@ void CardDeck::Init(void)
 
 	//カードUIの選択番号が1番なので1に初期化する
 	currentNum_ = 1;
-	nextNum_ = currentNum_ + 1;
-	prevNum_ = static_cast<int>(drawPile_.size()) - 1;
 
 	Vector2 pos = centerPos_;
 }
@@ -139,6 +137,7 @@ void CardDeck::AddDrawPile(const CardBase::CARD_STATUS _status)
 	std::unique_ptr<CardBase>initCard = std::make_unique<CardBase>(_status);
 	drawPile_.emplace_back(std::move(card)); 
 	initDeck_.emplace_back(std::move(initCard));
+	
 }
 
 void CardDeck::MoveHandToCharge(void)
@@ -184,17 +183,6 @@ void CardDeck::DrawCardFromDeck(void)
 	cardSystem.PutCard(cardPow, playerNum_);
 }
 
-
-//std::vector<std::weak_ptr<CardBase>> CardDeck::GetHand(void)
-//{
-//	std::vector<std::weak_ptr<CardBase>> hand;
-//	for (int i = 0; i < hand_.size(); i++)
-//	{
-//		hand.emplace_back(hand_[i]);
-//	}
-//	return hand;
-//}
-
 std::vector<CardBase::CARD_TYPE> CardDeck::GetCardType(void)
 {
 	std::vector<CardBase::CARD_TYPE>handCardTypes;
@@ -221,9 +209,7 @@ void CardDeck::Reload(void)
 		drawPile_.emplace_back(std::move(deckPtr));
 	}
 	//それぞれの番号の初期化
-	currentNum_ = 0;
-	nextNum_ = currentNum_ + 1;
-	prevNum_ = static_cast<int>(drawPile_.size()) - 1;
+	currentNum_ = 1;
 }
 
 void CardDeck::CardMoveLimit(void)
@@ -237,25 +223,6 @@ void CardDeck::CardMoveLimit(void)
 	{
 		currentNum_ = 0;
 	}
-
-	if (currentNum_ == 0)
-	{
-		nextNum_ = currentNum_ + 1;
-		prevNum_ = cardMax - 1;
-	}
-	else if (currentNum_ == cardMax - 1)
-	{
-		nextNum_ = 0;
-		prevNum_ = currentNum_ - 1;
-	}
-	//if (nextNum_ > cardMax - 1)
-	//{
-	//	nextNum_ = 0;
-	//}
-	//else if (prevNum_ < 0)
-	//{
-	//	prevNum_ = cardMax - 1;
-	//}
 }
 
 bool CardDeck::IsCardFailure(void)

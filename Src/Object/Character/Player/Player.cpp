@@ -49,6 +49,7 @@ Player::Player(void)
 
 Player::~Player(void)
 {
+	changeStates_.clear();
 }
 
 void Player::Load(void)
@@ -152,19 +153,19 @@ void Player::Update(void)
 
 	cardUI_->Update();
 
-	if (logic_->GetIsAct().isCardMoveLeft)
-	{
-		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::LEFT);
+	//if (logic_->GetIsAct().isCardMoveLeft)
+	//{
+	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::LEFT);
 
-	}
-	else if (logic_->GetIsAct().isCardMoveRight)
-	{
-		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
-	}
-	else if(logic_->GetIsAct().isCardUse)
-	{
-		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-	}
+	//}
+	//else if (logic_->GetIsAct().isCardMoveRight)
+	//{
+	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
+	//}
+	//else if(logic_->GetIsAct().isCardUse)
+	//{
+	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+	//}
 
 
 

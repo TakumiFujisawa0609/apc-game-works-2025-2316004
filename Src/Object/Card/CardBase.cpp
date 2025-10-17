@@ -8,7 +8,8 @@ CardBase::CardBase(const CARD_STATUS _status) :
 	isUsed_(false),
 	atkCardImg_(-1),
 	cardPos_({ 100,100 }),
-	cardScl_(1.4)
+	cardScl_(1.4),
+	numPos_({0.0f,0.0f})
 {
 	//複数画像はコンストラクタで初期化必須
 	int i = -1;
@@ -19,6 +20,7 @@ CardBase::CardBase(const CARD_STATUS _status) :
 
 CardBase::~CardBase(void)
 {
+	int i = 0;
 }
 
 void CardBase::Load(void)
