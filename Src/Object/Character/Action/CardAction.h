@@ -67,6 +67,8 @@ public:
 
     //攻撃条件
     bool IsAttackable(void);
+    //連続攻撃条件
+    bool IsCanComboAttack(void);
     //カードの勝敗を常に監視する
     bool IsCardFailure(void);
 

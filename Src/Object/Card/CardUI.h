@@ -107,11 +107,11 @@ private:
 	static constexpr float RADIUS_X = 186.0f;	//â°îºåa
 	static constexpr float RADIUS_Y = 214.0f;	//â°îºåa
 	//ë»â~íÜêS
-	static constexpr float CENTER_X = 80.0f;
-	static constexpr float CENTER_Y = 640.0f;
+	//static constexpr float CENTER_X = 80.0f;
+	//static constexpr float CENTER_Y = 640.0f;
 	///*static constexpr float CENTER_X = 0.0f;*/
-	//static constexpr float CENTER_X = 200.0f;
-	//static constexpr float CENTER_Y = 440.0f;
+	static constexpr float CENTER_X = 200.0f;
+	static constexpr float CENTER_Y = 440.0f;
 	//å©ÇπÇÈÉJÅ[Éhñáêî
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//ÉJÅ[Éhäpìxä‘äu

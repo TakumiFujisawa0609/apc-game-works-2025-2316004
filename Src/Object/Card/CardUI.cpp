@@ -203,6 +203,10 @@ void CardUI::ChangeLeft(void)
 	//カードの範囲変数を更新する
 	visibleCurrent_++;
 
+	if (visibleCards_.size() > VISIBLE_CARD_MAX)
+	{
+		int i = 0;
+	}
 
 	//先頭に追加
 	auto it = handCurrent_;
@@ -562,6 +566,8 @@ void CardUI::UpdateUsedCard(void)
 		if (act.state != CARD_STATE::USED)continue;
 		act.cardScl = UtilityCommon::Lerp(act.cardScl, 0.0, (SCL_LERP_TIME - act.sclCnt) / SCL_LERP_TIME);
 		act.sclCnt -= static_cast<double>(SceneManager::GetInstance().GetDeltaTime());
-
 	}
+
+	//消去アニメーションが終わったカードはアクション配列から削除
+	std::erase_if(actions_, [](auto& act) {return act.sclCnt < 0.0f; });
 }
