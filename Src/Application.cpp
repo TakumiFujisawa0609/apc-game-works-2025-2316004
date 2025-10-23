@@ -11,7 +11,8 @@
 
 const std::wstring Application::PATH_IMAGE = L"Data/Image/";
 const std::wstring Application::PATH_MODEL = L"Data/Model/";
-const std::wstring Application::PATH_ANIM = L"Data/Model/Animation/";
+const std::wstring Application::PATH_ANIM_PLAYER = L"Data/Model/Animation/Player/";
+const std::wstring Application::PATH_ANIM_ENEMY = L"Data/Model/Animation/Enemy/";
 const std::wstring Application::PATH_EFFECT = L"Data/Effect/";
 const std::wstring Application::PATH_SOUND_BGM = L"Data/Sound/BGM/";
 const std::wstring Application::PATH_SOUND_SE = L"Data/Sound/SE/";

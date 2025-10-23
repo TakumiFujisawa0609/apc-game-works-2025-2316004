@@ -23,11 +23,18 @@ public:
 		PLAYER,
 		ENEMY_1,
 		//アニメーション
-		IDLE,
-		RUN,
+		//プレイヤー
+		P_IDLE,
+		P_RUN,
 		P_ATTACK_1,
 		P_ATTACK_2,
 		P_ATTACK_3,
+		//敵
+		E_IDLE,
+		E_RUN,
+		E_ATTACK1,
+		E_ATTACK2,
+		E_ATTACK3,
 		REACT,
 		//画像
 		NUMBERS_IMG,	//カード番号

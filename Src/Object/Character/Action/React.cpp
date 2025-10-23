@@ -24,7 +24,6 @@ void React::Init(void)
 
 void React::Update(void)
 {
-	//
 	if (anim_.IsEnd())
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);

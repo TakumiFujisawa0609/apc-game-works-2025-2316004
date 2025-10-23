@@ -3,7 +3,6 @@
 #include "../../../Utility/UtilityCommon.h"
 #include "../Application.h"
 //#include "../../Manager/Game/GravityManager.h"
-#include "../../../Manager/Game/PlayerManager.h"
 #include "../../../Manager/Resource/ResourceManager.h"
 //#include "../../Manager/System/SoundManager.h"
 #include "../../../Manager/Generic/SceneManager.h"
@@ -60,16 +59,16 @@ void Player::Load(void)
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
 
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
-	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 
 	//animType_.emplace(
-	//	{ ANIM_TYPE::IDLE,static_cast<int>(ANIM_TYPE::IDLE) }
-	//	, { ANIM_TYPE::RUN,static_cast<int>(ANIM_TYPE::RUN) }
+	//	{ ANIM_TYPE::P_IDLE,static_cast<int>(ANIM_TYPE::P_IDLE) }
+	//	, { ANIM_TYPE::P_RUN,static_cast<int>(ANIM_TYPE::P_RUN) }
 	//)
 
 
@@ -127,6 +126,8 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
 	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
+
+	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
 
 	//ê∂ë∂èÛë‘
 	ChangeState(PLAYER_STATE::ALIVE);

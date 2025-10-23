@@ -46,7 +46,7 @@ public:
 	inline const CARD_STATUS GetCardStatus(void)const { return status_; }
 
 	//カードの種類の取得
-	//inline const CARD_TYPE GetCardType(void)const { return type_; }
+	//inline const CARD_TYPE GetHandCardType(void)const { return type_; }
 
 	/// @brief カードの勝利の取得
 	/// @param _isWin 

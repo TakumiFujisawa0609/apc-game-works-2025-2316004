@@ -1,0 +1,54 @@
+#include "../Manager/Generic/SceneManager.h"
+#include"../Manager/Generic/Camera.h"
+
+#include "../Object/Character/Base/CharacterBase.h"
+#include "../Object/Character/Player/Player.h"
+#include "../Object/Character/Enemy/Enemy.h"
+
+#include "CharacterManager.h"
+
+void CharacterManager::Load(void)
+{
+	player_ = std::make_unique<Player>();
+	player_->Load();
+	enemy_ = std::make_unique<Enemy>(*player_);
+	enemy_->Load();
+
+	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform());
+}
+
+void CharacterManager::Init(void)
+{
+	player_->Init();
+	enemy_->Init();
+}
+
+void CharacterManager::Update(void)
+{
+	//プレイヤーの更新
+	player_->Update();
+	//敵の更新
+	enemy_->Update();
+}
+
+void CharacterManager::Draw(void)
+{
+	player_->Draw();
+	enemy_->Draw();
+}
+
+void CharacterManager::Release(void)
+{
+}
+const bool CharacterManager::IsSceneChageCondition(void) const
+{
+	return enemy_->GetStatus().hp_ <= 0;
+}
+CharacterManager::CharacterManager(void)
+{
+
+}
+CharacterManager::~CharacterManager(void)
+{
+}

@@ -35,14 +35,17 @@ void Enemy::Load(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
+	//敵のカードUI生成
+	cardUI_ = std::make_unique<CardUI>();
+	//cardUI_->Load();
 	//アニメーション
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
-	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ATTACK1));
+	//animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ATTACK2));
+	//animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 }
 
 void Enemy::Init(void)
@@ -53,6 +56,7 @@ void Enemy::Init(void)
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
+		//cardUI_->AddCardUi(CARD_POWS[i]);
 	}
 	deck_->Init();
 	logic_ = std::make_unique<EnemyLogic>(playerChara_,trans_);
@@ -72,8 +76,7 @@ void Enemy::Init(void)
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
 
 	//敵のカードUI生成
-	cardUI_ = std::make_unique<CardUI>();
-
+	//cardUI_->Init();
 	//Transformの設定
 	trans_.quaRot = Quaternion();
 	trans_.scl = MODEL_SCL;
@@ -89,6 +92,7 @@ void Enemy::Update(void)
 	animationController_->Update();
 	logic_->Update();
 	action_->Update();
+	//cardUI_->Update();
 	//回転の同期
 	trans_.quaRot = charaRot_.playerRotY_;
 	UpdatePost();
@@ -103,7 +107,7 @@ void Enemy::Draw(void)
 	//通常描画
 	MV1DrawModel(trans_.modelId);
 	deck_->Draw();
-
+	//cardUI_->Draw();
 	const int BOX_START_X = 200;
 	const int BOX_START_Y = 50;
 	const int BOX_END_X = BOX_START_X+400;

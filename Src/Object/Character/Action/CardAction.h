@@ -71,6 +71,11 @@ public:
     bool IsCanComboAttack(void);
     //カードの勝敗を常に監視する
     bool IsCardFailure(void);
+    //攻撃モーション
+    void AttackMotion(const float _atkColStart, const float _atlColEnd);
+
+    //攻撃状態遷移時のカード初期化
+    void ChangeActionCardInit(void);
 
     //更新系
 	void UpdateAttack(void);         //攻撃アクション

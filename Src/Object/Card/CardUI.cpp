@@ -188,6 +188,17 @@ void CardUI::InitVisibleAndHand(void)
 void CardUI::ChangeNone(void)
 {
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
+
+	//if (visibleCurrent_ == visibleCards_.end())
+	//{
+	//	int i = 0;
+	//}
+
+	if (visibleCards_.size() > VISIBLE_CARD_MAX)
+	{
+		int i = 0;
+	}
+
 	//目標角度を現在の角度にする
 	for (auto& card : visibleCards_)
 	{
@@ -201,11 +212,19 @@ void CardUI::ChangeLeft(void)
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
 
 	//カードの範囲変数を更新する
-	visibleCurrent_++;
-
-	if (visibleCards_.size() > VISIBLE_CARD_MAX)
+	if (visibleCards_.size()==1)
 	{
-		int i = 0;
+		ChangeSelectState(CARD_SELECT::NONE);
+		return;
+	}
+	else if(std::next(visibleCurrent_)==visibleCards_.end())
+	{
+		ChangeSelectState(CARD_SELECT::RIGHT);
+		return;
+	}
+	else
+	{
+		visibleCurrent_++;
 	}
 
 	//先頭に追加
@@ -224,6 +243,7 @@ void CardUI::ChangeLeft(void)
 	//見せるカードのマックス分角度をかける
 	int size = static_cast<int>(visibleCards_.size());
 	it->currentAngle=ARROUND_PER_RAD* size - ARROUND_PER_RAD;
+
 	visibleCards_.emplace_back(*it);
 
 	//手札選択カードを更新
@@ -235,6 +255,9 @@ void CardUI::ChangeLeft(void)
 		card.goalAngle = card.currentAngle - ARROUND_PER_RAD;
 	}
 	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+
+
+
 	cardUpdate_ = [this]() {UpdateLeft(); };
 }
 
@@ -244,7 +267,16 @@ void CardUI::ChangeRight(void)
 
 	//visible配列に入れる前に現在の番地を引くことで、
 	//結果的に1番目が選択されていることになる
-	visibleCurrent_--;
+	if(visibleCards_.size()==1)
+	{
+		ChangeSelectState(CARD_SELECT::NONE);
+		return;
+	}
+	else
+	{
+		visibleCurrent_--;
+	}
+	
 
 
 	//先頭に追加
@@ -285,6 +317,8 @@ void CardUI::ChangeDisition(void)
 		return;
 	}
 	disitionCnt_ = DISITION_MOVE_CARD_TIME;
+
+
 	//カードサイズ初期化
 	cardScl_ = 1.0;
 	sclSmallCnt_ = SCL_LERP_TIME;
@@ -363,6 +397,16 @@ void CardUI::UpdateDisition(void)
 	{
 		disitionCnt_ = DISITION_MOVE_CARD_TIME;
 		ChangeSelectState(CARD_SELECT::NONE);
+
+		if (visibleCurrent_ == visibleCards_.end())
+		{
+			int i = 0;
+		}
+
+		if (visibleCards_.size() > VISIBLE_CARD_MAX)
+		{
+			int i = 0;
+		}
 		return;
 	}
 	

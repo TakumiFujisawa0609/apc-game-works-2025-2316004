@@ -183,7 +183,7 @@ void CardDeck::DrawCardFromDeck(void)
 	cardSystem.PutCard(cardPow, playerNum_);
 }
 
-std::vector<CardBase::CARD_TYPE> CardDeck::GetCardType(void)
+std::vector<CardBase::CARD_TYPE> CardDeck::GetHandCardType(void)
 {
 	std::vector<CardBase::CARD_TYPE>handCardTypes;
 	for (auto& h : hand_)

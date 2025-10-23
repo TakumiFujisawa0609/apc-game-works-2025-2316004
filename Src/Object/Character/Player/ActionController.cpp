@@ -126,13 +126,13 @@ void ActionController::CardMove(void)
 	if (logic_.GetIsAct().isCardMoveLeft)
 	{
 		deck_.CardMoveLeft();
-		cardUI.ChangeSelectState(CardUI::CARD_SELECT::LEFT);
+		//cardUI.ChangeSelectState(CardUI::CARD_SELECT::LEFT);
 
 	}
 	else if (logic_.GetIsAct().isCardMoveRight)
 	{
 		deck_.CardMoveRight();
-		cardUI.ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
+		//cardUI.ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
 	}
 }
 
@@ -155,7 +155,8 @@ const bool ActionController::IsCardDisitionControll(void)
 {
 	CardUI& cardUI = charaObj_.GetCardUI();
 	const CardUI::CARD_SELECT selectState = cardUI.GetSelectState();
-	return selectState !=CardUI::CARD_SELECT::LEFT&& selectState != CardUI::CARD_SELECT::RIGHT;
+	//return selectState !=CardUI::CARD_SELECT::LEFT&& selectState != CardUI::CARD_SELECT::RIGHT;
+	return selectState == CardUI::CARD_SELECT::NONE;
 }
 
 void ActionController::MoveDirFronInput(void)

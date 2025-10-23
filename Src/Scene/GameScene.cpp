@@ -1,15 +1,17 @@
 #include "GameScene.h"
 #include <DxLib.h>
 #include "../Application.h"
-#include "../Manager/Game/PlayerManager.h"
+#include "../Object/Character/Player/Player.h"
+#include "../Object/Character/Enemy/Enemy.h"
 #include "../Manager/Generic/SceneManager.h"
+#include"../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include"../Manager/Game/CollisionManager.h"
+#include"../Manager/Game/CharacterManager.h"
 #include "../Manager/Resource/FontManager.h"
 
 #include"../Object/Card/CardSystem.h"
-#include"../Manager/Generic/Camera.h"
 #include"../Object/Character/Enemy/Enemy.h"	
 #include"../Object/Stage.h"	
 
@@ -28,6 +30,7 @@ GameScene::~GameScene(void)
 	//インスタンスの削除
 	CardSystem::GetInstance().Destroy();
 	CollisionManager::GetInstance().Destroy();
+	CharacterManager::GetInstance().Destroy();
 
 }
 
@@ -45,23 +48,24 @@ void GameScene::Load(void)
 	stage_ = std::make_unique<Stage>();
 	
 
-	player_ = std::make_unique<Player>();
-	player_->Load();
+	//player_ = std::make_unique<Player>();
+	//player_->Load();
 
-	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
-	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform());
+	CharacterManager::CreateInstance();
+	CharacterManager::GetInstance().Load();
 
-	enemy_ = std::make_unique<Enemy>(*player_);
-	enemy_->Load();
+	//enemy_ = std::make_unique<Enemy>(*player_);
+	//enemy_->Load();
 }
 
 void GameScene::Init(void)
 {
 	CollisionManager::CreateInstance();
 	CardSystem::CreateInstance();
+	CharacterManager::GetInstance().Init();
 	stage_->Init();
-	player_->Init();
-	enemy_->Init();
+	//player_->Init();
+	//enemy_->Init();
 
 }
 
@@ -74,14 +78,16 @@ void GameScene::NormalUpdate(void)
 		return;
 	}
 	//とりあえず敵が倒れたら
-	if (enemy_->GetStatus().hp_ <= 0)
+	if (CharacterManager::GetInstance().IsSceneChageCondition())
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
 	}
-	//プレイヤーの更新
-	player_->Update();
-	//敵の更新
-	enemy_->Update();
+	//キャラクターの更新
+	CharacterManager::GetInstance().Update();
+	////プレイヤーの更新
+	//player_->Update();
+	////敵の更新
+	//enemy_->Update();
 	//終了した当たり判定の消去
 	CollisionManager::GetInstance().Sweep();
 	//更新はアクション中のみ
@@ -98,8 +104,9 @@ void GameScene::NormalDraw(void)
 	//プレイヤーの描画
 	//PlayerManager::GetInstance().Draw();
 	stage_->Draw();
-	player_->Draw();
-	enemy_->Draw();
+	CharacterManager::GetInstance().Draw();
+	//player_->Draw();
+	//enemy_->Draw();
 }
 
 void GameScene::ChangeNormal(void)

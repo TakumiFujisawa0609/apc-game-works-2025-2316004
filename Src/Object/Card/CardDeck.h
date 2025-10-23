@@ -75,7 +75,7 @@ public:
 	/// @brief カードの種類(アタックカードか魔法カードか)の取得
 	/// @param  
 	/// @return カードの種類
-	std::vector<CardBase::CARD_TYPE> GetCardType(void);
+	std::vector<CardBase::CARD_TYPE> GetHandCardType(void);
 
 	
 	/// @brief 現在選択中のカードがリロードカードかを返す

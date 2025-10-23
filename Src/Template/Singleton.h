@@ -60,7 +60,7 @@ protected:
     /// <summary>
     /// デフォルトコンストラクタは protected にして外部生成を防止
     /// </summary>
-    Singleton() = default;
+    Singleton(void) = default;
 
     /// <summary>
     /// デストラクタも protected

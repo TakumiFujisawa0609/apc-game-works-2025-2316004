@@ -1,4 +1,5 @@
 #pragma once
+#include<map>
 #include"../../Card/CardBase.h"
 #include"../Object/ObjectBase.h"
 
@@ -36,6 +37,14 @@ public:
 		ATTACK_3,
 	};
 
+	//UŒ‚í•Ê
+	enum class ATK_TYPE
+	{
+		NML_ATK_1,
+		NML_ATK_2,
+		NML_ATK_3,
+	};
+
 	struct ROTATION
 	{
 		//‰ñ“]
@@ -51,6 +60,13 @@ public:
 		int hp_ = maxHp_;	//‘Ì—Í
 		int atk_;			//UŒ‚—Í
 		//int def_;			//–hŒä—Í
+	};
+
+	struct ATK_STATUS
+	{
+		float colRadius;
+		float colStartFrame;
+		float colEndFrame;
 	};
 
 	/// <summary>
@@ -200,6 +216,8 @@ protected:
 	//ƒJ[ƒhUI(‚Æ‚è‚ ‚¦‚¸)
 	std::unique_ptr<CardUI>cardUI_;
 
+	//UŒ‚•Ê‚Ì“–‚½‚è”»’èî•ñ
+	std::map<ATK_TYPE, ATK_STATUS>atkTable_;
 
 private:
 

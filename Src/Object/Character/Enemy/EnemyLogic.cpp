@@ -17,7 +17,8 @@ EnemyLogic::~EnemyLogic(void)
 
 void EnemyLogic::Init(void)
 {
-	// Initialization code for EnemyLogic can be added here
+	cardCoolCnt_ = CARD_COOL_TIME;
+	moveCnt_ = -1.0f;
 }
 
 void EnemyLogic::Update(void)
@@ -33,13 +34,19 @@ void EnemyLogic::Update(void)
 	moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
 
 	cardCoolCnt_ -= scnMng_.GetDeltaTime();
-	if (dis > 200.0f)
+	moveCnt_ -= scnMng_.GetDeltaTime();
+
+	if (dis > ATK_RANGE&&moveCnt_<0.0f)
 	{
 		moveDir_ = targetVec;
 	}
-	else if (cardCoolCnt_ < 0.0f)
+	else if(dis <= ATK_RANGE)
 	{
-		//isAct_.isCardUse = true;
+		moveCnt_ = MOVE_COOL_TIME;
+	}
+	if (cardCoolCnt_ < 0.0f)
+	{
+		isAct_.isCardUse = true;
 		cardCoolCnt_ = CARD_COOL_TIME;
 	}
 
