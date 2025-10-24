@@ -21,7 +21,7 @@
 #include"../Action/Run.h"
 #include"../Action/Jump.h"
 #include"../Action/React.h"
-#include"../Action/CardAction.h"
+#include"../Action/PlayerCardAction.h"
 
 #include "ActionController.h"
 
@@ -60,11 +60,11 @@ void ActionController::Init(void)
 	//auto cntl = player_.GetCntl();
 	auto cntl = InputManager::CONTROLL_TYPE::ALL;
 
-	mainAction_[ACTION_TYPE::IDLE]= std::make_unique<Idle>(*this);
-	mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
-	mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
-	mainAction_[ACTION_TYPE::REACT] = std::make_unique<React>(*this);
-	mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<CardAction>(charaObj_,*this,deck_);
+	//mainAction_[ACTION_TYPE::IDLE]= std::make_unique<Idle>(*this);
+	//mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
+	//mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
+	//mainAction_[ACTION_TYPE::REACT] = std::make_unique<React>(*this);
+	//mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<PlayerCardAction>(charaObj_,*this,deck_);
 	mainAction_[act_]->Init();
 
 	//カードデッキ
@@ -191,22 +191,4 @@ void ActionController::DirAndMovePowUpdate(void)
 	movePow_ = VScale(moveDir_, speed);
 }
 
-void ActionController::SetGoalRotate(const double _deg)
-{
-	////カメラの角度を取得
-	//VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
-	//Quaternion axis = Quaternion::AngleAxis(
-	//	/*(double)cameraRot.y + */UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
 
-	////現在設定されている回転との角度差を取る
-	//double angleDiff = Quaternion::Angle(axis, goalQuaRot_);
-
-	//constexpr double ANGLE_THRESHOLD = 0.0;
-	//// しきい値
-	//if (angleDiff > ANGLE_THRESHOLD)
-	//{
-	//	stepRotTime_ = TIME_ROT;
-	//}
-	//
-	//goalQuaRot_ = axis;
-}

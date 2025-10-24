@@ -25,6 +25,14 @@
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
 #include"./PlayerOnHit.h"
+
+#include"../Base/ActionBase.h"
+#include"../Action/Idle.h"
+#include"../Action/Run.h"
+#include"../Action/Jump.h"
+#include"../Action/React.h"
+#include"../Action/PlayerCardAction.h"
+
 #include "./PlayerLogic.h"
 
 
@@ -126,6 +134,20 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
 	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
+
+	////プレイヤーの持つメインアクションの追加
+	//mainAction_[ACTION_TYPE::IDLE] = std::make_unique<Idle>(*this);
+	//mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
+	//mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
+	//mainAction_[ACTION_TYPE::REACT] = std::make_unique<React>(*this);
+	//mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<PlayerCardAction>(*this, *this, deck_);
+
+	using ACTION_TYPE = ActionController::ACTION_TYPE;
+	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
+	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_);
+	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
+	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION,*this,*action_,*deck_);
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
 

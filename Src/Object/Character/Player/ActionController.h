@@ -19,7 +19,7 @@ class Idle;
 class Run;
 class Jump;
 class React;
-class CardAction;
+class PlayerCardAction;
 
 class ActionController
 {
@@ -134,7 +134,14 @@ public:
 	const bool IsCardDisitionControll(void);
 
 
-
+	template <typename T, typename... Args>
+	/// @brief メインアクションの追加
+	/// @param _action 
+	//void AddMainAction(const ACTION_TYPE _type, Args&&... args);
+	void AddMainAction(const ACTION_TYPE _type, Args && ...args)
+	{
+		mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
+	}
 
 
 #ifdef _DEBUG
@@ -212,12 +219,8 @@ private:
 	/// <param name="_se">現在再生させたいSE</param>
 	//void StopSe(const ACT_SE _se);
 
-
-
 	//入力方向に応じて方向を決める
 	void MoveDirFronInput(void);
-	//ゴール角度をセット
-	void SetGoalRotate(const double _deg);
 	//回転処理
 	void Rotate(void);
 	//方向と移動量の更新
@@ -226,4 +229,5 @@ private:
 
 
 };
+
 

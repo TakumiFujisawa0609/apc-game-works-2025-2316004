@@ -8,9 +8,9 @@
 #include "../../Card/CardSystem.h"
 #include "../Base/CharacterBase.h"
 #include "../Base/LogicBase.h"
-#include "CardAction.h"
+#include "PlayerCardAction.h"
 
-CardAction::CardAction(CharacterBase& _charaObj,ActionController& _actCntl, CardDeck& _deck):
+PlayerCardAction::PlayerCardAction(CharacterBase& _charaObj,ActionController& _actCntl, CardDeck& _deck):
 	ActionBase(_actCntl),
 	charaObj_(_charaObj),
 	deck_(_deck),
@@ -28,7 +28,7 @@ CardAction::CardAction(CharacterBase& _charaObj,ActionController& _actCntl, Card
 	};
 }
 
-CardAction::~CardAction(void)
+PlayerCardAction::~PlayerCardAction(void)
 {
 	changeAction_.clear();
 	//カード機能配列の解放
@@ -36,7 +36,7 @@ CardAction::~CardAction(void)
 	std::swap(cardFuncs_, empty);
 }
 
-void CardAction::Init(void)
+void PlayerCardAction::Init(void)
 {
 	//アクション中にする
 	isCardAct_ = true;
@@ -57,25 +57,25 @@ void CardAction::Init(void)
 	}
 }
 
-void CardAction::Update()
+void PlayerCardAction::Update()
 {
 	cardFuncs_.front()();
 }
 
-bool CardAction::IsAttackable(void)
+bool PlayerCardAction::IsAttackable(void)
 {
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	int handCardTypeSize = static_cast<int>(deck_.GetHandCardType().size());
 	return handCardTypeSize == 1 && cardTypes[0] == CardBase::CARD_TYPE::ATTACK;
 }
 
-bool CardAction::IsCanComboAttack(void)
+bool PlayerCardAction::IsCanComboAttack(void)
 {
 	return charaObj_.GetCardUI().GetSelectState() != CardUI::CARD_SELECT::DISITION
 		&& actionCntl_.IsCardDisitionControll();
 }
 
-bool CardAction::IsCardFailure(void)
+bool PlayerCardAction::IsCardFailure(void)
 {
 	//カードの勝敗判定
 	deck_.CardUseUpdate();
@@ -92,7 +92,7 @@ bool CardAction::IsCardFailure(void)
 	return false;
 }
 
-void CardAction::AttackMotion(const float _atkColStart, const float _atlColEnd)
+void PlayerCardAction::AttackMotion(const float _atkColStart, const float _atlColEnd)
 {
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure())return;
@@ -142,7 +142,7 @@ void CardAction::AttackMotion(const float _atkColStart, const float _atlColEnd)
 	}
 }
 
-void CardAction::ChangeActionCardInit(void)
+void PlayerCardAction::ChangeActionCardInit(void)
 {
 	attackStageNum_++;
 	//現在使っているカードを捨てる
@@ -154,12 +154,12 @@ void CardAction::ChangeActionCardInit(void)
 	cardFuncs_.pop();
 }
 
-void CardAction::UpdateAttack(void)
+void PlayerCardAction::UpdateAttack(void)
 {
 	AttackMotion(ATTACK_COL_START_ANIM_CNT, ATTACK_COL_END_ANIM_CNT);
 }
 
-void CardAction::UpdateReload(void)
+void PlayerCardAction::UpdateReload(void)
 {
 	if (actionCntl_.GetInput().GetIsAct().isCardPushKeep)
 	{
@@ -184,14 +184,14 @@ void CardAction::UpdateReload(void)
 }
 
 
-void CardAction::ChangeAttackOne(void)
+void PlayerCardAction::ChangeAttackOne(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
 	//cardActFunc_ = [this]() {UpdateAttack(); };
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
-void CardAction::ChangeAttackTwo(void)
+void PlayerCardAction::ChangeAttackTwo(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_2), false);
 	//攻撃段階を増やす
@@ -199,14 +199,14 @@ void CardAction::ChangeAttackTwo(void)
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
-void CardAction::ChangeAttackThree(void)
+void PlayerCardAction::ChangeAttackThree(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false);
 	ChangeActionCardInit();
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
-void CardAction::ChangeReload(void)
+void PlayerCardAction::ChangeReload(void)
 {
 	if (!cardFuncs_.empty())
 	{

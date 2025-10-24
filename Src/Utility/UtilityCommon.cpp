@@ -456,7 +456,7 @@ std::wstring UtilityCommon::GetWStringFromString(const std::string& str)
         CP_ACP,									//現在のコードページ
         MB_PRECOMPOSED | MB_ERR_INVALID_CHARS,	//エラーしたら情報を返す
         str.c_str(),							//元の文字列へのポインタ
-        str.length(),							//元の文字列の長さ
+        static_cast<int>(str.length()),							//元の文字列の長さ
         nullptr,								//変換先の文字列のバッファ
         0										//最後の引数をnullptr,0にすることで
     );											//wstringに必要な文字列数を返している
@@ -474,7 +474,7 @@ std::wstring UtilityCommon::GetWStringFromString(const std::string& str)
         str.c_str(),							// 変換元の文字列
         str.length(),							// 得られたワイド文字列を入れるアドレス
         ret.data(),								// 得られたワイド文字列を入れるメモリサイズ
-        ret.size()								// 変換先の文字列のバッファのサイズ
+        static_cast<int>(ret.size())								// 変換先の文字列のバッファのサイズ
     );
 
     return ret;

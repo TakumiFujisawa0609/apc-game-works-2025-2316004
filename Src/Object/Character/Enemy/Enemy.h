@@ -9,6 +9,11 @@ class EnemyInput;
 class ActionController;
 class AnimationController;
 
+class Idle;
+class Run;
+class Jump;
+class React;
+class PlayerCardAction;
 class Enemy :public CharacterBase
 {
 public:

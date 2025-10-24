@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Character\Action\EnemyCardAction.cpp" />
     <ClCompile Include="Src\Manager\Game\CharacterManager.cpp" />
     <ClCompile Include="Src\Manager\Resource\SoundManager.cpp" />
     <ClCompile Include="Src\Scene\GameClearScene.cpp" />
@@ -27,7 +28,7 @@
     <ClCompile Include="Src\Object\Character\Action\React.cpp" />
     <ClCompile Include="Src\Object\Card\AttackCard.cpp" />
     <ClCompile Include="Src\Object\Character\Base\CharacterBase.cpp" />
-    <ClCompile Include="Src\Object\Character\Action\CardAction.cpp" />
+    <ClCompile Include="Src\Object\Character\Action\PlayerCardAction.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Jump.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Idle.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Run.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Character\Action\EnemyCardAction.h" />
     <ClInclude Include="Src\Manager\Game\CharacterManager.h" />
     <ClInclude Include="Src\Manager\Resource\SoundManager.h" />
     <ClInclude Include="Src\Scene\GameClearScene.h" />
@@ -89,7 +91,7 @@
     <ClInclude Include="Src\Object\Character\Action\React.h" />
     <ClInclude Include="Src\Object\Card\AttackCard.h" />
     <ClInclude Include="Src\Object\Character\Base\CharacterBase.h" />
-    <ClInclude Include="Src\Object\Character\Action\CardAction.h" />
+    <ClInclude Include="Src\Object\Character\Action\PlayerCardAction.h" />
     <ClInclude Include="Src\Object\Character\Action\Jump.h" />
     <ClInclude Include="Src\Object\Character\Action\Idle.h" />
     <ClInclude Include="Src\Object\Character\Action\Run.h" />

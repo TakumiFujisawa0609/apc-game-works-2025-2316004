@@ -21,6 +21,13 @@ class CardUI;
 class ModelMaterial;
 class ModelRenderer;
 
+class Idle;
+class Run;
+class Jump;
+class React;
+class PlayerCardAction;
+
+
 class EffectController;
 
 class Player :public CharacterBase

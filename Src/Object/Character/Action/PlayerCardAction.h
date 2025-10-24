@@ -3,7 +3,9 @@
 #include<queue>
 #include "../Base/ActionBase.h"
 class CardDeck;
-class CardAction :
+class CharacterBase;
+
+class PlayerCardAction :
     public ActionBase
 {
 
@@ -23,12 +25,12 @@ public:
         NUM,
 	};
 
-    CardAction(CharacterBase& _charaObj,ActionController& _actCntl,CardDeck& _deck);
-    ~CardAction(void)override;
+    PlayerCardAction(CharacterBase& _charaObj,ActionController& _actCntl,CardDeck& _deck);
+    ~PlayerCardAction(void)override;
     void Init(void) override;
     void Update() override;
 
-public:
+private:
     //攻撃判定
 	static constexpr float ATTACK_COL_START_ANIM_CNT = 14.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_COL_END_ANIM_CNT = 25.0f;     //攻撃当たり判定終了アニメーションカウント

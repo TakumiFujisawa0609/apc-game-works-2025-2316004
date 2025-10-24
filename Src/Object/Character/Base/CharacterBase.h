@@ -2,7 +2,7 @@
 #include<map>
 #include"../../Card/CardBase.h"
 #include"../Object/ObjectBase.h"
-
+#include"../Player/ActionController.h"
 class AnimationController;
 class ActionController;
 class CardDeck;
@@ -11,6 +11,8 @@ class InputBase;
 class Capsule;
 class LogicBase;
 class PlayerOnHit;
+
+
 
 class CharacterBase :public ObjectBase
 {
@@ -67,6 +69,16 @@ public:
 		float colRadius;
 		float colStartFrame;
 		float colEndFrame;
+	};
+
+	enum class ACTION_TYPE
+	{
+		IDLE,		//何もしてない
+		MOVE,		//移動
+		DASHMOVE,	//ダッシュ
+		REACT,	//パンチされた状態
+		JUMP,		//ジャンプ
+		CARD_ACTION	//カードアクション
 	};
 
 	/// <summary>
@@ -215,6 +227,7 @@ protected:
 	STATUS status_;
 	//カードUI(とりあえず)
 	std::unique_ptr<CardUI>cardUI_;
+
 
 	//攻撃別の当たり判定情報
 	std::map<ATK_TYPE, ATK_STATUS>atkTable_;

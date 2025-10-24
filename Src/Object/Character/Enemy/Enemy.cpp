@@ -18,10 +18,18 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
 
+#include"../Base/ActionBase.h"
+#include"../Action/Idle.h"
+#include"../Action/Run.h"
+#include"../Action/Jump.h"
+#include"../Action/React.h"
+#include"../Action/PlayerCardAction.h"
+
 #include "Enemy.h"
 
 Enemy::Enemy(CharacterBase& _playerChara):
-	playerChara_(_playerChara)
+	playerChara_(_playerChara),
+	cardCenterPos_({})
 {
 }
 
@@ -46,6 +54,7 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ATTACK1));
 	//animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ATTACK2));
 	//animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
+
 }
 
 void Enemy::Init(void)
@@ -63,6 +72,13 @@ void Enemy::Init(void)
 	logic_->Init();
 
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
+
+	using ACTION_TYPE = ActionController::ACTION_TYPE;
+	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
+	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_);
+  	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
+	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *this, *action_, *deck_);
 	action_->Init();
 	tag_ = Collider::TAG::ENEMY1;
 
@@ -74,6 +90,9 @@ void Enemy::Init(void)
 	MakeCollider({ tag_ }, std::move(geo));
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
+
+
+
 
 	//“G‚ÌƒJ[ƒhUI¶¬
 	//cardUI_->Init();
