@@ -13,7 +13,7 @@ class Idle;
 class Run;
 class Jump;
 class React;
-class PlayerCardAction;
+class EnemyCardAction;
 class Enemy :public CharacterBase
 {
 public:

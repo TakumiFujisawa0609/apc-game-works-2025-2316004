@@ -43,20 +43,20 @@ public:
 	/// @brief カードの威力の取得
 	/// @param  
 	/// @return カードのステータス
-	inline const CARD_STATUS GetCardStatus(void)const { return status_; }
+	inline const CARD_STATUS& GetCardStatus(void)const { return status_; }
 
 	//カードの種類の取得
 	//inline const CARD_TYPE GetHandCardType(void)const { return type_; }
 
 	/// @brief カードの勝利の取得
 	/// @param _isWin 
-	inline void SetIsWin(const bool _isWin) { isWin_ = _isWin; }
+	inline void SetIsWin(const bool& _isWin) { isWin_ = _isWin; }
 
 	/// <summary>
 	/// カード使用済みのセット
 	/// </summary>
 	/// <param name="_isUsed">true:使用済み　false:未使用</param>
-	inline void SetIsUsed(const bool _isUsed) { isUsed_ = _isUsed; }
+	inline void SetIsUsed(const bool& _isUsed) { isUsed_ = _isUsed; }
 
 protected:
 

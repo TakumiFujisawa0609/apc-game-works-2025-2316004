@@ -102,11 +102,11 @@ void GameScene::NormalDraw(void)
 	DebagDraw();
 
 	//ƒvƒŒƒCƒ„[‚Ì•`‰æ
-	//PlayerManager::GetInstance().Draw();
+	//PlayerManager::GetInstance().DrawPlayerUI();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
-	//player_->Draw();
-	//enemy_->Draw();
+	//player_->DrawPlayerUI();
+	//enemy_->DrawPlayerUI();
 }
 
 void GameScene::ChangeNormal(void)

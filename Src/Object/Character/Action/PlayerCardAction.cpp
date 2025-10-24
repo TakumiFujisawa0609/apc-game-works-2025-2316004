@@ -11,20 +11,22 @@
 #include "PlayerCardAction.h"
 
 PlayerCardAction::PlayerCardAction(CharacterBase& _charaObj,ActionController& _actCntl, CardDeck& _deck):
-	ActionBase(_actCntl),
-	charaObj_(_charaObj),
-	deck_(_deck),
-	pushReloadCnt_(),
-	atkPos_()
+	CardActionBase(_charaObj, _actCntl, _deck),
+	pushReloadCnt_()
 {
-	isCardAct_ = false;
 	isTurnable_ = false;
-	cardActTime_ = 0.0f;
 	changeAction_={
-		{ ACT_STATE::ATTACK_ONE, [this]() {ChangeAttackOne(); }},
-		{ ACT_STATE::ATTACK_TWO, [this]() {ChangeAttackTwo(); }},
-		{ ACT_STATE::ATTACK_THREE, [this]() {ChangeAttackThree(); }},
-		{ ACT_STATE::RELOAD, [this]() {ChangeReload(); }},
+		{ CARD_ACT_TYPE::ATTACK_ONE, [this]() {ChangeAttackOne(); }},
+		{ CARD_ACT_TYPE::ATTACK_TWO, [this]() {ChangeAttackTwo(); }},
+		{ CARD_ACT_TYPE::ATTACK_THREE, [this]() {ChangeAttackThree(); }},
+		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
+	};
+	ATK_STATUS initStatus={};
+	atkStatusTable_ = {
+		{CARD_ACT_TYPE::ATTACK_ONE,NORMAL_ATK_ONE},
+		{CARD_ACT_TYPE::ATTACK_TWO,NORMAL_ATK_TWO},
+		{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
+		{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
 	};
 }
 
@@ -38,8 +40,6 @@ PlayerCardAction::~PlayerCardAction(void)
 
 void PlayerCardAction::Init(void)
 {
-	//アクション中にする
-	isCardAct_ = true;
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
@@ -49,11 +49,11 @@ void PlayerCardAction::Init(void)
 	{
 		deck_.MoveHandToCharge();
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-		changeAction_[ACT_STATE::ATTACK_ONE]();
+		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
 	}
 	else if (deck_.IsReloadCard()==CardBase::CARD_TYPE::RELOAD)
 	{
-		changeAction_[ACT_STATE::RELOAD]();
+		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
 }
 
@@ -75,88 +75,17 @@ bool PlayerCardAction::IsCanComboAttack(void)
 		&& actionCntl_.IsCardDisitionControll();
 }
 
-bool PlayerCardAction::IsCardFailure(void)
-{
-	//カードの勝敗判定
-	deck_.CardUseUpdate();
-	//相手のカードに負けたらノックバックする
-	if (deck_.IsCardFailure())
-	{
-		//アクション終了
-		isCardAct_ = false;
-		cardActTime_ = 0.0f;
-		deck_.EraseHandCard();
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-		return true;
-	}
-	return false;
-}
-
-void PlayerCardAction::AttackMotion(const float _atkColStart, const float _atlColEnd)
-{
-	//攻撃中にカード負けしたら処理を飛ばす
-	if (IsCardFailure())return;
-
-	if (anim_.GetAnimStep() >= _atkColStart &&
-		anim_.GetAnimStep() <= _atlColEnd)
-	{
-		//
-		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, { 0.0f,50.0f,100.0f });
-		//攻撃判定有効
-		isAliveAtkCol_ = true;
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), atkPos_);
-
-	}
-	else if (anim_.GetAnimStep() > ATTACK_COL_END_ANIM_CNT)
-	{
-		//攻撃判定無効
-		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
-		charaObj_.GetCardUI().ChangeUsedActionCard();
-		if (deck_.IsReloadCard() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
-		{
-			changeAction_[ACT_STATE::RELOAD]();
-		}
-
-		if (IsAttackable() && IsCanComboAttack() && actionCntl_.GetInput().GetIsAct().isCardUse)
-		{
-			if (attackStageNum_ == static_cast<int>(ACT_STATE::ATTACK_ONE))
-			{
-				changeAction_[ACT_STATE::ATTACK_TWO]();
-			}
-			else if (attackStageNum_ == static_cast<int>(ACT_STATE::ATTACK_TWO))
-			{
-				changeAction_[ACT_STATE::ATTACK_THREE]();
-			}
-		}
-		else if (anim_.IsEnd())
-		{
-			//アクション終了
-			isCardAct_ = false;
-			cardActTime_ = 0.0f;
-			deck_.EraseHandCard();
-			cardFuncs_.pop();
-			charaObj_.GetCardUI().ChangeUsedActionCard();
-			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-			return;
-		}
-	}
-}
-
 void PlayerCardAction::ChangeActionCardInit(void)
 {
 	attackStageNum_++;
-	//現在使っているカードを捨てる
-	deck_.EraseHandCard();
-	//手札に移動
-	deck_.MoveHandToCharge();
-	charaObj_.GetCardUI().ChangeUsedActionCard();
-	//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+	charaObj_.DeleteCard();
 	cardFuncs_.pop();
 }
 
+
 void PlayerCardAction::UpdateAttack(void)
 {
-	AttackMotion(ATTACK_COL_START_ANIM_CNT, ATTACK_COL_END_ANIM_CNT);
+	AttackMotion(atkStatusTable_[actType_], ATK_ONE_LOCAL);
 }
 
 void PlayerCardAction::UpdateReload(void)
@@ -172,6 +101,7 @@ void PlayerCardAction::UpdateReload(void)
 	{
 		cardFuncs_.pop();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		actType_ = CARD_ACT_TYPE::NONE;
 		charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::NONE);
 	}
 	if (pushReloadCnt_ > RELOAD_TIME)
@@ -179,7 +109,9 @@ void PlayerCardAction::UpdateReload(void)
 		deck_.Reload();
 		cardFuncs_.pop();
 		pushReloadCnt_ = 0.0f;
+		actType_ = CARD_ACT_TYPE::NONE;
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+
 	}
 }
 
@@ -221,4 +153,24 @@ void PlayerCardAction::ChangeReload(void)
 	charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::RELOAD);
 	
 	cardFuncs_.push([this]() {UpdateReload(); });
+}
+
+void PlayerCardAction::ChangeComboAction(void)
+{
+	if (deck_.IsReloadCard() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
+	{
+		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
+	}
+
+	if (IsAttackable() && IsCanComboAttack() && actionCntl_.GetInput().GetIsAct().isCardUse)
+	{
+		if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE))
+		{
+			ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
+		}
+		else if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_TWO))
+		{
+			ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
+		}
+	}
 }

@@ -111,7 +111,7 @@ void CardDeck::Draw(void)
 	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
 	//DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
 
-	//drawPile_[0]->Draw();
+	//drawPile_[0]->DrawPlayerUI();
 
 
 	//ŽèŽD‚Ì•\Ž¦
@@ -131,7 +131,7 @@ void CardDeck::Release(void)
 
 }
 
-void CardDeck::AddDrawPile(const CardBase::CARD_STATUS _status)
+void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
 {
 	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_status);
 	std::unique_ptr<CardBase>initCard = std::make_unique<CardBase>(_status);

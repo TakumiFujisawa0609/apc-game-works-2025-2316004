@@ -98,10 +98,10 @@ void PlayerOnHit::CollSword(const std::weak_ptr<Collider> _hitCol)
 #ifdef DEBUG_ON
 void PlayerOnHit::DrawDebug(void)
 {
-	//colParam_[BODY_SPHERE_COL_NO].geometry_->Draw();
-	//colParam_[MOVE_LINE_COL_NO].geometry_->Draw();
-	//colParam_[UP_AND_DOWN_LINE_COL_NO].geometry_->Draw();
-	//colParam_[EYE_LINE_NO].geometry_->Draw();
+	//colParam_[BODY_SPHERE_COL_NO].geometry_->DrawPlayerUI();
+	//colParam_[MOVE_LINE_COL_NO].geometry_->DrawPlayerUI();
+	//colParam_[UP_AND_DOWN_LINE_COL_NO].geometry_->DrawPlayerUI();
+	//colParam_[EYE_LINE_NO].geometry_->DrawPlayerUI();
 
 
 }

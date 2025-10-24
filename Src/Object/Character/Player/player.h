@@ -113,21 +113,21 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>プレイヤー番号</returns>
-	inline const int GetPlayerNum(void)const { return playerNum_; }
+	inline const int& GetPlayerNum(void)const { return playerNum_; }
 
 	/// <summary>
 	/// 使用するコントローラー
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>使用するコントローラー</returns>
-	inline const InputManager::CONTROLL_TYPE GetCntl(void)const { return cntl_; }
+	inline const InputManager::CONTROLL_TYPE& GetCntl(void)const { return cntl_; }
 
 	/// <summary>
 	/// コントローラー番号
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>コントローラー番号</returns>
-	inline const InputManager::JOYPAD_NO GetPadNum(void)const { return padNum_; }
+	inline const InputManager::JOYPAD_NO& GetPadNum(void)const { return padNum_; }
 
 	//プレイヤーの手札
 	//const std::weak_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
@@ -137,7 +137,7 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>手札</returns>
-	const std::weak_ptr<CardDeck> GetHand(void) { return deck_; }
+	const std::weak_ptr<CardDeck>& GetHand(void) { return deck_; }
 
 	/// <summary>
 	/// 当たった時の処理
@@ -182,7 +182,7 @@ private:
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
 	//static constexpr float CAP_RADIUS = 25.0f;						//半径
 
-		//カード最大枚数
+	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 10;
 
 	//格納するカードの強さ

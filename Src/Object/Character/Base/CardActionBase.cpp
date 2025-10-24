@@ -1,0 +1,108 @@
+#include "../pch.h"
+#include "../Utility/Utility3D.h"
+#include "ActionBase.h"
+
+#include "../Manager/Generic/SceneManager.h"
+#include "../Player/ActionController.h"
+#include "../../Common/AnimationController.h"
+#include "../../Card/CardDeck.h"
+#include "../../Card/CardBase.h"
+#include "../../Card/CardUI.h"
+#include "../../Card/CardSystem.h"
+#include "../Base/CharacterBase.h"
+#include "../Base/LogicBase.h"
+
+#include "CardActionBase.h"
+
+CardActionBase::CardActionBase(CharacterBase& _charaObj, ActionController& _actCntl, CardDeck& _deck):
+	ActionBase(_actCntl),
+	charaObj_(_charaObj),
+	deck_(_deck),
+	atkPos_({}),
+	actType_(CARD_ACT_TYPE::NONE)
+{
+}
+
+CardActionBase::~CardActionBase(void)
+{
+}
+
+void CardActionBase::Init(void)
+{
+}
+
+void CardActionBase::Update()
+{
+}
+
+void CardActionBase::ChangeCardAction(const CARD_ACT_TYPE& _type)
+{
+	//同じ状態が入ってきたら抜ける
+	if (actType_ == _type)return;
+	actType_ = _type;
+	changeAction_[actType_]();
+
+	//当たり判定情報を変える
+	atkStatusTable_[actType_];
+}
+
+void CardActionBase::AttackMotion(const ATK_STATUS& _status, const VECTOR& _localPos)
+{
+	//攻撃中にカード負けしたら処理を飛ばす
+	if (IsCardFailure())
+	{
+		deck_.EraseHandCard();
+		charaObj_.GetCardUI().ChangeUsedActionCard();
+		cardFuncs_.pop();
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		return;
+
+	}
+
+	if (anim_.GetAnimStep() >= _status.colStartCnt&&
+		anim_.GetAnimStep() <= _status.colEndCnt)
+	{
+		//攻撃中
+		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, _localPos);
+		//攻撃判定有効
+		isAliveAtkCol_ = true;
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), atkPos_,_status.atkRadius);
+
+	}
+	else if (anim_.IsEnd())
+	{
+		deck_.EraseHandCard();
+		charaObj_.GetCardUI().ChangeUsedActionCard();
+		cardFuncs_.pop();
+		actType_ = CARD_ACT_TYPE::NONE;
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		return;
+	}
+	else if (anim_.GetAnimStep() > _status.colEndCnt)
+	{
+		//攻撃判定無効
+		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
+		charaObj_.GetCardUI().ChangeUsedActionCard();
+		//次の攻撃につなげる
+		ChangeComboAction();
+	}
+}
+
+bool CardActionBase::IsCardFailure(void)
+{
+	//カードの勝敗判定
+	deck_.CardUseUpdate();
+	//相手のカードに負けたらノックバックする
+	if (deck_.IsCardFailure())
+	{
+		//終了処理
+		deck_.EraseHandCard();
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+		return true;
+	}
+	return false;
+}
+
+void CardActionBase::ChangeComboAction(void)
+{
+}

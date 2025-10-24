@@ -60,11 +60,7 @@ void ActionController::Init(void)
 	//auto cntl = player_.GetCntl();
 	auto cntl = InputManager::CONTROLL_TYPE::ALL;
 
-	//mainAction_[ACTION_TYPE::IDLE]= std::make_unique<Idle>(*this);
-	//mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
-	//mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
-	//mainAction_[ACTION_TYPE::REACT] = std::make_unique<React>(*this);
-	//mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<PlayerCardAction>(charaObj_,*this,deck_);
+	//初期化の前に追加したアクションの初期化
 	mainAction_[act_]->Init();
 
 	//カードデッキ
@@ -107,7 +103,7 @@ void ActionController::ChangeAction(const ACTION_TYPE _act)
 	if (act_ == _act)return;
 	act_ = _act;
 	mainAction_[act_]->Init();
- }
+}
 
 void ActionController::CardChargeUpdate(void)
 {

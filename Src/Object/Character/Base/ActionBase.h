@@ -29,6 +29,13 @@ public:
 		MAX
 	};
 
+	struct ATK_STATUS
+	{
+		float colRadius;
+		float colStartFrame;
+		float colEndFrame;
+	};
+
 	struct ACTION_STATUS
 	{
 

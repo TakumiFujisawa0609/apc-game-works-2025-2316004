@@ -135,13 +135,6 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
-	////プレイヤーの持つメインアクションの追加
-	//mainAction_[ACTION_TYPE::IDLE] = std::make_unique<Idle>(*this);
-	//mainAction_[ACTION_TYPE::MOVE] = std::make_unique<Run>(*this);
-	//mainAction_[ACTION_TYPE::JUMP] = std::make_unique<Jump>(*this);
-	//mainAction_[ACTION_TYPE::REACT] = std::make_unique<React>(*this);
-	//mainAction_[ACTION_TYPE::CARD_ACTION] = std::make_unique<PlayerCardAction>(*this, *this, deck_);
-
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
@@ -207,7 +200,7 @@ void Player::Draw(void)
 	action_->DrawDebug();
 	
 	//カードUI描画
-	cardUI_->Draw();
+	cardUI_->DrawPlayerUI();
 
 #ifdef DEBUG_ON
 	DrawDebug();

@@ -4,6 +4,7 @@
 #include "../Object/Character/Player/ActionController.h"
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Object/Character/Player/PlayerOnHit.h"
+#include"../Object/Card/CardDeck.h"
 #include"../Object/Card/CardUI.h"
 #include "../../../Utility/Utility3D.h"
 #include "../../Common/Geometry/Capsule.h"
@@ -22,11 +23,11 @@ CharacterBase::~CharacterBase(void)
 {
 }
 
-void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, VECTOR& _atkPos)
+void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const VECTOR& _atkPos, const float& _radius)
 {
 	//当たり判定が存在したら削除する
 	if (IsAliveCollider(_charaTag, Collider::TAG::SWORD))return;
-	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, ATK_SPHE_RADIUS);
+	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
 	MakeCollider({ _charaTag,Collider::TAG::SWORD }, std::move(sphere));
 }
 
@@ -78,4 +79,14 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	status_.hp_ -= _dam;
+}
+
+void CharacterBase::DeleteCard(void)
+{
+	//現在使っているカードを捨てる
+	deck_->EraseHandCard();
+	//手札に移動
+	deck_->MoveHandToCharge();
+	cardUI_->ChangeUsedActionCard();
+	//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 }

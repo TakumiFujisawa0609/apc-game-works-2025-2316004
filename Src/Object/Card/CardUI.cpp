@@ -74,7 +74,7 @@ void CardUI::Update(void)
 	UpdateUsedCard();
 }
 
-void CardUI::Draw(void)
+void CardUI::DrawPlayerUI(void)
 {
 	auto visibleCards = visibleCards_;
 	//•`‰æ‚ÌŽž‚Ì‚Ý‹t‚É‰ñ‚·

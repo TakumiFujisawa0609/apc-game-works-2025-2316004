@@ -39,14 +39,6 @@ public:
 		ATTACK_3,
 	};
 
-	//攻撃種別
-	enum class ATK_TYPE
-	{
-		NML_ATK_1,
-		NML_ATK_2,
-		NML_ATK_3,
-	};
-
 	struct ROTATION
 	{
 		//回転
@@ -64,12 +56,7 @@ public:
 		//int def_;			//防御力
 	};
 
-	struct ATK_STATUS
-	{
-		float colRadius;
-		float colStartFrame;
-		float colEndFrame;
-	};
+
 
 	enum class ACTION_TYPE
 	{
@@ -128,7 +115,7 @@ public:
 	/// 攻撃の当たり判定生成
 	/// </summary>
 	/// <param name="_charaTag">どのキャラクターか</param>
-	void MakeAttackCol(const Collider::TAG _charaTag,VECTOR& _atkPos);
+	void MakeAttackCol(const Collider::TAG _charaTag,const VECTOR& _atkPos,const float& _radius);
 
 	/// <summary>
 	/// 攻撃の当たり判定削除
@@ -185,13 +172,14 @@ public:
 	/// @return 
 	inline CardUI& GetCardUI(void) { return *cardUI_; }
 	
-
+	/// @brief　使用済みカードについての処理
+	/// @param  
+	void DeleteCard(void);
 protected:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
 	static constexpr float CAP_RADIUS = 20.0f;						//カプセル球の半径
-	static constexpr float ATK_SPHE_RADIUS = 120.0f;						//カプセル球の半径
 
 	//当たり判定
 	static constexpr int CUPSULE_COL_NO = 0;
@@ -227,10 +215,6 @@ protected:
 	STATUS status_;
 	//カードUI(とりあえず)
 	std::unique_ptr<CardUI>cardUI_;
-
-
-	//攻撃別の当たり判定情報
-	std::map<ATK_TYPE, ATK_STATUS>atkTable_;
 
 private:
 

@@ -23,7 +23,7 @@
 #include"../Action/Run.h"
 #include"../Action/Jump.h"
 #include"../Action/React.h"
-#include"../Action/PlayerCardAction.h"
+#include"../Action/EnemyCardAction.h"
 
 #include "Enemy.h"
 
@@ -78,7 +78,7 @@ void Enemy::Init(void)
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
 	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_);
   	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *this, *action_, *deck_);
+	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *this, *action_, *deck_);
 	action_->Init();
 	tag_ = Collider::TAG::ENEMY1;
 
@@ -116,8 +116,6 @@ void Enemy::Update(void)
 	trans_.quaRot = charaRot_.playerRotY_;
 	UpdatePost();
 
-
-
 	trans_.Update();
 }
 
@@ -126,7 +124,7 @@ void Enemy::Draw(void)
 	//’Êí•`‰æ
 	MV1DrawModel(trans_.modelId);
 	deck_->Draw();
-	//cardUI_->Draw();
+	//cardUI_->DrawPlayerUI();
 	const int BOX_START_X = 200;
 	const int BOX_START_Y = 50;
 	const int BOX_END_X = BOX_START_X+400;

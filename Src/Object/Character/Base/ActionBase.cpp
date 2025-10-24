@@ -13,17 +13,17 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	actionCntl_(_actCntl),
 	anim_(_actCntl.GetAnimation()),
 	isTurnable_(true),
-	isAliveAtkCol_(false)
+	isAliveAtkCol_(false),
+	isJump_(false),
+	jumpDeceralation_(0.0f),
+	jumpPow_({}),
+	stepJump_(0.0f),
+	speed_(0.0f),
+	dir_({}),
+	moveDir_({}),
+	movePow_({})
 {
-	speed_ = 0.0f;
-	dir_ = {};
-	moveDir_ = {};
-	movePow_ = {};
 
-	isJump_ = false;
-	jumpDeceralation_ = 0.0f;
-	jumpPow_ = {};
-	stepJump_ = 0.0f;
 
 }
 

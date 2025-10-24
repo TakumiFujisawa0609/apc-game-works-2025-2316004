@@ -55,7 +55,7 @@ public:
 	
 	/// @brief 山札にカード追加
 	/// @param _status 追加したいカードの強さ
-	void AddDrawPile(const CardBase::CARD_STATUS _status);
+	void AddDrawPile(const CardBase::CARD_STATUS& _status);
 
 	/// @brief カードを使用札に移動
 	/// @param  
