@@ -51,12 +51,9 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const VECTOR& _loca
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure())
 	{
-		deck_.EraseHandCard();
-		charaObj_.GetCardUI().ChangeUsedActionCard();
-		cardFuncs_.pop();
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		FinishAttack();
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return;
-
 	}
 
 	if (anim_.GetAnimStep() >= _status.colStartCnt&&
@@ -71,10 +68,7 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const VECTOR& _loca
 	}
 	else if (anim_.IsEnd())
 	{
-		deck_.EraseHandCard();
-		charaObj_.GetCardUI().ChangeUsedActionCard();
-		cardFuncs_.pop();
-		actType_ = CARD_ACT_TYPE::NONE;
+		FinishAttack();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
@@ -95,12 +89,19 @@ bool CardActionBase::IsCardFailure(void)
 	//相手のカードに負けたらノックバックする
 	if (deck_.IsCardFailure())
 	{
-		//終了処理
-		deck_.EraseHandCard();
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return true;
 	}
 	return false;
+}
+
+void CardActionBase::FinishAttack(void)
+{
+	//攻撃判定無効
+	deck_.EraseHandCard();
+	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
+	charaObj_.GetCardUI().ChangeUsedActionCard();
+	actType_ = CARD_ACT_TYPE::NONE;
+	cardFuncs_.pop();
 }
 
 void CardActionBase::ChangeComboAction(void)

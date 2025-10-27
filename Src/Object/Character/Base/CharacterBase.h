@@ -37,6 +37,11 @@ public:
 		ATTACK_1,
 		ATTACK_2,
 		ATTACK_3,
+		//“G
+		SWIP_ATK,
+		ROAR_ATK,
+		JUMP_ATK
+
 	};
 
 	struct ROTATION

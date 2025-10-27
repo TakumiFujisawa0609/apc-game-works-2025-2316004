@@ -74,6 +74,11 @@ public:
 	/// @brief æo‚µŒão‚µ‚Ì”»’è
 	/// @param _playerNo 
 	void JudgeIsFirstAtk(const int _playerNo);
+
+#ifdef _DEBUG
+	void DrawDebug(void);
+#endif // _DEBUG
+
 private:
 
 

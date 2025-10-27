@@ -6,7 +6,8 @@
 CardSystem::CardSystem(void):
 	putCardPow_{-1,-1},
 	canPut_(true),
-	isFirstAtk_{ false,false }
+	isFirstAtk_{ false,false },
+	playerResult_{BATTLE_RESULT::NONE,BATTLE_RESULT::NONE }
 {
 	
 }
@@ -23,7 +24,20 @@ const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) c
 
 void CardSystem::InitPutCardPow(const int _playerNo)
 {
-	putCardPow_[_playerNo]=-1;
+	bool isFirstAtk[ARRAY_NUM] = { false,false };
+	for (int i = 0; i < ARRAY_NUM; i++)
+	{
+		isFirstAtk[i] = isFirstAtk_[i];
+		if (isFirstAtk[i] == true)
+		{
+			putCardPow_[FIRST_ATK] = -1;
+		}
+		else
+		{
+			putCardPow_[SECOND_ATK] = -1;
+		}
+		isFirstAtk_[i] = false;
+	}
 }
 
 void CardSystem::JudgeIsFirstAtk(const int _playerNo)
@@ -32,6 +46,13 @@ void CardSystem::JudgeIsFirstAtk(const int _playerNo)
 	{
 		isFirstAtk_[_playerNo] = true;
 	}
+}
+
+void CardSystem::DrawDebug(void)
+{
+	DrawFormatString(200, 200, 0x000000, L"CardPow(%d,%d)\nisFirst(%d,%d)"
+		, putCardPow_[0], putCardPow_[1],isFirstAtk_[0],isFirstAtk_[1]);
+
 }
 
 
@@ -52,6 +73,12 @@ void CardSystem::CompareCards(void)
 	{
 		return;
 	}
+
+	if (putCardPow_[FIRST_ATK] != -1 && putCardPow_[SECOND_ATK] != -1)
+	{
+		int i = 0;
+	}
+
 	//以下、2つのカードの強さを比較
 	//どちらかのカードが出されていなければ先出し勝利
 	if (putCardPow_[SECOND_ATK] == -1)

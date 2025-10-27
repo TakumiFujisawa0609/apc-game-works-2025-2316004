@@ -14,7 +14,7 @@ public:
 	void Update(void) override;
 private:
 	//カードクールタイム制限
-	static constexpr float CARD_COOL_TIME = 5.0f;	
+	static constexpr float CARD_COOL_TIME = 2.0f;	
 	//攻撃の射程
 	static constexpr float ATK_RANGE = 200.0f;
 	//プレイヤーまでの距離詰めのクールタイム

@@ -1,9 +1,14 @@
+#include "../Base/CharacterBase.h"
+#include "../../Common/AnimationController.h"
+#include "../../Card/CardDeck.h"
+#include "../../Card/CardBase.h"
 #include "EnemyCardAction.h"
 
 EnemyCardAction::EnemyCardAction(CharacterBase& _charaObj, ActionController& _actCntl, CardDeck& _deck):
 CardActionBase(_charaObj,_actCntl,_deck)
 {
 	isTurnable_ = false;
+
 	changeAction_ = {
 		{ CARD_ACT_TYPE::SWIP_ATK, [this]() {ChangeSwip(); }},
 		{ CARD_ACT_TYPE::ROAR_ATK, [this]() {ChangeRoar(); }},
@@ -24,16 +29,30 @@ EnemyCardAction::~EnemyCardAction(void)
 
 void EnemyCardAction::Init(void)
 {
-	
+	actType_ = CARD_ACT_TYPE::NONE;
+	deck_.MoveHandToCharge();
+
+	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
+	{
+		deck_.MoveHandToCharge();
+		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
+	}
+	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)
+	{
+		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
+	}
+	ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
 }
 
 void EnemyCardAction::Update(void)
 {
-	cardFuncs_.front();
+	cardFuncs_.front()();
 }
 
 void EnemyCardAction::ChangeSwip(void)
 {
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::SWIP_ATK), false);
 	cardFuncs_.push([this]() {UpdateSwip(); });
 }
 

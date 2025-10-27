@@ -105,6 +105,14 @@ void GameScene::NormalDraw(void)
 	//PlayerManager::GetInstance().DrawPlayerUI();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
+
+
+
+
+#ifdef _DEBUG
+	CardSystem::GetInstance().DrawDebug();
+#endif // _DEBUG
+
 	//player_->DrawPlayerUI();
 	//enemy_->DrawPlayerUI();
 }
@@ -146,6 +154,8 @@ void GameScene::DebagDraw(void)
 
 	constexpr float r = 40.0f;
 	float angle = DX_PI_F * 2.0f * static_cast<float>(frame_ % 360) / 60.0f;
+
+
 
 	////‰~‰^“®‚ð•`‰æ
 	//DrawCircleAA(

@@ -81,7 +81,7 @@ public:
 	/// @brief 現在選択中のカードがリロードカードかを返す
 	/// @param  
 	/// @return 現在選択中のカード
-	const CardBase::CARD_TYPE IsReloadCard(void);
+	const CardBase::CARD_TYPE GetDrawCardType(void);
 
 	/// @brief リロードする
 	/// @param  

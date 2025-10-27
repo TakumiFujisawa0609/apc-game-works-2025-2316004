@@ -45,13 +45,13 @@ void PlayerCardAction::Init(void)
 	attackStageNum_ = 0;
 	//ŽèŽD‚ÉˆÚ“®
 	
-	if (deck_.IsReloadCard() == CardBase::CARD_TYPE::ATTACK)
+	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		deck_.MoveHandToCharge();
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
 	}
-	else if (deck_.IsReloadCard()==CardBase::CARD_TYPE::RELOAD)
+	else if (deck_.GetDrawCardType()==CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
@@ -157,7 +157,7 @@ void PlayerCardAction::ChangeReload(void)
 
 void PlayerCardAction::ChangeComboAction(void)
 {
-	if (deck_.IsReloadCard() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
+	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}

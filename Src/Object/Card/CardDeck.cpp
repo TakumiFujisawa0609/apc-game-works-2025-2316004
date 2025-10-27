@@ -194,7 +194,7 @@ std::vector<CardBase::CARD_TYPE> CardDeck::GetHandCardType(void)
 	return handCardTypes;
 }
 
-const CardBase::CARD_TYPE CardDeck::IsReloadCard(void)
+const CardBase::CARD_TYPE CardDeck::GetDrawCardType(void)
 {
 	return drawPile_[currentNum_]->GetCardStatus().type_;
 }
@@ -230,5 +230,5 @@ bool CardDeck::IsCardFailure(void)
 	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(playerNum_);
 	using RESULT = CardSystem::BATTLE_RESULT;
 	return result == RESULT::FAILURE_USE_BE_REFLECTED || result == RESULT::BE_DRAW
-		|| result == RESULT::GIVE_DRAW;
+		|| result == RESULT::GIVE_DRAW||result== RESULT::NONE;
 }

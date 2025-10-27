@@ -49,17 +49,7 @@ public:
 		{8,CARD_TYPE::ATTACK},
 		{9,CARD_TYPE::ATTACK}
 	};
-	// アニメーション種別
-	enum class ANIM_TYPE
-	{
-		NONE,
-		IDLE,
-		RUN,
-		REACT,
-		ATTACK_1,
-		ATTACK_2,
-		ATTACK_3,
-	};
+
 
 
 	const std::shared_ptr<CardDeck> GetHand(void)const { return deck_; }

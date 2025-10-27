@@ -90,7 +90,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 void PlayerOnHit::CollSword(const std::weak_ptr<Collider> _hitCol)
 {
 	if (action_.GetAct() == ActionController::ACTION_TYPE::REACT)return;
-	charaObj_.Damage(50);
+	charaObj_.Damage(1);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	
 }

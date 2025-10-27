@@ -70,6 +70,8 @@ protected:
     void AttackMotion(const ATK_STATUS& _status,const VECTOR& _localPos);
     //カードの勝敗を常に監視する
     bool IsCardFailure(void);
+    //攻撃終了
+    void FinishAttack(void);
 
     //コンボアクション遷移(あれば実装する)
     virtual void ChangeComboAction(void);

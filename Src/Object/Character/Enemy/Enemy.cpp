@@ -51,7 +51,7 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ATTACK1));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ATTACK1));
 	//animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ATTACK2));
 	//animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 
@@ -116,6 +116,11 @@ void Enemy::Update(void)
 	trans_.quaRot = charaRot_.playerRotY_;
 	UpdatePost();
 
+	//if (!deck_->IsCardFailure())
+	//{
+	//	int i = 0;
+	//}
+
 	trans_.Update();
 }
 
@@ -179,5 +184,7 @@ void Enemy::DrawDebug(void)
 	{
 		colParam.geometry_->Draw();
 	}
+
+	DrawFormatString(600, 300, 0x000000, L"action(%d)", static_cast<int>(action_->GetAct()));
 }
 #endif // _DEBUG
