@@ -41,7 +41,8 @@ void CharacterBase::UpdatePost(void)
 {
 	//移動後座標の更新
 	movedPos_ = VAdd(trans_.pos, action_->GetMovePow());
-	//movedPos_ = VAdd(movedPos_, action_->GetJumpPow());
+	//ジャンプ力の追加
+	movedPos_ = VAdd(movedPos_, action_->GetJumpPow());
 
 	//移動量ラインの更新
 	VECTOR moveVec = VSub(movedPos_, trans_.pos);
@@ -51,6 +52,12 @@ void CharacterBase::UpdatePost(void)
 		Line& moveLine = dynamic_cast<Line&>(colParam_[MOVE_LINE_COL_NO].collider_->GetGeometry());
 		moveLine.SetLocalPosPoint1(Utility3D::VECTOR_ZERO);
 		moveLine.SetLocalPosPoint2(moveVec);
+	}
+	
+	//地面接地ライン
+	if (movedPos_.y < 0.0f)
+	{
+		movedPos_.y = 0.0f;
 	}
 
 	//移動前の座標を格納する

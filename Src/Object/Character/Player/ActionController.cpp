@@ -94,6 +94,7 @@ void ActionController::DrawDebug(void)
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
 	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)logic_.GetAct(), dashSeCnt);
 	deck_.Draw();
+	DrawFormatString(0, 320, 0x000000, L"pos(%f,%f,%f)", trans_.pos.x, trans_.pos.y, trans_.pos.z);
 	
 }
 
@@ -181,10 +182,11 @@ void ActionController::DirAndMovePowUpdate(void)
 {
 	//方向の更新
 	moveDir_ = charaObj_.GetRotation().dir_;
-	//moveDir_ = logic_.GetDir();
 	float speed = mainAction_[act_]->GetSpeed();
 	//移動量の更新
 	movePow_ = VScale(moveDir_, speed);
+
+	jumpPow_ = VScale(charaObj_.GetTransform().GetUp(), mainAction_[act_]->GetJumpPow().y);
 }
 
 

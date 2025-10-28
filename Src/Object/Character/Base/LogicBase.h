@@ -20,11 +20,15 @@ public:
     //どの操作がされたか
     struct ACT_FLAG
     {
+        //カード関連
         bool isCardMoveLeft = false;    //カードを左へ
         bool isCardMoveRight = false;   //カードを右へ
         bool isCardUse = false;         //カード使用
         bool isCardCharge = false;      //カードをチャージ配列へ  
         bool isCardPushKeep = false;    //カード使用キー長押し
+
+        //アクション関連
+		bool isJump = false;         //ジャンプ
     };
 
     LogicBase(void);

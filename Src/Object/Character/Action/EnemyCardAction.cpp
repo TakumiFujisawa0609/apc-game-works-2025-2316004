@@ -4,8 +4,8 @@
 #include "../../Card/CardBase.h"
 #include "EnemyCardAction.h"
 
-EnemyCardAction::EnemyCardAction(CharacterBase& _charaObj, ActionController& _actCntl, CardDeck& _deck):
-CardActionBase(_charaObj,_actCntl,_deck)
+EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
+CardActionBase(_actCntl, _charaObj, _deck)
 {
 	isTurnable_ = false;
 
@@ -34,15 +34,17 @@ void EnemyCardAction::Init(void)
 
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
-		deck_.MoveHandToCharge();
+		//deck_.MoveHandToCharge();
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
+
+
+		ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
 	}
 	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
-	ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
+	//ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
 }
 
 void EnemyCardAction::Update(void)
@@ -62,6 +64,8 @@ void EnemyCardAction::ChangeRoar(void)
 
 void EnemyCardAction::ChangeJumpAtk(void)
 {
+	velocity_.y = sqrtf(2.0f * GRAVITY * JUMP_HEIGHT);
+	jumpPow_.y = velocity_.y;
 }
 
 void EnemyCardAction::ChangeReload(void)
@@ -79,6 +83,7 @@ void EnemyCardAction::UpdateRoar(void)
 
 void EnemyCardAction::JumpAtkUpdate(void)
 {
+
 }
 
 void EnemyCardAction::UpdateReload(void)

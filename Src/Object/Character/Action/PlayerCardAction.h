@@ -15,7 +15,7 @@ public:
 
     static constexpr float CARD_ACT_TIME_MAX = 5.0f; //カードアクション時間(デバッグ用)
 
-    PlayerCardAction(CharacterBase& _charaObj,ActionController& _actCntl,CardDeck& _deck);
+    PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
     ~PlayerCardAction(void)override;
     void Init(void) override;
     void Update() override;
