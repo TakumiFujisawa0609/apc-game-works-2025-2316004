@@ -28,6 +28,9 @@ public:
 
 	static constexpr float kEpsilonNormalSqrt = 1e-15F;
 
+	//”½“]—p
+	static constexpr int RESERVE_NUM = -1;
+
 	// YŽ²‰ñ“]
 	static VECTOR RotXZPos(const VECTOR& centerPos, const VECTOR& radiusPos, float rad);
 
@@ -93,5 +96,10 @@ public:
 	/// <param name="_mydir">Ž©•ª‚Ì•ûŒü</param>
 	/// <returns></returns>
 	bool IsBeyondGoalPos(const VECTOR _startPos, const VECTOR _goalPos, const VECTOR _mydir);
+
+	/// @brief ƒxƒNƒgƒ‹‚Ì”½“]
+	/// @param _vec ”½“]‚µ‚½‚¢ƒxƒNƒgƒ‹
+	/// @return 
+	static const VECTOR ReverseValue(const VECTOR _vec);
 };
 

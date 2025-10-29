@@ -50,7 +50,10 @@ void ResourceManager::Init(void)
 	resourcesMap_.emplace(SRC::E_RUN, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Swiping.mv1");
-	resourcesMap_.emplace(SRC::E_ATTACK1, std::move(res));
+	resourcesMap_.emplace(SRC::E_SWIP_ATK, std::move(res));
+	
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_JumpAttack.mv1");
+	resourcesMap_.emplace(SRC::E_JUMP_ATK, std::move(res));
 
 
 

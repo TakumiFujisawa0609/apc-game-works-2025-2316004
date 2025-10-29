@@ -78,7 +78,10 @@ public:
 	void SetGoalRotate(const double _deg)override;
 
 private:
+
 	//定数
+	//プレイヤーの腰のフレーム番号
+	static constexpr int SPINE_FRAME_NO = 1;
 	//敵番号(デッキで判定する用)
 	static constexpr int ENEMY_NUM = 1;
 	Vector2 cardCenterPos_; //カードの中心座標

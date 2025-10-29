@@ -1,9 +1,10 @@
 #pragma once
 #include<map>
 #include "../../Card/CardBase.h"
-#include "../Object/ObjectBase.h"
 #include "../Player/PlayerOnHit.h"
 #include "../Player/ActionController.h"
+#include "../Object/ObjectBase.h"
+
 class AnimationController;
 class ActionController;
 class CardDeck;
@@ -136,6 +137,10 @@ public:
 	/// @param  
 	/// @return 方向関連の変数
 	inline const ROTATION& GetRotation(void)const { return charaRot_; }
+
+	/// @brief 当たり判定の大きさの更新
+	/// @param _radius 半径
+	void UpdateAttackCol(const float _radius);
 
 	/// @brief 角度更新
 	/// @param  

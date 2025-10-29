@@ -23,7 +23,7 @@ public :
 	};
 
 	// コンストラクタ
-	AnimationController(int modelId);
+	AnimationController(const int _modelId,const int _hipNum);
 	// デストラクタ
 	~AnimationController(void);
 
@@ -90,6 +90,9 @@ private :
 
 	// 逆再生
 	float switchLoopReverse_;
+
+	//モデルのヒップ番号
+	int hipNum_;
 
 };
 

@@ -1,3 +1,4 @@
+#include "../Utility/Utility3D.h"
 #include "../Base/CharacterBase.h"
 #include "../../Common/AnimationController.h"
 #include "../../Card/CardDeck.h"
@@ -19,7 +20,7 @@ CardActionBase(_actCntl, _charaObj, _deck)
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
 		{CARD_ACT_TYPE::ROAR_ATK, SWIP_ATK},
-		{CARD_ACT_TYPE::JUMP_ATK, SWIP_ATK}
+		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
 }
 
@@ -30,7 +31,7 @@ EnemyCardAction::~EnemyCardAction(void)
 void EnemyCardAction::Init(void)
 {
 	actType_ = CARD_ACT_TYPE::NONE;
-	deck_.MoveHandToCharge();
+	//deck_.MoveHandToCharge();
 
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
@@ -61,8 +62,8 @@ void EnemyCardAction::ChangeRoar(void)
 
 void EnemyCardAction::ChangeJumpAtk(void)
 {
-	velocity_.y = sqrtf(2.0f * GRAVITY * JUMP_HEIGHT);
-	jumpPow_.y = velocity_.y;
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP_ATK), false, JUMP_ANIM_START);
+	cardFuncs_.push([this]() {UpdateJumpAtk(); });
 }
 
 void EnemyCardAction::ChangeReload(void)
@@ -78,16 +79,21 @@ void EnemyCardAction::UpdateRoar(void)
 {
 }
 
-void EnemyCardAction::JumpAtkUpdate(void)
+void EnemyCardAction::UpdateJumpAtk(void)
 {
-	velocity_.y -= GRAVITY;
-	jumpPow_.y = velocity_.y;
-
-	if (charaObj_.GetHitPoint().isDown)
+	CardActionBase::ATK_STATUS& status = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
+	if (anim_.GetAnimStep()> JUMP_ANIM_END)
 	{
 		jumpPow_.y = 0.0f;
 		velocity_.y = 0.0f;
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		//çUåÇíÜ
+		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, {0.0f,0.0f,0.0f});
+		//çUåÇîªíËóLå¯
+		isAliveAtkCol_ = true;
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), atkPos_, status.atkRadius);
+		status.atkRadius += JUMP_ATK_COL_SPD;
+		charaObj_.UpdateAttackCol(status.atkRadius);
+		//actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
 }
 

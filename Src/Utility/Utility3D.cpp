@@ -242,6 +242,11 @@ bool Utility3D::IsBeyondGoalPos(const VECTOR _startPos, const VECTOR _goalPos, c
     return false;
 }
 
+const VECTOR Utility3D::ReverseValue(const VECTOR _vec)
+{
+    return VScale(_vec, RESERVE_NUM);
+}
+
 
 
 

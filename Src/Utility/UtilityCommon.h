@@ -61,6 +61,8 @@ public:
 	// 回転が少ない方の回転向きを取得する(時計回り:1、反時計回り:-1)
 	static int DirNearAroundDeg(float from, float to);
 
+
+
 	// 線形補間
 	static int Lerp(int start, int end, float t);
 	static float Lerp(float start, float end, float t);

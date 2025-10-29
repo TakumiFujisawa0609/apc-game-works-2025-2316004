@@ -166,10 +166,12 @@ void PlayerCardAction::ChangeComboAction(void)
 	{
 		if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE))
 		{
+			//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 			ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
 		}
 		else if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_TWO))
 		{
+			//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 			ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
 		}
 	}

@@ -33,8 +33,8 @@ public:
 		//“G
 		E_IDLE,
 		E_RUN,
-		E_ATTACK1,
-		E_ATTACK2,
+		E_SWIP_ATK,
+		E_JUMP_ATK,
 		E_ATTACK3,
 		REACT,
 		//‰æ‘œ

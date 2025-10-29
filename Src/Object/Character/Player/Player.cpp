@@ -66,7 +66,7 @@ void Player::Load(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
 
-	animationController_ = std::make_unique<AnimationController>(trans_.modelId);
+	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
@@ -173,19 +173,19 @@ void Player::Update(void)
 
 	cardUI_->Update();
 
-	if (logic_->GetIsAct().isCardMoveLeft)
-	{
-		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::LEFT);
+	//if (logic_->GetIsAct().isCardMoveLeft)
+	//{
+	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::LEFT);
 
-	}
-	else if (logic_->GetIsAct().isCardMoveRight)
-	{
-		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
-	}
-	else if(logic_->GetIsAct().isCardUse)
-	{
-		cardUI_->ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-	}
+	//}
+	//else if (logic_->GetIsAct().isCardMoveRight)
+	//{
+	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
+	//}
+	//else if(logic_->GetIsAct().isCardUse)
+	//{
+	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+	//}
 
 
 

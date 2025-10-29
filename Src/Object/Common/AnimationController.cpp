@@ -2,18 +2,18 @@
 #include "../../Manager/Generic/SceneManager.h"
 #include "AnimationController.h"
 
-AnimationController::AnimationController(int modelId)
+AnimationController::AnimationController(const int _modelId, const int _hipNum) :
+	hipNum_(_hipNum),
+	modelId_(_modelId),
+	playType_(-1),
+	isLoop_(false),
+	isStop_(false),
+	switchLoopReverse_(0.0f),
+	endLoopSpeed_(0.0f),
+	stepEndLoopStart_(0.0f),
+	stepEndLoopEnd_(0.0f)
 {
-	modelId_ = modelId;
 
-	playType_ = -1;
-	isLoop_ = false;
-
-	isStop_ = false;
-	switchLoopReverse_ = 0.0f;
-	endLoopSpeed_ = 0.0f;
-	stepEndLoopStart_ = 0.0f;
-	stepEndLoopEnd_ = 0.0f;
 }
 
 AnimationController::~AnimationController(void)
@@ -180,23 +180,24 @@ void AnimationController::Update(void)
 
 	}
 	//アニメーション進行前のルートのローカル座標
-	VECTOR pre = MV1GetAttachAnimFrameLocalPosition(modelId_, playAnim_.attachNo, HIP_FRAME_NO);
+	VECTOR pre = MV1GetAttachAnimFrameLocalPosition(modelId_, playAnim_.attachNo, hipNum_);
 
 	// アニメーション設定（進行）
 	MV1SetAttachAnimTime(modelId_, playAnim_.attachNo, playAnim_.step);
 
 	//アニメーション進行後のルートのローカル座標
-	VECTOR post = MV1GetAttachAnimFrameLocalPosition(modelId_, playAnim_.attachNo, HIP_FRAME_NO);
+	VECTOR post = MV1GetAttachAnimFrameLocalPosition(modelId_, playAnim_.attachNo, hipNum_);
 
 	//アニメーション移動量を取得
 	playAnim_.movePow = VSub(post, pre);
 
 	// 腰の位置がずれるので補正
 	playAnim_.firstPos.y = post.y;
+	//playAnim_.firstPos = post;
 
 	// 移動量を打ち消す
-	//SetFrameLocalMatrixPos(modelId_, HIP_FRAME_NO, playAnim_.firstPos);
-	SetFrameAnimAttachLocalMatrixPos(modelId_, playAnim_.attachNo, HIP_FRAME_NO, playAnim_.firstPos);
+	//SetFrameLocalMatrixPos(modelId_, hipNum_, playAnim_.firstPos);
+	SetFrameAnimAttachLocalMatrixPos(modelId_, playAnim_.attachNo, hipNum_, playAnim_.firstPos);
 
 }
 

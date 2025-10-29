@@ -11,6 +11,7 @@
 #include "../../Common/Geometry/Sphere.h"
 #include "../../Common/Geometry/Line.h"
 
+#include "../Object/ObjectBase.h"
 #include "CharacterBase.h"
 
 CharacterBase::CharacterBase(void) :
@@ -31,6 +32,13 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const VECTOR& _
 
 	isDamage_ = false;
 	MakeCollider({ _charaTag,Collider::TAG::SWORD }, std::move(sphere),{Collider::TAG::STAGE});
+}
+
+void CharacterBase::UpdateAttackCol(const float _radius)
+{
+	//ˆø”‚Ì”¼Œa‚ğUŒ‚‚Ì‹…‚Éİ’è‚·‚é
+	Sphere* sphere=dynamic_cast<Sphere*>(colParam_[ATK_COL_NO].geometry_.get());
+	sphere->SetRadius(_radius);
 }
 
 void CharacterBase::DeleteAttackCol(const Collider::TAG _charaTag)
