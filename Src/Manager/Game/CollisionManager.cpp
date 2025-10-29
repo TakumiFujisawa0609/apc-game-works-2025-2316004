@@ -108,6 +108,7 @@ CollisionManager::CollisionManager(void)
 	hitRange_[Collider::TAG::PLAYER1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::ENEMY1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::SWORD] = HIT_RANGE_NORMAL;
+	hitRange_[Collider::TAG::STAGE] = HIT_RANGE_STAGE;
 }
 
 CollisionManager::~CollisionManager(void)

@@ -8,6 +8,13 @@ class PlayerOnHit
 
 public:
 
+	struct HIT_POINT
+	{
+		bool isDown = false;
+		bool isOverHead = false;
+		bool isSide = false;
+	};
+
 	/// <summary>
 	/// 再生させたいSE以外すべて止める
 	/// </summary>
@@ -44,98 +51,6 @@ public:
 	/// </summary>
 	void DrawDebug(void);
 
-	/// <summary>
-	/// 移動後座標の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>移動後座標</returns>
-	inline const VECTOR GetMovedPos(void) const { return movedPos_; }
-
-	/// <summary>
-	/// 死亡判定の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>死亡判定</returns>
-	inline const bool GetIsDeath(void)const { return isDeath_; }
-
-	/// <summary>
-	/// ゴール判定の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>ゴール判定</returns>
-	inline const bool GetIsGoal(void)const { return isGoal_; }
-
-	/// <summary>
-	/// 地面との当たり判定の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>地面との当たり判定</returns>
-	inline const bool GetIsLandHit(void)const { return isLandHit_; }
-	/// <summary>
-	/// 頭上の当たり判定
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>頭上の当たり判定</returns>
-	inline const bool GetIsOverHead(void)const { return isHitOverHead_; }
-
-	/// <summary>
-	/// スライム床との当たり判定
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>スライム床との当たり判定</returns>
-	inline const bool GetIsSlimeHit(void)const { return isHitSlimeFloor_; }
-
-	/// <summary>
-	/// コインの枚数
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>コインの枚数</returns>
-	inline const int GetCoinNum(void)const { return coinNum_; }
-
-	/// <summary>
-	/// バネジャンプ力
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>バネジャンプ力</returns>
-	inline const float GetSpringJumpPow(void) { return springJumpPow_; }
-
-	/// <summary>
-	/// プレイヤーが上下に挟まれたか
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns></returns>
-	inline const bool IsVerticalSandwiched(void) { return isLandHit_ && isHitOverHead_; }
-
-	/// <summary>
-	/// 移動後座標のセット
-	/// </summary>
-	/// <param name="_movedPos">移動後座標のセット</param>
-	void SetMovedPos(const VECTOR& _movedPos) { movedPos_ = _movedPos; }
-
-	/// <summary>
-	/// コイン枚数
-	/// </summary>
-	/// <param name="_num">コイン枚数</param>
-	inline void SetCoinNum(const int _num) { coinNum_ = _num; }
-
-	/// <summary>
-	/// ばねジャンプ力の初期化
-	/// </summary>
-	/// <param name=""></param>
-	inline void InitSpringJumpPow(void) { springJumpPow_ = 0.0f; }
-
-	/// <summary>
-	/// 死んだことをセットする
-	/// </summary>
-	/// <param name=""></param>
-	inline void SetIsDeath(void) { isDeath_ = true; }
-
-	/// <summary>
-	/// 挟まれる関連の情報の初期化
-	/// </summary>
-	/// <param name=""></param>
-	void InitIsVerticalSandWitched(void);
-
 private:
 
 	//プレイヤーの大きさ
@@ -145,10 +60,15 @@ private:
 	//ヒットした法線方向へのオフセット
 	static constexpr float HIT_NORMAL_OFFSET = 3.0f;
 	//接地しているときのラインのコライダ
-	static constexpr int UP_AND_DOWN_LINE_COL_NO = 0;
+	//static constexpr int UP_AND_DOWN_LINE_COL_NO = 1;
 	//プレイヤーの体の球
-	static constexpr int BODY_SPHERE_COL_NO = 1;
-
+	static constexpr int BODY_SPHERE_COL_NO = 0;
+	//移動後移動前のコライダ
+	static constexpr int MOVE_LINE_COL_NO = 1;
+	//上下ライン
+	static constexpr int UP_AND_DOWN_LINE_COL_NO = 2;
+	//押し出す移動量
+	static constexpr float POSITION_OFFSET = 1.0f;
 	//プレイヤー
 	ActionController& action_;
 	//移動量
@@ -165,8 +85,6 @@ private:
 	Collider::TAG tag_;	//プレイヤーの当たり判定タグ
 	//キャラクターの情報
 	CharacterBase& charaObj_;
-	//ゴール判定
-	bool isGoal_;
 	//死亡判定
 	bool isDeath_;
 	//地面と当たっているか
@@ -177,6 +95,9 @@ private:
 	bool isHitSlimeFloor_;
 	//プレイヤーの横がわが当たっている
 	bool isSide_;
+
+	//当たった箇所
+	HIT_POINT hitPoint_;
 	//コインの枚数
 	int coinNum_;
 	//バネジャンプ力
@@ -186,7 +107,8 @@ private:
 	void HitModelCommon(const std::weak_ptr<Collider> _hitCol);			
 
 	//オブジェクト毎の当たった時にされる処理
-	void CollNone(void);												//当たっても何もしない(プレイヤー側で何も起きない)
+	void CollNone(void);												//ステージ
+	void CollStage(void);												//当たっても何もしない(プレイヤー側で何も起きない)
 	void CollChara(const std::weak_ptr<Collider> _hitCol);				//キャラクター同士
 	void CollSword(const std::weak_ptr<Collider> _hitCol);				//敵の剣
 };

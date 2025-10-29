@@ -36,13 +36,12 @@ void EnemyCardAction::Init(void)
 	{
 		deck_.MoveHandToCharge();
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
+		ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
 	}
 	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
-	ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
 }
 
 void EnemyCardAction::Update(void)

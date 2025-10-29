@@ -13,6 +13,7 @@ public :
 	// 衝突用タグ
 	enum class TAG
 	{
+		STAGE,			//ステージ
 		PLAYER1,		//プレイヤー1
 		ENEMY1,			//敵1
 		SWORD,			//剣
