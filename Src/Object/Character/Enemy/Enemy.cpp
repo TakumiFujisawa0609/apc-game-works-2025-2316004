@@ -81,11 +81,14 @@ void Enemy::Init(void)
 	action_->Init();
 	tag_ = Collider::TAG::ENEMY1;
 
+	//カプセル
 	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
 	MakeCollider({ tag_ }, std::move(geo));
-
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
+	MakeCollider({ tag_ }, std::move(geo));
+	//上下ライン
+	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
 	MakeCollider({ tag_ }, std::move(geo));
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);

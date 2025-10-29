@@ -36,7 +36,7 @@ void EnemyCardAction::Init(void)
 	{
 		//deck_.MoveHandToCharge();
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-		ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
+		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);
 	}
 	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)
 	{
@@ -80,7 +80,15 @@ void EnemyCardAction::UpdateRoar(void)
 
 void EnemyCardAction::JumpAtkUpdate(void)
 {
+	velocity_.y -= GRAVITY;
+	jumpPow_.y = velocity_.y;
 
+	if (charaObj_.GetHitPoint().isDown)
+	{
+		jumpPow_.y = 0.0f;
+		velocity_.y = 0.0f;
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+	}
 }
 
 void EnemyCardAction::UpdateReload(void)

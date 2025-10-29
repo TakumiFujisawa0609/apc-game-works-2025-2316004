@@ -255,7 +255,7 @@ void Player::DrawDebug(void)
 	{
 		colParam.geometry_->Draw();
 	}
-
+	
 	DrawFormatString(0, 300, 0x000000, L"action(%d)", static_cast<int>(action_->GetAct()));
 	//// ƒtƒŒ[ƒ€‚Ìæ“¾
 	//int frmNo = MV1SearchFrame(trans_.modelId, L"Maria_sword");

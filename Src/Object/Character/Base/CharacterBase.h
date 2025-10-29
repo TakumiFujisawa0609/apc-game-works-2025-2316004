@@ -1,8 +1,9 @@
 #pragma once
 #include<map>
-#include"../../Card/CardBase.h"
-#include"../Object/ObjectBase.h"
-#include"../Player/ActionController.h"
+#include "../../Card/CardBase.h"
+#include "../Object/ObjectBase.h"
+#include "../Player/PlayerOnHit.h"
+#include "../Player/ActionController.h"
 class AnimationController;
 class ActionController;
 class CardDeck;
@@ -74,95 +75,70 @@ public:
 		CARD_ACTION	//カードアクション
 	};
 
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief コンストラクタ
+	/// @param  
 	CharacterBase(void);
 
 
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	/// <param name=""></param>
+
+	/// @brief デストラクタ
+	/// @param  
 	virtual ~CharacterBase(void)override = 0;
 
-	/// <summary>
-/// 読み込み
-/// </summary>
-/// <param name=""></param>
+	/// @brief 読み込み
+	/// @param  
 	virtual void Load(void)override = 0;
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 初期化
+	/// @param  
 	virtual void Init(void)override = 0;
 
-	/// <summary>
-	/// 更新
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 更新
+	/// @param  
 	virtual void Update(void)override = 0;
 
-	/// <summary>
-	/// 描画
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 描画
+	/// @param  
 	virtual void Draw(void)override = 0;
 
-	/// <summary>
-	/// 当たった時の処理
-	/// </summary>
-	/// <param name="_hitCol"></param>
+	/// @brief 当たった時の処理
+	/// @param _hitCol 
 	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override = 0;
 	
-	/// <summary>
-	/// 攻撃の当たり判定生成
-	/// </summary>
-	/// <param name="_charaTag">どのキャラクターか</param>
+	/// @brief 攻撃の当たり判定生成
+	/// @param _charaTag 自身のタグ
+	/// @param _atkPos 作りたい攻撃の座標
+	/// @param _radius 当たり判定の半径
 	void MakeAttackCol(const Collider::TAG _charaTag,const VECTOR& _atkPos,const float& _radius);
 
-	/// <summary>
-	/// 攻撃の当たり判定削除
-	/// </summary>
-	/// <param name="_charaTag"></param>
-	/// <param name="_atkPos"></param>
+	/// @brief 攻撃の当たり判定削除
+	/// @param _charaTag 自身のタグ
 	void DeleteAttackCol(const Collider::TAG _charaTag);
-
-	/// <summary>
-	/// 移動後座標などの更新
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 移動後座標などの更新
+	/// @param  
 	void UpdatePost(void);
-
-	/// <summary>
-	/// キャラタグの取得
-	/// </summary>
+	
+	/// @brief キャラタグの取得
+	/// @param  
+	/// @return 
 	const Collider::TAG& GetCharaTag(void)const { return tag_; }
-
-	/// <summary>
-	/// 入力方向に応じて方向を決める
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 入力方向に応じて方向を決める
+	/// @param  
 	virtual void MoveDirFronInput(void);
-	/// <summary>
-	/// ゴール角度をセット
-	/// </summary>
-	/// <param name="_deg"></param>
-	virtual void SetGoalRotate(const double _deg);
 
-	/// <summary>
-	/// 方向関連の変数の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns></returns>
+	/// @brief ゴール角度をセット
+	/// @param _deg 
+	virtual void SetGoalRotate(const double _deg);
+	
+	/// @brief 方向関連の変数の取得
+	/// @param  
+	/// @return 方向関連の変数
 	inline const ROTATION& GetRotation(void)const { return charaRot_; }
 
-	/// <summary>
-	/// 角度更新
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 角度更新
+	/// @param  
 	void Rotate(void);
 
 	/// @brief ダメージ処理
@@ -184,8 +160,13 @@ public:
 
 	/// @brief 移動後座標の取得
 	/// @param  
-	/// @return 
+	/// @return 移動後座標
 	const VECTOR& GetMovedPos(void)const { return movedPos_; }
+
+	/// @brief ヒットポイントを当たり判定から取得
+	/// @param  
+	/// @return 
+	const PlayerOnHit::HIT_POINT& GetHitPoint(void)const;
 protected:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
@@ -195,7 +176,8 @@ protected:
 	//当たり判定
 	static constexpr int CUPSULE_COL_NO = 0;
 	static constexpr int MOVE_LINE_COL_NO = 1;
-	static constexpr int ATK_COL_NO = 2;
+	static constexpr int UP_DOWN_LINE = 2;
+	static constexpr int ATK_COL_NO = 3;
 	//移動量ラインオフセット
 	static constexpr float MOVE_LINE_Y_OFFSET = - 1.0f;
 	//移動量更新条件の移動ラインの長さ
@@ -226,6 +208,8 @@ protected:
 	STATUS status_;
 	//カードUI(とりあえず)
 	std::unique_ptr<CardUI>cardUI_;
+	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
+	bool isDamage_;
 
 private:
 

@@ -25,7 +25,7 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 	colUpdates_.emplace(TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
 	colUpdates_.emplace(TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
 	colUpdates_.emplace(TAG::SWORD, [this](const std::weak_ptr<Collider> _hitCol) {CollSword(_hitCol); });
-	colUpdates_.emplace(TAG::STAGE, [this](const std::weak_ptr<Collider>hitCol) {CollStage(); });
+	colUpdates_.emplace(TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); });
 
 	////プレイヤー同士の当たり判定のタグをNoneに設定
 	//int playerNum = DateBank::GetInstance().GetPlayerNum();
@@ -36,15 +36,10 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 	//	colUpdates_[static_cast<TAG>(i)] = [this](const std::weak_ptr<Collider> _hitCol) {CollNone(); };
 	//}
 
-	isDeath_ = false;
-	isLandHit_ = false;
-	isHitOverHead_ = false;
 	hitPoint_ = {};
-	isHitSlimeFloor_ = false;
+
 	moveDiff_ = Utility3D::VECTOR_ZERO;
 	movedPos_ = Utility3D::VECTOR_ZERO;
-	isSide_ = false;
-	coinNum_ = 0;
 	springJumpPow_ = 0.0f;
 }
 
@@ -60,12 +55,7 @@ void PlayerOnHit::Load(void)
 
 void PlayerOnHit::Init(void)
 {
-	isDeath_ = false;
-	coinNum_ = 0;
-	isLandHit_ = false;
-	isHitOverHead_ = false;
 	hitPoint_ = {};
-	isHitSlimeFloor_ = false;
 	movedPos_ = Utility3D::VECTOR_ZERO;
 }
 
@@ -83,8 +73,9 @@ inline void PlayerOnHit::CollNone(void)
 	//何もしない
 }
 
-void PlayerOnHit::CollStage(void)
+void PlayerOnHit::CollStage(const std::weak_ptr<Collider> _hitCol)
 {
+	HitModelCommon(_hitCol);
 }
 
 void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
@@ -126,7 +117,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	//球の当たり判定(プレイヤーの周囲)
 	auto& bodyShere = colParam_[BODY_SPHERE_COL_NO].collider_;
 
-	isHitSlimeFloor_ = false;
+
 
 	if (moveLineCol->IsHit())
 	{
@@ -138,11 +129,13 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 		trans_.pos = movedPos_;
 		return;
 	}
+
 	//プレイヤーの接地
 	if (upDownLine->IsHit())
 	{
 		//ライン情報の取得
 		Line& upDown = dynamic_cast<Line&>(upDownLine->GetGeometry());
+		//VECTOR hitLinePos = upDown.GetHitInfo().HitPosition;
 		VECTOR hitLinePos = upDown.GetHitInfo().HitPosition;
 
 		//座標が当たっているライン座標より上のとき、地面と当たる
@@ -169,14 +162,13 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	Transform trans = Transform(trans_);
 	trans.pos = movedPos_;
 	trans.Update();
-	isSide_ = false;
 	//プレイヤーの体の球が当たったら
 	if (bodyShere->IsHit())
 	{
 		auto& hitInfo = hitModel.GetHitInfo();
 		for (int i = 0; i < hitInfo.HitNum; i++)
 		{
-			isSide_ = true;
+			hitPoint_.isSide = true;
 			//当たっている部分の情報を取得
 			auto hit = hitInfo.Dim[i];
 			VECTOR hitPos = hit.HitPosition;

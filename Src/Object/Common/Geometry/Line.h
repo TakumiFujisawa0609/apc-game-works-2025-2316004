@@ -5,28 +5,26 @@
 class Line : public Geometry
 {
 public:
-
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	/// <param name="_pos">追従する親の座標</param>
-	/// <param name="_rot">追従する親の回転</param>
-	/// <param name="_localPosPoint1">1つ目の点の座標</param>
-	/// <param name="_localPosPoint2">2つ目の点の座標</param>
+	
+	/// @brief コンストラクタ
+	/// @param _pos 追従する親の座標
+	/// @param _rot 追従する親の回転
+	/// @param _localPosPoint1 1つ目の点の座標
+	/// @param _localPosPoint2 2つ目の点の座標
 	Line(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosPoint1, const VECTOR _localPosPoint2);
 
-	/// <summary>
-	/// コピーコンストラクタ
-	/// </summary>
-	/// <param name="_copyBase">コピー元</param>
-	/// <param name="_pos">追従する親の座標</param>
-	/// <param name="_rot">追従する親の回転</param>
+	
+	/// @brief コピーコンストラクタ
+	/// @param _copyBase コピー元
+	/// @param _pos 追従する親の座標
+	/// @param _rot 追従する親の回転
 	Line(const Line& _copyBase, const VECTOR& _pos, const Quaternion& _rot);
 
 	// デストラクタ
 	~Line(void)override;
-
-	// 描画
+	
+	/// @brief 描画
+	/// @param  
 	void Draw(void)override;
 
 	//各種当たり判定

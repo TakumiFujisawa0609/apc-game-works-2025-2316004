@@ -41,13 +41,11 @@ void Jump::Update(void)
 	velocity_.y -= GRAVITY;
 	jumpPow_.y = velocity_.y;
 
-	if (charaObj_.GetMovedPos().y <= 0.0f)
+	//if (charaObj_.GetMovedPos().y <= 0.0f)
+	if (charaObj_.GetHitPoint().isDown)
 	{
 		jumpPow_.y = 0.0f;
 		velocity_.y = 0.0f;
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
-
-
-	
 }

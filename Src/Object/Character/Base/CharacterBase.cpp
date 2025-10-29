@@ -28,7 +28,9 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const VECTOR& _
 	//当たり判定が存在したら削除する
 	if (IsAliveCollider(_charaTag, Collider::TAG::SWORD))return;
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-	MakeCollider({ _charaTag,Collider::TAG::SWORD }, std::move(sphere));
+
+	isDamage_ = false;
+	MakeCollider({ _charaTag,Collider::TAG::SWORD }, std::move(sphere),{Collider::TAG::STAGE});
 }
 
 void CharacterBase::DeleteAttackCol(const Collider::TAG _charaTag)
@@ -53,12 +55,16 @@ void CharacterBase::UpdatePost(void)
 		moveLine.SetLocalPosPoint1(Utility3D::VECTOR_ZERO);
 		moveLine.SetLocalPosPoint2(moveVec);
 	}
-	
-	//地面接地ライン
-	if (movedPos_.y < 0.0f)
-	{
-		movedPos_.y = 0.0f;
-	}
+
+	//当たり判定をする前に初期化する
+	onHit_->InitHitPoint();
+
+	//
+	////地面接地ライン
+	//if (movedPos_.y < 0.0f)
+	//{
+	//	movedPos_.y = 0.0f;
+	//}
 
 	//移動前の座標を格納する
 	moveDiff_ = trans_.pos;
@@ -96,4 +102,9 @@ void CharacterBase::DeleteCard(void)
 	deck_->MoveHandToCharge();
 	cardUI_->ChangeUsedActionCard();
 	//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+}
+
+const PlayerOnHit::HIT_POINT& CharacterBase::GetHitPoint(void) const
+{
+	return onHit_->GetHitPoint();
 }

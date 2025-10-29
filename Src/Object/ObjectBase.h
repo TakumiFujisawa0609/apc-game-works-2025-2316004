@@ -61,6 +61,9 @@ protected:
 	//タグ
 	Collider::TAG tag_;
 
+	//当たり判定をしないタグ設定
+	std::set<Collider::TAG> noneHitTag_;
+
 	/// <summary>
 	/// 当たり判定作成(形状情報作成後)
 	/// </summary>

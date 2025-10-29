@@ -28,27 +28,30 @@ public:
 	/// デストラクタ
 	/// </summary>
 	~PlayerOnHit(void);
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief  初期化
+	/// @param  
 	void Init(void);
-
-	/// <summary>
-	/// 当たった時のSEなどの読み込み
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 当たった時のSEなどの読み込み
+	/// @param  
 	void Load(void);
-
-	/// <summary>
-	/// 当たった処理の更新
-	/// </summary>
+	
+	/// @brief 当たった処理の更新
+	/// @param _hitCol 
 	void OnHitUpdate(const std::weak_ptr<Collider> _hitCol);
 
-	/// <summary>
-	/// デバッグ表示
-	/// </summary>
+	/// @brief 当たった箇所の取得
+	/// @param  
+	/// @return 
+	const HIT_POINT& GetHitPoint(void)const { return hitPoint_; }
+
+	/// @brief 当たり判定をする前の初期化
+	/// @param  
+	void InitHitPoint(void) { hitPoint_ = {}; }
+
+	/// @brief デバッグ表示
+	/// @param  
 	void DrawDebug(void);
 
 private:
@@ -85,16 +88,7 @@ private:
 	Collider::TAG tag_;	//プレイヤーの当たり判定タグ
 	//キャラクターの情報
 	CharacterBase& charaObj_;
-	//死亡判定
-	bool isDeath_;
-	//地面と当たっているか
-	bool isLandHit_;
-	//プレイヤーの頭上が当たっているか
-	bool isHitOverHead_;
-	//スライム床と当たっているか
-	bool isHitSlimeFloor_;
-	//プレイヤーの横がわが当たっている
-	bool isSide_;
+
 
 	//当たった箇所
 	HIT_POINT hitPoint_;
@@ -108,7 +102,7 @@ private:
 
 	//オブジェクト毎の当たった時にされる処理
 	void CollNone(void);												//ステージ
-	void CollStage(void);												//当たっても何もしない(プレイヤー側で何も起きない)
+	void CollStage(const std::weak_ptr<Collider> _hitCol);												//当たっても何もしない(プレイヤー側で何も起きない)
 	void CollChara(const std::weak_ptr<Collider> _hitCol);				//キャラクター同士
 	void CollSword(const std::weak_ptr<Collider> _hitCol);				//敵の剣
 };
