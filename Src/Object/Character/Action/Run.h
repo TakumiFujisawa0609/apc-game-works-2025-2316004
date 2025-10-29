@@ -9,7 +9,6 @@ public:
 	void Init(void) override;
     void Update() override;
 public:
-    //移動スピード
-    static constexpr float MOVE_SPEED = 6.0f;
+
 };
 

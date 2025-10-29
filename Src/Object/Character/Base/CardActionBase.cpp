@@ -14,7 +14,7 @@
 
 #include "CardActionBase.h"
 
-CardActionBase::CardActionBase(CharacterBase& _charaObj, ActionController& _actCntl, CardDeck& _deck):
+CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
 	ActionBase(_actCntl),
 	charaObj_(_charaObj),
 	deck_(_deck),

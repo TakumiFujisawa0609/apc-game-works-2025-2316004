@@ -93,7 +93,7 @@ void GameScene::NormalUpdate(void)
 	//更新はアクション中のみ
 	CollisionManager::GetInstance().Update();
 	//デバッグ処理
-	DebagUpdate();
+	//DebagUpdate();
 }
 
 void GameScene::NormalDraw(void)

@@ -10,8 +10,8 @@
 #include "../Base/LogicBase.h"
 #include "PlayerCardAction.h"
 
-PlayerCardAction::PlayerCardAction(CharacterBase& _charaObj,ActionController& _actCntl, CardDeck& _deck):
-	CardActionBase(_charaObj, _actCntl, _deck),
+PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
+	CardActionBase(_actCntl, _charaObj, _deck),
 	pushReloadCnt_()
 {
 	isTurnable_ = false;

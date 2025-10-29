@@ -70,6 +70,7 @@ void Player::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
@@ -141,9 +142,9 @@ void Player::Init(void)
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
-	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_,*this);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION,*this,*action_,*deck_);
+	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION,*action_, *this, *deck_);
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
 

@@ -34,6 +34,12 @@ void Idle::Update(void)
 		return;
 	}
 
+	if (actionCntl_.GetInput().GetIsAct().isJump)
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::JUMP);
+		return;
+	}
+
 
 	//何もしないが、待機モーションとかずっと止まってるときにアニメーションを変えたりしたい
 }

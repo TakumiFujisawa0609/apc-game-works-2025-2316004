@@ -7,7 +7,6 @@
 
 #include"../Player/Player.h"
 
-
 #include"../Player/PlayerOnHit.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
@@ -76,9 +75,9 @@ void Enemy::Init(void)
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
-	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this);
   	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *this, *action_, *deck_);
+	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
 	action_->Init();
 	tag_ = Collider::TAG::ENEMY1;
 
@@ -109,7 +108,7 @@ void Enemy::Init(void)
 void Enemy::Update(void)
 {
 	animationController_->Update();
-	logic_->Update();
+	//logic_->Update();
 	action_->Update();
 	//cardUI_->Update();
 	//‰ñ“]‚Ì“¯Šú

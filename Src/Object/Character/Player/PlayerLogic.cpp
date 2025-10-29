@@ -130,15 +130,18 @@ void PlayerLogic::InputAll(void)
 		VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y)};
 		moveDir_ = VNorm(stickDir);
 	}
-	//カード使用
+	//カードチャージ
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_CHARGE_BTN) || ins.IsTrgDown(CARD_CHARGE_KEY)) { isAct_.isCardCharge = true; }
-	//ジャンプキー
+	//カード使用
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_USE_BTN) || ins.IsTrgDown(CARD_USE_KEY)) { isAct_.isCardUse = true; }
-
+	//カード移動
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) {
 		isAct_.isCardMoveLeft = true; }
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) { isAct_.isCardMoveRight = true; }
+	//カード使用キー長押し(リロード用)
 	if (ins.IsPadBtnNew(padNum_, CARD_USE_BTN)|| ins.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
+	//ジャンプキー
+	if (ins.IsPadBtnTrgDown(padNum_, JUMP_BTN) || ins.IsTrgDown(JUMP_KEY)) { isAct_.isJump = true; }
 }
 
 void PlayerLogic::InputPad(void)

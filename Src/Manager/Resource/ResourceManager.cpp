@@ -39,6 +39,9 @@ void ResourceManager::Init(void)
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerReact.mv1");
 	resourcesMap_.emplace(SRC::REACT, std::move(res));	
+	
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerJump.mv1");
+	resourcesMap_.emplace(SRC::P_JUMP, std::move(res));	
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Idle.mv1");
 	resourcesMap_.emplace(SRC::E_IDLE, std::move(res));

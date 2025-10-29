@@ -57,28 +57,35 @@ public:
 
 	ActionController(CharacterBase& _charaObj,LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
 	~ActionController(void);
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
 
 	/// <summary>
 	/// 読み込み
 	/// </summary>
+	
+	/// @brief 読み込み
+	/// @param  
 	void Load(void);
 
 	/// <summary>
 	/// 更新処理
 	/// </summary>
 	/// <param name=""></param>
+	
+	/// @brief 更新処理
+	/// @param  
 	void Update(void);
 
 	/// <summary>
 	/// 状態遷移
 	/// </summary>
 	/// <param name="_act">遷移したいアクション</param>
+	
+	/// @brief 状態遷移
+	/// @param _act 次に遷移したい状態
 	void ChangeAction(ACTION_TYPE _act);
 
 	/// <summary>
@@ -86,46 +93,44 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>移動量</returns>
-	const VECTOR GetMovePow(void){ return movePow_; }
+	
+	/// @brief 移動量の取得
+	/// @param  
+	/// @return 移動量
+	const VECTOR& GetMovePow(void)const { return movePow_; }
 
-	/// <summary>
-	/// 状態の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>状態</returns>
-	const ACTION_TYPE GetAct(void)const { return act_; }
-
-	/// <summary>
-	/// 入力クラスの取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>入力クラス</returns>
+	/// @brief ジャンプ力の取得
+	/// @param  
+	/// @return 
+	const VECTOR& GetJumpPow(void)const { return jumpPow_; }
+	
+	/// @brief 状態の取得
+	/// @param  
+	/// @return 状態
+	const ACTION_TYPE& GetAct(void)const { return act_; }
+	
+	/// @brief 入力クラスの取得
+	/// @param  
+	/// @return 入力クラス
 	LogicBase& GetInput(void) { return logic_; }
-
-	/// <summary>
-	/// アニメーションの再生
-	/// </summary>
-	/// <param name="_animType"></param>
+	
+	/// @brief アニメーションの再生
+	/// @param  
+	/// @return 
 	AnimationController& GetAnimation(void) { return anim_; }
-
-	/// <summary>
-	/// 攻撃当たり判定が生きているか
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns></returns>
+	
+	/// @brief アニメーションの再生
+	/// @param  
+	/// @return 
 	const bool GetIsAtkColAlive(void);
 	
-
-	/// <summary>
-	/// 角度Yを取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns></returns>
+	/// @brief 角度Yを取得
+	/// @param  
+	/// @return 
 	const Quaternion GetPlayerRotY(void);
-	/// <summary>
-	/// 再生しているリソースをすべて止める
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 再生しているリソースをすべて止める
+	/// @param  
 	void StopResource(void);
 
 	/// @brief カード選択条件
@@ -134,10 +139,9 @@ public:
 	const bool IsCardDisitionControll(void);
 
 
-	template <typename T, typename... Args>
 	/// @brief メインアクションの追加
 	/// @param _action 
-	//void AddMainAction(const ACTION_TYPE _type, Args&&... args);
+	template <typename T, typename... Args>
 	void AddMainAction(const ACTION_TYPE _type, Args && ...args)
 	{
 		mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
@@ -167,6 +171,7 @@ private:
 	std::map<ACTION_TYPE, std::function<void(void)>>changeAction_;
 	//状態更新
 	std::function<void(void)>actionUpdate_;
+
 	//カードデッキ
 	CardDeck& deck_;
 	//オブジェクト(当たり判定用)
@@ -187,6 +192,7 @@ private:
 	float speed_;			// 移動スピード
 	VECTOR moveDir_;		// 移動方向
 	VECTOR movePow_;		// 移動量
+	VECTOR jumpPow_;		// ジャンプ量
 
 	//回転
 	Quaternion playerRotY_;		//プレイヤーY角度

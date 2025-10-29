@@ -36,6 +36,11 @@ void Run::Update(void)
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::CARD_ACTION);
 		return;
 	}
-	////移動中に入力が入った時の状態遷移
-	//ActionBase::Update();
+
+	//ジャンプ入力があった場合、ジャンプ状態へ移行
+	if (actionCntl_.GetInput().GetIsAct().isJump)
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::JUMP);
+		return;
+	}
 }

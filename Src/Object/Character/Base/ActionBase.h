@@ -40,35 +40,38 @@ public:
 	{
 
 	};
-	/// <summary>
-	/// 移動量の取得(ベクトル)
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>移動量</returns>
-	inline VECTOR GetMovePow(void) { return movePow_; }
+	
+	/// @brief 移動量の取得(ベクトル)
+	/// @param 
+	/// @return 移動量
+	inline VECTOR& GetMovePow(void) { return movePow_; }
+	
+	/// @brief 1方向に動く移動量
+	/// @param  
+	/// @return 1方向に動く移動量
+	const float& GetSpeed(void) { return speed_; }
 
-	/// <summary>
-	/// 1方向に動く移動量
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>1方向に動く移動量</returns>
-	const float GetSpeed(void) { return speed_; }
+	
+	/// @brief 方向転換可能かどうかの取得
+	/// @param  
+	/// @return 方向転換可能かどうか
+	const bool& GetIsTurnable(void) { return isTurnable_; }
+	
+	/// @brief 攻撃当たり判定中かの取得
+	/// @param  
+	/// @return 
+	const bool& GetIsAliveAtkCol(void) { return isAliveAtkCol_; }
 
-	/// <summary>
-	/// 方向転換可能かどうかの取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>方向転換可能かどうか</returns>
-	const bool GetIsTurnable(void) { return isTurnable_; }
-
-	/// <summary>
-	/// 攻撃当たり判定中かの取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>true：攻撃当たり判定が生きている false:死んでいる</returns>
-	const bool GetIsAliveAtkCol(void) { return isAliveAtkCol_; }
+	/// @brief ジャンプ力の取得
+	/// @param  
+	/// @return ジャンプ力
+	const VECTOR& GetJumpPow(void)const { return jumpPow_; }
 
 protected:
+
+	//移動スピード
+	static constexpr float MOVE_SPEED = 6.0f;
+
 	//移動
 //------------------------
 	float speed_;			// 移動スピード

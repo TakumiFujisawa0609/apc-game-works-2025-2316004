@@ -21,7 +21,7 @@ public:
         JUMP_ATK, //攻撃アクション3回目
         RELOAD, //リロード
     };
-    EnemyCardAction(CharacterBase& _charaObj, ActionController& _actCntl, CardDeck& _deck);
+    EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
     ~EnemyCardAction(void)override;
     void Init(void) override;
     void Update() override;
@@ -31,6 +31,12 @@ private:
     //攻撃1段目判定
     static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 35.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 46.0f;     //攻撃当たり判定終了アニメーションカウント
+
+    //重力
+    static constexpr float GRAVITY = 1.3f;
+    //ジャンプ高さ
+    static constexpr float JUMP_HEIGHT = 50.0f;
+
     ////攻撃2段目判定
     //static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;   //攻撃当たり判定開始アニメーションカウント
     //static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント

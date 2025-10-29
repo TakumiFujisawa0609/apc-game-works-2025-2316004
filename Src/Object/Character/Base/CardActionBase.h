@@ -41,7 +41,7 @@ public:
         bool isDamage=false;
     };
 
-    CardActionBase(CharacterBase& _charaObj, ActionController& _actCntl, CardDeck& _deck);
+    CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
     ~CardActionBase(void)override;
     void Init(void) override;
     void Update() override;
@@ -72,6 +72,9 @@ protected:
     bool IsCardFailure(void);
     //攻撃終了
     void FinishAttack(void);
+
+    //移動量
+    VECTOR velocity_;
 
     //コンボアクション遷移(あれば実装する)
     virtual void ChangeComboAction(void);

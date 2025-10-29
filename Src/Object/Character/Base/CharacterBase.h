@@ -37,6 +37,7 @@ public:
 		ATTACK_1,
 		ATTACK_2,
 		ATTACK_3,
+		JUMP,
 		//敵
 		SWIP_ATK,
 		ROAR_ATK,
@@ -138,7 +139,7 @@ public:
 	/// <summary>
 	/// キャラタグの取得
 	/// </summary>
-	const Collider::TAG GetCharaTag(void)const { return tag_; }
+	const Collider::TAG& GetCharaTag(void)const { return tag_; }
 
 	/// <summary>
 	/// 入力方向に応じて方向を決める
@@ -156,7 +157,7 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	inline const ROTATION GetRotation(void)const { return charaRot_; }
+	inline const ROTATION& GetRotation(void)const { return charaRot_; }
 
 	/// <summary>
 	/// 角度更新
@@ -170,7 +171,7 @@ public:
 	/// @brief ステータス取得
 	/// @param  
 	/// @return 
-	inline const STATUS GetStatus(void) { return status_; }
+	inline const STATUS& GetStatus(void) { return status_; }
 
 	/// @brief カードUI
 	/// @param  
@@ -180,6 +181,11 @@ public:
 	/// @brief　使用済みカードについての処理
 	/// @param  
 	void DeleteCard(void);
+
+	/// @brief 移動後座標の取得
+	/// @param  
+	/// @return 
+	const VECTOR& GetMovedPos(void)const { return movedPos_; }
 protected:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
