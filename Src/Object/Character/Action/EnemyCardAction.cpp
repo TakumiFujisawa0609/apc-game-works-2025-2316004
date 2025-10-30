@@ -1,6 +1,7 @@
 #include "../Utility/Utility3D.h"
 #include "../Base/CharacterBase.h"
 #include "../../Common/AnimationController.h"
+#include "../Manager/Generic/SceneManager.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
 #include "EnemyCardAction.h"
@@ -33,6 +34,13 @@ void EnemyCardAction::Init(void)
 	actType_ = CARD_ACT_TYPE::NONE;
 	//deck_.MoveHandToCharge();
 
+	atkStatusTable_ = {
+		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::ROAR_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
+	};
+	jumpAtkCnt_ = 0.0f;
+
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//deck_.MoveHandToCharge();
@@ -48,6 +56,11 @@ void EnemyCardAction::Init(void)
 void EnemyCardAction::Update(void)
 {
 	cardFuncs_.front()();
+}
+
+void EnemyCardAction::Release(void)
+{
+	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1);
 }
 
 void EnemyCardAction::ChangeSwip(void)
@@ -84,8 +97,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	CardActionBase::ATK_STATUS& status = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
 	if (anim_.GetAnimStep()> JUMP_ANIM_END)
 	{
-		jumpPow_.y = 0.0f;
-		velocity_.y = 0.0f;
+		jumpAtkCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//UŒ‚’†
 		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, {0.0f,0.0f,0.0f});
 		//UŒ‚”»’è—LŒø
@@ -93,7 +105,17 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), atkPos_, status.atkRadius);
 		status.atkRadius += JUMP_ATK_COL_SPD;
 		charaObj_.UpdateAttackCol(status.atkRadius);
-		//actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+
+
+
+		if (jumpAtkCnt_ > JUMP_ATK_CNT_MAX)
+		{
+			jumpAtkCnt_ = 0.0f;
+			status.atkRadius = JUMP_ATK_RADIUS;
+			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1);
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		}
+
 	}
 }
 

@@ -18,8 +18,8 @@ public:
     PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
     ~PlayerCardAction(void)override;
     void Init(void) override;
-    void Update() override;
-
+    void Update(void) override;
+    void Release(void)override;
 private:
 
     //UŒ‚1’i–Ú”»’è

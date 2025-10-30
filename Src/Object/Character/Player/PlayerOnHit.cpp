@@ -45,7 +45,7 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 
 PlayerOnHit::~PlayerOnHit(void)
 {
-
+	colUpdates_.clear();
 }
 
 void PlayerOnHit::Load(void)
@@ -85,7 +85,12 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 
 void PlayerOnHit::CollSword(const std::weak_ptr<Collider> _hitCol)
 {
-	if (action_.GetAct() == ActionController::ACTION_TYPE::REACT)return;
+	auto& parentChara = _hitCol.lock()->GetParentCharacter();
+	if (parentChara.GetIsDamage())return;
+	
+	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
+	//ダメージを与えたことを知らせる
+	parentChara.SetIsDamage();
 	charaObj_.Damage(1);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	

@@ -120,12 +120,31 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 	//‘‡
 	bool ret = false;
 
+
+	// weak_ptr‚ðshared_ptr‚É¸Ši
+	auto col1 = _col1.lock();
+	auto col2 = _col2.lock();
+
+	// —LŒø«ƒ`ƒFƒbƒN
+	if (!col1 || !col2)
+	{
+		// ‚Ç‚¿‚ç‚©‚ªŠù‚É”jŠü‚³‚ê‚Ä‚¢‚é
+		return false;
+	}
+
+	auto& geom1 = col1->GetGeometry();
+	auto& geom2 = col2->GetGeometry();
+
+	const VECTOR pos1 = geom1.GetColPos();
+	const VECTOR pos2 = geom2.GetColPos();
+
 	//‘o•û‚Ì‹——£
 	double sqrtDis = Utility3D::SqrMagnitude(
-		_col1.lock()->GetGeometry().GetColPos(),
-		_col2.lock()->GetGeometry().GetColPos());
+		pos1,
+		pos2);
 
 	//‘o•û‚Ìƒ^ƒO
+
 	for (const auto tag1 : _col1.lock()->GetTags())
 	{
 		for (const auto tag2 : _col2.lock()->GetTags())
@@ -144,6 +163,8 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 			}
 		}
 	}
+
+
 
 	//“–‚½‚ç‚È‚©‚Á‚½
 	return false;

@@ -15,13 +15,15 @@ public:
 		bool isSide = false;
 	};
 
-	/// <summary>
-	/// 再生させたいSE以外すべて止める
-	/// </summary>
-	/// <param name="_action">アクションクラス</param>
-	/// <param name="_colParam">当たり判定情報</param>
-	/// <param name="_trans">モデル情報</param>
-	/// <param name="_tag">当たり判定タグ</param>
+	
+	/// @brief コンストラクタ
+	/// @param _chara アクションクラス
+	/// @param _movedPos 移動後座標
+	/// @param _moveDiff 移動前座標
+	/// @param _action アクションクラス
+	/// @param _colParam 当たり判定情報
+	/// @param _trans モデル情報
+	/// @param _tag 当たり判定タグ
 	PlayerOnHit(CharacterBase& _chara,VECTOR& _movedPos,VECTOR& _moveDiff, ActionController& _action, std::vector<ObjectBase::ColParam>&_colParam,Transform& _trans,Collider::TAG _tag);
 
 	/// <summary>
@@ -45,6 +47,12 @@ public:
 	/// @param  
 	/// @return 
 	const HIT_POINT& GetHitPoint(void)const { return hitPoint_; }
+
+	const bool& GetIsHitAtk(void)const { return isHitAtk_; }
+
+	/// @brief 攻撃生成時用の当たった判定初期化
+	/// @param  
+	void InitIsHitAtk(void) { isHitAtk_ = false; }
 
 	/// @brief 当たり判定をする前の初期化
 	/// @param  
@@ -89,6 +97,8 @@ private:
 	//キャラクターの情報
 	CharacterBase& charaObj_;
 
+	//攻撃が当たったことを伝える
+	bool isHitAtk_;
 
 	//当たった箇所
 	HIT_POINT hitPoint_;

@@ -25,6 +25,11 @@ void ObjectBase::MakeCollider(const std::set<Collider::TAG> _tag, std::unique_pt
 	//形状情報の挿入
 	colParam.geometry_ = std::move(_geometry);
 
+	if (colParam.geometry_ == nullptr)
+	{
+		int i = 0;
+	}
+
 	//情報を使ってコライダの作成
 	colParam.collider_ = std::make_shared<Collider>(*this, _tag, *colParam.geometry_, _notHitTags);
 

@@ -30,6 +30,7 @@ Enemy::Enemy(CharacterBase& _playerChara):
 	playerChara_(_playerChara),
 	cardCenterPos_({})
 {
+	//noneHitTag_.emplace({ Collider::TAG::PLAYER1,Collider::TAG::SWORD })
 }
 
 Enemy::~Enemy(void)

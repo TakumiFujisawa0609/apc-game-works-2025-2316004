@@ -31,4 +31,8 @@ ActionBase::~ActionBase()
 {
 }
 
+void ActionBase::Release(void)
+{
+}
+
 

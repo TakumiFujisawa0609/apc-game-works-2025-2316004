@@ -102,6 +102,8 @@ void ActionController::DrawDebug(void)
 void ActionController::ChangeAction(const ACTION_TYPE _act)
 {
 	if (act_ == _act)return;
+	ACTION_TYPE revType = act_;
+	mainAction_[revType]->Release();
 	act_ = _act;
 	mainAction_[act_]->Init();
 }

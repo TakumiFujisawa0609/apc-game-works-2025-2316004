@@ -34,7 +34,8 @@ public:
 	virtual void HitAfter(void);
 
 	//eî•ñ‚ğ•Ô‚·
-	inline const VECTOR& GetColPos(void)const { return pos_; }
+	//inline const VECTOR& GetColPos(void)const { return pos_; }
+	inline const VECTOR GetColPos(void)const { return pos_; }
 	inline const Quaternion& GetColRot(void)const { return quaRot_; }
 
 protected:

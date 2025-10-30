@@ -62,6 +62,19 @@ void PlayerCardAction::Update()
 	cardFuncs_.front()();
 }
 
+void PlayerCardAction::Release(void)
+{
+	//現在使っているカードを捨てる
+	deck_.EraseHandCard();
+	//当たり判定削除
+	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1);
+	if (!cardFuncs_.empty())
+	{
+		cardFuncs_.pop();
+	}
+	actType_ = CARD_ACT_TYPE::NONE;
+}
+
 bool PlayerCardAction::IsAttackable(void)
 {
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();

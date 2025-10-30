@@ -29,7 +29,7 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const VECTOR& _
 	//“–‚½‚è”»’è‚ª‘¶İ‚µ‚½‚çíœ‚·‚é
 	if (IsAliveCollider(_charaTag, Collider::TAG::SWORD))return;
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-
+	onHit_->InitIsHitAtk();
 	isDamage_ = false;
 	MakeCollider({ _charaTag,Collider::TAG::SWORD }, std::move(sphere),{Collider::TAG::STAGE});
 }
@@ -100,6 +100,7 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	status_.hp_ -= _dam;
+	isDamage_ = true;
 }
 
 void CharacterBase::DeleteCard(void)

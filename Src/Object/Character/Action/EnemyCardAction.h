@@ -23,9 +23,18 @@ public:
     };
     EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
     ~EnemyCardAction(void)override;
-    void Init(void) override;
-    void Update() override;
 
+    /// @brief 初期化
+    /// @param  
+    void Init(void) override;
+
+    /// @brief 更新
+    /// @param  
+    void Update(void) override;
+
+    /// @brief 解放
+    /// @param  
+    void Release(void)override;
 private:
 
     //攻撃1段目判定
@@ -42,6 +51,10 @@ private:
     ////攻撃2段目判定
     static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 63.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 65.0f;     //攻撃当たり判定終了アニメーションカウント
+    //攻撃半径広がるスピード
+    static constexpr float JUMP_ATK_COL_SPD = 5.0f;
+    //広がる時間
+    static constexpr float JUMP_ATK_CNT_MAX = 1.0f;
     ////攻撃3段目判定
     //static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 19.0f;   //攻撃当たり判定開始アニメーションカウント
     //static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 28.0f;     //攻撃当たり判定終了アニメーションカウント
@@ -50,15 +63,16 @@ private:
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,0.0f,50.0f };
 
     static constexpr float ATK_SPHERE_RADIUS = 50.0f;						//カプセル球の半径
-    static constexpr float JUMP_ATK__RADIUS = 30.0f;						//カプセル球の半径
-    //攻撃半径広がるスピード
-    static constexpr float JUMP_ATK_COL_SPD = 5.0f;
+    static constexpr float JUMP_ATK_RADIUS = 30.0f;						//カプセル球の半径
     //1段目攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
     ////2段目攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS JUMP_ATK = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
+    static constexpr CardActionBase::ATK_STATUS JUMP_ATK = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,JUMP_ATK_RADIUS };
     ////3段目攻撃のステータス
     //static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_THREE = { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
+
+    //ジャンプ攻撃カウント
+    float jumpAtkCnt_;
 
     //遷移
     void ChangeSwip(void);

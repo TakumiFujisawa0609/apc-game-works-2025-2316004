@@ -149,15 +149,25 @@ public:
 	/// @brief ダメージ処理
 	/// @param _dam ダメージ数
 	void Damage(const int _dam);
+
+	/// @brief ダメージを食らったか
+	/// @param  
+	/// @return 
+	const bool& GetIsDamage(void)const { return isDamage_; }
+
+	/// @brief ダメージを与えたことを知らせる
+	/// @param  
+	void SetIsDamage(void) { isDamage_ = true; }
+
 	/// @brief ステータス取得
 	/// @param  
 	/// @return 
-	inline const STATUS& GetStatus(void) { return status_; }
+	inline const STATUS& GetStatus(void)const { return status_; }
 
 	/// @brief カードUI
 	/// @param  
 	/// @return 
-	inline CardUI& GetCardUI(void) { return *cardUI_; }
+	inline CardUI& GetCardUI(void)const { return *cardUI_; }
 	
 	/// @brief　使用済みカードについての処理
 	/// @param  

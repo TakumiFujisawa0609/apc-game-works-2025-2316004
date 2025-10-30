@@ -1,4 +1,5 @@
 #include "../ObjectBase.h"
+#include "../Character/Base/CharacterBase.h"
 #include "Geometry/Geometry.h"
 #include "Collider.h"
 
@@ -14,6 +15,19 @@ Collider::Collider(ObjectBase& _parent, const std::set<TAG> _tags, Geometry& _ge
 
 Collider::~Collider(void)
 {
+}
+
+Geometry& Collider::GetGeometry(void) const
+{
+	assert(&geometry_ != nullptr); // debug‚ÉŒŸo
+	return geometry_;
+}
+
+CharacterBase& Collider::GetParentCharacter(void)
+{
+	CharacterBase& chara = dynamic_cast<CharacterBase&>(parent_);
+	assert(chara && "e‚ªCharacterBaseŒ^‚Å‚Í‚ ‚è‚Ü‚¹‚ñI");
+	return chara;
 }
 
 void Collider::OnHit(const std::weak_ptr<Collider> _collider)

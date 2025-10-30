@@ -4,7 +4,7 @@
 #include"Geometry/Geometry.h"
 
 class ObjectBase;
-
+class CharacterBase;
 class Collider
 {
 
@@ -31,25 +31,28 @@ public :
 	~Collider(void);
 
 	//衝突用タグの取得
-	inline const std::set<TAG> GetTags(void)const { return tags_; }
+	inline const std::set<TAG>& GetTags(void)const { return tags_; }
 
 	//当たり判定の形状を取得
-	inline Geometry& GetGeometry(void)const { return geometry_; }
+	Geometry& GetGeometry(void)const;
 
 	//衝突させないタグの取得
-	inline const std::set<TAG> GetNotHitTags(void)const { return notHitTags_; }
+	inline const std::set<TAG>& GetNotHitTags(void)const { return notHitTags_; }
 
 	//親を取得
 	inline const ObjectBase& GetParent(void)const { return parent_; }
 
+	//子クラスがキャラクターである場合、キャラクターベースを取得する
+	CharacterBase& GetParentCharacter(void);
+
 	//当たったかの判定の取得
-	inline const bool IsHit(void)const { return isHit_; }
+	inline const bool& IsHit(void)const { return isHit_; }
 
 	//当たっていない
 	inline void NotHit(void) { isHit_ = false; }
 
 	//終了判定の取得
-	inline const bool IsDead(void)const { return isDead_; }
+	inline const bool& IsDead(void)const { return isDead_; }
 
 	//終了処理(所持者の解放時に置く)
 	inline void Kill(void) { isDead_ = true; }

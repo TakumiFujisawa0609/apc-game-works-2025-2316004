@@ -256,7 +256,7 @@ void Player::DrawDebug(void)
 		colParam.geometry_->Draw();
 	}
 	
-	DrawFormatString(0, 300, 0x000000, L"action(%d)", static_cast<int>(action_->GetAct()));
+	DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetAct()),isDamage_);
 	//// ƒtƒŒ[ƒ€‚Ìæ“¾
 	//int frmNo = MV1SearchFrame(trans_.modelId, L"Maria_sword");
 	//if (frmNo == -1) {

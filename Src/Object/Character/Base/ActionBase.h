@@ -12,9 +12,17 @@ public:
 	ActionBase(ActionController& _actCntl);
 	virtual ~ActionBase();
 
+	/// @brief ‰Šú‰»
+	/// @param  
 	virtual void Init(void) = 0;
+
+	/// @brief XV
+	/// @param  
 	virtual void Update(void) = 0;
 	
+	/// @brief ‰ğ•ú
+	/// @param  
+	virtual void Release(void);
 
 	enum TYPE
 	{
