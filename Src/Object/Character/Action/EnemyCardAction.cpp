@@ -20,7 +20,7 @@ CardActionBase(_actCntl, _charaObj, _deck)
 
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
-		{CARD_ACT_TYPE::ROAR_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
 }
@@ -36,7 +36,7 @@ void EnemyCardAction::Init(void)
 
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
-		{CARD_ACT_TYPE::ROAR_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
 	jumpAtkCnt_ = 0.0f;
@@ -71,6 +71,7 @@ void EnemyCardAction::ChangeSwip(void)
 
 void EnemyCardAction::ChangeRoar(void)
 {
+	cardFuncs_.push([this]() {UpdateRoar(); });
 }
 
 void EnemyCardAction::ChangeJumpAtk(void)
@@ -90,6 +91,7 @@ void EnemyCardAction::UpdateSwip(void)
 
 void EnemyCardAction::UpdateRoar(void)
 {
+
 }
 
 void EnemyCardAction::UpdateJumpAtk(void)

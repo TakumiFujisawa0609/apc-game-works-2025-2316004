@@ -94,6 +94,9 @@ protected:
 	VECTOR jumpPow_;		// ジャンプ量
 	float jumpDeceralation_;	//ジャンプ減衰量
 
+	//怯み時間
+	float flinchCnt_;
+
 	//シングルトンクラス
 	SceneManager& scnMng_;
 	//アクションコントローラー

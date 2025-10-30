@@ -19,7 +19,6 @@ React::~React(void)
 
 void React::Init(void)
 {
-
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::REACT), false);
 }
 

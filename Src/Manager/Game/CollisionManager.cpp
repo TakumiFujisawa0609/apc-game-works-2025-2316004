@@ -206,8 +206,8 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 	}
 
 	//双方の当たり判定しないタグ
-	auto notHitTags1 = colliders_[_col1Num]->GetNotHitTags();
-	auto notHitTags2 = colliders_[_col2Num]->GetNotHitTags();
+	auto& notHitTags1 = colliders_[_col1Num]->GetNotHitTags();
+	auto& notHitTags2 = colliders_[_col2Num]->GetNotHitTags();
 
 	//双方の当たり判定しないタグか
 	
