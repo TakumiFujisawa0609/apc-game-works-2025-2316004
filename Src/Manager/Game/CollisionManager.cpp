@@ -180,8 +180,8 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 	}
 
 	//双方のタグ
-	auto tags1 = colliders_[_col1Num]->GetTags();
-	auto tags2 = colliders_[_col2Num]->GetTags();
+	auto& tags1 = colliders_[_col1Num]->GetTags();
+	auto& tags2 = colliders_[_col2Num]->GetTags();
 	
 	//1人目のタグ
 	for (auto tag1 : tags1)

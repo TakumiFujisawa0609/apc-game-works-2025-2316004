@@ -9,6 +9,4 @@ AttackCard::~AttackCard(void)
 {
 }
 
-//void AttackCard::Execute(void)
-//{
-//}
+

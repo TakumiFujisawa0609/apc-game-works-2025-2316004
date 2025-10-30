@@ -92,7 +92,7 @@ void Enemy::Init(void)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
 	MakeCollider({ tag_ }, std::move(geo));
 
-	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
+	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 
 
 
@@ -183,9 +183,9 @@ void Enemy::DrawDebug(void)
 	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
 	VECTOR euler = trans_.quaRot.ToEuler();
 	DrawFormatString(100, 100, 0xffffff, L"(%f,%f,%f)", euler.x, logic_->GetMoveDeg(), euler.z);
-	for (auto& colParam : colParam_)
+	for (auto& col : collider_)
 	{
-		colParam.geometry_->Draw();
+		col->GetGeometry().Draw();
 	}
 
 	DrawFormatString(600, 300, 0x000000, L"action(%d)", static_cast<int>(action_->GetAct()));

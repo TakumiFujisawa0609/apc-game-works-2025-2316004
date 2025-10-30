@@ -1,5 +1,5 @@
 #pragma once
-
+#include<memory>
 #include<set>
 #include"Geometry/Geometry.h"
 
@@ -25,7 +25,7 @@ public :
 	/// <param name="_tags">自身の衝突用タグ</param>
 	/// <param name="_geometry">当たり判定の形状</param>
 	/// <param name="_notHitTags">衝突させないタグ</param>
-	Collider(ObjectBase& _parent, const std::set<TAG> _tags, Geometry& _geometry, const std::set<TAG> _notHitTags);
+	Collider(ObjectBase& _parent, const std::set<TAG> _tags, std::unique_ptr<Geometry>_geometry, const std::set<TAG> _notHitTags);
 
 	// デストラクタ
 	~Collider(void);
@@ -75,7 +75,7 @@ private:
 	std::set<TAG> notHitTags_;
 
 	//当たり判定の形状
-	Geometry& geometry_;
+	std::unique_ptr<Geometry> geometry_;
 
 	//当たったかの判定
 	bool isHit_;

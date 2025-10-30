@@ -132,7 +132,7 @@ void Player::Init(void)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
 	MakeCollider({ tag_ }, std::move(geo));
 
-	onHit_ = std::make_unique<PlayerOnHit>(*this,movedPos_, moveDiff_, *action_, colParam_, trans_, tag_);
+	onHit_ = std::make_unique<PlayerOnHit>(*this,movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 
 	//ƒvƒŒƒCƒ„[ó‘Ô
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
@@ -251,9 +251,10 @@ void Player::DrawDebug(void)
 	const int HIGH = 10;
 	const int WIDTH = 200;
 	//DrawSphere3D(trans_.cardPos, RADIUS_X, 4, 0xff0000, 0xff0000, true);
-	for (auto& colParam : colParam_)
+	for (auto& col : collider_)
 	{
-		colParam.geometry_->Draw();
+		//colParam.geometry_->Draw();
+		col->GetGeometry().Draw();
 	}
 	
 	DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetAct()),isDamage_);

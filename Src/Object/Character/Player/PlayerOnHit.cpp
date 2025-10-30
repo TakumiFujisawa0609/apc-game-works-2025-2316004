@@ -11,12 +11,11 @@
 #include"./ActionController.h"
 #include "PlayerOnHit.h"
 
-PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff, ActionController& _action, std::vector<ObjectBase::ColParam>& _colParam, Transform& _trans, Collider::TAG _tag):
+PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff, ActionController& _action, std::vector<std::shared_ptr<Collider>> _colParam, Transform& _trans, Collider::TAG _tag):
 	charaObj_(_chara),
 	movedPos_(_movedPos),
 	moveDiff_(_moveDiff),
 	action_(_action),
-	colParam_(_colParam),
 	trans_(_trans),
 	tag_(_tag)
 {
@@ -26,6 +25,11 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 	colUpdates_.emplace(TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
 	colUpdates_.emplace(TAG::SWORD, [this](const std::weak_ptr<Collider> _hitCol) {CollSword(_hitCol); });
 	colUpdates_.emplace(TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); });
+
+	for (auto& col : _colParam)
+	{
+		colParam_.emplace_back(col);
+	}
 
 	////プレイヤー同士の当たり判定のタグをNoneに設定
 	//int playerNum = DateBank::GetInstance().GetPlayerNum();
@@ -46,6 +50,7 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 PlayerOnHit::~PlayerOnHit(void)
 {
 	colUpdates_.clear();
+	colParam_.clear();
 }
 
 void PlayerOnHit::Load(void)
@@ -116,15 +121,15 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	//移動後座標と現在座標で早い移動速度でも対応させる
 	VECTOR hitPos = hitModel.GetHitLineInfo().HitPosition;
 	//移動後と移動前のコライダ
-	auto& moveLineCol = colParam_[MOVE_LINE_COL_NO].collider_;
+	auto& moveLineCol = colParam_[MOVE_LINE_COL_NO];
 	//上下を引いたラインのコライダ(接地)
-	auto& upDownLine = colParam_[UP_AND_DOWN_LINE_COL_NO].collider_;
+	auto& upDownLine = colParam_[UP_AND_DOWN_LINE_COL_NO];
 	//球の当たり判定(プレイヤーの周囲)
-	auto& bodyShere = colParam_[BODY_SPHERE_COL_NO].collider_;
+	auto& bodyShere = colParam_[BODY_SPHERE_COL_NO];
 
 
 
-	if (moveLineCol->IsHit())
+	if (moveLineCol.lock()->IsHit())
 	{
 		////Y座標のみ半径分上に移動させる
 		movedPos_.y = hitPos.y + Player::RADIUS + POSITION_OFFSET;
@@ -136,10 +141,10 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	}
 
 	//プレイヤーの接地
-	if (upDownLine->IsHit())
+	if (upDownLine.lock()->IsHit())
 	{
 		//ライン情報の取得
-		Line& upDown = dynamic_cast<Line&>(upDownLine->GetGeometry());
+		Line& upDown = dynamic_cast<Line&>(upDownLine.lock()->GetGeometry());
 		//VECTOR hitLinePos = upDown.GetHitInfo().HitPosition;
 		VECTOR hitLinePos = upDown.GetHitInfo().HitPosition;
 
@@ -168,7 +173,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	trans.pos = movedPos_;
 	trans.Update();
 	//プレイヤーの体の球が当たったら
-	if (bodyShere->IsHit())
+	if (bodyShere.lock()->IsHit())
 	{
 		auto& hitInfo = hitModel.GetHitInfo();
 		for (int i = 0; i < hitInfo.HitNum; i++)

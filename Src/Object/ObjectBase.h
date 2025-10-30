@@ -18,7 +18,6 @@ public:
 	//当たり判定情報
 	struct ColParam
 	{
-		std::unique_ptr<Geometry> geometry_;	//形状情報
 		std::shared_ptr<Collider> collider_;	//全体の当たり判定情報
 	};
 
@@ -56,7 +55,8 @@ protected:
 	Transform trans_;
 
 	//当たり判定関係
-	std::vector<ColParam> colParam_;
+	//std::vector<ColParam> colParam_;
+	std::vector<std::shared_ptr<Collider>> collider_;	//全体の当たり判定情報
 
 	//タグ
 	Collider::TAG tag_;

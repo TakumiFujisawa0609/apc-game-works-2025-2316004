@@ -20,34 +20,35 @@ void ObjectBase::OnHit(const std::weak_ptr<Collider> _hitCol)
 void ObjectBase::MakeCollider(const std::set<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::set<Collider::TAG> _notHitTags)
 {
 	//当たり判定情報
-	ColParam colParam;
+	//ColParam colParam;
 
-	//形状情報の挿入
-	colParam.geometry_ = std::move(_geometry);
+	////形状情報の挿入
+	//colParam.geometry_ = std::move(_geometry);
 
-	if (colParam.geometry_ == nullptr)
-	{
-		int i = 0;
-	}
+	//if (colParam.geometry_ == nullptr)
+	//{
+	//	int i = 0;
+	//}
 
 	//情報を使ってコライダの作成
-	colParam.collider_ = std::make_shared<Collider>(*this, _tag, *colParam.geometry_, _notHitTags);
+	std::shared_ptr col = std::make_shared<Collider>(*this, _tag, std::move(_geometry), _notHitTags);
+	collider_.emplace_back(col);
 
 	//コライダを管理マネージャーに追加
-	CollisionManager::GetInstance().AddCollider(colParam.collider_);
+	CollisionManager::GetInstance().AddCollider(col);
 
-	//配列にセット
-	colParam_.push_back(std::move(colParam));
+	////配列にセット
+	//colParam_.push_back(std::move(colParam));
 }
 
 const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Collider::TAG _tag)
 {
 	//事前に配列のサイズを取得する
-	auto ParamSize = colParam_.size();
+	auto ParamSize = collider_.size();
 
 	for (int i = 0; i < ParamSize; i++)
 	{
-		auto tags = colParam_[i].collider_->GetTags();
+		auto tags = collider_[i]->GetTags();
 		//特定のタグを見つけるまでイテレータを回す
 		//発見できなかった場合、最後まで回る
 		auto it = tags.find(_chataTag);
@@ -68,24 +69,24 @@ const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Coll
 void ObjectBase::DeleteCollider(const int _arrayNum)
 {
 	//コライダの削除
-	colParam_[_arrayNum].collider_->Kill();
+	collider_[_arrayNum]->Kill();
 
 	//配列の削除
-	std::erase_if(colParam_, [](ColParam& colParam) {return colParam.collider_->IsDead(); });
+	std::erase_if(collider_, [](auto& col) {return col->IsDead(); });
 }
 
 void ObjectBase::DeleteAllCollider(void)
 {
-	for (auto& col : colParam_)
+	for (auto& col : collider_)
 	{
 		//当たり判定が存在しないならスキップ
-		if (col.collider_ == nullptr)continue;
+		if (col == nullptr)continue;
 
 		//コライダの削除
-		col.collider_->Kill();
+		col->Kill();
 	}
 
 	//当たり判定情報の削除
-	colParam_.clear();
+	collider_.clear();
 }
 

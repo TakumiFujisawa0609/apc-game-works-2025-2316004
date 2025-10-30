@@ -37,8 +37,8 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const VECTOR& _
 void CharacterBase::UpdateAttackCol(const float _radius)
 {
 	//引数の半径を攻撃の球に設定する
-	Sphere* sphere=dynamic_cast<Sphere*>(colParam_[ATK_COL_NO].geometry_.get());
-	sphere->SetRadius(_radius);
+	Sphere& sphere=dynamic_cast<Sphere&>(collider_[ATK_COL_NO]->GetGeometry());
+	sphere.SetRadius(_radius);
 }
 
 void CharacterBase::DeleteAttackCol(const Collider::TAG _charaTag)
@@ -59,7 +59,7 @@ void CharacterBase::UpdatePost(void)
 	moveVec.y -= MOVE_LINE_Y_OFFSET;
 	if (moveVec.x != 0.0f || moveVec.y != MOVE_LINE_Y_CHECK_VALUE || moveVec.z != 0.0f)
 	{
-		Line& moveLine = dynamic_cast<Line&>(colParam_[MOVE_LINE_COL_NO].collider_->GetGeometry());
+		Line& moveLine = dynamic_cast<Line&>(collider_[MOVE_LINE_COL_NO]->GetGeometry());
 		moveLine.SetLocalPosPoint1(Utility3D::VECTOR_ZERO);
 		moveLine.SetLocalPosPoint2(moveVec);
 	}
@@ -67,7 +67,7 @@ void CharacterBase::UpdatePost(void)
 	//当たり判定をする前に初期化する
 	onHit_->InitHitPoint();
 
-	//
+	
 	////地面接地ライン
 	//if (movedPos_.y < 0.0f)
 	//{
