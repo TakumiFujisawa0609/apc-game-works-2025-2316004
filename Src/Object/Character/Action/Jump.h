@@ -6,7 +6,7 @@ class Jump :
 
 public:
 
-    Jump(ActionController& _actCntl,CharacterBase& _charaObj);
+    Jump(ActionController& _actCntl,CharacterBase& _charaObj,VECTOR& _jumpPow);
     ~Jump(void)override;
     void Init(void) override;
     void Update(void) override;
@@ -25,5 +25,7 @@ public:
 
     //オブジェクト
     CharacterBase& charaObj_;
+
+    VECTOR& jumpPow_;		// ジャンプ量
 };
 

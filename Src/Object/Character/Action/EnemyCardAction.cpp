@@ -43,9 +43,9 @@ void EnemyCardAction::Init(void)
 
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
-		//deck_.MoveHandToCharge();
+		deck_.MoveHandToCharge();
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);
+		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);
 	}
 	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)
 	{
@@ -60,7 +60,11 @@ void EnemyCardAction::Update(void)
 
 void EnemyCardAction::Release(void)
 {
-	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1);
+	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
+	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
+
+	//現在使っているカードを捨てる
+	deck_.EraseHandCard();
 }
 
 void EnemyCardAction::ChangeSwip(void)
@@ -71,6 +75,7 @@ void EnemyCardAction::ChangeSwip(void)
 
 void EnemyCardAction::ChangeRoar(void)
 {
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ROAR_ATK), false, JUMP_ANIM_START);
 	cardFuncs_.push([this]() {UpdateRoar(); });
 }
 
@@ -86,12 +91,12 @@ void EnemyCardAction::ChangeReload(void)
 
 void EnemyCardAction::UpdateSwip(void)
 {
-	AttackMotion(atkStatusTable_[actType_], ATK_ONE_LOCAL);
+	AttackMotion(atkStatusTable_[actType_],Collider::TAG::NML_ATK, ATK_ONE_LOCAL);
 }
 
 void EnemyCardAction::UpdateRoar(void)
 {
-
+	AttackMotion(atkStatusTable_[actType_],Collider::TAG::ROAR_ATK, JUMP_ATK_LOCAL);
 }
 
 void EnemyCardAction::UpdateJumpAtk(void)
@@ -104,7 +109,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, {0.0f,0.0f,0.0f});
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), atkPos_, status.atkRadius);
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK,atkPos_, status.atkRadius);
 		status.atkRadius += JUMP_ATK_COL_SPD;
 		charaObj_.UpdateAttackCol(status.atkRadius);
 
@@ -114,7 +119,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		{
 			jumpAtkCnt_ = 0.0f;
 			status.atkRadius = JUMP_ATK_RADIUS;
-			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1);
+			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1,Collider::TAG::NML_ATK);
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
 

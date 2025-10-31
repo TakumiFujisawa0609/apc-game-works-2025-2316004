@@ -18,7 +18,7 @@ void Stage::Init(void)
 
 	//ƒJƒvƒZƒ‹
 	std::unique_ptr<Geometry>geo = std::make_unique<Model>(trans_.pos, trans_.quaRot, trans_.modelId);
-	MakeCollider({ tag_ }, std::move(geo),{Collider::TAG::SWORD});
+	MakeCollider({ tag_ }, std::move(geo),{Collider::TAG::NML_ATK});
 }
 
 void Stage::Update(void)

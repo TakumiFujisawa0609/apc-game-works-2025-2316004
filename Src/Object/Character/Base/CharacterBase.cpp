@@ -4,6 +4,7 @@
 #include "../Object/Character/Player/ActionController.h"
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Object/Character/Player/PlayerOnHit.h"
+#include "../Manager/Game/GravityManager.h"
 #include"../Object/Card/CardDeck.h"
 #include"../Object/Card/CardUI.h"
 #include "../../../Utility/Utility3D.h"
@@ -24,14 +25,14 @@ CharacterBase::~CharacterBase(void)
 {
 }
 
-void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const VECTOR& _atkPos, const float& _radius)
+void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag,const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
 {
 	//当たり判定が存在したら削除する
-	if (IsAliveCollider(_charaTag, Collider::TAG::SWORD))return;
+	if (IsAliveCollider(_charaTag, _attackTag))return;
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
 	onHit_->InitIsHitAtk();
 	isDamage_ = false;
-	MakeCollider({ _charaTag,Collider::TAG::SWORD }, std::move(sphere),{Collider::TAG::STAGE});
+	MakeCollider({ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
 }
 
 void CharacterBase::UpdateAttackCol(const float _radius)
@@ -41,9 +42,9 @@ void CharacterBase::UpdateAttackCol(const float _radius)
 	sphere.SetRadius(_radius);
 }
 
-void CharacterBase::DeleteAttackCol(const Collider::TAG _charaTag)
+void CharacterBase::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)
 {
-	if (!IsAliveCollider(_charaTag, Collider::TAG::SWORD))return;
+	if (!IsAliveCollider(_charaTag, _attackCol))return;
 	DeleteCollider(ATK_COL_NO);
 }
 
@@ -51,8 +52,10 @@ void CharacterBase::UpdatePost(void)
 {
 	//移動後座標の更新
 	movedPos_ = VAdd(trans_.pos, action_->GetMovePow());
+	//movedPos_ = VAdd(trans_.pos, movePow_);
 	//ジャンプ力の追加
-	movedPos_ = VAdd(movedPos_, action_->GetJumpPow());
+	//movedPos_ = VAdd(movedPos_, action_->GetJumpPow());
+	movedPos_ = VAdd(movedPos_, jumpPow_);
 
 	//移動量ラインの更新
 	VECTOR moveVec = VSub(movedPos_, trans_.pos);
@@ -100,7 +103,11 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	status_.hp_ -= _dam;
-	isDamage_ = true;
+}
+
+void CharacterBase::SetFlinchCnt(const float _flichCnt)
+{
+	action_->SetFlinchCnt(_flichCnt);
 }
 
 void CharacterBase::DeleteCard(void)

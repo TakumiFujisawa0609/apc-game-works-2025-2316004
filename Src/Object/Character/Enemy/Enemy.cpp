@@ -30,7 +30,7 @@ Enemy::Enemy(CharacterBase& _playerChara):
 	playerChara_(_playerChara),
 	cardCenterPos_({})
 {
-	//noneHitTag_.emplace({ Collider::TAG::PLAYER1,Collider::TAG::SWORD })
+	//noneHitTag_.emplace({ Collider::TAG::PLAYER1,Collider::TAG::NML_ATK })
 }
 
 Enemy::~Enemy(void)
@@ -53,7 +53,7 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_SWIP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
-	//animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
 
 }
 
@@ -76,7 +76,7 @@ void Enemy::Init(void)
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
-	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
   	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
 	action_->Init();

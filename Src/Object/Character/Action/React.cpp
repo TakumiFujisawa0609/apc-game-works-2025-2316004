@@ -1,9 +1,10 @@
+#include "../Manager/Generic/SceneManager.h"
 #include "../Base/ActionBase.h"
-#include"../Base/LogicBase.h"
-#include"../Utility/Utility3D.h"
-#include"../Player/ActionController.h"
-#include"../Base/CharacterBase.h"
-#include"../../Common/AnimationController.h"
+#include "../Base/LogicBase.h"
+#include "../Utility/Utility3D.h"
+#include "../Player/ActionController.h"
+#include "../Base/CharacterBase.h"
+#include "../../Common/AnimationController.h"
 
 #include "React.h"
 
@@ -19,13 +20,32 @@ React::~React(void)
 
 void React::Init(void)
 {
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::REACT), false);
+	bool isLoop = false;
+	if (flinchCnt_ > 0.0f)
+	{
+		isLoop = true;
+	}
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::REACT), isLoop, 0.0f, 16.0f);
 }
 
 void React::Update(void)
 {
-	if (anim_.IsEnd())
+	if (flinchCnt_ == 0)
 	{
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		if (anim_.IsEnd())
+		{
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		}
 	}
+	else
+	{
+		flinchCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+		anim_.SetEndLoop(14.0f, 16.0f, 3.0f);
+		if (flinchCnt_ < 0.0f)
+		{
+			flinchCnt_ = 0.0f;
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		}
+	}
+
 }

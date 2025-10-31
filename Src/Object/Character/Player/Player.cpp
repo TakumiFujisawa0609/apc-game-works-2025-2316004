@@ -2,20 +2,18 @@
 #include "../../../Utility/Utility3D.h"
 #include "../../../Utility/UtilityCommon.h"
 #include "../Application.h"
-//#include "../../Manager/Game/GravityManager.h"
+
 #include "../../../Manager/Resource/ResourceManager.h"
 //#include "../../Manager/System/SoundManager.h"
 #include "../../../Manager/Generic/SceneManager.h"
 //#include"../../Manager/System/DateBank.h"
 
 #include "../../../Manager/Generic/Camera.h"
-
+#include "../Manager/Game/GravityManager.h"
 //#include "../../Renderer/ModelMaterial.h"
 //#include "../../Renderer/ModelRenderer.h"
 
-//#include "../../Object/Common/Geometry/Sphere.h"
-//#include "../../Object/Common/Geometry/Line.h"
-//#include"../../Object/Common/Geometry/Model.h"
+#include "../Manager/Game/CharacterManager.h"
 //#include"../../Object/Common/EffectController.h"
 #include"../../Common/Geometry/Capsule.h"
 #include"../../Common/Geometry/Sphere.h"
@@ -142,7 +140,7 @@ void Player::Init(void)
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
-	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_,*this);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_,*this,jumpPow_);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION,*action_, *this, *deck_);
 
@@ -168,10 +166,21 @@ void Player::Update(void)
 
 	animationController_->Update();
 
+	////プレイヤーの下を設定
+	////static VECTOR dirDown = charaObj_.GetTransform().GetDown();
+	//static VECTOR dirDown = trans_.GetDown();
+	////重力(各アクションに重力を反映させたいので先に重力を先に書く)
+	//VECTOR jumpPow = action_->GetJumpPow();
+	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow, 90.0f);
+
 	//プレイヤー状態更新
 	stateUpdate_();
 
 	cardUI_->Update();
+
+
+
+
 
 	//if (logic_->GetIsAct().isCardMoveLeft)
 	//{
@@ -191,8 +200,6 @@ void Player::Update(void)
 
 	//回転の同期
 	trans_.quaRot = charaRot_.playerRotY_;
-
-	UpdatePost();
 	trans_.Update();
 }
 
@@ -309,9 +316,18 @@ void Player::GoalUpdate(void)
 
 void Player::Action(void)
 {
+	static VECTOR dirDown = trans_.GetDown();
+	////重力(各アクションに重力を反映させたいので先に重力を先に書く)
+	GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
+
+
 	//アクション関係の更新
 	logic_->Update();
+
 	action_->Update();
+
+	UpdatePost();
+
 
 }
 

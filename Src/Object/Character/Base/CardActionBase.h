@@ -67,11 +67,11 @@ protected:
     //状態遷移
     void ChangeCardAction(const CARD_ACT_TYPE& _type);
     //攻撃モーション
-    void AttackMotion(const ATK_STATUS& _status,const VECTOR& _localPos);
+    void AttackMotion(const ATK_STATUS& _status, const Collider::TAG& _attackTag,const VECTOR& _localPos);
     //カードの勝敗を常に監視する
     bool IsCardFailure(void);
     //攻撃終了
-    void FinishAttack(void);
+    void FinishAttack(const Collider::TAG _attackCol);
 
     //移動量
     VECTOR velocity_;

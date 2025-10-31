@@ -16,7 +16,8 @@ public :
 		STAGE,			//ステージ
 		PLAYER1,		//プレイヤー1
 		ENEMY1,			//敵1
-		SWORD,			//剣
+		NML_ATK,			//剣
+		ROAR_ATK,
 	};
 
 	/// <summary>

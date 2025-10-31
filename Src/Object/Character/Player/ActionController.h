@@ -3,6 +3,8 @@
 #include<memory>
 #include<functional>
 #include<map>
+#include"../Utility/UtilityCommon.h"
+#include"../Utility/Utility3D.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Object/Common/Transform.h"
 
@@ -104,6 +106,9 @@ public:
 	/// @return 
 	const VECTOR& GetJumpPow(void)const { return jumpPow_; }
 	
+	//着地時のジャンプ力初期化
+	void JumpPowZero(void) { jumpPow_ = Utility3D::VECTOR_ZERO; }
+
 	/// @brief 状態の取得
 	/// @param  
 	/// @return 状態
@@ -138,6 +143,9 @@ public:
 	/// @return true:カード選択できる
 	const bool IsCardDisitionControll(void);
 
+	/// @brief のけぞりカウントのセット
+	/// @param _flinchTime のけぞらせたい時間
+	void SetFlinchCnt(const float _flinchTime);
 
 	/// @brief メインアクションの追加
 	/// @param _action 
@@ -146,6 +154,7 @@ public:
 	{
 		mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
 	}
+
 
 
 #ifdef _DEBUG

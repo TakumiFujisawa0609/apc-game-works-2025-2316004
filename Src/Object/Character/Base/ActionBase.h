@@ -70,10 +70,12 @@ public:
 	/// @return 
 	const bool& GetIsAliveAtkCol(void) { return isAliveAtkCol_; }
 
-	/// @brief ジャンプ力の取得
-	/// @param  
-	/// @return ジャンプ力
-	const VECTOR& GetJumpPow(void)const { return jumpPow_; }
+	///// @brief ジャンプ力の取得
+	///// @param  
+	///// @return ジャンプ力
+	//const VECTOR& GetJumpPow(void)const { return jumpPow_; }
+
+	void SetFlinchCnt(const float _flinchTime) { flinchCnt_ = _flinchTime; }
 
 protected:
 
@@ -91,7 +93,7 @@ protected:
 	//-----------------------
 	bool isJump_;			// ジャンプ判定
 	float stepJump_;		// ジャンプの入力受付時間
-	VECTOR jumpPow_;		// ジャンプ量
+	//VECTOR jumpPow_;		// ジャンプ量
 	float jumpDeceralation_;	//ジャンプ減衰量
 
 	//怯み時間

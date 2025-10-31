@@ -110,15 +110,11 @@ public:
 	/// @param _charaTag 自身のタグ
 	/// @param _atkPos 作りたい攻撃の座標
 	/// @param _radius 当たり判定の半径
-	void MakeAttackCol(const Collider::TAG _charaTag,const VECTOR& _atkPos,const float& _radius);
+	void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag,const VECTOR& _atkPos,const float& _radius);
 
 	/// @brief 攻撃の当たり判定削除
 	/// @param _charaTag 自身のタグ
-	void DeleteAttackCol(const Collider::TAG _charaTag);
-	
-	/// @brief 移動後座標などの更新
-	/// @param  
-	void UpdatePost(void);
+	void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol);
 	
 	/// @brief キャラタグの取得
 	/// @param  
@@ -155,9 +151,16 @@ public:
 	/// @return 
 	const bool& GetIsDamage(void)const { return isDamage_; }
 
+	//着地時のジャンプ力初期化
+	void JumpPowZero(void) { jumpPow_ = Utility3D::VECTOR_ZERO; }
+
 	/// @brief ダメージを与えたことを知らせる
 	/// @param  
 	void SetIsDamage(void) { isDamage_ = true; }
+
+	/// @brief のけぞり時間のセット
+	/// @param _flichCnt のけぞり時間
+	void SetFlinchCnt(const float _flichCnt);
 
 	/// @brief ステータス取得
 	/// @param  
@@ -216,6 +219,9 @@ protected:
 	//当たり判定の要素
 	VECTOR movedPos_;		//移動後座標
 	VECTOR moveDiff_;		//移動前座標
+
+	VECTOR jumpPow_;		// ジャンプ量
+	VECTOR movePow_;		// 移動量
 	
 	//角度関連
 	ROTATION charaRot_;
@@ -226,6 +232,10 @@ protected:
 	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
 	bool isDamage_;
 
+
+	/// @brief 移動後座標などの更新
+	/// @param  
+	void UpdatePost(void);
 private:
 
 };

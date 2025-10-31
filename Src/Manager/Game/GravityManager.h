@@ -7,7 +7,7 @@ class GravityManager
 public:
 
 	//重力
-	static constexpr float GRAVITY_POW = 3.0f;
+	static constexpr float GRAVITY_POW = 1.3f;
 
 	/// <summary>
 	/// 静的にインスタンス生成

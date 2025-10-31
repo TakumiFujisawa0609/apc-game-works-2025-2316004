@@ -23,8 +23,9 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 	using TAG = Collider::TAG;
 	colUpdates_.emplace(TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
 	colUpdates_.emplace(TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
-	colUpdates_.emplace(TAG::SWORD, [this](const std::weak_ptr<Collider> _hitCol) {CollSword(_hitCol); });
+	colUpdates_.emplace(TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); });
 	colUpdates_.emplace(TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); });
+	colUpdates_.emplace(TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); });
 
 	for (auto& col : _colParam)
 	{
@@ -88,7 +89,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	
 }
 
-void PlayerOnHit::CollSword(const std::weak_ptr<Collider> _hitCol)
+void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
 	auto& parentChara = _hitCol.lock()->GetParentCharacter();
 	if (parentChara.GetIsDamage())return;
@@ -99,6 +100,21 @@ void PlayerOnHit::CollSword(const std::weak_ptr<Collider> _hitCol)
 	charaObj_.Damage(1);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	
+}
+
+void PlayerOnHit::CollRoarAttack(const std::weak_ptr<Collider> _hitCol)
+{
+	auto& parentChara = _hitCol.lock()->GetParentCharacter();
+	if (parentChara.GetIsDamage())return;
+
+	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
+	//ダメージを与えたことを知らせる
+	parentChara.SetIsDamage();
+	charaObj_.Damage(1);
+
+	//のけぞり時間セット
+	charaObj_.SetFlinchCnt(ROAR_FLICTION_TIME);
+	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
 #ifdef DEBUG_ON
@@ -132,11 +148,13 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	if (moveLineCol.lock()->IsHit())
 	{
 		////Y座標のみ半径分上に移動させる
-		movedPos_.y = hitPos.y + Player::RADIUS + POSITION_OFFSET;
+		movedPos_.y = hitPos.y + POSITION_OFFSET;
 
 		hitPoint_.isDown = true;
 		//現在座標の更新
 		trans_.pos = movedPos_;
+		charaObj_.JumpPowZero();
+		//action_.JumpPowZero();
 		return;
 	}
 
@@ -145,7 +163,6 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	{
 		//ライン情報の取得
 		Line& upDown = dynamic_cast<Line&>(upDownLine.lock()->GetGeometry());
-		//VECTOR hitLinePos = upDown.GetHitInfo().HitPosition;
 		VECTOR hitLinePos = upDown.GetHitInfo().HitPosition;
 
 		//座標が当たっているライン座標より上のとき、地面と当たる
@@ -153,14 +170,16 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 		{
 			movedPos_.y = hitLinePos.y + Player::RADIUS + POSITION_OFFSET;
 			hitPoint_.isDown = true;
-			//action_.SetJumpPow(Utility3D::VECTOR_ZERO);
+			action_.JumpPowZero();
 		}
 
 		//移動後座標が当たっているライン座標より下の場合、上に押し出す
 		if(movedPos_.y < hitLinePos.y)
 		{
-			movedPos_.y = hitLinePos.y - Player::RADIUS - POSITION_OFFSET;
+			movedPos_.y = hitLinePos.y - POSITION_OFFSET;
 			hitPoint_.isOverHead = true;
+
+			action_.JumpPowZero();
 			//if (action_.GetJumpDecel() > 0.0f)
 			//{
 			//	//オブジェクトの下に当たったら跳ね返るようにする

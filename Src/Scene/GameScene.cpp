@@ -4,16 +4,16 @@
 #include "../Object/Character/Player/Player.h"
 #include "../Object/Character/Enemy/Enemy.h"
 #include "../Manager/Generic/SceneManager.h"
-#include"../Manager/Generic/Camera.h"
+#include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Resource/ResourceManager.h"
-#include"../Manager/Game/CollisionManager.h"
-#include"../Manager/Game/CharacterManager.h"
+#include "../Manager/Game/CollisionManager.h"
+#include "../Manager/Game/CharacterManager.h"
+#include "../Manager/Game/GravityManager.h"
 #include "../Manager/Resource/FontManager.h"
-
-#include"../Object/Card/CardSystem.h"
-#include"../Object/Character/Enemy/Enemy.h"	
-#include"../Object/Stage.h"	
+#include "../Object/Card/CardSystem.h"
+#include "../Object/Character/Enemy/Enemy.h"	
+#include "../Object/Stage.h"	
 
 #include "PauseScene.h"
 
@@ -43,19 +43,10 @@ void GameScene::Load(void)
 	pauseScene_ = std::make_shared<PauseScene>();
 	pauseScene_->Load();
 
-	//PlayerManager::CreateInstance();
-	//PlayerManager::GetInstance().Load();
 	stage_ = std::make_unique<Stage>();
-	
-
-	//player_ = std::make_unique<Player>();
-	//player_->Load();
 
 	CharacterManager::CreateInstance();
 	CharacterManager::GetInstance().Load();
-
-	//enemy_ = std::make_unique<Enemy>(*player_);
-	//enemy_->Load();
 }
 
 void GameScene::Init(void)
@@ -63,6 +54,8 @@ void GameScene::Init(void)
 	CollisionManager::CreateInstance();
 	CardSystem::CreateInstance();
 	CharacterManager::GetInstance().Init();
+	//d—ÍŠÇ—ƒNƒ‰ƒX‚ð¶¬
+	GravityManager::CreateInstance();
 	stage_->Init();
 	//player_->Init();
 	//enemy_->Init();

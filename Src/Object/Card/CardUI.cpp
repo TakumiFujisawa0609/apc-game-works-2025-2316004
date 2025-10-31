@@ -254,9 +254,8 @@ void CardUI::ChangeLeft(void)
 	{
 		card.goalAngle = card.currentAngle - ARROUND_PER_RAD;
 	}
+
 	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
-
-
 
 	cardUpdate_ = [this]() {UpdateLeft(); };
 }

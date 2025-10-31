@@ -85,7 +85,7 @@ private:
 	//敵番号(デッキで判定する用)
 	static constexpr int ENEMY_NUM = 1;
 	Vector2 cardCenterPos_; //カードの中心座標
-	CharacterBase& playerChara_;
+	CharacterBase& playerChara_;	//プレイヤー情報
 
 #ifdef _DEBUG
 	void DrawDebug(void);

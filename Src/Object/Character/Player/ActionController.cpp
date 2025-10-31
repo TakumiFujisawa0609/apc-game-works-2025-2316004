@@ -2,7 +2,6 @@
 #include"../Utility/UtilityCommon.h"
 #include"Player.h"
 #include"./PlayerLogic.h"
-//#include "../../Manager/Game/GravityManager.h"
 #include "../../../Manager/Generic/Camera.h"
 #include "../../../Manager/Generic/SceneManager.h"
 #include "../../../Manager/Resource/ResourceManager.h"
@@ -77,13 +76,12 @@ void ActionController::Load(void)
 
 void ActionController::Update(void)
 {
-	////重力(各アクションに重力を反映させたいので先に重力を先に書く)
-	//GravityManager::GetInstance().CalcGravity(dirDown,jumpPow_, GRAVITY_PER);
 	mainAction_[act_]->Update();
 
 	MoveDirFronInput();
 	charaObj_.Rotate();
 	DirAndMovePowUpdate();
+
 
 	CardChargeUpdate();
 	CardMove();
@@ -158,6 +156,11 @@ const bool ActionController::IsCardDisitionControll(void)
 	return selectState == CardUI::CARD_SELECT::NONE;
 }
 
+void ActionController::SetFlinchCnt(const float _flinchTime)
+{
+	mainAction_[ACTION_TYPE::REACT]->SetFlinchCnt(_flinchTime);
+}
+
 void ActionController::MoveDirFronInput(void)
 {
 	charaObj_.MoveDirFronInput();
@@ -188,7 +191,7 @@ void ActionController::DirAndMovePowUpdate(void)
 	//移動量の更新
 	movePow_ = VScale(moveDir_, speed);
 
-	jumpPow_ = VScale(charaObj_.GetTransform().GetUp(), mainAction_[act_]->GetJumpPow().y);
+	//jumpPow_ = VScale(charaObj_.GetTransform().GetUp(), mainAction_[act_]->GetJumpPow().y);
 }
 
 

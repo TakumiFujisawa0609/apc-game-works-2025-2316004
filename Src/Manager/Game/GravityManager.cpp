@@ -51,6 +51,7 @@ void GravityManager::CalcGravity(VECTOR& _dir, VECTOR& _pow, float _per)
 	// 重力を作る
 	//_pow に重力計算を行う(加速度)
 	VECTOR gravity = VScale(dirGravity, gravityPow);
+
 	_pow = VAdd(_pow, gravity);
 
 	//Calculate();

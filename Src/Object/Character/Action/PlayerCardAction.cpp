@@ -67,7 +67,7 @@ void PlayerCardAction::Release(void)
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
 	//当たり判定削除
-	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1);
+	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
@@ -98,7 +98,7 @@ void PlayerCardAction::ChangeActionCardInit(void)
 
 void PlayerCardAction::UpdateAttack(void)
 {
-	AttackMotion(atkStatusTable_[actType_], ATK_ONE_LOCAL);
+	AttackMotion(atkStatusTable_[actType_],Collider::TAG::NML_ATK ,ATK_ONE_LOCAL);
 }
 
 void PlayerCardAction::UpdateReload(void)

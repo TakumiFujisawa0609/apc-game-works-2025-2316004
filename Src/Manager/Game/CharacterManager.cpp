@@ -1,6 +1,5 @@
 #include "../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/Camera.h"
-
 #include "../Object/Character/Base/CharacterBase.h"
 #include "../Object/Character/Player/Player.h"
 #include "../Object/Character/Enemy/Enemy.h"

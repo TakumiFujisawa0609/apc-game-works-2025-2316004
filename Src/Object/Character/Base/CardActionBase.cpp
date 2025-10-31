@@ -1,7 +1,6 @@
 #include "../pch.h"
 #include "../Utility/Utility3D.h"
 #include "ActionBase.h"
-
 #include "../Manager/Generic/SceneManager.h"
 #include "../Player/ActionController.h"
 #include "../../Common/AnimationController.h"
@@ -46,12 +45,12 @@ void CardActionBase::ChangeCardAction(const CARD_ACT_TYPE& _type)
 	atkStatusTable_[actType_];
 }
 
-void CardActionBase::AttackMotion(const ATK_STATUS& _status, const VECTOR& _localPos)
+void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG& _attackTag, const VECTOR& _localPos)
 {
 	//UŒ‚’†‚ÉƒJ[ƒh•‰‚¯‚µ‚½‚çˆ—‚ğ”ò‚Î‚·
 	if (IsCardFailure())
 	{
-		FinishAttack();
+		FinishAttack(_attackTag);
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return;
 	}
@@ -63,19 +62,18 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const VECTOR& _loca
 		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, _localPos);
 		//UŒ‚”»’è—LŒø
 		isAliveAtkCol_ = true;
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), atkPos_,_status.atkRadius);
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), _attackTag, atkPos_,_status.atkRadius);
 
 	}
 	else if (anim_.IsEnd())
 	{
-		FinishAttack();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
 	else if (anim_.GetAnimStep() > _status.colEndCnt)
 	{
 		//UŒ‚”»’è–³Œø
-		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
+		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackTag);
 		charaObj_.GetCardUI().ChangeUsedActionCard();
 		//Ÿ‚ÌUŒ‚‚É‚Â‚È‚°‚é
 		ChangeComboAction();
@@ -94,11 +92,11 @@ bool CardActionBase::IsCardFailure(void)
 	return false;
 }
 
-void CardActionBase::FinishAttack(void)
+void CardActionBase::FinishAttack(const Collider::TAG _attackCol)
 {
 	//UŒ‚”»’è–³Œø
 	deck_.EraseHandCard();
-	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag());
+	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackCol);
 	charaObj_.GetCardUI().ChangeUsedActionCard();
 	actType_ = CARD_ACT_TYPE::NONE;
 	cardFuncs_.pop();

@@ -79,7 +79,9 @@ private:
 	//上下ライン
 	static constexpr int UP_AND_DOWN_LINE_COL_NO = 2;
 	//押し出す移動量
-	static constexpr float POSITION_OFFSET = 1.0f;
+	static constexpr float POSITION_OFFSET = 0.1f;
+	//雄たけび硬直時間
+	static constexpr float ROAR_FLICTION_TIME = 7.0f;
 	//プレイヤー
 	ActionController& action_;
 	//移動量
@@ -111,9 +113,10 @@ private:
 	void HitModelCommon(const std::weak_ptr<Collider> _hitCol);			
 
 	//オブジェクト毎の当たった時にされる処理
-	void CollNone(void);												//ステージ
-	void CollStage(const std::weak_ptr<Collider> _hitCol);												//当たっても何もしない(プレイヤー側で何も起きない)
+	void CollNone(void);												//当たっても何もしない(プレイヤー側で何も起きない)
+	void CollStage(const std::weak_ptr<Collider> _hitCol);				//ステージ
 	void CollChara(const std::weak_ptr<Collider> _hitCol);				//キャラクター同士
-	void CollSword(const std::weak_ptr<Collider> _hitCol);				//敵の剣
+	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃
+	void CollRoarAttack(const std::weak_ptr<Collider>_hitCol);			//おたけび攻撃
 };
 

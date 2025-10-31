@@ -16,12 +16,13 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	isAliveAtkCol_(false),
 	isJump_(false),
 	jumpDeceralation_(0.0f),
-	jumpPow_({}),
+	//jumpPow_({}),
 	stepJump_(0.0f),
 	speed_(0.0f),
+	flinchCnt_(0.0f),
 	dir_({}),
-	moveDir_({}),
-	movePow_({})
+	moveDir_({})
+	//movePow_({})
 {
 
 
