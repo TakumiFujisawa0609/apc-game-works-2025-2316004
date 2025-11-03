@@ -75,6 +75,9 @@ void GameScene::NormalUpdate(void)
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
 	}
+	//ステージ
+	stage_->Update();
+
 	//キャラクターの更新
 	CharacterManager::GetInstance().Update();
 	////プレイヤーの更新

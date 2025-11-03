@@ -70,11 +70,8 @@ public:
 	/// @return 
 	const bool& GetIsAliveAtkCol(void) { return isAliveAtkCol_; }
 
-	///// @brief ジャンプ力の取得
-	///// @param  
-	///// @return ジャンプ力
-	//const VECTOR& GetJumpPow(void)const { return jumpPow_; }
-
+	/// @brief のけぞりカウントのセット
+	/// @param _flinchTime のけぞりカウント
 	void SetFlinchCnt(const float _flinchTime) { flinchCnt_ = _flinchTime; }
 
 protected:

@@ -18,7 +18,10 @@ EnemyLogic::~EnemyLogic(void)
 void EnemyLogic::Init(void)
 {
 	cardCoolCnt_ = CARD_COOL_TIME;
+	attackType_ = ENEMY_ATTACK_TYPE::NONE;
 	moveCnt_ = -1.0f;
+
+	freezeCnt_ = 0.0f;
 }
 
 void EnemyLogic::Update(void)
@@ -32,10 +35,21 @@ void EnemyLogic::Update(void)
 	//moveDir_ = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 
 	moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
-
 	cardCoolCnt_ -= scnMng_.GetDeltaTime();
+
+	if(freezeCnt_ > 0.0f)
+	{
+		freezeCnt_ -= scnMng_.GetDeltaTime();
+		return;
+	}
+
 	moveCnt_ -= scnMng_.GetDeltaTime();
 
+	if (distance_ > 250.0f)
+	{
+		moveDir_ = targetVec;
+		return;
+	}
 
 	if (cardCoolCnt_ < 0.0f)
 	{
@@ -44,14 +58,8 @@ void EnemyLogic::Update(void)
 		cardCoolCnt_ = CARD_COOL_TIME;
 	}
 
-	//if (dis > ATK_RANGE&&moveCnt_<0.0f)
-	//{
-	//	moveDir_ = targetVec;
-	//}
-	//else if(dis <= ATK_RANGE)
-	//{
-	//	moveCnt_ = MOVE_COOL_TIME;
-	//}
+
+
 
 
 #ifdef _DEBUG
@@ -77,26 +85,72 @@ void EnemyLogic::DebugUpdate(void)
 	}
 }
 
+void EnemyLogic::DebugDraw(void)
+{
+	DrawFormatString(50, 100, 0x000000,L"Dis(%f)",distance_);
+}
+
 void EnemyLogic::DesideAction(void)
 {
 	VECTOR playerPos = playerChara_.GetTransform().pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 
+	//ƒ‰ƒ“ƒ_ƒ€‚Ì”’lŽæ“¾
 	int rand = GetRand(100);
-	if (distance_ > 1000.0f)
+
+	
+	if (distance_ > 200.0f)
 	{
-		moveDir_ = targetVec;
-	}
-	else if (distance_ > 300.0f)
-	{
+		//‰“‹——£Žž
 		if (rand < weight_.normal)
 		{
 			//’ÊíUŒ‚
+			attackType_ = ENEMY_ATTACK_TYPE::NORMAL;
 		}
 		else
 		{
 			//ƒWƒƒƒ“ƒv
+			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
 		}
+	}
+	else
+	{
+		if (rand < weight_.normal)
+		{
+			//’ÊíUŒ‚
+			attackType_ = ENEMY_ATTACK_TYPE::NORMAL;
+		}
+		else if (rand < weight_.jump)
+		{
+			//ƒWƒƒƒ“ƒvUŒ‚
+			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
+		}
+		else
+		{
+			//™ôšK
+			attackType_ = ENEMY_ATTACK_TYPE::ROAR;
+		}
+		SetFreezeCntByAttackType(attackType_);
+	}
+}
+
+void EnemyLogic::SetFreezeCntByAttackType(const ENEMY_ATTACK_TYPE& _type)
+{
+	switch (attackType_)
+	{
+	case LogicBase::ENEMY_ATTACK_TYPE::NONE:
+		break;
+	case LogicBase::ENEMY_ATTACK_TYPE::NORMAL:
+		freezeCnt_ = NORMAL_FREEZE_TIME;
+		break;
+	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:
+		freezeCnt_ = JUMP_FREEZE_TIME;
+		break;
+	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
+		freezeCnt_ = ROAR_FREEZE_TIME;
+		break;
+	default:
+		break;
 	}
 }
 

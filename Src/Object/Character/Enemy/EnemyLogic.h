@@ -16,19 +16,27 @@ public:
 		int Roar = 20;
 	};
 
+
+
 	void Init(void) override;
 	void Update(void) override;
+
+#ifdef _DEBUG
+	void DebugUpdate(void);
+	void DebugDraw(void)override;
+#endif // _DEBUG
 private:
+	static constexpr float NORMAL_FREEZE_TIME = 0.3f;	//通常攻撃硬直時間
+	static constexpr float JUMP_FREEZE_TIME = 0.7f;		//ジャンプ攻撃硬直時間
+	static constexpr float ROAR_FREEZE_TIME = 0.2f;		//咆哮攻撃硬直時間
 	//カードクールタイム制限
-	static constexpr float CARD_COOL_TIME = 2.0f;	
+	static constexpr float CARD_COOL_TIME = 0.0f;	
 	//攻撃の射程
 	static constexpr float ATK_RANGE = 200.0f;
 	//プレイヤーまでの距離詰めのクールタイム
 	static constexpr float MOVE_COOL_TIME = 0.5f;
 
-#ifdef _DEBUG
-	void DebugUpdate(void);
-#endif // _DEBUG
+
 
 
 
@@ -50,7 +58,14 @@ private:
 	//攻撃の重み付け
 	AttackWeight weight_;
 
+	//硬直時間
+	float freezeCnt_;
+	//攻撃の届く範囲
+	float atkRange_;
+
 	//攻撃を決める
 	void DesideAction(void);
+	//攻撃種類によって硬直時間をセット
+	void SetFreezeCntByAttackType(const ENEMY_ATTACK_TYPE& _type);
 };
 

@@ -14,15 +14,18 @@ void Stage::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,0.0f, 0.0f });
 
-	trans_.scl = { STAGE_SCL ,STAGE_SCL ,STAGE_SCL };
+	trans_.scl = { STAGE_SCL ,1.0f ,STAGE_SCL };
 
 	//ƒJƒvƒZƒ‹
 	std::unique_ptr<Geometry>geo = std::make_unique<Model>(trans_.pos, trans_.quaRot, trans_.modelId);
 	MakeCollider({ tag_ }, std::move(geo),{Collider::TAG::NML_ATK});
+
+	trans_.Update();
 }
 
 void Stage::Update(void)
 {
+	trans_.Update();
 }
 
 void Stage::Draw(void)

@@ -1,5 +1,7 @@
 #include "../Utility/Utility3D.h"
+#include"../Player/ActionController.h"
 #include "../Base/CharacterBase.h"
+#include"../Enemy/EnemyLogic.h"
 #include "../../Common/AnimationController.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../../Card/CardDeck.h"
@@ -40,12 +42,13 @@ void EnemyCardAction::Init(void)
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
 	jumpAtkCnt_ = 0.0f;
-
+	
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		deck_.MoveHandToCharge();
+		actionCntl_.GetInput().GetAttackType();
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);
+		DesideCardAction();
 	}
 	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)
 	{
@@ -62,6 +65,12 @@ void EnemyCardAction::Release(void)
 {
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
+
+	//カード機能配列の解放
+	if(!cardFuncs_.empty())
+	{
+		cardFuncs_.pop();
+	}
 
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
@@ -129,3 +138,23 @@ void EnemyCardAction::UpdateJumpAtk(void)
 void EnemyCardAction::UpdateReload(void)
 {
 }
+
+void EnemyCardAction::DesideCardAction(void)
+{
+	//ロジックから攻撃タイプを取得
+	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+
+	switch (attackType)
+	{
+	case LogicBase::ENEMY_ATTACK_TYPE::NORMAL:
+		ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
+		break;
+	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:
+		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);
+		break;
+	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
+		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);
+		break;
+	}
+}
+

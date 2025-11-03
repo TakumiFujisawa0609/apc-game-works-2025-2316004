@@ -17,6 +17,13 @@ public:
         , CARD_MOVE_RIGHT//カード右
     };
 
+    enum class ENEMY_ATTACK_TYPE {
+        NONE,
+        NORMAL,
+        JUMP,
+        ROAR
+    };
+
     //どの操作がされたか
     struct ACT_FLAG
     {
@@ -29,42 +36,54 @@ public:
 
         //アクション関連
 		bool isJump = false;         //ジャンプ
+        //回避
+		bool isDodge = false;
     };
 
+
+
+	/// @brief コンストラクタ
+    /// @param  
     LogicBase(void);
-	virtual ~LogicBase(void);
-    /// <summary>
-    /// 初期化
-    /// </summary>
-    /// <param name=""></param>
+	
+    /// @brief デストラクタ
+    /// @param  
+    virtual ~LogicBase(void);
+    
+    /// @brief 初期化
+    /// @param  
     virtual void Init(void) = 0;
-
-    /// <summary>
-    /// 更新
-    /// </summary>
-    /// <param name=""></param>
+    
+    /// @brief 更新
+    /// @param  
     virtual void Update(void) = 0;
+    
+    /// @brief コントロール判定
+	/// @param _actCntl ゲットしたい操作種類
+    /// @return 
+    const bool CheckAct(const ACT_CNTL& _actCntl)const { return actCntl_ == _actCntl ? true : false; }
+    
+    /// @brief 移動方向の取得
+    /// @param  
+    /// @return 方向
+    const VECTOR GetDir(void)const { return moveDir_; }
+	
+    /// @brief 移動角度の取得
+    /// @param  
+    /// @return 移動角度
+    const float GetMoveDeg(void)const { return moveDeg_; }
+    
+    /// @brief アクション入力の取得
+    /// @param  
+    /// @return アクション入力
+    const ACT_FLAG GetIsAct(void)const { return isAct_; }
 
-    //コントロール判定
-    bool CheckAct(ACT_CNTL _actCntl) { return actCntl_ == _actCntl ? true : false; }
-    /// <summary>
-    /// 移動方向の取得
-    /// </summary>
-    /// <param name=""></param>
-    /// <returns>方向</returns>
-    const VECTOR GetDir(void) { return moveDir_; }
-	/// <summary>
-	/// 移動角度の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns></returns>
-	const float GetMoveDeg(void) { return moveDeg_; }
-    /// <summary>
-    /// アクション入力の取得
-    /// </summary>
-    /// <param name=""></param>
-    /// <returns></returns>
-    const ACT_FLAG GetIsAct(void) { return isAct_; }
+    /// @brief ランダムで決まった攻撃の種類を取得
+    /// @param  
+    /// @return 攻撃種類
+    const ENEMY_ATTACK_TYPE& GetAttackType(void)const { return attackType_; }
+
+    virtual void DebugDraw(void) {};
 
 protected:
 	//操作管理用
@@ -72,6 +91,9 @@ protected:
     //移動関連
 	float moveDeg_;             //移動角度
 	VECTOR moveDir_;            //移動方向ベクトル
+
+    //攻撃種類
+    ENEMY_ATTACK_TYPE attackType_;
 
     //アクション入力がされたかどうか
     ACT_FLAG isAct_;

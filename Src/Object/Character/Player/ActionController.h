@@ -90,11 +90,6 @@ public:
 	/// @param _act 次に遷移したい状態
 	void ChangeAction(ACTION_TYPE _act);
 
-	/// <summary>
-	/// 移動量の取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>移動量</returns>
 	
 	/// @brief 移動量の取得
 	/// @param  
@@ -117,12 +112,12 @@ public:
 	/// @brief 入力クラスの取得
 	/// @param  
 	/// @return 入力クラス
-	LogicBase& GetInput(void) { return logic_; }
+	const LogicBase& GetInput(void)const { return logic_; }
 	
 	/// @brief アニメーションの再生
 	/// @param  
 	/// @return 
-	AnimationController& GetAnimation(void) { return anim_; }
+	AnimationController& GetAnimation(void)const { return anim_; }
 	
 	/// @brief アニメーションの再生
 	/// @param  

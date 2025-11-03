@@ -189,5 +189,7 @@ void Enemy::DrawDebug(void)
 	}
 
 	DrawFormatString(600, 300, 0x000000, L"action(%d)", static_cast<int>(action_->GetAct()));
+
+	logic_->DebugDraw();
 }
 #endif // _DEBUG

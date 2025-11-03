@@ -81,16 +81,18 @@ public:
         PAD
     };
 
-    //シングルトン化するために外部で生成されないようにする
+    /// @brief コンストラクタ
+    /// @param _padNum パッド番号
+    /// @param _cntl 操作タイプ
     PlayerLogic(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
     ~PlayerLogic(void)override;
 
-    //変更時の初期化
+	/// @brief 変更時の初期化
+	/// @param  
 	void Init(void)override;
-    /// <summary>
-    /// 更新
-    /// </summary>
-    /// <param name=""></param>
+    
+    /// @brief 更新
+    /// @param  
     void Update(void)override;
 
     ////コントロール判定

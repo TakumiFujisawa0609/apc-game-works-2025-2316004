@@ -35,6 +35,8 @@ public:
     /// @brief 解放
     /// @param  
     void Release(void)override;
+
+    
 private:
 
     //攻撃1段目判定
@@ -87,6 +89,9 @@ private:
     void UpdateRoar(void);
     void UpdateJumpAtk(void);
     void UpdateReload(void);
+
+	//アクションによって処理を分岐
+	void DesideCardAction(void);
 
     //攻撃別の当たり判定情報
     std::map<ACT_TYPE, ATK_STATUS>atkTable_;
