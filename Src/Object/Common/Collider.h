@@ -13,11 +13,11 @@ public :
 	// 衝突用タグ
 	enum class TAG
 	{
-		STAGE,			//ステージ
 		PLAYER1,		//プレイヤー1
 		ENEMY1,			//敵1
 		NML_ATK,			//剣
 		ROAR_ATK,
+		STAGE,			//ステージ
 	};
 
 	/// <summary>
@@ -77,6 +77,10 @@ private:
 
 	//当たり判定の形状
 	std::unique_ptr<Geometry> geometry_;
+	//std::shared_ptr<Geometry> geometry_;
+
+	//優先順位を決めるためのタグ配列
+	std::vector<TAG>tagTable_;
 
 	//当たったかの判定
 	bool isHit_;

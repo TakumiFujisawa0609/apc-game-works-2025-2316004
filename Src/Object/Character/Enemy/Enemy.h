@@ -26,6 +26,13 @@ public:
 	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
+
+	//ステータス関連
+	static constexpr float MOVE_SPEED = 15.0f;		//移動スピード
+	static constexpr float MAX_HP = 200.0f;			//体力
+	static constexpr float MAX_ATK = 50.0f;			//攻撃力
+	static constexpr float MAX_DEF = 100.0f;		//防御力
+
 	//格納するカードの強さ
 	static constexpr CardBase::CARD_STATUS CARD_POWS[20] = {
 		{0,CARD_TYPE::ATTACK},

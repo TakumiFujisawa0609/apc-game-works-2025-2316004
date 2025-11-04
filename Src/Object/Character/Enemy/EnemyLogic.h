@@ -36,7 +36,11 @@ private:
 	//プレイヤーまでの距離詰めのクールタイム
 	static constexpr float MOVE_COOL_TIME = 0.5f;
 
-
+	//角度関連
+	static constexpr float FLONT_DEG = 0.0f;
+	static constexpr float LEFT_DEG = 270.0f;
+	static constexpr float BACK_DEG = 180.0f;
+	static constexpr float RIGHT_DEG = 90.0f;
 
 
 

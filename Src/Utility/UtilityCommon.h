@@ -85,45 +85,35 @@ public:
 
 	//待機時間
 	static bool IsTimeOver(float& totalTime, const float& waitTime);
-
-	/// <summary>
-	/// 範囲外の値を指定した範囲に収める
-	/// </summary>
-	/// <param name="index"></param>収めたい値
-	/// <param name="max"></param>範囲の最大値
-	/// <returns></returns>0からN-1の範囲に補正した値
+	
+	/// @brief 範囲外の値を指定した範囲に収める
+	/// @param index 収めたい値
+	/// @param max 範囲の最大値
+	/// @return 0からN-1の範囲に補正した値
 	static int WrapIndex(int index, int max);
-
-	/// <summary>
-	/// イーズイン
-	/// </summary>
-	/// <param name="time">時間</param>
-	/// <param name="start">開始値</param>
-	/// <param name="change">変化量</param>
-	/// /// <returns>計算結果</returns>
+	
+	/// @brief イーズイン
+	/// @param time 時間
+	/// @param start 開始値
+	/// @param change 変化量
+	/// @return 計算結果
 	static float EaseInQuad(const float time, const float start, const float change);
 
-	/// <summary>
-	/// イーズアウト
-	/// </summary>
-	/// <param name="time">時間</param>
-	/// <param name="start">開始値</param>
-	/// <param name="change">変化量</param>
-	/// <returns>計算結果</returns>
+	/// @brief イーズアウト
+	/// @param time 時間
+	/// @param start 開始値
+	/// @param change 変化量
+	/// @return 計算結果
 	static float EaseOutQuad(const float time, const float start, const float change);
-
-	/// <summary>
-	/// CSVファイルの読み込み
-	/// </summary>
-	/// <param name="filePath">ファイルパス</param>
-	/// <returns>読み込んだデータ</returns>
+	
+	/// @brief CSVファイルの読み込み
+	/// @param filePath ファイルパス
+	/// @return 読み込んだデータ
 	static std::vector<std::vector<int>> LoadCSVData(const std::wstring& filePath);
 	
-	/// <summary>
-	/// stringオブジェクトから(SJIS)からwstringオブジェクトに変換
-	/// </summary>
-	/// <param name="str"></param>stringオブジェクト
-	/// <returns></returns>wstringオブジェクト
+	/// @brief stringオブジェクトから(SJIS)からwstringオブジェクトに変換
+	/// @param str stringオブジェクト
+	/// @return wstringオブジェクト
 	static std::wstring GetWStringFromString(const std::string& str);
 
 

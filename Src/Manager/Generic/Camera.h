@@ -23,6 +23,7 @@ public:
 
 	// 追従位置からカメラ位置までの相対座標
 	static constexpr VECTOR LOCAL_F2C_POS = { 0.0f, 100.0f, -400.0f };
+	static constexpr VECTOR TARGET_CAM_LOCAL_F2C_POS = { 0.0f, 500.0f, -700.0f };
 
 	// 追従位置から注視点までの相対座標
 	static constexpr VECTOR LOCAL_F2T_POS = { 0.0f, 0.0f, 200.0f };
@@ -40,7 +41,8 @@ public:
 		NONE,
 		FIXED_POINT,
 		FOLLOW,
-		SELF_SHOT
+		SELF_SHOT,
+		TARGET_POINT
 	};
 
 	Camera(void);
@@ -69,12 +71,18 @@ public:
 	void ChangeMode(MODE mode);
 
 	// 追従対象の設定
-	void SetFollow(const Transform* follow);
+	void SetFollow(const Transform* _follow);
+
+	//ターゲットとする対象の設定
+	void SetTarget(const Transform* _target);
 
 private:
 
 	// カメラが追従対象とするTransform
 	const Transform* followTransform_;
+
+	//カメラの注視点とするターゲットTransform
+	const Transform* targetTransform_;
 
 	// カメラモード
 	MODE mode_;
@@ -103,13 +111,20 @@ private:
 	// 追従対象との位置同期を取る
 	void SyncFollow(void);
 
+	//ターゲットカメラの追従
+	void SyncTargetFollow(void);
+
 	// カメラ操作
 	void ProcessRot(void);
+
+	//敵へのターゲットカメラ
+	void TargetCamera(void);
 
 	// モード別更新ステップ
 	void SetBeforeDrawFixedPoint(void);
 	void SetBeforeDrawFollow(void);
 	void SetBeforeDrawSelfShot(void);
+	void SetBeforeDrawTargetPoint(void);
 
 };
 

@@ -66,7 +66,7 @@ void Player::Load(void)
 
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED*2.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
@@ -104,6 +104,10 @@ void Player::Load(void)
 	//アクション
 	action_ = std::make_unique<ActionController>(*this,*logic_,trans_,*deck_,*animationController_,padNum_);
 	action_->Load();
+
+	//各ステータスの設定
+	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
+
 }
 
 void Player::Init(void)
@@ -139,7 +143,7 @@ void Player::Init(void)
 
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
+	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_,status_.speed);
 	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_,*this,jumpPow_);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION,*action_, *this, *deck_);

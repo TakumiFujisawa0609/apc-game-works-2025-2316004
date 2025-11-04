@@ -26,6 +26,9 @@ void InputManager::Init(void)
 	InputManager::GetInstance().Add(KEY_INPUT_LCONTROL);
 	//ポーズ
 	InputManager::GetInstance().Add(KEY_INPUT_P);
+	//ターゲットロックオンカメラ切り替え
+	InputManager::GetInstance().Add(KEY_INPUT_T);
+
 
 	//選択
 	InputManager::GetInstance().Add(KEY_INPUT_DOWN);

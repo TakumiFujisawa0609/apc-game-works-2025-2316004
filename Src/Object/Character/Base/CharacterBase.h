@@ -27,7 +27,7 @@ public:
 	static constexpr float TIME_ROT = 0.1f;
 
 	//最大ＨＰ
-	static constexpr int HP_MAX = 200;
+	static constexpr float HP_MAX = 200.0f;
 
 	// アニメーション種別
 	enum class ANIM_TYPE
@@ -56,12 +56,13 @@ public:
 		VECTOR dir_;			//方向
 	};
 
+	//各ステータス
 	struct STATUS
 	{
-		int maxHp_= HP_MAX;			//最大体力
-		int hp_ = maxHp_;	//体力
-		int atk_;			//攻撃力
-		//int def_;			//防御力
+		float speed;		//移動速度
+		float hp = HP_MAX;	//体力
+		float atk;			//攻撃力
+		float def;			//防御力
 	};
 
 
@@ -227,15 +228,19 @@ protected:
 	ROTATION charaRot_;
 	//ステータス
 	STATUS status_;
+	
+	//ステータス
+	STATUS maxStatus_;
 	//カードUI(とりあえず)
 	std::unique_ptr<CardUI>cardUI_;
 	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
 	bool isDamage_;
 
 
-	/// @brief 移動後座標などの更新
-	/// @param  
+	//移動後座標などの更新
 	void UpdatePost(void);
+	//ステータスの設定
+	void SetStatus(const float& _spd, const float& _hp, const float& _atk, const float& _def);
 private:
 
 };

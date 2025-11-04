@@ -6,10 +6,11 @@
 #include"../../Common/AnimationController.h"
 #include "Run.h"
 
-Run::Run(ActionController& _actCntl):
-	ActionBase(_actCntl)
+Run::Run(ActionController& _actCntl, float& _speed):
+	ActionBase(_actCntl),
+	moveSpd_(_speed)
 {
-	speed_ = MOVE_SPEED;
+	speed_ = moveSpd_;
 }
 
 Run::~Run(void)

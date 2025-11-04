@@ -11,6 +11,12 @@ Collider::Collider(ObjectBase& _parent, const std::set<TAG> _tags, std::unique_p
 {
 	isHit_ = false;
 	isDead_ = false;
+
+	tagTable_.emplace_back(TAG::PLAYER1);
+	tagTable_.emplace_back(TAG::ENEMY1);
+	tagTable_.emplace_back(TAG::STAGE);
+	tagTable_.emplace_back(TAG::NML_ATK);
+	tagTable_.emplace_back(TAG::ROAR_ATK);
 }
 
 Collider::~Collider(void)

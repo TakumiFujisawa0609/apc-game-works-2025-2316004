@@ -18,7 +18,7 @@ public:
 	static constexpr float HIT_RANGE_GOAL = 600.0f;		//終了地点の当たり判定距離
 	static constexpr float HIT_RANGE_TARGET = 2500.0f;	//ターゲット用の当たり判定距離
 	static constexpr float HIT_RANGE_WIND = 2500.0f;	//風用の当たり判定距離
-	static constexpr float HIT_RANGE_STAGE = 10000.0f;	//風用の当たり判定距離
+	static constexpr float HIT_RANGE_STAGE = 30000.0f;	//風用の当たり判定距離
 
 	//更新用
 	static constexpr int COL_UPDATE_FRAME = 0;		//更新フレーム
@@ -66,6 +66,9 @@ private:
 	//当たり判定距離の二乗
 	std::map<Collider::TAG, float> hitRange_;
 
+	////ソート時の当たり判定優先順位
+	//std::map<Collider::TAG>
+
 	//当たり判定するフレーム
 	int updateFrame_;
 
@@ -110,6 +113,8 @@ private:
 	/// <param name="_col2">2つ目のコライダ</param>
 	/// <returns>true:当たった</returns>
 	bool IsCollision(const std::weak_ptr<Collider> _col1, const std::weak_ptr<Collider> _col2);
+
+	Collider::TAG GetTopTags(const std::weak_ptr<Collider> _col);
 
 };
 

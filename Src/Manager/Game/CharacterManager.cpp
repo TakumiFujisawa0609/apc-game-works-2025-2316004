@@ -15,6 +15,7 @@ void CharacterManager::Load(void)
 
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
 	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform());
+	SceneManager::GetInstance().GetCamera().lock()->SetTarget(&enemy_->GetTransform());
 }
 
 void CharacterManager::Init(void)
@@ -42,7 +43,7 @@ void CharacterManager::Release(void)
 }
 const bool CharacterManager::IsSceneChageCondition(void) const
 {
-	return enemy_->GetStatus().hp_ <= 0;
+	return enemy_->GetStatus().hp <= 0;
 }
 CharacterManager::CharacterManager(void)
 {

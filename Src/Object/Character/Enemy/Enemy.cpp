@@ -71,11 +71,14 @@ void Enemy::Init(void)
 	logic_ = std::make_unique<EnemyLogic>(playerChara_,trans_);
 	logic_->Init();
 
+	//各ステータスの設定
+	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
+
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
 
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_);
+	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_,status_.speed);
 	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
   	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
@@ -87,10 +90,10 @@ void Enemy::Init(void)
 	MakeCollider({ tag_ }, std::move(geo));
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
-	MakeCollider({ tag_ }, std::move(geo));
+	MakeCollider({ tag_ }, std::move(geo),{Collider::TAG::NML_ATK});
 	//上下ライン
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
-	MakeCollider({ tag_ }, std::move(geo));
+	MakeCollider({ tag_ }, std::move(geo), { Collider::TAG::NML_ATK });
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 
@@ -112,7 +115,12 @@ void Enemy::Init(void)
 void Enemy::Update(void)
 {
 	animationController_->Update();
-	logic_->Update();
+
+	//static VECTOR dirDown = trans_.GetDown();
+	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
+	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
+
+	//logic_->Update();
 	action_->Update();
 	//cardUI_->Update();
 	//回転の同期
@@ -138,7 +146,7 @@ void Enemy::Draw(void)
 	const int BOX_END_X = BOX_START_X+400;
 	const int BOX_END_Y = BOX_START_Y+30;
 
-	float hpPer = static_cast<float>(status_.hp_) / static_cast<float>(status_.maxHp_);
+	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 	float hpBoxEnd= hpPer * 400.0f;
 	int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
 	DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);

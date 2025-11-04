@@ -20,6 +20,11 @@ void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 {
 	//コライダの追加
 	colliders_.push_back(_collider);
+	std::vector<Collider::TAG> priority = { Collider::TAG::PLAYER1,Collider::TAG::ENEMY1 };
+
+	std::sort(colliders_.begin(), colliders_.end(), [this](std::weak_ptr<Collider> a, std::weak_ptr<Collider> b) {
+		return static_cast<int>(GetTopTags(a)) < static_cast<int>(GetTopTags(b));
+		});
 }
 
 void CollisionManager::Sweep(void)
@@ -183,6 +188,9 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 	//双方のタグ
 	auto& tags1 = colliders_[_col1Num]->GetTags();
 	auto& tags2 = colliders_[_col2Num]->GetTags();
+
+
+
 	
 	//1人目のタグ
 	for (auto tag1 : tags1)
@@ -206,12 +214,40 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 		}
 	}
 
+
+
+	//双方の当たり判定しないタグか
 	//双方の当たり判定しないタグ
 	auto& notHitTags1 = colliders_[_col1Num]->GetNotHitTags();
 	auto& notHitTags2 = colliders_[_col2Num]->GetNotHitTags();
 
-	//双方の当たり判定しないタグか
-	
+	//1人目のタグ
+	for (auto tag1 : colliders_[_col1Num]->GetTags())
+	{
+		//2人目の当たり判定しないタグ
+		for (auto notColTag2 : colliders_[_col2Num]->GetNotHitTags())
+		{
+			if (tag1 == notColTag2)
+			{
+				//1人目のタグが2人目の当たり判定しないタグと同一だった
+				return false;
+			}
+		}
+	}
+
+	//2人目のタグ
+	for (auto tag2 : colliders_[_col2Num]->GetTags())
+	{
+		//1人目の当たり判定しないタグ
+		for (auto notColTag1 : colliders_[_col1Num]->GetNotHitTags())
+		{
+			if (tag2 == notColTag1)
+			{
+				//2人目のタグが1人目の当たり判定しないタグと同一だった
+				return false;
+			}
+		}
+	}
 
 	//全判定をクリアしたので当たり判定をする
 	return true;
@@ -255,4 +291,10 @@ bool CollisionManager::IsCollision(const std::weak_ptr<Collider> _col1, const st
 	
 	//当たり判定
 	return ret;
+}
+
+Collider::TAG CollisionManager::GetTopTags(const std::weak_ptr<Collider> _col)
+{
+	const auto& tags = _col.lock()->GetTags();
+	return *tags.begin();
 }

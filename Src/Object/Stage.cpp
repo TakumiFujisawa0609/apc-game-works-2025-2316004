@@ -17,8 +17,10 @@ void Stage::Init(void)
 	trans_.scl = { STAGE_SCL ,1.0f ,STAGE_SCL };
 
 	//ƒJƒvƒZƒ‹
+	tag_ = Collider::TAG::STAGE;
+
 	std::unique_ptr<Geometry>geo = std::make_unique<Model>(trans_.pos, trans_.quaRot, trans_.modelId);
-	MakeCollider({ tag_ }, std::move(geo),{Collider::TAG::NML_ATK});
+	MakeCollider({ tag_ }, std::move(geo), { Collider::TAG::NML_ATK,Collider::TAG::ROAR_ATK });
 
 	trans_.Update();
 }

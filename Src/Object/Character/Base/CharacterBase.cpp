@@ -83,6 +83,15 @@ void CharacterBase::UpdatePost(void)
 	trans_.pos = movedPos_;
 }
 
+void CharacterBase::SetStatus(const float& _spd, const float& _hp, const float& _atk, const float& _def)
+{
+	//最大値をセット
+	maxStatus_ = { _spd,_hp,_atk,_def };
+
+	//現在ステータスを最大値にセット
+	status_ = maxStatus_;
+}
+
 void CharacterBase::MoveDirFronInput(void)
 {
 }
@@ -102,7 +111,7 @@ void CharacterBase::Rotate(void)
 
 void CharacterBase::Damage(const int _dam)
 {
-	status_.hp_ -= _dam;
+	status_.hp -= _dam;
 }
 
 void CharacterBase::SetFlinchCnt(const float _flichCnt)

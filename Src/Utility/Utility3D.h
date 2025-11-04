@@ -61,40 +61,34 @@ public:
 
 	// 2つのベクトルの間の角度
 	static double AngleDeg(const VECTOR& from, const VECTOR& to);
-
-	/// <summary>
-	/// とある点からとある点までの移動ベクトルを返す
-	/// </summary>
-	/// <param name="_start">狙う側</param>
-	/// <param name="_goal">向かう先</param>
-	/// <param name="_speed">設定速度(未設定だと、方向ベクトルのみを返す)</param>
-	/// <returns>向かう先までの移動ベクトル</returns>
+	
+	/// @brief とある点からとある点までの移動ベクトルを返す
+	/// @param _start 狙う側
+	/// @param _goal 向かう先
+	/// @param _speed 設定速度(未設定だと、方向ベクトルのみを返す)
+	/// @return 向かう先までの移動ベクトル
 	static const VECTOR GetMoveVec(const VECTOR _start, const VECTOR _goal, const float _speed = 1.0f);
 
-	/// <summary>
-	/// 対象に向かう回転軸
-	/// </summary>
-	/// <param name="_pos">自身の座標</param>
-	/// <param name="_targetPos">対象の座標</param>
-	/// <param name="_needAxis">必要な回転軸</param>
-	/// <returns>回転軸</returns>
+	
+	/// @brief 対象に向かう回転軸
+	/// @param _pos 自身の座標
+	/// @param _targetPos 対象の座標
+	/// @param _needAxis 必要な回転軸
+	/// @return 回転軸
 	static const VECTOR GetRotAxisToTarget(const VECTOR _pos, const VECTOR _targetPos, const VECTOR _needAxis = AXIS_XYZ);
-
-	/// <summary>
-/// 座標を足して回転
-/// </summary>
-/// <param name="_followPos">追従対象の座標</param>
-/// <param name="_followRot">追従対象の角度</param>
-/// <param name="_localPos">相対座標</param>
+	
+	/// @brief 座標を足して回転
+	/// @param _followPos 追従対象の座標
+	/// @param _followRot 追従対象の角度
+	/// @param _localPos 相対座標
+	/// @return ローカルを足した後の座標
 	static const VECTOR AddPosRotate(const VECTOR _followPos, const Quaternion _followRot, const VECTOR _localPos);
-
-	/// <summary>
-	/// 目的の座標を超えたか
-	/// </summary>
-	/// <param name="_startPos">初期座標</param>
-	/// <param name="_goalPos">目的の座標</param>
-	/// <param name="_mydir">自分の方向</param>
-	/// <returns></returns>
+	
+	/// @brief 目的の座標を超えたか
+	/// @param _startPos 初期座標
+	/// @param _goalPos 目的の座標
+	/// @param _mydir 自分の方向
+	/// @return 
 	bool IsBeyondGoalPos(const VECTOR _startPos, const VECTOR _goalPos, const VECTOR _mydir);
 
 	/// @brief ベクトルの反転

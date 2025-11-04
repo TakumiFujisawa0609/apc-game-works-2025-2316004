@@ -31,8 +31,10 @@ void EnemyLogic::Update(void)
 	moveDir_ = Utility3D::VECTOR_ZERO;
 	VECTOR playerPos = playerChara_.GetTransform().pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos,playerPos);
+	//y座標までは追従しない
+	targetVec.y = 0.0f;	
 	distance_ = Utility3D::Distance(myTrans_.pos, playerPos);
-	//moveDir_ = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
+	moveDir_ = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 
 	moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
 	cardCoolCnt_ -= scnMng_.GetDeltaTime();
@@ -70,19 +72,42 @@ void EnemyLogic::Update(void)
 
 void EnemyLogic::DebugUpdate(void)
 {
-	//デバッグ用の入力処理
-	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
+	//移動角度を決める
+	if (InputManager::GetInstance().IsNew(KEY_INPUT_UP))
 	{
-		isAct_.isCardMoveLeft = true;
+		moveDeg_ = FLONT_DEG;
+		moveDir_ = Utility3D::DIR_F;
 	}
-	else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RIGHT))
+	else if (InputManager::GetInstance().IsNew(KEY_INPUT_LEFT))
 	{
-		isAct_.isCardMoveRight = true;
+		moveDeg_ = LEFT_DEG;
+		moveDir_ = Utility3D::DIR_L;
 	}
-	else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RCONTROL))
+	else if (InputManager::GetInstance().IsNew(KEY_INPUT_DOWN))
 	{
-		isAct_.isCardUse = true;
+		moveDeg_ = BACK_DEG;
+		moveDir_ = Utility3D::DIR_B;
 	}
+	else if (InputManager::GetInstance().IsNew(KEY_INPUT_RIGHT))
+	{
+		moveDeg_ = RIGHT_DEG;
+		moveDir_ = Utility3D::DIR_R;
+	}
+
+
+	////デバッグ用の入力処理
+	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
+	//{
+	//	isAct_.isCardMoveLeft = true;
+	//}
+	//else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RIGHT))
+	//{
+	//	isAct_.isCardMoveRight = true;
+	//}
+	//else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RCONTROL))
+	//{
+	//	isAct_.isCardUse = true;
+	//}
 }
 
 void EnemyLogic::DebugDraw(void)

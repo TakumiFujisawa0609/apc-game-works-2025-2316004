@@ -24,6 +24,7 @@ CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _chara
 
 CardActionBase::~CardActionBase(void)
 {
+	atkStatusTable_.clear();
 }
 
 void CardActionBase::Init(void)
