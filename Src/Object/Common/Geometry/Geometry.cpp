@@ -42,7 +42,8 @@ Geometry::Geometry(const VECTOR& _pos, const Quaternion& _rot, const float& _rad
 	hitInfo_({}),
 	localPosPoint1_(_localPosPoint1),
 	localPosPoint2_(_localPosPoint2),
-	obb_(_obb)
+	obb_(_obb),
+	parentModelId_(_parentModelId)
 
 {
 }
