@@ -37,20 +37,20 @@ public:
 	//ƒqƒbƒgŒã‚Ìˆ—
 	void HitAfter(void)override;
 
-	//”¼Œa‚Ìæ“¾
-	inline const float GetRadius(void)const { return radius_; }
+	////”¼Œa‚Ìæ“¾
+	//inline const float GetRadius(void)const { return radius_; }
 
-	//”¼Œa‚Ìİ’è
-	inline void SetRadius(const float _radius) { radius_ = _radius; }
+	////”¼Œa‚Ìİ’è
+	//inline void SetRadius(const float _radius) { radius_ = _radius; }
 
-	//“–‚½‚Á‚½‚Ìî•ñæ“¾
-	inline const MV1_COLL_RESULT_POLY_DIM& GetHitInfo(void)const { return hitInfo_; }
+	////“–‚½‚Á‚½‚Ìî•ñæ“¾
+	//inline const MV1_COLL_RESULT_POLY_DIM& GetHitInfo(void)const { return hitInfo_; }
 
-	//“–‚½‚Á‚½‚Ìî•ñİ’è
-	inline void SetHitInfo(MV1_COLL_RESULT_POLY_DIM _hitInfo) { std::swap(hitInfo_, _hitInfo); }
+	////“–‚½‚Á‚½‚Ìî•ñİ’è
+	//inline void SetHitInfo(MV1_COLL_RESULT_POLY_DIM _hitInfo) { std::swap(hitInfo_, _hitInfo); }
 
 private:
 
-	float radius_;						//”¼Œa
-	MV1_COLL_RESULT_POLY_DIM hitInfo_;	//“–‚½‚Á‚½‚Ìî•ñ(ƒ‚ƒfƒ‹)
+	//float radius_;						//”¼Œa
+	//MV1_COLL_RESULT_POLY_DIM hitInfo_;	//“–‚½‚Á‚½‚Ìî•ñ(ƒ‚ƒfƒ‹)
 };

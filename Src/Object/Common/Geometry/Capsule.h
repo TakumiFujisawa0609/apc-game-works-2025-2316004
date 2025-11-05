@@ -42,39 +42,39 @@ public:
 	//ヒット後の処理
 	void HitAfter(void)override;
 
-	// 親Transformからの相対位置を取得
-	inline const VECTOR GetLocalPosTop(void) const { return localPosTop_; }
-	inline const VECTOR GetLocalPosDown(void) const { return localPosDown_; }
+	//// 親Transformからの相対位置を取得
+	//inline const VECTOR GetLocalPosTop(void) const { return localPosPoint1_; }
+	//inline const VECTOR GetLocalPosDown(void) const { return localPosPoint2_; }
 
-	// 親Transformからの相対位置をセット
-	inline void SetLocalPosTop(const VECTOR& _pos) { localPosTop_ = _pos; }
-	inline void SetLocalPosDown(const VECTOR& _pos) { localPosDown_ = _pos; }
+	//// 親Transformからの相対位置をセット
+	//inline void SetLocalPosTop(const VECTOR& _pos) { localPosPoint1_ = _pos; }
+	//inline void SetLocalPosDown(const VECTOR& _pos) { localPosPoint2_ = _pos; }
 
-	// ワールド座標を取得
-	inline const VECTOR GetPosTop(void) const { return GetRotPos(localPosTop_); }
-	inline const VECTOR GetPosDown(void) const { return GetRotPos(localPosDown_); }
+	//// ワールド座標を取得
+	//inline const VECTOR GetPosTop(void) const { return GetRotPos(localPosPoint1_); }
+	//inline const VECTOR GetPosDown(void) const { return GetRotPos(localPosPoint2_); }
 
-	// 半径
-	inline const float GetRadius(void) const { return radius_; }
-	inline void SetRadius(float _radius) { radius_ = _radius; }
+	//// 半径
+	//inline const float GetRadius(void) const { return radius_; }
+	//inline void SetRadius(float _radius) { radius_ = _radius; }
 
-	// 高さ
-	inline const float GetHeight(void) const { return localPosTop_.y; }
+	//// 高さ
+	//inline const float GetHeight(void) const { return localPosPoint1_.y; }
 
-	// カプセルの中心座標
-	inline const VECTOR GetCenter(void) const;
+	//// カプセルの中心座標
+	//inline const VECTOR GetCenter(void) const;
 
-	//当たった時の情報取得
-	inline const MV1_COLL_RESULT_POLY_DIM& GetHitInfo(void)const { return hitInfo_; }
+	////当たった時の情報取得
+	//inline const MV1_COLL_RESULT_POLY_DIM& GetHitInfo(void)const { return hitInfo_; }
 
-	//当たった時の情報設定
-	inline void SetHitInfo(MV1_COLL_RESULT_POLY_DIM _hitInfo) { std::swap(hitInfo_, _hitInfo); }
+	////当たった時の情報設定
+	//inline void SetHitInfo(MV1_COLL_RESULT_POLY_DIM _hitInfo) { std::swap(hitInfo_, _hitInfo); }
 
 private:
 
-	VECTOR localPosTop_;	// 親Transformからの相対位置(上側)
-	VECTOR localPosDown_;	// 親Transformからの相対位置(下側)
-	float radius_;			// 半径
+	//VECTOR localPosPoint1_;	// 親Transformからの相対位置(上側)
+	//VECTOR localPosPoint2_;	// 親Transformからの相対位置(下側)
+	//float radius_;			// 半径
 
-	MV1_COLL_RESULT_POLY_DIM hitInfo_;	//当たった時の情報(球、カプセル)
+	//MV1_COLL_RESULT_POLY_DIM hitInfo_;	//当たった時の情報(球、カプセル)
 };

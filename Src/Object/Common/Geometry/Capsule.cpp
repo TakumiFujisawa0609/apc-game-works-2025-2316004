@@ -10,19 +10,17 @@
 //カプセル
 //***************************************************
 
-Capsule::Capsule(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosTop, const VECTOR _localPosDown, const float _radius) : Geometry(_pos,_rot),
-	localPosTop_(_localPosTop),
-	localPosDown_(_localPosDown),
-	radius_(_radius)
+Capsule::Capsule(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosTop, const VECTOR _localPosDown, const float _radius) : 
+	Geometry(_pos,_rot,_radius,_localPosTop,_localPosDown,{},-1)
+	//localPosPoint1_(_localPosTop),
+	//localPosPoint2_(_localPosDown),
+	//radius_(_radius)
 {
 	std::memset(&hitInfo_, 0, sizeof(hitInfo_));
 }
 
-Capsule::Capsule(const Capsule& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : Geometry(_pos,_rot)
+Capsule::Capsule(const Capsule& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : Geometry(_pos, _rot, _copyBase.GetRadius(), _copyBase.GetLocalPosPoint1(), _copyBase.GetLocalPosPoint2(), {}, -1)
 {
-	radius_ = _copyBase.GetRadius();
-	localPosTop_ = _copyBase.GetLocalPosTop();
-	localPosDown_ = _copyBase.GetLocalPosDown();
 	std::memset(&hitInfo_, 0, sizeof(hitInfo_));
 }
 
@@ -33,11 +31,11 @@ Capsule::~Capsule(void)
 void Capsule::Draw(void)
 {
 	// 上の球体
-	VECTOR pos1 = GetPosTop();
+	VECTOR pos1 = GetPosPoint1();
 	DrawSphere3D(pos1, radius_, 5, NORMAL_COLOR, NORMAL_COLOR, false);
 
 	// 下の球体
-	VECTOR pos2 = GetPosDown();
+	VECTOR pos2 = GetPosPoint2();
 	DrawSphere3D(pos2, radius_, 5, NORMAL_COLOR, NORMAL_COLOR, false);
 
 	VECTOR dir;
@@ -94,9 +92,9 @@ const bool Capsule::IsHit(Sphere& _sphere)
 
 const bool Capsule::IsHit(Capsule& _capsule)
 {
-	VECTOR d1 = VSub(GetPosDown(), GetPosTop());					// 線分1の方向ベクトル
-	VECTOR d2 = VSub(_capsule.GetPosDown(), _capsule.GetPosTop());	// 線分2の方向ベクトル
-	VECTOR r = VSub(GetPosTop(), _capsule.GetPosTop());
+	VECTOR d1 = VSub(GetPosPoint2(), GetPosPoint1());					// 線分1の方向ベクトル
+	VECTOR d2 = VSub(_capsule.GetPosPoint2(), _capsule.GetPosPoint1());	// 線分2の方向ベクトル
+	VECTOR r = VSub(GetPosPoint1(), _capsule.GetPosPoint1());
 
 	float a = VDot(d1, d1); // d1・d1
 	float e = VDot(d2, d2); // d2・d2
@@ -130,8 +128,8 @@ const bool Capsule::IsHit(Capsule& _capsule)
 		s = std::clamp((b - c) / a, 0.0f, 1.0f);
 	}
 
-	VECTOR c1 = VAdd(GetPosTop(), VScale(d1, s));
-	VECTOR c2 = VAdd(_capsule.GetPosTop(), VScale(d2, t));
+	VECTOR c1 = VAdd(GetPosPoint1(), VScale(d1, s));
+	VECTOR c2 = VAdd(_capsule.GetPosPoint1(), VScale(d2, t));
 	float distance = VSize(VSub(c1, c2));
 
 	//衝突したか
@@ -141,8 +139,8 @@ const bool Capsule::IsHit(Capsule& _capsule)
 const bool Capsule::IsHit(Line& _line)
 {
 	VECTOR u = VSub(_line.GetPosPoint2(), _line.GetPosPoint1());
-	VECTOR v = VSub(GetPosDown(), GetPosTop());
-	VECTOR w = VSub(_line.GetPosPoint1(), GetPosTop());
+	VECTOR v = VSub(GetPosPoint2(), GetPosPoint1());
+	VECTOR w = VSub(_line.GetPosPoint1(), GetPosPoint1());
 
 	float a = VDot(u, u);
 	float b = VDot(u, v);
@@ -164,7 +162,7 @@ const bool Capsule::IsHit(Line& _line)
 	s = std::clamp(s, 0.0f, 1.0f);
 
 	VECTOR closest1 = VAdd(_line.GetPosPoint1(), VScale(u, s));
-	VECTOR closest2 = VAdd(GetPosTop(), VScale(v, t));
+	VECTOR closest2 = VAdd(GetPosPoint1(), VScale(v, t));
 	VECTOR diff = VSub(closest1, closest2);
 
 	float distance = sqrt(VDot(diff, diff));
@@ -184,11 +182,11 @@ void Capsule::HitAfter(void)
 	}
 }
 
-const VECTOR Capsule::GetCenter(void) const
-{
-	VECTOR top = GetPosTop();
-	VECTOR down = GetPosDown();
-
-	VECTOR diff = VSub(top, down);
-	return VAdd(down, VScale(diff, 0.5f));
-}
+//const VECTOR Capsule::GetCenter(void) const
+//{
+//	VECTOR top = GetPosPoint1();
+//	VECTOR down = GetPosPoint2();
+//
+//	VECTOR diff = VSub(top, down);
+//	return VAdd(down, VScale(diff, 0.5f));
+//}
