@@ -8,6 +8,7 @@
 #include "../../Object/Common/Transform.h"
 #include"../../Manager/Generic/InputManager.h"
 #include"../../Manager/Generic/InputManagerS.h"
+#include"../../Manager/Generic/SceneManager.h"
 #include "Camera.h"
 
 Camera::Camera(void)
@@ -18,6 +19,8 @@ Camera::Camera(void)
 	pos_ = Utility3D::VECTOR_ZERO;
 	targetPos_ = Utility3D::VECTOR_ZERO;
 	followTransform_ = nullptr;
+	isChangingCamera_ = false;
+	changeTargetLerpCnt_ = CHANGE_TARGET_LERP_TIME;
 }
 
 Camera::~Camera(void)
@@ -26,9 +29,15 @@ Camera::~Camera(void)
 
 void Camera::Init(void)
 {
+	changeMode_ = {
+		{MODE::FIXED_POINT,[this]() {ChangeFixedPoint(); }},
+		{MODE::FOLLOW,[this]() {ChangeFollow(); }},
+		{MODE::SELF_SHOT,[this]() {ChangeSelfShot(); }},
+		{MODE::TARGET_POINT,[this]() {ChangeTargetCamera(); }},
+		{MODE::CHANGE_TARGET,[this]() {ChangeTargetLerp(); }}
+	};
 
 	ChangeMode(MODE::FIXED_POINT);
-
 }
 
 void Camera::Update(void)
@@ -41,17 +50,8 @@ void Camera::SetBeforeDraw(void)
 	// クリップ距離を設定する(SetDrawScreenでリセットされる)
 	SetCameraNearFar(CAMERA_NEAR, CAMERA_FAR);
 
-	switch (mode_)
-	{
-	case Camera::MODE::FIXED_POINT:
-		SetBeforeDrawFixedPoint();
-		break;
-	case Camera::MODE::FOLLOW:
-		SetBeforeDrawFollow();
-		break;
-	case Camera::MODE::TARGET_POINT:
-		SetBeforeDrawTargetPoint();
-	}
+	//モード更新
+	modeUpdate_();
 
 	// カメラの設定(位置と注視点による制御)
 	SetCameraPositionAndTargetAndUpVec(
@@ -113,19 +113,20 @@ void Camera::ChangeMode(MODE mode)
 {
 
 	// カメラの初期設定
-	SetDefault();
-
+	//SetDefault();
+	if (mode_ == mode)return;
 	// カメラモードの変更
 	mode_ = mode;
+	changeMode_[mode_]();
 
-	// 変更時の初期化処理
-	switch (mode_)
-	{
-	case Camera::MODE::FIXED_POINT:
-		break;
-	case Camera::MODE::FOLLOW:
-		break;
-	}
+	//// 変更時の初期化処理
+	//switch (mode_)
+	//{
+	//case Camera::MODE::FIXED_POINT:
+	//	break;
+	//case Camera::MODE::FOLLOW:
+	//	break;
+	//}
 
 }
 
@@ -208,7 +209,7 @@ void Camera::SyncTargetFollow(void)
 	// 注視点(通常重力でいうところのY値を追従対象と同じにする)
 	localPos = rotOutX_.PosAxis(LOCAL_F2T_POS);
 	//targetPos_ = VAdd(followPos, localPos);
-	targetPos_ = VAdd(targetPos, localPos);
+	//targetPos_ = VAdd(targetPos, localPos);
 
 	// カメラ位置
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
@@ -252,24 +253,34 @@ void Camera::ProcessRot(void)
 
 }
 
-bool Camera::SmoothChangeCamera(void)
+void Camera::SmoothChangeCamera(void)
 {
+
 	// 同期先の位置	
 	VECTOR followPos = followTransform_->pos;
 	VECTOR targetPos = targetTransform_->pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(followPos, targetPos);
 	targetVec.y = 0.0f;
+
 	VECTOR targetRot = Utility3D::GetRotAxisToTarget(followPos, targetPos, Utility3D::AXIS_Y);
+
+	//補完割合
+	double lerpRate = (CHANGE_TARGET_LERP_TIME - changeTargetLerpCnt_) / CHANGE_TARGET_LERP_TIME;
 
 	// 重力の方向制御に従う
 	Quaternion gRot = Quaternion::Euler(Utility3D::VECTOR_ZERO);
 
 	// 正面から設定されたY軸分、回転させる
-	//rotOutX_ = gRot.Mult(Quaternion::AngleAxis(angles_.y, Utility3D::AXIS_Y));
-	rotOutX_ = gRot.Mult(Quaternion::AngleAxis(static_cast<double>(targetRot.y), Utility3D::AXIS_Y));
+	Quaternion goalrotOutX = gRot.Mult(Quaternion::AngleAxis(static_cast<double>(targetRot.y), Utility3D::AXIS_Y));
 
 	// 正面から設定されたX軸分、回転させる
-	rot_ = rotOutX_.Mult(Quaternion::AngleAxis(static_cast<double>(targetRot.x), Utility3D::AXIS_X));
+	Quaternion goalrot = rotOutX_.Mult(Quaternion::AngleAxis(static_cast<double>(targetRot.x), Utility3D::AXIS_X));
+	if (changeTargetLerpCnt_ > 0.0)
+	{
+		rotOutX_.Slerp(rotOutX_, goalrotOutX, lerpRate);
+		rot_.Slerp(rot_, goalrot, lerpRate);
+	}
+	
 
 	//カメラ角度の同期
 	angles_ = targetRot;
@@ -279,17 +290,31 @@ bool Camera::SmoothChangeCamera(void)
 	// 注視点(通常重力でいうところのY値を追従対象と同じにする)
 	localPos = rotOutX_.PosAxis(LOCAL_F2T_POS);
 	//targetPos_ = VAdd(followPos, localPos);
-	targetPos_ = VAdd(targetPos, localPos);
+	VECTOR goalTargetPos = VAdd(targetPos, localPos);
+	if (changeTargetLerpCnt_ > 0.0)
+	{
+		targetPos_ = UtilityCommon::Lerp(targetPos_, goalTargetPos, lerpRate);
+	}
+
 
 	// カメラ位置
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
-	pos_ = VAdd(followPos, localPos);
-
+	VECTOR goalPos = VAdd(followPos, localPos);
+	if (changeTargetLerpCnt_ > 0.0)
+	{
+		pos_ = UtilityCommon::Lerp(pos_, goalPos, lerpRate);
+	}
 
 	// カメラの上方向
 	cameraUp_ = gRot.GetUp();
 
-	return true;
+	changeTargetLerpCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+
+	if (changeTargetLerpCnt_ < 0.0)
+	{
+		changeTargetLerpCnt_ = CHANGE_TARGET_LERP_TIME;
+		ChangeMode(Camera::MODE::TARGET_POINT);
+	}
 }
 
 void Camera::SetBeforeDrawFixedPoint(void)
@@ -299,23 +324,25 @@ void Camera::SetBeforeDrawFixedPoint(void)
 
 void Camera::SetBeforeDrawFollow(void)
 {
-
 	// カメラ操作
 	//ProcessRot();
 
 	// 追従対象との相対位置を同期
 	SyncFollow();
 
-
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
 	{
-		ChangeMode(Camera::MODE::TARGET_POINT);
+		ChangeMode(MODE::TARGET_POINT);
 	}
-
 }
 
 void Camera::SetBeforeDrawSelfShot(void)
 {
+}
+
+void Camera::SetBeforeDrawLerpCamera(void)
+{
+	SmoothChangeCamera();
 }
 
 void Camera::SetBeforeDrawTargetPoint(void)
@@ -328,4 +355,33 @@ void Camera::SetBeforeDrawTargetPoint(void)
 	{
 		ChangeMode(Camera::MODE::FOLLOW);
 	}
+}
+
+void Camera::ChangeFixedPoint(void)
+{
+	SetDefault();
+	modeUpdate_ = [this]() {SetBeforeDrawFixedPoint(); };
+}
+
+void Camera::ChangeFollow(void)
+{
+	SetDefault();
+	modeUpdate_ = [this]() {SetBeforeDrawFollow(); };
+}
+
+void Camera::ChangeSelfShot(void)
+{
+	SetDefault();
+	modeUpdate_ = [this]() {SetBeforeDrawSelfShot(); };
+}
+
+void Camera::ChangeTargetLerp(void)
+{
+	modeUpdate_ = [this]() {SetBeforeDrawLerpCamera(); };
+}
+
+void Camera::ChangeTargetCamera(void)
+{
+	SetDefault();
+	modeUpdate_ = [this]() {SetBeforeDrawTargetPoint(); };
 }

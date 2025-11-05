@@ -97,9 +97,6 @@ void Enemy::Init(void)
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 
-
-
-
 	//敵のカードUI生成
 	//cardUI_->Init();
 	//Transformの設定
@@ -120,7 +117,7 @@ void Enemy::Update(void)
 	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
 	//cardUI_->Update();
 	//回転の同期
@@ -143,8 +140,8 @@ void Enemy::Draw(void)
 	//cardUI_->DrawPlayerUI();
 	const int BOX_START_X = 200;
 	const int BOX_START_Y = 50;
-	const int BOX_END_X = BOX_START_X+400;
-	const int BOX_END_Y = BOX_START_Y+30;
+	const int BOX_END_X = BOX_START_X + 400;
+	const int BOX_END_Y = BOX_START_Y + 30;
 
 	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 	float hpBoxEnd= hpPer * 400.0f;

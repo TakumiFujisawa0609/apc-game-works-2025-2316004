@@ -32,6 +32,9 @@ public:
 	static constexpr float LIMIT_X_UP_RAD = 60.0f * (DX_PI_F / 180.0f);
 	static constexpr float LIMIT_X_DW_RAD = 15.0f * (DX_PI_F / 180.0f);
 
+	//ターゲットカメラ遷移時の補完時間
+	static constexpr double CHANGE_TARGET_LERP_TIME = 0.7;
+
 	//カメラ感度
 	static constexpr float FOV_PER = 0.2f;
 	
@@ -42,6 +45,7 @@ public:
 		FIXED_POINT,
 		FOLLOW,
 		SELF_SHOT,
+		CHANGE_TARGET,
 		TARGET_POINT
 	};
 
@@ -87,6 +91,11 @@ private:
 	// カメラモード
 	MODE mode_;
 
+	//カメラ更新
+	std::function<void(void)>modeUpdate_;
+	//遷移
+	std::map<MODE, std::function<void(void)>>changeMode_;
+
 	// カメラの位置
 	VECTOR pos_;
 
@@ -105,6 +114,12 @@ private:
 	// カメラの上方向
 	VECTOR cameraUp_;
 
+	//ターゲットカメラ遷移カウント
+	double changeTargetLerpCnt_;
+
+	//ターゲットカメラ遷移中フラグ
+	bool isChangingCamera_;
+
 	// カメラを初期位置に戻す
 	void SetDefault(void);
 
@@ -121,13 +136,22 @@ private:
 	void TargetCamera(void);
 
 	//スムーズにターゲットカメラに変わる
-	bool SmoothChangeCamera(void);
+	void SmoothChangeCamera(void);
 
 	// モード別更新ステップ
 	void SetBeforeDrawFixedPoint(void);
 	void SetBeforeDrawFollow(void);
 	void SetBeforeDrawSelfShot(void);
+	void SetBeforeDrawLerpCamera(void);
 	void SetBeforeDrawTargetPoint(void);
+
+	//遷移
+	void ChangeFixedPoint(void);
+	void ChangeFollow(void);
+	void ChangeSelfShot(void);
+	void ChangeTargetLerp(void);
+	void ChangeTargetCamera(void);
+
 
 };
 

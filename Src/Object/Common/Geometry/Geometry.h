@@ -48,8 +48,17 @@ public:
 	//{					//”¼Œa
 	//	MV1_COLL_RESULT_POLY_DIM hitInfo_;	//“–‚½‚Á‚½‚Ìî•ñ(ƒ‚ƒfƒ‹)
 	//};
+	struct CAPSULE_INFO
+	{
 
-	struct HIT_INFO
+	};
+
+	struct CUBE_INFO
+	{
+
+	};
+
+	struct LINE_INFO
 	{
 
 	};
@@ -59,6 +68,10 @@ public:
 
 	};
 
+	struct SPHERE_INFO
+	{
+
+	};
 	//Šeí“–‚½‚è”»’è
 	virtual const bool IsHit(Geometry& _geometry) = 0;
 	virtual const bool IsHit(Model& _model) = 0;
