@@ -252,6 +252,44 @@ void Camera::ProcessRot(void)
 
 }
 
+bool Camera::SmoothChangeCamera(void)
+{
+	// 同期先の位置	
+	VECTOR followPos = followTransform_->pos;
+	VECTOR targetPos = targetTransform_->pos;
+	VECTOR targetVec = Utility3D::GetMoveVec(followPos, targetPos);
+	targetVec.y = 0.0f;
+	VECTOR targetRot = Utility3D::GetRotAxisToTarget(followPos, targetPos, Utility3D::AXIS_Y);
+
+	// 重力の方向制御に従う
+	Quaternion gRot = Quaternion::Euler(Utility3D::VECTOR_ZERO);
+
+	// 正面から設定されたY軸分、回転させる
+	//rotOutX_ = gRot.Mult(Quaternion::AngleAxis(angles_.y, Utility3D::AXIS_Y));
+	rotOutX_ = gRot.Mult(Quaternion::AngleAxis(static_cast<double>(targetRot.y), Utility3D::AXIS_Y));
+
+	// 正面から設定されたX軸分、回転させる
+	rot_ = rotOutX_.Mult(Quaternion::AngleAxis(static_cast<double>(targetRot.x), Utility3D::AXIS_X));
+
+	//カメラ角度の同期
+	angles_ = targetRot;
+
+	VECTOR localPos;
+
+	// 注視点(通常重力でいうところのY値を追従対象と同じにする)
+	localPos = rotOutX_.PosAxis(LOCAL_F2T_POS);
+	//targetPos_ = VAdd(followPos, localPos);
+	targetPos_ = VAdd(targetPos, localPos);
+
+	// カメラ位置
+	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
+	pos_ = VAdd(followPos, localPos);
+
+
+	// カメラの上方向
+	cameraUp_ = gRot.GetUp();
+}
+
 void Camera::SetBeforeDrawFixedPoint(void)
 {
 	// 何もしない

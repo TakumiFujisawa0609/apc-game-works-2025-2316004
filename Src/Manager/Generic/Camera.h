@@ -120,6 +120,9 @@ private:
 	//敵へのターゲットカメラ
 	void TargetCamera(void);
 
+	//スムーズにターゲットカメラに変わる
+	bool SmoothChangeCamera(void);
+
 	// モード別更新ステップ
 	void SetBeforeDrawFixedPoint(void);
 	void SetBeforeDrawFollow(void);
