@@ -9,17 +9,17 @@
 //ê¸
 //***************************************************
 
-Line::Line(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosPoint1, const VECTOR _localPosPoint2) : Geometry(_pos,_rot),
-	localPosPoint1_(_localPosPoint1),
-	localPosPoint2_(_localPosPoint2)
+Line::Line(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosPoint1, const VECTOR _localPosPoint2) : 
+	Geometry(_pos, _rot, 0.0f, _localPosPoint1, _localPosPoint2, {},-1)
+	//localPosPoint1_(_localPosPoint1),
+	//localPosPoint2_(_localPosPoint2)
 {
 	hitInfo_ = {};
 }
 
-Line::Line(const Line& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : Geometry(_pos, _rot)
+Line::Line(const Line& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : 
+	Geometry(_pos, _rot, 0.0f, _copyBase.GetLocalPosPoint1(), _copyBase.GetLocalPosPoint2(), {}, -1)
 {
-	localPosPoint1_ = _copyBase.GetLocalPosPoint1();
-	localPosPoint2_ = _copyBase.GetLocalPosPoint2();
 	hitInfo_ = {};
 }
 

@@ -11,15 +11,13 @@
 //球
 //***************************************************
 
-Sphere::Sphere(const VECTOR& _pos, const float _radius) : Geometry(_pos,Quaternion()),
-	radius_(_radius)
+Sphere::Sphere(const VECTOR& _pos, const float _radius) : Geometry(_pos,Quaternion(),_radius,{},{},{},-1)
 {
 	std::memset(&hitInfo_, 0, sizeof(hitInfo_));
 }
 
-Sphere::Sphere(const Sphere& _copyBase, const VECTOR& _pos) : Geometry(_pos, Quaternion())
+Sphere::Sphere(const Sphere& _copyBase, const VECTOR& _pos) : Geometry(_pos, Quaternion(), _copyBase.GetRadius(), {}, {}, {}, -1)
 {
-	radius_ = _copyBase.GetRadius();
 	std::memset(&hitInfo_, 0, sizeof(hitInfo_));
 }
 
@@ -114,17 +112,17 @@ const bool Sphere::IsHit(Capsule& _capsule)
 	bool ret = false;
 
 	// カプセル球体の中心を繋ぐベクトル
-	VECTOR cap1to2 = VSub(_capsule.GetPosDown(), _capsule.GetPosTop());
+	VECTOR cap1to2 = VSub(_capsule.GetPosPoint2(), _capsule.GetPosPoint1());
 
 	// ベクトルを正規化
 	VECTOR cap1to2ENor = VNorm(cap1to2);
 
 	// カプセル繋ぎの単位ベクトルと、
 	// そのベクトル元から球体へのベクトルの内積を取る
-	float dot = VDot(cap1to2ENor, VSub(GetColPos(), _capsule.GetPosTop()));
+	float dot = VDot(cap1to2ENor, VSub(GetColPos(), _capsule.GetPosPoint1()));
 
 	// 内積で求めた射影距離を使って、カプセル繋ぎ上の座標を取る
-	VECTOR capRidePos = VAdd(_capsule.GetPosTop(), VScale(cap1to2ENor, dot));
+	VECTOR capRidePos = VAdd(_capsule.GetPosPoint1(), VScale(cap1to2ENor, dot));
 
 	// カプセル繋ぎのベクトルの長さを取る
 	float len = sqrt((cap1to2.x * cap1to2.x) + (cap1to2.y * cap1to2.y) + (cap1to2.z * cap1to2.z));
@@ -138,17 +136,17 @@ const bool Sphere::IsHit(Capsule& _capsule)
 	if (rate > 0.0f && rate <= 1.0f)
 	{
 		// ①球体がカプセル繋ぎ上にいる
-		centerPos = VAdd(_capsule.GetPosTop(), VScale(cap1to2ENor, dot));
+		centerPos = VAdd(_capsule.GetPosPoint1(), VScale(cap1to2ENor, dot));
 	}
 	else if (rate > 1.0f)
 	{
 		// ②球体がカプセルの終点側にいる
-		centerPos = _capsule.GetPosDown();
+		centerPos = _capsule.GetPosPoint2();
 	}
 	else if (rate < 0.0f)
 	{
 		// ③球体がカプセルの始点側にいる
-		centerPos = _capsule.GetPosTop();
+		centerPos = _capsule.GetPosPoint1();
 	}
 	else
 	{

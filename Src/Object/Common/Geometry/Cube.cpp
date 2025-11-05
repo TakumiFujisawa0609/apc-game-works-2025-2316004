@@ -12,23 +12,24 @@
 //箱
 //***************************************************
 
-Cube::Cube(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _min, const VECTOR _max) : Geometry(_pos, _rot)
+Cube::Cube(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _min, const VECTOR _max) :
+	Geometry(_pos, _rot, 0.0f, {}, {}, { _min,_max,{} },-1)
 {
-	obb_.vMin = _min;
-	obb_.vMax = _max;
+	//obb_.vMin = _min;
+	//obb_.vMax = _max;
 
 	UpdateObbAxis();
 }
 
-Cube::Cube(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _halfSize) : Geometry(_pos, _rot)
+Cube::Cube(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _halfSize) : Geometry(_pos, _rot, 0.0f, {}, {}, { VScale(_halfSize, -1.0f),_halfSize,{} }, -1)
 {
-	obb_.vMin = VScale(_halfSize, -1.0f);
-	obb_.vMax = _halfSize;
+	//obb_.vMin = VScale(_halfSize, -1.0f);
+	//obb_.vMax = _halfSize;
 
 	UpdateObbAxis();
 }
 
-Cube::Cube(const Cube& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : Geometry(_pos, _rot),obb_(_copyBase.GetObb())
+Cube::Cube(const Cube& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : Geometry(_pos, _rot, 0.0f, {}, {}, _copyBase.GetObb(), -1)/*,obb_(_copyBase.GetObb())*/
 {
 	UpdateObbAxis();
 }
@@ -162,8 +163,8 @@ const bool Cube::IsHit(Capsule& _capsule)
 	);
 
 	// カプセル線分をOBBのローカル空間に変換
-	VECTOR rel1 = VSub(_capsule.GetPosTop(), worldCenter);
-	VECTOR rel2 = VSub(_capsule.GetPosDown(), worldCenter);
+	VECTOR rel1 = VSub(_capsule.GetPosPoint1(), worldCenter);
+	VECTOR rel2 = VSub(_capsule.GetPosPoint2(), worldCenter);
 
 	VECTOR local1 = {
 		VDot(rel1, obb_.axis[0]),
@@ -267,11 +268,11 @@ const bool Cube::IsHit(Line& _line)
 	return true;
 }
 
-void Cube::SetHalfSize(const VECTOR& _halfSize)
-{
-	obb_.vMin = VScale(_halfSize, -1.0f);
-	obb_.vMax = _halfSize;
-}
+//void Cube::SetHalfSize(const VECTOR& _halfSize)
+//{
+//	obb_.vMin = VScale(_halfSize, -1.0f);
+//	obb_.vMax = _halfSize;
+//}
 
 void Cube::UpdateObbAxis(void) 
 {

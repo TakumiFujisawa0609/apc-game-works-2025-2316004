@@ -9,16 +9,18 @@
 //ƒ‚ƒfƒ‹
 //***************************************************
 
-Model::Model(const VECTOR& _pos, const Quaternion& _rot, const int _modelId) : Geometry(_pos, _rot), parentModelId_(_modelId)
+Model::Model(const VECTOR& _pos, const Quaternion& _rot, const int _modelId) : 
+	Geometry(_pos, _rot,0.0f,{},{},{},_modelId)
+	//hitLineInfo_({})/*, parentModelId_(_modelId)*/
 {
-	hitLineInfo_ = {};
 	std::memset(&hitInfo_, 0, sizeof(hitInfo_)); 
 }
 
-Model::Model(const Model& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : Geometry(_pos,_rot)
+Model::Model(const Model& _copyBase, const VECTOR& _pos, const Quaternion& _rot) : 
+	Geometry(_pos, _rot, 0.0f, {}, {}, {}, _copyBase.GetParentModel())
 {
-	parentModelId_ = _copyBase.GetParentModel();
-	hitLineInfo_ = {};
+	//parentModelId_ = _copyBase.GetParentModel();
+	//hitLineInfo_ = {};
 	std::memset(&hitInfo_, 0, sizeof(hitInfo_)); 
 }
 
@@ -68,8 +70,8 @@ const bool Model::IsHit(Sphere& _sphere)
 const bool Model::IsHit(Capsule& _capsule)
 {
 	//”»’è
-	auto col1 = MV1CollCheck_Capsule(GetParentModel(), -1, _capsule.GetPosTop(), _capsule.GetPosDown(), _capsule.GetRadius());
-	auto col2 = MV1CollCheck_Capsule(GetParentModel(), -1, _capsule.GetPosTop(), _capsule.GetPosDown(), _capsule.GetRadius());
+	auto col1 = MV1CollCheck_Capsule(GetParentModel(), -1, _capsule.GetPosPoint1(), _capsule.GetPosPoint2(), _capsule.GetRadius());
+	auto col2 = MV1CollCheck_Capsule(GetParentModel(), -1, _capsule.GetPosPoint1(), _capsule.GetPosPoint2(), _capsule.GetRadius());
 
 	//“–‚½‚Á‚½‚©
 	bool ret = col1.HitNum >= 1;
@@ -92,7 +94,7 @@ const bool Model::IsHit(Line& _line)
 	//“–‚½‚Á‚Ä‚¢‚½‚çî•ñXV
 	if (col.HitFlag)
 	{
-		_line.SetHitInfo(col);
+		_line.SetHitLineInfo(col);
 		SetHitLineInfo(col);
 	}
 	return col.HitFlag;

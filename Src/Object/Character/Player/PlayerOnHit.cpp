@@ -94,8 +94,8 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	auto it = std::find(tags.begin(), tags.end(), Collider::TAG::NML_ATK);
 	if (it != tags.end())return;
 
-	Capsule& myCap = dynamic_cast<Capsule&>(colParam_[BODY_SPHERE_COL_NO].lock()->GetGeometry());
-	Capsule& hitCap = dynamic_cast<Capsule&>(_hitCol.lock()->GetGeometry());
+	Geometry& myCap = colParam_[BODY_SPHERE_COL_NO].lock()->GetGeometry();
+	Geometry& hitCap = _hitCol.lock()->GetGeometry();
 	//自分の座標
 	VECTOR myPos = charaObj_.GetTransform().pos;
 	VECTOR hitCharaPos = parentChara.GetTransform().pos;
@@ -152,7 +152,7 @@ void PlayerOnHit::DrawDebug(void)
 
 void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 {
-	Model& hitModel = dynamic_cast<Model&>(const_cast<Geometry&>(_hitCol.lock()->GetGeometry()));
+	Geometry& hitModel = _hitCol.lock()->GetGeometry();
 	//当たったモデルの情報を取得
 	//移動後座標と現在座標で早い移動速度でも対応させる
 	VECTOR hitPos = hitModel.GetHitLineInfo().HitPosition;
@@ -182,8 +182,8 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	if (upDownLine.lock()->IsHit())
 	{
 		//ライン情報の取得
-		Line& upDown = dynamic_cast<Line&>(upDownLine.lock()->GetGeometry());
-		VECTOR hitLinePos = upDown.GetHitInfo().HitPosition;
+		Geometry& upDown =upDownLine.lock()->GetGeometry();
+		VECTOR hitLinePos = upDown.GetHitLineInfo().HitPosition;
 
 		//座標が当たっているライン座標より上のとき、地面と当たる
 		if (movedPos_.y > hitLinePos.y)
@@ -214,7 +214,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	//プレイヤーの体の球が当たったら
 	if (bodyShere.lock()->IsHit())
 	{
-		auto& hitInfo = hitModel.GetHitInfo();
+		auto& hitInfo = hitModel.GetHitModelInfo();
 		for (int i = 0; i < hitInfo.HitNum; i++)
 		{
 			hitPoint_.isSide = true;
