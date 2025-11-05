@@ -101,7 +101,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	VECTOR hitCharaPos = parentChara.GetTransform().pos;
 
 	float dis = Utility3D::Distance(myPos, hitCharaPos);
-	float minDist = myCap->GetRadius() + hitCap->GetRadius();
+	float minDist = myCap.GetRadius() + hitCap.GetRadius();
 	float pushPow = abs(minDist - dis);
 
 	VECTOR vec = Utility3D::GetMoveVec(parentChara.GetTransform().pos,charaObj_.GetTransform().pos );

@@ -288,6 +288,8 @@ bool Camera::SmoothChangeCamera(void)
 
 	// ƒJƒƒ‰‚Ìã•ûŒü
 	cameraUp_ = gRot.GetUp();
+
+	return true;
 }
 
 void Camera::SetBeforeDrawFixedPoint(void)
