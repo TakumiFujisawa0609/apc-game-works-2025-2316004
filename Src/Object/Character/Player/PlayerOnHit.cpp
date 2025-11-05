@@ -94,18 +94,27 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	auto it = std::find(tags.begin(), tags.end(), Collider::TAG::NML_ATK);
 	if (it != tags.end())return;
 
-	Capsule& myCap = dynamic_cast<Capsule&>(colParam_[BODY_SPHERE_COL_NO].lock()->GetGeometry());
-	Capsule& hitCap = dynamic_cast<Capsule&>(_hitCol.lock()->GetGeometry());
+	Capsule* myCap = dynamic_cast<Capsule*>(&colParam_[BODY_SPHERE_COL_NO].lock()->GetGeometry());
+	Capsule* hitCap = dynamic_cast<Capsule*>(&_hitCol.lock()->GetGeometry());
+
+	if (myCap == nullptr || hitCap == nullptr)
+	{
+		return;
+	}
 	//Ž©•ª‚ÌÀ•W
 	VECTOR myPos = charaObj_.GetTransform().pos;
 	VECTOR hitCharaPos = parentChara.GetTransform().pos;
 
 	float dis = Utility3D::Distance(myPos, hitCharaPos);
-	float minDist = myCap.GetRadius() + hitCap.GetRadius();
+	float minDist = myCap->GetRadius() + hitCap->GetRadius();
 	float pushPow = abs(minDist - dis);
 
 	VECTOR vec = Utility3D::GetMoveVec(parentChara.GetTransform().pos,charaObj_.GetTransform().pos );
-	movedPos_ = VAdd(movedPos_,VScale(vec, pushPow));
+	vec.y = 0;
+	//charaObj_.MovedPosMove(vec, pushPow);
+	movedPos_ = VAdd(moveDiff_, VScale(vec, pushPow));
+	//parentChara.MovedPosMove(vec, pushPow);
+	//movedPos_ = VAdd(movedPos_,VScale(vec, pushPow));
 
 }
 

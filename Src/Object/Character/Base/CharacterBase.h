@@ -186,6 +186,11 @@ public:
 	/// @param  
 	/// @return 
 	const PlayerOnHit::HIT_POINT& GetHitPoint(void)const;
+
+	/// @brief 移動量を設定して動かす
+	/// @param _movePow 移動量
+	void MovedPosMove(const VECTOR& _vec,const float& _movePow);
+
 protected:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標

@@ -160,7 +160,7 @@ public:
 private:
 
 	//ステータス関連
-	static constexpr float MOVE_SPEED = 3.0f;		//移動スピード
+	static constexpr float MOVE_SPEED = 17.0f;		//移動スピード
 	static constexpr float MAX_HP = 200.0f;			//体力
 	static constexpr float MAX_ATK = 50.0f;			//攻撃力
 	static constexpr float MAX_DEF = 100.0f;		//防御力

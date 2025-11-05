@@ -133,3 +133,8 @@ const PlayerOnHit::HIT_POINT& CharacterBase::GetHitPoint(void) const
 {
 	return onHit_->GetHitPoint();
 }
+
+void CharacterBase::MovedPosMove(const VECTOR& _vec, const float& _movePow)
+{
+	movedPos_ = VAdd(movedPos_, VScale(_vec, _movePow));
+}
