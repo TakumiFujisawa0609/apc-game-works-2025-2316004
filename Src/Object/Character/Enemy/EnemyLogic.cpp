@@ -53,7 +53,7 @@ void EnemyLogic::Update(void)
 		return;
 	}
 
-	if (cardCoolCnt_ < 0.0f)
+	if (freezeCnt_ < 0.0f)
 	{
 		DesideAction();
 		isAct_.isCardUse = true;
