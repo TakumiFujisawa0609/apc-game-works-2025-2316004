@@ -81,9 +81,6 @@ protected:
 
     //コンボアクション遷移(あれば実装する)
     virtual void ChangeComboAction(void);
-
-	//カード失敗かどうかの監視更新
-	void CardFailureUpdate((const Collider::TAG& _tag));
 private:
 
 };
