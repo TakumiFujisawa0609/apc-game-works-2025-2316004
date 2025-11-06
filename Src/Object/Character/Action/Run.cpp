@@ -44,4 +44,11 @@ void Run::Update(void)
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::JUMP);
 		return;
 	}
+
+	//‰ñ”ğó‘ÔˆÚs
+	if (actionCntl_.GetInput().GetIsAct().isDodge)
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::DODGE);
+		return;
+	}
 }

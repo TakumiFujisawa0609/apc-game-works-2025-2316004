@@ -7,7 +7,7 @@ class EnemyLogic :
     public LogicBase
 {
 public:
-	EnemyLogic(CharacterBase& _playerChara, Transform& _myTrans);
+	EnemyLogic(Transform& _myTrans, CharacterBase& _playerChara);
 	~EnemyLogic(void) override;
 
 	struct AttackWeight {
@@ -42,14 +42,13 @@ private:
 	static constexpr float BACK_DEG = 180.0f;
 	static constexpr float RIGHT_DEG = 90.0f;
 
-
+	//自身のモデル情報
+	Transform& myTrans_;
 
 	//シーンマネージャ
 	SceneManager& scnMng_;
 	//プレイヤー参照
 	CharacterBase& playerChara_;
-	//モデル情報
-	Transform& myTrans_;
 	//カード使用クールタイム
 	float cardCoolCnt_;
 

@@ -18,7 +18,7 @@ void InputManager::Init(void)
 	InputManager::GetInstance().Add(KEY_INPUT_S);
 	InputManager::GetInstance().Add(KEY_INPUT_D);
 
-	//ダッシュ
+	//ドッジ(回避)
 	InputManager::GetInstance().Add(KEY_INPUT_LSHIFT);
 	//カードセレクト
 	InputManager::GetInstance().Add(KEY_INPUT_E);

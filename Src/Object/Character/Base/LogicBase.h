@@ -1,8 +1,13 @@
 #pragma once
 #include<DxLib.h>
+#include "../Object/Common/Transform.h"
+
 class LogicBase
+
 {
+
 public:
+
     //アクションボタンの種類
     enum class ACT_CNTL
     {
@@ -66,12 +71,12 @@ public:
     /// @brief 移動方向の取得
     /// @param  
     /// @return 方向
-    const VECTOR GetDir(void)const { return moveDir_; }
+    const VECTOR& GetDir(void)const { return moveDir_; }
 	
     /// @brief 移動角度の取得
     /// @param  
     /// @return 移動角度
-    const float GetMoveDeg(void)const { return moveDeg_; }
+    const float& GetMoveDeg(void)const { return moveDeg_; }
     
     /// @brief アクション入力の取得
     /// @param  
@@ -83,9 +88,17 @@ public:
     /// @return 攻撃種類
     const ENEMY_ATTACK_TYPE& GetAttackType(void)const { return attackType_; }
 
+
+	/// @brief 方向をモデルの前方向にセット
+	/// @param _trans モデル情報 
+	void SetMoveDirTransformFront(const Transform& _trans) { moveDir_ = _trans.GetForward(); }
+
+#ifdef _DEBUG
     virtual void DebugDraw(void) {};
+#endif // _DEBUG
 
 protected:
+
 	//操作管理用
 	ACT_CNTL actCntl_;
     //移動関連
@@ -97,5 +110,6 @@ protected:
 
     //アクション入力がされたかどうか
     ACT_FLAG isAct_;
+
 };
 

@@ -35,6 +35,7 @@ Enemy::Enemy(CharacterBase& _playerChara):
 
 Enemy::~Enemy(void)
 {
+	collider_.clear();
 }
 void Enemy::Load(void)
 {
@@ -68,7 +69,7 @@ void Enemy::Init(void)
 		//cardUI_->AddCardUi(CARD_POWS[i]);
 	}
 	deck_->Init();
-	logic_ = std::make_unique<EnemyLogic>(playerChara_,trans_);
+	logic_ = std::make_unique<EnemyLogic>(trans_,playerChara_);
 	logic_->Init();
 
 	//各ステータスの設定

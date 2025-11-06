@@ -3,6 +3,14 @@
 #include"../Object/Common/Geometry/Model.h"
 #include "Stage.h"
 
+Stage::Stage(void)
+{
+}
+
+Stage::~Stage(void)
+{
+}
+
 void Stage::Load(void)
 {
 }

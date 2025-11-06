@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include <cmath>
+#include <ranges>
 #include "../Utility/UtilityCommon.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/Generic/SceneManager.h"
@@ -76,14 +77,11 @@ void CardUI::Update(void)
 
 void CardUI::DrawPlayerUI(void)
 {
-	auto visibleCards = visibleCards_;
-	//•`‰æ‚Ì‚Ì‚İ‹t‚É‰ñ‚·
-	visibleCards.reverse();
-	for (auto& card : visibleCards)
+	//‹t‡‚Å•`‰æ
+	for (auto& card : visibleCards_ | std::ranges::views::reverse)
 	{
 		DrawCard(card);
 	}
-
 	//Œ»İ‘I‘ğ’†‚ÌƒJ[ƒh‚ğ‹­’²•\¦
 	DrawCard(*visibleCurrent_);
 

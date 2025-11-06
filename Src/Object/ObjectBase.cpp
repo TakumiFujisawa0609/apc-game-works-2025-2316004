@@ -11,6 +11,7 @@ ObjectBase::ObjectBase(void)
 
 ObjectBase::~ObjectBase(void)
 {
+	collider_.clear();
 }
 void ObjectBase::OnHit(const std::weak_ptr<Collider> _hitCol)
 {

@@ -86,6 +86,8 @@ void CollisionManager::Destroy(void)
 	//コライダの全削除
 	colliders_.clear();
 
+	hitRange_.clear();
+
 	//自身のインスタンス削除
 	delete instance_;
 	instance_ = nullptr;
@@ -119,6 +121,10 @@ CollisionManager::CollisionManager(void)
 
 CollisionManager::~CollisionManager(void)
 {
+	//コライダの全削除
+	colliders_.clear();
+
+	hitRange_.clear();
 }
 
 const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col1, const std::weak_ptr<Collider> _col2) const

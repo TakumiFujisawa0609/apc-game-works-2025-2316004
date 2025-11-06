@@ -24,8 +24,9 @@ public:
 
         //敵のアクション
         SWIP_ATK, //ひっかき攻撃
-        ROAR_ATK,     //咆哮
-        JUMP_ATK, //攻撃アクション3回目
+        ROAR_ATK, //咆哮
+        JUMP_ATK, //ジャンプ攻撃
+		ROLE_ATK,  //ロール攻撃
 
         //共通
         RELOAD, //リロード
@@ -68,8 +69,10 @@ protected:
     void ChangeCardAction(const CARD_ACT_TYPE& _type);
     //攻撃モーション
     void AttackMotion(const ATK_STATUS& _status, const Collider::TAG& _attackTag,const VECTOR& _localPos);
-    //カードの勝敗を常に監視する
-    bool IsCardFailure(void);
+    /// @brief カードの勝敗を常に監視する。負けたらtrueを返し、のけぞり状態にする
+    /// @param _attackTag 使っている当たり判定タグ
+    /// @return 
+    bool IsCardFailure(const Collider::TAG& _attackTag);
     //攻撃終了
     void FinishAttack(const Collider::TAG _attackCol);
 
@@ -78,6 +81,9 @@ protected:
 
     //コンボアクション遷移(あれば実装する)
     virtual void ChangeComboAction(void);
+
+	//カード失敗かどうかの監視更新
+	void CardFailureUpdate((const Collider::TAG& _tag));
 private:
 
 };

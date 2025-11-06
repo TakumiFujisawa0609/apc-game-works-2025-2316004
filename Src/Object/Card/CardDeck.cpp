@@ -108,7 +108,7 @@ void CardDeck::Draw(void)
 	const float DISTANCE_X = 40;
 
 	//DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow.pow_);
-	DrawFormatString(centerPos_.x, centerPos_.y, 0xffffff,L"(%d)", currentCardPow);
+	DrawFormatString(centerPos_.x, centerPos_.y, 0x000000,L"(%d)", currentCardPow);
 	//DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
 
 	//drawPile_[0]->DrawPlayerUI();
@@ -121,7 +121,7 @@ void CardDeck::Draw(void)
 		for (int i = 0; i < handSize; i++)
 		{
 			int handCardPow = hand_[i]->GetCardStatus().pow_;
-			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0xffffff, L"(%d)", handCardPow);
+			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0x000000, L"(%d)", handCardPow);
 		}
 	}
 }

@@ -30,6 +30,7 @@ public:
 		P_ATTACK_2,
 		P_ATTACK_3,
 		P_JUMP,
+		P_DODGE,
 		//敵
 		E_IDLE,
 		E_RUN,
@@ -83,7 +84,7 @@ private:
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
 	ResourceManager(void);
-	~ResourceManager(void) = default;
+	~ResourceManager(void);
 
 	// 内部ロード
 	ResourceData& _Load(SRC src);

@@ -4,6 +4,9 @@ class Stage :
     public ObjectBase
 {
 public:
+	Stage(void);
+	~Stage(void)override;
+
     /// @brief ƒ[ƒh
     /// @param  
     void Load(void)override;

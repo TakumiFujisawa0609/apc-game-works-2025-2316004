@@ -142,6 +142,8 @@ void PlayerLogic::InputAll(void)
 	if (ins.IsPadBtnNew(padNum_, CARD_USE_BTN)|| ins.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
 	//ジャンプキー
 	if (ins.IsPadBtnTrgDown(padNum_, JUMP_BTN) || ins.IsTrgDown(JUMP_KEY)) { isAct_.isJump = true; }
+	//回避
+	if (ins.IsPadBtnTrgDown(padNum_, DODGE_BTN) || ins.IsTrgDown(DODGE_KEY)) { isAct_.isDodge = true;}
 }
 
 void PlayerLogic::InputPad(void)

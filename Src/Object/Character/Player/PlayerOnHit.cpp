@@ -22,11 +22,13 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 {
 	//ÇªÇÍÇºÇÍÇÃìñÇΩÇ¡ÇΩèàóùÇäiî[Ç∑ÇÈ
 	using TAG = Collider::TAG;
-	colUpdates_.emplace(TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
-	colUpdates_.emplace(TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); });
-	colUpdates_.emplace(TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); });
-	colUpdates_.emplace(TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); });
-	colUpdates_.emplace(TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); });
+	colUpdates_={
+		{ TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); } },
+		{ TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); } },
+		{ TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); } },
+		{ TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); } },
+		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
+	};
 
 	for (auto& col : _colParam)
 	{
@@ -105,11 +107,9 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	float pushPow = abs(minDist - dis);
 
 	VECTOR vec = Utility3D::GetMoveVec(parentChara.GetTransform().pos,charaObj_.GetTransform().pos );
-	vec.y = 0;
-	//charaObj_.MovedPosMove(vec, pushPow);
+	//Yê¨ï™ÇÕÇ¢ÇÁÇ»Ç¢
+	vec.y = 0.0f;
 	movedPos_ = VAdd(moveDiff_, VScale(vec, pushPow));
-	//parentChara.MovedPosMove(vec, pushPow);
-	//movedPos_ = VAdd(movedPos_,VScale(vec, pushPow));
 
 }
 

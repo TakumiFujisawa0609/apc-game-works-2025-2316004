@@ -37,11 +37,14 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack3.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
 	
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerJump.mv1");
+	resourcesMap_.emplace(SRC::P_JUMP, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerDodge.mv1");
+	resourcesMap_.emplace(SRC::P_DODGE, std::move(res));	
+	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerReact.mv1");
 	resourcesMap_.emplace(SRC::REACT, std::move(res));	
-	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerJump.mv1");
-	resourcesMap_.emplace(SRC::P_JUMP, std::move(res));	
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Idle.mv1");
 	resourcesMap_.emplace(SRC::E_IDLE, std::move(res));
@@ -118,6 +121,12 @@ int ResourceManager::LoadModelDuplicate(SRC src)
 
 ResourceManager::ResourceManager(void)
 {
+}
+
+ResourceManager::~ResourceManager(void)
+{
+	loadedMap_.clear();
+	resourcesMap_.clear();
 }
 
 ResourceData& ResourceManager::_Load(SRC src)

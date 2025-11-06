@@ -50,13 +50,9 @@ void CardActionBase::ChangeCardAction(const CARD_ACT_TYPE& _type)
 void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG& _attackTag, const VECTOR& _localPos)
 {
 	//攻撃中にカード負けしたら処理を飛ばす
-	if (IsCardFailure())
-	{
-		FinishAttack(_attackTag);
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-		return;
-	}
+	if (IsCardFailure(_attackTag))return;
 
+	//攻撃判定処理
 	if (anim_.GetAnimStep() >= _status.colStartCnt&&
 		anim_.GetAnimStep() <= _status.colEndCnt)
 	{
@@ -67,12 +63,12 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), _attackTag, atkPos_,_status.atkRadius);
 
 	}
-	else if (anim_.IsEnd())
+	else if (anim_.IsEnd())		//アニメーション終了でアイドル状態変更
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
-	else if (anim_.GetAnimStep() > _status.colEndCnt)
+	else if (anim_.GetAnimStep() > _status.colEndCnt)	//攻撃終了後
 	{
 		//攻撃判定無効
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackTag);
@@ -82,13 +78,15 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 	}
 }
 
-bool CardActionBase::IsCardFailure(void)
+bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 {
 	//カードの勝敗判定
 	deck_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
 	if (deck_.IsCardFailure())
 	{
+		FinishAttack(_attackTag);
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return true;
 	}
 	return false;

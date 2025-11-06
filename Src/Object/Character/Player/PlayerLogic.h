@@ -1,11 +1,11 @@
 #pragma once
-#include<DxLib.h>
-#include<memory>
-#include"../Manager/Generic/SceneManager.h"
-#include"../Manager/Generic/InputManager.h"
-#include"../Manager/Generic/InputManagerS.h"
-#include"../Utility/Utility3D.h"
-#include"../Base/LogicBase.h"
+#include <DxLib.h>
+#include <memory>
+#include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/InputManagerS.h"
+#include "../Utility/Utility3D.h"
+#include "../Base/LogicBase.h"
 //#define DEBUG_ON
 class PlayerBase;
 class Command;
@@ -33,7 +33,7 @@ public:
 
     //カードチャージ
     static constexpr int CARD_CHARGE_KEY = KEY_INPUT_R;
-    static constexpr JOYPAD_BTN CARD_CHARGE_BTN = JOYPAD_BTN::LEFTBUTTON_TOP;
+    static constexpr JOYPAD_BTN CARD_CHARGE_BTN = JOYPAD_BTN::RIGHTBUTTON_TOP;
 
     //移動判定になるスティックの大きさ
     static constexpr int STICK_MOVE_SIZE_MIN = 200;
@@ -41,9 +41,9 @@ public:
     //ダッシュ
     //static constexpr int DASH_KEY = KEY_INPUT_L;
 
-    ////パンチ
-    //static constexpr int PUNCH_KEY = KEY_INPUT_RETURN;
-    //static constexpr InputManager::JOYPAD_BTN PUNCH_BTN = InputManager::JOYPAD_BTN::RIGHTBUTTON_LEFT;
+    //パンチ
+    static constexpr int DODGE_KEY = KEY_INPUT_LSHIFT;
+    static constexpr InputManager::JOYPAD_BTN DODGE_BTN = InputManager::JOYPAD_BTN::RIGHTBUTTON_LEFT;
 
     //ジャンプ
     static constexpr int JUMP_KEY = KEY_INPUT_SPACE;

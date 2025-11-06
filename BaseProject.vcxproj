@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Character\Action\Dodge.cpp" />
     <ClCompile Include="Src\Manager\Game\GravityManager.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\Cylinder.cpp" />
     <ClCompile Include="Src\Object\Character\Base\CardActionBase.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Character\Action\Dodge.h" />
     <ClInclude Include="Src\Manager\Game\GravityManager.h" />
     <ClInclude Include="Src\Object\Common\Geometry\Cylinder.h" />
     <ClInclude Include="Src\Object\Character\Base\CardActionBase.h" />

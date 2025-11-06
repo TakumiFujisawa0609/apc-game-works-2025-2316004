@@ -4,10 +4,10 @@
 #include "../Object/Character/Base/CharacterBase.h"
 #include "EnemyLogic.h"
 
-EnemyLogic::EnemyLogic(CharacterBase& _playerChara, Transform& _myTrans):
-	playerChara_(_playerChara)
-	,scnMng_(SceneManager::GetInstance())
-	,myTrans_(_myTrans)
+EnemyLogic::EnemyLogic(Transform& _myTrans,CharacterBase& _playerChara):
+	myTrans_(_myTrans),
+	playerChara_(_playerChara),
+	scnMng_(SceneManager::GetInstance())
 {
 }
 
@@ -94,7 +94,7 @@ void EnemyLogic::DebugUpdate(void)
 		moveDir_ = Utility3D::DIR_R;
 	}
 
-
+	
 	////デバッグ用の入力処理
 	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
 	//{

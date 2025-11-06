@@ -29,6 +29,7 @@
 #include"../Action/Run.h"
 #include"../Action/Jump.h"
 #include"../Action/React.h"
+#include"../Action/Dodge.h"
 #include"../Action/PlayerCardAction.h"
 
 #include "./PlayerLogic.h"
@@ -55,6 +56,7 @@ Player::Player(void)
 Player::~Player(void)
 {
 	changeStates_.clear();
+	collider_.clear();
 }
 
 void Player::Load(void)
@@ -69,6 +71,7 @@ void Player::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED*2.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
@@ -145,6 +148,7 @@ void Player::Init(void)
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_,status_.speed);
 	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_,*this,jumpPow_);
+	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_,trans_ ,status_.speed);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION,*action_, *this, *deck_);
 

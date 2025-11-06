@@ -43,7 +43,8 @@ public:
 		DASHMOVE,	//ダッシュ
 		REACT,	//パンチされた状態
 		JUMP,		//ジャンプ
-		CARD_ACTION	//カードアクション
+		CARD_ACTION,	//カードアクション
+		DODGE,
 	};
 
 
@@ -112,7 +113,7 @@ public:
 	/// @brief 入力クラスの取得
 	/// @param  
 	/// @return 入力クラス
-	const LogicBase& GetInput(void)const { return logic_; }
+	LogicBase& GetInput(void)const { return logic_; }
 	
 	/// @brief アニメーションの再生
 	/// @param  

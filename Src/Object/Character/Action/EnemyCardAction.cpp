@@ -17,13 +17,15 @@ CardActionBase(_actCntl, _charaObj, _deck)
 		{ CARD_ACT_TYPE::SWIP_ATK, [this]() {ChangeSwip(); }},
 		{ CARD_ACT_TYPE::ROAR_ATK, [this]() {ChangeRoar(); }},
 		{ CARD_ACT_TYPE::JUMP_ATK, [this]() {ChangeJumpAtk(); }},
+		{ CARD_ACT_TYPE::ROLE_ATK, [this]() {ChangeRoleAtk(); }},
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 	};
 
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
 		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
-		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
+		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
+		{CARD_ACT_TYPE::ROLE_ATK, ROLE_ATK }
 	};
 }
 
@@ -94,12 +96,18 @@ void EnemyCardAction::ChangeJumpAtk(void)
 	cardFuncs_.push([this]() {UpdateJumpAtk(); });
 }
 
+void EnemyCardAction::ChangeRoleAtk(void)
+{
+	cardFuncs_.push([this]() {UpdateRoleAtk(); });
+}
+
 void EnemyCardAction::ChangeReload(void)
 {
 }
 
 void EnemyCardAction::UpdateSwip(void)
 {
+	//UŒ‚ƒ‚[ƒVƒ‡ƒ“
 	AttackMotion(atkStatusTable_[actType_],Collider::TAG::NML_ATK, ATK_ONE_LOCAL);
 }
 
@@ -110,6 +118,10 @@ void EnemyCardAction::UpdateRoar(void)
 
 void EnemyCardAction::UpdateJumpAtk(void)
 {
+	//•‰‚¯‚½‚çI—¹
+	if (IsCardFailure(Collider::TAG::NML_ATK))return;
+
+	//ƒWƒƒƒ“ƒvUŒ‚ˆ—
 	CardActionBase::ATK_STATUS& status = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
 	if (anim_.GetAnimStep()> JUMP_ANIM_END)
 	{
@@ -119,10 +131,10 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		//UŒ‚”»’è—LŒø
 		isAliveAtkCol_ = true;
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK,atkPos_, status.atkRadius);
+
+		//UŒ‚”ÍˆÍŠg‘å
 		status.atkRadius += JUMP_ATK_COL_SPD;
 		charaObj_.UpdateAttackCol(status.atkRadius);
-
-
 
 		if (jumpAtkCnt_ > JUMP_ATK_CNT_MAX)
 		{
@@ -133,6 +145,11 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		}
 
 	}
+}
+
+void EnemyCardAction::UpdateRoleAtk(void)
+{
+
 }
 
 void EnemyCardAction::UpdateReload(void)

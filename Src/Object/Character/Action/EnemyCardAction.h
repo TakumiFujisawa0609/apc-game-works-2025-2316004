@@ -19,6 +19,7 @@ public:
         SWIP_ATK, //ひっかき攻撃
         ROAR,     //咆哮
         JUMP_ATK, //攻撃アクション3回目
+		ROLE_ATK, //ロール攻撃
         RELOAD, //リロード
     };
     EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
@@ -65,15 +66,19 @@ private:
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
     static constexpr VECTOR JUMP_ATK_LOCAL = { 0.0f,100.0f,0.0f };
 
-    static constexpr float ATK_SPHERE_RADIUS = 50.0f;					//通常攻撃カプセル球の半径
+    static constexpr float ATK_SPHERE_RADIUS = 50.0f;					//通常攻撃の球体の半径
     static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃カプセル球の半径
-    static constexpr float ROAR_ATK_RADIUS = 300.0f;
-    //1段目攻撃のステータス
+	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //咆哮攻撃の球体の半径
+	static constexpr float ROLE_ATK_RADIUS = 60.0f;                     //転がる攻撃の球体の半径
+    //ひっかき攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
-    ////2段目攻撃のステータス
+    //ジャンプ攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS JUMP_ATK = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,JUMP_ATK_RADIUS };
-    //3段目攻撃のステータス
+    //咆哮のステータス
     static constexpr CardActionBase::ATK_STATUS ROAR_ATK = { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ROAR_ATK_RADIUS };
+	//転がるのステータス
+	static constexpr CardActionBase::ATK_STATUS ROLE_ATK = { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
+
 
     //ジャンプ攻撃カウント
     float jumpAtkCnt_;
@@ -82,12 +87,14 @@ private:
     void ChangeSwip(void);
     void ChangeRoar(void);
     void ChangeJumpAtk(void);
+	void ChangeRoleAtk(void);
     void ChangeReload(void);
 
     //更新
     void UpdateSwip(void);
     void UpdateRoar(void);
     void UpdateJumpAtk(void);
+	void UpdateRoleAtk(void);
     void UpdateReload(void);
 
 	//アクションによって処理を分岐

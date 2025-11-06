@@ -25,6 +25,7 @@ class Idle;
 class Run;
 class Jump;
 class React;
+class Dodge;
 class PlayerCardAction;
 
 
@@ -38,7 +39,8 @@ public:
 	static constexpr float RADIUS = 25.0f;
 	//デフォルトのアニメーションスピード
 	static constexpr float DEFAULT_ANIM_SPD = 60.0f;
-
+	//ドッジアニメーション速度
+	static constexpr float DODGE_ANIM_SPD = 80.0f;
 
 
 
@@ -160,7 +162,7 @@ public:
 private:
 
 	//ステータス関連
-	static constexpr float MOVE_SPEED = 17.0f;		//移動スピード
+	static constexpr float MOVE_SPEED = 10.0f;		//移動スピード
 	static constexpr float MAX_HP = 200.0f;			//体力
 	static constexpr float MAX_ATK = 50.0f;			//攻撃力
 	static constexpr float MAX_DEF = 100.0f;		//防御力
