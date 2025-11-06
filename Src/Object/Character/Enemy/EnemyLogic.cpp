@@ -174,6 +174,9 @@ void EnemyLogic::SetFreezeCntByAttackType(const ENEMY_ATTACK_TYPE& _type)
 	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
 		freezeCnt_ = ROAR_FREEZE_TIME;
 		break;
+	case LogicBase::ENEMY_ATTACK_TYPE::ROLE:
+		freezeCnt_ = ROAR_FREEZE_TIME;
+		break;
 	default:
 		break;
 	}

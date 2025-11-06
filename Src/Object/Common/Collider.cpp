@@ -31,7 +31,7 @@ Geometry& Collider::GetGeometry(void) const
 CharacterBase& Collider::GetParentCharacter(void)
 {
 	CharacterBase& chara = dynamic_cast<CharacterBase&>(parent_);
-	assert(chara && "e‚ªCharacterBaseŒ^‚Å‚Í‚ ‚è‚Ü‚¹‚ñI");
+	assert(chara && "e‚ªCharacterBaseŒ^‚Å‚Í‚ ‚è‚Ü‚¹‚ñ");
 	return chara;
 }
 

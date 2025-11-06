@@ -325,7 +325,7 @@ void Player::GoalUpdate(void)
 void Player::Action(void)
 {
 	static VECTOR dirDown = trans_.GetDown();
-	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
+	//重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
 

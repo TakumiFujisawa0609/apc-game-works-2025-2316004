@@ -28,9 +28,9 @@ public:
 private:
 	static constexpr float NORMAL_FREEZE_TIME = 0.3f;	//通常攻撃硬直時間
 	static constexpr float JUMP_FREEZE_TIME = 0.7f;		//ジャンプ攻撃硬直時間
-	static constexpr float ROAR_FREEZE_TIME = 0.2f;		//咆哮攻撃硬直時間
+	static constexpr float ROAR_FREEZE_TIME = 1.0f;		//咆哮攻撃硬直時間
 	//カードクールタイム制限
-	static constexpr float CARD_COOL_TIME = 0.0f;	
+	static constexpr float CARD_COOL_TIME = 1.0f;	
 	//攻撃の射程
 	static constexpr float ATK_RANGE = 200.0f;
 	//プレイヤーまでの距離詰めのクールタイム

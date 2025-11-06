@@ -26,7 +26,8 @@ public:
         NONE,
         NORMAL,
         JUMP,
-        ROAR
+        ROAR,
+        ROLE
     };
 
     //‚Ç‚Ì‘€ì‚ª‚³‚ê‚½‚©

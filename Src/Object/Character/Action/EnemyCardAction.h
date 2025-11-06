@@ -58,9 +58,16 @@ private:
     static constexpr float JUMP_ATK_COL_SPD = 5.0f;
     //広がる時間
     static constexpr float JUMP_ATK_CNT_MAX = 1.0f;
-    //攻撃3段目判定
-    static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
-    static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
+    //咆哮判定
+    static constexpr float ROAR_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
+    static constexpr float ROAR_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
+    //転がる攻撃
+    static constexpr float ROLE_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
+    static constexpr float ROLE_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
+
+    static constexpr float ROLE_PRE_TIME = 0.5F;     //攻撃前隙時間
+    static constexpr float ROLE_DISTACE = 300.0f;    //転がる距離
+
 
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
@@ -75,10 +82,12 @@ private:
     //ジャンプ攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS JUMP_ATK = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,JUMP_ATK_RADIUS };
     //咆哮のステータス
-    static constexpr CardActionBase::ATK_STATUS ROAR_ATK = { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ROAR_ATK_RADIUS };
+    static constexpr CardActionBase::ATK_STATUS ROAR_ATK = { ROAR_COL_START_ANIM_CNT,ROAR_COL_END_ANIM_CNT,ROAR_ATK_RADIUS };
 	//転がるのステータス
-	static constexpr CardActionBase::ATK_STATUS ROLE_ATK = { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
+	static constexpr CardActionBase::ATK_STATUS ROLE_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
 
+    //転がるスピード
+    static constexpr float ROLE_SPEED = 40.0f;
 
     //ジャンプ攻撃カウント
     float jumpAtkCnt_;
@@ -102,5 +111,10 @@ private:
 
     //攻撃別の当たり判定情報
     std::map<ACT_TYPE, ATK_STATUS>atkTable_;
+
+    //転がる攻撃関連
+    float preRoleAtkCnt_;//前隙カウント
+    float roleAtkCnt_; //後隙カウント
+    VECTOR preRolePos_;//転がる攻撃する前の座標
 };
 

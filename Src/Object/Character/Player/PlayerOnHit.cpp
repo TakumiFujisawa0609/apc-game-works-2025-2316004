@@ -1,4 +1,5 @@
 //#include "....//Manager/System/SoundManager.h"
+#include <ranges>
 #include "../../../Manager/Generic/SceneManager.h"
 #include "../../../Object/Common/Geometry/Sphere.h"
 #include "../../../Object/Common/Geometry/Capsule.h"
@@ -35,14 +36,6 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 		colParam_.emplace_back(col);
 	}
 
-	////プレイヤー同士の当たり判定のタグをNoneに設定
-	//int playerNum = DateBank::GetInstance().GetPlayerNum();
-	//for (int i = static_cast<int>(TAG::PLAYER1); i < playerNum; i++)
-	//{
-	//	//同じタグだったら設定しない
-	//	if (static_cast<int>(tag_)== i)continue;
-	//	colUpdates_[static_cast<TAG>(i)] = [this](const std::weak_ptr<Collider> _hitCol) {CollNone(); };
-	//}
 
 	hitPoint_ = {};
 
@@ -89,32 +82,42 @@ void PlayerOnHit::CollStage(const std::weak_ptr<Collider> _hitCol)
 
 void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 {
-	//自分のタグと相手のタグをとる
-	auto& parentChara = _hitCol.lock()->GetParentCharacter();
-	auto& tags = _hitCol.lock()->GetTags();
+	//相手のタグをとる
+	CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
+	std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
 	
-	auto it = std::find(tags.begin(), tags.end(), Collider::TAG::NML_ATK);
-	if (it != tags.end())return;
-
+	//攻撃の場合は無視
+	if (std::ranges::any_of(tags, [](Collider::TAG tag) { return tag == Collider::TAG::NML_ATK || tag == Collider::TAG::ROAR_ATK; }))
+	{
+		return;
+	}
 	Geometry& myCap = colParam_[BODY_SPHERE_COL_NO].lock()->GetGeometry();
 	Geometry& hitCap = _hitCol.lock()->GetGeometry();
 	//自分の座標
 	VECTOR myPos = charaObj_.GetTransform().pos;
 	VECTOR hitCharaPos = parentChara.GetTransform().pos;
 
+	//お互いの距離をとる
 	float dis = Utility3D::Distance(myPos, hitCharaPos);
 	float minDist = myCap.GetRadius() + hitCap.GetRadius();
+	//お互いの距離が離れていたら押し出さない
+	if (dis > minDist)return;
+	//押し出し量の計算
 	float pushPow = abs(minDist - dis);
 
+	//押し出す方向ベクトルの計算
 	VECTOR vec = Utility3D::GetMoveVec(parentChara.GetTransform().pos,charaObj_.GetTransform().pos );
 	//Y成分はいらない
 	vec.y = 0.0f;
+
+	//押し出し
 	movedPos_ = VAdd(moveDiff_, VScale(vec, pushPow));
 
 }
 
 void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
+
 	auto& parentChara = _hitCol.lock()->GetParentCharacter();
 	if (parentChara.GetIsDamage())return;
 	

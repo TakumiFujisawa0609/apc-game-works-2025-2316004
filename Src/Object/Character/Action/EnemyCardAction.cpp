@@ -98,6 +98,8 @@ void EnemyCardAction::ChangeJumpAtk(void)
 
 void EnemyCardAction::ChangeRoleAtk(void)
 {
+	preRoleAtkCnt_ = ROLE_PRE_TIME;
+	preRolePos_ = charaObj_.GetTransform().pos;
 	cardFuncs_.push([this]() {UpdateRoleAtk(); });
 }
 
@@ -149,17 +151,41 @@ void EnemyCardAction::UpdateJumpAtk(void)
 
 void EnemyCardAction::UpdateRoleAtk(void)
 {
+	//前隙カウント
+	preRoleAtkCnt_ -= scnMng_.GetDeltaTime();
 
+	//現在の座標取得
+	const Transform trans = charaObj_.GetTransform();
+	const VECTOR charaPos = trans.pos;
+	if (preRoleAtkCnt_ < 0.0f)
+	{
+		const float dis = Utility3D::Distance(charaPos, preRolePos_);
+		//転がる間の速度
+		speed_ = ROLE_SPEED;
+		//前に進む
+		actionCntl_.GetInput().SetMoveDirTransformFront(trans);
+		//当たり判定の作成
+		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, JUMP_ATK_LOCAL, ROLE_ATK_RADIUS);
+		
+
+		if (dis > ROLE_DISTACE)
+		{
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		}
+	}
 }
 
 void EnemyCardAction::UpdateReload(void)
 {
+
+
 }
 
 void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
-	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
 
 	switch (attackType)
 	{
@@ -171,6 +197,9 @@ void EnemyCardAction::DesideCardAction(void)
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
 		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);
+		break;
+	case LogicBase::ENEMY_ATTACK_TYPE::ROLE:
+		ChangeCardAction(CARD_ACT_TYPE::ROLE_ATK);
 		break;
 	}
 }
