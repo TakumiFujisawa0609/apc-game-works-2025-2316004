@@ -64,28 +64,14 @@ public:
 	/// @brief 初期化
 	/// @param  
 	void Init(void);
-
-	/// <summary>
-	/// 読み込み
-	/// </summary>
 	
 	/// @brief 読み込み
 	/// @param  
 	void Load(void);
-
-	/// <summary>
-	/// 更新処理
-	/// </summary>
-	/// <param name=""></param>
 	
 	/// @brief 更新処理
 	/// @param  
 	void Update(void);
-
-	/// <summary>
-	/// 状態遷移
-	/// </summary>
-	/// <param name="_act">遷移したいアクション</param>
 	
 	/// @brief 状態遷移
 	/// @param _act 次に遷移したい状態
@@ -123,7 +109,7 @@ public:
 	/// @brief アニメーションの再生
 	/// @param  
 	/// @return 
-	const bool GetIsAtkColAlive(void);
+	const bool& GetIsAtkColAlive(void);
 	
 	/// @brief 角度Yを取得
 	/// @param  
@@ -158,6 +144,8 @@ public:
 	void DrawDebug(void);
 	//カードアクション時間(デバッグ用)
 	static constexpr float CARD_ACT_TIME_MAX = 5.0f; 
+
+	const float& GetSpd(void)const;
 #endif // _DEBUG
 
 

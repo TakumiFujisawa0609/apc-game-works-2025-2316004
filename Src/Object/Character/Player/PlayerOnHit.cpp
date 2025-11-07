@@ -102,6 +102,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	float minDist = myCap.GetRadius() + hitCap.GetRadius();
 	//‚¨Œİ‚¢‚Ì‹——£‚ª—£‚ê‚Ä‚¢‚½‚ç‰Ÿ‚µo‚³‚È‚¢
 	if (dis > minDist)return;
+
 	//‰Ÿ‚µo‚µ—Ê‚ÌŒvZ
 	float pushPow = abs(minDist - dis);
 

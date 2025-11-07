@@ -22,7 +22,7 @@ void Idle::Init(void)
 void Idle::Update(void)
 {
 	//ˆÚ“®
-	if (!Utility3D::EqualsVZero(actionCntl_.GetInput().GetDir()))
+	if (actionCntl_.GetInput().GetIsAct().isRun)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::MOVE);
 		return;

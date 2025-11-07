@@ -9,7 +9,12 @@
 #include "EnemyCardAction.h"
 
 EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
-CardActionBase(_actCntl, _charaObj, _deck)
+CardActionBase(_actCntl, _charaObj, _deck),
+jumpAtkCnt_(0.0f),
+roleAtkCnt_(0.0f),
+preRoleAtkCnt_(0.0f),
+preRolePos_(Utility3D::VECTOR_ZERO),
+roleDeg_(0.0f)
 {
 	isTurnable_ = false;
 
@@ -44,7 +49,9 @@ void EnemyCardAction::Init(void)
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
 	jumpAtkCnt_ = 0.0f;
-	
+	speed_ = 0.0f;
+	roleAtkCnt_ = 0.0f;
+	roleDeg_ = 0.0f;
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		deck_.MoveHandToCharge();
@@ -67,7 +74,7 @@ void EnemyCardAction::Release(void)
 {
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
-
+	actionCntl_.GetInput().IsActioningSet();
 	//カード機能配列の解放
 	if(!cardFuncs_.empty())
 	{
@@ -99,7 +106,10 @@ void EnemyCardAction::ChangeJumpAtk(void)
 void EnemyCardAction::ChangeRoleAtk(void)
 {
 	preRoleAtkCnt_ = ROLE_PRE_TIME;
+	roleAtkCnt_ = ROLE_TIME;
 	preRolePos_ = charaObj_.GetTransform().pos;
+	
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::NONE), true);
 	cardFuncs_.push([this]() {UpdateRoleAtk(); });
 }
 
@@ -122,17 +132,17 @@ void EnemyCardAction::UpdateJumpAtk(void)
 {
 	//負けたら終了
 	if (IsCardFailure(Collider::TAG::NML_ATK))return;
-
+	const Transform& charaTrans = charaObj_.GetTransform();
 	//ジャンプ攻撃処理
 	CardActionBase::ATK_STATUS& status = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
 	if (anim_.GetAnimStep()> JUMP_ANIM_END)
 	{
 		jumpAtkCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//攻撃中
-		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, {0.0f,0.0f,0.0f});
+		atkPos_ = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, {0.0f,0.0f,0.0f});
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK,atkPos_, status.atkRadius);
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, status.atkRadius);
 
 		//攻撃範囲拡大
 		status.atkRadius += JUMP_ATK_COL_SPD;
@@ -151,24 +161,40 @@ void EnemyCardAction::UpdateJumpAtk(void)
 
 void EnemyCardAction::UpdateRoleAtk(void)
 {
+	const float deltaTIme = scnMng_.GetDeltaTime();
 	//前隙カウント
-	preRoleAtkCnt_ -= scnMng_.GetDeltaTime();
+	if (preRoleAtkCnt_ >= 0.0f)
+	{
+		//前隙中
+		preRoleAtkCnt_ -= deltaTIme;
+		//前に進む
+		//actionCntl_.GetInput().GetLookAtTargetDir();
+		roleMoveDeg_ = actionCntl_.GetInput().GetLookAtTargetDeg();
+		roleMoveDir_ = actionCntl_.GetInput().GetLookAtTargetDir();
+		isTurnable_ = true;
+		return;
+	}
+	
 
 	//現在の座標取得
 	const Transform trans = charaObj_.GetTransform();
 	const VECTOR charaPos = trans.pos;
+	const VECTOR& centerPos = charaObj_.GetCharaCecterPos();
+	isTurnable_ = false;
 	if (preRoleAtkCnt_ < 0.0f)
 	{
-		const float dis = Utility3D::Distance(charaPos, preRolePos_);
+		roleAtkCnt_ -= deltaTIme;
+		//攻撃中
+		atkPos_ = Utility3D::AddPosRotate(trans.pos, trans.quaRot, { 0.0f,centerPos.y,0.0f });
 		//転がる間の速度
 		speed_ = ROLE_SPEED;
 		//前に進む
-		actionCntl_.GetInput().SetMoveDirTransformFront(trans);
+		charaObj_.LariatMove(roleDeg_);
+		roleDeg_ += 30.0f;
 		//当たり判定の作成
-		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, JUMP_ATK_LOCAL, ROLE_ATK_RADIUS);
-		
-
-		if (dis > ROLE_DISTACE)
+		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, atkPos_, ROLE_ATK_RADIUS);
+		actionCntl_.GetInput().SetDegAndDir(roleMoveDeg_, roleMoveDir_);
+		if (roleAtkCnt_ < 0.0f)
 		{
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}

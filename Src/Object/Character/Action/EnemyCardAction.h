@@ -65,9 +65,9 @@ private:
     static constexpr float ROLE_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ROLE_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
 
-    static constexpr float ROLE_PRE_TIME = 0.5F;     //攻撃前隙時間
-    static constexpr float ROLE_DISTACE = 300.0f;    //転がる距離
-
+    static constexpr float ROLE_PRE_TIME = 5.0F;     //攻撃前隙時間
+    static constexpr float ROLE_TIME = 0.5f;    //転がる時間
+    static constexpr float ROLE_SPEED = 30.0f; //転がるスピード
 
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
@@ -76,7 +76,7 @@ private:
     static constexpr float ATK_SPHERE_RADIUS = 50.0f;					//通常攻撃の球体の半径
     static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃カプセル球の半径
 	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //咆哮攻撃の球体の半径
-	static constexpr float ROLE_ATK_RADIUS = 60.0f;                     //転がる攻撃の球体の半径
+	static constexpr float ROLE_ATK_RADIUS = 150.0f;                     //転がる攻撃の球体の半径
     //ひっかき攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
     //ジャンプ攻撃のステータス
@@ -86,8 +86,7 @@ private:
 	//転がるのステータス
 	static constexpr CardActionBase::ATK_STATUS ROLE_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
 
-    //転がるスピード
-    static constexpr float ROLE_SPEED = 40.0f;
+
 
     //ジャンプ攻撃カウント
     float jumpAtkCnt_;
@@ -116,5 +115,8 @@ private:
     float preRoleAtkCnt_;//前隙カウント
     float roleAtkCnt_; //後隙カウント
     VECTOR preRolePos_;//転がる攻撃する前の座標
+	float roleDeg_; //ラリアット回転角
+	float roleMoveDeg_; //ラリアット移動方向
+	VECTOR roleMoveDir_; //ラリアット移動方向ベクトル
 };
 

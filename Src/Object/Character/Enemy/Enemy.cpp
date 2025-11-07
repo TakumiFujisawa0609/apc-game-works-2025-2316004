@@ -55,6 +55,8 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_SWIP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ROLE_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
+
 
 }
 
@@ -88,13 +90,16 @@ void Enemy::Init(void)
 
 	//カプセル
 	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
-	MakeCollider({ tag_ }, std::move(geo));
+	MakeCollider(TAG_PRIORITY::BODY,{ tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
-	MakeCollider({ tag_ }, std::move(geo),{Collider::TAG::NML_ATK});
+	MakeCollider(TAG_PRIORITY::MOVE_LINE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::MOVE_LINE);
 	//上下ライン
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
-	MakeCollider({ tag_ }, std::move(geo), { Collider::TAG::NML_ATK });
+	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 
@@ -108,6 +113,10 @@ void Enemy::Init(void)
 
 	trans_.pos = { 20.0f,0.0f,0.0f };
 	trans_.localPos = { 0.0f,-RADIUS,0.0f };
+
+
+
+
 }
 
 void Enemy::Update(void)
@@ -121,6 +130,8 @@ void Enemy::Update(void)
 	logic_->Update();
 	action_->Update();
 	//cardUI_->Update();
+	
+
 	//回転の同期
 	trans_.quaRot = charaRot_.playerRotY_;
 	UpdatePost();
@@ -160,11 +171,11 @@ void Enemy::OnHit(const std::weak_ptr<Collider> _hitCol)
 }
 void Enemy::MoveDirFronInput(void)
 {
-	//プレイヤー入力クラスから角度を取得
+	//入力クラスから角度を取得
 	VECTOR getDir = logic_->GetDir();
 	Quaternion playerRot = playerChara_.GetTransform().quaRot;
-	charaRot_.dir_ = playerRot.PosAxis(getDir);
-	charaRot_.dir_ = VNorm(charaRot_.dir_);
+	//charaRot_.dir_ = playerRot.PosAxis(getDir);
+	//charaRot_.dir_ = VNorm(charaRot_.dir_);
 	charaRot_.dir_ = getDir;
 }
 void Enemy::SetGoalRotate(const double _deg)
@@ -191,11 +202,11 @@ void Enemy::DrawDebug(void)
 	DrawFormatString(100, 100, 0xffffff, L"(%f,%f,%f)", euler.x, logic_->GetMoveDeg(), euler.z);
 	for (auto& col : collider_)
 	{
-		col->GetGeometry().Draw();
+		col.second->GetGeometry().Draw();
 	}
 
-	DrawFormatString(600, 300, 0x000000, L"action(%d)", static_cast<int>(action_->GetAct()));
+	DrawFormatString(600, 300, 0x000000, L"Dir(%f,%f,%f)\nDeg(%f)", logic_->GetDir().x, logic_->GetDir().y, logic_->GetDir().z,logic_->GetMoveDeg());
 
-	logic_->DebugDraw();
+	//logic_->DebugDraw();
 }
 #endif // _DEBUG

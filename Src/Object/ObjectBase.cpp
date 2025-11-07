@@ -18,28 +18,13 @@ void ObjectBase::OnHit(const std::weak_ptr<Collider> _hitCol)
 
 }
 
-void ObjectBase::MakeCollider(const std::set<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::set<Collider::TAG> _notHitTags)
+void ObjectBase::MakeCollider(const TAG_PRIORITY _tagPriority, const std::set<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::set<Collider::TAG> _notHitTags)
 {
-	//当たり判定情報
-	//ColParam colParam;
-
-	////形状情報の挿入
-	//colParam.geometry_ = std::move(_geometry);
-
-	//if (colParam.geometry_ == nullptr)
-	//{
-	//	int i = 0;
-	//}
-
 	//情報を使ってコライダの作成
 	std::shared_ptr col = std::make_shared<Collider>(*this, _tag, std::move(_geometry), _notHitTags);
-	collider_.emplace_back(col);
-
+	collider_.emplace(_tagPriority,col);
 	//コライダを管理マネージャーに追加
 	CollisionManager::GetInstance().AddCollider(col);
-
-	////配列にセット
-	//colParam_.push_back(std::move(colParam));
 }
 
 const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Collider::TAG _tag)
@@ -47,9 +32,26 @@ const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Coll
 	//事前に配列のサイズを取得する
 	auto ParamSize = collider_.size();
 
-	for (int i = 0; i < ParamSize; i++)
+	//for (int i = 0; i < ParamSize; i++)
+	//{
+	//	auto tags = collider_[i]->GetTags();
+	//	//特定のタグを見つけるまでイテレータを回す
+	//	//発見できなかった場合、最後まで回る
+	//	auto it = tags.find(_chataTag);
+	//	if (it != tags.end())
+	//	{
+	//		//キャラタグを発見したら、さらに攻撃の当たり判定を探す
+	//		auto it2 = tags.find(_tag);
+	//		if (it2 != tags.end())
+	//		{
+	//			return true;
+	//		}
+	//	}
+	//}
+
+	for (auto& col:collider_)
 	{
-		auto tags = collider_[i]->GetTags();
+		auto tags = col.second->GetTags();
 		//特定のタグを見つけるまでイテレータを回す
 		//発見できなかった場合、最後まで回る
 		auto it = tags.find(_chataTag);
@@ -63,17 +65,20 @@ const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Coll
 			}
 		}
 	}
+
+
+
 	return false;
 }
 
 
-void ObjectBase::DeleteCollider(const int _arrayNum)
+void ObjectBase::DeleteCollider(const TAG_PRIORITY _priority)
 {
 	//コライダの削除
-	collider_[_arrayNum]->Kill();
+	collider_[_priority]->Kill();
 
 	//配列の削除
-	std::erase_if(collider_, [](auto& col) {return col->IsDead(); });
+	std::erase_if(collider_, [](auto& col) {return col.second->IsDead(); });
 }
 
 void ObjectBase::DeleteAllCollider(void)
@@ -81,10 +86,10 @@ void ObjectBase::DeleteAllCollider(void)
 	for (auto& col : collider_)
 	{
 		//当たり判定が存在しないならスキップ
-		if (col == nullptr)continue;
+		if (col.second == nullptr)continue;
 
 		//コライダの削除
-		col->Kill();
+		col.second->Kill();
 	}
 
 	//当たり判定情報の削除

@@ -37,6 +37,7 @@ public:
 		E_SWIP_ATK,
 		E_JUMP_ATK,
 		E_ROAR_ATK,
+		E_ROLE_ATK,
 		REACT,
 		//âÊëú
 		NUMBERS_IMG,	//ÉJÅ[Éhî‘çÜ

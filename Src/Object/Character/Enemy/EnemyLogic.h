@@ -17,9 +17,18 @@ public:
 	};
 
 
-
+	/// @brief ‰Šú‰»
+	/// @param  
 	void Init(void) override;
+
+	/// @brief XV
+	/// @param  
 	void Update(void) override;
+
+	/// @brief ‘Šè‚Ì•ûŒü‚ğŒ©‚é
+	/// @param  
+	const VECTOR& GetLookAtTargetDir(void)const override;
+	const float& GetLookAtTargetDeg(void)const override;
 
 #ifdef _DEBUG
 	void DebugUpdate(void);

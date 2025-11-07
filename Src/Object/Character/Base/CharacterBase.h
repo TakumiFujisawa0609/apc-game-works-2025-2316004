@@ -25,9 +25,16 @@ public:
 
 	// 回転完了までの時間
 	static constexpr float TIME_ROT = 0.1f;
-
 	//最大ＨＰ
 	static constexpr float HP_MAX = 200.0f;
+	//転がるアニメーション速度
+	static constexpr float ROLL_ANIM_SPEED = 100.0f;
+
+	//当たり判定
+	static constexpr int CUPSULE_COL_NO = 0;
+	static constexpr int MOVE_LINE_COL_NO = 1;
+	static constexpr int UP_DOWN_LINE = 2;
+	static constexpr int ATK_COL_NO = 3;
 
 	// アニメーション種別
 	enum class ANIM_TYPE
@@ -44,7 +51,8 @@ public:
 		//敵
 		SWIP_ATK,
 		ROAR_ATK,
-		JUMP_ATK
+		JUMP_ATK,
+		ROLE_ATK
 
 	};
 
@@ -156,6 +164,11 @@ public:
 	//着地時のジャンプ力初期化
 	void JumpPowZero(void) { jumpPow_ = Utility3D::VECTOR_ZERO; }
 
+	/// @brief キャラクターの中心座標取得
+	/// @param  
+	/// @return キャラクターの中心座標
+	const VECTOR& GetCharaCecterPos(void)const;
+
 	/// @brief ダメージを与えたことを知らせる
 	/// @param  
 	void SetIsDamage(void) { isDamage_ = true; }
@@ -192,17 +205,17 @@ public:
 	/// @param _movePow 移動量
 	void MovedPosMove(const VECTOR& _vec,const float& _movePow);
 
+	/// @brief 
+	/// @param _dir 
+	/// @param _movePow 
+	void LariatMove(const float& _deg);
 protected:
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
 	static constexpr float CAP_RADIUS = 20.0f;						//カプセル球の半径
 
-	//当たり判定
-	static constexpr int CUPSULE_COL_NO = 0;
-	static constexpr int MOVE_LINE_COL_NO = 1;
-	static constexpr int UP_DOWN_LINE = 2;
-	static constexpr int ATK_COL_NO = 3;
+
 	//移動量ラインオフセット
 	static constexpr float MOVE_LINE_Y_OFFSET = - 1.0f;
 	//移動量更新条件の移動ラインの長さ

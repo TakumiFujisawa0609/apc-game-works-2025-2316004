@@ -132,9 +132,6 @@ private:
 	// カメラ操作
 	void ProcessRot(void);
 
-	//敵へのターゲットカメラ
-	void TargetCamera(void);
-
 	//スムーズにターゲットカメラに変わる
 	void SmoothChangeCamera(void);
 

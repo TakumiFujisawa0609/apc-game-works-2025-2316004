@@ -129,13 +129,16 @@ void Player::Init(void)
 
 	//カプセル
 	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
-	MakeCollider({ tag_ }, std::move(geo));
+	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
-	MakeCollider({ tag_ }, std::move(geo));
+	MakeCollider(TAG_PRIORITY::MOVE_LINE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::MOVE_LINE);
 	//上下ライン
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
-	MakeCollider({ tag_ }, std::move(geo));
+	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this,movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 
@@ -269,7 +272,7 @@ void Player::DrawDebug(void)
 	for (auto& col : collider_)
 	{
 		//colParam.geometry_->Draw();
-		col->GetGeometry().Draw();
+		col.second->GetGeometry().Draw();
 	}
 	
 	DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetAct()),isDamage_);

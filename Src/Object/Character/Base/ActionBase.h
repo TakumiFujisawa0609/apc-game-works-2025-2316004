@@ -57,7 +57,7 @@ public:
 	/// @brief 1•ûŒü‚É“®‚­ˆÚ“®—Ê
 	/// @param  
 	/// @return 1•ûŒü‚É“®‚­ˆÚ“®—Ê
-	const float& GetSpeed(void) { return speed_; }
+	const float&GetSpeed(void) { return speed_; }
 
 	
 	/// @brief •ûŒü“]Š·‰Â”\‚©‚Ç‚¤‚©‚ÌŽæ“¾

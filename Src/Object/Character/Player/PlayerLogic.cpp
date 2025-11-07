@@ -92,21 +92,25 @@ void PlayerLogic::InputAll(void)
 	//ˆÚ“®Šp“x‚ðŒˆ‚ß‚é
 	if (ins.IsNew(MOVE_FRONT_KEY))
 	{
+		isAct_.isRun = true;
 		moveDeg_ = FLONT_DEG;
 		moveDir_ = Utility3D::DIR_F;
 	}
 	else if (ins.IsNew(MOVE_LEFT_KEY))
 	{
+		isAct_.isRun = true;
 		moveDeg_ = LEFT_DEG;
 		moveDir_ = Utility3D::DIR_L;
 	}
 	else if (ins.IsNew(MOVE_BACK_KEY))
 	{
+		isAct_.isRun = true;
 		moveDeg_ = BACK_DEG;
 		moveDir_ = Utility3D::DIR_B;
 	}
 	else if (ins.IsNew(MOVE_RIGHT_KEY))
 	{
+		isAct_.isRun = true;
 		moveDeg_ = RIGHT_DEG;
 		moveDir_ = Utility3D::DIR_R;
 	}

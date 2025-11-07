@@ -96,6 +96,11 @@ void ActionController::DrawDebug(void)
 	
 }
 
+const float& ActionController::GetSpd(void) const
+{
+	return mainAction_.at(act_)->GetSpeed();
+}
+
 
 void ActionController::ChangeAction(const ACTION_TYPE _act)
 {
@@ -133,7 +138,7 @@ void ActionController::CardMove(void)
 	}
 }
 
-const bool ActionController::GetIsAtkColAlive(void)
+const bool& ActionController::GetIsAtkColAlive(void)
 {
 	return mainAction_[act_]->GetIsAliveAtkCol();
 }
@@ -166,7 +171,7 @@ void ActionController::MoveDirFronInput(void)
 	charaObj_.MoveDirFronInput();
 
 	float deg = logic_.GetMoveDeg();
-	if (!Utility3D::EqualsVZero(movePow_)&&mainAction_[act_]->GetIsTurnable())
+	if (/*!Utility3D::EqualsVZero(movePow_)&&*/mainAction_[act_]->GetIsTurnable())
 	{
 		//•âŠ®Šp“x‚Ìİ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
 		charaObj_.SetGoalRotate(deg);

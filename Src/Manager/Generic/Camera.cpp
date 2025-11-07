@@ -330,10 +330,10 @@ void Camera::SetBeforeDrawFollow(void)
 	// ’Ç]‘ÎÛ‚Æ‚Ì‘Š‘ÎˆÊ’u‚ğ“¯Šú
 	SyncFollow();
 
-	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
-	{
-		ChangeMode(MODE::TARGET_POINT);
-	}
+	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
+	//{
+	//	ChangeMode(MODE::TARGET_POINT);
+	//}
 }
 
 void Camera::SetBeforeDrawSelfShot(void)

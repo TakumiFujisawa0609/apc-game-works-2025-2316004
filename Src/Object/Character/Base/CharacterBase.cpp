@@ -32,20 +32,20 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag,const Collider::
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
 	onHit_->InitIsHitAtk();
 	isDamage_ = false;
-	MakeCollider({ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
+	MakeCollider(TAG_PRIORITY::BODY,{ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
 }
 
 void CharacterBase::UpdateAttackCol(const float _radius)
 {
 	//à¯êîÇÃîºåaÇçUåÇÇÃãÖÇ…ê›íËÇ∑ÇÈ
-	Sphere& sphere=dynamic_cast<Sphere&>(collider_[ATK_COL_NO]->GetGeometry());
+	Sphere& sphere=dynamic_cast<Sphere&>(collider_[TAG_PRIORITY::ATK_SPHERE]->GetGeometry());
 	sphere.SetRadius(_radius);
 }
 
 void CharacterBase::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)
 {
 	if (!IsAliveCollider(_charaTag, _attackCol))return;
-	DeleteCollider(ATK_COL_NO);
+	DeleteCollider(TAG_PRIORITY::ATK_SPHERE);
 }
 
 void CharacterBase::UpdatePost(void)
@@ -62,7 +62,7 @@ void CharacterBase::UpdatePost(void)
 	moveVec.y -= MOVE_LINE_Y_OFFSET;
 	if (moveVec.x != 0.0f || moveVec.y != MOVE_LINE_Y_CHECK_VALUE || moveVec.z != 0.0f)
 	{
-		Line& moveLine = dynamic_cast<Line&>(collider_[MOVE_LINE_COL_NO]->GetGeometry());
+		Line& moveLine = dynamic_cast<Line&>(collider_[TAG_PRIORITY::MOVE_LINE]->GetGeometry());
 		moveLine.SetLocalPosPoint1(Utility3D::VECTOR_ZERO);
 		moveLine.SetLocalPosPoint2(moveVec);
 	}
@@ -102,6 +102,7 @@ void CharacterBase::SetGoalRotate(const double _deg)
 
 void CharacterBase::Rotate(void)
 {
+	if (charaRot_.stepRotTime_ <= 0.0f)return;
 	charaRot_.stepRotTime_ -= scnMng_.GetDeltaTime();
 	// âÒì]ÇÃãÖñ ï‚ä‘
 	charaRot_.playerRotY_ = Quaternion::Slerp(
@@ -112,6 +113,11 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	status_.hp -= _dam;
+}
+
+const VECTOR& CharacterBase::GetCharaCecterPos(void) const
+{
+	return collider_.at(ObjectBase::TAG_PRIORITY::BODY)->GetGeometry().GetCenter();
 }
 
 void CharacterBase::SetFlinchCnt(const float _flichCnt)
@@ -137,4 +143,9 @@ const PlayerOnHit::HIT_POINT& CharacterBase::GetHitPoint(void) const
 void CharacterBase::MovedPosMove(const VECTOR& _vec, const float& _movePow)
 {
 	movedPos_ = VAdd(movedPos_, VScale(_vec, _movePow));
+}
+
+void CharacterBase::LariatMove(const float& _deg)
+{
+	charaRot_.playerRotY_ = Quaternion::AngleAxis(UtilityCommon::Deg2RadF(_deg), Utility3D::AXIS_Y);
 }

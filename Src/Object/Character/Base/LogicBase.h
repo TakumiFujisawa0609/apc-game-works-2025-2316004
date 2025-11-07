@@ -41,9 +41,9 @@ public:
         bool isCardPushKeep = false;    //カード使用キー長押し
 
         //アクション関連
-		bool isJump = false;         //ジャンプ
-        //回避
-		bool isDodge = false;
+		bool isRun = false;         //走る
+		bool isJump = false;        //ジャンプ
+		bool isDodge = false;       //回避
     };
 
 
@@ -94,6 +94,21 @@ public:
 	/// @param _trans モデル情報 
 	void SetMoveDirTransformFront(const Transform& _trans) { moveDir_ = _trans.GetForward(); }
 
+	/// @brief ターゲットの方向を見る
+    virtual const VECTOR& GetLookAtTargetDir(void)const;
+    virtual const float& GetLookAtTargetDeg(void)const;
+
+    void SetDegAndDir(const float& _deg, const VECTOR& _dir)
+    {
+        moveDeg_ = _deg;
+        moveDir_ = _dir;
+	}
+
+	/// @brief アクション中フラグセット
+	/// @param  
+	void IsActioningSet(void) { isActioning_ = false; }
+
+
 #ifdef _DEBUG
     virtual void DebugDraw(void) {};
 #endif // _DEBUG
@@ -111,6 +126,9 @@ protected:
 
     //アクション入力がされたかどうか
     ACT_FLAG isAct_;
+
+    //アクション中
+	bool isActioning_;
 
 };
 

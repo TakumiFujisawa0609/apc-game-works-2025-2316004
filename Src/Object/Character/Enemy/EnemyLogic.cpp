@@ -31,13 +31,7 @@ void EnemyLogic::Update(void)
 	moveDir_ = Utility3D::VECTOR_ZERO;
 	VECTOR playerPos = playerChara_.GetTransform().pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos,playerPos);
-	//y座標までは追従しない
-	targetVec.y = 0.0f;	
-	distance_ = Utility3D::Distance(myTrans_.pos, playerPos);
-	moveDir_ = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 
-	moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
-	cardCoolCnt_ -= scnMng_.GetDeltaTime();
 
 	if(freezeCnt_ > 0.0f)
 	{
@@ -45,15 +39,25 @@ void EnemyLogic::Update(void)
 		return;
 	}
 
+	//y座標までは追従しない
+	targetVec.y = 0.0f;
+	distance_ = Utility3D::Distance(myTrans_.pos, playerPos);
+
+	cardCoolCnt_ -= scnMng_.GetDeltaTime();
+
 	moveCnt_ -= scnMng_.GetDeltaTime();
 
-	if (distance_ > 250.0f)
+	if (distance_ > 250.0f&&!isActioning_)
 	{
+		//距離が遠いときは近づく
+		isAct_.isRun = true;
 		moveDir_ = targetVec;
+		moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
 		return;
 	}
 
-	if (freezeCnt_ < 0.0f)
+	//硬直がなかったらカード使用可能
+	if (freezeCnt_ <= 0.0f)
 	{
 		DesideAction();
 		isAct_.isCardUse = true;
@@ -61,13 +65,23 @@ void EnemyLogic::Update(void)
 	}
 
 
-
-
-
 #ifdef _DEBUG
 	DebugUpdate();
 #endif // _DEBUG
 
+}
+
+const VECTOR& EnemyLogic::GetLookAtTargetDir(void)const
+{
+	const VECTOR& playerPos = playerChara_.GetTransform().pos;
+	const VECTOR& targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
+	return targetVec;
+}
+
+const float& EnemyLogic::GetLookAtTargetDeg(void) const
+{
+	double deg = Utility3D::AngleDeg(playerChara_.GetTransform().pos, myTrans_.pos);
+	return deg;
 }
 
 void EnemyLogic::DebugUpdate(void)
@@ -95,7 +109,7 @@ void EnemyLogic::DebugUpdate(void)
 	}
 
 	
-	////デバッグ用の入力処理
+	////カード移動＆使用
 	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
 	//{
 	//	isAct_.isCardMoveLeft = true;
@@ -156,6 +170,7 @@ void EnemyLogic::DesideAction(void)
 			attackType_ = ENEMY_ATTACK_TYPE::ROAR;
 		}
 		SetFreezeCntByAttackType(attackType_);
+		isActioning_ = true;
 	}
 }
 

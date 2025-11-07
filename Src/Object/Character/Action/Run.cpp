@@ -25,7 +25,7 @@ void Run::Init(void)
 void Run::Update(void)
 {
 	//入力方向が0だった場合、アイドル状態移行
-	if (Utility3D::EqualsVZero(actionCntl_.GetInput().GetDir()))
+	if (!actionCntl_.GetInput().GetIsAct().isRun)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
