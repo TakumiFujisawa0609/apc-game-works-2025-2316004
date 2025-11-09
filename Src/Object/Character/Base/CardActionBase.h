@@ -11,27 +11,7 @@ class CardActionBase :
 {
 
 public:
-    //カードアクション種類
-    enum class CARD_ACT_TYPE
-    {
-        NONE = -1,
-        //プレイヤーのアクション
-        ATTACK_ONE, //攻撃アクション1回目
-        ATTACK_TWO, //攻撃アクション2回目
-        ATTACK_THREE, //攻撃アクション3回目
-        HEAL_CARD,       //ヒールカード使用
-        MAGIC_CARD,        //マジックカード使用
 
-        //敵のアクション
-        SWIP_ATK, //ひっかき攻撃
-        ROAR_ATK, //咆哮
-        JUMP_ATK, //ジャンプ攻撃
-		ROLE_ATK,  //ロール攻撃
-
-        //共通
-        RELOAD, //リロード
-        NUM,
-    };
 
     //攻撃のステータス
    struct ATK_STATUS
@@ -52,8 +32,6 @@ protected:
     CardDeck& deck_;
     //オブジェクト
     CharacterBase& charaObj_;
-    //状態
-    CARD_ACT_TYPE actType_;
     //カードアクション関数ポインタ
     std::function<void(void)> cardActFunc_;
     //カードアクション遷移

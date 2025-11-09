@@ -21,7 +21,8 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	speed_(0.0f),
 	flinchCnt_(0.0f),
 	dir_({}),
-	moveDir_({})
+	moveDir_({}),
+	actType_(CARD_ACT_TYPE::NONE)
 	//movePow_({})
 {
 
@@ -34,6 +35,11 @@ ActionBase::~ActionBase()
 
 void ActionBase::Release(void)
 {
+}
+
+const CardActionBase::CARD_ACT_TYPE& ActionBase::GetCardAction(void)const
+{
+	return actType_;
 }
 
 

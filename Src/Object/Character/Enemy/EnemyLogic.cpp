@@ -41,7 +41,7 @@ void EnemyLogic::Update(void)
 
 	//yç¿ïWÇ‹Ç≈ÇÕí«è]ÇµÇ»Ç¢
 	targetVec.y = 0.0f;
-	distance_ = Utility3D::Distance(myTrans_.pos, playerPos);
+	distance_ = static_cast<float>(Utility3D::Distance(myTrans_.pos, playerPos));
 
 	cardCoolCnt_ -= scnMng_.GetDeltaTime();
 
@@ -71,16 +71,16 @@ void EnemyLogic::Update(void)
 
 }
 
-const VECTOR& EnemyLogic::GetLookAtTargetDir(void)const
+const VECTOR EnemyLogic::GetLookAtTargetDir(void)const
 {
 	const VECTOR& playerPos = playerChara_.GetTransform().pos;
-	const VECTOR& targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
+	const VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 	return targetVec;
 }
 
-const float& EnemyLogic::GetLookAtTargetDeg(void) const
+const float EnemyLogic::GetLookAtTargetDeg(void) const
 {
-	double deg = Utility3D::AngleDeg(playerChara_.GetTransform().pos, myTrans_.pos);
+	float deg = static_cast<float>(Utility3D::AngleDeg(playerChara_.GetTransform().pos, myTrans_.pos));
 	return deg;
 }
 

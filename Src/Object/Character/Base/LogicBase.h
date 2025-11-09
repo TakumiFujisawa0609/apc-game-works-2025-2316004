@@ -95,8 +95,8 @@ public:
 	void SetMoveDirTransformFront(const Transform& _trans) { moveDir_ = _trans.GetForward(); }
 
 	/// @brief ターゲットの方向を見る
-    virtual const VECTOR& GetLookAtTargetDir(void)const;
-    virtual const float& GetLookAtTargetDeg(void)const;
+    virtual const VECTOR GetLookAtTargetDir(void)const;
+    virtual const float GetLookAtTargetDeg(void)const;
 
     void SetDegAndDir(const float& _deg, const VECTOR& _dir)
     {

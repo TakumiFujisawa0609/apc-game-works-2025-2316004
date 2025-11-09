@@ -12,11 +12,17 @@
 #include"./Player.h"
 #include"./ActionController.h"
 #include "PlayerOnHit.h"
-
-PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff, ActionController& _action, std::vector<std::shared_ptr<Collider>> _colParam, Transform& _trans, Collider::TAG _tag):
+namespace
+{
+	using TAG_PRIORITY = ObjectBase::TAG_PRIORITY;
+	using TAG = Collider::TAG;
+}
+PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff, 
+	ActionController& _action, std::map<ObjectBase::TAG_PRIORITY,std::shared_ptr<Collider>>& _colParam, Transform& _trans, Collider::TAG _tag):
 	charaObj_(_chara),
 	movedPos_(_movedPos),
 	moveDiff_(_moveDiff),
+	colParam_(_colParam),
 	action_(_action),
 	trans_(_trans),
 	tag_(_tag)
@@ -31,10 +37,10 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _move
 		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
 	};
 
-	for (auto& col : _colParam)
-	{
-		colParam_.emplace_back(col);
-	}
+	//for (auto& col : _colParam)
+	//{
+	//	colParam_.emplace_back(col);
+	//}
 
 
 	hitPoint_ = {};
@@ -87,11 +93,11 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
 	
 	//攻撃の場合は無視
-	if (std::ranges::any_of(tags, [](Collider::TAG tag) { return tag == Collider::TAG::NML_ATK || tag == Collider::TAG::ROAR_ATK; }))
+	if (std::ranges::any_of(tags, [](Collider::TAG tag) { return tag == Collider::TAG::NML_ATK || tag == Collider::TAG::ROAR_ATK; })||charaObj_.GetCardAction()==ActionBase::CARD_ACT_TYPE::ROLE_ATK)
 	{
 		return;
 	}
-	Geometry& myCap = colParam_[BODY_SPHERE_COL_NO].lock()->GetGeometry();
+	Geometry& myCap = colParam_[TAG_PRIORITY::BODY]->GetGeometry();
 	Geometry& hitCap = _hitCol.lock()->GetGeometry();
 	//自分の座標
 	VECTOR myPos = charaObj_.GetTransform().pos;
@@ -160,20 +166,21 @@ void PlayerOnHit::DrawDebug(void)
 
 void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 {
+
 	Geometry& hitModel = _hitCol.lock()->GetGeometry();
 	//当たったモデルの情報を取得
 	//移動後座標と現在座標で早い移動速度でも対応させる
 	VECTOR hitPos = hitModel.GetHitLineInfo().HitPosition;
 	//移動後と移動前のコライダ
-	auto& moveLineCol = colParam_[MOVE_LINE_COL_NO];
+	auto& moveLineCol = colParam_[TAG_PRIORITY::MOVE_LINE];
 	//上下を引いたラインのコライダ(接地)
-	auto& upDownLine = colParam_[UP_AND_DOWN_LINE_COL_NO];
+	auto& upDownLine = colParam_[TAG_PRIORITY::UPDOWN_LINE];
 	//球の当たり判定(プレイヤーの周囲)
-	auto& bodyShere = colParam_[BODY_SPHERE_COL_NO];
+	auto& bodyShere = colParam_[TAG_PRIORITY::BODY];
 
 
 
-	if (moveLineCol.lock()->IsHit())
+	if (moveLineCol->IsHit())
 	{
 		////Y座標のみ半径分上に移動させる
 		movedPos_.y = hitPos.y + POSITION_OFFSET;
@@ -187,10 +194,10 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	}
 
 	//プレイヤーの接地
-	if (upDownLine.lock()->IsHit())
+	if (upDownLine->IsHit())
 	{
 		//ライン情報の取得
-		Geometry& upDown =upDownLine.lock()->GetGeometry();
+		Geometry& upDown =upDownLine->GetGeometry();
 		VECTOR hitLinePos = upDown.GetHitLineInfo().HitPosition;
 
 		//座標が当たっているライン座標より上のとき、地面と当たる
@@ -220,7 +227,7 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	trans.pos = movedPos_;
 	trans.Update();
 	//プレイヤーの体の球が当たったら
-	if (bodyShere.lock()->IsHit())
+	if (bodyShere->IsHit())
 	{
 		auto& hitInfo = hitModel.GetHitModelInfo();
 		for (int i = 0; i < hitInfo.HitNum; i++)

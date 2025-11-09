@@ -18,7 +18,6 @@ CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _chara
 	charaObj_(_charaObj),
 	deck_(_deck),
 	atkPos_({}),
-	actType_(CARD_ACT_TYPE::NONE),
 	velocity_({})
 {
 }

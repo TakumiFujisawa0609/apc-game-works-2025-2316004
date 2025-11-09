@@ -6,6 +6,7 @@
 #include"../Utility/UtilityCommon.h"
 #include"../Utility/Utility3D.h"
 #include"../Manager/Generic/InputManager.h"
+#include"../Base/ActionBase.h"
 #include"../Object/Common/Transform.h"
 
 class CharacterBase;
@@ -95,6 +96,8 @@ public:
 	/// @param  
 	/// @return ó‘Ô
 	const ACTION_TYPE& GetAct(void)const { return act_; }
+
+	const ActionBase::CARD_ACT_TYPE& GetCardAction(void)const;
 	
 	/// @brief “ü—ÍƒNƒ‰ƒX‚Ìæ“¾
 	/// @param  

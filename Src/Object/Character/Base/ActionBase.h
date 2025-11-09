@@ -37,6 +37,28 @@ public:
 		MAX
 	};
 
+	//カードアクション種類
+	enum class CARD_ACT_TYPE
+	{
+		NONE = -1,
+		//プレイヤーのアクション
+		ATTACK_ONE, //攻撃アクション1回目
+		ATTACK_TWO, //攻撃アクション2回目
+		ATTACK_THREE, //攻撃アクション3回目
+		HEAL_CARD,       //ヒールカード使用
+		MAGIC_CARD,        //マジックカード使用
+
+		//敵のアクション
+		SWIP_ATK, //ひっかき攻撃
+		ROAR_ATK, //咆哮
+		JUMP_ATK, //ジャンプ攻撃
+		ROLE_ATK,  //ロール攻撃
+
+		//共通
+		RELOAD, //リロード
+		NUM,
+	};
+
 	struct ATK_STATUS
 	{
 		float colRadius;
@@ -74,6 +96,9 @@ public:
 	/// @param _flinchTime のけぞりカウント
 	void SetFlinchCnt(const float _flinchTime) { flinchCnt_ = _flinchTime; }
 
+	//カードアクションの取得
+	const CARD_ACT_TYPE& GetCardAction(void)const;
+
 protected:
 
 	//移動スピード
@@ -106,6 +131,8 @@ protected:
 	bool isTurnable_;
 	//攻撃の当たり判定中か
 	bool isAliveAtkCol_;
+	//状態
+	CARD_ACT_TYPE actType_;
 
 private:
 	// 回転完了までの時間

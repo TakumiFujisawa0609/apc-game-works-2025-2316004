@@ -27,8 +27,8 @@ public:
 
 	/// @brief ‘ŠŽè‚Ì•ûŒü‚ðŒ©‚é
 	/// @param  
-	const VECTOR& GetLookAtTargetDir(void)const override;
-	const float& GetLookAtTargetDeg(void)const override;
+	const VECTOR GetLookAtTargetDir(void)const override;
+	const float GetLookAtTargetDeg(void)const override;
 
 #ifdef _DEBUG
 	void DebugUpdate(void);

@@ -12,12 +12,12 @@ LogicBase::~LogicBase(void)
 {
 }
 
-const VECTOR& LogicBase::GetLookAtTargetDir(void)const
+const VECTOR LogicBase::GetLookAtTargetDir(void)const
 {
 	return {};
 }
 
-const float& LogicBase::GetLookAtTargetDeg(void)const
+const float LogicBase::GetLookAtTargetDeg(void)const
 {
 	return 0.0;
 }

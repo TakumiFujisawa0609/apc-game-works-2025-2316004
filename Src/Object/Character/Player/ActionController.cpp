@@ -198,5 +198,8 @@ void ActionController::DirAndMovePowUpdate(void)
 
 	//jumpPow_ = VScale(charaObj_.GetTransform().GetUp(), mainAction_[act_]->GetJumpPow().y);
 }
-
+const ActionBase::CARD_ACT_TYPE& ActionController::GetCardAction(void)const
+{
+	return mainAction_.at(act_)->GetCardAction();
+}
 

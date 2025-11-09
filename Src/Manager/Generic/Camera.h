@@ -1,5 +1,7 @@
 #pragma once
 #include <DxLib.h>
+#include <functional>
+#include <map>
 #include "../../Common/Quaternion.h"
 #include"../Template/Singleton.h"
 class Transform;

@@ -24,7 +24,8 @@ public:
 	/// @param _colParam 当たり判定情報
 	/// @param _trans モデル情報
 	/// @param _tag 当たり判定タグ
-	PlayerOnHit(CharacterBase& _chara,VECTOR& _movedPos,VECTOR& _moveDiff, ActionController& _action, std::vector<std::shared_ptr<Collider>> _colParam,Transform& _trans,Collider::TAG _tag);
+	PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff,
+		ActionController& _action, std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& _colParam, Transform& _trans, Collider::TAG _tag);
 
 	/// <summary>
 	/// デストラクタ
@@ -94,7 +95,7 @@ private:
 	//当たり判定ごとの更新
 	std::map<Collider::TAG, std::function<void(const std::weak_ptr<Collider> _hitCol)>>colUpdates_;
 	//当たり判定関係
-	std::vector<std::weak_ptr<Collider>> colParam_;
+	std::map<ObjectBase::TAG_PRIORITY,std::shared_ptr<Collider>>& colParam_;
 	Collider::TAG tag_;	//プレイヤーの当たり判定タグ
 	//キャラクターの情報
 	CharacterBase& charaObj_;

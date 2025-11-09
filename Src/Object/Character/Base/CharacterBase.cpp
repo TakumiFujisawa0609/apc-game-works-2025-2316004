@@ -125,6 +125,11 @@ void CharacterBase::SetFlinchCnt(const float _flichCnt)
 	action_->SetFlinchCnt(_flichCnt);
 }
 
+const CardActionBase::CARD_ACT_TYPE& CharacterBase::GetCardAction(void) const
+{
+	return action_->GetCardAction();
+}
+
 void CharacterBase::DeleteCard(void)
 {
 	//現在使っているカードを捨てる

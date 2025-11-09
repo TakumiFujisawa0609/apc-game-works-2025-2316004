@@ -3,6 +3,7 @@
 #include "../../Card/CardBase.h"
 #include "../Player/PlayerOnHit.h"
 #include "../Player/ActionController.h"
+#include "../Base/CardActionBase.h"
 #include "../Object/ObjectBase.h"
 
 class AnimationController;
@@ -161,7 +162,8 @@ public:
 	/// @return 
 	const bool& GetIsDamage(void)const { return isDamage_; }
 
-	//着地時のジャンプ力初期化
+	/// @brief 着地時のジャンプ力初期化
+	/// @param  
 	void JumpPowZero(void) { jumpPow_ = Utility3D::VECTOR_ZERO; }
 
 	/// @brief キャラクターの中心座標取得
@@ -186,6 +188,8 @@ public:
 	/// @param  
 	/// @return 
 	inline CardUI& GetCardUI(void)const { return *cardUI_; }
+
+	const CardActionBase::CARD_ACT_TYPE& GetCardAction(void)const;
 	
 	/// @brief　使用済みカードについての処理
 	/// @param  
