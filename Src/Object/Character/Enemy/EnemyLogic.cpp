@@ -146,10 +146,15 @@ void EnemyLogic::DesideAction(void)
 			//í èÌçUåÇ
 			attackType_ = ENEMY_ATTACK_TYPE::NORMAL;
 		}
-		else
+		else if(rand < weight_.jump)
 		{
 			//ÉWÉÉÉìÉv
 			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
+		}
+		else
+		{
+			//ì]Ç™ÇÈçUåÇ
+			attackType_ = ENEMY_ATTACK_TYPE::ROLE;
 		}
 	}
 	else
@@ -190,7 +195,7 @@ void EnemyLogic::SetFreezeCntByAttackType(const ENEMY_ATTACK_TYPE& _type)
 		freezeCnt_ = ROAR_FREEZE_TIME;
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::ROLE:
-		freezeCnt_ = ROAR_FREEZE_TIME;
+		freezeCnt_ = ROLE_FREEZE_TIME;
 		break;
 	default:
 		break;

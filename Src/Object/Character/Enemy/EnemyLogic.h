@@ -14,6 +14,7 @@ public:
 		int normal = 60;
 		int jump = 30;
 		int Roar = 20;
+		int role = 10;
 	};
 
 
@@ -38,6 +39,7 @@ private:
 	static constexpr float NORMAL_FREEZE_TIME = 0.3f;	//’ÊíUŒ‚d’¼ŠÔ
 	static constexpr float JUMP_FREEZE_TIME = 0.7f;		//ƒWƒƒƒ“ƒvUŒ‚d’¼ŠÔ
 	static constexpr float ROAR_FREEZE_TIME = 1.0f;		//™ôšKUŒ‚d’¼ŠÔ
+	static constexpr float ROLE_FREEZE_TIME = 1.5f;		//™ôšKUŒ‚d’¼ŠÔ
 	//ƒJ[ƒhƒN[ƒ‹ƒ^ƒCƒ€§ŒÀ
 	static constexpr float CARD_COOL_TIME = 1.0f;	
 	//UŒ‚‚ÌË’ö
