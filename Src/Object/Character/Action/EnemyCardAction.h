@@ -67,7 +67,7 @@ private:
 
     static constexpr float ROLE_PRE_TIME = 5.0F;     //攻撃前隙時間
     static constexpr float ROLE_TIME = 0.5f;    //転がる時間
-    static constexpr float ROLE_SPEED = 30.0f; //転がるスピード
+    static constexpr float ROLE_SPEED = 20.0f; //転がるスピード
 
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };

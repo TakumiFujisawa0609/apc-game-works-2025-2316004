@@ -32,7 +32,7 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag,const Collider::
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
 	onHit_->InitIsHitAtk();
 	isDamage_ = false;
-	MakeCollider(TAG_PRIORITY::BODY,{ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
+	MakeCollider(TAG_PRIORITY::ATK_SPHERE,{ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
 }
 
 void CharacterBase::UpdateAttackCol(const float _radius)
