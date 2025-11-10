@@ -19,7 +19,7 @@
 #include"../../Common/Geometry/Sphere.h"
 #include"../../Common/Geometry/Line.h"
 #include"../Object/Card/CardDeck.h"
-#include"../Object/Card/CardUI.h"
+#include"../Object/Card/PlayerCardUI.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
 #include"./PlayerOnHit.h"
@@ -36,6 +36,12 @@
 
 
 #include "Player.h"
+
+
+namespace
+{
+	
+}
 Player::Player(void)
 	:playerNum_()
 	, cntl_()
@@ -90,7 +96,7 @@ void Player::Load(void)
 	cardCenterPos_ = { 140,140 };//カードの中心位置
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
 
-	cardUI_ = std::make_unique<CardUI>();
+	cardUI_ = std::make_unique<PlayerCardUI>();
 	cardUI_->Load();
 	
 	//デッキの先頭にリロードカード追加
@@ -193,18 +199,18 @@ void Player::Update(void)
 
 
 
-	//if (logic_->GetIsAct().isCardMoveLeft)
-	//{
-	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::LEFT);
+	if (logic_->GetIsAct().isCardMoveLeft)
+	{
+		cardUI_->ChangeSelectState(CardUIBase::CARD_SELECT::LEFT);
 
-	//}
-	//else if (logic_->GetIsAct().isCardMoveRight)
-	//{
-	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
-	//}
+	}
+	else if (logic_->GetIsAct().isCardMoveRight)
+	{
+		cardUI_->ChangeSelectState(CardUIBase::CARD_SELECT::RIGHT);
+	}
 	//else if(logic_->GetIsAct().isCardUse)
 	//{
-	//	cardUI_->ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+	//	cardUI_->ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 	//}
 
 
@@ -222,7 +228,7 @@ void Player::Draw(void)
 	action_->DrawDebug();
 	
 	//カードUI描画
-	cardUI_->DrawPlayerUI();
+	cardUI_->Draw();
 
 #ifdef DEBUG_ON
 	DrawDebug();

@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Object\Card\CardUiBase.cpp" />
+    <ClCompile Include="Src\Object\Card\EnemyCardUI.cpp" />
+    <ClCompile Include="Src\Object\Card\CardUIBase.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Dodge.cpp" />
     <ClCompile Include="Src\Manager\Game\GravityManager.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\Cylinder.cpp" />
@@ -34,7 +35,7 @@
     <ClCompile Include="Src\Manager\Game\CharacterManager.cpp" />
     <ClCompile Include="Src\Manager\Resource\SoundManager.cpp" />
     <ClCompile Include="Src\Scene\GameClearScene.cpp" />
-    <ClCompile Include="Src\Object\Card\CardUI.cpp" />
+    <ClCompile Include="Src\Object\Card\PlayerCardUI.cpp" />
     <ClCompile Include="Src\Manager\Game\CollisionManager.cpp" />
     <ClCompile Include="Src\Object\Character\Action\React.cpp" />
     <ClCompile Include="Src\Object\Card\AttackCard.cpp" />
@@ -93,7 +94,8 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Object\Card\CardUiBase.h" />
+    <ClInclude Include="Src\Object\Card\EnemyCardUI.h" />
+    <ClInclude Include="Src\Object\Card\CardUIBase.h" />
     <ClInclude Include="Src\Object\Character\Action\Dodge.h" />
     <ClInclude Include="Src\Manager\Game\GravityManager.h" />
     <ClInclude Include="Src\Object\Common\Geometry\Cylinder.h" />
@@ -103,7 +105,7 @@
     <ClInclude Include="Src\Manager\Game\CharacterManager.h" />
     <ClInclude Include="Src\Manager\Resource\SoundManager.h" />
     <ClInclude Include="Src\Scene\GameClearScene.h" />
-    <ClInclude Include="Src\Object\Card\CardUI.h" />
+    <ClInclude Include="Src\Object\Card\PlayerCardUI.h" />
     <ClInclude Include="Src\Manager\Game\CollisionManager.h" />
     <ClInclude Include="Src\Object\Character\Action\React.h" />
     <ClInclude Include="Src\Object\Card\AttackCard.h" />

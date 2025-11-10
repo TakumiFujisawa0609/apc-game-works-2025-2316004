@@ -21,7 +21,7 @@ void EnemyLogic::Init(void)
 	attackType_ = ENEMY_ATTACK_TYPE::NONE;
 	moveCnt_ = -1.0f;
 
-	freezeCnt_ = 0.0f;
+	freezeCnt_ = 1.5f;
 }
 
 void EnemyLogic::Update(void)

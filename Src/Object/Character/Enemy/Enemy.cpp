@@ -2,7 +2,7 @@
 #include"../Utility/UtilityCommon.h"
 #include"../../../Application.h"
 #include"../../Card/CardDeck.h"
-#include"../Object/Card/CardUI.h"
+#include"../Object/Card/EnemyCardUI.h"
 #include"../Player/ActionController.h"
 
 #include"../Player/Player.h"
@@ -45,8 +45,8 @@ void Enemy::Load(void)
 		Quaternion::Euler({ 0.0f,UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
 	//敵のカードUI生成
-	cardUI_ = std::make_unique<CardUI>();
-	//cardUI_->Load();
+	cardUI_ = std::make_unique<EnemyCardUI>();
+	cardUI_->Load();
 	//アニメーション
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
@@ -65,12 +65,16 @@ void Enemy::Init(void)
 	//カードデッキ
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_,ENEMY_NUM);
+	//デッキの先頭にリロードカード追加
+	deck_->AddDrawPile(RELOAD_CARD_STATUS);
+	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
-		//cardUI_->AddCardUi(CARD_POWS[i]);
+		cardUI_->AddCardUi(CARD_POWS[i]);
 	}
 	deck_->Init();
+	cardUI_->Init();
 	logic_ = std::make_unique<EnemyLogic>(trans_,playerChara_);
 	logic_->Init();
 
@@ -129,7 +133,7 @@ void Enemy::Update(void)
 
 	logic_->Update();
 	action_->Update();
-	//cardUI_->Update();
+	cardUI_->Update();
 	
 
 	//回転の同期
@@ -149,7 +153,7 @@ void Enemy::Draw(void)
 	//通常描画
 	MV1DrawModel(trans_.modelId);
 	deck_->Draw();
-	//cardUI_->DrawPlayerUI();
+	cardUI_->Draw();
 	const int BOX_START_X = 200;
 	const int BOX_START_Y = 50;
 	const int BOX_END_X = BOX_START_X + 400;

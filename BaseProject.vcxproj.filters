@@ -225,7 +225,7 @@
     <ClCompile Include="Src\Object\Grid.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Card\CardUI.cpp">
+    <ClCompile Include="Src\Object\Card\PlayerCardUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Scene\GameClearScene.cpp">
@@ -255,7 +255,10 @@
     <ClCompile Include="Src\Object\Character\Action\Dodge.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Card\CardUiBase.cpp">
+    <ClCompile Include="Src\Object\Card\CardUIBase.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Object\Card\EnemyCardUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -572,7 +575,7 @@
     <ClInclude Include="Src\Object\Grid.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Card\CardUI.h">
+    <ClInclude Include="Src\Object\Card\PlayerCardUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Scene\GameClearScene.h">
@@ -602,7 +605,10 @@
     <ClInclude Include="Src\Object\Character\Action\Dodge.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Card\CardUiBase.h">
+    <ClInclude Include="Src\Object\Card\CardUIBase.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\Card\EnemyCardUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

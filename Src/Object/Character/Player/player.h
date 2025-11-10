@@ -17,7 +17,7 @@ class Geometry;
 class Cupsule;
 class Line;
 class PlayerOnHit;
-class CardUI;
+class PlayerCardUI;
 class ModelMaterial;
 class ModelRenderer;
 

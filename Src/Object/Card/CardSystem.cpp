@@ -24,11 +24,12 @@ const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) c
 
 void CardSystem::InitPutCardPow(const int _playerNo)
 {
-	bool isFirstAtk[ARRAY_NUM] = { false,false };
+	//bool isFirstAtk[ARRAY_NUM] = { false,false };
 	for (int i = 0; i < ARRAY_NUM; i++)
 	{
-		isFirstAtk[i] = isFirstAtk_[i];
-		if (isFirstAtk[i] == true)
+		//isFirstAtk[i] = isFirstAtk_[i];
+		bool isFirstAtk = isFirstAtk_[_playerNo];
+		if (isFirstAtk_[i] == true)
 		{
 			putCardPow_[FIRST_ATK] = -1;
 		}
@@ -36,7 +37,7 @@ void CardSystem::InitPutCardPow(const int _playerNo)
 		{
 			putCardPow_[SECOND_ATK] = -1;
 		}
-		isFirstAtk_[i] = false;
+		isFirstAtk_[_playerNo] = false;
 	}
 }
 

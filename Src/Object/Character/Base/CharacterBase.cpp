@@ -6,7 +6,7 @@
 #include "../Object/Character/Player/PlayerOnHit.h"
 #include "../Manager/Game/GravityManager.h"
 #include"../Object/Card/CardDeck.h"
-#include"../Object/Card/CardUI.h"
+#include"../Object/Card/CardUIBase.h"
 #include "../../../Utility/Utility3D.h"
 #include "../../Common/Geometry/Capsule.h"
 #include "../../Common/Geometry/Sphere.h"
@@ -47,6 +47,25 @@ void CharacterBase::DeleteAttackCol(const Collider::TAG& _charaTag, const Collid
 	if (!IsAliveCollider(_charaTag, _attackCol))return;
 	DeleteCollider(TAG_PRIORITY::ATK_SPHERE);
 }
+//
+//void CharacterBase::CardInit(void)
+//{
+//	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
+//
+//	cardUI_ = std::make_unique<PlayerCardUI>();
+//	cardUI_->Load();
+//
+//	//デッキの先頭にリロードカード追加
+//	deck_->AddDrawPile(RELOAD_CARD_STATUS);
+//	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
+//	//デッキに山札追加
+//	for (int i = 0; i < CARD_NUM_MAX; i++)
+//	{
+//		deck_->AddDrawPile(CARD_POWS[i]);
+//		cardUI_->AddCardUi(CARD_POWS[i]);
+//	}
+//	deck_->Load();
+//}
 
 void CharacterBase::UpdatePost(void)
 {

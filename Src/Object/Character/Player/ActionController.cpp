@@ -13,7 +13,7 @@
 
 #include"../../Card/CardDeck.h"
 #include"../../Card/CardBase.h"
-#include"../../Card/CardUI.h"
+#include"../../Card/CardUIBase.h"
 
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
@@ -121,10 +121,10 @@ void ActionController::CardChargeUpdate(void)
 
 void ActionController::CardMove(void)
 {
-	CardUI& cardUI = charaObj_.GetCardUI();
-	if (cardUI.GetSelectState() == CardUI::CARD_SELECT::DISITION
-		||cardUI.GetSelectState()==CardUI::CARD_SELECT::LEFT
-		||cardUI.GetSelectState()==CardUI::CARD_SELECT::RIGHT)return;
+	CardUIBase& cardUI = charaObj_.GetCardUI();
+	if (cardUI.GetSelectState() == CardUIBase::CARD_SELECT::DISITION
+		||cardUI.GetSelectState()== CardUIBase::CARD_SELECT::LEFT
+		||cardUI.GetSelectState()== CardUIBase::CARD_SELECT::RIGHT)return;
 	if (logic_.GetIsAct().isCardMoveLeft)
 	{
 		deck_.CardMoveLeft();
@@ -155,10 +155,10 @@ void ActionController::StopResource(void)
 
 const bool ActionController::IsCardDisitionControll(void)
 {
-	CardUI& cardUI = charaObj_.GetCardUI();
-	const CardUI::CARD_SELECT selectState = cardUI.GetSelectState();
+	CardUIBase& cardUI = charaObj_.GetCardUI();
+	const CardUIBase::CARD_SELECT selectState = cardUI.GetSelectState();
 	//return selectState !=CardUI::CARD_SELECT::LEFT&& selectState != CardUI::CARD_SELECT::RIGHT;
-	return selectState == CardUI::CARD_SELECT::NONE;
+	return selectState == CardUIBase::CARD_SELECT::NONE;
 }
 
 void ActionController::SetFlinchCnt(const float _flinchTime)
@@ -180,13 +180,13 @@ void ActionController::MoveDirFronInput(void)
 	//SetGoalRotate(deg);
 }
 
-void ActionController::Rotate(void)
-{
-	stepRotTime_ -= SceneManager::GetInstance().GetDeltaTime();
-	// ‰ñ“]‚Ì‹…–Ê•âŠÔ
-	playerRotY_ = Quaternion::Slerp(
-		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
-}
+//void ActionController::Rotate(void)
+//{
+//	stepRotTime_ -= SceneManager::GetInstance().GetDeltaTime();
+//	// ‰ñ“]‚Ì‹…–Ê•âŠÔ
+//	playerRotY_ = Quaternion::Slerp(
+//		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
+//}
 
 void ActionController::DirAndMovePowUpdate(void)
 {

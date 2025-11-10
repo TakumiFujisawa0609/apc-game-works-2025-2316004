@@ -4,7 +4,7 @@
 #include "../../Common/AnimationController.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
-#include "../../Card/CardUI.h"
+#include "../../Card/CardUIBase.h"
 #include "../../Card/CardSystem.h"
 #include "../Base/CharacterBase.h"
 #include "../Base/LogicBase.h"
@@ -84,7 +84,7 @@ bool PlayerCardAction::IsAttackable(void)
 
 bool PlayerCardAction::IsCanComboAttack(void)
 {
-	return charaObj_.GetCardUI().GetSelectState() != CardUI::CARD_SELECT::DISITION
+	return charaObj_.GetCardUI().GetSelectState() != CardUIBase::CARD_SELECT::DISITION
 		&& actionCntl_.IsCardDisitionControll();
 }
 
@@ -115,7 +115,7 @@ void PlayerCardAction::UpdateReload(void)
 		cardFuncs_.pop();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		actType_ = CARD_ACT_TYPE::NONE;
-		charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::NONE);
+		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 	}
 	if (pushReloadCnt_ > RELOAD_TIME)
 	{
@@ -163,7 +163,7 @@ void PlayerCardAction::ChangeReload(void)
 
 	float per = pushReloadCnt_ / RELOAD_TIME;
 	charaObj_.GetCardUI().SetReloadCount(per);
-	charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::RELOAD);
+	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD);
 	
 	cardFuncs_.push([this]() {UpdateReload(); });
 }

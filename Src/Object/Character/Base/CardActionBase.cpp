@@ -6,7 +6,7 @@
 #include "../../Common/AnimationController.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
-#include "../../Card/CardUI.h"
+#include "../../Card/CardUIBase.h"
 #include "../../Card/CardSystem.h"
 #include "../Base/CharacterBase.h"
 #include "../Base/LogicBase.h"

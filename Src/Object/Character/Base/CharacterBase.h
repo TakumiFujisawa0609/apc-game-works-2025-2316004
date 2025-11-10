@@ -9,7 +9,7 @@
 class AnimationController;
 class ActionController;
 class CardDeck;
-class CardUI;
+class CardUIBase;
 class InputBase;
 class Capsule;
 class LogicBase;
@@ -187,7 +187,7 @@ public:
 	/// @brief カードUI
 	/// @param  
 	/// @return 
-	inline CardUI& GetCardUI(void)const { return *cardUI_; }
+	inline CardUIBase& GetCardUI(void)const { return *cardUI_; }
 
 	const CardActionBase::CARD_ACT_TYPE& GetCardAction(void)const;
 	
@@ -255,10 +255,12 @@ protected:
 	//ステータス
 	STATUS maxStatus_;
 	//カードUI(とりあえず)
-	std::unique_ptr<CardUI>cardUI_;
+	std::unique_ptr<CardUIBase>cardUI_;
 	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
 	bool isDamage_;
 
+	////カード関連初期化
+	//void CardInit(void);
 
 	//移動後座標などの更新
 	void UpdatePost(void);

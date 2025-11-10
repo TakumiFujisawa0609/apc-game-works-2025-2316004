@@ -6,6 +6,7 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
+#include "../../Card/CardUIBase.h"
 #include "EnemyCardAction.h"
 
 EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
@@ -56,6 +57,7 @@ void EnemyCardAction::Init(void)
 	{
 		deck_.MoveHandToCharge();
 		actionCntl_.GetInput().GetAttackType();
+		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 		DesideCardAction();
 	}
@@ -83,6 +85,8 @@ void EnemyCardAction::Release(void)
 
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
+	charaObj_.GetCardUI().ChangeUsedActionCard();
+	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 }
 
 void EnemyCardAction::ChangeSwip(void)
@@ -115,6 +119,14 @@ void EnemyCardAction::ChangeRoleAtk(void)
 
 void EnemyCardAction::ChangeReload(void)
 {
+	if (!cardFuncs_.empty())
+	{
+		cardFuncs_.pop();
+	}
+	//現在使っているカードを捨てる
+	deck_.EraseHandCard();
+	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD);
+	cardFuncs_.push([this]() {UpdateReload(); });
 }
 
 void EnemyCardAction::UpdateSwip(void)
@@ -161,6 +173,8 @@ void EnemyCardAction::UpdateJumpAtk(void)
 
 void EnemyCardAction::UpdateRoleAtk(void)
 {
+	//負けたら終了
+	if (IsCardFailure(Collider::TAG::NML_ATK))return;
 	const float deltaTIme = scnMng_.GetDeltaTime();
 	//前隙カウント
 	if (preRoleAtkCnt_ >= 0.0f)
@@ -203,8 +217,9 @@ void EnemyCardAction::UpdateRoleAtk(void)
 
 void EnemyCardAction::UpdateReload(void)
 {
-
-
+	deck_.Reload();
+	actType_ = CARD_ACT_TYPE::NONE;
+	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 }
 
 void EnemyCardAction::DesideCardAction(void)

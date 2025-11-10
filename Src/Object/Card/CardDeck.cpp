@@ -44,8 +44,6 @@ void CardDeck::Init(void)
 
 	//カードUIの選択番号が1番なので1に初期化する
 	currentNum_ = 1;
-
-	Vector2 pos = centerPos_;
 }
 
 void CardDeck::CardUseUpdate(void)
