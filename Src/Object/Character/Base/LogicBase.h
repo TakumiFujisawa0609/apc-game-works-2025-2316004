@@ -108,6 +108,9 @@ public:
 	/// @param  
 	void IsActioningSet(void) { isActioning_ = false; }
 
+    /// @brief UŒ‚í—Ş‚É‚æ‚Á‚Äd’¼ŠÔ‚ğƒZƒbƒg
+    /// @param  
+    virtual void SetFreezeCntByAttackType(void) {};
 
 #ifdef _DEBUG
     virtual void DebugDraw(void) {};

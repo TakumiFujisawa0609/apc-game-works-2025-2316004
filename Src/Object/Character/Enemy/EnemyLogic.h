@@ -31,12 +31,14 @@ public:
 	const VECTOR GetLookAtTargetDir(void)const override;
 	const float GetLookAtTargetDeg(void)const override;
 
+	//UŒ‚í—Ş‚É‚æ‚Á‚Äd’¼ŠÔ‚ğƒZƒbƒg
+	void SetFreezeCntByAttackType(void)override;
 #ifdef _DEBUG
 	void DebugUpdate(void);
 	void DebugDraw(void)override;
 #endif // _DEBUG
 private:
-	static constexpr float NORMAL_FREEZE_TIME = 0.3f;	//’ÊíUŒ‚d’¼ŠÔ
+	static constexpr float NORMAL_FREEZE_TIME = 3.0f;	//’ÊíUŒ‚d’¼ŠÔ
 	static constexpr float JUMP_FREEZE_TIME = 0.7f;		//ƒWƒƒƒ“ƒvUŒ‚d’¼ŠÔ
 	static constexpr float ROAR_FREEZE_TIME = 1.0f;		//™ôšKUŒ‚d’¼ŠÔ
 	static constexpr float ROLE_FREEZE_TIME = 1.5f;		//™ôšKUŒ‚d’¼ŠÔ
@@ -76,10 +78,11 @@ private:
 	float freezeCnt_;
 	//UŒ‚‚Ì“Í‚­”ÍˆÍ
 	float atkRange_;
-
+	
+	//‘O‰ñ‚ÌUŒ‚í—Ş
+	ENEMY_ATTACK_TYPE prevAttackType_;
 	//UŒ‚‚ğŒˆ‚ß‚é
 	void DesideAction(void);
-	//UŒ‚í—Ş‚É‚æ‚Á‚Äd’¼ŠÔ‚ğƒZƒbƒg
-	void SetFreezeCntByAttackType(const ENEMY_ATTACK_TYPE& _type);
+
 };
 

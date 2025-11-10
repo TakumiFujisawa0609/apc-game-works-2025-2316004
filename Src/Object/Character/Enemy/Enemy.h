@@ -25,7 +25,7 @@ public:
 	//プレイヤーの大きさ
 	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
 	//カード最大枚数
-	static constexpr int CARD_NUM_MAX = 3;
+	static constexpr int CARD_NUM_MAX = 20;
 
 	//ステータス関連
 	static constexpr float MOVE_SPEED = 15.0f;		//移動スピード
@@ -38,23 +38,23 @@ public:
 		{0,CARD_TYPE::ATTACK},
 		{1,CARD_TYPE::ATTACK},
 		{2,CARD_TYPE::ATTACK},
-		//{3,CARD_TYPE::ATTACK},
-		//{4,CARD_TYPE::ATTACK},
-		//{5,CARD_TYPE::ATTACK},
-		//{6,CARD_TYPE::ATTACK},
-		//{7,CARD_TYPE::ATTACK},
-		//{8,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{0,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{2,CARD_TYPE::ATTACK},
-		//{3,CARD_TYPE::ATTACK},
-		//{4,CARD_TYPE::ATTACK},
-		//{5,CARD_TYPE::ATTACK},
-		//{6,CARD_TYPE::ATTACK},
-		//{7,CARD_TYPE::ATTACK},
-		//{8,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK}
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK},
+		{6,CARD_TYPE::ATTACK},
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK},
+		{0,CARD_TYPE::ATTACK},
+		{1,CARD_TYPE::ATTACK},
+		{2,CARD_TYPE::ATTACK},
+		{3,CARD_TYPE::ATTACK},
+		{4,CARD_TYPE::ATTACK},
+		{5,CARD_TYPE::ATTACK},
+		{6,CARD_TYPE::ATTACK},
+		{7,CARD_TYPE::ATTACK},
+		{8,CARD_TYPE::ATTACK},
+		{9,CARD_TYPE::ATTACK}
 
 
 	};

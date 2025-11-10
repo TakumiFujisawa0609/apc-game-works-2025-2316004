@@ -78,7 +78,7 @@ void EnemyCardAction::Release(void)
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
 	actionCntl_.GetInput().IsActioningSet();
 	//カード機能配列の解放
-	if(!cardFuncs_.empty())
+	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
 	}
@@ -87,6 +87,9 @@ void EnemyCardAction::Release(void)
 	deck_.EraseHandCard();
 	charaObj_.GetCardUI().ChangeUsedActionCard();
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
+
+	//硬直時間セット
+	actionCntl_.GetInput().SetFreezeCntByAttackType();
 }
 
 void EnemyCardAction::ChangeSwip(void)
@@ -225,8 +228,8 @@ void EnemyCardAction::UpdateReload(void)
 void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
-	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
+	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
 
 	switch (attackType)
 	{

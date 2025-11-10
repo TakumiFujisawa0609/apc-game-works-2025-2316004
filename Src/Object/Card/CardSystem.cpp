@@ -28,16 +28,18 @@ void CardSystem::InitPutCardPow(const int _playerNo)
 	for (int i = 0; i < ARRAY_NUM; i++)
 	{
 		//isFirstAtk[i] = isFirstAtk_[i];
-		bool isFirstAtk = isFirstAtk_[_playerNo];
-		if (isFirstAtk_[i] == true)
+		if (isFirstAtk_[_playerNo] == true)
 		{
 			putCardPow_[FIRST_ATK] = -1;
+			isFirstAtk_[_playerNo] = false;
+			break;
 		}
 		else
 		{
 			putCardPow_[SECOND_ATK] = -1;
+			break;
 		}
-		isFirstAtk_[_playerNo] = false;
+		
 	}
 }
 
@@ -73,11 +75,6 @@ void CardSystem::CompareCards(void)
 	if (putCardPow_[FIRST_ATK]==-1 && putCardPow_[SECOND_ATK] ==-1)
 	{
 		return;
-	}
-
-	if (putCardPow_[FIRST_ATK] != -1 && putCardPow_[SECOND_ATK] != -1)
-	{
-		int i = 0;
 	}
 
 	//以下、2つのカードの強さを比較

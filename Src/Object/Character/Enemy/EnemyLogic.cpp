@@ -174,14 +174,18 @@ void EnemyLogic::DesideAction(void)
 			//™ôšK
 			attackType_ = ENEMY_ATTACK_TYPE::ROAR;
 		}
-		SetFreezeCntByAttackType(attackType_);
-		isActioning_ = true;
 	}
+
+	//‘O‰ñ‚ÌUŒ‚‚ğ‘ã“ü‚·‚é
+	prevAttackType_ = attackType_;
+
+	//SetFreezeCntByAttackType(attackType_);
+	isActioning_ = true;
 }
 
-void EnemyLogic::SetFreezeCntByAttackType(const ENEMY_ATTACK_TYPE& _type)
+void EnemyLogic::SetFreezeCntByAttackType(void)
 {
-	switch (attackType_)
+	switch (prevAttackType_)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::NONE:
 		break;
