@@ -19,10 +19,10 @@ void CollisionManager::CreateInstance(void)
 void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 {
 	//コライダの追加
-	colliders_.push_back(_collider);
+	colliders3D_.push_back(_collider);
 	std::vector<Collider::TAG> priority = { Collider::TAG::PLAYER1,Collider::TAG::ENEMY1 };
 
-	std::sort(colliders_.begin(), colliders_.end(), [this](std::weak_ptr<Collider> a, std::weak_ptr<Collider> b) {
+	std::sort(colliders3D_.begin(), colliders3D_.end(), [this](std::weak_ptr<Collider> a, std::weak_ptr<Collider> b) {
 		return static_cast<int>(GetTopTags(a)) < static_cast<int>(GetTopTags(b));
 		});
 }
@@ -30,20 +30,20 @@ void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 void CollisionManager::Sweep(void)
 {
 	//終了したコライダを並び変える
-	auto it = std::remove_if(colliders_.begin(), colliders_.end(),
+	auto it = std::remove_if(colliders3D_.begin(), colliders3D_.end(),
 		[](const std::shared_ptr<Collider> _col)
 		{
 			return _col->IsDead();
 		});
 
 	//終了したコライダを削除する
-	colliders_.erase(it, colliders_.end());
+	colliders3D_.erase(it, colliders3D_.end());
 }
 
 void CollisionManager::Update(void)
 {
 	//コライダが一つもないなら処理を飛ばす
-	if (colliders_.size() <= 0)return;
+	if (colliders3D_.size() <= 0)return;
 
 	//当たり判定フレーム
 	if (updateFrame_ < COL_UPDATE_FRAME)
@@ -53,9 +53,9 @@ void CollisionManager::Update(void)
 		return;
 	}
 
-	for (int i = 0; i < colliders_.size() - 1; i++)
+	for (int i = 0; i < colliders3D_.size() - 1; i++)
 	{
-		for (int j = i + 1; j < colliders_.size(); j++)
+		for (int j = i + 1; j < colliders3D_.size(); j++)
 		{
 			//当たり判定をするか
 			if (!JudgeIsCollision(i, j))
@@ -65,15 +65,15 @@ void CollisionManager::Update(void)
 			}
 
 			//当たり判定
-			if(IsCollision(colliders_[i],colliders_[j]))
+			if(IsCollision(colliders3D_[i],colliders3D_[j]))
 			{
 				//それぞれの当たった処理
-				colliders_[i]->OnHit(colliders_[j]);
-				colliders_[j]->OnHit(colliders_[i]);
+				colliders3D_[i]->OnHit(colliders3D_[j]);
+				colliders3D_[j]->OnHit(colliders3D_[i]);
 				
 				//当たった後の処理
-				colliders_[i]->GetGeometry().HitAfter();
-				colliders_[j]->GetGeometry().HitAfter();
+				colliders3D_[i]->GetGeometry().HitAfter();
+				colliders3D_[j]->GetGeometry().HitAfter();
 			}
 		}
 	}
@@ -84,7 +84,7 @@ void CollisionManager::Update(void)
 void CollisionManager::Destroy(void)
 {
 	//コライダの全削除
-	colliders_.clear();
+	colliders3D_.clear();
 
 	hitRange_.clear();
 
@@ -122,7 +122,7 @@ CollisionManager::CollisionManager(void)
 CollisionManager::~CollisionManager(void)
 {
 	//コライダの全削除
-	colliders_.clear();
+	colliders3D_.clear();
 
 	hitRange_.clear();
 }
@@ -185,15 +185,15 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col2Num)const
 {
 	//範囲内か
-	if (!IsWithInHitRange(colliders_[_col1Num], colliders_[_col2Num]))
+	if (!IsWithInHitRange(colliders3D_[_col1Num], colliders3D_[_col2Num]))
 	{
 		//範囲内でなかった
 		return false;
 	}
 
 	//双方のタグ
-	auto& tags1 = colliders_[_col1Num]->GetTags();
-	auto& tags2 = colliders_[_col2Num]->GetTags();
+	auto& tags1 = colliders3D_[_col1Num]->GetTags();
+	auto& tags2 = colliders3D_[_col2Num]->GetTags();
 
 
 
@@ -224,14 +224,14 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 
 	//双方の当たり判定しないタグか
 	//双方の当たり判定しないタグ
-	auto& notHitTags1 = colliders_[_col1Num]->GetNotHitTags();
-	auto& notHitTags2 = colliders_[_col2Num]->GetNotHitTags();
+	auto& notHitTags1 = colliders3D_[_col1Num]->GetNotHitTags();
+	auto& notHitTags2 = colliders3D_[_col2Num]->GetNotHitTags();
 
 	//1人目のタグ
-	for (auto tag1 : colliders_[_col1Num]->GetTags())
+	for (auto tag1 : colliders3D_[_col1Num]->GetTags())
 	{
 		//2人目の当たり判定しないタグ
-		for (auto notColTag2 : colliders_[_col2Num]->GetNotHitTags())
+		for (auto notColTag2 : colliders3D_[_col2Num]->GetNotHitTags())
 		{
 			if (tag1 == notColTag2)
 			{
@@ -242,10 +242,10 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 	}
 
 	//2人目のタグ
-	for (auto tag2 : colliders_[_col2Num]->GetTags())
+	for (auto tag2 : colliders3D_[_col2Num]->GetTags())
 	{
 		//1人目の当たり判定しないタグ
-		for (auto notColTag1 : colliders_[_col1Num]->GetNotHitTags())
+		for (auto notColTag1 : colliders3D_[_col1Num]->GetNotHitTags())
 		{
 			if (tag2 == notColTag1)
 			{

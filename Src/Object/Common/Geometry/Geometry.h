@@ -30,48 +30,6 @@ public:
 	//描画
 	virtual void Draw(void) = 0;
 
-	//struct CAPSULE_INFO
-	//{
-	//	VECTOR localPosPoint1_;	// 親Transformからの相対位置(上側)
-	//	VECTOR localPosPoint2_;	// 親Transformからの相対位置(下側)
-
-
-	//	MV1_COLL_RESULT_POLY_DIM hitInfo_;	//当たった時の情報(球、カプセル)
-	//};
-
-	//struct LINE_INFO
-	//{
-	//	MV1_COLL_RESULT_POLY hitInfo_;	//当たった時の情報(モデル)
-	//};
-
-	//struct SPHERE_INFO
-	//{					//半径
-	//	MV1_COLL_RESULT_POLY_DIM hitInfo_;	//当たった時の情報(モデル)
-	//};
-	struct CAPSULE_INFO
-	{
-
-	};
-
-	struct CUBE_INFO
-	{
-
-	};
-
-	struct LINE_INFO
-	{
-
-	};
-
-	struct MODEL_INFO
-	{
-
-	};
-
-	struct SPHERE_INFO
-	{
-
-	};
 	//各種当たり判定
 	virtual const bool IsHit(Geometry& _geometry) = 0;
 	virtual const bool IsHit(Model& _model) = 0;

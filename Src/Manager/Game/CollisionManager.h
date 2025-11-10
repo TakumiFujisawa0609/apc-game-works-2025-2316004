@@ -61,7 +61,7 @@ private:
 	static CollisionManager* instance_;
 
 	//“–‚½‚è”»’èŠi”[
-	std::vector<std::shared_ptr<Collider>>colliders_;
+	std::vector<std::shared_ptr<Collider>>colliders3D_;
 
 	//“–‚½‚è”»’è‹——£‚Ì“ñæ
 	std::map<Collider::TAG, float> hitRange_;
