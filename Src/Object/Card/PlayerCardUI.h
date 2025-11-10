@@ -81,6 +81,7 @@ private:
 
 	//ë»â~ÇÃîºåa
 	static constexpr float RADIUS_X = 186.0f;	//â°îºåa
+	//static constexpr float RADIUS_X = 170.0f;	//â°îºåa
 	static constexpr float RADIUS_Y = 214.0f;	//â°îºåa
 	//ë»â~íÜêS
 	static constexpr float CENTER_X = 80.0f;

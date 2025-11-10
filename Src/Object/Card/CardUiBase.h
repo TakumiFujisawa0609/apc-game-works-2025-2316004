@@ -14,11 +14,11 @@ class CardUIBase
 public:
 	enum class CARD_STATE
 	{
-		DRAW_PILE
-		, MOVE_DRAW
-		, USING
-		, REACT
-		, USED
+		DRAW_PILE		//山札
+		, MOVE_DRAW		//山札から手札へ移動
+		, USING			//使用中
+		, REACT			//弾かれ中
+		, USED			//使用済み
 	};
 
 	enum class CARD_SELECT
@@ -85,6 +85,10 @@ public:
 	/// @param  
 	void ChangeUsedActionCard(void);
 
+	/// @brief アクションカード配列の状態を弾かれ中にする(カード負けしたとき)
+	/// @param  
+	void ChangeReactActionCard(void);
+
 	/// @brief リロードカウントセット
 	/// @param _cnt 
 	void SetReloadCount(const float _cnt) { reloadPer_ = _cnt; };
@@ -107,6 +111,12 @@ protected:
 	
 	//決定したカードの座標
 	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };
+	//弾かれる前のゴール座標
+	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X-100.0f, Application::SCREEN_HALF_Y + 200 };
+	//弾かれた後のゴール座標(敵)
+	static constexpr Vector2F PLAYER_REACT_GOAL_CARD_POS = { Application::SCREEN_SIZE_X + 200.0f, Application::SCREEN_HALF_Y + 200 };
+
+	//カード更新関数
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
 	std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
@@ -162,6 +172,7 @@ protected:
 	//カード初期化
 	virtual void InitCardUI(void) = 0;;
 
+	void DisitionMoveCard(void);
 	//使用済みのカードを消す
 	void UpdateUsedCard(void);
 	//カード描画

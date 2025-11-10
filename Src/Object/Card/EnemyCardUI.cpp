@@ -94,16 +94,7 @@ void EnemyCardUI::UpdateNone(void)
 
 void EnemyCardUI::UpdateDisition(void)
 {
-	disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
-
-	//選択したカードの情報を取得
-	for (auto& card : actions_)
-	{
-		if (card.state == CARD_STATE::USED)continue;
-		card.state = CARD_STATE::USING;
-		card.cardPos = UtilityCommon::Lerp(card.cardPos, DISITON_CARD_POS,
-			(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME);
-	}
+	DisitionMoveCard();
 }
 
 void EnemyCardUI::UpdateReloadWait(void)

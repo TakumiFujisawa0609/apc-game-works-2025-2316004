@@ -36,6 +36,14 @@ void CardUIBase::ChangeUsedActionCard(void)
 	}
 }
 
+void CardUIBase::ChangeReactActionCard(void)
+{
+	for (auto& act : actions_)
+	{
+		act.state = CARD_STATE::REACT;
+	}
+}
+
 void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
 	CARD_UI_INFO info = {};
@@ -55,6 +63,19 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 
 	//配列に挿入
 	uiInfos_.emplace_back(info);
+}
+
+void CardUIBase::DisitionMoveCard(void)
+{
+	disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	//選択したカードの情報を取得
+	for (auto& card : actions_)
+	{
+		if (card.state == CARD_STATE::USED)continue;
+		card.state = CARD_STATE::USING;
+		card.cardPos = UtilityCommon::Lerp(card.cardPos, DISITON_CARD_POS,
+			(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME);
+	}
 }
 
 void CardUIBase::UpdateUsedCard(void)
