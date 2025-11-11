@@ -128,13 +128,13 @@ void ActionController::CardMove(void)
 	if (logic_.GetIsAct().isCardMoveLeft)
 	{
 		deck_.CardMoveLeft();
-		//cardUI.ChangeSelectState(CardUI::CARD_SELECT::LEFT);
+		cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::LEFT);
 
 	}
 	else if (logic_.GetIsAct().isCardMoveRight)
 	{
 		deck_.CardMoveRight();
-		//cardUI.ChangeSelectState(CardUI::CARD_SELECT::RIGHT);
+		cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::RIGHT);
 	}
 }
 

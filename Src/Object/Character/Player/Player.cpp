@@ -137,10 +137,12 @@ void Player::Init(void)
 	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
 	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
+
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
 	MakeCollider(TAG_PRIORITY::MOVE_LINE, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::MOVE_LINE);
+
 	//上下ライン
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
 	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
@@ -194,26 +196,6 @@ void Player::Update(void)
 	stateUpdate_();
 
 	cardUI_->Update();
-
-
-
-
-
-	if (logic_->GetIsAct().isCardMoveLeft)
-	{
-		cardUI_->ChangeSelectState(CardUIBase::CARD_SELECT::LEFT);
-
-	}
-	else if (logic_->GetIsAct().isCardMoveRight)
-	{
-		cardUI_->ChangeSelectState(CardUIBase::CARD_SELECT::RIGHT);
-	}
-	//else if(logic_->GetIsAct().isCardUse)
-	//{
-	//	cardUI_->ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-	//}
-
-
 
 	//回転の同期
 	trans_.quaRot = charaRot_.playerRotY_;

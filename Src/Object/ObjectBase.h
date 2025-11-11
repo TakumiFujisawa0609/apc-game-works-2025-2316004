@@ -20,7 +20,9 @@ public:
 		BODY,
 		MOVE_LINE,
 		UPDOWN_LINE,
-		ATK_SPHERE
+		ATK_SPHERE,
+		DOUBLE_SPHERE_1,
+		DOUBLE_SPHERE_2,
 	};
 
 	// コンストラクタ

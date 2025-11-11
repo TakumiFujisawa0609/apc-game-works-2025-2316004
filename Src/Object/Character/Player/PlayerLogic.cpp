@@ -133,6 +133,8 @@ void PlayerLogic::InputAll(void)
 		//ベクトルの計算
 		VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y)};
 		moveDir_ = VNorm(stickDir);
+		prevMoveDir_ = moveDir_;
+		isAct_.isRun = true;
 	}
 	//カードチャージ
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_CHARGE_BTN) || ins.IsTrgDown(CARD_CHARGE_KEY)) { isAct_.isCardCharge = true; }

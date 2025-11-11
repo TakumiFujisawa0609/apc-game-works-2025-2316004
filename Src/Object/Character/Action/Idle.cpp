@@ -28,7 +28,7 @@ void Idle::Update(void)
 		return;
 	}
 	//カード使用
-	if (/*actionCntl_.IsCardDisitionControll()&&*/actionCntl_.GetInput().GetIsAct().isCardUse)
+	if (actionCntl_.IsCardDisitionControll()&&actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::CARD_ACTION);
 		return;

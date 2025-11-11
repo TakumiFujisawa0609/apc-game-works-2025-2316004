@@ -1,3 +1,4 @@
+#include"../Utility/Utility2D.h"
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
 #include"../../../Application.h"
@@ -137,8 +138,8 @@ void Enemy::Update(void)
 	
 
 	//âÒì]ÇÃìØä˙
-	trans_.quaRot = charaRot_.playerRotY_;
 	UpdatePost();
+	trans_.quaRot = charaRot_.playerRotY_;
 
 	//if (!deck_->IsCardFailure())
 	//{
@@ -154,16 +155,29 @@ void Enemy::Draw(void)
 	MV1DrawModel(trans_.modelId);
 	deck_->Draw();
 	cardUI_->Draw();
-	const int BOX_START_X = 200;
-	const int BOX_START_Y = 50;
-	const int BOX_END_X = BOX_START_X + 400;
-	const int BOX_END_Y = BOX_START_Y + 30;
+
+	//HPÉoÅ[ï`âÊ
+	const int BOX_START_X = 600;
+	const int BOX_START_Y = 10;
+	const int BOX_END_X = 300;
+	//const int BOX_END_X =0;
+	const int BOX_END_Y = BOX_START_Y + 20;
 
 	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-	float hpBoxEnd= hpPer * 400.0f;
-	int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
-	DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
-	DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1);
+	//float hpBoxEnd= hpPer * 400.0f;
+	//int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
+	//DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
+	//DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1);
+
+	Utility2D::DrawBarGraph(
+		{ BOX_START_X,BOX_START_Y },
+		{ BOX_END_X,BOX_END_Y },
+		hpPer,
+		0x000000,
+		0x0000ff,
+		2
+	);
+
 #ifdef _DEBUG
 	DrawDebug();
 #endif // _DEBUG

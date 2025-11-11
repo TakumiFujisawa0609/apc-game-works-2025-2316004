@@ -12,6 +12,7 @@ Dodge::Dodge(ActionController& _actCntl,Transform& _trans ,float& _spd):
 	dodgeSpd_(_spd)
 {
 	speed_ = dodgeSpd_+ ADD_DODGE_SPEED;
+
 }
 
 Dodge::~Dodge(void)
@@ -31,5 +32,5 @@ void Dodge::Update()
 		return;
 	}
 	//回避中はInputクラスへプレイヤーの前情報をセットする
-	actionCntl_.GetInput().SetMoveDirTransformFront(trans_);
+	actionCntl_.GetInput().SetMoveDirTransformFront();
 }

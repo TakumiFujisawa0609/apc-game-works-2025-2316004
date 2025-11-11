@@ -45,7 +45,7 @@ void EnemyCardUI::Update(void)
 	//使用済みカードの大きさ補完
 	UpdateUsedCard();
 	//弾かれるカードの大きさ補完
-	ReactMoveCard();
+	ReactMoveCard(REACT_GOAL_CARD_POS);
 	for (auto& card : actions_)
 	{
 		card.numPos = card.cardPos + (NUM_LOCAL_POS * card.cardScl);

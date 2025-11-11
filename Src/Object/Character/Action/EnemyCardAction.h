@@ -20,6 +20,8 @@ public:
         ROAR,     //咆哮
         JUMP_ATK, //攻撃アクション3回目
 		ROLE_ATK, //ロール攻撃
+		CALL_PROJECTILE, //射撃物呼び出し
+		DOUBLE_SPHERE_ATK, //ダブルスフィア攻撃
         RELOAD, //リロード
     };
     EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);

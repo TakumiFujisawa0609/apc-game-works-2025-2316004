@@ -92,7 +92,7 @@ public:
 
 	/// @brief 方向をモデルの前方向にセット
 	/// @param _trans モデル情報 
-	void SetMoveDirTransformFront(const Transform& _trans) { moveDir_ = _trans.GetForward(); }
+    void SetMoveDirTransformFront(void) { moveDir_ = prevMoveDir_;}
 
 	/// @brief ターゲットの方向を見る
     virtual const VECTOR GetLookAtTargetDir(void)const;
@@ -124,6 +124,7 @@ protected:
 	float moveDeg_;             //移動角度
 	VECTOR moveDir_;            //移動方向ベクトル
 
+	VECTOR prevMoveDir_;        //前回の移動方向ベクトル
     //攻撃種類
     ENEMY_ATTACK_TYPE attackType_;
 

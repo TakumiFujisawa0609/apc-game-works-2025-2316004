@@ -48,7 +48,7 @@ void PlayerCardAction::Init(void)
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		deck_.MoveHandToCharge();
-		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
 	}
 	else if (deck_.GetDrawCardType()==CardBase::CARD_TYPE::RELOAD)
@@ -132,7 +132,6 @@ void PlayerCardAction::UpdateReload(void)
 void PlayerCardAction::ChangeAttackOne(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
-	//cardActFunc_ = [this]() {UpdateAttack(); };
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
@@ -179,12 +178,12 @@ void PlayerCardAction::ChangeComboAction(void)
 	{
 		if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE))
 		{
-			//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+			charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 			ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
 		}
 		else if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_TWO))
 		{
-			//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
+			charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 			ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
 		}
 	}

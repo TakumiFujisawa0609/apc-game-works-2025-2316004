@@ -131,7 +131,7 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
 	//ダメージを与えたことを知らせる
 	parentChara.SetIsDamage();
-	charaObj_.Damage(1);
+	charaObj_.Damage(20);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	
 }
@@ -144,7 +144,7 @@ void PlayerOnHit::CollRoarAttack(const std::weak_ptr<Collider> _hitCol)
 	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
 	//ダメージを与えたことを知らせる
 	parentChara.SetIsDamage();
-	charaObj_.Damage(1);
+	charaObj_.Damage(20);
 
 	//のけぞり時間セット
 	charaObj_.SetFlinchCnt(ROAR_FLICTION_TIME);

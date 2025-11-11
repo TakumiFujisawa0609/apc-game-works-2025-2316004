@@ -29,26 +29,6 @@ void ObjectBase::MakeCollider(const TAG_PRIORITY _tagPriority, const std::set<Co
 
 const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Collider::TAG _tag)
 {
-	//事前に配列のサイズを取得する
-	auto ParamSize = collider_.size();
-
-	//for (int i = 0; i < ParamSize; i++)
-	//{
-	//	auto tags = collider_[i]->GetTags();
-	//	//特定のタグを見つけるまでイテレータを回す
-	//	//発見できなかった場合、最後まで回る
-	//	auto it = tags.find(_chataTag);
-	//	if (it != tags.end())
-	//	{
-	//		//キャラタグを発見したら、さらに攻撃の当たり判定を探す
-	//		auto it2 = tags.find(_tag);
-	//		if (it2 != tags.end())
-	//		{
-	//			return true;
-	//		}
-	//	}
-	//}
-
 	for (auto& col:collider_)
 	{
 		auto tags = col.second->GetTags();

@@ -33,6 +33,7 @@ void CardUIBase::ChangeUsedActionCard(void)
 	for (auto& act : actions_)
 	{
 		if (act.state == CARD_STATE::REACT)continue;
+		if (act.disitionCnt_ > 0.0f)continue;
 		act.state = CARD_STATE::USED;
 	}
 }
@@ -73,7 +74,7 @@ void CardUIBase::DisitionMoveCardAll(void)
 	//選択したカードの情報を取得
 	for (auto& card : actions_)
 	{
-		if (card.state == CARD_STATE::USED)continue;
+		if (card.state == CARD_STATE::USED||card.state==CARD_STATE::REACT)continue;
 		card.state = CARD_STATE::USING;
 		DisitionMoveSpecificCard(card);
 	}
@@ -100,7 +101,7 @@ void CardUIBase::UpdateUsedCard(void)
 	std::erase_if(actions_, [](auto& act) {return act.sclCnt < 0.0f; });
 }
 
-void CardUIBase::ReactMoveCard(void)
+void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 {
 	//選択したカードの情報を取得
 	for (auto& card : actions_)
@@ -113,20 +114,20 @@ void CardUIBase::ReactMoveCard(void)
 			continue;
 		}
 		//弾かれ移動
-		ReactMoveSpecificCard(card);
+		ReactMoveSpecificCard(card, _goalPos);
 		if(card.reactCnt_<=0.0f)
 		{
 			card.state = CARD_STATE::USED;
-			card.sclCnt = 0.0f;
+			card.sclCnt = SCL_LERP_TIME;
 		}
 	}
 	
 }
 
-void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card)
+void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos)
 {
 	//弾かれ移動
-	_card.cardPos = UtilityCommon::Lerp(_card.cardPos, PLAYER_REACT_GOAL_CARD_POS,
+	_card.cardPos = UtilityCommon::Lerp(_card.cardPos, _goalPos,
 		(REACT_MOVE_CARD_TIME - _card.reactCnt_) / REACT_MOVE_CARD_TIME);
 	_card.reactCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 }

@@ -120,9 +120,8 @@ protected:
 	//決定したカードの座標
 	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };
 	//弾かれる前のゴール座標
-	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X-100.0f, Application::SCREEN_HALF_Y + 200 };
-	//弾かれた後のゴール座標(敵)
-	static constexpr Vector2F PLAYER_REACT_GOAL_CARD_POS = { Application::SCREEN_SIZE_X + 200.0f, Application::SCREEN_HALF_Y + 500 };
+	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X-100.0f, Application::SCREEN_HALF_Y + 200.0f };
+
 
 	//カード更新関数
 	std::function<void(void)>cardUpdate_;
@@ -188,9 +187,9 @@ protected:
 	//使用済みのカードを消す
 	void UpdateUsedCard(void);
 	// カード弾かれ移動
-	void ReactMoveCard(void);
+	void ReactMoveCard(const Vector2F& _goalPos);
 	//特定のカードを弾かれ移動させる
-	void ReactMoveSpecificCard(CARD_UI_INFO& _card);
+	void ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos);
 	//カード描画
 	void DrawCard(const CARD_UI_INFO _card);
 };

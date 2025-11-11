@@ -14,37 +14,6 @@ class PlayerCardUI
 {
 
 public:
-	//enum class CARD_STATE
-	//{
-	//	DRAW_PILE
-	//	, MOVE_DRAW
-	//	, USING
-	//	, REACT
-	//	, USED
-	//};
-
-	//enum class CARD_SELECT
-	//{
-	//	NONE
-	//	, LEFT
-	//	, RIGHT
-	//	, DISITION
-	//	, RELOAD
-	//};
-	////カードサイズ補完時間
-	//static constexpr double SCL_LERP_TIME = 0.5;
-	//struct CARD_UI_INFO
-	//{
-	//	Vector2F cardPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの座標(画面外で初期化)
-	//	Vector2F numPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの強さ番号座標(画面外で初期化)
-	//	int typeImg = -1;																				//カードの種類画像
-	//	float currentAngle = 0.0f;																		//カードの現在の角度
-	//	float goalAngle = currentAngle;	//カードの目標の角度
-	//	double cardScl = 1.0;
-	//	double sclCnt = SCL_LERP_TIME;
-	//	CardBase::CARD_STATUS status;																	//カードのステータス
-	//	CARD_STATE state = CARD_STATE::DRAW_PILE;														//カードの状態
-	//};
 
 	/// @brief コンストラクタ
 	/// @param  
@@ -112,6 +81,8 @@ private:
 	static constexpr float ARROUND_PER_QUAD_DEG = ARROUND_PER_DEG * ARROUND_NUM_PER_QUAD;//90度当たりの枚数
 	static constexpr float ARROUND_PER_QUAD_RAD = ARROUND_PER_QUAD_DEG * DX_PI_F / 180.0f;//90度当たりの枚数
 
+	//弾かれる前のゴール座標
+	static constexpr Vector2F REACT_GOAL_CARD_POS = {  - 200.0f, Application::SCREEN_HALF_Y + 500 };
 	//手札の選択カードと
 
 	//選択カード番号
@@ -129,8 +100,8 @@ private:
 
 	//見せるカード
 	std::list<CARD_UI_INFO>visibleCards_;
-	//アクション中カード
-	std::list<CARD_UI_INFO>actions_;
+	////アクション中カード
+	//std::list<CARD_UI_INFO>actions_;
 	//円形UIの中心座標
 	Vector2 centerPos_;
 	////カード番号イメージ
@@ -143,8 +114,6 @@ private:
 	Vector2F numPos_;
 	//カードセレクトの動き時間
 	float cardMoveCnt_;
-	//決定後のカウント
-	float disitionCnt_;
 	////カードのサイズの動き時間
 	//double sclSmallCnt_;
 	

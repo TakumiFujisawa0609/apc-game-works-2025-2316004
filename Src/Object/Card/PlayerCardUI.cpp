@@ -12,7 +12,6 @@ PlayerCardUI::PlayerCardUI(void):
 radius_({RADIUS_X,RADIUS_Y}),
 cardMoveCnt_(SELECT_MOVE_CARD_TIME),
 numPos_({0.0f,0.0f}),
-disitionCnt_(1.0f),
 centerPos_({0,0})
 
 {
@@ -69,6 +68,9 @@ void PlayerCardUI::Update(void)
 	UpdateCardNumPost();
 	//使用済みカードの大きさ補完
 	UpdateUsedCard();
+
+	//弾かれるカードの大きさ補完
+	ReactMoveCard(REACT_GOAL_CARD_POS);
 }
 
 void PlayerCardUI::Draw(void)
@@ -264,10 +266,16 @@ void PlayerCardUI::ChangeDisition(void)
 		ChangeSelectState(CARD_SELECT::RELOAD);
 		return;
 	}
-	disitionCnt_ = DISITION_MOVE_CARD_TIME;
+	//disitionCnt_ = DISITION_MOVE_CARD_TIME;
 
 	//使用中カード配列に入れる
 	actions_.emplace_back(*visibleCurrent_);
+
+	//決定カウントをセット
+	for(CARD_UI_INFO& act:actions_)
+	{
+		act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
+	}
 	
 	//手札に6枚よりカードが多かったら配列に入れる
 	UpdateVisibleCard();
@@ -327,12 +335,17 @@ void PlayerCardUI::UpdateDisition(void)
 	{
 		MoveSpecificCard(*it);
 	}
-	if (disitionCnt_ < 0.0f)
+	auto it = std::find_if(actions_.begin(), actions_.end(), [this](const auto& act) {return act.disitionCnt_ < 0.0f; });
+	if(it!=actions_.end())
 	{
-		disitionCnt_ = DISITION_MOVE_CARD_TIME;
 		ChangeSelectState(CARD_SELECT::NONE);
-		return;
 	}
+	//if (disitionCnt_ < 0.0f)
+	//{
+	//	disitionCnt_ = DISITION_MOVE_CARD_TIME;
+	//	ChangeSelectState(CARD_SELECT::NONE);
+	//	return;
+	//}
 	
 }
 
