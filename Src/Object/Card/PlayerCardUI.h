@@ -53,11 +53,11 @@ private:
 	//static constexpr float RADIUS_X = 170.0f;	//横半径
 	static constexpr float RADIUS_Y = 214.0f;	//横半径
 	//楕円中心
-	static constexpr float CENTER_X = 80.0f;
-	static constexpr float CENTER_Y = 640.0f;
-	///*static constexpr float CENTER_X = 0.0f;*/
-	//static constexpr float CENTER_X = 200.0f;
-	//static constexpr float CENTER_Y = 440.0f;
+	//static constexpr float CENTER_X = 80.0f;
+	//static constexpr float CENTER_Y = 640.0f;
+	///*static constexpr float CENTER_X = 0.0f;
+	static constexpr float CENTER_X = 200.0f;
+	static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔
@@ -100,22 +100,18 @@ private:
 
 	//見せるカード
 	std::list<CARD_UI_INFO>visibleCards_;
-	////アクション中カード
-	//std::list<CARD_UI_INFO>actions_;
 	//円形UIの中心座標
 	Vector2 centerPos_;
-	////カード番号イメージ
-	//int* cardNoImgs_;
-	////攻撃カード画像
-	//int atkCardImg_;
-	////リロードカード画像
-	//int reloadCardImg_;
+
 	//カードナンバー座標
 	Vector2F numPos_;
 	//カードセレクトの動き時間
 	float cardMoveCnt_;
-	////カードのサイズの動き時間
-	//double sclSmallCnt_;
+	
+	//補完角度リスト(左)
+	std::list<float>goalLeftRad_;
+	//補完角度リスト(右)
+	std::list<float>goalRightRad_;
 	
 
 	//現在選択中のカード
