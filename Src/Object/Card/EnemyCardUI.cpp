@@ -44,6 +44,8 @@ void EnemyCardUI::Update(void)
 	cardUpdate_();
 	//使用済みカードの大きさ補完
 	UpdateUsedCard();
+	//弾かれるカードの大きさ補完
+	ReactMoveCard();
 	for (auto& card : actions_)
 	{
 		card.numPos = card.cardPos + (NUM_LOCAL_POS * card.cardScl);
@@ -65,13 +67,14 @@ void EnemyCardUI::ChangeNone(void)
 
 void EnemyCardUI::ChangeDisition(void)
 {
-	disitionCnt_ = DISITION_MOVE_CARD_TIME;
+	
 	actions_.emplace_back(*handCurrent_);
 	handCurrent_++;
 	for (auto& act : actions_)
 	{
 		act.cardPos = SELECT_CARD_START_POS;
 		act.numPos = act.cardPos + (NUM_LOCAL_POS * act.cardScl);
+		act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
 	}
 
 	cardUpdate_ = [this]() {UpdateDisition(); };
@@ -94,7 +97,7 @@ void EnemyCardUI::UpdateNone(void)
 
 void EnemyCardUI::UpdateDisition(void)
 {
-	DisitionMoveCard();
+	DisitionMoveCardAll();
 }
 
 void EnemyCardUI::UpdateReloadWait(void)

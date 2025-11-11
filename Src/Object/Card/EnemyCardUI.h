@@ -8,19 +8,25 @@ class EnemyCardUI :
     EnemyCardUI(void);
     // デストラクタ
     ~EnemyCardUI(void)override;
+
     /// @brief ロード
     /// @param  
     void Load(void) override;
+
     /// @brief 初期化
     /// @param  
     void Init(void) override;
+
     /// @brief 更新
     /// @param  
     void Update(void) override;
+
     /// @brief 描画
     /// @param
 	void Draw(void) override;
+
 private:
+
     //選択カード初期位置
 	static constexpr Vector2F SELECT_CARD_START_POS = { Application::SCREEN_SIZE_X - 200,Application::SCREEN_HALF_Y + 200 };
 

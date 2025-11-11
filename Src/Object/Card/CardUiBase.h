@@ -41,6 +41,8 @@ public:
 		float goalAngle = currentAngle;	//カードの目標の角度
 		double cardScl = 1.0;
 		double sclCnt = SCL_LERP_TIME;
+		float disitionCnt_;																			//決定カウント
+		float reactCnt_;																				//はじかれるカウント
 		CardBase::CARD_STATUS status;																	//カードのステータス
 		CARD_STATE state = CARD_STATE::DRAW_PILE;														//カードの状態
 	};
@@ -89,6 +91,8 @@ public:
 	/// @param  
 	void ChangeReactActionCard(void);
 
+
+
 	/// @brief リロードカウントセット
 	/// @param _cnt 
 	void SetReloadCount(const float _cnt) { reloadPer_ = _cnt; };
@@ -107,6 +111,10 @@ protected:
 	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
+	//static constexpr float DISITION_MOVE_CARD_TIME = 0.7;
+	//弾かれるUI時間
+	static constexpr float REACT_MOVE_CARD_TIME = 0.9f;
+
 	//カードUI状態
 	
 	//決定したカードの座標
@@ -114,7 +122,7 @@ protected:
 	//弾かれる前のゴール座標
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X-100.0f, Application::SCREEN_HALF_Y + 200 };
 	//弾かれた後のゴール座標(敵)
-	static constexpr Vector2F PLAYER_REACT_GOAL_CARD_POS = { Application::SCREEN_SIZE_X + 200.0f, Application::SCREEN_HALF_Y + 200 };
+	static constexpr Vector2F PLAYER_REACT_GOAL_CARD_POS = { Application::SCREEN_SIZE_X + 200.0f, Application::SCREEN_HALF_Y + 500 };
 
 	//カード更新関数
 	std::function<void(void)>cardUpdate_;
@@ -143,6 +151,7 @@ protected:
 	float disitionCnt_;
 	//リロード割合(カードのゲージ計算用)
 	float reloadPer_;
+
 	//状態
 	CARD_SELECT selectState_;
 	//アクション中カード
@@ -172,9 +181,16 @@ protected:
 	//カード初期化
 	virtual void InitCardUI(void) = 0;;
 
-	void DisitionMoveCard(void);
+	//アクション配列のカードをすべて決定移動させる
+	void DisitionMoveCardAll(void);
+	//アクション配列の特定のカードを決定移動させる
+	void DisitionMoveSpecificCard(CARD_UI_INFO& _card);
 	//使用済みのカードを消す
 	void UpdateUsedCard(void);
+	// カード弾かれ移動
+	void ReactMoveCard(void);
+	//特定のカードを弾かれ移動させる
+	void ReactMoveSpecificCard(CARD_UI_INFO& _card);
 	//カード描画
 	void DrawCard(const CARD_UI_INFO _card);
 };

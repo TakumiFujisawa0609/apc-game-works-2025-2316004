@@ -320,7 +320,7 @@ void PlayerCardUI::UpdateRight(void)
 
 void PlayerCardUI::UpdateDisition(void)
 {
-	DisitionMoveCard();
+	DisitionMoveCardAll();
 
 	cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
 	for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)

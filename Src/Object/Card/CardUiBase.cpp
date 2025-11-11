@@ -32,6 +32,7 @@ void CardUIBase::ChangeUsedActionCard(void)
 {
 	for (auto& act : actions_)
 	{
+		if (act.state == CARD_STATE::REACT)continue;
 		act.state = CARD_STATE::USED;
 	}
 }
@@ -41,6 +42,7 @@ void CardUIBase::ChangeReactActionCard(void)
 	for (auto& act : actions_)
 	{
 		act.state = CARD_STATE::REACT;
+		act.reactCnt_ = REACT_MOVE_CARD_TIME;
 	}
 }
 
@@ -65,17 +67,23 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 	uiInfos_.emplace_back(info);
 }
 
-void CardUIBase::DisitionMoveCard(void)
+void CardUIBase::DisitionMoveCardAll(void)
 {
-	disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	//disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 	//選択したカードの情報を取得
 	for (auto& card : actions_)
 	{
 		if (card.state == CARD_STATE::USED)continue;
 		card.state = CARD_STATE::USING;
-		card.cardPos = UtilityCommon::Lerp(card.cardPos, DISITON_CARD_POS,
-			(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME);
+		DisitionMoveSpecificCard(card);
 	}
+}
+
+void CardUIBase::DisitionMoveSpecificCard(CARD_UI_INFO& _card)
+{
+	_card.disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	_card.cardPos = UtilityCommon::Lerp(_card.cardPos, DISITON_CARD_POS,
+		(DISITION_MOVE_CARD_TIME - _card.disitionCnt_) / DISITION_MOVE_CARD_TIME);
 }
 
 void CardUIBase::UpdateUsedCard(void)
@@ -90,6 +98,37 @@ void CardUIBase::UpdateUsedCard(void)
 
 	//消去アニメーションが終わったカードはアクション配列から削除
 	std::erase_if(actions_, [](auto& act) {return act.sclCnt < 0.0f; });
+}
+
+void CardUIBase::ReactMoveCard(void)
+{
+	//選択したカードの情報を取得
+	for (auto& card : actions_)
+	{
+		if (card.state != CARD_STATE::REACT)continue;
+		//まだ決定移動中ならそちらを優先
+		if (card.disitionCnt_ > 0.0f)
+		{
+			DisitionMoveSpecificCard(card);
+			continue;
+		}
+		//弾かれ移動
+		ReactMoveSpecificCard(card);
+		if(card.reactCnt_<=0.0f)
+		{
+			card.state = CARD_STATE::USED;
+			card.sclCnt = 0.0f;
+		}
+	}
+	
+}
+
+void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card)
+{
+	//弾かれ移動
+	_card.cardPos = UtilityCommon::Lerp(_card.cardPos, PLAYER_REACT_GOAL_CARD_POS,
+		(REACT_MOVE_CARD_TIME - _card.reactCnt_) / REACT_MOVE_CARD_TIME);
+	_card.reactCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 }
 
 void CardUIBase::AddHandCurrent(void)
