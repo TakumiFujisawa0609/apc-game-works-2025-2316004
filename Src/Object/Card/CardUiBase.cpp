@@ -82,7 +82,7 @@ void CardUIBase::DisitionMoveCardAll(void)
 
 void CardUIBase::DisitionMoveSpecificCard(CARD_UI_INFO& _card)
 {
-	_card.disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	_card.disitionCnt_ -= DELTA;
 	_card.cardPos = UtilityCommon::Lerp(_card.cardPos, DISITON_CARD_POS,
 		(DISITION_MOVE_CARD_TIME - _card.disitionCnt_) / DISITION_MOVE_CARD_TIME);
 }
@@ -94,7 +94,7 @@ void CardUIBase::UpdateUsedCard(void)
 	{
 		if (act.state != CARD_STATE::USED)continue;
 		act.cardScl = UtilityCommon::Lerp(act.cardScl, 0.0, (SCL_LERP_TIME - act.sclCnt) / SCL_LERP_TIME);
-		act.sclCnt -= static_cast<double>(SceneManager::GetInstance().GetDeltaTime());
+		act.sclCnt -= static_cast<double>(DELTA);
 	}
 
 	//消去アニメーションが終わったカードはアクション配列から削除
@@ -129,7 +129,7 @@ void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goa
 	//弾かれ移動
 	_card.cardPos = UtilityCommon::Lerp(_card.cardPos, _goalPos,
 		(REACT_MOVE_CARD_TIME - _card.reactCnt_) / REACT_MOVE_CARD_TIME);
-	_card.reactCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	_card.reactCnt_ -= DELTA;
 }
 
 void CardUIBase::AddHandCurrent(void)

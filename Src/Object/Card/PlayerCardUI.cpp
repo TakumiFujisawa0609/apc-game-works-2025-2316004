@@ -133,7 +133,9 @@ void PlayerCardUI::InitCardUI(void)
 		goalLeftRad_.emplace_back(it->currentAngle - ARROUND_PER_RAD);
 		i++;
 	}
-
+	goalRightRad_.emplace_back(ARROUND_PER_RAD * 6);
+	goalLeftRad_.emplace_back(ARROUND_PER_RAD * 4);
+	//goalLeftRad_.emplace_back(it->currentAngle - ARROUND_PER_RAD);
 	//見せるカードの現在位置イテレータを初期化
 	if (!visibleCards_.empty())
 	{
@@ -150,7 +152,6 @@ void PlayerCardUI::InitCardUI(void)
 void PlayerCardUI::ChangeNone(void)
 {
 	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
-
 	//目標角度を現在の角度にする
 	for (auto& card : visibleCards_)
 	{
@@ -194,7 +195,11 @@ void PlayerCardUI::ChangeLeft(void)
 	//次の角度を現在角度に代入
 	//見せるカードのマックス分角度をかける
 	int size = static_cast<int>(visibleCards_.size());
-	it->currentAngle=ARROUND_PER_RAD* size - ARROUND_PER_RAD;
+	if (size >= 7)
+	{
+		int i = 0;
+	}
+	it->currentAngle = ARROUND_PER_RAD * (size - 1);
 
 	visibleCards_.emplace_back(*it);
 
@@ -205,10 +210,11 @@ void PlayerCardUI::ChangeLeft(void)
 	auto goalRadit = goalLeftRad_.begin();
 	for (auto& card : visibleCards_)
 	{
-		card.goalAngle = *goalRadit;
-		goalRadit++;
+		card.goalAngle = card.currentAngle - ARROUND_PER_RAD;
+		//goalRadit++;
 	}
 
+	//サウンドを再生
 	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
 
 	cardUpdate_ = [this]() {UpdateLeft(); };
@@ -230,8 +236,6 @@ void PlayerCardUI::ChangeRight(void)
 		visibleCurrent_--;
 	}
 	
-
-
 	//先頭に追加
 	auto it = handCurrent_;
 	//現在位置より２枚遡って配列に入れる
@@ -305,7 +309,7 @@ void PlayerCardUI::UpdateNone(void)
 
 void PlayerCardUI::UpdateLeft(void)
 {
-	cardMoveCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	cardMoveCnt_ -= DELTA;
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_front();
@@ -318,7 +322,7 @@ void PlayerCardUI::UpdateLeft(void)
 
 void PlayerCardUI::UpdateRight(void)
 {
-	cardMoveCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+	cardMoveCnt_ -= DELTA;
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_back();
@@ -333,7 +337,8 @@ void PlayerCardUI::UpdateDisition(void)
 {
 	DisitionMoveCardAll();
 
-	cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
+	//cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
+	cardMoveCnt_-= DELTA;
 	for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)
 	{
 		MoveSpecificCard(*it);
@@ -394,6 +399,11 @@ void PlayerCardUI::CurrentAngle(void)
 
 void PlayerCardUI::UpdateVisibleCurrent(void)
 {
+	int size = static_cast<int>(visibleCards_.size());
+	//if (size >= 7)
+	//{
+	//	int i = 0;
+	//}
 	auto next = std::next(visibleCurrent_);
 	if(next!=visibleCards_.end())
 	{
@@ -411,6 +421,11 @@ void PlayerCardUI::UpdateVisibleCurrent(void)
 		auto next = std::next(visibleCurrent_);
 		visibleCards_.erase(next);
 	}
+	if (size >= 7)
+	{
+		int i = 0;
+	}
+
 }
 
 void PlayerCardUI::UpdateVisibleCard(void)
@@ -422,7 +437,6 @@ void PlayerCardUI::UpdateVisibleCard(void)
 		//先頭に追加
 		auto endit = handCurrent_;
 		auto visibleIt = visibleCurrent_;
-		const int NEXT_CARD_NO = 5;
 
 		//表示カードの次の配列になるまで手札のイテレータを回す
 		for (; visibleIt != visibleCards_.end(); visibleIt++)
@@ -492,7 +506,14 @@ void PlayerCardUI::DesideGoalAngle(void)
 	auto goalDegIt = goalLeftRad_.begin();
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
+		//float ratio = visibleIt->goalAngle / ARROUND_PER_RAD;
+		//if (std::fabs(ratio - std::round(ratio)) > 1e-6f)
+		//{
+		//	// goalAngle が ARROUND_PER_RAD の倍数ではない
+		//	int i = 0;
+		//}
 		visibleIt->goalAngle += visibleIt->currentAngle - ARROUND_PER_RAD;
+
 		//visibleIt->goalAngle = *goalDegIt;
 		//goalDegIt++;
 	}

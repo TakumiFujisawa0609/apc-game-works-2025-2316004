@@ -63,9 +63,9 @@ private:
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
+	//static constexpr float SELECT_MOVE_CARD_TIME = 0.5f;
 	//カード決定UI時間
-	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
+	//static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 
 	//先頭に追加するときの戻る枚数
 	static constexpr int PREV_CARD_COUNT = 2;

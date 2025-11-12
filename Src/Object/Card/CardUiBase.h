@@ -122,6 +122,8 @@ protected:
 	//弾かれる前のゴール座標
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X-100.0f, Application::SCREEN_HALF_Y + 200.0f };
 
+	//デルタ
+	static constexpr float DELTA = 1.0f/60.0f;
 
 	//カード更新関数
 	std::function<void(void)>cardUpdate_;
