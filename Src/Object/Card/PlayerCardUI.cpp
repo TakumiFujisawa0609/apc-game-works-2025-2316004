@@ -399,11 +399,8 @@ void PlayerCardUI::CurrentAngle(void)
 
 void PlayerCardUI::UpdateVisibleCurrent(void)
 {
+	//
 	int size = static_cast<int>(visibleCards_.size());
-	//if (size >= 7)
-	//{
-	//	int i = 0;
-	//}
 	auto next = std::next(visibleCurrent_);
 	if(next!=visibleCards_.end())
 	{
@@ -421,11 +418,6 @@ void PlayerCardUI::UpdateVisibleCurrent(void)
 		auto next = std::next(visibleCurrent_);
 		visibleCards_.erase(next);
 	}
-	if (size >= 7)
-	{
-		int i = 0;
-	}
-
 }
 
 void PlayerCardUI::UpdateVisibleCard(void)
@@ -506,16 +498,7 @@ void PlayerCardUI::DesideGoalAngle(void)
 	auto goalDegIt = goalLeftRad_.begin();
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
-		//float ratio = visibleIt->goalAngle / ARROUND_PER_RAD;
-		//if (std::fabs(ratio - std::round(ratio)) > 1e-6f)
-		//{
-		//	// goalAngle ‚ª ARROUND_PER_RAD ‚Ì”{”‚Å‚Í‚È‚¢
-		//	int i = 0;
-		//}
 		visibleIt->goalAngle += visibleIt->currentAngle - ARROUND_PER_RAD;
-
-		//visibleIt->goalAngle = *goalDegIt;
-		//goalDegIt++;
 	}
 }
 
