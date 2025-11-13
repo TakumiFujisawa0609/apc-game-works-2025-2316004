@@ -122,15 +122,13 @@ void PlayerCardUI::InitCardUI(void)
 	//６枚目までイテレータを回す
 	for (auto& it = beginit; it != endIt; it++)
 	{
-		it->currentAngle = ARROUND_PER_RAD * i - ARROUND_PER_RAD;
+		it->currentAngle = ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT);
 		it->cardPos.x = CENTER_X + std::sin(it->currentAngle) * radius_.x;
 		it->cardPos.y = CENTER_Y - std::cos(it->currentAngle) * radius_.y;
 		//常に強さ番号座標をローカル座標分追従させる
 		it->numPos = it->cardPos + (NUM_LOCAL_POS * it->cardScl);
 		//見せるカード配列に入れる
 		visibleCards_.emplace_back(*it);
-		goalRightRad_.emplace_back(it->currentAngle + ARROUND_PER_RAD);
-		goalLeftRad_.emplace_back(it->currentAngle - ARROUND_PER_RAD);
 		i++;
 	}
 	goalRightRad_.emplace_back(ARROUND_PER_RAD * 6);
@@ -141,10 +139,12 @@ void PlayerCardUI::InitCardUI(void)
 	{
 		visibleCurrent_ = visibleCards_.begin();
 		visibleCurrent_++;
+		visibleCurrent_++;
 	}
 	if (!handCards_.empty())
 	{
 		handCurrent_ = handCards_.begin();
+		handCurrent_++;
 		handCurrent_++;
 	}
 }
@@ -183,7 +183,7 @@ void PlayerCardUI::ChangeLeft(void)
 	//先頭に追加
 	auto it = handCurrent_;
 	const int NEXT_CARD_NO = 5;
-	const int rupeNum = static_cast<int>(visibleCards_.size()) - 1;
+	const int rupeNum = static_cast<int>(visibleCards_.size()) - CARDS_BEFORE_CURRENT;
 	for (int i = 0; i < rupeNum;i++)
 	{
 		it++;
@@ -199,12 +199,14 @@ void PlayerCardUI::ChangeLeft(void)
 	{
 		int i = 0;
 	}
-	it->currentAngle = ARROUND_PER_RAD * (size - 1);
+	it->currentAngle = ARROUND_PER_RAD * (size - CARDS_BEFORE_CURRENT);
 
 	visibleCards_.emplace_back(*it);
 
 	//手札選択カードを更新
 	AddHandCurrent();
+
+	visibleCards_.pop_front();
 
 	//目標角度を代入
 	auto goalRadit = goalLeftRad_.begin();
@@ -254,7 +256,7 @@ void PlayerCardUI::ChangeRight(void)
 	//手札選択カードを更新
 	SubHandCurrent();
 
-
+	visibleCards_.pop_back();
 	//目標角度をずらす
 	for (auto& card : visibleCards_)
 	{
@@ -312,7 +314,7 @@ void PlayerCardUI::UpdateLeft(void)
 	cardMoveCnt_ -= DELTA;
 	if (cardMoveCnt_ < 0.0f)
 	{
-		visibleCards_.pop_front();
+		/*visibleCards_.pop_front();*/
 		CurrentAngle();
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
@@ -325,7 +327,7 @@ void PlayerCardUI::UpdateRight(void)
 	cardMoveCnt_ -= DELTA;
 	if (cardMoveCnt_ < 0.0f)
 	{
-		visibleCards_.pop_back();
+		/*visibleCards_.pop_back();*/
 		CurrentAngle();
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
@@ -496,9 +498,12 @@ void PlayerCardUI::DesideGoalAngle(void)
 	//カードの範囲変数を更新する
 	auto visibleIt = std::next(visibleCurrent_);
 	auto goalDegIt = goalLeftRad_.begin();
+	int i = SELECT_CARD_NO - 1;
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
-		visibleIt->goalAngle += visibleIt->currentAngle - ARROUND_PER_RAD;
+		//visibleIt->goalAngle += visibleIt->currentAngle - ARROUND_PER_RAD;
+		visibleIt->goalAngle = ARROUND_PER_RAD * (i - 1);
+		i++;
 	}
 }
 

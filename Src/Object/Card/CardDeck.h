@@ -11,6 +11,7 @@ class CardDeck
 
 public:
 
+	static constexpr int CARDS_BEFORE_CURRENT = 2;					//現在選択中カードの前に表示する枚数
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
 	static constexpr int CARD_POWS[20] = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9};

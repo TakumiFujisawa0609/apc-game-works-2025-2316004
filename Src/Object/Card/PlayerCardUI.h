@@ -59,7 +59,7 @@ private:
 	static constexpr float CENTER_X = 200.0f;
 	static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
-	static constexpr int VISIBLE_CARD_MAX = 6;
+	static constexpr int VISIBLE_CARD_MAX = 7;
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
 	//カードセレクト時間
@@ -67,8 +67,7 @@ private:
 	//カード決定UI時間
 	//static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 
-	//先頭に追加するときの戻る枚数
-	static constexpr int PREV_CARD_COUNT = 2;
+
 	//始点角度
 	static constexpr float START_ANGLE = 0.0f;
 	//終点角度
@@ -80,13 +79,14 @@ private:
 	static constexpr float ARROUND_PER_RAD = ARROUND_PER_DEG * DX_PI_F / 180.0f;//ラジアン変換
 	static constexpr float ARROUND_PER_QUAD_DEG = ARROUND_PER_DEG * ARROUND_NUM_PER_QUAD;//90度当たりの枚数
 	static constexpr float ARROUND_PER_QUAD_RAD = ARROUND_PER_QUAD_DEG * DX_PI_F / 180.0f;//90度当たりの枚数
-
+	static constexpr int CARDS_BEFORE_CURRENT = 2;							//現在選択中カードの前に表示する枚数
+	static constexpr int PREV_CARD_COUNT = CARDS_BEFORE_CURRENT + 1;		//先頭に追加するときの戻る枚数
 	//弾かれる前のゴール座標
 	static constexpr Vector2F REACT_GOAL_CARD_POS = {  - 200.0f, Application::SCREEN_HALF_Y + 500 };
 	//手札の選択カードと
 
 	//選択カード番号
-	static constexpr int SELECT_CARD_NO = 1;
+	static constexpr int SELECT_CARD_NO = 2;
 
 	////初期カード
 	//std::vector<CARD_UI_INFO>uiInfos_;
