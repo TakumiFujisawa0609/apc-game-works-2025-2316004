@@ -162,7 +162,7 @@ void PlayerCardAction::ChangeReload(void)
 
 	float per = pushReloadCnt_ / RELOAD_TIME;
 	charaObj_.GetCardUI().SetReloadCount(per);
-	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD);
+	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 	
 	cardFuncs_.push([this]() {UpdateReload(); });
 }

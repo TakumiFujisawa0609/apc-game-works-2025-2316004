@@ -7,7 +7,7 @@
 #include "CardUIBase.h"
 
 CardUIBase::CardUIBase(void):
-selectState_(CARD_SELECT::RELOAD),
+selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
 reloadCardImg_(-1)
 {

@@ -69,6 +69,8 @@ private:
 
 	//先頭に追加するときの戻る枚数
 	static constexpr int PREV_CARD_COUNT = 2;
+	//現在カードの前にある枚数
+	static constexpr int CARDS_BEFORE_CURRENT = 1;
 	//始点角度
 	static constexpr float START_ANGLE = 0.0f;
 	//終点角度
@@ -112,10 +114,13 @@ private:
 	std::list<float>goalLeftRad_;
 	//補完角度リスト(右)
 	std::list<float>goalRightRad_;
-	
+	//リロード終了
+	bool isReloadEnd_;
 
 	//現在選択中のカード
 	std::list<CARD_UI_INFO>::iterator visibleCurrent_;
+	//リロード用の現在のカードイテレータ
+	std::list<CARD_UI_INFO>::iterator reloadAnimCurr_;
 
 	//カード初期化
 	void InitCardUI(void)override;
@@ -125,12 +130,14 @@ private:
 	void ChangeRight(void)override;		//右に移動
 	void ChangeDisition(void)override;	//決定
 	void ChangeReloadWait(void)override;
+	void ChangeReload(void);
 
 	void UpdateNone(void)override;
 	void UpdateLeft(void)override;
 	void UpdateRight(void)override;
 	void UpdateDisition(void)override;
 	void UpdateReloadWait(void)override;
+	void UpdateReload(void);
 
 	
 	//すべてのカードの移動
@@ -152,7 +159,8 @@ private:
 	void EraseHandCard(void);
 	//カード使用時のカード角度の更新
 	void DesideGoalAngle(void);
-
+	//リロードアニメーション
+	void ReloadAnimation(void);
 	////使用済みのカードを消す
 	//void UpdateUsedCard(void);
 

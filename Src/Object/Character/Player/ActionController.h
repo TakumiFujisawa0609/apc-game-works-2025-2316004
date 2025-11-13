@@ -228,7 +228,10 @@ private:
 	//方向と移動量の更新
 	void DirAndMovePowUpdate(void);
 
-
+	//カードを右に動かせるか判定
+	const bool IsCardLeftMoveable(void);
+	//カードを左に動かせるか判定
+	const bool IsCardRightMoveable(void);
 
 };
 

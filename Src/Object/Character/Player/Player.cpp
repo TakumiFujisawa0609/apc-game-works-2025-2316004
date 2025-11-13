@@ -99,15 +99,16 @@ void Player::Load(void)
 	cardUI_ = std::make_unique<PlayerCardUI>();
 	cardUI_->Load();
 	
-	//デッキの先頭にリロードカード追加
-	deck_->AddDrawPile(RELOAD_CARD_STATUS);
-	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
+
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
 		cardUI_->AddCardUi(CARD_POWS[i]);
 	}
+	//デッキの先頭にリロードカード追加
+	deck_->AddDrawPile(RELOAD_CARD_STATUS);
+	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 	deck_->Load();
 
 	//アクション

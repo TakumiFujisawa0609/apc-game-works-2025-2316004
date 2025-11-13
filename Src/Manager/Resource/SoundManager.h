@@ -15,6 +15,7 @@ public:
 
 		//BGM
 		TITLE_BGM,					//タイトルBGM
+		GAME_BGM,					//ゲームBGM
 		//SE
 		CARD_MOVE,
 	};

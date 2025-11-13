@@ -43,7 +43,7 @@ void CardDeck::Init(void)
 	//initDeck_.emplace_back(std::move(initReloadCard));
 
 	//カードUIの選択番号が1番なので1に初期化する
-	currentNum_ = 1;
+	currentNum_ = 0;
 }
 
 void CardDeck::CardUseUpdate(void)
@@ -207,7 +207,7 @@ void CardDeck::Reload(void)
 		drawPile_.emplace_back(std::move(deckPtr));
 	}
 	//それぞれの番号の初期化
-	currentNum_ = 1;
+	currentNum_ = 0;
 }
 
 void CardDeck::CardMoveLimit(void)

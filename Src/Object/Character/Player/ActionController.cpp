@@ -125,13 +125,13 @@ void ActionController::CardMove(void)
 	if (cardUI.GetSelectState() == CardUIBase::CARD_SELECT::DISITION
 		||cardUI.GetSelectState()== CardUIBase::CARD_SELECT::LEFT
 		||cardUI.GetSelectState()== CardUIBase::CARD_SELECT::RIGHT)return;
-	if (logic_.GetIsAct().isCardMoveLeft)
+	if (IsCardLeftMoveable())
 	{
 		deck_.CardMoveLeft();
 		cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::LEFT);
 
 	}
-	else if (logic_.GetIsAct().isCardMoveRight)
+	else if (IsCardRightMoveable())
 	{
 		deck_.CardMoveRight();
 		cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::RIGHT);
@@ -197,6 +197,14 @@ void ActionController::DirAndMovePowUpdate(void)
 	movePow_ = VScale(moveDir_, speed);
 
 	//jumpPow_ = VScale(charaObj_.GetTransform().GetUp(), mainAction_[act_]->GetJumpPow().y);
+}
+const bool ActionController::IsCardLeftMoveable(void)
+{
+	return logic_.GetIsAct().isCardMoveLeft && mainAction_.at(act_)->GetCardAction() != ActionBase::CARD_ACT_TYPE::RELOAD;
+}
+const bool ActionController::IsCardRightMoveable(void)
+{
+	return logic_.GetIsAct().isCardMoveRight && mainAction_.at(act_)->GetCardAction() != ActionBase::CARD_ACT_TYPE::RELOAD;
 }
 const ActionBase::CARD_ACT_TYPE& ActionController::GetCardAction(void)const
 {

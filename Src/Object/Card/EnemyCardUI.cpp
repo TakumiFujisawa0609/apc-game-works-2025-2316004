@@ -32,7 +32,7 @@ void EnemyCardUI::Init(void)
 	changeMoveState_ = {
 	{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
 	{CARD_SELECT::DISITION, [this]() {ChangeDisition(); } },
-	{CARD_SELECT::RELOAD, [this]() {ChangeReloadWait(); } }
+	{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } }
 	};
 	
 	ChangeSelectState(CARD_SELECT::NONE);

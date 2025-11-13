@@ -27,7 +27,9 @@ public:
 		, LEFT
 		, RIGHT
 		, DISITION
+		, RELOAD_WAIT
 		, RELOAD
+
 	};
 	//カードサイズ補完時間
 	static constexpr double SCL_LERP_TIME = 0.5;
@@ -109,6 +111,8 @@ protected:
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
 	//カードセレクト時間
 	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
+	//リロード1枚あたりの時間
+	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//static constexpr float DISITION_MOVE_CARD_TIME = 0.7;

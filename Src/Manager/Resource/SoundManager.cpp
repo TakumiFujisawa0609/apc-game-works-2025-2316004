@@ -62,12 +62,13 @@ void SoundManager::Init(void)
 
 #pragma region BGM
     res.type = TYPE::BGM;
-
+    res.path = path_Bgm + L"Battle3.mp3";
+    resourcesMap_.emplace(SRC::GAME_BGM, res);
 #pragma endregion
 
 #pragma region SE
 	res.type = TYPE::SE;
-    res.path = path_Se + L"CardMove.mp3";
+    res.path = path_Se + L"CardSound.mp3";
     resourcesMap_.emplace(SRC::CARD_MOVE, res);
 
 #pragma endregion
@@ -82,7 +83,7 @@ const bool SoundManager::LoadResource(const SRC _src)
 void SoundManager::Play(const SRC _src, const PLAYTYPE _playType)
 {
 	//‰¹Œ¹‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒGƒ‰[
-	assert(loadedMap_[_src].handleId != -1&& "‰¹Œ¹‚ª“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚Å‚·");
+	assert(loadedMap_[_src].handleId == -1&& "‰¹Œ¹‚ª“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚Å‚·");
 
     //‰¹Œ¹‚ªÄ¶Ï‚İ‚©’²‚×‚é
 	if (CheckSoundMem(loadedMap_[_src].handleId) == 1 &&
@@ -92,7 +93,7 @@ void SoundManager::Play(const SRC _src, const PLAYTYPE _playType)
 	}
 
     //‰¹Œ¹‚ÌÄ¶
-    PlaySoundMem(loadedMap_[_src].handleId, GetPlayType(_playType));
+    int i=PlaySoundMem(loadedMap_[_src].handleId, GetPlayType(_playType));
 }
 
 void SoundManager::Stop(const SRC _src)

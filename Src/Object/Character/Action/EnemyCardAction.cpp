@@ -23,7 +23,7 @@ roleDeg_(0.0f)
 		{ CARD_ACT_TYPE::SWIP_ATK, [this]() {ChangeSwip(); }},
 		{ CARD_ACT_TYPE::ROAR_ATK, [this]() {ChangeRoar(); }},
 		{ CARD_ACT_TYPE::JUMP_ATK, [this]() {ChangeJumpAtk(); }},
-		{ CARD_ACT_TYPE::ROLE_ATK, [this]() {ChangeRoleAtk(); }},
+		{ CARD_ACT_TYPE::RUSH_ATK, [this]() {ChangeRoleAtk(); }},
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 	};
 
@@ -31,7 +31,7 @@ roleDeg_(0.0f)
 		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
 		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
-		{CARD_ACT_TYPE::ROLE_ATK, ROLE_ATK }
+		{CARD_ACT_TYPE::RUSH_ATK, RUSH_ATK }
 	};
 }
 
@@ -128,7 +128,8 @@ void EnemyCardAction::ChangeReload(void)
 	}
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
-	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD);
+	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
 	cardFuncs_.push([this]() {UpdateReload(); });
 }
 
@@ -243,7 +244,7 @@ void EnemyCardAction::DesideCardAction(void)
 		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::ROLE:
-		ChangeCardAction(CARD_ACT_TYPE::ROLE_ATK);
+		ChangeCardAction(CARD_ACT_TYPE::RUSH_ATK);
 		break;
 	}
 }

@@ -61,7 +61,7 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Roar.mv1");
 	resourcesMap_.emplace(SRC::E_ROAR_ATK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Role.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Rush.mv1");
 	resourcesMap_.emplace(SRC::E_ROLE_ATK, std::move(res));
 
 

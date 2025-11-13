@@ -56,7 +56,7 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_SWIP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ROLE_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
 
 
 }
@@ -66,14 +66,16 @@ void Enemy::Init(void)
 	//カードデッキ
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_,ENEMY_NUM);
-	//デッキの先頭にリロードカード追加
-	deck_->AddDrawPile(RELOAD_CARD_STATUS);
-	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
+
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
 		cardUI_->AddCardUi(CARD_POWS[i]);
 	}
+	//デッキの先頭にリロードカード追加
+	deck_->AddDrawPile(RELOAD_CARD_STATUS);
+	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
+
 	deck_->Init();
 	cardUI_->Init();
 	logic_ = std::make_unique<EnemyLogic>(trans_,playerChara_);

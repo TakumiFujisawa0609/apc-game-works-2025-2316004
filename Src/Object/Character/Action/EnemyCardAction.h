@@ -19,7 +19,7 @@ public:
         SWIP_ATK, //ひっかき攻撃
         ROAR,     //咆哮
         JUMP_ATK, //攻撃アクション3回目
-		ROLE_ATK, //ロール攻撃
+		RUSH_ATK, //ロール攻撃
 		CALL_PROJECTILE, //射撃物呼び出し
 		DOUBLE_SPHERE_ATK, //ダブルスフィア攻撃
         RELOAD, //リロード
@@ -86,7 +86,7 @@ private:
     //咆哮のステータス
     static constexpr CardActionBase::ATK_STATUS ROAR_ATK = { ROAR_COL_START_ANIM_CNT,ROAR_COL_END_ANIM_CNT,ROAR_ATK_RADIUS };
 	//転がるのステータス
-	static constexpr CardActionBase::ATK_STATUS ROLE_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
+	static constexpr CardActionBase::ATK_STATUS RUSH_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
 
 
 

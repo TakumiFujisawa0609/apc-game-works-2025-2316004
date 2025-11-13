@@ -52,7 +52,7 @@ public:
 		SWIP_ATK, //ひっかき攻撃
 		ROAR_ATK, //咆哮
 		JUMP_ATK, //ジャンプ攻撃
-		ROLE_ATK,  //ロール攻撃
+		RUSH_ATK,  //ロール攻撃
 
 		//共通
 		RELOAD, //リロード

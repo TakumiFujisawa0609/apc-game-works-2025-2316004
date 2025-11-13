@@ -53,7 +53,7 @@ public:
 		SWIP_ATK,
 		ROAR_ATK,
 		JUMP_ATK,
-		ROLE_ATK
+		RUSH_ATK
 
 	};
 
