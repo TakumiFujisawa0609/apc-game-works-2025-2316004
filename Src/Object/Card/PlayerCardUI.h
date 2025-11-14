@@ -9,6 +9,10 @@
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
 #include"../Application.h"
+
+class CardUI;
+class CardUIController;
+
 class PlayerCardUI
 	:public CardUIBase
 {
@@ -101,7 +105,10 @@ private:
 	//std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
 
 	//見せるカード
-	std::list<CARD_UI_INFO>visibleCards_;
+	//std::list<CARD_UI_INFO>visibleCards_;
+	std::list<std::shared_ptr<CardUIController>>visibleCards_;
+	std::list<std::shared_ptr<CardUI>>visibleDrawCard_;			//実際に描画するカード
+	std::list<std::shared_ptr<CardUI>>::iterator visibleDrawIt_;			//実際に描画するカード
 	//円形UIの中心座標
 	Vector2 centerPos_;
 
@@ -117,10 +124,16 @@ private:
 	//リロード終了
 	bool isReloadEnd_;
 
+
+
+	//std::unique_ptr<CardUI>uiDraw_;
+	std::unique_ptr<CardUIController>uiController_;
+
+
 	//現在選択中のカード
-	std::list<CARD_UI_INFO>::iterator visibleCurrent_;
+	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrent_;
 	//リロード用の現在のカードイテレータ
-	std::list<CARD_UI_INFO>::iterator reloadAnimCurr_;
+	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;
 
 	//カード初期化
 	void InitCardUI(void)override;

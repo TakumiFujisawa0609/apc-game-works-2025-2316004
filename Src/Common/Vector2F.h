@@ -28,7 +28,7 @@ struct Vector2F
 	template<typename T>
 	const Vector2F operator+(const T _value)const
 	{
-		return{ x + _value,_value.y + _value };
+		return{ x + _value,y + _value };
 	}
 	template<typename T>
 	void operator+=(const T _value)const

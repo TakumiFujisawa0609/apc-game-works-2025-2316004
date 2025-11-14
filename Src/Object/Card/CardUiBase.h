@@ -12,6 +12,8 @@
 
 class PixelMaterial;
 class PixelRenderer;
+class CardUIController;
+class CardUI;
 
 class CardUIBase
 {
@@ -40,17 +42,17 @@ public:
 
 	struct CARD_UI_INFO
 	{
-		Vector2F cardPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの座標(画面外で初期化)
-		Vector2F numPos = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの強さ番号座標(画面外で初期化)
+		CardBase::CARD_STATUS status;										//カードのステータス
 		int typeImg = -1;																				//カードの種類画像
-		float currentAngle = 0.0f;																		//カードの現在の角度
-		float goalAngle = currentAngle;	//カードの目標の角度
-		double cardScl = 1.0;
+		Vector2F cardPos_ = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの座標(画面外で初期化)
+		Vector2F numPos_ = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの強さ番号座標(画面外で初期化)
+		float currentAngle_ = 0.0f;																		//カードの現在の角度
+		float goalAngle_ = currentAngle_;	//カードの目標の角度
+		double cardScl_ = 1.0;
 		double sclCnt = SCL_LERP_TIME;
 		float disitionCnt_;													//決定カウント
 		float reactCnt_;													//はじかれるカウント
-		CardBase::CARD_STATUS status;										//カードのステータス
-		CARD_STATE state = CARD_STATE::DRAW_PILE;							//カードの状態
+		CARD_STATE state_ = CARD_STATE::DRAW_PILE;							//カードの状態
 	};
 	// コンストラクタ
 	CardUIBase(void);
@@ -113,10 +115,10 @@ public:
 protected:
 	//倍率1の時のカードの強さの描画座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
-	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//リロード1枚あたりの時間
 	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
+	//カードセレクト時間
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//static constexpr float DISITION_MOVE_CARD_TIME = 0.7;
@@ -137,8 +139,7 @@ protected:
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
 	std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
-	//手札の現在選択中カード
-	std::list<CARD_UI_INFO>::iterator handCurrent_;
+
 
 	//シェーダー関連
 	std::unique_ptr<PixelMaterial>material_;
@@ -152,10 +153,6 @@ protected:
 	int atkCardImg_;
 	//リロードカード画像
 	int reloadCardImg_;
-	////カードの大きさ
-	//double cardScl_;
-	////カードの座標
-	//Vector2F cardPos_;
 	//カードナンバー座標
 	Vector2F numPos_;
 	//カードセレクトの動き時間
@@ -168,11 +165,13 @@ protected:
 	//状態
 	CARD_SELECT selectState_;
 	//アクション中カード
-	std::list<CARD_UI_INFO>actions_;
+	std::list<std::shared_ptr<CardUIController>>actions_;
 	//初期カード
-	std::vector<CARD_UI_INFO>uiInfos_;
+	std::vector<std::shared_ptr<CardUIController>>uiInfos_;
 	//手札
-	std::list<CARD_UI_INFO>handCards_;
+	std::list<std::shared_ptr<CardUIController>>handCards_;
+	//手札の現在選択中カード
+	std::list<std::shared_ptr<CardUIController>>::iterator handCurrent_;
 
 	//手札選択カードの計算
 	void AddHandCurrent(void);	//足し算

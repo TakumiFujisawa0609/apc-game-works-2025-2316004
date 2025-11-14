@@ -46,18 +46,18 @@ void EnemyCardUI::Update(void)
 	UpdateUsedCard();
 	//íeÇ©ÇÍÇÈÉJÅ[ÉhÇÃëÂÇ´Ç≥ï‚äÆ
 	ReactMoveCard(REACT_GOAL_CARD_POS);
-	for (auto& card : actions_)
-	{
-		card.numPos = card.cardPos + (NUM_LOCAL_POS * card.cardScl);
-	}
+	//for (auto& card : actions_)
+	//{
+	//	card.numPos_ = card.cardPos_ + (NUM_LOCAL_POS * card.cardScl_);
+	//}
 }
 
 void EnemyCardUI::Draw(void)
 {
-	for (auto& card : actions_)
-	{
-		DrawCard(card);
-	}
+	//for (auto& card : actions_)
+	//{
+	//	DrawCard(card);
+	//}
 }
 
 void EnemyCardUI::ChangeNone(void)
@@ -72,9 +72,9 @@ void EnemyCardUI::ChangeDisition(void)
 	handCurrent_++;
 	for (auto& act : actions_)
 	{
-		act.cardPos = SELECT_CARD_START_POS;
-		act.numPos = act.cardPos + (NUM_LOCAL_POS * act.cardScl);
-		act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
+		//act.cardPos_ = SELECT_CARD_START_POS;
+		//act.numPos_ = act.cardPos_ + (NUM_LOCAL_POS * act.cardScl_);
+		//act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
 	}
 
 	cardUpdate_ = [this]() {UpdateDisition(); };
