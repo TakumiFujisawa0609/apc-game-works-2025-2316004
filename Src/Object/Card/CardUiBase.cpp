@@ -4,6 +4,8 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Renderer/PixelMaterial.h"
+#include "../Renderer/PixelRenderer.h"
 #include "CardUIBase.h"
 
 CardUIBase::CardUIBase(void):
@@ -11,6 +13,9 @@ selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
 reloadCardImg_(-1)
 {
+	//material_ = std::make_unique<PixelMaterial>(L"CardUI",0);
+	//renderer_ = std::make_unique<PixelRenderer>(*material_);
+	//renderer_->MakeSquereVertex(Vector2{},GetGraphSize(ResourceManager::GetInstance().Load(ResourceManager::SRC::))
 }
 
 CardUIBase::~CardUIBase(void)

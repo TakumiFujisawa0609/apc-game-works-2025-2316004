@@ -78,7 +78,7 @@ void ResourceManager::Init(void)
 	resourcesMap_.emplace(SRC::RELOAD_CARD_IMG, std::move(res));
 
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"EmaBeni.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
 	resourcesMap_.emplace(SRC::STAGE, std::move(res));
 }
 

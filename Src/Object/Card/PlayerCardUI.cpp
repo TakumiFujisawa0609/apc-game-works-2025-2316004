@@ -368,7 +368,7 @@ void PlayerCardUI::UpdateDisition(void)
 
 void PlayerCardUI::UpdateReloadWait(void)
 {
-	if(reloadPer_>=1.0f)
+	if(reloadPer_>= UtilityCommon::PERCENT_MAX)
 	{
 		//InitCardUI();
 		ChangeSelectState(CARD_SELECT::RELOAD);
@@ -559,8 +559,6 @@ void PlayerCardUI::ReloadAnimation(void)
 		{
 			isReloadEnd_ = true;
 		}
-
-
 		cardMoveCnt_ = RELOAD_MOVE_CARD_TIME_PER;
 		reloadAnimCurr_--;
 	}

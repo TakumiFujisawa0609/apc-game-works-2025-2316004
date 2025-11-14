@@ -9,6 +9,10 @@
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
 #include"../Application.h"
+
+class PixelMaterial;
+class PixelRenderer;
+
 class CardUIBase
 {
 public:
@@ -43,10 +47,10 @@ public:
 		float goalAngle = currentAngle;	//カードの目標の角度
 		double cardScl = 1.0;
 		double sclCnt = SCL_LERP_TIME;
-		float disitionCnt_;																			//決定カウント
-		float reactCnt_;																				//はじかれるカウント
-		CardBase::CARD_STATUS status;																	//カードのステータス
-		CARD_STATE state = CARD_STATE::DRAW_PILE;														//カードの状態
+		float disitionCnt_;													//決定カウント
+		float reactCnt_;													//はじかれるカウント
+		CardBase::CARD_STATUS status;										//カードのステータス
+		CARD_STATE state = CARD_STATE::DRAW_PILE;							//カードの状態
 	};
 	// コンストラクタ
 	CardUIBase(void);
@@ -135,6 +139,10 @@ protected:
 	std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
 	//手札の現在選択中カード
 	std::list<CARD_UI_INFO>::iterator handCurrent_;
+
+	//シェーダー関連
+	std::unique_ptr<PixelMaterial>material_;
+	std::unique_ptr<PixelRenderer>renderer_;
 
 	//円形UIの中心座標
 	Vector2 centerPos_;

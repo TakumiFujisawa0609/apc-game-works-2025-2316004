@@ -32,6 +32,8 @@ public:
 
 	//固定デルタタイム
 	static constexpr float FIXED_DELTA_TIME = 1.0f / 60.0f;
+	//パーセント
+	static constexpr float PERCENT_MAX = 1.0f;
 
 	// 四捨五入
 	static int Round(float v);
