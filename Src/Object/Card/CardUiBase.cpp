@@ -31,7 +31,7 @@ void CardUIBase::ChangeSelectState(const CARD_SELECT _select)
 	changeMoveState_[selectState_]();
 }
 
-void CardUIBase::CardDisition(void)
+void CardUIBase::CardDecision(void)
 {
 
 }
@@ -54,38 +54,39 @@ void CardUIBase::ChangeReactActionCard(void)
 
 void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
-	CARD_UI_INFO info = {};
-
+	CardBase::CARD_STATUS status = {};
+	int typeImg = -1;
 	//属性によって画像を変える
 	switch (_status.type_)
 	{
 	case CardBase::CARD_TYPE::ATTACK:
-		info.typeImg = atkCardImg_;
+		typeImg = atkCardImg_;
 		break;
 	case CardBase::CARD_TYPE::RELOAD:
-		info.typeImg = reloadCardImg_;
+		typeImg = reloadCardImg_;
 	}
 
-	//呼び出し元の配列からの情報を代入する
-	info.status = _status;
+	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(cardNoImgs_);
+	info->SetTypeImg_(typeImg);
+	info->SetStatus(_status);
 
 	//配列に挿入
 	uiInfos_.emplace_back(info);
 }
 
-void CardUIBase::DisitionMoveCardAll(void)
+void CardUIBase::DecisionMoveCardAll(void)
 {
 	//disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 	//選択したカードの情報を取得
 	for (auto& card : actions_)
 	{
 		card->ChangeUsing();
-		card->DisitionMove();
-		//DisitionMoveSpecificCard(card);
+		card->DecisionMove();
+		//DecisionMoveSpecificCard(card);
 	}
 }
 
-void CardUIBase::DisitionMoveSpecificCard(CARD_UI_INFO& _card)
+void CardUIBase::DecisionMoveSpecificCard(CARD_UI_INFO& _card)
 {
 	_card.disitionCnt_ -= DELTA;
 	_card.cardPos_ = UtilityCommon::Lerp(_card.cardPos_, DISITON_CARD_POS,
@@ -114,7 +115,7 @@ void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 		////まだ決定移動中ならそちらを優先
 		//if (card.disitionCnt_ > 0.0f)
 		//{
-		//	DisitionMoveSpecificCard(card);
+		//	DecisionMoveSpecificCard(card);
 		//	continue;
 		//}
 		////弾かれ移動

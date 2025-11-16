@@ -141,14 +141,14 @@ private:
 	void ChangeNone(void)override;		//’Êí
 	void ChangeLeft(void)override;		//¶‚ÉˆÚ“®
 	void ChangeRight(void)override;		//‰E‚ÉˆÚ“®
-	void ChangeDisition(void)override;	//Œˆ’è
+	void ChangeDecision(void)override;	//Œˆ’è
 	void ChangeReloadWait(void)override;
 	void ChangeReload(void);
 
 	void UpdateNone(void)override;
 	void UpdateLeft(void)override;
 	void UpdateRight(void)override;
-	void UpdateDisition(void)override;
+	void UpdateDecision(void)override;
 	void UpdateReloadWait(void)override;
 	void UpdateReload(void);
 

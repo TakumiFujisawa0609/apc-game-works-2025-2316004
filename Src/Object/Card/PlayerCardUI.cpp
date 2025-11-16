@@ -24,10 +24,9 @@ isReloadEnd_(false)
 	//複数画像はコンストラクタで初期化必須
 	cardNoImgs_ = &i;
 
-	Vector2F* pos = {};
-	uiController_ = std::make_unique<CardUIController>();
-	Vector2F center = uiController_->GetCenterPos();
-	float scl = uiController_->GetScl();
+	//uiController_ = std::make_unique<CardUIController>();
+	//Vector2F center = uiController_->GetCenterPos();
+	//float scl = uiController_->GetScl();
 	//uiDraw_ = std::make_unique<CardUI>(center, scl);
 	
 }
@@ -50,16 +49,17 @@ void PlayerCardUI::Load(void)
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
 
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
+	//SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
 	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
 }
 void PlayerCardUI::Init(void)
 {
+	auto ui = uiInfos_;
 	changeMoveState_ = {
 		{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
 		{CARD_SELECT::LEFT, [this]() {ChangeLeft(); } },
 		{CARD_SELECT::RIGHT, [this]() {ChangeRight(); } },
-		{CARD_SELECT::DISITION, [this]() {ChangeDisition(); } },
+		{CARD_SELECT::DISITION, [this]() {ChangeDecision(); } },
 		{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } },
 		{CARD_SELECT::RELOAD, [this]() {ChangeReload(); } }
 	};
@@ -96,7 +96,7 @@ void PlayerCardUI::Draw(void)
 	if (visibleCurrent_ != visibleCards_.end())
 	{
 		//DrawCard(*visibleCurrent_);
-		(*visibleDrawIt_)->Draw();
+		(*visibleCurrent_)->Draw();
 	}
 
 	//uiDraw_->Draw();
@@ -156,6 +156,7 @@ void PlayerCardUI::InitCardUI(void)
 		////常に強さ番号座標をローカル座標分追従させる
 		//it->numPos_ = it->cardPos_ + (NUM_LOCAL_POS * it->cardScl_);
 		//------------------------------------------------------------
+		(*it)->InitCard(i);
 		//見せるカード配列に入れる
 		visibleCards_.emplace_back(*it);
 		Vector2F& centerPos = (*it)->GetCenterPos();
@@ -170,8 +171,8 @@ void PlayerCardUI::InitCardUI(void)
 	}
 	if (!visibleDrawCard_.empty())
 	{
-		visibleDrawIt_ = visibleDrawCard_.begin();
-		visibleDrawIt_++;
+		//visibleDrawIt_ = visibleDrawCard_.begin();
+		//visibleDrawIt_++;
 	}
 	if (!handCards_.empty())
 	{
@@ -209,7 +210,7 @@ void PlayerCardUI::ChangeLeft(void)
 	else
 	{
 		visibleCurrent_++;
-		visibleDrawIt_++;
+		//visibleDrawIt_++;
 	}
 
 	//先頭に追加
@@ -262,7 +263,7 @@ void PlayerCardUI::ChangeRight(void)
 	else
 	{
 		visibleCurrent_--;
-		visibleDrawIt_--;
+		//visibleDrawIt_--;
 	}
 	
 	//先頭に追加
@@ -297,7 +298,7 @@ void PlayerCardUI::ChangeRight(void)
 	cardUpdate_ = [this]() {UpdateRight(); };
 }
 
-void PlayerCardUI::ChangeDisition(void)
+void PlayerCardUI::ChangeDecision(void)
 {
 	if ((*visibleCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 	{
@@ -313,7 +314,7 @@ void PlayerCardUI::ChangeDisition(void)
 	for(auto& act:actions_)
 	{
 		//act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
-		act->SetDisitionCount(DISITION_MOVE_CARD_TIME);
+		act->SetDecisionCount(DISITION_MOVE_CARD_TIME);
 	}
 	
 	//手札に6枚よりカードが多かったら配列に入れる
@@ -326,7 +327,7 @@ void PlayerCardUI::ChangeDisition(void)
 	UpdateVisibleCurrent();
 
 
-	cardUpdate_ = [this]() {UpdateDisition(); };
+	cardUpdate_ = [this]() {UpdateDecision(); };
 }
 
 void PlayerCardUI::ChangeReloadWait(void)
@@ -380,9 +381,9 @@ void PlayerCardUI::UpdateRight(void)
 	MoveCardAll();
 }
 
-void PlayerCardUI::UpdateDisition(void)
+void PlayerCardUI::UpdateDecision(void)
 {
-	DisitionMoveCardAll();
+	DecisionMoveCardAll();
 
 	//cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
 	cardMoveCnt_-= DELTA;
@@ -391,7 +392,7 @@ void PlayerCardUI::UpdateDisition(void)
 		//MoveSpecificCard(*it);
 		(*it)->MoveOnRevolver(cardMoveCnt_);
 	}
-	auto it = std::find_if(actions_.begin(), actions_.end(), [this](const auto& act) {return (*act).GetDisitionCnt() < 0.0f; });
+	auto it = std::find_if(actions_.begin(), actions_.end(), [this](const auto& act) {return (*act).GetDecisionCnt() < 0.0f; });
 	if(it!=actions_.end())
 	{
 		ChangeSelectState(CARD_SELECT::NONE);
@@ -439,7 +440,7 @@ void PlayerCardUI::MoveCardAll(void)
 	for (auto& card : visibleCards_)
 	{
 		//MoveSpecificCard(card);
-		
+		card->MoveOnRevolver(cardMoveCnt_);
 	}
 }
 
@@ -474,13 +475,13 @@ void PlayerCardUI::UpdateVisibleCurrent(void)
 	{
 		//現在選択中を更新
 		visibleCurrent_++;
-		visibleDrawIt_++;
+		//visibleDrawIt_++;
 		//更新前のカード(更新後のひとつ前)を見せるカードから消す
 		auto prev = std::prev(visibleCurrent_);
 		visibleCards_.erase(prev);
 	
-		auto drawPre = std::prev(visibleDrawIt_);;
-		visibleDrawCard_.erase(drawPre);
+		//auto drawPre = std::prev(visibleDrawIt_);;
+		//visibleDrawCard_.erase(drawPre);
 	}
 	else
 	{

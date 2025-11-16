@@ -31,7 +31,7 @@ void EnemyCardUI::Init(void)
 	//èÛë‘ëJà⁄ìoò^
 	changeMoveState_ = {
 	{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
-	{CARD_SELECT::DISITION, [this]() {ChangeDisition(); } },
+	{CARD_SELECT::DISITION, [this]() {ChangeDecision(); } },
 	{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } }
 	};
 	
@@ -65,7 +65,7 @@ void EnemyCardUI::ChangeNone(void)
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
 
-void EnemyCardUI::ChangeDisition(void)
+void EnemyCardUI::ChangeDecision(void)
 {
 	
 	actions_.emplace_back(*handCurrent_);
@@ -77,7 +77,7 @@ void EnemyCardUI::ChangeDisition(void)
 		//act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
 	}
 
-	cardUpdate_ = [this]() {UpdateDisition(); };
+	cardUpdate_ = [this]() {UpdateDecision(); };
 }
 
 void EnemyCardUI::ChangeReloadWait(void)
@@ -95,9 +95,9 @@ void EnemyCardUI::UpdateNone(void)
 	ChangeSelectState(CARD_SELECT::NONE);
 }
 
-void EnemyCardUI::UpdateDisition(void)
+void EnemyCardUI::UpdateDecision(void)
 {
-	DisitionMoveCardAll();
+	DecisionMoveCardAll();
 }
 
 void EnemyCardUI::UpdateReloadWait(void)

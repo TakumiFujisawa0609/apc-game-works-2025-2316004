@@ -14,10 +14,17 @@ public:
 		, REACT			//弾かれ中
 		, USED			//使用済み
 	};
+
+	struct CARD_STATUS_DRAW
+	{
+		int typeImg = -1;
+		CardBase::CARD_STATUS status;
+	};
+
 	//カードサイズ補完時間
 	static constexpr float SCL_LERP_TIME = 0.5;
 	// コンストラクタ
-	CardUIController(int& _typeImg, CardBase::CARD_STATUS& _status);
+	CardUIController(int& _cardNumImgs);
 	// デストラクタ
 	~CardUIController(void);
 
@@ -27,7 +34,7 @@ public:
 
 	void Draw(void);
 	//選択移動
-	void DisitionMove(void);
+	void DecisionMove(void);
 	//弾かれ処理
 	void ReactMove(const Vector2F& _goalPos);
 	//使用済みカード削除
@@ -73,24 +80,34 @@ public:
 	/// @param  
 	void MoveOnRevolver(const float& _cnt);
 
-	/// @brief 目標の角度のセット
-	/// @param _rad 
-	void SetGoalAngle(const float& _rad) { goalAngle_ = _rad; }
 
-	/// @brief 現在の角度セット
-	/// @param _rad 
-	void SetCurrentAngle(const float& _rad) { currentAngle_ = _rad; }
-
-	void SetDisitionCount(const float& _cnt) { disitionCnt_ = _cnt; }
 
 	const float& GetSclCnt(void) { return sclCnt_; }
 
 	/// @brief 決定した時のアニメーションカウントの取得
 	/// @param  
 	/// @return 
-	const float& GetDisitionCnt(void)const { return disitionCnt_; }
+	const float& GetDecisionCnt(void)const { return disitionCnt_; }
 
+	/// @brief ステータスの取得
+	/// @param  
+	/// @return ステータス
 	const CardBase::CARD_STATUS GetStatus(void)const { return status_; }
+
+	/// @brief 目標の角度のセット
+/// @param _rad 
+	void SetGoalAngle(const float& _rad) { goalAngle_ = _rad; }
+
+	/// @brief 現在の角度セット
+	/// @param _rad 
+	void SetCurrentAngle(const float& _rad) { currentAngle_ = _rad; }
+
+	/// @brief 決定カウントセット
+	/// @param _cnt 
+	void SetDecisionCount(const float& _cnt) { disitionCnt_ = _cnt; }
+
+	void SetStatus(const CardBase::CARD_STATUS& _status) { status_ = _status; }
+	void SetTypeImg_(const int& _type) { typeImg_ = _type; }
 
 private:
 	//決定したカードの座標
@@ -132,7 +149,10 @@ private:
 
 	Vector2F centerPos_;						//カードリボルバーの中心
 
-	int& typeImg_;		//カードの種類画像
-	CardBase::CARD_STATUS& status_;	//カードのステータス
+	int typeImg_;		//カードの種類画像
+	CardBase::CARD_STATUS status_;	//カードのステータス
+	Vector2F size_;		//カードの大きさ
+	//カード番号イメージ
+	int& cardNoImgs_;
 };
 

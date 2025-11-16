@@ -89,7 +89,7 @@ public:
 
 	/// @brief カードの決定
 	/// @param  
-	void CardDisition(void);
+	void CardDecision(void);
 
 	/// @brief アクションカード配列の状態を使用済みにする
 	/// @param  
@@ -181,22 +181,22 @@ protected:
 	virtual void ChangeNone(void) {};		//通常
 	virtual void ChangeLeft(void) {};		//左に移動
 	virtual void ChangeRight(void) {};		//右に移動
-	virtual void ChangeDisition(void) {};	//決定
+	virtual void ChangeDecision(void) {};	//決定
 	virtual void ChangeReloadWait(void) {};
 
 	virtual void UpdateNone(void) {};
 	virtual void UpdateLeft(void) {};
 	virtual void UpdateRight(void) {};
-	virtual void UpdateDisition(void) {};
+	virtual void UpdateDecision(void) {};
 	virtual void UpdateReloadWait(void) {};
 
 	//カード初期化
 	virtual void InitCardUI(void) = 0;;
 
 	//アクション配列のカードをすべて決定移動させる
-	void DisitionMoveCardAll(void);
+	void DecisionMoveCardAll(void);
 	//アクション配列の特定のカードを決定移動させる
-	void DisitionMoveSpecificCard(CARD_UI_INFO& _card);
+	void DecisionMoveSpecificCard(CARD_UI_INFO& _card);
 	//使用済みのカードを消す
 	void UpdateUsedCard(void);
 	// カード弾かれ移動

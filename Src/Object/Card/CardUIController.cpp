@@ -2,9 +2,10 @@
 #include "../Utility/UtilityCommon.h"
 #include "CardUIController.h"
 
-CardUIController::CardUIController(int& _typeImg, CardBase::CARD_STATUS& _status) :
-	typeImg_(_typeImg),
-	status_(_status),
+CardUIController::CardUIController(int& _cardNumImgs) :
+	typeImg_(-1),
+	cardNoImgs_(_cardNumImgs),
+	status_({}),
 	disitionCnt_(0.0f),
 	reactCnt_(0.0f),
 	state_(CARD_STATE::DRAW_PILE),
@@ -31,22 +32,32 @@ void CardUIController::Update(void)
 }
 void CardUIController::Draw(void)
 {
-	//size_.x = GetGraphSizeF(typeImg_, &size_.x, &size_.y);
-	//size_.y = GetGraphSizeF(typeImg_, &size_.x, &size_.y);
+	//GetGraphSizeF(typeImg_, &size_.x, &size_.y);
 
-	////左上の座標
-	//Vector2F rightPos = centerPos_ - size_ * scl_;
+	//////左上の座標
+	//Vector2F rightPos = cardPos_ - size_ * cardScl_;
 	////右下の座標
-	//Vector2F leftPos = centerPos_ + size_ * scl_;
+	//Vector2F leftPos = cardPos_ + size_ * cardScl_;
 
 	//DrawExtendGraphF(
-	//	0, 0,
-	//	static_cast<int>(size_.x), static_cast<int>(size_.y),
+	//	rightPos.x, rightPos.y,
+	//	leftPos.x, leftPos.y,
 	//	typeImg_,
 	//	true
 	//);
+
+
+	constexpr double NUM_SCL = 0.18;
+	//カードの描画
+	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, typeImg_, true);
+
+	//int num = status_.pow_ - 1;
+	//if (num == -1) { num = 9; }
+	//DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_ * NUM_SCL, 0.0f, cardNoImgs_[num], true);
+
+
 }
-void CardUIController::DisitionMove(void)
+void CardUIController::DecisionMove(void)
 {
 	disitionCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
 	cardPos_ = UtilityCommon::Lerp(cardPos_, DISITON_CARD_POS,
@@ -66,7 +77,7 @@ void CardUIController::ReactUpdate(const Vector2F& _goalPos)
 	//まだ決定移動中ならそちらを優先
 	if (disitionCnt_ > 0.0f)
 	{
-		DisitionMove();
+		DecisionMove();
 		return;
 	}
 	//弾かれ移動
@@ -100,7 +111,7 @@ void CardUIController::EraseUsedCard(void)
 
 void CardUIController::InitCard(const int& _num)
 {
-	currentAngle_ = ARROUND_NUM_PER_QUAD * _num - ARROUND_NUM_PER_QUAD;
+	currentAngle_ = static_cast<float>(ARROUND_PER_RAD * _num - ARROUND_PER_RAD);
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
 	//常に強さ番号座標をローカル座標分追従させる

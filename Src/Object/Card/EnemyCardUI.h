@@ -29,12 +29,12 @@ private:
     void ChangeNone(void) override;		//通常
     //void ChangeLeft(void) override;		//左に移動
     //void ChangeRight(void) override;		//右に移動
-    void ChangeDisition(void) override;	//決定
+    void ChangeDecision(void) override;	//決定
     void ChangeReloadWait(void) override;
     void UpdateNone(void) override;
     //void UpdateLeft(void) override;
     //void UpdateRight(void) override;
-    void UpdateDisition(void) override;
+    void UpdateDecision(void) override;
 	void UpdateReloadWait(void) override;
 
     /// @brief カードUI初期化
