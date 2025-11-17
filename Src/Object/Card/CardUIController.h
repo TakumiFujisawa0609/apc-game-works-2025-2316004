@@ -23,6 +23,14 @@ public:
 
 	//カードサイズ補完時間
 	static constexpr float SCL_LERP_TIME = 0.5;
+	//リロード1枚あたりの時間
+	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
+	//カードセレクト時間
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.3f;
+	//カード決定UI時間
+	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
+	//敵の選択カード初期位置
+	static constexpr Vector2F ENEMY_SELECT_CARD_START_POS = { Application::SCREEN_SIZE_X - 200,Application::SCREEN_HALF_Y + 200 };
 	// コンストラクタ
 	CardUIController(int& _cardNumImgs);
 	// デストラクタ
@@ -78,10 +86,15 @@ public:
 
 	/// @brief リボルバー上を移動
 	/// @param  
-	void MoveOnRevolver(const float& _cnt);
+	void MoveOnRevolver(const float& _cnt,const float& moveTimeMax);
 
+	/// @brief 敵のカード決定
+	/// @param  
+	void ChangeDicisionEnemyCardMove(void);
 
-
+	/// @brief 拡大縮小カウントの取得
+	/// @param  
+	/// @return 拡大縮小カウント
 	const float& GetSclCnt(void) { return sclCnt_; }
 
 	/// @brief 決定した時のアニメーションカウントの取得
@@ -95,7 +108,7 @@ public:
 	const CardBase::CARD_STATUS GetStatus(void)const { return status_; }
 
 	/// @brief 目標の角度のセット
-/// @param _rad 
+	/// @param _rad 
 	void SetGoalAngle(const float& _rad) { goalAngle_ = _rad; }
 
 	/// @brief 現在の角度セット
@@ -106,24 +119,30 @@ public:
 	/// @param _cnt 
 	void SetDecisionCount(const float& _cnt) { disitionCnt_ = _cnt; }
 
+	/// @brief ステータスの取得
+	/// @param _status ステータス
 	void SetStatus(const CardBase::CARD_STATUS& _status) { status_ = _status; }
 	void SetTypeImg_(const int& _type) { typeImg_ = _type; }
+
+	/// @brief リセット
+	/// @param  
+	void ResetCount(void);
+
+	/// @brief 状態の取得
+	/// @param  
+	/// @return 
+	const CARD_STATE& GetState(void)const { return state_; }
 
 private:
 	//決定したカードの座標
 	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };
 	//弾かれる前のゴール座標
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X - 100.0f, Application::SCREEN_HALF_Y + 200.0f };
-	//リロード1枚あたりの時間
-	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
-	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
-	//カード決定UI時間
-	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
+
 	//倍率1の時のカードの強さの描画座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
 	//弾かれるUI時間
-	static constexpr float REACT_MOVE_CARD_TIME = 0.9f;
+	static constexpr float REACT_MOVE_CARD_TIME = 1.5f;
 
 
 	static constexpr float CENTER_X = 200.0f;

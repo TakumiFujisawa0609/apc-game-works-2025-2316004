@@ -1,7 +1,7 @@
 #pragma once
 #include"./CardBase.h"
 
-class CardUiController;
+class CardUIController;
 
 class CardUI
 {

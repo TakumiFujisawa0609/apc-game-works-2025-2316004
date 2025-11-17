@@ -154,9 +154,8 @@ private:
 
 	
 	//すべてのカードの移動
-	void MoveCardAll(void);
-	//特定のカードのみの移動
-	void MoveSpecificCard(CARD_UI_INFO& _card);
+	void MoveCardAll(const float& _moveTImeMax);
+
 
 
 
@@ -166,8 +165,6 @@ private:
 	void UpdateVisibleCurrent(void);
 	//見せるカードの更新
 	void UpdateVisibleCard(void);
-	//カード番号座標の追従
-	void UpdateCardNumPost(void);
 	//手札の消去
 	void EraseHandCard(void);
 	//カード使用時のカード角度の更新

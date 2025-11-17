@@ -116,9 +116,9 @@ protected:
 	//倍率1の時のカードの強さの描画座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
 	//リロード1枚あたりの時間
-	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
+	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.07f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.5f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//static constexpr float DISITION_MOVE_CARD_TIME = 0.7;

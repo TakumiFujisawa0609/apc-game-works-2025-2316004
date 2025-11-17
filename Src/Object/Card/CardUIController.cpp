@@ -85,13 +85,13 @@ void CardUIController::ReactUpdate(const Vector2F& _goalPos)
 	if (reactCnt_ <= 0.0f)
 	{
 		state_ = CARD_STATE::USED;
-		sclCnt_ = SCL_LERP_TIME;
+		sclCnt_ = 0.0f;
 	}
 }
 
-void CardUIController::MoveOnRevolver(const float& _cnt)
+void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax)
 {
-	float time = (SELECT_MOVE_CARD_TIME - _cnt) / SELECT_MOVE_CARD_TIME;
+	float time = (moveTimeMax - _cnt) / moveTimeMax;
 	float startRad = currentAngle_;
 	float goalRad = goalAngle_;
 	currentAngle_ = UtilityCommon::LerpRad(startRad
@@ -99,6 +99,22 @@ void CardUIController::MoveOnRevolver(const float& _cnt)
 
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
+}
+
+void CardUIController::ChangeDicisionEnemyCardMove(void)
+{
+	cardPos_ = ENEMY_SELECT_CARD_START_POS;
+	numPos_ = cardPos_ + (NUM_LOCAL_POS * cardScl_);
+	disitionCnt_ = DISITION_MOVE_CARD_TIME;
+}
+
+void CardUIController::ResetCount(void)
+{
+	sclCnt_ = SCL_LERP_TIME;
+	disitionCnt_ = DISITION_MOVE_CARD_TIME;
+	cardScl_ = 1.0f;
+	reactCnt_ = REACT_MOVE_CARD_TIME;
+	state_ = CARD_STATE::DRAW_PILE;
 }
 
 
@@ -126,6 +142,7 @@ void CardUIController::ChangeUsedCard(void)
 
 void CardUIController::ChangeReactCard(void)
 {
+	if (state_ == CARD_STATE::USED)return;
 	state_ = CARD_STATE::REACT;
 	reactCnt_ = REACT_MOVE_CARD_TIME;
 }

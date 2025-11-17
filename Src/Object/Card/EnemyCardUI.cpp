@@ -4,6 +4,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Card/CardUIController.h"
 #include "EnemyCardUI.h"
 
 EnemyCardUI::EnemyCardUI(void)
@@ -54,10 +55,10 @@ void EnemyCardUI::Update(void)
 
 void EnemyCardUI::Draw(void)
 {
-	//for (auto& card : actions_)
-	//{
-	//	DrawCard(card);
-	//}
+	for (auto& card : actions_)
+	{
+		card->Draw();
+	}
 }
 
 void EnemyCardUI::ChangeNone(void)
@@ -72,9 +73,11 @@ void EnemyCardUI::ChangeDecision(void)
 	handCurrent_++;
 	for (auto& act : actions_)
 	{
-		//act.cardPos_ = SELECT_CARD_START_POS;
+		act->ChangeDicisionEnemyCardMove();
+		//act.cardPos_ = ENEMY_SELECT_CARD_START_POS;
 		//act.numPos_ = act.cardPos_ + (NUM_LOCAL_POS * act.cardScl_);
 		//act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
+		//act->ChangeUsing();
 	}
 
 	cardUpdate_ = [this]() {UpdateDecision(); };
@@ -118,6 +121,5 @@ void EnemyCardUI::InitCardUI(void)
 	if (!handCards_.empty())
 	{
 		handCurrent_ = handCards_.begin();
-		handCurrent_++;
 	}
 }
