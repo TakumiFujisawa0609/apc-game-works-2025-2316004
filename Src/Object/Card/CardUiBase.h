@@ -148,7 +148,7 @@ protected:
 	//円形UIの中心座標
 	Vector2 centerPos_;
 	//カード番号イメージ
-	int* cardNoImgs_;
+	int* cardNoImg_;
 	//攻撃カード画像
 	int atkCardImg_;
 	//リロードカード画像
@@ -205,5 +205,8 @@ protected:
 	void ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos);
 	//カード描画
 	void DrawCard(const CARD_UI_INFO _card);
+
+	//カードUI画像作成
+	int MakeCardUIImg(void);
 };
 

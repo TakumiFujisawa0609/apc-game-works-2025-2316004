@@ -39,7 +39,7 @@ void CardUIBase::ChangeUsedActionCard(void)
 {
 	for (auto& act : actions_)
 	{
-
+		act->ChangeUsedCard();
 	}
 }
 
@@ -47,8 +47,7 @@ void CardUIBase::ChangeReactActionCard(void)
 {
 	for (auto& act : actions_)
 	{
-		//act.state_ = CARD_STATE::REACT;
-		//act.reactCnt_ = REACT_MOVE_CARD_TIME;
+		act->ChangeReactCard();
 	}
 }
 
@@ -65,10 +64,13 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 	case CardBase::CARD_TYPE::RELOAD:
 		typeImg = reloadCardImg_;
 	}
-
-	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(cardNoImgs_);
+	int num = _status.pow_ - 1;
+	if (num == -1) { num = 9; }
+	int drawNumImg = cardNoImg_[num];
+	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
 	info->SetTypeImg_(typeImg);
 	info->SetStatus(_status);
+	info->Init();
 
 	//”z—ñ‚É‘}“ü
 	uiInfos_.emplace_back(info);
@@ -163,6 +165,8 @@ void CardUIBase::DrawCard(const CARD_UI_INFO _card)
 
 	int num = _card.status.pow_ - 1;
 	if (num == -1) { num = 9; }
-	DrawRotaGraphF(_card.numPos_.x, _card.numPos_.y, _card.cardScl_ * NUM_SCL, 0.0f, cardNoImgs_[num], true);
+	DrawRotaGraphF(_card.numPos_.x, _card.numPos_.y, _card.cardScl_ * NUM_SCL, 0.0f, cardNoImg_[num], true);
 	//DrawLine(CENTER_X, CENTER_Y, _card.cardPos.x, _card.cardPos.y, 0xFFFFFF);
 }
+
+

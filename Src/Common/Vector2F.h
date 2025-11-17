@@ -31,7 +31,7 @@ struct Vector2F
 		return{ x + _value,y + _value };
 	}
 	template<typename T>
-	void operator+=(const T _value)const
+	void operator+=(const T _value)
 	{
 		x += _value;
 		y += _value;
@@ -43,7 +43,7 @@ struct Vector2F
 		return { static_cast<float>(x - _value),static_cast<float>(y - _value) };
 	}
 	template<typename T>
-	void operator-=(const T _value)const
+	void operator-=(const T _value)
 	{
 		x -= _value;
 		y -= _value;
@@ -54,7 +54,7 @@ struct Vector2F
 		return { static_cast<float>(x * _value),static_cast<float>(y * _value) };
 	}
 	template<typename T>
-	void operator*=(const T _value)const
+	void operator*=(const T _value)
 	{
 		x *= _value;
 		y *= _value;
@@ -65,7 +65,7 @@ struct Vector2F
 		return { static_cast<float>(x / _value),static_cast<float>(y / _value) };
 	}
 	template<typename T>
-	void operator/=(const T _value)const
+	void operator/=(const T _value)
 	{
 		x /= _value;
 		y /= _value;

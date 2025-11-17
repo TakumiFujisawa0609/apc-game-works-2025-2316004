@@ -4,7 +4,7 @@
 
 CardUIController::CardUIController(int& _cardNumImgs) :
 	typeImg_(-1),
-	cardNoImgs_(_cardNumImgs),
+	cardNoImg_(_cardNumImgs),
 	status_({}),
 	disitionCnt_(0.0f),
 	reactCnt_(0.0f),
@@ -24,11 +24,11 @@ CardUIController::~CardUIController(void)
 
 void CardUIController::Init(void)
 {
+	cardImg_ = MakeCardUIImg();
 }
 void CardUIController::Update(void)
 {
-	//番号座標同期
-	numPos_ = cardPos_ + (NUM_LOCAL_POS * cardScl_);
+
 }
 void CardUIController::Draw(void)
 {
@@ -49,11 +49,11 @@ void CardUIController::Draw(void)
 
 	constexpr double NUM_SCL = 0.18;
 	//カードの描画
-	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, typeImg_, true);
+	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, cardImg_, true);
 
 	//int num = status_.pow_ - 1;
 	//if (num == -1) { num = 9; }
-	//DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_ * NUM_SCL, 0.0f, cardNoImgs_[num], true);
+	//DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_ * NUM_SCL, 0.0f, cardNoImg_[num], true);
 
 
 }
@@ -136,3 +136,39 @@ void CardUIController::ChangeUsing(void)
 	state_ = CARD_STATE::USING;
 }
 
+int CardUIController::MakeCardUIImg(void)
+{
+	//サイズ
+	int img = -1;
+	const int GRAPH_SIZE_X = 120;
+	const int GRAPH_SIZE_Y = 160;
+	constexpr float NUM_SCL = 0.18f;
+	//描画可能なスクリーンの作成
+	img = MakeScreen(GRAPH_SIZE_X, GRAPH_SIZE_Y, true);
+	SetDrawScreen(img);
+
+	DrawGraph(0, 0, typeImg_, true);
+	//中央座標取得
+	Vector2F centerPos;
+	GetGraphSizeF(typeImg_, &centerPos.x, &centerPos.y);
+	centerPos /= 2.0f;
+	//番号サイズ取得
+	Vector2F size = { 0.0f,0.0f };
+	GetGraphSizeF(cardNoImg_, &size.x, &size.y);
+	size *= NUM_SCL;
+
+	//中央合わせ
+	centerPos -= size / 2.0f;
+
+
+	Vector2F numSizeHalf = size;
+	Vector2F leftTopPos = { centerPos.x+NUM_LOCAL_POS.x,centerPos.y+ NUM_LOCAL_POS.y };
+	Vector2F rightBottomPos = { centerPos.x+NUM_LOCAL_POS.x + numSizeHalf.x,centerPos.y+NUM_LOCAL_POS.y + numSizeHalf.y };
+	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_, true);
+
+	//描画先を元に戻す
+	SetDrawScreen(DX_SCREEN_BACK);
+	return img;
+
+
+}

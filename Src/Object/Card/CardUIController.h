@@ -152,7 +152,11 @@ private:
 	int typeImg_;		//カードの種類画像
 	CardBase::CARD_STATUS status_;	//カードのステータス
 	Vector2F size_;		//カードの大きさ
+	int cardImg_;		//カード画像
 	//カード番号イメージ
-	int& cardNoImgs_;
+	int cardNoImg_;
+
+	//カード画像作成
+	int MakeCardUIImg(void);
 };
 

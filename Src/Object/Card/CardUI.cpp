@@ -20,7 +20,7 @@ void CardUI::Draw(void)
 
 	//int num = _card.status.pow_ - 1;
 	//if (num == -1) { num = 9; }
-	//DrawRotaGraphF(_card.numPos_.x, _card.numPos_.y, _card.cardScl_ * NUM_SCL, 0.0f, cardNoImgs_[num], true);
+	//DrawRotaGraphF(_card.numPos_.x, _card.numPos_.y, _card.cardScl_ * NUM_SCL, 0.0f, cardNoImg_[num], true);
 
 
 

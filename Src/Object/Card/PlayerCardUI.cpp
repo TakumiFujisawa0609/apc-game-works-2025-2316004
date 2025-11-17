@@ -22,7 +22,7 @@ isReloadEnd_(false)
 {
 	int i = -1;
 	//複数画像はコンストラクタで初期化必須
-	cardNoImgs_ = &i;
+	cardNoImg_ = &i;
 
 	//uiController_ = std::make_unique<CardUIController>();
 	//Vector2F center = uiController_->GetCenterPos();
@@ -44,13 +44,14 @@ PlayerCardUI::~PlayerCardUI(void)
 void PlayerCardUI::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImgs_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
+	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
 
 	//SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
-	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
+	//SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
+
 }
 void PlayerCardUI::Init(void)
 {
@@ -428,6 +429,7 @@ void PlayerCardUI::UpdateReload(void)
 			if (!handCards_.empty())
 			{
 				handCurrent_ = handCards_.begin();
+				//handCurrent_++;
 			}
 			ChangeSelectState(CARD_SELECT::NONE);
 		}
@@ -623,10 +625,12 @@ void PlayerCardUI::ReloadAnimation(void)
 	if(visibleCards_.size()>VISIBLE_CARD_MAX)
 	{
 		visibleCards_.pop_back();
-		visibleDrawCard_.pop_back();
+		//visibleDrawCard_.pop_back();
 	}
 	if(reloadAnimCurr_==handCards_.begin())
 	{
+		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
+		visibleCards_.emplace_front(*reloadAnimCurr_);
 		reloadAnimCurr_ = std::prev(handCards_.end());
 	}
 }

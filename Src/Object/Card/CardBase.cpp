@@ -13,7 +13,7 @@ CardBase::CardBase(const CARD_STATUS _status) :
 {
 	//複数画像はコンストラクタで初期化必須
 	int i = -1;
-	cardNoImgs_ = &i;
+	cardNoImg_ = &i;
 	////とりあえず攻撃カードを生成
 	//type_ = CARD_TYPE::ATTACK;
 }
@@ -26,7 +26,7 @@ CardBase::~CardBase(void)
 void CardBase::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImgs_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
+	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::ATK_CARD_IMG).handleId_;
 }
 
@@ -44,5 +44,5 @@ void CardBase::Draw(void)
 	numPos_ = cardPos_ + (NUM_LOCAL_POS*cardScl_);
 	constexpr double NUM_SCL = 0.18;
 	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, atkCardImg_, true);
-	DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_* NUM_SCL, 0.0f, cardNoImgs_[status_.pow_], true);
+	DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_* NUM_SCL, 0.0f, cardNoImg_[status_.pow_], true);
 }
