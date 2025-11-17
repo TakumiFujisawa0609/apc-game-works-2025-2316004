@@ -133,6 +133,21 @@ public:
 	/// @return 
 	const CARD_STATE& GetState(void)const { return state_; }
 
+
+
+
+
+
+
+
+
+
+#ifdef _DEBUG
+	/// @brief 弾かれカウントの取得
+	const float& GetReactCount(void)const { return reactCnt_; }
+#endif // _DEBUG
+
+
 private:
 	//決定したカードの座標
 	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };
@@ -142,7 +157,7 @@ private:
 	//倍率1の時のカードの強さの描画座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
 	//弾かれるUI時間
-	static constexpr float REACT_MOVE_CARD_TIME = 1.5f;
+	static constexpr float REACT_MOVE_CARD_TIME =0.9f;
 
 
 	static constexpr float CENTER_X = 200.0f;

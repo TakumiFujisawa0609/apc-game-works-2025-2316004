@@ -18,17 +18,10 @@ cardMoveCnt_(CardUIController::SELECT_MOVE_CARD_TIME),
 numPos_({0.0f,0.0f}),
 centerPos_({0,0}),
 isReloadEnd_(false)
-
 {
 	int i = -1;
 	//複数画像はコンストラクタで初期化必須
 	cardNoImg_ = &i;
-
-	//uiController_ = std::make_unique<CardUIController>();
-	//Vector2F center = uiController_->GetCenterPos();
-	//float scl = uiController_->GetScl();
-	//uiDraw_ = std::make_unique<CardUI>(center, scl);
-	
 }
 
 PlayerCardUI::~PlayerCardUI(void)
@@ -113,20 +106,45 @@ void PlayerCardUI::Draw(void)
 	
 }
 
-
-
-
-
 #ifdef _DEBUG
 void PlayerCardUI::DrawDebug(void)
 {
-	//DrawFormatString(10, 50, 0xffffff, L"pow : %d", handCurrent_->status.pow_);
+	int i = 0;
+	for(auto& action:actions_)
+	{
+		std::wstring stateStr;
+		auto state = action->GetState();
+		switch (state)
+		{
+		case CardUIController::CARD_STATE::DRAW_PILE:
+			stateStr = L"DRAW_PILE";
+			break;
+		case CardUIController::CARD_STATE::MOVE_DRAW:
+			stateStr = L"MOVE_DRAW";
+			break;
+		case CardUIController::CARD_STATE::USING:
+			stateStr = L"USING";
+			break;
+		case CardUIController::CARD_STATE::REACT:
+			stateStr = L"REACT";
+			break;
+		case CardUIController::CARD_STATE::USED:
+			stateStr = L"USED";
+			break;
+		default:
+			break;
+		}
+		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(),action->GetDecisionCnt(), stateStr.c_str());
+		i++;
+	}
+	DrawFormatString(10, 300, 0xffffff, L"select(%d)", selectState_);
 }
 #endif 
 void PlayerCardUI::InitCardUI(void)
 {
 	handCards_.clear();
 	visibleCards_.clear();
+	actions_.clear();
 	//手札にすべての初期札を入れる
 	for (auto& it : uiInfos_)
 	{
@@ -148,17 +166,10 @@ void PlayerCardUI::InitCardUI(void)
 		{
 			it = handCards_.begin();
 		}
-		//------------------------------------------------------------
-		//it->currentAngle_ = ARROUND_PER_RAD * i - ARROUND_PER_RAD;
-		//it->cardPos_.x = CENTER_X + std::sin(it->currentAngle_) * radius_.x;
-		//it->cardPos_.y = CENTER_Y - std::cos(it->currentAngle_) * radius_.y;
-		////常に強さ番号座標をローカル座標分追従させる
-		//it->numPos_ = it->cardPos_ + (NUM_LOCAL_POS * it->cardScl_);
-		//------------------------------------------------------------
+
 		(*it)->InitCard(i);
 		//見せるカード配列に入れる
 		visibleCards_.emplace_back(*it);
-		Vector2F& centerPos = (*it)->GetCenterPos();
 		float& scl = (*it)->GetScl();
 		i++;
 	}
@@ -257,7 +268,6 @@ void PlayerCardUI::ChangeRight(void)
 	else
 	{
 		visibleCurrent_--;
-		//visibleDrawIt_--;
 	}
 	
 	//先頭に追加
@@ -277,7 +287,6 @@ void PlayerCardUI::ChangeRight(void)
 	visibleCards_.emplace_front(*it);
 	//手札選択カードを更新
 	SubHandCurrent();
-
 
 	//目標角度をずらす
 	for (auto& card : visibleCards_)
@@ -302,12 +311,14 @@ void PlayerCardUI::ChangeDecision(void)
 	//disitionCnt_ = DISITION_MOVE_CARD_TIME;
 
 	//使用中カード配列に入れる
+	//(*visibleCurrent_)->SetDecisionCount(CardUIController::DISITION_MOVE_CARD_TIME);
 	actions_.emplace_back(*visibleCurrent_);
 
 	//決定カウントをセット
 	for(auto& act:actions_)
 	{
-		if (act->GetState() == CardUIController::CARD_STATE::REACT)return;
+		if (act->GetState() == CardUIController::CARD_STATE::REACT)continue;
+		act->ChangeUsing();
 		act->SetDecisionCount(CardUIController::DISITION_MOVE_CARD_TIME);
 	}
 	
@@ -378,20 +389,32 @@ void PlayerCardUI::UpdateRight(void)
 
 void PlayerCardUI::UpdateDecision(void)
 {
+	
 	DecisionMoveCardAll();
 
 	//cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
 	cardMoveCnt_-= DELTA;
 	for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)
 	{
-		//MoveSpecificCard(*it);
 		(*it)->MoveOnRevolver(cardMoveCnt_,CardUIController::DISITION_MOVE_CARD_TIME);
 	}
-	auto it = std::find_if(actions_.begin(), actions_.end(), [this](const auto& act) {return (*act).GetDecisionCnt() < 0.0f; });
-	if(it!=actions_.end())
+
+	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
+
+	if(it==actions_.end())
 	{
 		ChangeSelectState(CARD_SELECT::NONE);
 	}
+
+	//for(auto& act:actions_)
+	//{
+	//	if(act->GetDecisionCnt()<=0.0f)
+	//	{
+	//		ChangeSelectState(CARD_SELECT::NONE);
+	//		break;
+	//	}
+	//}
+
 }
 
 void PlayerCardUI::UpdateReloadWait(void)
@@ -431,7 +454,6 @@ void PlayerCardUI::UpdateReload(void)
 			}
 			ChangeSelectState(CARD_SELECT::NONE);
 		}
-		
 	}
 }
 

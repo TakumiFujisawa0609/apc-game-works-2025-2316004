@@ -90,12 +90,12 @@ void EnemyCardUI::ChangeReloadWait(void)
 
 void EnemyCardUI::UpdateNone(void)
 {
-	//èD‚É‚·‚×‚Ä‚Ì‰ŠúD‚ğ“ü‚ê‚é
-	for (auto& it : uiInfos_)
-	{
-		handCards_.emplace_back(it);
-	}
-	ChangeSelectState(CARD_SELECT::NONE);
+	////èD‚É‚·‚×‚Ä‚Ì‰ŠúD‚ğ“ü‚ê‚é
+	//for (auto& it : uiInfos_)
+	//{
+	//	handCards_.emplace_back(it);
+	//}
+	//ChangeSelectState(CARD_SELECT::NONE);
 }
 
 void EnemyCardUI::UpdateDecision(void)

@@ -147,7 +147,9 @@ void PlayerLogic::InputAll(void)
 	//カード移動
 	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) {
 		isAct_.isCardMoveLeft = true; }
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) { isAct_.isCardMoveRight = true; }
+	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) {
+		isAct_.isCardMoveRight = true; 
+	}
 	//カード使用キー長押し(リロード用)
 	if (ins.IsPadBtnNew(padNum_, CARD_USE_BTN)|| ins.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
 	//ジャンプキー

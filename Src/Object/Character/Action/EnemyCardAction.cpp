@@ -58,7 +58,6 @@ void EnemyCardAction::Init(void)
 		deck_.MoveHandToCharge();
 		actionCntl_.GetInput().GetAttackType();
 		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-		//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 		DesideCardAction();
 	}
 	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)

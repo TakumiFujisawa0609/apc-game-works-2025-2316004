@@ -32,30 +32,8 @@ void CardUIController::Update(void)
 }
 void CardUIController::Draw(void)
 {
-	//GetGraphSizeF(typeImg_, &size_.x, &size_.y);
-
-	//////左上の座標
-	//Vector2F rightPos = cardPos_ - size_ * cardScl_;
-	////右下の座標
-	//Vector2F leftPos = cardPos_ + size_ * cardScl_;
-
-	//DrawExtendGraphF(
-	//	rightPos.x, rightPos.y,
-	//	leftPos.x, leftPos.y,
-	//	typeImg_,
-	//	true
-	//);
-
-
-	constexpr double NUM_SCL = 0.18;
 	//カードの描画
 	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, cardImg_, true);
-
-	//int num = status_.pow_ - 1;
-	//if (num == -1) { num = 9; }
-	//DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_ * NUM_SCL, 0.0f, cardNoImg_[num], true);
-
-
 }
 void CardUIController::DecisionMove(void)
 {
@@ -121,6 +99,14 @@ void CardUIController::ResetCount(void)
 void CardUIController::EraseUsedCard(void)
 {
 	if (state_ != CARD_STATE::USED)return;
+
+	//まだ決定移動中ならそちらを優先
+	if (disitionCnt_ > 0.0f)
+	{
+		DecisionMove();
+		return;
+	}
+
 	cardScl_ = UtilityCommon::Lerp(cardScl_, 0.0f, (SCL_LERP_TIME - sclCnt_) / SCL_LERP_TIME);
 	sclCnt_ -= static_cast<double>(UtilityCommon::FIXED_DELTA_TIME);
 }
@@ -136,13 +122,13 @@ void CardUIController::InitCard(const int& _num)
 
 void CardUIController::ChangeUsedCard(void)
 {
-	if (state_ == CARD_STATE::REACT || disitionCnt_ > 0.0f)return;
+	if (state_ == CARD_STATE::REACT || state_ == CARD_STATE::USED||disitionCnt_ > 0.0f)return;
 	state_ = CARD_STATE::USED;
 }
 
 void CardUIController::ChangeReactCard(void)
 {
-	if (state_ == CARD_STATE::USED)return;
+	if (state_ == CARD_STATE::USED|| state_ == CARD_STATE::REACT)return;
 	state_ = CARD_STATE::REACT;
 	reactCnt_ = REACT_MOVE_CARD_TIME;
 }
@@ -179,7 +165,7 @@ int CardUIController::MakeCardUIImg(void)
 
 
 	Vector2F numSizeHalf = size;
-	Vector2F leftTopPos = { centerPos.x+NUM_LOCAL_POS.x,centerPos.y+ NUM_LOCAL_POS.y };
+	Vector2F leftTopPos = { centerPos.x + NUM_LOCAL_POS.x,centerPos.y + NUM_LOCAL_POS.y };
 	Vector2F rightBottomPos = { centerPos.x+NUM_LOCAL_POS.x + numSizeHalf.x,centerPos.y+NUM_LOCAL_POS.y + numSizeHalf.y };
 	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_, true);
 

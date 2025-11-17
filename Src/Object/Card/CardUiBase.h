@@ -99,6 +99,10 @@ public:
 	/// @param  
 	void ChangeReactActionCard(void);
 
+	/// @brief アクションカード配列の状態を使用中にする
+	/// @param  
+	void ChangeUsingActionCard(void);
+
 
 
 	/// @brief リロードカウントセット
@@ -109,6 +113,7 @@ public:
 	/// @param  
 	/// @return カードリボルバーの状態
 	const CARD_SELECT GetSelectState(void)const { return selectState_; }
+
 
 
 
@@ -123,7 +128,7 @@ protected:
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//static constexpr float DISITION_MOVE_CARD_TIME = 0.7;
 	//弾かれるUI時間
-	static constexpr float REACT_MOVE_CARD_TIME = 0.9f;
+	static constexpr float REACT_MOVE_CARD_TIME = 3.0f;
 
 	//カードUI状態
 	
@@ -195,8 +200,6 @@ protected:
 
 	//アクション配列のカードをすべて決定移動させる
 	void DecisionMoveCardAll(void);
-	//アクション配列の特定のカードを決定移動させる
-	void DecisionMoveSpecificCard(CARD_UI_INFO& _card);
 	//使用済みのカードを消す
 	void UpdateUsedCard(void);
 	// カード弾かれ移動

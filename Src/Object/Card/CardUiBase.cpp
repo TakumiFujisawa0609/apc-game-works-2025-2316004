@@ -51,6 +51,14 @@ void CardUIBase::ChangeReactActionCard(void)
 	}
 }
 
+void CardUIBase::ChangeUsingActionCard(void)
+{
+	for (auto& act : actions_)
+	{
+		act->ChangeUsing();
+	}
+}
+
 void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
 	CardBase::CARD_STATUS status = {};
@@ -82,18 +90,15 @@ void CardUIBase::DecisionMoveCardAll(void)
 	//選択したカードの情報を取得
 	for (auto& card : actions_)
 	{
-		card->ChangeUsing();
+		if (card->GetState() == CardUIController::CARD_STATE::REACT)continue;
+		//card->ChangeUsing();
+
 		card->DecisionMove();
 		//DecisionMoveSpecificCard(card);
 	}
 }
 
-void CardUIBase::DecisionMoveSpecificCard(CARD_UI_INFO& _card)
-{
-	_card.disitionCnt_ -= DELTA;
-	_card.cardPos_ = UtilityCommon::Lerp(_card.cardPos_, DISITON_CARD_POS,
-		(DISITION_MOVE_CARD_TIME - _card.disitionCnt_) / DISITION_MOVE_CARD_TIME);
-}
+
 
 void CardUIBase::UpdateUsedCard(void)
 {

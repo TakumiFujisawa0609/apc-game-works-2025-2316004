@@ -107,21 +107,6 @@ void EnemyLogic::DebugUpdate(void)
 		moveDeg_ = RIGHT_DEG;
 		moveDir_ = Utility3D::DIR_R;
 	}
-
-	
-	////カード移動＆使用
-	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_LEFT))
-	//{
-	//	isAct_.isCardMoveLeft = true;
-	//}
-	//else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RIGHT))
-	//{
-	//	isAct_.isCardMoveRight = true;
-	//}
-	//else if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_RCONTROL))
-	//{
-	//	isAct_.isCardUse = true;
-	//}
 }
 
 void EnemyLogic::DebugDraw(void)
