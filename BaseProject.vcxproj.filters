@@ -270,18 +270,6 @@
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\ModelMaterial.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\ModelRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\PixelMaterial.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\PixelRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Renderer\ModelMaterial.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -294,7 +282,10 @@
     <ClCompile Include="Src\Renderer\PixelRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CardUI.cpp">
+    <ClCompile Include="Src\Object\Card\CardUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Object\Card\CardUIController.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -656,18 +647,6 @@
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\ModelMaterial.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\ModelRenderer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\PixelMaterial.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Architecture\③頂点シェーダ\VertexShader\Src\Renderer\PixelRenderer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Renderer\ModelMaterial.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -680,7 +659,10 @@
     <ClInclude Include="Src\Renderer\PixelRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CardUI.h">
+    <ClInclude Include="Src\Object\Card\CardUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\Card\CardUIController.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

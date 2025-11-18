@@ -9,6 +9,10 @@
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
 #include"../Application.h"
+
+class CardUI;
+class CardUIController;
+
 class PlayerCardUI
 	:public CardUIBase
 {
@@ -56,8 +60,8 @@ private:
 	//static constexpr float CENTER_X = 80.0f;
 	//static constexpr float CENTER_Y = 640.0f;
 	///*static constexpr float CENTER_X = 0.0f;
-	static constexpr float CENTER_X = 200.0f;
-	static constexpr float CENTER_Y = 440.0f;
+	//static constexpr float CENTER_X = 200.0f;
+	//static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔
@@ -101,7 +105,10 @@ private:
 	//std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
 
 	//見せるカード
-	std::list<CARD_UI_INFO>visibleCards_;
+	//std::list<CARD_UI_INFO>visibleCards_;
+	std::list<std::shared_ptr<CardUIController>>visibleCards_;
+	std::list<std::shared_ptr<CardUI>>visibleDrawCard_;			//実際に描画するカード
+	std::list<std::shared_ptr<CardUI>>::iterator visibleDrawIt_;			//実際に描画するカード
 	//円形UIの中心座標
 	Vector2 centerPos_;
 
@@ -117,10 +124,16 @@ private:
 	//リロード終了
 	bool isReloadEnd_;
 
+
+
+	//std::unique_ptr<CardUI>uiDraw_;
+	std::unique_ptr<CardUIController>uiController_;
+
+
 	//現在選択中のカード
-	std::list<CARD_UI_INFO>::iterator visibleCurrent_;
+	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrent_;
 	//リロード用の現在のカードイテレータ
-	std::list<CARD_UI_INFO>::iterator reloadAnimCurr_;
+	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;
 
 	//カード初期化
 	void InitCardUI(void)override;
@@ -128,22 +141,21 @@ private:
 	void ChangeNone(void)override;		//通常
 	void ChangeLeft(void)override;		//左に移動
 	void ChangeRight(void)override;		//右に移動
-	void ChangeDisition(void)override;	//決定
+	void ChangeDecision(void)override;	//決定
 	void ChangeReloadWait(void)override;
 	void ChangeReload(void);
 
 	void UpdateNone(void)override;
 	void UpdateLeft(void)override;
 	void UpdateRight(void)override;
-	void UpdateDisition(void)override;
+	void UpdateDecision(void)override;
 	void UpdateReloadWait(void)override;
 	void UpdateReload(void);
 
 	
 	//すべてのカードの移動
-	void MoveCardAll(void);
-	//特定のカードのみの移動
-	void MoveSpecificCard(CARD_UI_INFO& _card);
+	void MoveCardAll(const float& _moveTImeMax);
+
 
 
 
@@ -153,8 +165,6 @@ private:
 	void UpdateVisibleCurrent(void);
 	//見せるカードの更新
 	void UpdateVisibleCard(void);
-	//カード番号座標の追従
-	void UpdateCardNumPost(void);
 	//手札の消去
 	void EraseHandCard(void);
 	//カード使用時のカード角度の更新

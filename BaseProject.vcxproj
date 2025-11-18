@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CardUI.cpp" />
+    <ClCompile Include="Src\Object\Card\CardUIController.cpp" />
+    <ClCompile Include="Src\Object\Card\CardUI.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Geometry2D.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Circle.cpp" />
@@ -102,7 +103,8 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CardUI.h" />
+    <ClInclude Include="Src\Object\Card\CardUIController.h" />
+    <ClInclude Include="Src\Object\Card\CardUI.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Geometry2D.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Circle.h" />

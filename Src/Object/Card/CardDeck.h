@@ -33,10 +33,11 @@ public:
 	/// @brief カードチャージ
 	/// @param  
 	void CardCharge(void);
+	
 
 	/// @brief 使用中のカードを消す
-	/// @param  
-	void EraseHandCard(void);
+	/// @param _isLose カード負けかどうか
+	void EraseHandCard(const bool _isLose = false);
 
 	/// @brief カード選択
 	/// @param  

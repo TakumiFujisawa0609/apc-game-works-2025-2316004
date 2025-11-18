@@ -84,7 +84,9 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 	//相手のカードに負けたらノックバックする
 	if (deck_.IsCardFailure())
 	{
-		FinishAttack(_attackTag);
+		//攻撃判定無効
+		FinishFailureAttack(_attackTag);
+
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		actionCntl_.GetInput().IsActioningSet();
 		charaObj_.GetCardUI().ChangeReactActionCard();
@@ -99,6 +101,16 @@ void CardActionBase::FinishAttack(const Collider::TAG _attackCol)
 	deck_.EraseHandCard();
 	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackCol);
 	charaObj_.GetCardUI().ChangeUsedActionCard();
+	actType_ = CARD_ACT_TYPE::NONE;
+	cardFuncs_.pop();
+}
+
+void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)
+{
+	//攻撃判定無効
+	deck_.EraseHandCard(true);
+	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), _attackCol);
+	charaObj_.GetCardUI().ChangeReactActionCard();
 	actType_ = CARD_ACT_TYPE::NONE;
 	cardFuncs_.pop();
 }

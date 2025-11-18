@@ -68,6 +68,7 @@ void PlayerCardAction::Release(void)
 	deck_.EraseHandCard();
 	//ìñÇΩÇËîªíËçÌèú
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
+	//charaObj_.GetCardUI().ChangeUsedActionCard();
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
@@ -174,17 +175,21 @@ void PlayerCardAction::ChangeComboAction(void)
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
 
-	if (IsAttackable() && IsCanComboAttack() && actionCntl_.GetInput().GetIsAct().isCardUse)
+	if (actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
-		if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE))
+		if (IsAttackable() && IsCanComboAttack())
 		{
-			charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-			ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
+			if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE))
+			{
+				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+				ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
+			}
+			else if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_TWO))
+			{
+				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+				ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
+			}
 		}
-		else if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_TWO))
-		{
-			charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-			ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
-		}
+
 	}
 }

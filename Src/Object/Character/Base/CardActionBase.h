@@ -54,6 +54,9 @@ protected:
     //UŒ‚I—¹
     void FinishAttack(const Collider::TAG _attackCol);
 
+	//•‰‚¯‚ÄUŒ‚‚ªI—¹
+	void FinishFailureAttack(const Collider::TAG _attackCol);
+
     //ˆÚ“®—Ê
     VECTOR velocity_;
 

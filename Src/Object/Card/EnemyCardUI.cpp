@@ -4,6 +4,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Card/CardUIController.h"
 #include "EnemyCardUI.h"
 
 EnemyCardUI::EnemyCardUI(void)
@@ -17,7 +18,7 @@ EnemyCardUI::~EnemyCardUI(void)
 void EnemyCardUI::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImgs_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
+	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
@@ -31,7 +32,7 @@ void EnemyCardUI::Init(void)
 	//ó‘Ô‘JˆÚ“o˜^
 	changeMoveState_ = {
 	{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
-	{CARD_SELECT::DISITION, [this]() {ChangeDisition(); } },
+	{CARD_SELECT::DISITION, [this]() {ChangeDecision(); } },
 	{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } }
 	};
 	
@@ -46,17 +47,53 @@ void EnemyCardUI::Update(void)
 	UpdateUsedCard();
 	//’e‚©‚ê‚éƒJ[ƒh‚Ì‘å‚«‚³•âŠ®
 	ReactMoveCard(REACT_GOAL_CARD_POS);
-	for (auto& card : actions_)
-	{
-		card.numPos = card.cardPos + (NUM_LOCAL_POS * card.cardScl);
-	}
+	//for (auto& card : actions_)
+	//{
+	//	card.numPos_ = card.cardPos_ + (NUM_LOCAL_POS * card.cardScl_);
+	//}
 }
 
 void EnemyCardUI::Draw(void)
 {
 	for (auto& card : actions_)
 	{
-		DrawCard(card);
+		card->Draw();
+	}
+#ifdef _DEBUG
+	DrawDebug();
+#endif // _DEBUG
+
+}
+
+void EnemyCardUI::DrawDebug(void)
+{
+	int i = 0;
+	for (auto& action : actions_)
+	{
+		std::wstring stateStr;
+		auto state = action->GetState();
+		switch (state)
+		{
+		case CardUIController::CARD_STATE::DRAW_PILE:
+			stateStr = L"DRAW_PILE";
+			break;
+		case CardUIController::CARD_STATE::MOVE_DRAW:
+			stateStr = L"MOVE_DRAW";
+			break;
+		case CardUIController::CARD_STATE::USING:
+			stateStr = L"USING";
+			break;
+		case CardUIController::CARD_STATE::REACT:
+			stateStr = L"REACT";
+			break;
+		case CardUIController::CARD_STATE::USED:
+			stateStr = L"USED";
+			break;
+		default:
+			break;
+		}
+		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(), action->GetDecisionCnt(), stateStr.c_str());
+		i++;
 	}
 }
 
@@ -65,19 +102,18 @@ void EnemyCardUI::ChangeNone(void)
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
 
-void EnemyCardUI::ChangeDisition(void)
+void EnemyCardUI::ChangeDecision(void)
 {
-	
 	actions_.emplace_back(*handCurrent_);
 	handCurrent_++;
 	for (auto& act : actions_)
 	{
-		act.cardPos = SELECT_CARD_START_POS;
-		act.numPos = act.cardPos + (NUM_LOCAL_POS * act.cardScl);
-		act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
+		act->ChangeDicisionEnemyCardMove();
+		act->ChangeUsing();
+
 	}
 
-	cardUpdate_ = [this]() {UpdateDisition(); };
+	cardUpdate_ = [this]() {UpdateDecision(); };
 }
 
 void EnemyCardUI::ChangeReloadWait(void)
@@ -87,17 +123,17 @@ void EnemyCardUI::ChangeReloadWait(void)
 
 void EnemyCardUI::UpdateNone(void)
 {
-	//èD‚É‚·‚×‚Ä‚Ì‰ŠúD‚ğ“ü‚ê‚é
-	for (auto& it : uiInfos_)
-	{
-		handCards_.emplace_back(it);
-	}
-	ChangeSelectState(CARD_SELECT::NONE);
+	////èD‚É‚·‚×‚Ä‚Ì‰ŠúD‚ğ“ü‚ê‚é
+	//for (auto& it : uiInfos_)
+	//{
+	//	handCards_.emplace_back(it);
+	//}
+	//ChangeSelectState(CARD_SELECT::NONE);
 }
 
-void EnemyCardUI::UpdateDisition(void)
+void EnemyCardUI::UpdateDecision(void)
 {
-	DisitionMoveCardAll();
+	DecisionMoveCardAll();
 }
 
 void EnemyCardUI::UpdateReloadWait(void)
@@ -112,12 +148,12 @@ void EnemyCardUI::InitCardUI(void)
 	//èD‚É‚·‚×‚Ä‚Ì‰ŠúD‚ğ“ü‚ê‚é
 	for (auto& it : uiInfos_)
 	{
+		it->ResetCount();
 		handCards_.emplace_back(it);
 	}
 
 	if (!handCards_.empty())
 	{
 		handCurrent_ = handCards_.begin();
-		handCurrent_++;
 	}
 }

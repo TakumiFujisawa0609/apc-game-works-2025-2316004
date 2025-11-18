@@ -82,7 +82,7 @@ private:
 	//押し出す移動量
 	static constexpr float POSITION_OFFSET = 0.1f;
 	//雄たけび硬直時間
-	static constexpr float ROAR_FLICTION_TIME = 7.0f;
+	static constexpr float ROAR_FLICTION_TIME = 0.1f;
 	//プレイヤー
 	ActionController& action_;
 	//移動量

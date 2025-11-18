@@ -69,7 +69,7 @@ protected:
 	//使用済みかどうか
 	bool isUsed_;
 	//カード番号イメージ
-	int* cardNoImgs_;
+	int* cardNoImg_;
 	//攻撃カード画像
 	int atkCardImg_;
 	//カードの大きさ

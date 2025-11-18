@@ -6,21 +6,22 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+
+#include "../Card/CardUI.h"
+#include "../Card/CardUIController.h"
+
 #include "PlayerCardUI.h"
 
 PlayerCardUI::PlayerCardUI(void):
 radius_({RADIUS_X,RADIUS_Y}),
-cardMoveCnt_(SELECT_MOVE_CARD_TIME),
+cardMoveCnt_(CardUIController::SELECT_MOVE_CARD_TIME),
 numPos_({0.0f,0.0f}),
 centerPos_({0,0}),
 isReloadEnd_(false)
-
 {
 	int i = -1;
 	//複数画像はコンストラクタで初期化必須
-	cardNoImgs_ = &i;
-
-
+	cardNoImg_ = &i;
 }
 
 PlayerCardUI::~PlayerCardUI(void)
@@ -36,21 +37,23 @@ PlayerCardUI::~PlayerCardUI(void)
 void PlayerCardUI::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImgs_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
+	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
 
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
-	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
+	//SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
+	//SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
+
 }
 void PlayerCardUI::Init(void)
 {
+	auto ui = uiInfos_;
 	changeMoveState_ = {
 		{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
 		{CARD_SELECT::LEFT, [this]() {ChangeLeft(); } },
 		{CARD_SELECT::RIGHT, [this]() {ChangeRight(); } },
-		{CARD_SELECT::DISITION, [this]() {ChangeDisition(); } },
+		{CARD_SELECT::DISITION, [this]() {ChangeDecision(); } },
 		{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } },
 		{CARD_SELECT::RELOAD, [this]() {ChangeReload(); } }
 	};
@@ -65,9 +68,7 @@ void PlayerCardUI::Update(void)
 {
 	//カード状態
 	cardUpdate_();
-	
-	//カード番号座標の追従
-	UpdateCardNumPost();
+
 	//使用済みカードの大きさ補完
 	UpdateUsedCard();
 
@@ -80,46 +81,76 @@ void PlayerCardUI::Draw(void)
 	//逆順で描画
 	for (auto& card : visibleCards_ | std::ranges::views::reverse)
 	{
-		DrawCard(card);
+		//DrawCard(card);
+		card->Draw();
 	}
 	//現在選択中のカードを強調表示
 	if (visibleCurrent_ != visibleCards_.end())
 	{
-		DrawCard(*visibleCurrent_);
+		//DrawCard(*visibleCurrent_);
+		(*visibleCurrent_)->Draw();
 	}
 
+	//uiDraw_->Draw();
 
 	for (auto& card : actions_)
 	{
-		DrawCard(card);
+		//DrawCard(card);
+		card->Draw();
 	}
 
 #ifdef _DEBUG
-	DrawDebug();
+	//DrawDebug();
 #endif // _DEBUG
 
 	
 }
 
-
-
-
-
 #ifdef _DEBUG
 void PlayerCardUI::DrawDebug(void)
 {
-	//DrawFormatString(10, 50, 0xffffff, L"pow : %d", handCurrent_->status.pow_);
+	int i = 0;
+	for(auto& action:actions_)
+	{
+		std::wstring stateStr;
+		auto state = action->GetState();
+		switch (state)
+		{
+		case CardUIController::CARD_STATE::DRAW_PILE:
+			stateStr = L"DRAW_PILE";
+			break;
+		case CardUIController::CARD_STATE::MOVE_DRAW:
+			stateStr = L"MOVE_DRAW";
+			break;
+		case CardUIController::CARD_STATE::USING:
+			stateStr = L"USING";
+			break;
+		case CardUIController::CARD_STATE::REACT:
+			stateStr = L"REACT";
+			break;
+		case CardUIController::CARD_STATE::USED:
+			stateStr = L"USED";
+			break;
+		default:
+			break;
+		}
+		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(),action->GetDecisionCnt(), stateStr.c_str());
+		i++;
+	}
+	DrawFormatString(10, 300, 0xffffff, L"select(%d)", selectState_);
 }
 #endif 
 void PlayerCardUI::InitCardUI(void)
 {
 	handCards_.clear();
 	visibleCards_.clear();
+	actions_.clear();
 	//手札にすべての初期札を入れる
 	for (auto& it : uiInfos_)
 	{
 		handCards_.emplace_back(it);
 	}
+	//はじめの配列にリロードカードを描画したいので、最後の配列にセットする
 	auto beginit = std::prev(handCards_.end());
 	auto endIt = handCards_.begin();
 	//endItをbeginの５個先(６枚目)に指定する
@@ -135,13 +166,11 @@ void PlayerCardUI::InitCardUI(void)
 		{
 			it = handCards_.begin();
 		}
-		it->currentAngle = ARROUND_PER_RAD * i - ARROUND_PER_RAD;
-		it->cardPos.x = CENTER_X + std::sin(it->currentAngle) * radius_.x;
-		it->cardPos.y = CENTER_Y - std::cos(it->currentAngle) * radius_.y;
-		//常に強さ番号座標をローカル座標分追従させる
-		it->numPos = it->cardPos + (NUM_LOCAL_POS * it->cardScl);
+
+		(*it)->InitCard(i);
 		//見せるカード配列に入れる
 		visibleCards_.emplace_back(*it);
+		float& scl = (*it)->GetScl();
 		i++;
 	}
 	//見せるカードの現在位置イテレータを初期化
@@ -150,6 +179,7 @@ void PlayerCardUI::InitCardUI(void)
 		visibleCurrent_ = visibleCards_.begin();
 		visibleCurrent_++;
 	}
+
 	if (!handCards_.empty())
 	{
 		handCurrent_ = handCards_.begin();
@@ -158,18 +188,19 @@ void PlayerCardUI::InitCardUI(void)
 // _DEBUG
 void PlayerCardUI::ChangeNone(void)
 {
-	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
+	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
 	//目標角度を現在の角度にする
 	for (auto& card : visibleCards_)
 	{
-		card.goalAngle = 0.0f;
+		//card.goalAngle_ = 0.0f;
+		card->SetGoalAngle(0.0f);
 	}
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
 
 void PlayerCardUI::ChangeLeft(void)
 {
-	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
+	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
 
 	//カードの範囲変数を更新する
 	if (visibleCards_.size()==1)
@@ -201,8 +232,8 @@ void PlayerCardUI::ChangeLeft(void)
 	//次の角度を現在角度に代入
 	//見せるカードのマックス分角度をかける
 	int size = static_cast<int>(visibleCards_.size());
-	it->currentAngle = ARROUND_PER_RAD * (size - CARDS_BEFORE_CURRENT);
-
+	//it->currentAngle_ = ARROUND_PER_RAD * (size - CARDS_BEFORE_CURRENT);
+	(*it)->SetCurrentAngle(ARROUND_PER_RAD * (size - CARDS_BEFORE_CURRENT));
 	visibleCards_.emplace_back(*it);
 
 	//手札選択カードを更新
@@ -212,7 +243,9 @@ void PlayerCardUI::ChangeLeft(void)
 	auto goalRadit = goalLeftRad_.begin();
 	for (auto& card : visibleCards_)
 	{
-		card.goalAngle = card.currentAngle - ARROUND_PER_RAD;
+		//card.goalAngle_ = card.currentAngle_ - ARROUND_PER_RAD;
+		float currentAngle = card->GetCurrentAngle();
+		card->SetGoalAngle(currentAngle - ARROUND_PER_RAD);
 		//goalRadit++;
 	}
 	//サウンドを再生
@@ -223,7 +256,7 @@ void PlayerCardUI::ChangeLeft(void)
 
 void PlayerCardUI::ChangeRight(void)
 {
-	cardMoveCnt_ = SELECT_MOVE_CARD_TIME;
+	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
 
 	//visible配列に入れる前に現在の番地を引くことで、
 	//結果的に1番目が選択されていることになる
@@ -249,17 +282,18 @@ void PlayerCardUI::ChangeRight(void)
 		it--;
 	}
 	
-	it->currentAngle = -ARROUND_PER_RAD * PREV_CARD_COUNT;
+	//it->currentAngle_ = -ARROUND_PER_RAD * PREV_CARD_COUNT;
+	(*it)->SetCurrentAngle(-ARROUND_PER_RAD * PREV_CARD_COUNT);
 	visibleCards_.emplace_front(*it);
-
 	//手札選択カードを更新
 	SubHandCurrent();
-
 
 	//目標角度をずらす
 	for (auto& card : visibleCards_)
 	{
-		card.goalAngle = card.currentAngle + ARROUND_PER_RAD;
+		//card.goalAngle_ = card.currentAngle_ + ARROUND_PER_RAD;
+		float currentAngle = card->GetCurrentAngle();
+		card->SetGoalAngle(currentAngle + ARROUND_PER_RAD);
 	}
 	//サウンドを再生
 	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
@@ -267,9 +301,9 @@ void PlayerCardUI::ChangeRight(void)
 	cardUpdate_ = [this]() {UpdateRight(); };
 }
 
-void PlayerCardUI::ChangeDisition(void)
+void PlayerCardUI::ChangeDecision(void)
 {
-	if (visibleCurrent_->status.type_ == CardBase::CARD_TYPE::RELOAD)
+	if ((*visibleCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeSelectState(CARD_SELECT::RELOAD_WAIT);
 		return;
@@ -277,12 +311,15 @@ void PlayerCardUI::ChangeDisition(void)
 	//disitionCnt_ = DISITION_MOVE_CARD_TIME;
 
 	//使用中カード配列に入れる
+	//(*visibleCurrent_)->SetDecisionCount(CardUIController::DISITION_MOVE_CARD_TIME);
 	actions_.emplace_back(*visibleCurrent_);
 
 	//決定カウントをセット
-	for(CARD_UI_INFO& act:actions_)
+	for(auto& act:actions_)
 	{
-		act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
+		if (act->GetState() == CardUIController::CARD_STATE::REACT)continue;
+		act->ChangeUsing();
+		act->SetDecisionCount(CardUIController::DISITION_MOVE_CARD_TIME);
 	}
 	
 	//手札に6枚よりカードが多かったら配列に入れる
@@ -295,7 +332,7 @@ void PlayerCardUI::ChangeDisition(void)
 	UpdateVisibleCurrent();
 
 
-	cardUpdate_ = [this]() {UpdateDisition(); };
+	cardUpdate_ = [this]() {UpdateDecision(); };
 }
 
 void PlayerCardUI::ChangeReloadWait(void)
@@ -310,6 +347,7 @@ void PlayerCardUI::ChangeReload(void)
 	//手札にすべての初期札を入れる
 	for (auto& it : uiInfos_)
 	{
+		it->ResetCount();
 		handCards_.emplace_back(it);
 	}
 	isReloadEnd_ = false;
@@ -333,7 +371,7 @@ void PlayerCardUI::UpdateLeft(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
-	MoveCardAll();
+	MoveCardAll(CardUIController::SELECT_MOVE_CARD_TIME);
 }
 
 void PlayerCardUI::UpdateRight(void)
@@ -346,24 +384,37 @@ void PlayerCardUI::UpdateRight(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
-	MoveCardAll();
+	MoveCardAll(CardUIController::SELECT_MOVE_CARD_TIME);
 }
 
-void PlayerCardUI::UpdateDisition(void)
+void PlayerCardUI::UpdateDecision(void)
 {
-	DisitionMoveCardAll();
+	
+	DecisionMoveCardAll();
 
 	//cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
 	cardMoveCnt_-= DELTA;
 	for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)
 	{
-		MoveSpecificCard(*it);
+		(*it)->MoveOnRevolver(cardMoveCnt_,CardUIController::DISITION_MOVE_CARD_TIME);
 	}
-	auto it = std::find_if(actions_.begin(), actions_.end(), [this](const auto& act) {return act.disitionCnt_ < 0.0f; });
-	if(it!=actions_.end())
+
+	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
+
+	if(it==actions_.end())
 	{
 		ChangeSelectState(CARD_SELECT::NONE);
 	}
+
+	//for(auto& act:actions_)
+	//{
+	//	if(act->GetDecisionCnt()<=0.0f)
+	//	{
+	//		ChangeSelectState(CARD_SELECT::NONE);
+	//		break;
+	//	}
+	//}
+
 }
 
 void PlayerCardUI::UpdateReloadWait(void)
@@ -373,6 +424,10 @@ void PlayerCardUI::UpdateReloadWait(void)
 		//InitCardUI();
 		ChangeSelectState(CARD_SELECT::RELOAD);
 	}
+	//else
+	//{
+	//	ChangeSelectState(CARD_SELECT::NONE);
+	//}
 }
 void PlayerCardUI::UpdateReload(void)
 {
@@ -383,7 +438,7 @@ void PlayerCardUI::UpdateReload(void)
 		if (cardMoveCnt_ >= 0.0f)
 		{
 			cardMoveCnt_ -= DELTA;
-			MoveCardAll();
+			MoveCardAll(CardUIController::RELOAD_MOVE_CARD_TIME_PER);
 		}
 		else
 		{
@@ -395,41 +450,31 @@ void PlayerCardUI::UpdateReload(void)
 			if (!handCards_.empty())
 			{
 				handCurrent_ = handCards_.begin();
+				//handCurrent_++;
 			}
 			ChangeSelectState(CARD_SELECT::NONE);
 		}
-		
 	}
 }
 
-void PlayerCardUI::MoveCardAll(void)
+void PlayerCardUI::MoveCardAll(const float& _moveTImeMax)
 {
 	for (auto& card : visibleCards_)
 	{
-		MoveSpecificCard(card);
+		//MoveSpecificCard(card);
+		card->MoveOnRevolver(cardMoveCnt_, _moveTImeMax);
 	}
 }
 
-void PlayerCardUI::MoveSpecificCard(CARD_UI_INFO& _card)
-{
-	float time = (SELECT_MOVE_CARD_TIME - cardMoveCnt_) / SELECT_MOVE_CARD_TIME;
-	float startRad = _card.currentAngle;
-	float goalRad = _card.goalAngle;
-	_card.currentAngle = UtilityCommon::LerpRad(startRad
-		, goalRad, time);
-
-	_card.cardPos.x = CENTER_X + std::sin(_card.currentAngle) * radius_.x;
-	_card.cardPos.y = CENTER_Y - std::cos(_card.currentAngle) * radius_.y;
-}
 
 
 
 void PlayerCardUI::CurrentAngle(void)
 {
-	for (auto& card : visibleCards_)
-	{
-		card.goalAngle = card.currentAngle;
-	}
+	//for (auto& card : visibleCards_)
+	//{
+	//	card.goalAngle_ = card.currentAngle_;
+	//}
 }
 
 void PlayerCardUI::UpdateVisibleCurrent(void)
@@ -441,9 +486,13 @@ void PlayerCardUI::UpdateVisibleCurrent(void)
 	{
 		//現在選択中を更新
 		visibleCurrent_++;
+		//visibleDrawIt_++;
 		//更新前のカード(更新後のひとつ前)を見せるカードから消す
 		auto prev = std::prev(visibleCurrent_);
 		visibleCards_.erase(prev);
+	
+		//auto drawPre = std::prev(visibleDrawIt_);;
+		//visibleDrawCard_.erase(drawPre);
 	}
 	else
 	{
@@ -475,28 +524,18 @@ void PlayerCardUI::UpdateVisibleCard(void)
 			}
 		}
 		
-		endit->currentAngle = ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD;
+		//(*endit)->currentAngle_ = ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD;
+		(*endit)->SetCurrentAngle(ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD);
 		visibleCards_.emplace_back(*endit);
 	}
 	//2枚の時は前にあるカードを持ってくる
 	else if (size <= PREV_CARD_COUNT)
 	{
-		visibleCurrent_->goalAngle = visibleCurrent_->currentAngle + ARROUND_PER_RAD;
+		float currentAngle = (*visibleCurrent_)->GetCurrentAngle();
+		(*visibleCurrent_)->SetGoalAngle(currentAngle + ARROUND_PER_RAD);
 	}
 }
 
-void PlayerCardUI::UpdateCardNumPost(void)
-{
-	//常に強さ番号座標をローカル座標分追従させる
-	for (auto& card : visibleCards_)
-	{
-		card.numPos = card.cardPos + (NUM_LOCAL_POS * card.cardScl);
-	}
-	for (auto& card : actions_)
-	{
-		card.numPos = card.cardPos + (NUM_LOCAL_POS * card.cardScl);
-	}
-}
 
 void PlayerCardUI::EraseHandCard(void)
 {
@@ -521,7 +560,7 @@ void PlayerCardUI::EraseHandCard(void)
 	else
 	{
 		SubHandCurrent();
-		auto next = std::next(handCurrent_);
+		auto prev = std::next(handCurrent_);
 		handCards_.erase(next);
 	}
 }
@@ -533,14 +572,19 @@ void PlayerCardUI::DesideGoalAngle(void)
 	auto goalDegIt = goalLeftRad_.begin();
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
-		visibleIt->goalAngle += visibleIt->currentAngle - ARROUND_PER_RAD;
+		float currentAngle = (*visibleIt)->GetCurrentAngle();
+		(*visibleIt)->SetGoalAngle(currentAngle - ARROUND_PER_RAD);
 	}
 }
 
 void PlayerCardUI::ReloadAnimation(void)
 {
 	//リロード終了時は処理しない
-	if (isReloadEnd_)return;
+	if (isReloadEnd_)
+	{
+		return;
+	}
+		
 
 	//見せカードの0番目にリロードカードが来たら終了
 	//endItをbeginの５個先(６枚目)に指定する
@@ -549,7 +593,8 @@ void PlayerCardUI::ReloadAnimation(void)
 	//定期的に見せカード配列に格納する
 	if (cardMoveCnt_ < 0.0f)
 	{
-		reloadAnimCurr_->currentAngle = static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT);
+		//reloadAnimCurr_->currentAngle_ = static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT);
+		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
 
 		//見せるカード配列に追加
 		//サウンドを再生
@@ -559,28 +604,31 @@ void PlayerCardUI::ReloadAnimation(void)
 		{
 			isReloadEnd_ = true;
 		}
-		cardMoveCnt_ = RELOAD_MOVE_CARD_TIME_PER;
+		cardMoveCnt_ = CardUIController::RELOAD_MOVE_CARD_TIME_PER;
 		reloadAnimCurr_--;
 	}
-
-
 
 	//見せカードの移動
 	//座標を指定する時に使用する
 	int i = 0;
 	for (auto& card : visibleCards_)
 	{
-		card.goalAngle = ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT);
-		MoveSpecificCard(card);
+		//MoveSpecificCard(card);
+
+		card->SetGoalAngle(ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT));
+		card->MoveOnRevolver(cardMoveCnt_, CardUIController::RELOAD_MOVE_CARD_TIME_PER);
 		i++;
 	}
 	//見せカードが7枚以上お時はポップ
 	if(visibleCards_.size()>VISIBLE_CARD_MAX)
 	{
 		visibleCards_.pop_back();
+		//visibleDrawCard_.pop_back();
 	}
 	if(reloadAnimCurr_==handCards_.begin())
 	{
+		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
+		visibleCards_.emplace_front(*reloadAnimCurr_);
 		reloadAnimCurr_ = std::prev(handCards_.end());
 	}
 }

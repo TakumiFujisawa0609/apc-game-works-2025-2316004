@@ -70,6 +70,10 @@ public:
 	/// @brief 勝敗結果に使用するカードの強さの初期化
 	/// @param _playerNo 
 	void InitPutCardPow(const int _playerNo);
+
+	/// @brief カード勝負に負けた時の強さの初期化
+	/// @param _playerNo 
+	void LoseInitPutCardPow(const int _playerNo);
 	
 	/// @brief 先出し後出しの判定
 	/// @param _playerNo 
