@@ -1,12 +1,14 @@
 #pragma once
 #include<vector>
 #include<memory>
+#include"../Object/ObjectBase.h"
 #include "../../Common/Vector2.h"
 #include "CardBase.h"
 
 class CardBase;
 
-class CardDeck
+class CardDeck:
+	public ObjectBase
 {
 
 public:

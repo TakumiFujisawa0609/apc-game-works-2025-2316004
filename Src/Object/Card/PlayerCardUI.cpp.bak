@@ -31,7 +31,7 @@ PlayerCardUI::~PlayerCardUI(void)
 	//アクション中カード
 	actions_.clear();
 	changeMoveState_.clear();
-	initialCards_.clear();
+	uiInfos_.clear();
 }
 
 void PlayerCardUI::Load(void)
@@ -48,7 +48,7 @@ void PlayerCardUI::Load(void)
 }
 void PlayerCardUI::Init(void)
 {
-
+	auto ui = uiInfos_;
 	changeMoveState_ = {
 		{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
 		{CARD_SELECT::LEFT, [this]() {ChangeLeft(); } },
@@ -85,14 +85,10 @@ void PlayerCardUI::Draw(void)
 		card->Draw();
 	}
 	//現在選択中のカードを強調表示
-	//if (visibleCurrent_ != visibleCards_.end())
-	//{
-	//	//DrawCard(*visibleCurrent_);
-	//	(*visibleCurrent_)->Draw();
-	//}
-	if (handCurrent_ != handCards_.end())
+	if (visibleCurrent_ != visibleCards_.end())
 	{
-		(*handCurrent_)->Draw();
+		//DrawCard(*visibleCurrent_);
+		(*visibleCurrent_)->Draw();
 	}
 
 	//uiDraw_->Draw();
@@ -150,7 +146,7 @@ void PlayerCardUI::InitCardUI(void)
 	visibleCards_.clear();
 	actions_.clear();
 	//手札にすべての初期札を入れる
-	for (auto& it : initialCards_)
+	for (auto& it : uiInfos_)
 	{
 		handCards_.emplace_back(it);
 	}
@@ -178,11 +174,11 @@ void PlayerCardUI::InitCardUI(void)
 		i++;
 	}
 	//見せるカードの現在位置イテレータを初期化
-	//if (!visibleCards_.empty())
-	//{
-	//	visibleCurrent_ = visibleCards_.begin();
-	//	visibleCurrent_++;
-	//}
+	if (!visibleCards_.empty())
+	{
+		visibleCurrent_ = visibleCards_.begin();
+		visibleCurrent_++;
+	}
 
 	if (!handCards_.empty())
 	{
@@ -204,34 +200,26 @@ void PlayerCardUI::ChangeNone(void)
 
 void PlayerCardUI::ChangeLeft(void)
 {
-
-	// 時計回りにカードを回す
-	// 対象は、手札UIの全てのカード
-
 	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
 
 	//カードの範囲変数を更新する
-	// 手札はリロードカードが必ず残るので、最小枚数は1枚(0はあり得ないようにする)
-	if (visibleCards_.size() == 1)
+	if (visibleCards_.size()==1)
 	{
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
-	//else if(std::next(visibleCurrent_)==visibleCards_.end())
-	//{
-	//	// visibleCurrent_ = visibleCards_のイテレータ
-	//	// 　　　　　　　　　用途：
-	//	// 現、visibleCurrent_の次のイテレータが最後尾だったら、
-	//	// 逆回転させ、カードをフリップするようにする
-	//	// 末金：懸念点
-	//	ChangeSelectState(CARD_SELECT::RIGHT);
-	//	return;
-	//}
-
-	//visibleCurrent_++;
+	else if(std::next(visibleCurrent_)==visibleCards_.end())
+	{
+		ChangeSelectState(CARD_SELECT::RIGHT);
+		return;
+	}
+	else
+	{
+		visibleCurrent_++;
+	}
 
 	//先頭に追加
-	auto it = handCurrent_; // 手札の現在選択カード(handCards_のイテレータ
+	auto it = handCurrent_;
 	const int rupeNum = static_cast<int>(visibleCards_.size()) - 1;
 	for (int i = 0; i < rupeNum;i++)
 	{
@@ -277,10 +265,10 @@ void PlayerCardUI::ChangeRight(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
-	//else
-	//{
-	//	visibleCurrent_--;
-	//}
+	else
+	{
+		visibleCurrent_--;
+	}
 	
 	//先頭に追加
 	auto it = handCurrent_;
@@ -315,9 +303,7 @@ void PlayerCardUI::ChangeRight(void)
 
 void PlayerCardUI::ChangeDecision(void)
 {
-	// カードを使う処理
-
-	if ((*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
+	if ((*visibleCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeSelectState(CARD_SELECT::RELOAD_WAIT);
 		return;
@@ -326,8 +312,7 @@ void PlayerCardUI::ChangeDecision(void)
 
 	//使用中カード配列に入れる
 	//(*visibleCurrent_)->SetDecisionCount(CardUIController::DISITION_MOVE_CARD_TIME);
-	//actions_.emplace_back(*visibleCurrent_);
-	actions_.emplace_back(*handCurrent_);
+	actions_.emplace_back(*visibleCurrent_);
 
 	//決定カウントをセット
 	for(auto& act:actions_)
@@ -344,7 +329,7 @@ void PlayerCardUI::ChangeDecision(void)
 	//カードの範囲変数を更新する
 	DesideGoalAngle();
 	//見せるカードの更新
-	//UpdateVisibleCurrent();
+	UpdateVisibleCurrent();
 
 
 	cardUpdate_ = [this]() {UpdateDecision(); };
@@ -360,7 +345,7 @@ void PlayerCardUI::ChangeReload(void)
 	handCards_.clear();
 	visibleCards_.clear();
 	//手札にすべての初期札を入れる
-	for (auto& it : initialCards_)
+	for (auto& it : uiInfos_)
 	{
 		it->ResetCount();
 		handCards_.emplace_back(it);
@@ -368,8 +353,7 @@ void PlayerCardUI::ChangeReload(void)
 	isReloadEnd_ = false;
 	//一番最後の配列を見る
 	reloadAnimCurr_ = std::prev(handCards_.end());
-	//visibleCurrent_ = visibleCards_.end();
-	handCurrent_ = handCards_.end();
+	visibleCurrent_ = visibleCards_.end();
 	cardUpdate_ = [this]() {UpdateReload(); };
 }
 void PlayerCardUI::UpdateNone(void)
@@ -410,10 +394,7 @@ void PlayerCardUI::UpdateDecision(void)
 
 	//cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
 	cardMoveCnt_-= DELTA;
-
-	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrent = GetVisibleCurrentIt();
-	//for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)
-	for (auto it = visibleCurrent; it != visibleCards_.end(); it++)
+	for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)
 	{
 		(*it)->MoveOnRevolver(cardMoveCnt_,CardUIController::DISITION_MOVE_CARD_TIME);
 	}
@@ -461,11 +442,11 @@ void PlayerCardUI::UpdateReload(void)
 		}
 		else
 		{
-			//if (!visibleCards_.empty())
-			//{
-			//	visibleCurrent_ = visibleCards_.begin();
-			//	visibleCurrent_++;
-			//}
+			if (!visibleCards_.empty())
+			{
+				visibleCurrent_ = visibleCards_.begin();
+				visibleCurrent_++;
+			}
 			if (!handCards_.empty())
 			{
 				handCurrent_ = handCards_.begin();
@@ -496,50 +477,32 @@ void PlayerCardUI::CurrentAngle(void)
 	//}
 }
 
-//void PlayerCardUI::UpdateVisibleCurrent(void)
-//{
-//
-//	// handCurrent_(選択中の手札を元に、手札UIのカードを消す)
-//	std::list<std::shared_ptr<CardUIController>>::iterator temp = GetVisibleCurrentIt();
-//
-//	//for (auto it = visibleCards_.begin(); it != visibleCards_.end(); it++)
-//	//{
-//	//	if (*it == *handCurrent_)
-//	//	{
-//	//		temp = it;
-//	//		break;
-//	//	}
-//	//}
-//
-//	if(temp != visibleCards_.end())
-//	{
-//		visibleCards_.erase(temp);
-//	}
-//
-//	////
-//	//int size = static_cast<int>(visibleCards_.size());
-//	//auto next = std::next(visibleCurrent_);
-//	//if(next!=visibleCards_.end())
-//	//{
-//	//	//現在選択中を更新
-//	//	visibleCurrent_++;
-//	//	//visibleDrawIt_++;
-//	//	//更新前のカード(更新後のひとつ前)を見せるカードから消す
-//	//	auto prev = std::prev(visibleCurrent_);
-//	//	visibleCards_.erase(prev);
-//	//
-//	//	//auto drawPre = std::prev(visibleDrawIt_);;
-//	//	//visibleDrawCard_.erase(drawPre);
-//	//}
-//	//else
-//	//{
-//	//	//現在選択中を更新
-//	//	visibleCurrent_--;
-//	//	//更新前のカード(更新後のひとつ前)を見せるカードから消す
-//	//	auto next = std::next(visibleCurrent_);
-//	//	visibleCards_.erase(next);
-//	//}
-//}
+void PlayerCardUI::UpdateVisibleCurrent(void)
+{
+	//
+	int size = static_cast<int>(visibleCards_.size());
+	auto next = std::next(visibleCurrent_);
+	if(next!=visibleCards_.end())
+	{
+		//現在選択中を更新
+		visibleCurrent_++;
+		//visibleDrawIt_++;
+		//更新前のカード(更新後のひとつ前)を見せるカードから消す
+		auto prev = std::prev(visibleCurrent_);
+		visibleCards_.erase(prev);
+	
+		//auto drawPre = std::prev(visibleDrawIt_);;
+		//visibleDrawCard_.erase(drawPre);
+	}
+	else
+	{
+		//現在選択中を更新
+		visibleCurrent_--;
+		//更新前のカード(更新後のひとつ前)を見せるカードから消す
+		auto next = std::next(visibleCurrent_);
+		visibleCards_.erase(next);
+	}
+}
 
 void PlayerCardUI::UpdateVisibleCard(void)
 {
@@ -549,8 +512,7 @@ void PlayerCardUI::UpdateVisibleCard(void)
 	{
 		//先頭に追加
 		auto endit = handCurrent_;
-		//auto visibleIt = visibleCurrent_;
-		auto visibleIt = GetVisibleCurrentIt();
+		auto visibleIt = visibleCurrent_;
 
 		//表示カードの次の配列になるまで手札のイテレータを回す
 		for (; visibleIt != visibleCards_.end(); visibleIt++)
@@ -566,73 +528,47 @@ void PlayerCardUI::UpdateVisibleCard(void)
 		(*endit)->SetCurrentAngle(ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD);
 		visibleCards_.emplace_back(*endit);
 	}
-	////2枚の時は前にあるカードを持ってくる
-	//else if (size <= PREV_CARD_COUNT)
-	//{
-	//	float currentAngle = (*visibleCurrent_)->GetCurrentAngle();
-	//	(*visibleCurrent_)->SetGoalAngle(currentAngle + ARROUND_PER_RAD);
-	//}
+	//2枚の時は前にあるカードを持ってくる
+	else if (size <= PREV_CARD_COUNT)
+	{
+		float currentAngle = (*visibleCurrent_)->GetCurrentAngle();
+		(*visibleCurrent_)->SetGoalAngle(currentAngle + ARROUND_PER_RAD);
+	}
 }
 
 
 void PlayerCardUI::EraseHandCard(void)
 {
-	//auto next = std::next(handCurrent_);
-	////auto visibleNext = std::next(visibleCurrent_);
-	//auto visibleNext = std::next(visibleCurrent_);
-	//if (visibleNext != visibleCards_.end())
-	//{
-	//	AddHandCurrent();
-	//	//現在選択の手札が手札配列の最初だった場合、
-	//	//手札の一番最後の配列に戻る
-	//	if (handCurrent_ == handCards_.begin())
-	//	{
-	//		auto prev = std::prev(handCards_.end());
-	//		handCards_.erase(prev);
-	//	}
-	//	else
-	//	{
-	//		auto prev = std::prev(handCurrent_);
-	//		handCards_.erase(prev);
-	//	}
-	//}
-	//else
-	//{
-	//	SubHandCurrent();
-	//	auto prev = std::next(handCurrent_);
-	//	handCards_.erase(next);
-	//}
-
-	std::list<std::shared_ptr<CardUIController>>::iterator eraseHandIt = handCurrent_;
-	std::list<std::shared_ptr<CardUIController>>::iterator eraseVisibleIt = GetVisibleCurrentIt();
-	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrentIt = eraseVisibleIt;
-
-	// 使用した手札を削除するので、新しい手札カレントを設定する処理
-	// 見えている手札UIカード上の右側(時計回りの次)を手札とする
-	// ただし、見えている手札UIカードが最後尾の場合は左側(反時計回りの次)を手札とする
-	if (std::next(visibleCurrentIt) == visibleCards_.end())
+	auto next = std::next(handCurrent_);
+	auto visibleNext = std::next(visibleCurrent_);
+	if (visibleNext != visibleCards_.end())
 	{
-		visibleCurrentIt--;
+		AddHandCurrent();
+		//現在選択の手札が手札配列の最初だった場合、
+		//手札の一番最後の配列に戻る
+		if (handCurrent_ == handCards_.begin())
+		{
+			auto prev = std::prev(handCards_.end());
+			handCards_.erase(prev);
+		}
+		else
+		{
+			auto prev = std::prev(handCurrent_);
+			handCards_.erase(prev);
+		}
 	}
 	else
 	{
-		visibleCurrentIt++;
+		SubHandCurrent();
+		auto prev = std::next(handCurrent_);
+		handCards_.erase(next);
 	}
-
-	// UIカードを元に、手札からイテレータを見つけ出す
-	handCurrent_ = GetSearchHandIt(*visibleCurrentIt);
-
-	// 手札削除
-	handCards_.erase(eraseHandIt);
-	visibleCards_.erase(eraseVisibleIt);
-
 }
 
 void PlayerCardUI::DesideGoalAngle(void)
 {
 	//カードの範囲変数を更新する
-	//auto visibleIt = std::next(visibleCurrent_);
-	auto visibleIt = std::next(GetVisibleCurrentIt());
+	auto visibleIt = std::next(visibleCurrent_);
 	auto goalDegIt = goalLeftRad_.begin();
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
@@ -695,35 +631,5 @@ void PlayerCardUI::ReloadAnimation(void)
 		visibleCards_.emplace_front(*reloadAnimCurr_);
 		reloadAnimCurr_ = std::prev(handCards_.end());
 	}
-}
-
-std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleCurrentIt(void)
-{
-
-	for (auto it = visibleCards_.begin(); it != visibleCards_.end(); it++)
-	{
-		if (*it == *handCurrent_)
-		{
-			return it;
-		}
-	}
-
-	return visibleCards_.end();
-}
-
-std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetSearchHandIt(
-	std::shared_ptr<CardUIController> target)
-{
-
-	for (auto it = handCards_.begin(); it != handCards_.end(); it++)
-	{
-		if (*it == target)
-		{
-			return it;
-		}
-	}
-
-	return handCards_.end();
-
 }
 

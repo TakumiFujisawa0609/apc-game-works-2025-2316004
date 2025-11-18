@@ -156,15 +156,14 @@ protected:
 
 	//状態
 	CARD_SELECT selectState_;
-	//①初期カード
-	std::vector<std::shared_ptr<CardUIController>>initialCards_;
-	//②手札
-	std::list<std::shared_ptr<CardUIController>>handCards_;
-	//③手札UIは派生のPlayerCardUI
-	//④手札の現在選択中カード
-	std::list<std::shared_ptr<CardUIController>>::iterator handCurrent_;
-	//⑤アクション中カード
+	//アクション中カード
 	std::list<std::shared_ptr<CardUIController>>actions_;
+	//初期カード
+	std::vector<std::shared_ptr<CardUIController>>uiInfos_;
+	//手札
+	std::list<std::shared_ptr<CardUIController>>handCards_;
+	//手札の現在選択中カード
+	std::list<std::shared_ptr<CardUIController>>::iterator handCurrent_;
 
 	//手札選択カードの計算
 	void AddHandCurrent(void);	//足し算

@@ -146,7 +146,7 @@ void EnemyCardUI::InitCardUI(void)
 {
 	handCards_.clear();
 	//ŽèŽD‚É‚·‚×‚Ä‚Ì‰ŠúŽD‚ð“ü‚ê‚é
-	for (auto& it : initialCards_)
+	for (auto& it : uiInfos_)
 	{
 		it->ResetCount();
 		handCards_.emplace_back(it);

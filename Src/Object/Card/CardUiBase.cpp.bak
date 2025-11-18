@@ -81,7 +81,7 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 	info->Init();
 
 	//”z—ñ‚É‘}“ü
-	initialCards_.emplace_back(info);
+	uiInfos_.emplace_back(info);
 }
 
 void CardUIBase::DecisionMoveCardAll(void)

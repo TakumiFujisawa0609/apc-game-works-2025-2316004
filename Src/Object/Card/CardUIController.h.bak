@@ -26,7 +26,7 @@ public:
 	//リロード1枚あたりの時間
 	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.3f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//敵の選択カード初期位置
@@ -163,11 +163,11 @@ private:
 
 
 	//楕円中心
-	//static constexpr float CENTER_X = 80.0f;
-	//static constexpr float CENTER_Y = 640.0f;
+	static constexpr float CENTER_X = 80.0f;
+	static constexpr float CENTER_Y = 640.0f;
 	///*static constexpr float CENTER_X = 0.0f;
-	static constexpr float CENTER_X = 200.0f;
-	static constexpr float CENTER_Y = 440.0f;
+	//static constexpr float CENTER_X = 200.0f;
+	//static constexpr float CENTER_Y = 440.0f;
 	//楕円の半径
 	static constexpr float RADIUS_X = 186.0f;	//横半径
 	//static constexpr float RADIUS_X = 170.0f;	//横半径

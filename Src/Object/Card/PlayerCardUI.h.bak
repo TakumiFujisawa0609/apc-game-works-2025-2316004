@@ -162,7 +162,7 @@ private:
 	//角度を現在角度に設定
 	void CurrentAngle(void);
 	//現在選択中のカード更新
-	//void UpdateVisibleCurrent(void);
+	void UpdateVisibleCurrent(void);
 	//見せるカードの更新
 	void UpdateVisibleCard(void);
 	//手札の消去
@@ -173,10 +173,6 @@ private:
 	void ReloadAnimation(void);
 	////使用済みのカードを消す
 	//void UpdateUsedCard(void);
-
-
-	std::list<std::shared_ptr<CardUIController>>::iterator GetVisibleCurrentIt(void);
-	std::list<std::shared_ptr<CardUIController>>::iterator GetSearchHandIt(std::shared_ptr<CardUIController> target);
 
 };
 
