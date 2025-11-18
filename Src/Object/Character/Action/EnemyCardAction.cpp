@@ -84,7 +84,7 @@ void EnemyCardAction::Release(void)
 
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
-	charaObj_.GetCardUI().ChangeUsedActionCard();
+	//charaObj_.GetCardUI().ChangeUsedActionCard();
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 
 	//硬直時間セット
@@ -188,6 +188,7 @@ void EnemyCardAction::UpdateRoleAtk(void)
 		//actionCntl_.GetInput().GetLookAtTargetDir();
 		roleMoveDeg_ = actionCntl_.GetInput().GetLookAtTargetDeg();
 		roleMoveDir_ = actionCntl_.GetInput().GetLookAtTargetDir();
+		roleMoveDir_.y = 0.0f;
 		isTurnable_ = true;
 		return;
 	}
@@ -221,6 +222,7 @@ void EnemyCardAction::UpdateRoleAtk(void)
 void EnemyCardAction::UpdateReload(void)
 {
 	deck_.Reload();
+	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 	actType_ = CARD_ACT_TYPE::NONE;
 	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 }

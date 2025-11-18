@@ -60,8 +60,8 @@ private:
 	//static constexpr float CENTER_X = 80.0f;
 	//static constexpr float CENTER_Y = 640.0f;
 	///*static constexpr float CENTER_X = 0.0f;
-	static constexpr float CENTER_X = 200.0f;
-	static constexpr float CENTER_Y = 440.0f;
+	//static constexpr float CENTER_X = 200.0f;
+	//static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔

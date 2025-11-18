@@ -140,7 +140,7 @@ void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goa
 {
 	//’e‚©‚êˆÚ“®
 	_card.cardPos_ = UtilityCommon::Lerp(_card.cardPos_, _goalPos,
-		(REACT_MOVE_CARD_TIME - _card.reactCnt_) / REACT_MOVE_CARD_TIME);
+		(CardUIController::REACT_MOVE_CARD_TIME - _card.reactCnt_) / CardUIController::REACT_MOVE_CARD_TIME);
 	_card.reactCnt_ -= DELTA;
 }
 

@@ -58,6 +58,7 @@ void EnemyLogic::Update(void)
 
 	//硬直がなかったらカード使用可能
 	if (freezeCnt_ <= 0.0f)
+	//if (InputManager::GetInstance().IsPadBtnTrgDown(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_RIGHT))
 	{
 		DesideAction();
 		isAct_.isCardUse = true;
@@ -189,5 +190,8 @@ void EnemyLogic::SetFreezeCntByAttackType(void)
 	default:
 		break;
 	}
+
+	//デバッグ用
+	//freezeCnt_ = 0.0f;
 }
 

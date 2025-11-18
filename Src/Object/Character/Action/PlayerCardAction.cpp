@@ -68,7 +68,7 @@ void PlayerCardAction::Release(void)
 	deck_.EraseHandCard();
 	//“–‚½‚è”»’èíœ
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
-	charaObj_.GetCardUI().ChangeUsedActionCard();
+	//charaObj_.GetCardUI().ChangeUsedActionCard();
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();

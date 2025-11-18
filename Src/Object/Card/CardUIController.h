@@ -26,11 +26,15 @@ public:
 	//リロード1枚あたりの時間
 	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.3f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//敵の選択カード初期位置
 	static constexpr Vector2F ENEMY_SELECT_CARD_START_POS = { Application::SCREEN_SIZE_X - 200,Application::SCREEN_HALF_Y + 200 };
+	//弾かれるUI時間
+	static constexpr float REACT_MOVE_CARD_TIME = 0.3f;
+
+
 	// コンストラクタ
 	CardUIController(int& _cardNumImgs);
 	// デストラクタ
@@ -156,12 +160,14 @@ private:
 
 	//倍率1の時のカードの強さの描画座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
-	//弾かれるUI時間
-	static constexpr float REACT_MOVE_CARD_TIME =0.9f;
 
 
-	static constexpr float CENTER_X = 200.0f;
-	static constexpr float CENTER_Y = 440.0f;
+	//楕円中心
+	static constexpr float CENTER_X = 80.0f;
+	static constexpr float CENTER_Y = 640.0f;
+	///*static constexpr float CENTER_X = 0.0f;
+	//static constexpr float CENTER_X = 200.0f;
+	//static constexpr float CENTER_Y = 440.0f;
 	//楕円の半径
 	static constexpr float RADIUS_X = 186.0f;	//横半径
 	//static constexpr float RADIUS_X = 170.0f;	//横半径

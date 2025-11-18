@@ -100,7 +100,7 @@ void PlayerCardUI::Draw(void)
 	}
 
 #ifdef _DEBUG
-	DrawDebug();
+	//DrawDebug();
 #endif // _DEBUG
 
 	
@@ -574,7 +574,6 @@ void PlayerCardUI::DesideGoalAngle(void)
 	{
 		float currentAngle = (*visibleIt)->GetCurrentAngle();
 		(*visibleIt)->SetGoalAngle(currentAngle - ARROUND_PER_RAD);
-		//visibleIt->goalAngle_ = visibleIt->currentAngle_ - ARROUND_PER_RAD;
 	}
 }
 
@@ -605,7 +604,7 @@ void PlayerCardUI::ReloadAnimation(void)
 		{
 			isReloadEnd_ = true;
 		}
-		cardMoveCnt_ = RELOAD_MOVE_CARD_TIME_PER;
+		cardMoveCnt_ = CardUIController::RELOAD_MOVE_CARD_TIME_PER;
 		reloadAnimCurr_--;
 	}
 
@@ -617,7 +616,7 @@ void PlayerCardUI::ReloadAnimation(void)
 		//MoveSpecificCard(card);
 
 		card->SetGoalAngle(ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT));
-		card->MoveOnRevolver(cardMoveCnt_, RELOAD_MOVE_CARD_TIME_PER);
+		card->MoveOnRevolver(cardMoveCnt_, CardUIController::RELOAD_MOVE_CARD_TIME_PER);
 		i++;
 	}
 	//見せカードが7枚以上お時はポップ

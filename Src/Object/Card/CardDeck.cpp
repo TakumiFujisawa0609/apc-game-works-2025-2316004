@@ -62,15 +62,24 @@ void CardDeck::CardCharge(void)
 	int i = 0;
 }
 
-void CardDeck::EraseHandCard(void)
+void CardDeck::EraseHandCard(const bool _isLose)
 {
 	hand_.clear();
 
 	//使ったカードの配列を消す
 	UtilityTemplates::EraseVectorArray(hand_);
 
-	//カードを捨てるときに勝敗判定のカードの強さを初期化する
-	CardSystem::GetInstance().InitPutCardPow(playerNum_);
+	if (_isLose == true)
+	{
+		//カードに負けたときの強さを初期化する
+		CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
+	}
+	else
+	{
+		//カードを捨てるときに勝敗判定のカードの強さを初期化する
+		CardSystem::GetInstance().InitPutCardPow(playerNum_);
+	}
+
 }
 
 void CardDeck::CardMoveRight(void)

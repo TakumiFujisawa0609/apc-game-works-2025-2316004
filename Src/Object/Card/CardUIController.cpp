@@ -100,13 +100,6 @@ void CardUIController::EraseUsedCard(void)
 {
 	if (state_ != CARD_STATE::USED)return;
 
-	//‚Ü‚¾Œˆ’èˆÚ“®’†‚È‚ç‚»‚¿‚ç‚ð—Dæ
-	if (disitionCnt_ > 0.0f)
-	{
-		DecisionMove();
-		return;
-	}
-
 	cardScl_ = UtilityCommon::Lerp(cardScl_, 0.0f, (SCL_LERP_TIME - sclCnt_) / SCL_LERP_TIME);
 	sclCnt_ -= static_cast<double>(UtilityCommon::FIXED_DELTA_TIME);
 }

@@ -59,6 +59,42 @@ void EnemyCardUI::Draw(void)
 	{
 		card->Draw();
 	}
+#ifdef _DEBUG
+	DrawDebug();
+#endif // _DEBUG
+
+}
+
+void EnemyCardUI::DrawDebug(void)
+{
+	int i = 0;
+	for (auto& action : actions_)
+	{
+		std::wstring stateStr;
+		auto state = action->GetState();
+		switch (state)
+		{
+		case CardUIController::CARD_STATE::DRAW_PILE:
+			stateStr = L"DRAW_PILE";
+			break;
+		case CardUIController::CARD_STATE::MOVE_DRAW:
+			stateStr = L"MOVE_DRAW";
+			break;
+		case CardUIController::CARD_STATE::USING:
+			stateStr = L"USING";
+			break;
+		case CardUIController::CARD_STATE::REACT:
+			stateStr = L"REACT";
+			break;
+		case CardUIController::CARD_STATE::USED:
+			stateStr = L"USED";
+			break;
+		default:
+			break;
+		}
+		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(), action->GetDecisionCnt(), stateStr.c_str());
+		i++;
+	}
 }
 
 void EnemyCardUI::ChangeNone(void)
@@ -68,16 +104,13 @@ void EnemyCardUI::ChangeNone(void)
 
 void EnemyCardUI::ChangeDecision(void)
 {
-	
 	actions_.emplace_back(*handCurrent_);
 	handCurrent_++;
 	for (auto& act : actions_)
 	{
 		act->ChangeDicisionEnemyCardMove();
-		//act.cardPos_ = ENEMY_SELECT_CARD_START_POS;
-		//act.numPos_ = act.cardPos_ + (NUM_LOCAL_POS * act.cardScl_);
-		//act.disitionCnt_ = DISITION_MOVE_CARD_TIME;
-		//act->ChangeUsing();
+		act->ChangeUsing();
+
 	}
 
 	cardUpdate_ = [this]() {UpdateDecision(); };
@@ -115,6 +148,7 @@ void EnemyCardUI::InitCardUI(void)
 	//ŽèŽD‚É‚·‚×‚Ä‚Ì‰ŠúŽD‚ð“ü‚ê‚é
 	for (auto& it : uiInfos_)
 	{
+		it->ResetCount();
 		handCards_.emplace_back(it);
 	}
 

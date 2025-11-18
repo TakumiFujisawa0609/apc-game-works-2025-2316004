@@ -28,7 +28,7 @@ void CardSystem::InitPutCardPow(const int _playerNo)
 	for (int i = 0; i < ARRAY_NUM; i++)
 	{
 		//isFirstAtk[i] = isFirstAtk_[i];
-		if (isFirstAtk_[_playerNo] == true)
+		if (isFirstAtk_[_playerNo])
 		{
 			putCardPow_[FIRST_ATK] = -1;
 			isFirstAtk_[_playerNo] = false;
@@ -39,7 +39,38 @@ void CardSystem::InitPutCardPow(const int _playerNo)
 			putCardPow_[SECOND_ATK] = -1;
 			break;
 		}
-		
+	}
+}
+
+void CardSystem::LoseInitPutCardPow(const int _playerNo)
+{
+	if (isFirstAtk_[_playerNo] == true)
+	{
+		//先出しが負けた場合の処理
+
+		//先出しのカードを消す
+		putCardPow_[FIRST_ATK] = -1;
+		isFirstAtk_[_playerNo] = false;
+
+		//後出しのカードを先出しにする
+		if (putCardPow_[SECOND_ATK] != -1)
+		{
+			putCardPow_[FIRST_ATK] = putCardPow_[SECOND_ATK];
+			putCardPow_[SECOND_ATK] = -1;
+
+			for(int i=0;i<ARRAY_NUM;i++)
+			{
+				if (i!=_playerNo)
+				{
+					isFirstAtk_[i] = true;
+					break;
+				}
+			}
+		}
+	}
+	else
+	{
+		putCardPow_[SECOND_ATK] = -1;
 	}
 }
 
@@ -89,6 +120,11 @@ void CardSystem::CompareCards(void)
 		//引き分け
 		result_[FIRST_ATK] = BATTLE_RESULT::BE_DRAW;
 		result_[SECOND_ATK] = BATTLE_RESULT::GIVE_DRAW;
+
+
+		//カードを両方リセット（Re:COM仕様）
+		putCardPow_[FIRST_ATK] = -1;
+		putCardPow_[SECOND_ATK] = -1;
 	}
 	//先出しの勝ち
 	else if (putCardPow_[FIRST_ATK] > putCardPow_[SECOND_ATK])

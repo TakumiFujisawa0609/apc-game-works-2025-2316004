@@ -20,6 +20,11 @@ class EnemyCardUI :
     /// @brief •`‰æ
     /// @param
 	void Draw(void) override;
+
+#ifdef _DEBUG
+	void DrawDebug(void);
+#endif // _DEBUG
+
 private:
 
     //’e‚©‚ê‚½Œã‚ÌƒS[ƒ‹À•W(“G)
