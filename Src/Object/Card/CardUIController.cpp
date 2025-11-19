@@ -23,6 +23,10 @@ CardUIController::~CardUIController(void)
 {
 }
 
+void CardUIController::Load(void)
+{
+}
+
 void CardUIController::Init(void)
 {
 	cardImg_ = MakeCardUIImg();

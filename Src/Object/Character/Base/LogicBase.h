@@ -1,8 +1,11 @@
 #pragma once
 #include<DxLib.h>
+
+#include"../Object/ObjectBase.h"
+
 #include "../Object/Common/Transform.h"
 
-class LogicBase
+class LogicBase : public ObjectBase
 
 {
 
@@ -54,15 +57,24 @@ public:
 	
     /// @brief デストラクタ
     /// @param  
-    virtual ~LogicBase(void);
+    virtual ~LogicBase(void)override;
     
+
+    virtual void Load(void) override {};
+
     /// @brief 初期化
     /// @param  
-    virtual void Init(void) = 0;
+    virtual void Init(void) override = 0;
     
     /// @brief 更新
     /// @param  
-    virtual void Update(void) = 0;
+    virtual void Update(void) override = 0;
+
+	/// @brief 描画
+	/// @param  
+	virtual void Draw(void) override {};
+
+  
     
     /// @brief コントロール判定
 	/// @param _actCntl ゲットしたい操作種類

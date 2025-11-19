@@ -169,7 +169,7 @@ public:
 	/// @brief キャラクターの中心座標取得
 	/// @param  
 	/// @return キャラクターの中心座標
-	const VECTOR& GetCharaCecterPos(void)const;
+	const VECTOR GetCharaCenterPos(void)const;
 
 	/// @brief ダメージを与えたことを知らせる
 	/// @param  

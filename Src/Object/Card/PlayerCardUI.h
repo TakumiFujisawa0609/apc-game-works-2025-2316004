@@ -153,7 +153,8 @@ private:
 	void UpdateReload(void);
 
 	
-	//すべてのカードの移動
+	/// @brief すべてのカードの移動
+	/// @param _moveTImeMax 動かす時間最大値
 	void MoveCardAll(const float& _moveTImeMax);
 
 

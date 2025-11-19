@@ -4,19 +4,24 @@
 #include<memory>
 #include<vector>
 #include<list>
+
 #include"../ObjectBase.h"
+
 #include"CardUiBase.h"
 #include"./CardBase.h"
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
 #include"../Application.h"
 
+
+
 class PixelMaterial;
 class PixelRenderer;
 class CardUIController;
 class CardUIDraw;
 
-class CardUIBase
+class CardUIBase:
+	public ObjectBase
 {
 public:
 	enum class CARD_STATE
@@ -59,23 +64,23 @@ public:
 	CardUIBase(void);
 
 	// デストラクタ
-	virtual ~CardUIBase(void);
+	virtual ~CardUIBase(void)override;
 
 	/// @brief ロード
 	/// @param  
-	virtual void Load(void) = 0;
+	virtual void Load(void) override = 0;
 
 	/// @brief 初期化
 	/// @param  
-	virtual void Init(void) = 0;
+	virtual void Init(void) override = 0;
 
 	/// @brief 更新
 	/// @param  
-	virtual void Update(void) = 0;
+	virtual void Update(void) override = 0;
 
 	/// @brief 描画
 	/// @param
-	virtual void Draw(void) = 0;
+	virtual void Draw(void) override = 0;
 
 
 

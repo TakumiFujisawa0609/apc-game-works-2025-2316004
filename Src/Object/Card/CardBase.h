@@ -24,7 +24,7 @@ public:
 	//コンストラクタ
 	CardBase(const CARD_STATUS _status);
 	//デストラクタ
-	virtual~CardBase(void);
+	virtual~CardBase(void)override;
 
 	/// @brief ロード
 	/// @param  

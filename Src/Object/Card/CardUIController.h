@@ -2,12 +2,15 @@
 #include <memory>
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
+
+#include "../Object/ObjectBase.h"
+
 #include"./CardBase.h"
 #include"../Application.h"
 
 class CardUIDraw;
 
-class CardUIController
+class CardUIController:public ObjectBase
 {
 public:
 	enum class CARD_STATE
@@ -42,18 +45,34 @@ public:
 	// コンストラクタ
 	CardUIController(int& _cardNumImgs);
 	// デストラクタ
-	~CardUIController(void);
+	~CardUIController(void)override;
 
-	void Init(void);
-	void Update(void);
+	/// @brief ロード
+	/// @param  
+	virtual void Load(void) override;
 
+	/// @brief 初期化
+	/// @param  
+	virtual void Init (void) override;
 
-	void Draw(void);
-	//選択移動
+	/// @brief 更新
+	/// @param  
+	virtual void Update(void) override;
+
+	/// @brief 描画
+	/// @param  
+	virtual void Draw(void) override;
+	/// @brief 選択移動
+	/// @param  
 	void DecisionMove(void);
-	//弾かれ処理
+
+
+	/// @brief 弾かれ処理
+	/// @param _goalPos 目標にしたい座標
 	void ReactMove(const Vector2F& _goalPos);
-	//使用済みカード削除
+
+	/// @brief 使用済みカード削除
+	/// @param  
 	void EraseUsedCard(void);
 
 	/// @brief カード中心座標の取得
@@ -140,15 +159,6 @@ public:
 	/// @param  
 	/// @return 
 	const CARD_STATE& GetState(void)const { return state_; }
-
-
-
-
-
-
-
-
-
 
 #ifdef _DEBUG
 	/// @brief 弾かれカウントの取得

@@ -134,7 +134,7 @@ void CharacterBase::Damage(const int _dam)
 	status_.hp -= _dam;
 }
 
-const VECTOR& CharacterBase::GetCharaCecterPos(void) const
+const VECTOR CharacterBase::GetCharaCenterPos(void) const
 {
 	return collider_.at(ObjectBase::TAG_PRIORITY::BODY)->GetGeometry().GetCenter();
 }

@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Factory\EnemyFactory.cpp" />
+    <ClCompile Include="Src\Factory\PlayerFactory.cpp" />
+    <ClCompile Include="Src\Factory\CharacterFactory.cpp" />
+    <ClCompile Include="Src\Factory\ObjectFactory.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIController.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIDraw.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.cpp" />
@@ -103,6 +107,10 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Factory\EnemyFactory.h" />
+    <ClInclude Include="Src\Factory\PlayerFactory.h" />
+    <ClInclude Include="Src\Factory\CharacterFactory.h" />
+    <ClInclude Include="Src\Factory\ObjectFactory.h" />
     <ClInclude Include="Src\Object\Card\CardUIController.h" />
     <ClInclude Include="Src\Object\Card\CardUIDraw.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.h" />

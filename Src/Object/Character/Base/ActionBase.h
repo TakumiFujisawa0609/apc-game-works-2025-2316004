@@ -1,24 +1,36 @@
 #pragma once
 #include <DxLib.h>
+
+#include "../Object/ObjectBase.h"
+
 #include"../Common/Quaternion.h"
 class SceneManager;
 class ActionController;
 class AnimationController;
 class PlayerLogic;
 
-class ActionBase
+class ActionBase:
+	public ObjectBase
 {
 public:
 	ActionBase(ActionController& _actCntl);
 	virtual ~ActionBase();
 
+	/// @brief ロード
+	/// @param  
+	virtual void Load(void) override {};
+
 	/// @brief 初期化
 	/// @param  
-	virtual void Init(void) = 0;
+	virtual void Init(void) override = 0;
 
 	/// @brief 更新
 	/// @param  
-	virtual void Update(void) = 0;
+	virtual void Update(void) override = 0;
+
+	/// @brief 描画
+	/// @param
+	virtual void Draw(void) override {};
 	
 	/// @brief 解放
 	/// @param  

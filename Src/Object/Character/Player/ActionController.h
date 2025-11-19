@@ -3,6 +3,9 @@
 #include<memory>
 #include<functional>
 #include<map>
+
+#include"../Object/ObjectBase.h"
+
 #include"../Utility/UtilityCommon.h"
 #include"../Utility/Utility3D.h"
 #include"../Manager/Generic/InputManager.h"
@@ -24,7 +27,7 @@ class Jump;
 class React;
 class PlayerCardAction;
 
-class ActionController
+class ActionController :public ObjectBase
 {
 
 public:
@@ -64,15 +67,19 @@ public:
 	
 	/// @brief ‰Šú‰»
 	/// @param  
-	void Init(void);
+	void Init(void)override;
 	
 	/// @brief “Ç‚İ‚İ
 	/// @param  
-	void Load(void);
+	void Load(void)override;
 	
 	/// @brief XVˆ—
 	/// @param  
-	void Update(void);
+	void Update(void)override;
+
+	/// @brief •`‰æ
+	/// @param  
+	void Draw(void)override {};
 	
 	/// @brief ó‘Ô‘JˆÚ
 	/// @param _act Ÿ‚É‘JˆÚ‚µ‚½‚¢ó‘Ô

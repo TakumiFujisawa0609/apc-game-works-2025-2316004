@@ -31,15 +31,13 @@ private:
     static constexpr Vector2F REACT_GOAL_CARD_POS = { Application::SCREEN_SIZE_X + 200.0f, Application::SCREEN_HALF_Y + 500 };
     //カード状態遷移
     void ChangeNone(void) override;		//通常
-    //void ChangeLeft(void) override;		//左に移動
-    //void ChangeRight(void) override;		//右に移動
     void ChangeDecision(void) override;	//決定
-    void ChangeReloadWait(void) override;
-    void UpdateNone(void) override;
-    //void UpdateLeft(void) override;
-    //void UpdateRight(void) override;
-    void UpdateDecision(void) override;
-	void UpdateReloadWait(void) override;
+	void ChangeReloadWait(void) override;//リロード待機
+
+	//カード更新関数
+	void UpdateNone(void) override;//通常
+	void UpdateDecision(void) override;//決定
+	void UpdateReloadWait(void) override;//リロード待機
 
     /// @brief カードUI初期化
 	/// @param

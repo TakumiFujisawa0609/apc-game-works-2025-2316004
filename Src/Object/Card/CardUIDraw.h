@@ -9,7 +9,7 @@ class CardUIDraw :public ObjectBase
 public:
 
 	CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl);
-	~CardUIDraw(void);
+	~CardUIDraw(void)override;
 	void Load(void)override;
 	void Init(void)override;
 	void Update(void)override;

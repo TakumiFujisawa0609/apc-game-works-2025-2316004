@@ -18,7 +18,7 @@ public:
 	static constexpr int CARD_POWS[20] = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9};
 	//static constexpr int CARD_POWS[20] = {0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9};
 	CardDeck(Vector2& _centerPos,int _playerNum);
-	~CardDeck(void);
+	~CardDeck(void)override;
 
 	/// @brief ロード
 	/// @param  
@@ -28,6 +28,19 @@ public:
 	/// @param  
 	void Init(void)override;
 
+	/// @brief 更新
+	/// @param  
+	void Update(void);
+
+	/// @brief 描画
+	/// @param  
+	void Draw(void);
+
+	/// @brief 解放
+	/// @param  
+	void Release(void);
+
+	
 	/// @brief カード使用
 	/// @param  
 	void CardUseUpdate(void);
@@ -35,7 +48,7 @@ public:
 	/// @brief カードチャージ
 	/// @param  
 	void CardCharge(void);
-	
+
 
 	/// @brief 使用中のカードを消す
 	/// @param _isLose カード負けかどうか
@@ -46,16 +59,6 @@ public:
 	void CardMoveLeft(void);
 	void CardMoveRight(void);
 
-	/// @brief 更新
-	/// @param  
-	void Update(void);
-
-	/// @brief 描画
-	/// @param  
-	void Draw(void);
-	void Release(void);
-
-	
 	/// @brief 山札にカード追加
 	/// @param _status 追加したいカードの強さ
 	void AddDrawPile(const CardBase::CARD_STATUS& _status);

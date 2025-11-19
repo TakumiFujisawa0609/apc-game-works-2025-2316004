@@ -197,7 +197,7 @@ void EnemyCardAction::UpdateRoleAtk(void)
 	//åªç›ÇÃç¿ïWéÊìæ
 	const Transform trans = charaObj_.GetTransform();
 	const VECTOR charaPos = trans.pos;
-	const VECTOR& centerPos = charaObj_.GetCharaCecterPos();
+	const VECTOR& centerPos = charaObj_.GetCharaCenterPos();
 	isTurnable_ = false;
 	if (preRoleAtkCnt_ < 0.0f)
 	{

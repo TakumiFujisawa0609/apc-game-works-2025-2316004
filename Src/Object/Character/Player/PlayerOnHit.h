@@ -3,7 +3,7 @@ class ActionController;
 class CharacterBase;
 #include"../Object/ObjectBase.h"
 
-class PlayerOnHit
+class PlayerOnHit :public ObjectBase
 {
 
 public:
@@ -30,16 +30,25 @@ public:
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~PlayerOnHit(void);
-	
-	/// @brief  初期化
-	/// @param  
-	void Init(void);
+	~PlayerOnHit(void) override;
 	
 	/// @brief 当たった時のSEなどの読み込み
 	/// @param  
-	void Load(void);
+	void Load(void) override;
+
+	/// @brief  初期化
+	/// @param  
+	void Init(void) override;
 	
+	/// @brief 更新(つかわない)
+	/// @param  
+	void Update(void) override {};
+
+	/// @brief 描画
+	/// @param  
+	void Draw(void) override {}
+	
+
 	/// @brief 当たった処理の更新
 	/// @param _hitCol 
 	void OnHitUpdate(const std::weak_ptr<Collider> _hitCol);

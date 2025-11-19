@@ -120,10 +120,6 @@ void Enemy::Init(void)
 
 	trans_.pos = { 20.0f,0.0f,0.0f };
 	trans_.localPos = { 0.0f,-RADIUS,0.0f };
-
-
-
-
 }
 
 void Enemy::Update(void)
