@@ -1,8 +1,12 @@
 #pragma once
+#include <memory>
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
 #include"./CardBase.h"
 #include"../Application.h"
+
+class CardUIDraw;
+
 class CardUIController
 {
 public:
@@ -26,7 +30,7 @@ public:
 	//リロード1枚あたりの時間
 	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.3f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.09f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//敵の選択カード初期位置
@@ -176,6 +180,9 @@ private:
 	static constexpr int ARROUND_NUM_PER_QUAD = ARROUND_NUM / 4;//90度当たりの枚数
 	static constexpr float ARROUND_PER_DEG = 360.0f / ARROUND_NUM;	//１枚当たりの角度
 	static constexpr float ARROUND_PER_RAD = ARROUND_PER_DEG * DX_PI_F / 180.0f;//ラジアン変換
+
+	//カード描画
+	std::unique_ptr<CardUIDraw>cardDraw_;
 
 	Vector2F cardPos_;		//カードの座標(画面外で初期化)
 	Vector2F numPos_;		//カードの強さ番号座標(画面外で初期化)

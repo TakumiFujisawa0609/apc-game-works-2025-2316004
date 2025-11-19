@@ -1,5 +1,6 @@
 #include "../pch.h"
 #include "../Utility/UtilityCommon.h"
+#include "../Card/CardUIDraw.h"
 #include "CardUIController.h"
 
 CardUIController::CardUIController(int& _cardNumImgs) :
@@ -25,6 +26,7 @@ CardUIController::~CardUIController(void)
 void CardUIController::Init(void)
 {
 	cardImg_ = MakeCardUIImg();
+	cardDraw_ = std::make_unique<CardUIDraw>(cardImg_, cardPos_, cardScl_);
 }
 void CardUIController::Update(void)
 {
@@ -33,7 +35,8 @@ void CardUIController::Update(void)
 void CardUIController::Draw(void)
 {
 	//ƒJ[ƒh‚Ì•`‰æ
-	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, cardImg_, true);
+	//DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, cardImg_, true);
+	cardDraw_->Draw();
 }
 void CardUIController::DecisionMove(void)
 {

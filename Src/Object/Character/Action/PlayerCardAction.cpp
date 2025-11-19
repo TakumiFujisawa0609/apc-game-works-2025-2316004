@@ -69,6 +69,13 @@ void PlayerCardAction::Release(void)
 	//当たり判定削除
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	//charaObj_.GetCardUI().ChangeUsedActionCard();
+
+	//リロード処理中ならカードUI状態をNoneにする
+	if(actType_==CARD_ACT_TYPE::RELOAD)
+	{
+		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
+	}
+
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
@@ -118,14 +125,13 @@ void PlayerCardAction::UpdateReload(void)
 		actType_ = CARD_ACT_TYPE::NONE;
 		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 	}
-	if (pushReloadCnt_ > RELOAD_TIME)
+	if (pushReloadCnt_ >= RELOAD_TIME)
 	{
 		deck_.Reload();
 		cardFuncs_.pop();
-		pushReloadCnt_ = 0.0f;
 		actType_ = CARD_ACT_TYPE::NONE;
+		pushReloadCnt_ = 0.0f;
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-
 	}
 }
 

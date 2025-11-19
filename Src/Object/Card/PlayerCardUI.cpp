@@ -7,7 +7,6 @@
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
 
-#include "../Card/CardUI.h"
 #include "../Card/CardUIController.h"
 
 #include "PlayerCardUI.h"
@@ -152,6 +151,7 @@ void PlayerCardUI::InitCardUI(void)
 	//手札にすべての初期札を入れる
 	for (auto& it : initialCards_)
 	{
+		(*it).Init();
 		handCards_.emplace_back(it);
 	}
 	//はじめの配列にリロードカードを描画したいので、最後の配列にセットする
@@ -442,6 +442,7 @@ void PlayerCardUI::UpdateReloadWait(void)
 	{
 		//InitCardUI();
 		ChangeSelectState(CARD_SELECT::RELOAD);
+		return;
 	}
 	//else
 	//{

@@ -14,7 +14,7 @@
 class PixelMaterial;
 class PixelRenderer;
 class CardUIController;
-class CardUI;
+class CardUIDraw;
 
 class CardUIBase
 {

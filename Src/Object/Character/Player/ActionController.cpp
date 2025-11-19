@@ -180,14 +180,6 @@ void ActionController::MoveDirFronInput(void)
 	//SetGoalRotate(deg);
 }
 
-//void ActionController::Rotate(void)
-//{
-//	stepRotTime_ -= SceneManager::GetInstance().GetDeltaTime();
-//	// 回転の球面補間
-//	playerRotY_ = Quaternion::Slerp(
-//		playerRotY_, goalQuaRot_, (TIME_ROT - stepRotTime_) / TIME_ROT);
-//}
-
 void ActionController::DirAndMovePowUpdate(void)
 {
 	//方向の更新
@@ -200,11 +192,27 @@ void ActionController::DirAndMovePowUpdate(void)
 }
 const bool ActionController::IsCardLeftMoveable(void)
 {
-	return logic_.GetIsAct().isCardMoveLeft && mainAction_.at(act_)->GetCardAction() != ActionBase::CARD_ACT_TYPE::RELOAD;
+	//カードアクション種類
+	const ActionBase::CARD_ACT_TYPE cardAct = mainAction_.at(act_)->GetCardAction();
+
+	//カードUIの選択状態
+	const CardUIBase::CARD_SELECT selectState = charaObj_.GetCardUI().GetSelectState();
+
+	return logic_.GetIsAct().isCardMoveLeft 
+		&& cardAct != ActionBase::CARD_ACT_TYPE::RELOAD
+		&& selectState !=CardUIBase::CARD_SELECT::RELOAD;
 }
 const bool ActionController::IsCardRightMoveable(void)
 {
-	return logic_.GetIsAct().isCardMoveRight && mainAction_.at(act_)->GetCardAction() != ActionBase::CARD_ACT_TYPE::RELOAD;
+	//カードアクション種類
+	const ActionBase::CARD_ACT_TYPE cardAct = mainAction_.at(act_)->GetCardAction();
+
+	//カードUIの選択状態
+	CardUIBase::CARD_SELECT selectState = charaObj_.GetCardUI().GetSelectState();
+
+	return logic_.GetIsAct().isCardMoveRight 
+		&& cardAct != ActionBase::CARD_ACT_TYPE::RELOAD
+		&& selectState != CardUIBase::CARD_SELECT::RELOAD;
 }
 const ActionBase::CARD_ACT_TYPE& ActionController::GetCardAction(void)const
 {

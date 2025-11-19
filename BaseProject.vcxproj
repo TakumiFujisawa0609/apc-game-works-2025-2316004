@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Object\Card\CardUIController.cpp" />
-    <ClCompile Include="Src\Object\Card\CardUI.cpp" />
+    <ClCompile Include="Src\Object\Card\CardUIDraw.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Geometry2D.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Circle.cpp" />
@@ -104,7 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Object\Card\CardUIController.h" />
-    <ClInclude Include="Src\Object\Card\CardUI.h" />
+    <ClInclude Include="Src\Object\Card\CardUIDraw.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Geometry2D.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Circle.h" />
@@ -239,6 +239,18 @@
     <None Include="Src\Shader\Common\Vertex\VertexShader3DHeader.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Src\Shader\Model\CardPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Src\Shader\Model\CardVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="Src\Shader\Model\StagePS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>

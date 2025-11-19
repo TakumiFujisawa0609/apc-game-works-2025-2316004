@@ -34,8 +34,8 @@ void CharacterManager::Update(void)
 
 void CharacterManager::Draw(void)
 {
-	player_->Draw();
 	enemy_->Draw();
+	player_->Draw();
 }
 
 void CharacterManager::Release(void)

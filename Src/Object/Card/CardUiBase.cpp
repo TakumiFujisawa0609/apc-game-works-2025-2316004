@@ -4,7 +4,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
-#include "../Card/CardUI.h"
+#include "../Card/CardUIDraw.h"
 #include "../Card/CardUIController.h"
 #include "../Renderer/PixelMaterial.h"
 #include "../Renderer/PixelRenderer.h"

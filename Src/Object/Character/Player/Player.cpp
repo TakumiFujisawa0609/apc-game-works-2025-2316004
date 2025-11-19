@@ -214,7 +214,7 @@ void Player::Draw(void)
 	cardUI_->Draw();
 
 #ifdef DEBUG_ON
-	//DrawDebug();
+	DrawDebug();
 #endif // DEBUG_ON
 }
 void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
