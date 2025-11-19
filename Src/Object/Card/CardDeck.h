@@ -22,11 +22,11 @@ public:
 
 	/// @brief ロード
 	/// @param  
-	void Load(void);
+	void Load(void)override;
 
 	/// @brief 初期化
 	/// @param  
-	void Init(void);
+	void Init(void)override;
 
 	/// @brief カード使用
 	/// @param  
