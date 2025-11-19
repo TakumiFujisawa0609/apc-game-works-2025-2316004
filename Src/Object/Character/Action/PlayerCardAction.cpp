@@ -178,7 +178,11 @@ void PlayerCardAction::ChangeComboAction(void)
 {
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
-		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
+		if (charaObj_.GetCardUI().GetSelectState() == CardUIBase::CARD_SELECT::NONE)
+		{
+			ChangeCardAction(CARD_ACT_TYPE::RELOAD);
+		}
+		
 	}
 
 	if (actionCntl_.GetInput().GetIsAct().isCardUse)

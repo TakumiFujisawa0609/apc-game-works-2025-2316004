@@ -109,7 +109,7 @@ void Player::Load(void)
 	//デッキの先頭にリロードカード追加
 	deck_->AddDrawPile(RELOAD_CARD_STATUS);
 	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
-	//deck_->Load();
+	deck_->Load();
 
 	//アクション
 	action_ = std::make_unique<ActionController>(*this,*logic_,trans_,*deck_,*animationController_,padNum_);

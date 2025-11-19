@@ -317,7 +317,7 @@ void PlayerCardUI::ChangeDecision(void)
 {
 	// カードを使う処理
 
-	if ((*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
+	if (selectState_ == CARD_SELECT::NONE&&(*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeSelectState(CARD_SELECT::RELOAD_WAIT);
 		return;
@@ -440,6 +440,8 @@ void PlayerCardUI::UpdateReloadWait(void)
 {
 	if(reloadPer_>= UtilityCommon::PERCENT_MAX)
 	{
+		//一瞬none状態にする
+		ChangeSelectState(CARD_SELECT::NONE);
 		//InitCardUI();
 		ChangeSelectState(CARD_SELECT::RELOAD);
 		return;
