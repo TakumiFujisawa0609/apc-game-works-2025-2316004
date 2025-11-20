@@ -1,17 +1,20 @@
 #include "../pch.h"
+#include "../Application.h"
 #include "../Utility/UtilityCommon.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "../Card/CardUIDraw.h"
 #include "CardUIController.h"
 
-CardUIController::CardUIController(int& _cardNumImgs) :
+CardUIController::CardUIController(int& _cardNumImgs, std::wstring& _numImgStr) :
 	typeImg_(-1),
 	cardNoImg_(_cardNumImgs),
+	typeImgStr_(L""),
+	numImgStr_(_numImgStr),
 	status_({}),
 	disitionCnt_(0.0f),
 	reactCnt_(0.0f),
 	state_(CARD_STATE::DRAW_PILE),
 	cardPos_({ Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 }),
-	numPos_({ Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 }),
 	currentAngle_(0.0f),
 	goalAngle_(currentAngle_),
 	cardScl_(1.0),
@@ -23,14 +26,21 @@ CardUIController::~CardUIController(void)
 {
 }
 
+void CardUIController::Load(void)
+{
+	cardDraw_ = std::make_unique<CardUIDraw>(cardImg_, cardPos_, cardScl_);
+	cardDraw_->Load();
+}
+
 void CardUIController::Init(void)
 {
+	typeImgStr_ = Application::PATH_IMAGE + L"CardImg" + numImgStr_;
 	cardImg_ = MakeCardUIImg();
-	cardDraw_ = std::make_unique<CardUIDraw>(cardImg_, cardPos_, cardScl_);
+	cardDraw_->Init();
 }
 void CardUIController::Update(void)
 {
-
+	cardDraw_->Update();
 }
 void CardUIController::Draw(void)
 {
@@ -38,6 +48,12 @@ void CardUIController::Draw(void)
 	//DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, cardImg_, true);
 	cardDraw_->Draw();
 }
+
+void CardUIController::DrawModel(void)
+{
+	cardDraw_->DrawModel();
+}
+
 void CardUIController::DecisionMove(void)
 {
 	disitionCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
@@ -86,7 +102,6 @@ void CardUIController::ChangeDicisionEnemyCardMove(void)
 {
 	cardPos_ = ENEMY_SELECT_CARD_START_POS;
 	numPos_ = cardPos_ + (NUM_LOCAL_POS * cardScl_);
-	disitionCnt_ = DISITION_MOVE_CARD_TIME;
 }
 
 void CardUIController::ResetCount(void)
@@ -112,8 +127,6 @@ void CardUIController::InitCard(const int& _num)
 	currentAngle_ = static_cast<float>(ARROUND_PER_RAD * _num - ARROUND_PER_RAD);
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
-	//常に強さ番号座標をローカル座標分追従させる
-	numPos_ = cardPos_ + (NUM_LOCAL_POS * cardScl_);
 }
 
 void CardUIController::ChangeUsedCard(void)
@@ -144,8 +157,10 @@ int CardUIController::MakeCardUIImg(void)
 	constexpr float NUM_SCL = 0.18f;
 	//描画可能なスクリーンの作成
 	img = MakeScreen(GRAPH_SIZE_X, GRAPH_SIZE_Y, true);
-	SetDrawScreen(img);
 
+	//描画先を作成したスクリーンに変更
+	SetDrawScreen(img);
+	//作成したスクリーンで描画
 	DrawGraph(0, 0, typeImg_, true);
 	//中央座標取得
 	Vector2F centerPos;
@@ -159,11 +174,20 @@ int CardUIController::MakeCardUIImg(void)
 	//中央合わせ
 	centerPos -= size / 2.0f;
 
-
+	//座標計算
 	Vector2F numSizeHalf = size;
 	Vector2F leftTopPos = { centerPos.x + NUM_LOCAL_POS.x,centerPos.y + NUM_LOCAL_POS.y };
 	Vector2F rightBottomPos = { centerPos.x+NUM_LOCAL_POS.x + numSizeHalf.x,centerPos.y+NUM_LOCAL_POS.y + numSizeHalf.y };
 	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_, true);
+
+
+	//同じ名前の画像が保存されていなければ保存
+	auto it = std::find(typeImgStrs_.begin(), typeImgStrs_.end(), typeImgStr_);
+	if(it==typeImgStrs_.end())
+	{
+		SaveDrawScreenToPNG(0, 0, GRAPH_SIZE_X, GRAPH_SIZE_Y, typeImgStr_.c_str());
+		typeImgStrs_.push_back(typeImgStr_);
+	}
 
 	//描画先を元に戻す
 	SetDrawScreen(DX_SCREEN_BACK);

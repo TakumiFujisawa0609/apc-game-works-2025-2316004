@@ -42,6 +42,8 @@ public:
 	/// @param  
 	void Draw(void)override;
 
+	//カード初期化
+	void InitCardUI(void)override;
 
 #ifdef _DEBUG
 	void DrawDebug(void);
@@ -135,8 +137,7 @@ private:
 	//リロード用の現在のカードイテレータ
 	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;
 
-	//カード初期化
-	void InitCardUI(void)override;
+
 	//カード状態遷移
 	void ChangeNone(void)override;		//通常
 	void ChangeLeft(void)override;		//左に移動

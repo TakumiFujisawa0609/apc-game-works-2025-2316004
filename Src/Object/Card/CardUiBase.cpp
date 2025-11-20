@@ -10,6 +10,19 @@
 #include "../Renderer/PixelRenderer.h"
 #include "CardUIBase.h"
 
+//const std::wstring Application::PATH_IMAGE = L"Data/Image/";
+//const std::wstring CardUIBase::CARD_ZERO_NAME = L"Zero";
+//const std::wstring CardUIBase::CARD_ONE_NAME = L"One";
+//const std::wstring CardUIBase::CARD_TWO_NAME = L"Two";
+//const std::wstring CardUIBase::CARD_THREE_NAME = L"Three";
+//const std::wstring CardUIBase::CARD_FOUR_NAME = L"Four";
+//const std::wstring CardUIBase::CARD_FIVE_NAME = L"Five";
+//const std::wstring CardUIBase::CARD_SIX_NAME = L"Six";
+//const std::wstring CardUIBase::CARD_SEVEN_NAME = L"Seven";
+//const std::wstring CardUIBase::CARD_EIGHT_NAME = L"Eight";
+//const std::wstring CardUIBase::CARD_NINE_NAME = L"Nine";
+
+
 CardUIBase::CardUIBase(void):
 selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
@@ -63,25 +76,45 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
 	CardBase::CARD_STATUS status = {};
 	int typeImg = -1;
+	std::wstring numImgStr = L"";
 	//ëÆê´Ç…ÇÊÇ¡ÇƒâÊëúÇïœÇ¶ÇÈ
-	switch (_status.type_)
-	{
-	case CardBase::CARD_TYPE::ATTACK:
-		typeImg = atkCardImg_;
-		break;
-	case CardBase::CARD_TYPE::RELOAD:
-		typeImg = reloadCardImg_;
-	}
+	typeImg = GetTypeImg(_status);
+	numImgStr = numImgNames_[static_cast<CARD_NUMBER>(_status.pow_)];
 	int num = _status.pow_ - 1;
 	if (num == -1) { num = 9; }
 	int drawNumImg = cardNoImg_[num];
-	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
+	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg, numImgStr);
 	info->SetTypeImg_(typeImg);
 	info->SetStatus(_status);
+	info->Load();
 	info->Init();
 
 	//îzóÒÇ…ë}ì¸
 	initialCards_.emplace_back(info);
+}
+
+void CardUIBase::InitNumImgNames(void)
+{
+	numImgNames_ = {
+		{CARD_NUMBER::CARD_ZERO,L"Zero"},
+		{CARD_NUMBER::CARD_ONE,L"One"},
+		{CARD_NUMBER::CARD_TWO,L"Two"},
+		{CARD_NUMBER::CARD_THREE,L"Three"},
+		{CARD_NUMBER::CARD_FOUR,L"Four"},
+		{CARD_NUMBER::CARD_FIVE,L"Five"},
+		{CARD_NUMBER::CARD_SIX,L"Six"},
+		{CARD_NUMBER::CARD_SEVEN,L"Seven"},
+		{CARD_NUMBER::CARD_EIGHT,L"Eight"},
+		{CARD_NUMBER::CARD_NINE,L"Nine"}
+	};
+}
+
+void CardUIBase::InitTypeImgs(void)
+{
+	typeImgs_ = {
+		{CardBase::CARD_TYPE::ATTACK,atkCardImg_},
+		{CardBase::CARD_TYPE::RELOAD,reloadCardImg_}
+	};
 }
 
 void CardUIBase::DecisionMoveCardAll(void)
@@ -118,20 +151,6 @@ void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 	for (auto& card : actions_)
 	{
 		card->ReactUpdate(_goalPos);
-		//if (card.state_ != CARD_STATE::REACT)continue;
-		////Ç‹ÇæåàíËà⁄ìÆíÜÇ»ÇÁÇªÇøÇÁÇóDêÊ
-		//if (card.disitionCnt_ > 0.0f)
-		//{
-		//	DecisionMoveSpecificCard(card);
-		//	continue;
-		//}
-		////íeÇ©ÇÍà⁄ìÆ
-		//ReactMoveSpecificCard(card, _goalPos);
-		//if(reactCnt_<=0.0f)
-		//{
-		//	state_ = CARD_STATE::USED;
-		//	card.sclCnt = SCL_LERP_TIME;
-		//}
 	}
 	
 }
@@ -162,16 +181,22 @@ void CardUIBase::SubHandCurrent(void)
 	handCurrent_--;
 }
 
-void CardUIBase::DrawCard(const CARD_UI_INFO _card)
-{
-	constexpr double NUM_SCL = 0.18;
-	//ÉJÅ[ÉhÇÃï`âÊ
-	DrawRotaGraphF(_card.cardPos_.x, _card.cardPos_.y, _card.cardScl_, 0.0f, _card.typeImg, true);
 
-	int num = _card.status.pow_ - 1;
-	if (num == -1) { num = 9; }
-	DrawRotaGraphF(_card.numPos_.x, _card.numPos_.y, _card.cardScl_ * NUM_SCL, 0.0f, cardNoImg_[num], true);
-	//DrawLine(CENTER_X, CENTER_Y, _card.cardPos.x, _card.cardPos.y, 0xFFFFFF);
+
+const int CardUIBase::GetTypeImg(const CardBase::CARD_STATUS _status)
+{
+	int typeImg = -1;
+	switch (_status.type_)
+	{
+	case CardBase::CARD_TYPE::ATTACK:
+		typeImg = atkCardImg_;
+		break;
+	case CardBase::CARD_TYPE::RELOAD:
+		typeImg = reloadCardImg_;
+	}
+
+	return typeImg;
 }
+
 
 

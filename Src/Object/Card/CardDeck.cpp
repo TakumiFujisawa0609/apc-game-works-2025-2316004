@@ -30,28 +30,17 @@ CardDeck::~CardDeck(void)
 
 void CardDeck::Load(void)
 {
-	drawPile_[0]->Load();
+	//drawPile_[0]->Load();
 }
 
 void CardDeck::Init(void)
 {
-	//カードの最後の配列にリロードカードを入れる(リロード用のカードで、勝敗はない)
-	//CardBase::CARD_STATUS reloadStatus = { -1, CardBase::CARD_TYPE::RELOAD };
-	//std::unique_ptr<CardBase>roloadCard = std::make_unique<CardBase>(reloadStatus);
-	//std::unique_ptr<CardBase>initReloadCard = std::make_unique<CardBase>(reloadStatus);
-	//drawPile_.emplace_back(std::move(roloadCard));
-	//initDeck_.emplace_back(std::move(initReloadCard));
-
 	//カードUIの選択番号が1番なので1に初期化する
 	currentNum_ = 0;
 }
 
 void CardDeck::CardUseUpdate(void)
 {
-	//////場にカードをだせない状態なら処理を抜ける
-	//bool isCanput = CardSystem::GetInstance().GetCanPut();
-	//if (!isCanput)return;
-
 	CardSystem& cardSystem = CardSystem::GetInstance();
 	//カード同士を比べる
 	cardSystem.CompareCards();
@@ -109,16 +98,10 @@ void CardDeck::Update(void)
 void CardDeck::Draw(void)
 {
 	CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
-	//CardBase::CARD_STATUS nextCardPow = drawPile_[nextNum_]->GetCardStatus();
-	//CardBase::CARD_STATUS prevCardPow = drawPile_[prevNum_]->GetCardStatus();
+
 
 	const float DISTANCE_X = 40;
-
-	//DrawFormatString(centerPos_.x-DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", prevCardPow.pow_);
 	DrawFormatString(centerPos_.x, centerPos_.y, 0x000000,L"(%d)", currentCardPow);
-	//DrawFormatString(centerPos_.x + DISTANCE_X, centerPos_.y, 0xffffff,L"(%d)", nextCardPow);
-
-	//drawPile_[0]->DrawPlayerUI();
 
 
 	//手札の表示

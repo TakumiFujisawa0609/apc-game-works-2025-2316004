@@ -21,6 +21,10 @@ class EnemyCardUI :
     /// @param
 	void Draw(void) override;
 
+    /// @brief カードUI初期化
+    /// @param
+    void InitCardUI(void)override;
+
 #ifdef _DEBUG
 	void DrawDebug(void);
 #endif // _DEBUG
@@ -41,8 +45,6 @@ private:
     void UpdateDecision(void) override;
 	void UpdateReloadWait(void) override;
 
-    /// @brief カードUI初期化
-	/// @param
-	void InitCardUI(void)override;
+
 };
 

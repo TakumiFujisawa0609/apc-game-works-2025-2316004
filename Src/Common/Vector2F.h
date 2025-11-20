@@ -1,15 +1,25 @@
 #pragma once
+#include "./Vector2.h"
+
 struct Vector2F
 {
 	//各座標
 	float x;
 	float y;
 
-	//Vector2へ変換する関数
-	//Vector2 ToVector2(void);
-
 	////ベクトル線を作る
 	//Vector2F CreateVectorLine(Vector2 value1, Vector2 value2);
+
+	////Vector2へ変換する関数
+	//Vector2 ToVector2(void)
+	//{
+	//	Vector2 ret;
+
+	//	ret.x = static_cast<int>(roundf(x));
+	//	ret.y = static_cast<int>(roundf(y));
+
+	//	return ret;
+	//}
 
 	//Vector2F同士の比較
 	static bool IsVector2F(const Vector2F value1, const Vector2F value2);

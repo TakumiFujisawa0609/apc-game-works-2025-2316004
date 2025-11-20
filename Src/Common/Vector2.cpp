@@ -19,16 +19,22 @@
 //Vector2::~Vector2(void)
 //{
 //}
+//
+//Vector2F ToVector2F(void)
+//{
+//	Vector2F ret;
+//
+//	ret.x = static_cast<float>(round(x));
+//	ret.y = static_cast<float>(round(y));
+//
+//	return ret;
+//}
 
-Vector2F ToVector2F(Vector2 _v)
-{
-	Vector2F ret;
-
-	ret.x = static_cast<float>(round(_v.x));
-	ret.y = static_cast<float>(round(_v.y));
-
-	return ret;
-}
+//void Vector2::ToVector2F(void)
+//{
+//	x = static_cast<int>(roundf(x));
+//	y = static_cast<int>(roundf(y));
+//}
 
 Vector2 Vector2::Normalize(void) const
 {

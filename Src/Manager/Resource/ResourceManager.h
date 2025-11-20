@@ -22,6 +22,7 @@ public:
 		STAGE,
 		PLAYER,
 		ENEMY_1,
+		CARD,
 		//アニメーション
 		//プレイヤー
 		P_IDLE,
@@ -41,8 +42,12 @@ public:
 		REACT,
 		//画像
 		NUMBERS_IMG,	//カード番号
-		ATK_CARD_IMG,	//番号なしアタックカード
+		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード
+		ENEMY_ATK_CARD_IMG,//敵番号なしアタックカード
 		RELOAD_CARD_IMG,//リロードカード
+
+		//ピクセルシェーダ
+		CARD_PS,
 	};
 	
 	/// @brief 初期化

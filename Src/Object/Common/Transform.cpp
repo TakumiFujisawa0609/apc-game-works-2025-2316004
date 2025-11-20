@@ -52,8 +52,12 @@ void Transform::Update(void)
 	rot = quaRot.ToEuler();
 	matRot = quaRot.ToMatrix();
 
+
+	//ëççáà íu
+	overAllPos = VAdd(pos, localPos);
+
 	// à íu
-	matPos = MGetTranslate(pos);
+	matPos = MGetTranslate(overAllPos);
 
 	// çsóÒÇÃçáê¨
 	MATRIX mat = MGetIdent();

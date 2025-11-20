@@ -171,7 +171,7 @@ private:
 	//重力の割合
 	static constexpr float GRAVITY_PER = 20.0f;
 	//プレイヤー１のX座標
-	static constexpr float PLAYER_ONE_POS_X = -20.0f;
+	static constexpr float PLAYER_ONE_POS_X = -300.0f;
 	//座標の間隔
 	static constexpr float DISTANCE_POS = 50.0f;
 	//プレイヤーのローカル角度
@@ -301,8 +301,12 @@ private:
 
 
 #ifdef DEBUG_ON
+	//デバッグ描画
 	void DrawDebug(void);
 #endif // DEBUG_ON
+
+	//当たり判定初期化
+
 	//プレイヤー状態
 	//状態遷移
 	void ChangeState(PLAYER_STATE _state);

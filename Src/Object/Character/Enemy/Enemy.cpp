@@ -66,7 +66,8 @@ void Enemy::Init(void)
 	//カードデッキ
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_,ENEMY_NUM);
-
+	deck_->Init();
+	cardUI_->Init();
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
@@ -75,9 +76,8 @@ void Enemy::Init(void)
 	//デッキの先頭にリロードカード追加
 	deck_->AddDrawPile(RELOAD_CARD_STATUS);
 	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
+	cardUI_->InitCardUI();
 
-	deck_->Init();
-	cardUI_->Init();
 	logic_ = std::make_unique<EnemyLogic>(trans_,playerChara_);
 	logic_->Init();
 
@@ -118,8 +118,8 @@ void Enemy::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
-	trans_.pos = { 20.0f,0.0f,0.0f };
-	trans_.localPos = { 0.0f,-RADIUS,0.0f };
+	trans_.pos = { 0.0f,0.0f,500.0f };
+	trans_.localPos = { 0.0f,RADIUS,0.0f };
 
 
 

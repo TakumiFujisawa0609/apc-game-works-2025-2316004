@@ -24,7 +24,7 @@ public:
 		int typeImg = -1;
 		CardBase::CARD_STATUS status;
 	};
-
+	//static constexpr std::wstring CARD_UI_PATH = L"Resource/Image/Card/CardUI.png";
 	//カードサイズ補完時間
 	static constexpr float SCL_LERP_TIME = 0.5;
 	//リロード1枚あたりの時間
@@ -40,19 +40,39 @@ public:
 
 
 	// コンストラクタ
-	CardUIController(int& _cardNumImgs);
+	CardUIController(int& _cardNumImgs,std::wstring& _numImgStr);
 	// デストラクタ
 	~CardUIController(void);
 
+	/// @brief ロード
+	/// @param  
+	void Load(void);
+
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
+
+	/// @brief 更新
+	/// @param  
 	void Update(void);
 
-
+	/// @brief 描画
+	/// @param  
 	void Draw(void);
-	//選択移動
+
+	/// @brief 描画モデル
+	/// @param  
+	void DrawModel(void);
+
+
+	/// @brief 選択移動
+	/// @param  
 	void DecisionMove(void);
-	//弾かれ処理
+
+	/// @brief 弾かれ処理
+	/// @param _goalPos 目標角度
 	void ReactMove(const Vector2F& _goalPos);
+	
 	//使用済みカード削除
 	void EraseUsedCard(void);
 
@@ -141,15 +161,6 @@ public:
 	/// @return 
 	const CARD_STATE& GetState(void)const { return state_; }
 
-
-
-
-
-
-
-
-
-
 #ifdef _DEBUG
 	/// @brief 弾かれカウントの取得
 	const float& GetReactCount(void)const { return reactCnt_; }
@@ -186,7 +197,7 @@ private:
 
 	Vector2F cardPos_;		//カードの座標(画面外で初期化)
 	Vector2F numPos_;		//カードの強さ番号座標(画面外で初期化)
-	float currentAngle_;																		//カードの現在の角度
+	float currentAngle_;	//カードの現在の角度
 	float goalAngle_;	//カードの目標の角度
 	float cardScl_;
 	float sclCnt_;
@@ -197,8 +208,13 @@ private:
 	Vector2F centerPos_;						//カードリボルバーの中心
 
 	int typeImg_;		//カードの種類画像
+	std::wstring typeImgStr_; //カードの画像名前文字列
+	std::wstring numImgStr_;  //カード番号画像名前文字列
+	//保存するファイル名リスト
+	std::list<std::wstring>typeImgStrs_;
+
 	CardBase::CARD_STATUS status_;	//カードのステータス
-	Vector2F size_;		//カードの大きさ
+	Vector2F halfSize_;		//カードの大きさ
 	int cardImg_;		//カード画像
 	//カード番号イメージ
 	int cardNoImg_;

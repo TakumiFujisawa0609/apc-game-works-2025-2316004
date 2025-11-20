@@ -99,16 +99,6 @@ void Player::Load(void)
 	cardUI_ = std::make_unique<PlayerCardUI>();
 	cardUI_->Load();
 	
-
-	//デッキに山札追加
-	for (int i = 0; i < CARD_NUM_MAX; i++)
-	{
-		deck_->AddDrawPile(CARD_POWS[i]);
-		cardUI_->AddCardUi(CARD_POWS[i]);
-	}
-	//デッキの先頭にリロードカード追加
-	deck_->AddDrawPile(RELOAD_CARD_STATUS);
-	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 	deck_->Load();
 
 	//アクション
@@ -129,8 +119,8 @@ void Player::Init(void)
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
-	trans_.pos={ posX,0.0f,0.0f };
-	trans_.localPos = { 0.0f,-Player::RADIUS,0.0f };
+	trans_.pos={ 0.0f,0.0f,-500.0f };
+	trans_.localPos = { 0.0f,Player::RADIUS,-0.0f };
 
 	tag_ = Collider::TAG::PLAYER1;
 
@@ -172,6 +162,17 @@ void Player::Init(void)
 	action_->Init();
 	deck_->Init();
 	cardUI_->Init();
+
+	//デッキに山札追加
+	for (int i = 0; i < CARD_NUM_MAX; i++)
+	{
+		deck_->AddDrawPile(CARD_POWS[i]);
+		cardUI_->AddCardUi(CARD_POWS[i]);
+	}
+	//デッキの先頭にリロードカード追加
+	deck_->AddDrawPile(RELOAD_CARD_STATUS);
+	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
+	cardUI_->InitCardUI();
 
 	//更新
 	trans_.Update();

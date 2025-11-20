@@ -10,6 +10,7 @@ void ResourceManager::Init(void)
 	static std::wstring PATH_ANIM_PLAYER = Application::PATH_ANIM_PLAYER;
 	static std::wstring PATH_ANIM_ENEMY = Application::PATH_ANIM_ENEMY;
 	static std::wstring PATH_EFF = Application::PATH_EFFECT;
+	static std::wstring PATH_SHADER = Application::PATH_SHADER;
 
 	std::unique_ptr<ResourceData> res;
 
@@ -64,6 +65,12 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Rush.mv1");
 	resourcesMap_.emplace(SRC::E_ROLE_ATK, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Card.mv1");
+	resourcesMap_.emplace(SRC::CARD, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::PIXEL_SHADER, PATH_SHADER + L"CardPS.cso");
+	resourcesMap_.emplace(SRC::CARD, std::move(res));
+
 
 
 
@@ -71,12 +78,17 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",CARD_NO_X, CARD_NO_Y,CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
 	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"AttackCard.png");
-	resourcesMap_.emplace(SRC::ATK_CARD_IMG, std::move(res));
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"PlayerAttackCard.png");
+	resourcesMap_.emplace(SRC::PLAYER_ATK_CARD_IMG, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"EnemyAttackCard.png");
+	resourcesMap_.emplace(SRC::ENEMY_ATK_CARD_IMG, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadCard.png");
 	resourcesMap_.emplace(SRC::RELOAD_CARD_IMG, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadCard.png");
+	resourcesMap_.emplace(SRC::RELOAD_CARD_IMG, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
 	resourcesMap_.emplace(SRC::STAGE, std::move(res));

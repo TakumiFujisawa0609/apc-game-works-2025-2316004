@@ -1,12 +1,13 @@
 #pragma once
-#include<functional>
-#include<map>
-#include<memory>
-#include<vector>
-#include<list>
-#include"../ObjectBase.h"
-#include"CardUiBase.h"
-#include"./CardBase.h"
+#include <functional>
+#include <map>
+#include <unordered_map>
+#include <memory>
+#include <vector>
+#include <list>
+#include "../ObjectBase.h"
+#include "CardUiBase.h"
+#include "./CardBase.h"
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
 #include"../Application.h"
@@ -19,6 +20,7 @@ class CardUIDraw;
 class CardUIBase
 {
 public:
+
 	enum class CARD_STATE
 	{
 		DRAW_PILE		//山札
@@ -38,9 +40,25 @@ public:
 		, RELOAD
 
 	};
+
+	enum class CARD_NUMBER
+	{
+		CARD_ZERO,
+		CARD_ONE,
+		CARD_TWO,
+		CARD_THREE,
+		CARD_FOUR,
+		CARD_FIVE,
+		CARD_SIX,
+		CARD_SEVEN,
+		CARD_EIGHT,
+		CARD_NINE
+
+	};
+
 	//カードサイズ補完時間
 	static constexpr double SCL_LERP_TIME = 0.5;
-
+	
 	struct CARD_UI_INFO
 	{
 		CardBase::CARD_STATUS status;										//カードのステータス
@@ -115,6 +133,10 @@ public:
 	/// @return カードリボルバーの状態
 	const CARD_SELECT GetSelectState(void)const { return selectState_; }
 
+	/// @brief カード初期化
+	/// @param  
+	virtual void InitCardUI(void) = 0;
+
 protected:
 
 	//カードUI状態
@@ -123,16 +145,39 @@ protected:
 	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };
 	//弾かれる前のゴール座標
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X-100.0f, Application::SCREEN_HALF_Y + 200.0f };
-
 	//デルタ
 	static constexpr float DELTA = 1.0f/60.0f;
+	//カード数字による画像名
+	static constexpr std::wstring_view CARD_ZERO_NAME = L"Zero";
+	static constexpr std::wstring_view CARD_ONE_NAME = L"One";
+	static constexpr std::wstring_view CARD_TWO_NAME = L"Two";
+	static constexpr std::wstring_view CARD_THREE_NAME = L"Three";
+	static constexpr std::wstring_view CARD_FOUR_NAME = L"Four";
+	static constexpr std::wstring_view CARD_FIVE_NAME = L"Five";
+	static constexpr std::wstring_view CARD_SIX_NAME = L"Six";
+	static constexpr std::wstring_view CARD_SEVEN_NAME = L"Seven";
+	static constexpr std::wstring_view CARD_EIGHT_NAME = L"Eight";
+	static constexpr std::wstring_view CARD_NINE_NAME = L"Nine";
+
+
 
 	//カード更新関数
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
-	std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
-
-
+	std::unordered_map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
+	//数字画像名
+	std::unordered_map<CARD_NUMBER, std::wstring> numImgNames_;
+	//タイプ画像
+	std::unordered_map<CardBase::CARD_TYPE, int> typeImgs_;
+	//①初期カード
+	std::vector<std::shared_ptr<CardUIController>>initialCards_;
+	//②手札
+	std::list<std::shared_ptr<CardUIController>>handCards_;
+	//③手札UIは派生のPlayerCardUI
+	//④手札の現在選択中カード
+	std::list<std::shared_ptr<CardUIController>>::iterator handCurrent_;
+	//⑤アクション中カード
+	std::list<std::shared_ptr<CardUIController>>actions_;
 	//シェーダー関連
 	std::unique_ptr<PixelMaterial>material_;
 	std::unique_ptr<PixelRenderer>renderer_;
@@ -156,15 +201,7 @@ protected:
 
 	//状態
 	CARD_SELECT selectState_;
-	//①初期カード
-	std::vector<std::shared_ptr<CardUIController>>initialCards_;
-	//②手札
-	std::list<std::shared_ptr<CardUIController>>handCards_;
-	//③手札UIは派生のPlayerCardUI
-	//④手札の現在選択中カード
-	std::list<std::shared_ptr<CardUIController>>::iterator handCurrent_;
-	//⑤アクション中カード
-	std::list<std::shared_ptr<CardUIController>>actions_;
+
 
 	//手札選択カードの計算
 	void AddHandCurrent(void);	//足し算
@@ -183,9 +220,11 @@ protected:
 	virtual void UpdateDecision(void) {};
 	virtual void UpdateReloadWait(void) {};
 
-	//カード初期化
-	virtual void InitCardUI(void) = 0;;
 
+	//テーブル初期化
+	void InitNumImgNames(void);
+	//カードのタイプ画像初期化
+	void InitTypeImgs(void);
 	//アクション配列のカードをすべて決定移動させる
 	void DecisionMoveCardAll(void);
 	//使用済みのカードを消す
@@ -194,8 +233,10 @@ protected:
 	void ReactMoveCard(const Vector2F& _goalPos);
 	//特定のカードを弾かれ移動させる
 	void ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos);
-	//カード描画
-	void DrawCard(const CARD_UI_INFO _card);
+
+	//属性画像取得
+	const int GetTypeImg(const CardBase::CARD_STATUS _status);
+
 
 	//カードUI画像作成
 	int MakeCardUIImg(void);

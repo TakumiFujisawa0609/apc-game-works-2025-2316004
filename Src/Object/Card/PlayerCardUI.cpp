@@ -37,9 +37,11 @@ void PlayerCardUI::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
 	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
-	atkCardImg_ = res.Load(ResourceManager::SRC::ATK_CARD_IMG).handleId_;
+	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
+
+
 
 	//SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
 	//SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
@@ -56,10 +58,9 @@ void PlayerCardUI::Init(void)
 		{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } },
 		{CARD_SELECT::RELOAD, [this]() {ChangeReload(); } }
 	};
-
+	InitNumImgNames();
+	InitTypeImgs();
 	ChangeSelectState(CARD_SELECT::NONE);
-	
-	InitCardUI();
 
 }
 
@@ -67,6 +68,13 @@ void PlayerCardUI::Update(void)
 {
 	//カード状態
 	cardUpdate_();
+
+	//見えている部分だけ更新
+	for (auto& card : visibleCards_)
+	{
+		//DrawCard(card);
+		card->Update();
+	}
 
 	//使用済みカードの大きさ補完
 	UpdateUsedCard();
@@ -92,6 +100,7 @@ void PlayerCardUI::Draw(void)
 	if (handCurrent_ != handCards_.end())
 	{
 		(*handCurrent_)->Draw();
+		(*handCurrent_)->DrawModel();
 	}
 
 	//uiDraw_->Draw();
@@ -151,6 +160,7 @@ void PlayerCardUI::InitCardUI(void)
 	//手札にすべての初期札を入れる
 	for (auto& it : initialCards_)
 	{
+		(*it).Load();
 		(*it).Init();
 		handCards_.emplace_back(it);
 	}
