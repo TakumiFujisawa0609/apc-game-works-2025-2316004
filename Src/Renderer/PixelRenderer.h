@@ -27,26 +27,26 @@ public:
 	~PixelRenderer(void);
 
 	// 描画矩形の生成
-	void MakeSquereVertex(Vector2 pos, Vector2 size);
-	void MakeSquereVertex(void);
+	void MakeSquareVertex(Vector2F pos, Vector2F size);
+	void MakeSquareVertex(void);
 
 	// 座標設定
-	void SetPos(Vector2 pos);
+	void SetPos(Vector2F pos);
 
 	// 画像サイズ設定
-	void SetSize(Vector2 size);
+	void SetSize(Vector2F size);
 
 	// 描画
 	void Draw(void);
-	void Draw(int x, int y);
+	void Draw(float x, float y);
 
 private:
 
 	// 座標
-	Vector2 pos_;
+	Vector2F pos_;
 
 	// 描画サイズ
-	Vector2 size_;
+	Vector2F size_;
 
 	// 頂点
 	VERTEX2DSHADER vertexs_[NUM_VERTEX];

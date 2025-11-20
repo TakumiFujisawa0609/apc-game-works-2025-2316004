@@ -81,19 +81,19 @@ public:
 
 	/// @brief ロード
 	/// @param  
-	virtual void Load(void) = 0;
+	virtual void Load(void);
 
 	/// @brief 初期化
 	/// @param  
-	virtual void Init(void) = 0;
+	virtual void Init(void);
 
 	/// @brief 更新
 	/// @param  
-	virtual void Update(void) = 0;
+	virtual void Update(void);
 
 	/// @brief 描画
 	/// @param
-	virtual void Draw(void) = 0;
+	virtual void Draw(void);
 
 
 
@@ -165,8 +165,6 @@ protected:
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
 	std::unordered_map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
-	//数字画像名
-	std::unordered_map<CARD_NUMBER, std::wstring> numImgNames_;
 	//タイプ画像
 	std::unordered_map<CardBase::CARD_TYPE, int> typeImgs_;
 	//①初期カード
@@ -220,11 +218,9 @@ protected:
 	virtual void UpdateDecision(void) {};
 	virtual void UpdateReloadWait(void) {};
 
+	//UI描画更新
+	virtual void UpdateDrawCardUI(void) = 0;;
 
-	//テーブル初期化
-	void InitNumImgNames(void);
-	//カードのタイプ画像初期化
-	void InitTypeImgs(void);
 	//アクション配列のカードをすべて決定移動させる
 	void DecisionMoveCardAll(void);
 	//使用済みのカードを消す

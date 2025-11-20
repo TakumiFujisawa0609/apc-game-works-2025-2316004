@@ -45,6 +45,9 @@ private:
     void UpdateDecision(void) override;
 	void UpdateReloadWait(void) override;
 
+    //カードUI描画オブジェクト更新
+    void UpdateDrawCardUI(void) override;
+
 
 };
 

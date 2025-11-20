@@ -5,16 +5,14 @@
 #include "../Card/CardUIDraw.h"
 #include "CardUIController.h"
 
-CardUIController::CardUIController(int& _cardNumImgs, std::wstring& _numImgStr) :
+CardUIController::CardUIController(int& _cardNumImgs) :
 	typeImg_(-1),
 	cardNoImg_(_cardNumImgs),
-	typeImgStr_(L""),
-	numImgStr_(_numImgStr),
 	status_({}),
 	disitionCnt_(0.0f),
 	reactCnt_(0.0f),
 	state_(CARD_STATE::DRAW_PILE),
-	cardPos_({ Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 }),
+	cardPos_({0.0f,0.0f}),
 	currentAngle_(0.0f),
 	goalAngle_(currentAngle_),
 	cardScl_(1.0),
@@ -34,7 +32,6 @@ void CardUIController::Load(void)
 
 void CardUIController::Init(void)
 {
-	typeImgStr_ = Application::PATH_IMAGE + L"CardImg" + numImgStr_;
 	cardImg_ = MakeCardUIImg();
 	cardDraw_->Init();
 }
@@ -181,13 +178,6 @@ int CardUIController::MakeCardUIImg(void)
 	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_, true);
 
 
-	//“¯‚¶–¼‘O‚Ì‰æ‘œ‚ª•Û‘¶‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î•Û‘¶
-	auto it = std::find(typeImgStrs_.begin(), typeImgStrs_.end(), typeImgStr_);
-	if(it==typeImgStrs_.end())
-	{
-		SaveDrawScreenToPNG(0, 0, GRAPH_SIZE_X, GRAPH_SIZE_Y, typeImgStr_.c_str());
-		typeImgStrs_.push_back(typeImgStr_);
-	}
 
 	//•`‰ææ‚ğŒ³‚É–ß‚·
 	SetDrawScreen(DX_SCREEN_BACK);

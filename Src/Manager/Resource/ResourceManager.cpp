@@ -69,7 +69,7 @@ void ResourceManager::Init(void)
 	resourcesMap_.emplace(SRC::CARD, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::PIXEL_SHADER, PATH_SHADER + L"CardPS.cso");
-	resourcesMap_.emplace(SRC::CARD, std::move(res));
+	resourcesMap_.emplace(SRC::CARD_PS, std::move(res));
 
 
 

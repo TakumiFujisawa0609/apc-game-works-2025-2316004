@@ -10,6 +10,20 @@ float4 main(PS_INPUT PSInput) : SV_TARGET0
 {
     //texture‚©‚çF‚ðŽæ“¾
     float4 srcCol = tex.Sample(texSampler, PSInput.uv);
+    //float alpha = srcCol.a;
+    //srcCol.rgb = (alpha > 0.0f) ? (srcCol.rgb / alpha) : 0.0f;
+    if (all(srcCol.rgb < 0.01f))
+    {
+        discard;
+    }
+    
+    
+    //”wŒi‚Ì•‚ð“§‰ß‚³‚¹‚é
+    //float alpha = srcCol.a;
+    //srcCol.rgb = (alpha > 0.0f) ? (srcCol.rgb / alpha) : float3(0.0f, 0.0f, 0.0f);
+    
+
     
     return g_color * srcCol;
+    
 }

@@ -8,17 +8,17 @@ PixelRenderer::~PixelRenderer(void)
 {
 }
 
-void PixelRenderer::MakeSquereVertex(Vector2 pos, Vector2 size)
+void PixelRenderer::MakeSquareVertex(Vector2F pos, Vector2F size)
 {
 
 	pos_ = pos;
 	size_ = size;
 
 	int cnt = 0;
-	float sX = static_cast<float>(pos.x);
-	float sY = static_cast<float>(pos.y);
-	float eX = static_cast<float>(pos.x + size.x);
-	float eY = static_cast<float>(pos.y + size.y);
+	float sX = pos.x;
+	float sY = pos.y;
+	float eX = pos.x + size.x;
+	float eY = pos.y + size.y;
 
 	// ÇSí∏ì_ÇÃèâä˙âª
 	for (int i = 0; i < 4; i++)
@@ -85,17 +85,17 @@ void PixelRenderer::MakeSquereVertex(Vector2 pos, Vector2 size)
 
 }
 
-void PixelRenderer::MakeSquereVertex(void)
+void PixelRenderer::MakeSquareVertex(void)
 {
-	MakeSquereVertex(pos_, size_);
+	MakeSquareVertex(pos_, size_);
 }
 
-void PixelRenderer::SetPos(Vector2 pos)
+void PixelRenderer::SetPos(Vector2F pos)
 {
 	pos_ = pos;
 }
 
-void PixelRenderer::SetSize(Vector2 size)
+void PixelRenderer::SetSize(Vector2F size)
 {
 	size_ = size;
 }
@@ -174,10 +174,10 @@ void PixelRenderer::Draw(void)
 
 }
 
-void PixelRenderer::Draw(int x, int y)
+void PixelRenderer::Draw(float x, float y)
 {
 	pos_.x = x;
 	pos_.y = y;
-	MakeSquereVertex();
+	MakeSquareVertex();
 	Draw();
 }

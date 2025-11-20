@@ -41,42 +41,29 @@ void CardUIDraw::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,0.0f,0.0f });
 
-	pixelMaterial_ = std::make_unique<PixelMaterial>(resMng_.Load(ResourceManager::SRC::CARD_PS).path_, 1);
+	pixelMaterial_ = std::make_unique<PixelMaterial>(L"CardPS.cso", 1);
 	pixelMaterial_->AddTextureBuf(typeImg_);
 	pixelMaterial_->AddConstBuf({ 1.0f,1.0f, 1.0f,1.0f });
 	pixelRenderer_ = std::make_unique<PixelRenderer>(*pixelMaterial_);
-	pixelRenderer_->MakeSquereVertex(rightTopPos, size);
+	pixelRenderer_->MakeSquareVertex(rightTopPos_, size_);
 	
 
 	trans_.Update();
 }
 void CardUIDraw::Update(void)
 {
-	int intScl = static_cast<int>(scl_);
-	Vector2 size = {static_cast<int>(size_.x),static_cast<int>(size_.y)};
-	halfSize_ = size_ / 2.0f;
-	//左上の座標
-	rightTopPos_ = centerPos_ - halfSize_ * scl_;
-	//右下の座標
-	leftDownPos_ = centerPos_ + halfSize_ * scl_;
-
-	Vector2 rightTopPos = { static_cast<int>(rightTopPos_.x),static_cast<int>(rightTopPos_.y) };
-
-
-	pixelRenderer_->SetPos({ static_cast<int>(rightTopPos_.x),static_cast<int>(rightTopPos_.y)});
-	pixelRenderer_->SetSize(size*intScl);
 	trans_.Update();
 }
 void CardUIDraw::Draw(void)
 {
-	////画像サイズ取得
-	//GetGraphSizeF(typeImg_, &halfSize_.x, &halfSize_.y);
+	//画像サイズ取得
+	GetGraphSizeF(typeImg_, &size_.x, &size_.y);
 
-	//halfSize_ = size_ / 2.0f;
-	////左上の座標
-	//Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;
-	////右下の座標
-	//Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
+	halfSize_ = size_ / 2.0f;
+	//左上の座標
+	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;
+	//右下の座標
+	Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
 
 	//DrawExtendGraphF(
 	//	rightTopPos.x, rightTopPos.y,
@@ -85,7 +72,9 @@ void CardUIDraw::Draw(void)
 	//	true
 	//);
 
-	pixelRenderer_->Draw();
+	//ピクセルレンダラー座標更新
+	pixelRenderer_->SetSize(size_ * scl_);
+	pixelRenderer_->Draw(rightTopPos.x, rightTopPos.y);
 }
 
 void CardUIDraw::DrawModel(void)

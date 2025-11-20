@@ -10,17 +10,6 @@
 #include "../Renderer/PixelRenderer.h"
 #include "CardUIBase.h"
 
-//const std::wstring Application::PATH_IMAGE = L"Data/Image/";
-//const std::wstring CardUIBase::CARD_ZERO_NAME = L"Zero";
-//const std::wstring CardUIBase::CARD_ONE_NAME = L"One";
-//const std::wstring CardUIBase::CARD_TWO_NAME = L"Two";
-//const std::wstring CardUIBase::CARD_THREE_NAME = L"Three";
-//const std::wstring CardUIBase::CARD_FOUR_NAME = L"Four";
-//const std::wstring CardUIBase::CARD_FIVE_NAME = L"Five";
-//const std::wstring CardUIBase::CARD_SIX_NAME = L"Six";
-//const std::wstring CardUIBase::CARD_SEVEN_NAME = L"Seven";
-//const std::wstring CardUIBase::CARD_EIGHT_NAME = L"Eight";
-//const std::wstring CardUIBase::CARD_NINE_NAME = L"Nine";
 
 
 CardUIBase::CardUIBase(void):
@@ -30,7 +19,7 @@ reloadCardImg_(-1)
 {
 	//material_ = std::make_unique<PixelMaterial>(L"CardUI",0);
 	//renderer_ = std::make_unique<PixelRenderer>(*material_);
-	//renderer_->MakeSquereVertex(Vector2{},GetGraphSize(ResourceManager::GetInstance().Load(ResourceManager::SRC::))
+	//renderer_->MakeSquareVertex(Vector2{},GetGraphSize(ResourceManager::GetInstance().Load(ResourceManager::SRC::))
 }
 
 CardUIBase::~CardUIBase(void)
@@ -72,18 +61,50 @@ void CardUIBase::ChangeUsingActionCard(void)
 	}
 }
 
+void CardUIBase::Load(void)
+{
+
+}
+
+void CardUIBase::Init(void)
+{
+
+}
+
+void CardUIBase::Update(void)
+{
+	//カード状態
+	cardUpdate_();
+
+	//見えている部分だけ更新
+	UpdateDrawCardUI();
+
+	//使用済みカードの大きさ補完
+	UpdateUsedCard();
+}
+
+void CardUIBase::Draw(void)
+{
+	for (auto& card : actions_)
+	{
+		//DrawCard(card);
+		card->Draw();
+	}
+}
+
+
+
+
 void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
 	CardBase::CARD_STATUS status = {};
 	int typeImg = -1;
-	std::wstring numImgStr = L"";
 	//属性によって画像を変える
 	typeImg = GetTypeImg(_status);
-	numImgStr = numImgNames_[static_cast<CARD_NUMBER>(_status.pow_)];
 	int num = _status.pow_ - 1;
 	if (num == -1) { num = 9; }
 	int drawNumImg = cardNoImg_[num];
-	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg, numImgStr);
+	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
 	info->SetTypeImg_(typeImg);
 	info->SetStatus(_status);
 	info->Load();
@@ -91,30 +112,6 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 
 	//配列に挿入
 	initialCards_.emplace_back(info);
-}
-
-void CardUIBase::InitNumImgNames(void)
-{
-	numImgNames_ = {
-		{CARD_NUMBER::CARD_ZERO,L"Zero"},
-		{CARD_NUMBER::CARD_ONE,L"One"},
-		{CARD_NUMBER::CARD_TWO,L"Two"},
-		{CARD_NUMBER::CARD_THREE,L"Three"},
-		{CARD_NUMBER::CARD_FOUR,L"Four"},
-		{CARD_NUMBER::CARD_FIVE,L"Five"},
-		{CARD_NUMBER::CARD_SIX,L"Six"},
-		{CARD_NUMBER::CARD_SEVEN,L"Seven"},
-		{CARD_NUMBER::CARD_EIGHT,L"Eight"},
-		{CARD_NUMBER::CARD_NINE,L"Nine"}
-	};
-}
-
-void CardUIBase::InitTypeImgs(void)
-{
-	typeImgs_ = {
-		{CardBase::CARD_TYPE::ATTACK,atkCardImg_},
-		{CardBase::CARD_TYPE::RELOAD,reloadCardImg_}
-	};
 }
 
 void CardUIBase::DecisionMoveCardAll(void)

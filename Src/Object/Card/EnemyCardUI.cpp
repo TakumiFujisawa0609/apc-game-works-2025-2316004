@@ -35,31 +35,25 @@ void EnemyCardUI::Init(void)
 	{CARD_SELECT::DISITION, [this]() {ChangeDecision(); } },
 	{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } }
 	};
-	InitNumImgNames();
-	InitTypeImgs();
 	ChangeSelectState(CARD_SELECT::NONE);
 }
 
 void EnemyCardUI::Update(void)
 {
-	//カード状態
-	cardUpdate_();
-	//使用済みカードの大きさ補完
-	UpdateUsedCard();
+
+	CardUIBase::Update();
+	////カード状態
+	//cardUpdate_();
+	////使用済みカードの大きさ補完
+	//UpdateUsedCard();
 	//弾かれるカードの大きさ補完
 	ReactMoveCard(REACT_GOAL_CARD_POS);
-	//for (auto& card : actions_)
-	//{
-	//	card.numPos_ = card.cardPos_ + (NUM_LOCAL_POS * card.cardScl_);
-	//}
 }
 
 void EnemyCardUI::Draw(void)
 {
-	for (auto& card : actions_)
-	{
-		card->Draw();
-	}
+	//カード描画(共通)
+	CardUIBase::Draw();
 #ifdef _DEBUG
 	DrawDebug();
 #endif // _DEBUG
@@ -140,6 +134,14 @@ void EnemyCardUI::UpdateReloadWait(void)
 {
 	InitCardUI();
 	ChangeSelectState(CARD_SELECT::NONE);
+}
+
+void EnemyCardUI::UpdateDrawCardUI(void)
+{
+	for (auto& card : actions_)
+	{
+		card->Update();
+	}
 }
 
 void EnemyCardUI::InitCardUI(void)

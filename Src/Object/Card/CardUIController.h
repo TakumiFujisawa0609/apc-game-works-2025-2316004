@@ -40,7 +40,7 @@ public:
 
 
 	// コンストラクタ
-	CardUIController(int& _cardNumImgs,std::wstring& _numImgStr);
+	CardUIController(int& _cardNumImgs);
 	// デストラクタ
 	~CardUIController(void);
 
@@ -208,10 +208,6 @@ private:
 	Vector2F centerPos_;						//カードリボルバーの中心
 
 	int typeImg_;		//カードの種類画像
-	std::wstring typeImgStr_; //カードの画像名前文字列
-	std::wstring numImgStr_;  //カード番号画像名前文字列
-	//保存するファイル名リスト
-	std::list<std::wstring>typeImgStrs_;
 
 	CardBase::CARD_STATUS status_;	//カードのステータス
 	Vector2F halfSize_;		//カードの大きさ

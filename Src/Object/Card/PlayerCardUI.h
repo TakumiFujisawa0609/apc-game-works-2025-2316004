@@ -156,7 +156,8 @@ private:
 	
 	//すべてのカードの移動
 	void MoveCardAll(const float& _moveTImeMax);
-
+	//カードUI描画オブジェクト更新
+	void UpdateDrawCardUI(void) override;
 
 
 
