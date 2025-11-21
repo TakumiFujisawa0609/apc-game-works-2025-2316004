@@ -288,6 +288,12 @@
     <ClCompile Include="Src\Object\Card\CardUIController.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Object\SkyDome\SkyDome.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Easing.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common\Fader.h">
@@ -665,6 +671,12 @@
     <ClInclude Include="Src\Object\Card\CardUIController.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Object\SkyDome\SkyDome.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Easing.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Src\Shader\Common\Pixel\PixelShader2DHeader.hlsli" />
@@ -680,6 +692,6 @@
     <FxCompile Include="Src\Shader\Model\StageVS.hlsl" />
     <FxCompile Include="Src\Shader\Model\WaterWaveVS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardVS.hlsl" />
-    <FxCompile Include="Src\Shader\Model\CardPS.hlsl" />
+    <FxCompile Include="Src\Shader\Model\CardNormalPS.hlsl" />
   </ItemGroup>
 </Project>

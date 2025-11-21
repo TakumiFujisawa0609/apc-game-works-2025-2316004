@@ -41,9 +41,11 @@ void CardUIDraw::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,0.0f,0.0f });
 
-	pixelMaterial_ = std::make_unique<PixelMaterial>(L"CardPS.cso", 1);
+	pixelMaterial_ = std::make_unique<PixelMaterial>(L"CardNormalPS.cso", CONST_BUF_SLOT_NUM);
 	pixelMaterial_->AddTextureBuf(typeImg_);
-	pixelMaterial_->AddConstBuf({ 1.0f,1.0f, 1.0f,1.0f });
+	pixelMaterial_->AddConstBuf({ 1.0f,1.0f, 1.0f,1.0f });		//カードの色
+	pixelMaterial_->AddConstBuf({ 1.0f,0.0f, 0.0f,1.0f });		//アウトラインの色
+	pixelMaterial_->AddConstBuf({ 0.3f,0.0f, 0.0f,1.0f });		//アウトラインの広がる時間
 	pixelRenderer_ = std::make_unique<PixelRenderer>(*pixelMaterial_);
 	pixelRenderer_->MakeSquareVertex(rightTopPos_, size_);
 	

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Easing.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIController.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIDraw.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="Src\Manager\Game\GravityManager.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\Cylinder.cpp" />
     <ClCompile Include="Src\Object\Character\Base\CardActionBase.cpp" />
+    <ClCompile Include="Src\Object\SkyDome\SkyDome.cpp" />
     <ClCompile Include="Src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -103,6 +105,7 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Easing.h" />
     <ClInclude Include="Src\Object\Card\CardUIController.h" />
     <ClInclude Include="Src\Object\Card\CardUIDraw.h" />
     <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.h" />
@@ -114,6 +117,7 @@
     <ClInclude Include="Src\Manager\Game\GravityManager.h" />
     <ClInclude Include="Src\Object\Common\Geometry\Cylinder.h" />
     <ClInclude Include="Src\Object\Character\Base\CardActionBase.h" />
+    <ClInclude Include="Src\Object\SkyDome\SkyDome.h" />
     <ClInclude Include="Src\pch.h" />
     <ClInclude Include="Src\Object\Character\Action\EnemyCardAction.h" />
     <ClInclude Include="Src\Manager\Game\CharacterManager.h" />
@@ -239,12 +243,11 @@
     <None Include="Src\Shader\Common\Vertex\VertexShader3DHeader.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Src\Shader\Model\CardPS.hlsl">
+    <FxCompile Include="Src\Shader\Model\CardNormalPS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)/Data/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="Src\Shader\Model\CardVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>

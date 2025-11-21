@@ -1,18 +1,18 @@
 #include "GameScene.h"
 #include <DxLib.h>
 #include "../Application.h"
-#include "../Object/Character/Player/Player.h"
-#include "../Object/Character/Enemy/Enemy.h"
+#include "../Manager/Resource/FontManager.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
-#include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Game/CollisionManager.h"
 #include "../Manager/Game/CharacterManager.h"
 #include "../Manager/Game/GravityManager.h"
-#include "../Manager/Resource/FontManager.h"
-#include "../Object/Card/CardSystem.h"
-#include "../Object/Character/Enemy/Enemy.h"	
+#include "../Object/Character/Player/Player.h"
+#include "../Object/SkyDome/SkyDome.h"
+#include "../Object/Character/Enemy/Enemy.h"
+#include "../Object/Card/CardSystem.h"	
 #include "../Object/Stage.h"	
 
 #include "PauseScene.h"
@@ -45,6 +45,9 @@ void GameScene::Load(void)
 
 	stage_ = std::make_unique<Stage>();
 
+	skyDome_ = std::make_unique<SkyDome>();
+	skyDome_->Load();
+
 	CharacterManager::CreateInstance();
 	CharacterManager::GetInstance().Load();
 }
@@ -57,6 +60,7 @@ void GameScene::Init(void)
 	//重力管理クラスを生成
 	GravityManager::CreateInstance();
 	stage_->Init();
+	skyDome_->Init();
 	//player_->Init();
 	//enemy_->Init();
 
@@ -99,11 +103,9 @@ void GameScene::NormalDraw(void)
 
 	//プレイヤーの描画
 	//PlayerManager::GetInstance().DrawPlayerUI();
+	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
-
-
-
 
 #ifdef _DEBUG
 	CardSystem::GetInstance().DrawDebug();

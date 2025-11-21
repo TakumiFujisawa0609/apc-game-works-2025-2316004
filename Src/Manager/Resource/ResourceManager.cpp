@@ -14,15 +14,21 @@ void ResourceManager::Init(void)
 
 	std::unique_ptr<ResourceData> res;
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"test.png");
-	resourcesMap_.emplace(SRC::TEST, std::move(res));
-
+	//ÉÇÉfÉãìoò^
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Player.mv1");
 	resourcesMap_.emplace(SRC::PLAYER, std::move(res));
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Mutant.mv1");
 	resourcesMap_.emplace(SRC::ENEMY_1, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Card.mv1");
+	resourcesMap_.emplace(SRC::CARD, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SkyDome/SkyDome.mv1");
+	resourcesMap_.emplace(SRC::SKY_DOME, std::move(res));
+
+
+	//ÉAÉjÉÅÅ[ÉVÉáÉììoò^
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"Idle.mv1");
 	resourcesMap_.emplace(SRC::P_IDLE, std::move(res));
 
@@ -65,16 +71,14 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Rush.mv1");
 	resourcesMap_.emplace(SRC::E_ROLE_ATK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Card.mv1");
-	resourcesMap_.emplace(SRC::CARD, std::move(res));
 
+
+	//ÉsÉNÉZÉãÉVÉFÅ[É_ìoò^
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::PIXEL_SHADER, PATH_SHADER + L"CardPS.cso");
 	resourcesMap_.emplace(SRC::CARD_PS, std::move(res));
+	
 
-
-
-
-
+	//âÊëúìoò^
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",CARD_NO_X, CARD_NO_Y,CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
 	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
 

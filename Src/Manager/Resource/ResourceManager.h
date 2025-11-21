@@ -19,26 +19,27 @@ public:
 		NONE,
 		TEST,
 		//モデル
-		STAGE,
-		PLAYER,
-		ENEMY_1,
-		CARD,
+		STAGE,		//ステージ
+		PLAYER,		//プレイヤー
+		ENEMY_1,	//敵1
+		CARD,		//カード
+		SKY_DOME,	//スカイドーム
 		//アニメーション
 		//プレイヤー
-		P_IDLE,
-		P_RUN,
-		P_ATTACK_1,
-		P_ATTACK_2,
-		P_ATTACK_3,
-		P_JUMP,
-		P_DODGE,
+		P_IDLE,		//待機
+		P_RUN,		//走る
+		P_ATTACK_1,	//攻撃1
+		P_ATTACK_2,	//攻撃2
+		P_ATTACK_3,	//攻撃3
+		P_JUMP,		//ジャンプ
+		P_DODGE,	//回避
 		//敵
-		E_IDLE,
-		E_RUN,
-		E_SWIP_ATK,
-		E_JUMP_ATK,
-		E_ROAR_ATK,
-		E_ROLE_ATK,
+		E_IDLE,		//待機
+		E_RUN,		//走る
+		E_SWIP_ATK,	//横薙ぎ攻撃
+		E_JUMP_ATK, //ジャンプ攻撃
+		E_ROAR_ATK,	//咆哮攻撃
+		E_ROLE_ATK,	//転がり攻撃
 		REACT,
 		//画像
 		NUMBERS_IMG,	//カード番号

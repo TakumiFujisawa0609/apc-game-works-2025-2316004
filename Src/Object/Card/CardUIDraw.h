@@ -29,6 +29,8 @@ private:
 	//カード初期座標
 	static constexpr VECTOR CARD_INIT_POS = { 50.0f,200.0f,0.0f };
 
+	//シェーダの定数バッファスロット
+	static constexpr int CONST_BUF_SLOT_NUM = 3;
 	//ピクセルマテリアル
 	std::unique_ptr<PixelMaterial> pixelMaterial_;
 	//ピクセルレンダラー

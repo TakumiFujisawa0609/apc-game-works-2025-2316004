@@ -4,6 +4,7 @@
 
 class PauseScene;
 class CharacterBase;
+class SkyDome;
 class Player;
 class Enemy;
 class Stage;
@@ -28,6 +29,8 @@ public:
 private:
 
 	int frame_;
+	//スカイドーム
+	std::unique_ptr<SkyDome> skyDome_;
 
 	//ステージ
 	std::unique_ptr<Stage>stage_;
