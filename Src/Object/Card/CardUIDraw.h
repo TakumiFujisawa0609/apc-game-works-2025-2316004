@@ -17,6 +17,8 @@ public:
 	void Update(void)override;
 	void Draw(void)override;
 
+	void DrawSelectedFrame(const int& _frameImg);
+
 	/// @brief カード３Dモデル描画
 	/// @param  
 	void DrawModel(void);
@@ -28,6 +30,9 @@ private:
 
 	//カード初期座標
 	static constexpr VECTOR CARD_INIT_POS = { 50.0f,200.0f,0.0f };
+
+	//選択中のフォグの強さ
+	static constexpr float SELECT_FOG_STRENGTH = 0.3f;
 
 	//シェーダの定数バッファスロット
 	static constexpr int CONST_BUF_SLOT_NUM = 3;
@@ -45,6 +50,8 @@ private:
 	Vector2F leftDownPos_;	//右下座標
 	float& scl_;			//サイズ
 
+	//カードの描画
+	void DrawCard(void);
 
 };
 

@@ -39,6 +39,7 @@ void PlayerCardUI::Load(void)
 	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
+	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
 
 	//SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
@@ -79,7 +80,7 @@ void PlayerCardUI::Draw(void)
 
 	if (handCurrent_ != handCards_.end())
 	{
-		(*handCurrent_)->Draw();
+		(*handCurrent_)->SelectCardDrawFrame(selectFrameImg_);
 	}
 
 	//ÉJÅ[Éhï`âÊ(ã§í )

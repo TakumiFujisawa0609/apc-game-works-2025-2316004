@@ -64,6 +64,10 @@ public:
 	/// @param  
 	void DrawModel(void);
 
+	/// @brief 選択カード枠描画
+	/// @param _frameImg 
+	void SelectCardDrawFrame(const int& _frameImg);
+
 
 	/// @brief 選択移動
 	/// @param  

@@ -71,7 +71,8 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Rush.mv1");
 	resourcesMap_.emplace(SRC::E_ROLE_ATK, std::move(res));
 
-
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
+	resourcesMap_.emplace(SRC::STAGE, std::move(res));
 
 	//ピクセルシェーダ登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::PIXEL_SHADER, PATH_SHADER + L"CardPS.cso");
@@ -94,8 +95,10 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadCard.png");
 	resourcesMap_.emplace(SRC::RELOAD_CARD_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
-	resourcesMap_.emplace(SRC::STAGE, std::move(res));
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardSelectFrame2.png");
+	resourcesMap_.emplace(SRC::CARD_SELECT_FRAME_IMG, std::move(res));
+
+
 }
 
 void ResourceManager::SceneChangeRelease(void)

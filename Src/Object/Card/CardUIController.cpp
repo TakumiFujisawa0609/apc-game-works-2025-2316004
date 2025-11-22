@@ -51,6 +51,11 @@ void CardUIController::DrawModel(void)
 	cardDraw_->DrawModel();
 }
 
+void CardUIController::SelectCardDrawFrame(const int& _frameImg)
+{
+	cardDraw_->DrawSelectedFrame(_frameImg);
+}
+
 void CardUIController::DecisionMove(void)
 {
 	disitionCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
