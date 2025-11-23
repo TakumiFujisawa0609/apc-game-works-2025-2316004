@@ -4,6 +4,8 @@
 
 const std::wstring FontManager::FONT_DOT = L"ベストテンDOT";
 const std::wstring FontManager::FONT_BOKUTATI = L"ぼくたちのゴシック";
+const std::wstring FontManager::FONT_APRIL_GOTHIC = L"April Gothic one Regular";
+
 
 FontManager::FontManager()
 {
@@ -20,6 +22,7 @@ void FontManager::Init()
 	// フォントパス初期化
 	fontPath_[static_cast<int>(FONT_TYPE::DOT)] = L"FontDot.otf";
 	fontPath_[static_cast<int>(FONT_TYPE::BOKUTATI)] = L"bokutachi.otf";
+	fontPath_[static_cast<int>(FONT_TYPE::APRIL_GOTHIC_ONE)] = L"AprilGothicOne-R.ttf";
 
 	// フォントをシステムに登録
 	for (int i = 0; i < FONT_TYPES; i++)

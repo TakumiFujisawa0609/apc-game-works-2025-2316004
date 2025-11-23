@@ -69,6 +69,8 @@ bool Application::Init()
 	fontMng_ = std::make_unique<FontManager>();
 	fontMng_->Init();
 
+	isGameEnd_ = false;
+
 	return true;
 }
 
@@ -81,7 +83,7 @@ void Application::Run()
 	auto& sceneManager = SceneManager::GetInstance();
 
 	// ゲームループ
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	while (ProcessMessage() == 0 &&((CheckHitKey(KEY_INPUT_ESCAPE)) == 0&&!isGameEnd_))
 	{
 		//フレームレートを更新
 		if (!fps_->UpdateFrameRate()) continue;

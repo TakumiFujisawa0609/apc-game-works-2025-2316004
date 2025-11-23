@@ -40,20 +40,24 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>初期化成功の場合true,そうじゃない場合false</returns>
-	bool Init();
+	bool Init(void);
 
 	/// <summary>
 	/// ゲームの実行ループ
 	/// </summary>
 	/// <param name=""></param>
-	void Run();
+	void Run(void);
 
 	/// <summary>
 	/// リソースの破棄
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>解放成功の場合true,そうじゃない場合false</returns>
-	bool Release();
+	bool Release(void);
+
+	/// @brief ゲームの終了判定をセットする
+	/// @param 
+	void IsGameEnd(void) { isGameEnd_ = true; }
 
 private:
 
@@ -62,6 +66,9 @@ private:
 
 	//フォント
 	std::unique_ptr<FontManager> fontMng_;
+
+	//ゲーム終了フラグ
+	bool isGameEnd_;
 
 	//コンストラクタ
 	Application();

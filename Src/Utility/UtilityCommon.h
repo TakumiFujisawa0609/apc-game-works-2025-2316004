@@ -16,19 +16,19 @@ public:
 	static constexpr float DEG2RAD = (DX_PI_F / 180.0f);
 
 	//カラーコード
-	static constexpr int BLACK = 0x000000;	//黒
-	static constexpr int RED = 0xFF0000;	//赤
-	static constexpr int BLUE = 0x0000FF;	//青
-	static constexpr int YELLOW = 0xFFFF00;	//黄色
-	static constexpr int GREEN = 0x008000;	//緑
-	static constexpr int CYAN = 0x00FFFF;	//水色
-	static constexpr int PINK = 0xFFC0CB;	//桃色
-	static constexpr int ORANGE = 0xFFA500;	//オレンジ
-	static constexpr int LIME = 0xADFF2F;	//黄緑
-	static constexpr int PURPLE = 0x800080;	//紫
-	static constexpr int WHITE = 0xFFFFFF;	//白
-	static constexpr int GRAY = 0xBBBBBB;	//灰色
-	static constexpr int BROWN = 0x8B4513;	//茶色
+	static constexpr unsigned int BLACK = 0x000000;	//黒
+	static constexpr unsigned int RED = 0xFF0000;	//赤
+	static constexpr unsigned int BLUE = 0x0000FF;	//青
+	static constexpr unsigned int YELLOW = 0xFFFF00;	//黄色
+	static constexpr unsigned int GREEN = 0x008000;	//緑
+	static constexpr unsigned int CYAN = 0x00FFFF;	//水色
+	static constexpr unsigned int PINK = 0xFFC0CB;	//桃色
+	static constexpr unsigned int ORANGE = 0xFFA500;	//オレンジ
+	static constexpr unsigned int LIME = 0xADFF2F;	//黄緑
+	static constexpr unsigned int PURPLE = 0x800080;	//紫
+	static constexpr unsigned int WHITE = 0xFFFFFF;	//白
+	static constexpr unsigned int GRAY = 0xBBBBBB;	//灰色
+	static constexpr unsigned int BROWN = 0x8B4513;	//茶色
 
 	//固定デルタタイム
 	static constexpr float FIXED_DELTA_TIME = 1.0f / 60.0f;

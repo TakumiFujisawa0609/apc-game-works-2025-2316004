@@ -80,6 +80,9 @@ void ResourceManager::Init(void)
 	
 
 	//‰æ‘œ“o˜^
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"Title.png");
+	resourcesMap_.emplace(SRC::TITLE_IMG, std::move(res));
+
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",CARD_NO_X, CARD_NO_Y,CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
 	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
 
