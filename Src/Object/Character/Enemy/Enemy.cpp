@@ -181,7 +181,7 @@ void Enemy::Draw(void)
 	);
 
 #ifdef _DEBUG
-	//DrawDebug();
+	DrawDebug();
 #endif // _DEBUG
 
 }
@@ -217,9 +217,9 @@ void Enemy::SetGoalRotate(const double _deg)
 #ifdef _DEBUG
 void Enemy::DrawDebug(void)
 {
-	//DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
-	VECTOR euler = trans_.quaRot.ToEuler();
-	DrawFormatString(100, 100, 0xffffff, L"(%f,%f,%f)", euler.x, logic_->GetMoveDeg(), euler.z);
+	////DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
+	//VECTOR euler = trans_.quaRot.ToEuler();
+	//DrawFormatString(100, 100, 0xffffff, L"(%f,%f,%f)", euler.x, logic_->GetMoveDeg(), euler.z);
 	for (auto& col : collider_)
 	{
 		col.second->GetGeometry().Draw();
