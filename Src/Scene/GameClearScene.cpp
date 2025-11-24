@@ -1,6 +1,7 @@
 #include <string>
 #include <DxLib.h>
 #include "../Application.h"
+#include "../Utility/UtilityCommon.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Generic/InputManagerS.h"
@@ -22,6 +23,9 @@ GameClearScene::~GameClearScene(void)
 
 void GameClearScene::Load(void)
 {
+	imgGameClear_ = ResourceManager::GetInstance().Load(ResourceManager::SRC::GAME_CLEAR_IMG).handleId_;
+	//フォントの登録
+	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 }
 
 void GameClearScene::Init(void)
@@ -59,6 +63,17 @@ void GameClearScene::NormalDraw(void)
 		0x000000,
 		L"GameClearScene"
 	);
+
+	DrawExtendGraph(0, 0, Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, imgGameClear_, true);
+
+	DrawFormatStringToHandle(
+		SceneBase::BACK_TITLE_STRING_POS.x,
+		SceneBase::BACK_TITLE_STRING_POS.y,
+		UtilityCommon::WHITE,
+		buttnFontHandle_,
+		L"'Bボタンまたはスペースキー'でタイトルに戻る"
+	);
+
 }
 
 void GameClearScene::ChangeNormal(void)

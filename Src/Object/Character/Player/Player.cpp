@@ -1,7 +1,7 @@
 #include<algorithm>
 #include "../../../Utility/Utility3D.h"
 #include "../../../Utility/UtilityCommon.h"
-#include "../Application.h"
+#include "../../../Utility/Utility2D.h"
 
 #include "../../../Manager/Resource/ResourceManager.h"
 //#include "../../Manager/System/SoundManager.h"
@@ -209,13 +209,17 @@ void Player::Draw(void)
 	//’Êí•`‰æ
 	MV1DrawModel(trans_.modelId);
 
-	action_->DrawDebug();
+	//action_->DrawDebug();
 	
 	//ƒJ[ƒhUI•`‰æ
 	cardUI_->Draw();
 
+	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
+
+	Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
+
 #ifdef DEBUG_ON
-	DrawDebug();
+	//DrawDebug();
 #endif // DEBUG_ON
 }
 void Player::OnHit(const std::weak_ptr<Collider> _hitCol)

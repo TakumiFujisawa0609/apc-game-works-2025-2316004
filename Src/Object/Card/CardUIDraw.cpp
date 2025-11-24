@@ -81,9 +81,11 @@ void CardUIDraw::DrawSelectedFrame(const int& _frameImg)
 	Vector2F size = { sizeX,sizeY };
 	Vector2F halfSize = size / 2.0f;
 	//左上の座標
-	Vector2F rightTopPos = centerPos_ - halfSize * scl_;
+	//Vector2F rightTopPos = centerPos_ - halfSize * scl_;//選択中のカード追
+	Vector2F rightTopPos = LEFT_UP_FRAME_POS;
 	//右下の座標
-	Vector2F leftDownPos = centerPos_ + halfSize * scl_;
+	//Vector2F leftDownPos = centerPos_ + halfSize * scl_;
+	Vector2F leftDownPos = RIGHT_DOWN_FRAME_POS;
 	DrawExtendGraphF(
 		rightTopPos.x, rightTopPos.y,
 		leftDownPos.x, leftDownPos.y,

@@ -101,6 +101,9 @@ private:
 	//メニュー処理
 	void UpdateMenu(void);
 
+	//チュートリアル
+	void UpdateTutorial(void);
+
 	//選択処理
 	void UpdateSelectGame(void);
 

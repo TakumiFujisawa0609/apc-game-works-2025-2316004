@@ -58,6 +58,10 @@ private:
 	static constexpr float RADIUS_X = 186.0f;	//‰¡”¼Œa
 	//static constexpr float RADIUS_X = 170.0f;	//‰¡”¼Œa
 	static constexpr float RADIUS_Y = 214.0f;	//‰¡”¼Œa
+
+
+
+
 	//‘È‰~’†S
 	//static constexpr float CENTER_X = 80.0f;
 	//static constexpr float CENTER_Y = 640.0f;

@@ -1,5 +1,6 @@
 #pragma once
 #include<functional>
+#include "../Common/Vector2.h"
 #include "../Application.h"
 
 class SceneManager;
@@ -22,6 +23,10 @@ public:
 	static constexpr float COMMA_TIME = 0.5f;										//「now loading......」のコンマ数を増やす時間
 	static constexpr int LOADING_STRING_POS_X = Application::SCREEN_SIZE_X - 300;	//「now loading......」の座標X
 	static constexpr int LOADING_STRING_POS_Y = Application::SCREEN_SIZE_Y - 40;	//「now loading......」の座標Y
+
+	//タイトル戻る文字列の座標
+	static constexpr Vector2 BACK_TITLE_STRING_POS = { 200,500 };
+
 
 	// コンストラクタ
 	SceneBase(void);
@@ -57,6 +62,8 @@ protected:
 
 	//選択ボタンフォントハンドル
 	int buttnFontHandle_;
+
+	//
 
 	//更新関数
 	virtual void LoadingUpdate(void);

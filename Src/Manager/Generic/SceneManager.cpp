@@ -4,6 +4,7 @@
 #include "../../Scene/TitleScene.h"
 #include "../../Scene/GameScene.h"
 #include "../../Scene/GameClearScene.h"
+#include "../../Scene/GameOverScene.h"
 #include "../Resource/ResourceManager.h"
 #include "SceneManager.h"
 #include "Camera.h"
@@ -242,6 +243,9 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME_CLEAR:
 		CreateScene(std::make_unique<GameClearScene>());
+		break;
+	case SCENE_ID::GAME_OVER:
+		CreateScene(std::make_unique<GameOverScene>());
 		break;
 	}
 

@@ -46,6 +46,7 @@ void SoundManager::Destroy(void)
 
 void SoundManager::Release(void)
 {
+    if (loadedMap_.empty())return;
     for (auto& p : loadedMap_)
     {
         DeleteSoundMem(p.second.handleId);

@@ -155,7 +155,7 @@ void Enemy::Draw(void)
 {
 	//’Êí•`‰æ
 	MV1DrawModel(trans_.modelId);
-	deck_->Draw();
+	//deck_->Draw();
 	cardUI_->Draw();
 
 	//HPƒo[•`‰æ
@@ -181,7 +181,7 @@ void Enemy::Draw(void)
 	);
 
 #ifdef _DEBUG
-	DrawDebug();
+	//DrawDebug();
 #endif // _DEBUG
 
 }
@@ -225,7 +225,7 @@ void Enemy::DrawDebug(void)
 		col.second->GetGeometry().Draw();
 	}
 
-	DrawFormatString(600, 300, 0x000000, L"Dir(%f,%f,%f)\nDeg(%f)", logic_->GetDir().x, logic_->GetDir().y, logic_->GetDir().z,logic_->GetMoveDeg());
+	//DrawFormatString(600, 300, 0x000000, L"Dir(%f,%f,%f)\nDeg(%f)", logic_->GetDir().x, logic_->GetDir().y, logic_->GetDir().z,logic_->GetMoveDeg());
 
 	//logic_->DebugDraw();
 }

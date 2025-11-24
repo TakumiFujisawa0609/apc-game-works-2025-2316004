@@ -67,7 +67,7 @@ void EnemyLogic::Update(void)
 
 
 #ifdef _DEBUG
-	DebugUpdate();
+	//DebugUpdate();
 #endif // _DEBUG
 
 }

@@ -43,6 +43,8 @@ public:
 		REACT,
 		//画像
 		TITLE_IMG,	//タイトル画像
+		GAME_OVER_IMG,
+		GAME_CLEAR_IMG,
 		NUMBERS_IMG,	//カード番号
 		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード
 		ENEMY_ATK_CARD_IMG,//敵番号なしアタックカード

@@ -139,6 +139,10 @@ public:
 	/// @return ステータス
 	const CardBase::CARD_STATUS GetStatus(void)const { return status_; }
 
+	/// @brief 最終的にカードの座標をゴール座標に合わせる
+	/// @param  
+	void SyncCardAngleAndPos(void);
+
 	/// @brief 目標の角度のセット
 	/// @param _rad 
 	void SetGoalAngle(const float& _rad) { goalAngle_ = _rad; }
@@ -182,11 +186,11 @@ private:
 
 
 	//楕円中心
-	//static constexpr float CENTER_X = 80.0f;
-	//static constexpr float CENTER_Y = 640.0f;
+	static constexpr float CENTER_X = 80.0f;
+	static constexpr float CENTER_Y = 640.0f;
 	///*static constexpr float CENTER_X = 0.0f;
-	static constexpr float CENTER_X = 200.0f;
-	static constexpr float CENTER_Y = 440.0f;
+	//static constexpr float CENTER_X = 200.0f;
+	//static constexpr float CENTER_Y = 440.0f;
 	//楕円の半径
 	static constexpr float RADIUS_X = 186.0f;	//横半径
 	//static constexpr float RADIUS_X = 170.0f;	//横半径

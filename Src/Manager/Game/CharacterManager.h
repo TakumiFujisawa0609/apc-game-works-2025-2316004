@@ -19,10 +19,15 @@ public:
 	void Draw(void);
 	void Release(void);
 
-	/// @brief シーン遷移条件(敵のHPによるもの)
+	/// @brief ゲームクリアシーン遷移条件(敵のHPによるもの)
 	/// @param  
 	/// @return 
-	const bool IsSceneChageCondition(void)const;
+	const bool IsSceneChageClearCondition(void)const;
+
+	/// @brief ゲームオーバーシーン遷移
+	/// @param  
+	/// @return 
+	const bool IsSceneChangeGameOverCondition(void)const;
 
 private:
 	CharacterManager(void);

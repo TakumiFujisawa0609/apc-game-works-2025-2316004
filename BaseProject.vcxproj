@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Scene\GameOverScene.cpp" />
     <ClCompile Include="Src\Common\Easing.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIController.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIDraw.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Scene\GameOverScene.h" />
     <ClInclude Include="Src\Common\Easing.h" />
     <ClInclude Include="Src\Object\Card\CardUIController.h" />
     <ClInclude Include="Src\Object\Card\CardUIDraw.h" />

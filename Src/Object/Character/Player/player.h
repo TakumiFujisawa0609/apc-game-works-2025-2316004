@@ -186,6 +186,10 @@ private:
 	//プレイヤーの腰のフレーム番号
 	static constexpr int SPINE_FRAME_NO = 0;
 
+	//プレイヤーHPバー
+	static constexpr Vector2 START_HPBAR_POS = { 10,10 };
+	static constexpr Vector2 HPBAR_SIZE = { 200,30 };
+
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標

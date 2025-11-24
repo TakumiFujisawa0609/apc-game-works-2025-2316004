@@ -1,15 +1,15 @@
 #pragma once
+#include "../Common/Vector2.h"
 #include "SceneBase.h"
-class GameClearScene :
+class GameOverScene :
     public SceneBase
 {
 public:
-
 	// コンストラクタ
-	GameClearScene(void);
+	GameOverScene(void);
 
 	// デストラクタ
-	~GameClearScene(void);
+	~GameOverScene(void);
 
 	//読み込み処理
 	void Load(void) override;
@@ -18,9 +18,9 @@ public:
 	void Init(void) override;
 
 private:
-	//ゲームクリア画像
-	int imgGameClear_;
 
+	//ゲームオーバー画面
+	int imgGameOver_;
 
 	//更新関数
 	void NormalUpdate(void) override;

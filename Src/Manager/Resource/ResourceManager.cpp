@@ -83,8 +83,11 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"Title.png");
 	resourcesMap_.emplace(SRC::TITLE_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",CARD_NO_X, CARD_NO_Y,CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
-	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"GameClear.png");
+	resourcesMap_.emplace(SRC::GAME_CLEAR_IMG, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"GameOver.png");
+	resourcesMap_.emplace(SRC::GAME_OVER_IMG, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"PlayerAttackCard.png");
 	resourcesMap_.emplace(SRC::PLAYER_ATK_CARD_IMG, std::move(res));
@@ -101,6 +104,10 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardSelectFrame2.png");
 	resourcesMap_.emplace(SRC::CARD_SELECT_FRAME_IMG, std::move(res));
 
+
+	//ï°êîâÊëú
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png", CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
+	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
 
 }
 

@@ -106,6 +106,13 @@ void CardUIController::ChangeDicisionEnemyCardMove(void)
 	numPos_ = cardPos_ + (NUM_LOCAL_POS * cardScl_);
 }
 
+void CardUIController::SyncCardAngleAndPos(void)
+{
+	currentAngle_ = goalAngle_;
+	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
+	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
+}
+
 void CardUIController::ResetCount(void)
 {
 	sclCnt_ = SCL_LERP_TIME;

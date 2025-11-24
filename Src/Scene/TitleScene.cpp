@@ -42,7 +42,7 @@ void TitleScene::Init(void)
 		{TITLE_STATE::START_GAME,[this]() {
 			UpdateSelectGame();
 		}},
-		{TITLE_STATE::TUTORIAL,[this]() { /* チュートリアル処理 */ } },
+		{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
 		{TITLE_STATE::EXIT_MENU,[this]() {UpdateExitMenu();}},
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
 	};
@@ -137,7 +137,7 @@ void TitleScene::NormalDraw(void)
 		DrawFormatStringToHandle(
 			startPos.x + QUESTION_OFFSET,
 			startPos.y + QUESTION_OFFSET,
-			UtilityCommon::WHITE,
+			UtilityCommon::BLACK,
 			titleFont_,
 			L"本当にゲームを終了しますか？"
 		);
@@ -192,6 +192,12 @@ void TitleScene::UpdateMenu(void)
 	{
 		ChangeState(static_cast<TITLE_STATE>(selectNum_));
 	}
+}
+
+void TitleScene::UpdateTutorial(void)
+{
+	//まだ未実装
+	ChangeState(TITLE_STATE::MENU);
 }
 
 void TitleScene::UpdateSelectGame(void)

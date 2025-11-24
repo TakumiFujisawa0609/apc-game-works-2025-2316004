@@ -34,6 +34,10 @@ private:
 	//選択中のフォグの強さ
 	static constexpr float SELECT_FOG_STRENGTH = 0.3f;
 
+	//フレーム固定座標
+	static constexpr Vector2F LEFT_UP_FRAME_POS = { 19.5f,343.0f };
+	static constexpr Vector2F RIGHT_DOWN_FRAME_POS = { 140.0f,509.0f };
+
 	//シェーダの定数バッファスロット
 	static constexpr int CONST_BUF_SLOT_NUM = 3;
 	//ピクセルマテリアル

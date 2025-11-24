@@ -9,6 +9,7 @@
 #include "../Manager/Game/CollisionManager.h"
 #include "../Manager/Game/CharacterManager.h"
 #include "../Manager/Game/GravityManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Object/Character/Player/Player.h"
 #include "../Object/SkyDome/SkyDome.h"
 #include "../Object/Character/Enemy/Enemy.h"
@@ -31,13 +32,14 @@ GameScene::~GameScene(void)
 	CardSystem::GetInstance().Destroy();
 	CollisionManager::GetInstance().Destroy();
 	CharacterManager::GetInstance().Destroy();
+	SoundManager::GetInstance().Release();
 
 }
 
 void GameScene::Load(void)
 {
 	//フォントの登録
-	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_DOT.c_str(), FONT_SIZE, 0);
+	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
@@ -63,6 +65,10 @@ void GameScene::Init(void)
 	skyDome_->Init();
 	//player_->Init();
 	//enemy_->Init();
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
+	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
+	SoundManager::GetInstance().SetSystemVolume(30.0f, static_cast<int>(SoundManager::TYPE::BGM));
+
 
 }
 
@@ -75,9 +81,13 @@ void GameScene::NormalUpdate(void)
 		return;
 	}
 	//とりあえず敵が倒れたら
-	if (CharacterManager::GetInstance().IsSceneChageCondition())
+	if (CharacterManager::GetInstance().IsSceneChageClearCondition())
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+	}
+	else if (CharacterManager::GetInstance().IsSceneChangeGameOverCondition())
+	{
+		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
 	}
 	//ステージ
 	stage_->Update();
@@ -92,8 +102,13 @@ void GameScene::NormalUpdate(void)
 	CollisionManager::GetInstance().Sweep();
 	//更新はアクション中のみ
 	CollisionManager::GetInstance().Update();
+
+#ifdef _DEBUG
 	//デバッグ処理
-	//DebagUpdate();
+	DebagUpdate();
+#endif // _DEBUG
+
+
 }
 
 void GameScene::NormalDraw(void)
@@ -108,7 +123,7 @@ void GameScene::NormalDraw(void)
 	CharacterManager::GetInstance().Draw();
 
 #ifdef _DEBUG
-	CardSystem::GetInstance().DrawDebug();
+	//CardSystem::GetInstance().DrawDebug();
 #endif // _DEBUG
 
 	//player_->DrawPlayerUI();
@@ -128,7 +143,7 @@ void GameScene::DebagUpdate(void)
 	InputManager& ins = InputManager::GetInstance();
 	if (ins.IsTrgDown(KEY_INPUT_SPACE))
 	{
-		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
+		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
 	}
 	frame_++;
 }

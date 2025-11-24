@@ -42,9 +42,6 @@ void PlayerCardUI::Load(void)
 	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
 
-	//SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
-	//SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
-
 }
 void PlayerCardUI::Init(void)
 {
@@ -174,7 +171,7 @@ void PlayerCardUI::ChangeNone(void)
 	//–Ú•WŠp“x‚ðŒ»Ý‚ÌŠp“x‚É‚·‚é
 	for (auto& card : visibleCards_)
 	{
-		//card.goalAngle_ = 0.0f;
+		//card->SyncCardAngleAndPos();
 		card->SetGoalAngle(0.0f);
 	}
 	cardUpdate_ = [this]() {UpdateNone(); };
@@ -576,7 +573,6 @@ void PlayerCardUI::ReloadAnimation(void)
 
 std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleCurrentIt(void)
 {
-
 	for (auto it = visibleCards_.begin(); it != visibleCards_.end(); it++)
 	{
 		if (*it == *handCurrent_)
@@ -584,7 +580,6 @@ std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleC
 			return it;
 		}
 	}
-
 	return visibleCards_.end();
 }
 

@@ -26,6 +26,7 @@ public:
 		TITLE,
 		GAME,
 		GAME_CLEAR,
+		GAME_OVER,
 	};
 	
 	/// @brief 初期化
@@ -48,7 +49,7 @@ public:
 	/// @param  
 	void Release(void);
 	
-	/// @brief 先頭の（Updataが呼ばれる）シーンを切り替える
+	/// @brief 先頭の（Updateが呼ばれる）シーンを切り替える
 	/// @param scene 切り替え先のシーン
 	void CreateScene(std::shared_ptr<SceneBase> scene);
 	
@@ -58,12 +59,12 @@ public:
 
 	/// <summary>
 	/// シーンをプッシュする。スタックの数が増える
-	/// 一番上のシーンのUpdataしか呼ばれません。
+	/// 一番上のシーンのUpdateしか呼ばれません。
 	/// </summary>
 	/// <param name="scene">積むシーン</param>
 	
 	/// @brief シーンをプッシュする。スタックの数が増える
-	/// 一番上のシーンのUpdataしか呼ばれません。
+	/// 一番上のシーンのUpdateしか呼ばれません。
 	/// @param scene 
 	void PushScene(std::shared_ptr<SceneBase> scene);
 	

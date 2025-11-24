@@ -52,24 +52,6 @@ bool Utility2D::IsHitCircles(const Vector2& circlePos1, const float radius1, con
 
 void Utility2D::DrawBarGraph(const Vector2& _pos, const Vector2& _size, const float _per, const unsigned int _backColor, const unsigned int _fillColor, const int _offset)
 {
-
-    ////HPÉoÅ[ï`âÊ
-    //const int BOX_START_X = 200;
-    //const int BOX_START_Y = 50;
-    //const int BOX_END_X = BOX_START_X + 400;
-    //const int BOX_END_Y = BOX_START_Y + 30;
-
-    //float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-    //float hpBoxEnd = hpPer * 400.0f;
-    //int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
-    //DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
-    //DrawBox(BOX_START_X - 1, BOX_START_Y - 1, hpBox_x, BOX_END_Y, 0x0000ff, -1);
-
-
-
-
-
-
     // îwåiÇÃï`âÊ
     DrawBox(_pos.x, _pos.y, _pos.x + _size.x, _pos.y + _size.y, _backColor, true);
     // ìhÇËÇ¬Ç‘Çµïîï™ÇÃïùÇåvéZ

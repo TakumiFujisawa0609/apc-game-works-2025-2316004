@@ -41,9 +41,13 @@ void CharacterManager::Draw(void)
 void CharacterManager::Release(void)
 {
 }
-const bool CharacterManager::IsSceneChageCondition(void) const
+const bool CharacterManager::IsSceneChageClearCondition(void) const
 {
 	return enemy_->GetStatus().hp <= 0;
+}
+const bool CharacterManager::IsSceneChangeGameOverCondition(void) const
+{
+	return player_->GetStatus().hp <= 0;
 }
 CharacterManager::CharacterManager(void)
 {
