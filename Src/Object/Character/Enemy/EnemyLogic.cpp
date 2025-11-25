@@ -84,7 +84,7 @@ const float EnemyLogic::GetLookAtTargetDeg(void) const
 	float deg = static_cast<float>(Utility3D::AngleDeg(playerChara_.GetTransform().pos, myTrans_.pos));
 	return deg;
 }
-
+#ifdef _DEBUG
 void EnemyLogic::DebugUpdate(void)
 {
 	//ˆÚ“®Šp“x‚ðŒˆ‚ß‚é
@@ -109,11 +109,17 @@ void EnemyLogic::DebugUpdate(void)
 		moveDir_ = Utility3D::DIR_R;
 	}
 }
+#endif // _DEBUG
 
+
+#ifdef _DEBUG
 void EnemyLogic::DebugDraw(void)
 {
-	DrawFormatString(50, 100, 0x000000,L"Dis(%f)",distance_);
+	DrawFormatString(50, 100, 0x000000, L"Dis(%f)", distance_);
 }
+#endif // _DEBUG
+
+
 
 void EnemyLogic::DesideAction(void)
 {

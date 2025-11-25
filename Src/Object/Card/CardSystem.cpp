@@ -81,13 +81,16 @@ void CardSystem::JudgeIsFirstAtk(const int _playerNo)
 		isFirstAtk_[_playerNo] = true;
 	}
 }
-
+#ifdef _DEBUG
 void CardSystem::DrawDebug(void)
 {
 	DrawFormatString(200, 200, 0x000000, L"CardPow(%d,%d)\nisFirst(%d,%d)"
-		, putCardPow_[0], putCardPow_[1],isFirstAtk_[0],isFirstAtk_[1]);
+		, putCardPow_[0], putCardPow_[1], isFirstAtk_[0], isFirstAtk_[1]);
 
 }
+#endif // _DEBUG
+
+
 
 
 void CardSystem::CompareCards(void)

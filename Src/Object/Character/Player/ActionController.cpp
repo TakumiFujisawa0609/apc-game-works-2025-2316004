@@ -87,14 +87,18 @@ void ActionController::Update(void)
 	CardMove();
 }
 
+#ifdef _DEBUG
 void ActionController::DrawDebug(void)
 {
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
 	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)logic_.GetAct(), dashSeCnt);
 	//deck_.Draw();
 	DrawFormatString(0, 320, 0x000000, L"pos(%f,%f,%f)", trans_.pos.x, trans_.pos.y, trans_.pos.z);
-	
+
 }
+#endif // _DEBUG
+
+
 
 const float& ActionController::GetSpd(void) const
 {

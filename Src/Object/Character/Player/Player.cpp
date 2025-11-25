@@ -219,7 +219,7 @@ void Player::Draw(void)
 	Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
 
 #ifdef DEBUG_ON
-	//DrawDebug();
+	DrawDebug();
 #endif // DEBUG_ON
 }
 void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
@@ -269,7 +269,9 @@ void Player::DrawDebug(void)
 		col.second->GetGeometry().Draw();
 	}
 	
-	DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetAct()),isDamage_);
+	VECTOR pos = trans_.pos;
+	//DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetAct()),isDamage_);
+	DrawFormatString(0, 300, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
 	//// ÉtÉåÅ[ÉÄÇÃéÊìæ
 	//int frmNo = MV1SearchFrame(trans_.modelId, L"Maria_sword");
 	//if (frmNo == -1) {

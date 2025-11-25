@@ -105,7 +105,7 @@ void GameScene::NormalUpdate(void)
 
 #ifdef _DEBUG
 	//デバッグ処理
-	DebagUpdate();
+	//DebagUpdate();
 #endif // _DEBUG
 
 

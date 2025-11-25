@@ -198,6 +198,11 @@ const VECTOR Utility3D::GetMoveVec(const VECTOR _start, const VECTOR _goal, cons
     //標的への方向ベクトルを取得
     VECTOR targetVec = VSub(_goal, _start);
 
+    if (Utility3D::EqualsVZero(targetVec))
+    {
+        return targetVec;
+    }
+
     //正規化
     targetVec = VNorm(targetVec);
 

@@ -59,7 +59,7 @@ void EnemyCardUI::Draw(void)
 #endif // _DEBUG
 
 }
-
+#ifdef _DEBUG
 void EnemyCardUI::DrawDebug(void)
 {
 	int i = 0;
@@ -91,6 +91,9 @@ void EnemyCardUI::DrawDebug(void)
 		i++;
 	}
 }
+#endif // _DEBUG
+
+
 
 void EnemyCardUI::ChangeNone(void)
 {

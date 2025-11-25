@@ -36,7 +36,7 @@ void Stage::Init(void)
 		L"StageVS.cso", 1,
 		L"StagePS.cso", 0
 	);
-	material_->AddConstBufVS({ 1000.0f,0.0f,0.0f,0.0f });
+	material_->AddConstBufVS({ 300.0f,0.0f,0.0f,0.0f });
 	renderer_ = std::make_unique<ModelRenderer>(trans_.modelId,*material_);
 
 	trans_.Update();

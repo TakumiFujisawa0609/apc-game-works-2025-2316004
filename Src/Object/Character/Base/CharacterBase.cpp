@@ -7,6 +7,7 @@
 #include "../Manager/Game/GravityManager.h"
 #include"../Object/Card/CardDeck.h"
 #include"../Object/Card/CardUIBase.h"
+#include "../Object/Stage.h"
 #include "../../../Utility/Utility3D.h"
 #include "../../Common/Geometry/Capsule.h"
 #include "../../Common/Geometry/Sphere.h"
@@ -84,12 +85,14 @@ void CharacterBase::UpdatePost(void)
 		Line& moveLine = dynamic_cast<Line&>(collider_[TAG_PRIORITY::MOVE_LINE]->GetGeometry());
 		moveLine.SetLocalPosPoint1(Utility3D::VECTOR_ZERO);
 		moveLine.SetLocalPosPoint2(moveVec);
+
+		
 	}
 
 	//当たり判定をする前に初期化する
 	onHit_->InitHitPoint();
 
-	
+	MoveLimit(Stage::STAGE_POS, { Stage::STAGE_SIZE,0.0f, Stage::STAGE_SIZE });
 	////地面接地ライン
 	//if (movedPos_.y < 0.0f)
 	//{
@@ -98,6 +101,10 @@ void CharacterBase::UpdatePost(void)
 
 	//移動前の座標を格納する
 	moveDiff_ = trans_.pos;
+
+
+	
+
 	//移動
 	trans_.pos = movedPos_;
 }
@@ -109,6 +116,36 @@ void CharacterBase::SetStatus(const float& _spd, const float& _hp, const float& 
 
 	//現在ステータスを最大値にセット
 	status_ = maxStatus_;
+}
+
+void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
+{
+	VECTOR sizeHalf = VScale(_stageSize, 0.5f);
+	VECTOR limit = VAdd(_stagePos, sizeHalf);
+	VECTOR moveVec = Utility3D::GetMoveVec(trans_.pos, movedPos_);
+	VECTOR addPos = VScale(moveVec, CAP_RADIUS);
+	VECTOR limitPos = VAdd(trans_.pos, addPos);
+
+	VECTOR pushVec = Utility3D::GetMoveVec(movedPos_, moveDiff_);
+	pushVec.y = 0.0f;
+	VECTOR pushPow = VScale(pushVec, action_->GetSpd());
+	if (limitPos.x >= limit.x)
+	{
+		movedPos_.x = limit.x + pushPow.x;
+	}
+	if (limitPos.x <= -limit.x)
+	{
+		movedPos_.x = -limit.x + pushPow.x;
+	}
+	if (limitPos.z >= limit.z)
+	{
+		movedPos_.z = limit.z + pushPow.z;
+	}
+	if (limitPos.z <= -limit.z)
+	{
+		movedPos_.z = -limit.z + pushPow.z;
+	}
+
 }
 
 void CharacterBase::MoveDirFronInput(void)

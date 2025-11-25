@@ -9,7 +9,12 @@ class Stage :
 {
 
 public:
-
+    //ステージのスケール
+    static constexpr float STAGE_SCL = 30.0f;
+    //ステージのサイズ
+    static constexpr float STAGE_SIZE = 200.0f * STAGE_SCL;
+    //ステージの座標
+    static constexpr VECTOR STAGE_POS = { 0.0f,0.0f,0.0f };
 	Stage(void);
 	~Stage(void)override;
 
@@ -34,7 +39,6 @@ public:
     void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 private:
 
-    static constexpr float STAGE_SCL = 30.0f;
 
     //シェーダー関連
     std::unique_ptr<ModelMaterial> material_;

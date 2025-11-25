@@ -119,6 +119,11 @@ public:
 	/// @return 
 	const Quaternion GetPlayerRotY(void);
 	
+	/// @brief スピードの取得
+	/// @param  
+	/// @return スピード
+	const float& GetSpd(void)const;
+
 	/// @brief 再生しているリソースをすべて止める
 	/// @param  
 	void StopResource(void);
@@ -142,13 +147,13 @@ public:
 
 
 
+
 #ifdef _DEBUG
 	//デバッグb
 	void DrawDebug(void);
 	//カードアクション時間(デバッグ用)
 	static constexpr float CARD_ACT_TIME_MAX = 5.0f; 
 
-	const float& GetSpd(void)const;
 #endif // _DEBUG
 
 

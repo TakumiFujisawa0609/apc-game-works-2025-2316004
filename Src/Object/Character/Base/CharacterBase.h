@@ -266,6 +266,9 @@ protected:
 	void UpdatePost(void);
 	//ステータスの設定
 	void SetStatus(const float& _spd, const float& _hp, const float& _atk, const float& _def);
+
+	//移動制限
+	void MoveLimit(const VECTOR& _stagePos, const VECTOR& _stageSize);
 private:
 
 };
