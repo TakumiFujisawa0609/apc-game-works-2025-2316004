@@ -60,12 +60,15 @@ void PlayerCardUI::Init(void)
 	};
 	InitCardUI();
 	ChangeSelectState(CARD_SELECT::NONE);
+	SetBasePosVisibleCards();
 
 }
 
 void PlayerCardUI::Update(void)
 {
 	CardUIBase::Update();
+
+	MoveUpDownVisibleCards();
 
 	//弾かれるカードの大きさ補完
 	ReactMoveCard(REACT_GOAL_CARD_POS);
@@ -187,7 +190,6 @@ void PlayerCardUI::ChangeNone(void)
 	{
 		//card->SyncCardAngleAndPos();
 		card->SetGoalAngle(0.0f);
-		card->SetBaseCardPos();
 	}
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
@@ -344,10 +346,7 @@ void PlayerCardUI::ChangeReload(void)
 }
 void PlayerCardUI::UpdateNone(void)
 {
-	for (auto& visible : visibleCards_)
-	{
-		visible->MoveUpDown();
-	}
+
 }
 
 void PlayerCardUI::UpdateLeft(void)
@@ -356,7 +355,7 @@ void PlayerCardUI::UpdateLeft(void)
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_front();
-		CurrentAngle();
+		SetBasePosVisibleCards();
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
@@ -369,7 +368,7 @@ void PlayerCardUI::UpdateRight(void)
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_back();
-		CurrentAngle();
+		SetBasePosVisibleCards();
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
@@ -396,6 +395,7 @@ void PlayerCardUI::UpdateDecision(void)
 
 	if(it==actions_.end())
 	{
+		SetBasePosVisibleCards();
 		ChangeSelectState(CARD_SELECT::NONE);
 	}
 
@@ -432,6 +432,7 @@ void PlayerCardUI::UpdateReload(void)
 				handCurrent_ = handCards_.begin();
 				//handCurrent_++;
 			}
+			SetBasePosVisibleCards();
 			ChangeSelectState(CARD_SELECT::NONE);
 		}
 	}
@@ -459,12 +460,12 @@ void PlayerCardUI::UpdateDrawCardUI(void)
 
 
 
-void PlayerCardUI::CurrentAngle(void)
+void PlayerCardUI::SetBasePosVisibleCards(void)
 {
-	//for (auto& card : visibleCards_)
-	//{
-	//	card.goalAngle_ = card.currentAngle_;
-	//}
+	for (auto& card : visibleCards_)
+	{
+		card->SetBaseCardPos();
+	}
 }
 
 void PlayerCardUI::UpdateVisibleCard(void)
@@ -588,6 +589,18 @@ void PlayerCardUI::ReloadAnimation(void)
 		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
 		visibleCards_.emplace_front(*reloadAnimCurr_);
 		reloadAnimCurr_ = std::prev(handCards_.end());
+	}
+}
+
+void PlayerCardUI::MoveUpDownVisibleCards(void)
+{
+	//カードが動いていないときに上下に動かす
+	if (selectState_ == CARD_SELECT::NONE || selectState_ == CARD_SELECT::RELOAD_WAIT)
+	{
+		for (auto& visible : visibleCards_)
+		{
+			visible->MoveUpDown();
+		}
 	}
 }
 

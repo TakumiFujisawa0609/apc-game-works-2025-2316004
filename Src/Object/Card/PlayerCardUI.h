@@ -170,7 +170,7 @@ private:
 
 
 	//角度を現在角度に設定
-	void CurrentAngle(void);
+	void SetBasePosVisibleCards(void);
 	//現在選択中のカード更新
 	//void UpdateVisibleCurrent(void);
 	//見せるカードの更新
@@ -184,6 +184,8 @@ private:
 	////使用済みのカードを消す
 	//void UpdateUsedCard(void);
 
+	//上下に見せカードを動かす
+	void MoveUpDownVisibleCards(void);
 
 	std::list<std::shared_ptr<CardUIController>>::iterator GetVisibleCurrentIt(void);
 	std::list<std::shared_ptr<CardUIController>>::iterator GetSearchHandIt(std::shared_ptr<CardUIController> target);
