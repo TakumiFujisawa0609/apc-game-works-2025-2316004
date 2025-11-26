@@ -49,7 +49,10 @@ public:
 		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード
 		ENEMY_ATK_CARD_IMG,//敵番号なしアタックカード
 		RELOAD_CARD_IMG,//リロードカード
+		RELOAD_FRAME,	//リロードカードのフレーム
+		RELOAD_GAGE,	//リロードゲージ
 		CARD_SELECT_FRAME_IMG,//カード枠画像
+
 
 		//ピクセルシェーダ
 		CARD_PS,

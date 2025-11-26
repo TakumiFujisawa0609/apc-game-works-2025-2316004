@@ -5,6 +5,7 @@ cbuffer cbParam : register(b4)
     float4 g_color;
     float g_fog_Pow;
     float g_time;
+    float g_Percent;
     float dummy;
 }
 float4 main(PS_INPUT PSInput) : SV_TARGET0
@@ -24,6 +25,12 @@ float4 main(PS_INPUT PSInput) : SV_TARGET0
     area = abs(area);
     srcCol.rgb += area;
     
+    float texY = 1.0f - g_Percent;
+    if (uv.y < texY)
+    {
+        discard;
+    }
+ 
     return srcCol + g_color;
    
 }

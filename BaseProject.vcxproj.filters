@@ -699,5 +699,6 @@
     <FxCompile Include="Src\Shader\Model\WaterWaveVS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardVS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardNormalPS.hlsl" />
+    <FxCompile Include="Src\Shader\Model\CardReloadPS.hlsl" />
   </ItemGroup>
 </Project>

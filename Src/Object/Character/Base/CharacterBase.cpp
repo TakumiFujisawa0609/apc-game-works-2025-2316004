@@ -120,7 +120,8 @@ void CharacterBase::SetStatus(const float& _spd, const float& _hp, const float& 
 
 void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 {
-	VECTOR sizeHalf = VScale(_stageSize, 0.5f);
+	VECTOR subRadiusSize={_stageSize.x-CAP_RADIUS,0.0f,_stageSize.z-CAP_RADIUS};
+	VECTOR sizeHalf = VScale(subRadiusSize, 0.5f);
 	VECTOR limit = VAdd(_stagePos, sizeHalf);
 	VECTOR moveVec = Utility3D::GetMoveVec(trans_.pos, movedPos_);
 	VECTOR addPos = VScale(moveVec, CAP_RADIUS);

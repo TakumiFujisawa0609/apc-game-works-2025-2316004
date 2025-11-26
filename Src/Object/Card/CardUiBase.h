@@ -122,8 +122,6 @@ public:
 	/// @param  
 	void ChangeUsingActionCard(void);
 
-
-
 	/// @brief リロードカウントセット
 	/// @param _cnt 
 	void SetReloadCount(const float _cnt) { reloadPer_ = _cnt; };
@@ -188,6 +186,8 @@ protected:
 	int atkCardImg_;
 	//リロードカード画像
 	int reloadCardImg_;
+	int reloadFrame_;	//リロードフレーム
+	int reloadGage_;		//リロードゲージ
 	//カードナンバー座標
 	Vector2F numPos_;
 	//カードセレクトの動き時間

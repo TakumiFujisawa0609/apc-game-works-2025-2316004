@@ -161,7 +161,7 @@ void Player::Init(void)
 
 	action_->Init();
 	deck_->Init();
-	cardUI_->Init();
+	
 
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
@@ -172,7 +172,8 @@ void Player::Init(void)
 	//デッキの先頭にリロードカード追加
 	deck_->AddDrawPile(RELOAD_CARD_STATUS);
 	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
-	cardUI_->InitCardUI();
+	cardUI_->Init();
+	//cardUI_->InitCardUI();
 
 	//更新
 	trans_.Update();

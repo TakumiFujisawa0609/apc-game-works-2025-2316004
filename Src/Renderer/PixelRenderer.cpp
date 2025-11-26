@@ -1,6 +1,6 @@
 #include "PixelRenderer.h"
 
-PixelRenderer::PixelRenderer(PixelMaterial& pixelMaterial) : pixelMaterial_(pixelMaterial)
+PixelRenderer::PixelRenderer(PixelMaterial& pixelMaterial) : normalCardPSMaterial_(pixelMaterial)
 {
 }
 
@@ -104,12 +104,12 @@ void PixelRenderer::Draw(void)
 {
 
 	// ピクセルシェーダ設定
-	SetUsePixelShader(pixelMaterial_.GetShader());
+	SetUsePixelShader(normalCardPSMaterial_.GetShader());
 
 	size_t size;
 
 	// ピクセルシェーダにテクスチャを転送
-	const auto& textures = pixelMaterial_.GetTextures();
+	const auto& textures = normalCardPSMaterial_.GetTextures();
 	size = textures.size();
 	for (int i = 0; i < size; i++)
 	{
@@ -117,10 +117,10 @@ void PixelRenderer::Draw(void)
 	}
 
 	// 定数バッファハンドル
-	int constBuf = pixelMaterial_.GetConstBuf();
+	int constBuf = normalCardPSMaterial_.GetConstBuf();
 
 	FLOAT4* constBufsPtr = (FLOAT4*)GetBufferShaderConstantBuffer(constBuf);
-	const auto& constBufs = pixelMaterial_.GetConstBufs();
+	const auto& constBufs = normalCardPSMaterial_.GetConstBufs();
 
 	size = constBufs.size();
 	for (int i = 0; i < size; i++)
@@ -143,7 +143,7 @@ void PixelRenderer::Draw(void)
 		constBuf, DX_SHADERTYPE_PIXEL, CONSTANT_BUF_SLOT_BEGIN_PS);
 
 	// テクスチャアドレスタイプの取得
-	auto texA = pixelMaterial_.GetTextureAddress();
+	auto texA = normalCardPSMaterial_.GetTextureAddress();
 	int texAType = static_cast<int>(texA);
 
 	// テクスチャアドレスタイプを変更

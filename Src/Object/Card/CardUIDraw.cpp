@@ -15,10 +15,11 @@ CardUIDraw::CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl):
 
 CardUIDraw::~CardUIDraw(void)
 {
+	typeImg_ = -1;
 }
 void CardUIDraw::Load(void)
 {
-	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::CARD));
+	//trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::CARD));
 }
 
 void CardUIDraw::Init(void)
@@ -42,14 +43,21 @@ void CardUIDraw::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,0.0f,0.0f });
 
-	pixelMaterial_ = std::make_unique<PixelMaterial>(L"CardNormalPS.cso", CONST_BUF_SLOT_NUM);
-	pixelMaterial_->AddTextureBuf(typeImg_);
-	pixelMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
-	pixelMaterial_->AddConstBuf({ 1.0f,0.0f, 0.0f,1.0f });		//アウトラインの色
-	pixelMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//アウトラインの広がる時間
-	pixelRenderer_ = std::make_unique<PixelRenderer>(*pixelMaterial_);
-	pixelRenderer_->MakeSquareVertex(rightTopPos_, size_);
-	
+	normalCardPSMaterial_ = std::make_unique<PixelMaterial>(L"CardNormalPS.cso", CONST_BUF_SLOT_NUM);
+	normalCardPSMaterial_->AddTextureBuf(typeImg_);
+	normalCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
+	normalCardPSMaterial_->AddConstBuf({ 1.0f,0.0f, 0.0f,1.0f });		//アウトラインの色
+	normalCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//アウトラインの広がる時間
+	normalCardPSRenderer_ = std::make_unique<PixelRenderer>(*normalCardPSMaterial_);
+	normalCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
+
+	reloadCardPSMaterial_= std::make_unique<PixelMaterial>(L"CardReloadPS.cso", CONST_BUF_SLOT_NUM);
+	reloadCardPSMaterial_->AddTextureBuf(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_GAGE).handleId_);
+	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
+	reloadCardPSMaterial_->AddConstBuf({ 1.0f,0.0f, 0.0f,1.0f });		//アウトラインの色
+	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//アウトラインの広がる時間
+	reloadCardPSRederer_ = std::make_unique<PixelRenderer>(*reloadCardPSMaterial_);
+	reloadCardPSRederer_->MakeSquareVertex(rightTopPos_, size_);
 
 	trans_.Update();
 }
@@ -60,7 +68,7 @@ void CardUIDraw::Update(void)
 void CardUIDraw::Draw(void)
 {
 	float totalTime = SceneManager::GetInstance().GetTotalTime();
-	pixelMaterial_->SetConstBuf(1, { 0.0f,0.0f, 0.0f,1.0f });		//カードの色
+	normalCardPSMaterial_->SetConstBuf(1, { 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	DrawCard();
 }
 
@@ -68,18 +76,10 @@ void CardUIDraw::DrawSelectedFrame(const int& _frameImg)
 {
 
 	float totalTime = SceneManager::GetInstance().GetTotalTime();
-	pixelMaterial_->SetConstBuf(1, { SELECT_FOG_STRENGTH,totalTime, 0.0f,1.0f });		//カードの色
+	normalCardPSMaterial_->SetConstBuf(1, { SELECT_FOG_STRENGTH,totalTime, 0.0f,1.0f });		//カードの色
 	//カード描画
 	DrawCard();
 
-	//pixelMaterial_->SetConstBuf(3, { 0.0f,0.0f, 0.0,1.0f });		//カードの色
-
-	//画像サイズ取得
-	float sizeX = 0.0f;
-	float sizeY = 0.0f;
-	GetGraphSizeF(_frameImg, &sizeX, &sizeY);
-	Vector2F size = { sizeX,sizeY };
-	Vector2F halfSize = size / 2.0f;
 	//左上の座標
 	//Vector2F rightTopPos = centerPos_ - halfSize * scl_;//選択中のカード追
 	Vector2F rightTopPos = LEFT_UP_FRAME_POS;
@@ -110,13 +110,28 @@ void CardUIDraw::DrawCard(void)
 	//右下の座標
 	Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
 
-	//DrawExtendGraphF(
-	//	rightTopPos.x, rightTopPos.y,
-	//	leftDownPos.x, leftDownPos.y,
-	//	typeImg_,
-	//	true
-	//);
+	normalCardPSRenderer_->SetSize(size_ * scl_);
+	normalCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
+}
 
-	pixelRenderer_->SetSize(size_ * scl_);
-	pixelRenderer_->Draw(rightTopPos.x, rightTopPos.y);
+void CardUIDraw::DrawReloadGauge(const float& _reloadFrameImg,const float& _reloadPer)
+{
+	//画像サイズ取得
+	GetGraphSizeF(typeImg_, &size_.x, &size_.y);
+
+	halfSize_ = size_ / 2.0f;
+	//左上の座標
+	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;
+	//右下の座標
+	Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
+	reloadCardPSMaterial_->SetConstBuf(1, { 0.0f,0.0f,_reloadPer,0.0f });
+	reloadCardPSRederer_->SetSize(size_ * scl_);
+	reloadCardPSRederer_->Draw(rightTopPos.x, rightTopPos.y);
+
+	DrawExtendGraphF(
+		rightTopPos.x, rightTopPos.y,
+		leftDownPos.x, leftDownPos.y,
+		_reloadFrameImg,
+		true
+	);
 }

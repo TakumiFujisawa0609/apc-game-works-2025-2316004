@@ -39,7 +39,11 @@ void PlayerCardUI::Load(void)
 	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
+	reloadGage_ = res.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
+	reloadFrame_ = res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
+
+	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
 
 }
@@ -54,6 +58,7 @@ void PlayerCardUI::Init(void)
 		{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } },
 		{CARD_SELECT::RELOAD, [this]() {ChangeReload(); } }
 	};
+	InitCardUI();
 	ChangeSelectState(CARD_SELECT::NONE);
 
 }
@@ -73,11 +78,20 @@ void PlayerCardUI::Draw(void)
 	{
 		//DrawCard(card);
 		card->Draw();
+		if (card->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
+		{
+			card->DrawReloadGauge(reloadCardFrameImg_,reloadPer_);
+		}
 	}
 
 	if (handCurrent_ != handCards_.end())
 	{
 		(*handCurrent_)->SelectCardDrawFrame(selectFrameImg_);
+		if ((*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
+		{
+			(*handCurrent_)->DrawReloadGauge(reloadCardFrameImg_,reloadPer_);
+		}
+
 	}
 
 	//ƒJ[ƒh•`‰æ(‹¤’Ê)
@@ -173,6 +187,7 @@ void PlayerCardUI::ChangeNone(void)
 	{
 		//card->SyncCardAngleAndPos();
 		card->SetGoalAngle(0.0f);
+		card->SetBaseCardPos();
 	}
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
@@ -329,7 +344,10 @@ void PlayerCardUI::ChangeReload(void)
 }
 void PlayerCardUI::UpdateNone(void)
 {
-
+	for (auto& visible : visibleCards_)
+	{
+		visible->MoveUpDown();
+	}
 }
 
 void PlayerCardUI::UpdateLeft(void)
@@ -391,6 +409,8 @@ void PlayerCardUI::UpdateReloadWait(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		//InitCardUI();
 		ChangeSelectState(CARD_SELECT::RELOAD);
+
+		reloadPer_ = 0.0f;
 		return;
 	}
 }

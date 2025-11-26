@@ -9,6 +9,7 @@ CardUIController::CardUIController(int& _cardNumImgs) :
 	typeImg_(-1),
 	cardNoImg_(_cardNumImgs),
 	status_({}),
+	upDownMoveAngle_(0.0f),
 	disitionCnt_(0.0f),
 	reactCnt_(0.0f),
 	state_(CARD_STATE::DRAW_PILE),
@@ -49,6 +50,11 @@ void CardUIController::Draw(void)
 void CardUIController::DrawModel(void)
 {
 	cardDraw_->DrawModel();
+}
+
+void CardUIController::DrawReloadGauge(const float&_reloadCardFrameImg,const float& _reloadPer)
+{
+	cardDraw_->DrawReloadGauge(_reloadCardFrameImg,_reloadPer);
 }
 
 void CardUIController::SelectCardDrawFrame(const int& _frameImg)
@@ -98,6 +104,12 @@ void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax
 
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
+}
+
+void CardUIController::MoveUpDown(void)
+{
+	upDownMoveAngle_ += UP_DOWN_MOVE_SPEED;
+	cardPos_.y = baseCardPos_.y + sin(upDownMoveAngle_) * UP_DOWN_MOVE_RADIUS;
 }
 
 void CardUIController::ChangeDicisionEnemyCardMove(void)

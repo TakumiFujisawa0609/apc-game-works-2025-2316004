@@ -23,6 +23,10 @@ public:
 	/// @param  
 	void DrawModel(void);
 
+	/// @brief リロードゲージ描画
+	/// @param  
+	void DrawReloadGauge(const float& _reloadFrameImg,const float& _reloadPer);
+
 private:
 
 	//カード強さ番号の倍率
@@ -40,10 +44,13 @@ private:
 
 	//シェーダの定数バッファスロット
 	static constexpr int CONST_BUF_SLOT_NUM = 3;
-	//ピクセルマテリアル
-	std::unique_ptr<PixelMaterial> pixelMaterial_;
-	//ピクセルレンダラー
-	std::unique_ptr<PixelRenderer> pixelRenderer_;
+	//通常カードピクセルマテリアル
+	std::unique_ptr<PixelMaterial> normalCardPSMaterial_;
+	//通常カードピクセルレンダラー
+	std::unique_ptr<PixelRenderer> normalCardPSRenderer_;
+	//リロードカード
+	std::unique_ptr<PixelMaterial> reloadCardPSMaterial_;
+	std::unique_ptr<PixelRenderer> reloadCardPSRederer_;
 
 	int& typeImg_;		//カードの種類画像
 
@@ -56,6 +63,8 @@ private:
 
 	//カードの描画
 	void DrawCard(void);
+
+
 
 };
 

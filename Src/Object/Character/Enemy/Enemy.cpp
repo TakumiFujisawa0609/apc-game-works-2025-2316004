@@ -67,7 +67,7 @@ void Enemy::Init(void)
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_,ENEMY_NUM);
 	deck_->Init();
-	cardUI_->Init();
+	//cardUI_->Init();
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
@@ -76,7 +76,7 @@ void Enemy::Init(void)
 	//デッキの先頭にリロードカード追加
 	deck_->AddDrawPile(RELOAD_CARD_STATUS);
 	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
-	cardUI_->InitCardUI();
+	cardUI_->Init();
 
 	logic_ = std::make_unique<EnemyLogic>(trans_,playerChara_);
 	logic_->Init();

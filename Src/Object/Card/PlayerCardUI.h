@@ -117,7 +117,8 @@ private:
 	std::list<std::shared_ptr<CardUI>>::iterator visibleDrawIt_;			//実際に描画するカード
 	//選択フレーム画像
 	int selectFrameImg_;
-
+	//リロードフレーム
+	int reloadCardFrameImg_;
 	//円形UIの中心座標
 	Vector2 centerPos_;
 

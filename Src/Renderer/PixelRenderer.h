@@ -55,6 +55,6 @@ private:
 	WORD indexes_[NUM_VERTEX_IDX];
 
 	// ピクセルマテリアル
-	PixelMaterial& pixelMaterial_;
+	PixelMaterial& normalCardPSMaterial_;
 
 };

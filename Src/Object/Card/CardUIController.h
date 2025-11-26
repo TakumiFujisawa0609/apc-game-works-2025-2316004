@@ -64,6 +64,10 @@ public:
 	/// @param  
 	void DrawModel(void);
 
+	/// @brief リロードゲージの描画
+	/// @param  
+	void DrawReloadGauge(const float& _reloadCardFrameImg,const float& _reloadPer);
+
 	/// @brief 選択カード枠描画
 	/// @param _frameImg 
 	void SelectCardDrawFrame(const int& _frameImg);
@@ -120,6 +124,10 @@ public:
 	/// @param  
 	void MoveOnRevolver(const float& _cnt,const float& moveTimeMax);
 
+	/// @brief 上下にカードを動かす(見栄え用)
+	/// @param  
+	void MoveUpDown(void);
+
 	/// @brief 敵のカード決定
 	/// @param  
 	void ChangeDicisionEnemyCardMove(void);
@@ -158,7 +166,14 @@ public:
 	/// @brief ステータスの取得
 	/// @param _status ステータス
 	void SetStatus(const CardBase::CARD_STATUS& _status) { status_ = _status; }
+
+	/// @brief カードタイプ画像ノセット
+	/// @param _type 
 	void SetTypeImg_(const int& _type) { typeImg_ = _type; }
+
+	/// @brief 上下に動かす基準となる座標のセット(状態遷移時のみ)
+	/// @param  
+	void SetBaseCardPos(void) { baseCardPos_ = cardPos_; }
 
 	/// @brief リセット
 	/// @param  
@@ -200,10 +215,17 @@ private:
 	static constexpr float ARROUND_PER_DEG = 360.0f / ARROUND_NUM;	//１枚当たりの角度
 	static constexpr float ARROUND_PER_RAD = ARROUND_PER_DEG * DX_PI_F / 180.0f;//ラジアン変換
 
+	//控えの見せカードを上下に動かす関連
+	static constexpr float UP_DOWN_MOVE_RADIUS = 5.0f;
+	static constexpr float UP_DOWN_MOVE_SPEED = 0.05f;
+
 	//カード描画
 	std::unique_ptr<CardUIDraw>cardDraw_;
 
 	Vector2F cardPos_;		//カードの座標(画面外で初期化)
+	float upDownMovePow_;	//カード上下に動かす移動量
+	float upDownMoveAngle_;	//上下動かし用の角度(sin波で動かすため)
+	Vector2F baseCardPos_;	//カードを上下に動かす基準の座標
 	Vector2F numPos_;		//カードの強さ番号座標(画面外で初期化)
 	float currentAngle_;	//カードの現在の角度
 	float goalAngle_;	//カードの目標の角度
