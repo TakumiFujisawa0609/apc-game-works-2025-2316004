@@ -22,7 +22,7 @@ public:
 		STAGE,		//ステージ
 		PLAYER,		//プレイヤー
 		ENEMY_1,	//敵1
-		CARD,		//カード
+		CARD_MDL,		//カード
 		SKY_DOME,	//スカイドーム
 		//アニメーション
 		//プレイヤー

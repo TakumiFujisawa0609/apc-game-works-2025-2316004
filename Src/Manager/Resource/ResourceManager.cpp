@@ -22,7 +22,7 @@ void ResourceManager::Init(void)
 	resourcesMap_.emplace(SRC::ENEMY_1, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Card.mv1");
-	resourcesMap_.emplace(SRC::CARD, std::move(res));
+	resourcesMap_.emplace(SRC::CARD_MDL, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SkyDome/SkyDome.mv1");
 	resourcesMap_.emplace(SRC::SKY_DOME, std::move(res));

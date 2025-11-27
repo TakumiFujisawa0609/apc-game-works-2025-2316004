@@ -19,7 +19,7 @@ CardUIDraw::~CardUIDraw(void)
 }
 void CardUIDraw::Load(void)
 {
-	//trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::CARD));
+	//trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::CARD_MDL));
 }
 
 void CardUIDraw::Init(void)

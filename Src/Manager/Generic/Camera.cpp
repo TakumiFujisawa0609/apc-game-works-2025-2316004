@@ -325,7 +325,7 @@ void Camera::SetBeforeDrawFixedPoint(void)
 void Camera::SetBeforeDrawFollow(void)
 {
 	// ƒJƒƒ‰‘€ì
-	//ProcessRot();
+	ProcessRot();
 
 	// ’Ç]‘ÎÛ‚Æ‚Ì‘Š‘ÎˆÊ’u‚ğ“¯Šú
 	SyncFollow();
@@ -347,7 +347,7 @@ void Camera::SetBeforeDrawLerpCamera(void)
 
 void Camera::SetBeforeDrawTargetPoint(void)
 {
-	//ProcessRot();
+	ProcessRot();
 
 	SyncTargetFollow();
 

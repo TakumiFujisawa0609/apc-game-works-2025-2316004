@@ -6,6 +6,11 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
+
+
+#include "../Manager/Generic/DrawUI3D.h"
+
+
 #include "../Manager/Game/CollisionManager.h"
 #include "../Manager/Game/CharacterManager.h"
 #include "../Manager/Game/GravityManager.h"
@@ -50,6 +55,9 @@ void GameScene::Load(void)
 	skyDome_ = std::make_unique<SkyDome>();
 	skyDome_->Load();
 
+	drawUi3D_ = std::make_unique<DrawUI3D>(SceneManager::GetInstance().GetCamera());
+	drawUi3D_->Load();
+
 	CharacterManager::CreateInstance();
 	CharacterManager::GetInstance().Load();
 }
@@ -63,8 +71,7 @@ void GameScene::Init(void)
 	GravityManager::CreateInstance();
 	stage_->Init();
 	skyDome_->Init();
-	//player_->Init();
-	//enemy_->Init();
+	drawUi3D_->Init();
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
 	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
 	SoundManager::GetInstance().SetSystemVolume(30.0f, static_cast<int>(SoundManager::TYPE::BGM));
@@ -94,10 +101,9 @@ void GameScene::NormalUpdate(void)
 
 	//キャラクターの更新
 	CharacterManager::GetInstance().Update();
-	////プレイヤーの更新
-	//player_->Update();
-	////敵の更新
-	//enemy_->Update();
+	//常にUIの座標を追従
+	drawUi3D_->Update();
+
 	//終了した当たり判定の消去
 	CollisionManager::GetInstance().Sweep();
 	//更新はアクション中のみ
@@ -121,6 +127,7 @@ void GameScene::NormalDraw(void)
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
+	drawUi3D_->Draw();
 
 #ifdef _DEBUG
 	//CardSystem::GetInstance().DrawDebug();

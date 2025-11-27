@@ -9,6 +9,9 @@ class Player;
 class Enemy;
 class Stage;
 class CardSystem;
+
+class DrawUI3D;
+
 class GameScene : public SceneBase
 {
 
@@ -44,6 +47,8 @@ private:
 	//“G
 	std::unique_ptr<Enemy>enemy_;
 
+	//3DŒn‚ÌUI
+	std::unique_ptr<DrawUI3D>drawUi3D_;
 
 	//XVŠÖ”
 	void NormalUpdate(void) override;

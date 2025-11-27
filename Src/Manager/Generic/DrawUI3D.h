@@ -6,7 +6,7 @@ class Camera;
 class DrawUI3D :public DrawUIBase
 {
 public:
-	DrawUI3D(Camera& _camera);
+	DrawUI3D(std::weak_ptr<Camera> _camera);
 	~DrawUI3D(void)override;
 	void Load(void)override;
 	void Init(void)override;
@@ -16,6 +16,6 @@ private:
 	//テスト用
 	Transform testTrans_;
 
-	Camera& camera_;
+	std::weak_ptr<Camera> camera_;
 };
 
