@@ -65,13 +65,13 @@ void CardUIController::SelectCardDrawFrame(const int& _frameImg)
 void CardUIController::DecisionMove(void)
 {
 	disitionCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
-	cardPos_ = UtilityCommon::Lerp(cardPos_, DISITON_CARD_POS,
+	cardPos_ = UtilityCommon::Lerp(baseCardPos_, DISITON_CARD_POS,
 		(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME);
 }
 
 void CardUIController::ReactMove(const Vector2F& _goalPos)
 {
-	cardPos_ = UtilityCommon::Lerp(cardPos_, _goalPos,
+	cardPos_ = UtilityCommon::Lerp(baseCardPos_, _goalPos,
 		(REACT_MOVE_CARD_TIME - reactCnt_) / REACT_MOVE_CARD_TIME);
 	reactCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
 }

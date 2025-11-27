@@ -458,8 +458,6 @@ void PlayerCardUI::UpdateDrawCardUI(void)
 }
 
 
-
-
 void PlayerCardUI::SetBasePosVisibleCards(void)
 {
 	for (auto& card : visibleCards_)
