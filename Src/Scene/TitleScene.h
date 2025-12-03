@@ -11,6 +11,7 @@ public:
 		START_GAME,
 		TUTORIAL,
 		EXIT_MENU,
+		EASE_MENU,
 		MENU,
 		EXIT,
 		MAX
@@ -44,11 +45,11 @@ public:
 
 private:
 	//メニュー始まりの座標
-	static constexpr int BUTTON_START_POS_X = 700;
-	static constexpr int BUTTON_START_POS_Y = 100;
+	static constexpr float BUTTON_START_POS_X = 700.0f;
+	static constexpr float BUTTON_START_POS_Y = 100.0f;
 
 	//メニュー座標の間隔
-	static constexpr int BUTTON_DISTANCE = 100;
+	static constexpr float BUTTON_DISTANCE = 100;
 
 	//////ゲーム終了確認メニューの始め座標
 	//static constexpr int CHECK_EXIT_MENU_START_X = 100;
@@ -72,6 +73,14 @@ private:
 	std::unordered_map<TITLE_BTN, std::wstring>buttonStrTable_;
 	//YES,NOの文字列
 	std::unordered_map<YES_NO, std::wstring>yesNoStrTable_;
+
+	//初期座標の格納
+	std::list<Vector2F>startPoses_;
+	//現在座標
+	std::list<Vector2F>btnPoses_;
+	//イージングカウント
+	std::list<float>easeCnt_;
+
 	//セレクト中のボタン
 	TITLE_BTN selectBtn_;
 	TITLE_STATE selectState_;
@@ -97,6 +106,9 @@ private:
 
 	//処理の変更
 	void ChangeNormal(void) override;
+
+	//初めのイージング処理
+	void UpdateEase(void);
 
 	//メニュー処理
 	void UpdateMenu(void);

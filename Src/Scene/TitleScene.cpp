@@ -35,13 +35,10 @@ void TitleScene::Load(void)
 
 void TitleScene::Init(void)
 {
-	titleSelectFuncTable_ = { 
-		{TITLE_STATE::MENU,[this]() {
-			UpdateMenu();
-		}},
-		{TITLE_STATE::START_GAME,[this]() {
-			UpdateSelectGame();
-		}},
+	titleSelectFuncTable_ = {
+		{TITLE_STATE::EASE_MENU,[this]() {UpdateEase();}},
+		{TITLE_STATE::MENU,[this]() {UpdateMenu();}},
+		{TITLE_STATE::START_GAME,[this]() {UpdateSelectGame();}},
 		{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
 		{TITLE_STATE::EXIT_MENU,[this]() {UpdateExitMenu();}},
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
@@ -57,6 +54,13 @@ void TitleScene::Init(void)
 		{YES_NO::YES,L"ÇÕÇ¢"},
 		{YES_NO::NO,L"Ç¢Ç¢Ç¶"}
 	};
+	for (int i = 0; i < static_cast<int>(TITLE_BTN::MAX); i++)
+	{
+		Vector2F pos = { Application::SCREEN_SIZE_X,BUTTON_START_POS_Y + BUTTON_DISTANCE * i };
+		startPoses_.emplace_back(pos); 
+		btnPoses_.emplace_back(pos);
+		easeCnt_.emplace_back(0.0f);
+	}
 
 	selectState_ = TITLE_STATE::MENU;
 	selectNum_ = 0;
@@ -100,6 +104,8 @@ void TitleScene::NormalDraw(void)
 		titleImg_,
 		true
 	);
+
+	DrawPixel(700, 100, 0xffffff);
 
 	int i = 0;
 	for (auto& string : buttonStrTable_)
@@ -165,6 +171,13 @@ void TitleScene::ChangeNormal(void)
 	//èàóùïœçX
 	updataFunc_ = std::bind(&TitleScene::NormalUpdate, this);
 	drawFunc_ = std::bind(&TitleScene::NormalDraw, this);
+}
+
+void TitleScene::UpdateEase(void)
+{
+	for (auto& btn : buttonStrTable_)
+	{
+	}
 }
 
 void TitleScene::UpdateMenu(void)
