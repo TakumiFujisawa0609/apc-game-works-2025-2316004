@@ -1,19 +1,35 @@
 #pragma once
 #include<DxLib.h>
+#include<functional>
 #include"../Common/Vector2F.h"
 #include"../Common/Vector2.h"
 class Easing
 {
 public:
+	enum class EASING_TYPE
+	{
+		LERP,			//線形補間
+		QUAD_IN,		//二次関数(だんだん早く)
+		QUAD_OUT,		//二次関数(だんだん遅く)
+		QUAD_IN_OUT,	//二次関数(スローインスローアウト)
+		QUAD_OUT_IN,	//二次関数(ファストインファストアウト)
+		CUBIC_IN,		//三次関数(だんだん早く)
+		CUBIC_OUT,		//三次関数(だんだん遅く)
+		EXPO,			//指数関数(〇次関数より若干緩やか)
+		ELASTIC_OUT,	//ばね
+		BOUNCE			//跳ねるような動き
+
+	};
+
 	//半分の割合
-	static constexpr float HALF=0.5f;
+	static constexpr float HALF = 0.5f;
 
 	//関数
-	struct MATH_FUNC	
+	struct MATH_FUNC
 	{
 		//解の公式	a*(x-b)^2+c
-		float accel=1.0f;	//開き具合(公式のa)
-		Vector2F graph_vertex = {0.0f,0.0f};		//軸の頂点(b,c)
+		float accel = 1.0f;	//開き具合(公式のa)
+		Vector2F graph_vertex = { 0.0f,0.0f };		//軸の頂点(b,c)
 
 		//二次関数の計算
 		float QuadFunc(const float& t)
@@ -29,150 +45,95 @@ public:
 			return (accel * pow) + graph_vertex.y;
 		}
 	};
-	//最終計算
-	static float EaseFunc(const float start, const float end, const float per);
-	static Vector2F EaseFunc(const Vector2F& start, const Vector2F& end, const float per);
-	static VECTOR EaseFunc(const VECTOR& start, const VECTOR& end, const float per);
 
-	// 線形補間
-	static int Lerp(int start, int end, float t);
-	static float Lerp(float start,float end,float t);
-	static double Lerp(double start, double end, double t);
-	static Vector2 Lerp(const Vector2& start, const Vector2& end, float t);
-	static Vector2F Lerp(const Vector2F& start, const Vector2F& end, float t);
-	static VECTOR Lerp(const VECTOR& start, const VECTOR& end, float t);
+	//イージングセット
+	void SetEasing(const float t, const EASING_TYPE type);
 
-	// 角度の線形補間
-	static double LerpDeg(double& start, double& end, double t);
-	static float LerpDeg(float& start, float& end, float t);
-	static float LerpRad(float& start, float& end, float t);
-
-	static float EaseInOut(const float start, const float end, const float t);
-
-
-
-	/// @brief 後半にばねのような動き
+	/// @brief イージング計算
 	/// @param start 初期位置
 	/// @param end 終了位置
 	/// @param t 現在時間
-	/// @param bounceNum バウンドの周期(値が小さい：細かく揺れる　　値が大きい：ゆっくり揺れる)
-	/// @return 
-	static float EaseOutElasticPer(const float t);
-	static float EaseOutElastic(const float start, const float end, const float t);
-	static Vector2F EaseOutElastic(const Vector2F& start, const Vector2F& end, float t);
-	static VECTOR EaseOutElastic(const VECTOR& start, const VECTOR& end, const float& t);
+	/// @param type 使用するイージング種類
+	/// @return 計算結果
+	int EaseFunc(const int start, const int end, const float t,const EASING_TYPE type);
+	float EaseFunc(const float start, const float end, const float t,const EASING_TYPE type);
+	double EaseFunc(const double start, const double end, const float t,const EASING_TYPE type);
+	Vector2F EaseFunc(const Vector2F& start, const Vector2F& end, const float t,const EASING_TYPE type);
+	Vector2 EaseFunc(const Vector2& start, const Vector2& end, const float t, const EASING_TYPE type);
+	VECTOR EaseFunc(const VECTOR& start, const VECTOR& end, const float t, const EASING_TYPE type);
+	COLOR_F EaseFunc(const COLOR_F& start, const COLOR_F& end, const float t, const EASING_TYPE type);
 
-	/// @brief バウンドの動き
+	/// @brief 角度の最終計算(360度などの制限があるため、別で処理する)
 	/// @param start 初期位置
 	/// @param end 終了位置
-	/// @param t 現在時間 
-	/// @return 
-	static float EaseBounce(const float start, const float end, const float t);
-	static Vector2F EaseBounce(const Vector2F& start, const Vector2F& end, const float& t);
-	static VECTOR EaseBounce(const VECTOR& start, const VECTOR& end, const float& t);
+	/// @param t 現在時間
+	/// @param type 使用するイージング種類
+	/// @return 計算結果
+	float EaseFuncDeg(float& start, float& end, const float t, const EASING_TYPE type);
+	double EaseFuncDeg(double& start, double& end, const float t, const EASING_TYPE type);
+	float EaseFuncRad(float& start, float& end, const float t, const EASING_TYPE type);
 
+
+
+
+
+private:
+	//イージングの更新を格納
+	std::function<float(const float)>easingUpdate_;
+
+
+	/// @brief 線形補完
+	/// @param t 時間
+	/// @return 
+	static float Lerp(const float t);
 	//---------------------------------------------------------------------------------------------
 	//二次関数系
 	//---------------------------------------------------------------------------------------------
-	/// @brief 二次関数的な動き(だんだん早く)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseQuadIn(const float start, const float end, const float t);
-	static Vector2F EaseQuadIn(const Vector2F& start, const Vector2F& end, const float t);
-	static VECTOR EaseQuadIn(const VECTOR& start, const VECTOR& end, const float t);
+	// 二次関数的な動き(だんだん早く)
+	static float EaseQuadIn(const float t);
 
-	/// @brief 二次関数的な動き(だんだん遅く)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseQuadOut(const float start, const float end, const float t);
-	static Vector2F EaseQuadOut(const Vector2F& start, const Vector2F& end, const float t);
-	static VECTOR EaseQuadOut(const VECTOR& start, const VECTOR& end, const float t);
+	// 二次関数的な動き(だんだん遅く)
+	float EaseQuadOut(const float t);
 
-	/// @brief 二次関数的な動き(スローインスローアウト的な)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseQuadInOut(const float start, const float end, const float t);
-	static Vector2F EaseQuadInOut(const Vector2F& start, const Vector2F& end, const float t);
-	static VECTOR EaseQuadInOut(const VECTOR& start, const VECTOR& end, const float t);
 
-	/// @brief 二次関数的な動き(ファストインファストアウト的な)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseQuadOutIn(const float start, const float end, const float t);
-	static Vector2F EaseQuadOutIn(const Vector2F& start, const Vector2F& end, const float t);
-	static VECTOR EaseQuadOutIn(const VECTOR& start, const VECTOR& end, const float t);
+	//二次関数的な動き(スローインスローアウト的な)
+	float EaseQuadInOut(const float t);
+
+
+	//二次関数的な動き(ファストインファストアウト的な)
+	float EaseQuadOutIn(const float t);
 	//---------------------------------------------------------------------------------------------
 	//三次関数(二次関数よりも緩やか)
 	//---------------------------------------------------------------------------------------------
 
-	/// @brief 三次関数の動き(だんだん早く)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseCubicIn(const float start, const float end, const float t);
-	static Vector2F EaseCubicIn(const Vector2F& start, const Vector2F& end, const float t);
-	static VECTOR EaseCubicIn(const VECTOR& start, const VECTOR& end, const float t);
+	// 三次関数の動き(だんだん早く)
+	float EaseCubicIn(const float t);
 
-	/// @brief 三次関数の動き(だんだん遅く)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseCubicOut(const float start, const float end, const float t);
-	static Vector2F EaseCubicOut(const Vector2F start, const Vector2F end, const float t);
-	static VECTOR EaseCubicOut(const VECTOR start, const VECTOR end, const float t);
+	// 三次関数の動き(だんだん遅く)
+	float EaseCubicOut(const float t);
 
-	/// @brief 三次関数的な動き(スローインスローアウト的な)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseCubicInOut(const float start, const float end, const float t);
+	// 三次関数的な動き(スローインスローアウト的な)
+	float EaseCubicInOut(const float start, const float end, const float t);
 
-	/// @brief 三次関数的な動き(ファストインファストアウト的な)
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @return 
-	static float EaseCubicOutIn(const float start, const float end, const float t);
+	//三次関数的な動き(ファストインファストアウト的な)
+	float EaseCubicOutIn(const float start, const float end, const float t);
 
 	//---------------------------------------------------------------------------------------------
 	//指数関数
 	//---------------------------------------------------------------------------------------------
-	
-	/// @brief 指数を決めてその動きをする
-	/// @param start 初期位置
-	/// @param end 終了位置
-	/// @param t 現在時間
-	/// @param expo べき乗(0<expo<1：EaseIn	expo>1：EaseOut)
-	/// @return 
-	static float EaseExpo(const float start, const float end, const float t,const float expo);
-	static Vector2F EaseExpo(const Vector2F start, const Vector2F end, const float t,const float expo);
-	static VECTOR EaseExpo(const VECTOR start, const VECTOR end, const float t,const float expo);
-	static float EaseExpoInOut(const float start, const float end, const float t,const float expo);
-	static Vector2F EaseExpoInOut(const Vector2F& start, const Vector2F& end, const float t, const float expo);
-	static VECTOR EaseExpoInOut(const VECTOR& start, const VECTOR& end, const float t, const float expo);
-	static float EaseExpoOutIn(const float start, const float end, const float t,const float expo);
-	static float EaseExpoOutIn(const VECTOR& start, const VECTOR& end, const float& t, const float expo);
+	// 指数を決めてその動きをする
+	float EaseExpo(const float t,const int expo=2);
 
-	
+	//後半にばねのような動き 
+	float EaseOutElastic(const float t);
+
+	//バウンドの動き 
+	float EaseBounce(const float t);
+
 	//外周を回る(お花の形)
-	static Vector2F EaseEpiCycloid(const Vector2F& start,const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
+	Vector2F EaseEpiCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
 
 	//内側を回る(とんがりお花)
-	static Vector2F EaseHypoCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
-
-	// 色の線形補間
-	static COLOR_F Lerp(const COLOR_F& start, const COLOR_F& end, float t);
-
+	Vector2F EaseHypoCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
 };
 

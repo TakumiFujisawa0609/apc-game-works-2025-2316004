@@ -7,6 +7,7 @@
 #include "../Manager/Generic/InputManagerS.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/FontManager.h"
+#include "../Common/Easing.h"
 #include "TitleScene.h"
 
 TitleScene::TitleScene(void)
@@ -56,14 +57,38 @@ void TitleScene::Init(void)
 	};
 	for (int i = 0; i < static_cast<int>(TITLE_BTN::MAX); i++)
 	{
+		BTN btn = {};
 		Vector2F pos = { Application::SCREEN_SIZE_X,BUTTON_START_POS_Y + BUTTON_DISTANCE * i };
-		startPoses_.emplace_back(pos); 
-		btnPoses_.emplace_back(pos);
-		easeCnt_.emplace_back(0.0f);
+		btn.btnStr = buttonStrTable_[static_cast<TITLE_BTN>(i)];
+		btn.btnType = static_cast<TITLE_BTN>(i);
+		btn.startPos = pos;
+		btn.curPos = btn.startPos;
+		btn.easeCnt = EASING_TIME;
+		buttons_.emplace_back(btn);
 	}
-
+	easing_ = std::make_unique<Easing>();
 	selectState_ = TITLE_STATE::MENU;
+	ChangeState(TITLE_STATE::EASE_MENU);
 	selectNum_ = 0;
+	easeDistanceCnt_ = 0.0f;
+}
+
+Easing::EASING_TYPE TitleScene::DecideEase(TITLE_BTN _btn)
+{
+	switch (_btn)
+	{
+	case TitleScene::TITLE_BTN::START_GAME:
+		return Easing::EASING_TYPE::ELASTIC_OUT;
+		break;
+	case TitleScene::TITLE_BTN::TUTORIAL:
+		return Easing::EASING_TYPE::BOUNCE;
+		break;
+	case TitleScene::TITLE_BTN::EXIT:
+		return Easing::EASING_TYPE::QUAD_IN_OUT;
+		break;
+	default:
+		break;
+	}
 }
 
 void TitleScene::ChangeState(const TITLE_STATE& _state)
@@ -108,19 +133,36 @@ void TitleScene::NormalDraw(void)
 	DrawPixel(700, 100, 0xffffff);
 
 	int i = 0;
-	for (auto& string : buttonStrTable_)
+	//for (auto& string : buttonStrTable_)
+	//{
+	//	unsigned int btnCol = UtilityCommon::WHITE;
+	//	if (selectNum_ == static_cast<int>(string.first))
+	//	{
+	//		btnCol = UtilityCommon::RED;
+	//	}
+	//	DrawFormatStringToHandle(
+	//		BUTTON_START_POS_X,
+	//		BUTTON_START_POS_Y + BUTTON_DISTANCE * i,
+	//		btnCol,
+	//		titleFont_,
+	//		string.second.c_str()
+	//	);
+	//	i++;
+	//}
+
+	for (auto& btn : buttons_)
 	{
 		unsigned int btnCol = UtilityCommon::WHITE;
-		if (selectNum_ == static_cast<int>(string.first))
+		if (selectNum_ == static_cast<int>(btn.btnType))
 		{
 			btnCol = UtilityCommon::RED;
 		}
 		DrawFormatStringToHandle(
-			BUTTON_START_POS_X,
-			BUTTON_START_POS_Y + BUTTON_DISTANCE * i,
+			btn.curPos.x,
+			btn.curPos.y,
 			btnCol,
 			titleFont_,
-			string.second.c_str()
+			btn.btnStr.c_str()
 		);
 		i++;
 	}
@@ -175,9 +217,36 @@ void TitleScene::ChangeNormal(void)
 
 void TitleScene::UpdateEase(void)
 {
-	for (auto& btn : buttonStrTable_)
+
+	easeDistanceCnt_ += SceneManager::GetInstance().GetDeltaTime();
+	for (auto& btn:buttons_)
 	{
+		if (btn.isEase)continue;
+		if (easeDistanceCnt_ > EASING_DIS_TIME)
+		{
+			easeDistanceCnt_ = 0.0f;
+			btn.isEase = true;
+		}
 	}
+	int i = 0;
+	for (auto& btn:buttons_)
+	{
+		if (!btn.isEase)continue;
+		Vector2F goalPos = { BUTTON_START_POS_X,BUTTON_START_POS_Y + BUTTON_DISTANCE * i };
+		Easing::EASING_TYPE easeType = DecideEase(btn.btnType);
+		
+		i++;
+		btn.curPos = easing_->EaseFunc(btn.startPos, goalPos, (EASING_TIME - btn.easeCnt) / EASING_TIME, easeType);
+		btn.easeCnt -= SceneManager::GetInstance().GetDeltaTime();
+	}
+
+	auto itr = std::find_if(buttons_.begin(), buttons_.end(), [this](auto& btn) {return btn.easeCnt > 0.0f; });
+	if (itr == buttons_.end())
+	{
+		//イージングが終わったらメニュー更新へ
+		ChangeState(TITLE_STATE::MENU);
+	}
+
 }
 
 void TitleScene::UpdateMenu(void)

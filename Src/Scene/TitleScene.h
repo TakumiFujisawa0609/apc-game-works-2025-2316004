@@ -1,7 +1,9 @@
 #pragma once
+#include<memory>
+#include "../Common/Easing.h"
 #include "SceneBase.h"
 
-
+class Easing;
 class TitleScene : public SceneBase
 {
 
@@ -30,6 +32,22 @@ public:
 		YES,
 		NO
 	};
+
+	struct BTN
+	{
+		std::wstring btnStr;
+		TITLE_BTN btnType;		//何のボタンか
+		Vector2F startPos;		//イージング前の座標
+		Vector2F curPos=startPos;//現在座標
+		float easeCnt;			//イージング時間
+		bool isEase = false;	//イージング中か
+	};
+
+	//イージング時間
+	static constexpr float EASING_TIME = 1.0f;
+
+	//次のボタンのイージングまでの間隔時間
+	static constexpr float EASING_DIS_TIME = 0.1f;
 
 	// コンストラクタ
 	TitleScene(void);
@@ -65,6 +83,8 @@ private:
 	//はい、いいえの文字間隔
 	static constexpr int YES_NO_DISTANCE = 100;
 	
+	//イージング
+	std::unique_ptr<Easing>easing_;
 
 	//各選択肢の更新
 	std::function<void(void)>updateTitle_;
@@ -74,12 +94,8 @@ private:
 	//YES,NOの文字列
 	std::unordered_map<YES_NO, std::wstring>yesNoStrTable_;
 
-	//初期座標の格納
-	std::list<Vector2F>startPoses_;
-	//現在座標
-	std::list<Vector2F>btnPoses_;
-	//イージングカウント
-	std::list<float>easeCnt_;
+	//ボタン格納配列
+	std::list<BTN>buttons_;
 
 	//セレクト中のボタン
 	TITLE_BTN selectBtn_;
@@ -93,8 +109,15 @@ private:
 	//現在選んでいるボタン
 	int selectNum_;
 
+	//イージング開始の間隔カウント
+	float easeDistanceCnt_;
+
 	//はいの選択肢を選んでいるか
 	YES_NO yesNoState_;
+
+	//ボタンごとでイージングを変えてみる
+	Easing::EASING_TYPE DecideEase(TITLE_BTN _btn);
+
 	//状態遷移
 	void ChangeState(const TITLE_STATE& _state);
 

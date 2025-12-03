@@ -1,148 +1,115 @@
 #include "../pch.h"
 #include "../Utility/UtilityCommon.h"
 #include "Easing.h"
-float Easing::EaseFunc(const float start, const float end, const float per)
+
+
+void Easing::SetEasing(const float t, const EASING_TYPE type)
 {
+    switch (type)
+    {
+    case Easing::EASING_TYPE::LERP:
+        easingUpdate_ = [this, t](float) {return Lerp(t); };
+        break;
+    case Easing::EASING_TYPE::QUAD_IN:
+        easingUpdate_ = [this, t](float) {return EaseQuadIn(t); };
+        break;
+    case Easing::EASING_TYPE::QUAD_OUT:
+        easingUpdate_ = [this, t](float) {return EaseQuadOut(t); };
+        break;
+    case Easing::EASING_TYPE::QUAD_IN_OUT:
+        easingUpdate_ = [this, t](float) {return EaseQuadInOut(t); };
+        break;
+    case Easing::EASING_TYPE::QUAD_OUT_IN:
+        easingUpdate_ = [this, t](float) {return EaseQuadOutIn(t); };
+        break;
+    case Easing::EASING_TYPE::CUBIC_IN:
+        easingUpdate_ = [this, t](float) {return EaseCubicIn(t); };
+        break;
+    case Easing::EASING_TYPE::CUBIC_OUT:
+        easingUpdate_ = [this, t](float) {return EaseCubicOut(t); };
+        break;
+    case Easing::EASING_TYPE::EXPO:
+        easingUpdate_ = [this, t](float) {return EaseExpo(t); };
+        break;
+    case Easing::EASING_TYPE::ELASTIC_OUT:
+        easingUpdate_ = [this, t](float) {return EaseOutElastic(t); };
+        break;
+    case Easing::EASING_TYPE::BOUNCE:
+        easingUpdate_ = [this, t](float) {return EaseBounce(t); };
+        break;
+    default:
+        break;
+    }
+}
+
+int Easing::EaseFunc(const int start, const int end, const float t, const EASING_TYPE type)
+{
+    SetEasing(t, type);
+    int dis = end - start;
+    int ret = UtilityCommon::Round(start + dis * easingUpdate_(t));
+    return ret;
+}
+
+float Easing::EaseFunc(const float start, const float end, const float t,const EASING_TYPE type)
+{
+    SetEasing(t, type);
     float dis = end - start;
-    return start + dis * per;
+    return start + dis * easingUpdate_(t);
 }
-Vector2F Easing::EaseFunc(const Vector2F& start, const Vector2F& end, const float per)
+double Easing::EaseFunc(const double start, const double end, const float t, const EASING_TYPE type)
 {
+    SetEasing(t, type);
+    double dis = end - start;
+    return start + dis * easingUpdate_(t);
+}
+Vector2F Easing::EaseFunc(const Vector2F& start, const Vector2F& end, const float t, const EASING_TYPE type)
+{
+    SetEasing(t, type);
     Vector2F dis = end - start;
-    return start + dis * per;
+    return start + dis * easingUpdate_(t);
 }
-VECTOR Easing::EaseFunc(const VECTOR& start, const VECTOR& end, const float per)
+Vector2 Easing::EaseFunc(const Vector2& start, const Vector2& end, const float t, const EASING_TYPE type)
 {
+    SetEasing(t, type);
+    Vector2 dis = end - start;
+    Vector2 ret = {};
+    ret.x = UtilityCommon::Round(start.x + dis.x * easingUpdate_(t));
+    ret.y = UtilityCommon::Round(start.y + dis.y * easingUpdate_(t));
+    return ret;
+}
+VECTOR Easing::EaseFunc(const VECTOR& start, const VECTOR& end, const float t, const EASING_TYPE type)
+{
+    SetEasing(t, type);
     VECTOR dis = VSub(end, start);
-    VECTOR power = VScale(dis, per);
+    VECTOR power = VScale(dis, easingUpdate_(t));
     return VAdd(start, power);
-} 
-int Easing::Lerp(int start, int end, float t)
+}
+
+COLOR_F Easing::EaseFunc(const COLOR_F& start, const COLOR_F& end, const float t, const EASING_TYPE type)
 {
     // 線形補間
     if (t >= 1.0f)
     {
         return end;
     }
-
-    int ret = start;
-    ret += UtilityCommon::Round(t * static_cast<float>(end - start));
+    SetEasing(t, type);
+    COLOR_F ret = start;
+    ret.r += (end.r - start.r) * easingUpdate_(t);
+    ret.g += (end.g - start.g) * easingUpdate_(t);
+    ret.b += (end.b - start.b) * easingUpdate_(t);
+    ret.a += (end.a - start.a) * easingUpdate_(t);
     return ret;
 }
 
-float Easing::Lerp(const float start, const float end, const float t)
+float Easing::EaseFuncDeg(float& start, float& end, const float t, const EASING_TYPE type)
 {
-        // 線形補間
-    if (t >= 1.0f)
-    {
-        return end;
-    }
-
-    float ret = start;
-    ret += t * (end - start);
-    return ret;
-}
-
-double Easing::Lerp(double start, double end, double t)
-{
-    // 線形補間
-    if (t >= 1.0)
-    {
-        return end;
-    }
-
-    double ret = start;
-    ret += t * (end - start);
-    return ret;
-}
-
-Vector2 Easing::Lerp(const Vector2& start, const Vector2& end, float t)
-{
-    // 線形補間
-    if (t >= 1.0f)
-    {
-        return end;
-    }
-
-    Vector2 ret = start;
-    ret.x += UtilityCommon::Round(t * static_cast<float>((end.x - start.x)));
-    ret.y += UtilityCommon::Round(t * static_cast<float>((end.y - start.y)));
-    return ret;
-}
-
-Vector2F Easing::Lerp(const Vector2F& start, const Vector2F& end, float t)
-{
-    // 線形補間
-    if (t >= 1.0f)
-    {
-        return end;
-    }
-
-    Vector2F ret = start;
-    ret.x += t * (end.x - start.x);
-    ret.y += t * (end.y - start.y);
-    return ret;
-}
-
-VECTOR Easing::Lerp(const VECTOR& start, const VECTOR& end, float t)
-{
-    // 線形補間
-    if (t >= 1.0f)
-    {
-        return end;
-    }
-
-    VECTOR ret = start;
-    ret.x += t * (end.x - start.x);
-    ret.y += t * (end.y - start.y);
-    ret.z += t * (end.z - start.z);
-
-    return ret;
-}
-
-double Easing::LerpDeg(double& start, double& end, double t)
-{
-
-    double ret;
-
-    double diff = end - start;
-    if (diff < -180.0)
-    {
-        end += 360.0;
-        ret = Lerp(start, end, t);
-        if (ret >= 360.0)
-        {
-            ret -= 360.0;
-        }
-    }
-    else if (diff > 180.0)
-    {
-        end -= 360.0;
-        ret = Lerp(start, end, t);
-        if (ret < 0.0)
-        {
-            ret += 360.0;
-        }
-    }
-    else
-    {
-        ret = Lerp(start, end, t);
-    }
-
-    return ret;
-
-}
-
-float Easing::LerpDeg(float& start, float& end, float t)
-{
-
     float ret;
 
     float diff = end - start;
     if (diff < -180.0f)
     {
         end += 360.0;
-        ret = Lerp(start, end, t);
+        ret = EaseFunc(start, end, t, type);
         if (ret >= 360.0f)
         {
             ret -= 360.0f;
@@ -150,8 +117,8 @@ float Easing::LerpDeg(float& start, float& end, float t)
     }
     else if (diff > 180.0f)
     {
-        end -= 360.0;
-        ret = Lerp(start, end, t);
+        end -= 360.0f;
+        ret = EaseFunc(start, end, t, type);
         if (ret < 0.0)
         {
             ret += 360.0f;
@@ -159,66 +126,72 @@ float Easing::LerpDeg(float& start, float& end, float t)
     }
     else
     {
-        ret = Lerp(start, end, t);
+        ret = EaseFunc(start, end, t, type);
     }
 
     return ret;
-
 }
 
-float Easing::LerpRad(float& start, float& end, float t)
+double Easing::EaseFuncDeg(double& start, double& end, float t, const EASING_TYPE type)
 {
+    double ret;
+
+    double diff = end - start;
+    if (diff < -180.0)
+    {
+        end += 360.0;
+        ret = EaseFunc(start, end, t, type);
+        if (ret >= 360.0f)
+        {
+            ret -= 360.0f;
+        }
+    }
+    else if (diff > 180.0)
+    {
+        end -= 360.0;
+        ret = EaseFunc(start, end, t, type);
+        if (ret < 0.0)
+        {
+            ret += 360.0f;
+        }
+    }
+    else
+    {
+        ret = EaseFunc(start, end, t, type);
+    }
+
+    return ret;
+}
+
+float Easing::EaseFuncRad(float& start, float& end, const float t, const EASING_TYPE type)
+{
+    SetEasing(t, type);
     float diff = remainder(end - start, 2.0f * DX_PI_F);
-    return start + diff * t;
+    return start + diff * easingUpdate_(t);
 }
 
-float Easing::EaseInOut(const float start, const float end, const float t)
+float Easing::Lerp(const float t)
 {
-    return 0.0f;
+    if (t > 1.0f)return 1.0f;
+    //割合だけを返して、Funcで計算
+    return t;
 }
 
-float Easing::EaseOutElasticPer(const float t)
+
+
+float Easing::EaseOutElastic(const float t)
 {
     if (t > 1.0f)return 1.0f;
     float ret = 0.0f;
-    const float c4 = (2 * DX_PI_F) / 3;
-    ret = (pow(2, -10.0f * t) * sinf((t * 10.0f - 0.75f) * c4) + 1.0f);
+    const float c4 = (2.0f * DX_PI_F) / 3.0f;
+    ret = (powf(2, -10.0f * t) * sinf((t * 10.0f - 0.75f) * c4) + 1.0f);
     return ret;
 }
 
-float Easing::EaseOutElastic(const float start, const float end, const float t)
-{
-    if (t > 1.0f)return end;
-    float dis = end - start;
-    float ret = 0.0f;
-    const float c4 = (2 * DX_PI_F) / 3;
-    ret = start+dis*(pow(2, -10.0f * t) * sinf((t * 10.0f - 0.75f) * c4) + 1.0f);
-    return ret;
-}
 
-Vector2F Easing::EaseOutElastic(const Vector2F& start, const Vector2F& end, float t)
+float Easing::EaseBounce(const float t)
 {
-    if (t > 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseOutElastic(start.x, end.x, t);
-    ret.y = EaseOutElastic(start.y, end.y, t);
-
-    return ret;
-}
-
-VECTOR Easing::EaseOutElastic(const VECTOR& start, const VECTOR& end, const float& t)
-{
-    VECTOR ret = {};
-    ret.x = EaseOutElastic(start.x, end.x, t);
-    ret.y = EaseOutElastic(start.y, end.y, t);
-    ret.z = EaseOutElastic(start.z, end.z, t);
-    return ret;
-}
-
-float Easing::EaseBounce(const float start, const float end, const float t)
-{
-    if (t > 1.0f)return end;
-    float dis = end - start;
+    if (t > 1.0f)return 1.0f;
     const float BOUNCE_POW = 2.75f;
     const float BOUNCE_ACCEL = 7.5625;
     MATH_FUNC quad;
@@ -226,110 +199,52 @@ float Easing::EaseBounce(const float start, const float end, const float t)
     quad.accel = BOUNCE_ACCEL;
     if (t < 1.0f / BOUNCE_POW)
     {
-        return EaseQuadIn(start, end, t / (1.0f / BOUNCE_POW));
+        return EaseQuadIn(t / (1.0f / BOUNCE_POW));
     }
     else if (1.0f / BOUNCE_POW <= t && t < 2.0f / BOUNCE_POW)
     {
         quad.graph_vertex = { 1.5f / BOUNCE_POW,0.75f };
-        ret = start + dis * quad.QuadFunc(t);
+        ret = quad.QuadFunc(t);
 
     }
     else if (2.0f / BOUNCE_POW <= t && t < 2.5f / BOUNCE_POW)
     {
         quad.graph_vertex = { 2.25f / BOUNCE_POW,0.9375f };
-        ret = start + dis * quad.QuadFunc(t);
+        ret = quad.QuadFunc(t);
     }
     else
     {
         quad.graph_vertex = { 2.625f / BOUNCE_POW,0.984375f };
-        ret = start + dis * quad.QuadFunc(t);
+        ret = quad.QuadFunc(t);
     }
     return ret;
 }
 
-Vector2F Easing::EaseBounce(const Vector2F& start, const Vector2F& end, const float& t)
+float Easing::EaseQuadIn(const float t)
 {
-    if (t > 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseBounce(start.x, end.x, t);
-    ret.y = EaseBounce(start.y, end.y, t);
-    return ret;
-}
-
-VECTOR Easing::EaseBounce(const VECTOR& start, const VECTOR& end, const float& t)
-{
-    if (t > 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseBounce(start.x, end.x, t);
-    ret.y = EaseBounce(start.y, end.y, t);
-    ret.z = EaseBounce(start.z, end.z, t);
-    return ret;
-}
-
-float Easing::EaseQuadIn(const float start, const float end, const float t)
-{
-    if (t >= 1.0f)return end;
+    if (t >= 1.0f)return 1.0f;
     MATH_FUNC quad;
-    float dis = end - start;
-
-    float ret = start + dis * quad.QuadFunc(t);
+    float ret = quad.QuadFunc(t);
     return ret;
 }
 
-Vector2F Easing::EaseQuadIn(const Vector2F& start, const Vector2F& end, const float t)
-{
-    if (t >= 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseQuadIn(start.x, end.x, t);
-    ret.y = EaseQuadIn(start.y, end.y, t);
-    return ret;
-}
 
-VECTOR Easing::EaseQuadIn(const VECTOR& start, const VECTOR& end, const float t)
-{
-    if (t >= 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseQuadIn(start.x, end.x, t);
-    ret.y = EaseQuadIn(start.y, end.y, t);
-    ret.z = EaseQuadIn(start.z, end.z, t);
-    return ret;
-}
 
-float Easing::EaseQuadOut(const float start, const float end, const float t)
+float Easing::EaseQuadOut(const float t)
 {
-    if (t >= 1.0f)return end;
-    float dis = end - start;
+    if (t >= 1.0f)return 1.0f;
     MATH_FUNC quad;
     quad.accel = -1.0f;
     quad.graph_vertex = { 1.0f,1.0f };
-    float ret = start + dis * quad.QuadFunc(t);
+    float ret = quad.QuadFunc(t);
     return ret;
 }
 
-Vector2F Easing::EaseQuadOut(const Vector2F& start, const Vector2F& end, const float t)
-{
-    if (t >= 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseQuadOut(start.x, end.x, t);
-    ret.y = EaseQuadOut(start.y, end.y, t);
-    return ret;
-}
 
-VECTOR Easing::EaseQuadOut(const VECTOR& start, const VECTOR& end, const float t)
+float Easing::EaseQuadInOut(const float t)
 {
-    if (t >= 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseQuadOut(start.x, end.x, t);
-    ret.y = EaseQuadOut(start.y, end.y, t);
-    ret.z = EaseQuadOut(start.z, end.z, t);
-    return ret;
-}
-
-float Easing::EaseQuadInOut(const float start, const float end, const float t)
-{
-    if (t >= 1.0f)return end;
+    if (t >= 1.0f)return 1.0F;
     float ret = 0.0f;
-    float dis = end - start;
     MATH_FUNC quad;
     if (t <= HALF)
     {
@@ -338,36 +253,17 @@ float Easing::EaseQuadInOut(const float start, const float end, const float t)
     else
     {
         quad.graph_vertex = { 1.0f,1.0f };
-        quad.accel = -2.0f;   
+        quad.accel = -2.0f;
     }
-    ret = start + dis * quad.QuadFunc(t);
+    ret = quad.QuadFunc(t);
     return ret;
 }
 
-Vector2F Easing::EaseQuadInOut(const Vector2F& start, const Vector2F& end, const float t)
-{
-    if (t >= 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseQuadInOut(start.x, end.x, t);
-    ret.y = EaseQuadInOut(start.y, end.y, t);
-    return ret;
-}
 
-VECTOR Easing::EaseQuadInOut(const VECTOR& start, const VECTOR& end, const float t)
+float Easing::EaseQuadOutIn(const float t)
 {
-    if (t >= 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseQuadInOut(start.x, end.x, t);
-    ret.y = EaseQuadInOut(start.y, end.y, t);
-    ret.z = EaseQuadInOut(start.z, end.z, t);
-    return ret;
-}
-
-float Easing::EaseQuadOutIn(const float start, const float end, const float t)
-{
-    if (t >= 1.0f)return end;
+    if (t >= 1.0f)return 1.0f;
     float ret = 0.0f;
-    float dis = end - start;
     MATH_FUNC quad;
     if (t < 0.5f)
     {
@@ -379,85 +275,30 @@ float Easing::EaseQuadOutIn(const float start, const float end, const float t)
         quad.accel = 2.0f;
         quad.graph_vertex = { 0.5f,0.5f };
     }
-    ret = start + dis * quad.QuadFunc(t);
+    ret = quad.QuadFunc(t);
     return ret;
 }
 
-Vector2F Easing::EaseQuadOutIn(const Vector2F& start, const Vector2F& end, const float t)
-{
-    if (t >= 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseQuadOutIn(start.x, end.x, t);
-    ret.y = EaseQuadOutIn(start.y, end.y, t);
-    return ret;
-}
 
-VECTOR Easing::EaseQuadOutIn(const VECTOR& start, const VECTOR& end, const float t)
+float Easing::EaseCubicIn(const float t)
 {
-    if (t >= 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseQuadOutIn(start.x, end.x, t);
-    ret.y = EaseQuadOutIn(start.y, end.y, t);
-    ret.z = EaseQuadOutIn(start.z, end.z, t);
-    return ret;
-}
-
-float Easing::EaseCubicIn(const float start, const float end, const float t)
-{
-    if (t >= 1.0f)return end;
+    if (t >= 1.0f)return 1.0f;
     MATH_FUNC qubic;
-    float dis = end - start;
-    float ret = start + dis * qubic.CubicFunc(t);
+    float ret = qubic.CubicFunc(t);
     return ret;
 }
 
-Vector2F Easing::EaseCubicIn(const Vector2F& start, const Vector2F& end, const float t)
-{
-    if (t >= 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseCubicIn(start.x, end.x, t);
-    ret.y = EaseCubicIn(start.y, end.y, t);
-    return ret;
-}
 
-VECTOR Easing::EaseCubicIn(const VECTOR& start, const VECTOR& end, const float t)
+float Easing::EaseCubicOut(const float t)
 {
-    if (t >= 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseCubicIn(start.x, end.x, t);
-    ret.y = EaseCubicIn(start.y, end.y, t);
-    ret.z = EaseCubicIn(start.z, end.z, t);
-    return ret;
-}
-
-float Easing::EaseCubicOut(const float start, const float end, const float t)
-{
-    if (t >= 1.0f)return end;
+    if (t >= 1.0f)return 1.0f;
     MATH_FUNC qubic;
-    float dis = (end - start);
     qubic.graph_vertex = { -1.0f,1.0f };
-    float ret = start + dis * qubic.CubicFunc(t);
+    float ret = qubic.CubicFunc(t);
     return ret;
 }
 
-Vector2F Easing::EaseCubicOut(const Vector2F start, const Vector2F end, const float t)
-{
-    if (t >= 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseCubicOut(start.x, end.x, t);
-    ret.y = EaseCubicOut(start.y, end.y, t);
-    return ret;
-}
 
-VECTOR Easing::EaseCubicOut(const VECTOR start, const VECTOR end, const float t)
-{
-    if (t >= 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseCubicOut(start.x, end.x, t);
-    ret.y = EaseCubicOut(start.y, end.y, t);
-    ret.z = EaseCubicOut(start.z, end.z, t);
-    return ret;
-}
 
 float Easing::EaseCubicInOut(const float start, const float end, const float t)
 {
@@ -469,53 +310,19 @@ float Easing::EaseCubicOutIn(const float start, const float end, const float t)
     return 0.0f;
 }
 
-float Easing::EaseExpo(const float start, const float end, const float t, const float expo)
+float Easing::EaseExpo(const float t, const int expo)
 {
-    if (t >= 1.0f)return end;
+    if (t >= 1.0f)return 1.0f;
     float ret = 0.0f;
-    float dis = end - start;
-    float scaled = powf(1.0f - t, expo);
+    float scaled = powf(1.0f - t, static_cast<float>(expo));
     float base = 1.0f - scaled;
     float inv_t = 1.0f / t;
-    float expofunc = powf(base, inv_t);
-    ret = start + dis * expofunc;
-    
+    float expoFunc = powf(base, inv_t);
+    ret = expoFunc;
+
     return ret;
 }
 
-Vector2F Easing::EaseExpo(const Vector2F start, const Vector2F end, const float t, const float expo)
-{
-    if (t >= 1.0f)return end;
-    Vector2F ret = {};
-    ret.x = EaseExpo(start.x, end.x, t, expo);
-    ret.y = EaseExpo(start.x, end.x, t, expo);
-    return ret;
-}
-
-VECTOR Easing::EaseExpo(const VECTOR start, const VECTOR end, const float t, const float expo)
-{
-    if (t >= 1.0f)return end;
-    VECTOR ret = {};
-    ret.x = EaseExpo(start.x, end.x, t,expo);
-    ret.y = EaseExpo(start.x, end.x, t, expo);
-    ret.z = EaseExpo(start.x, end.x, t, expo);
-    return ret;
-}
-
-float Easing::EaseExpoInOut(const float start, const float end, const float t, float expo)
-{
-    return 0.0f;
-}
-
-Vector2F Easing::EaseExpoInOut(const Vector2F& start, const Vector2F& end, const float t, const float expo)
-{
-    return Vector2F();
-}
-
-float Easing::EaseExpoOutIn(const float start, const float end, const float t, float expo)
-{
-    return 0.0f;
-}
 
 Vector2F Easing::EaseEpiCycloid(const Vector2F& start, const float t, const float halfRadiusNum, const float smallRadius)
 {
@@ -541,18 +348,4 @@ Vector2F Easing::EaseHypoCycloid(const Vector2F& start, const float t, const flo
     return start + ret;
 }
 
-COLOR_F Easing::Lerp(const COLOR_F& start, const COLOR_F& end, float t)
-{
-    // 線形補間
-    if (t >= 1.0f)
-    {
-        return end;
-    }
 
-    COLOR_F ret = start;
-    ret.r += t * (end.r - start.r);
-    ret.g += t * (end.g - start.g);
-    ret.b += t * (end.b - start.b);
-    ret.a += t * (end.a - start.a);
-    return ret;
-}
