@@ -27,7 +27,10 @@ void TitleScene::Load(void)
 	//フォントの登録
 	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_DOT.c_str(), FONT_SIZE, 0);
 	//タイトル画像の読み込み
-	titleImg_ = resMng_.Load(ResourceManager::SRC::TITLE_IMG).handleId_;
+	imgTitleBack = resMng_.Load(ResourceManager::SRC::TITLE_BACK_IMG).handleId_;
+
+	//タイトルロゴの読み込み
+	imgTitleLogo = resMng_.Load(ResourceManager::SRC::TITLE_LOGO).handleId_;
 
 	titleFont_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
@@ -63,7 +66,7 @@ void TitleScene::Init(void)
 		btn.btnType = static_cast<TITLE_BTN>(i);
 		btn.startPos = pos;
 		btn.curPos = btn.startPos;
-		btn.easeCnt = EASING_TIME;
+		btn.easeCnt = BUTTON_EASING_TIME;
 		buttons_.emplace_back(btn);
 	}
 	easing_ = std::make_unique<Easing>();
@@ -71,6 +74,8 @@ void TitleScene::Init(void)
 	ChangeState(TITLE_STATE::EASE_MENU);
 	selectNum_ = 0;
 	easeDistanceCnt_ = 0.0f;
+	logoPos_ = { -LOGO_SIZE_X,-LOGO_SIZE_Y };
+	logoEaseCnt_ = BUTTON_EASING_TIME;
 }
 
 Easing::EASING_TYPE TitleScene::DecideEase(TITLE_BTN _btn)
@@ -126,29 +131,13 @@ void TitleScene::NormalDraw(void)
 		0,
 		Application::SCREEN_SIZE_X,
 		Application::SCREEN_SIZE_Y,
-		titleImg_,
+		imgTitleBack,
 		true
 	);
+	
+	//タイトルロゴ
+	DrawExtendGraph(logoPos_.x, logoPos_.y, logoPos_.x+LOGO_SIZE_X, logoPos_.y+LOGO_SIZE_Y, imgTitleLogo, true);
 
-	DrawPixel(700, 100, 0xffffff);
-
-	int i = 0;
-	//for (auto& string : buttonStrTable_)
-	//{
-	//	unsigned int btnCol = UtilityCommon::WHITE;
-	//	if (selectNum_ == static_cast<int>(string.first))
-	//	{
-	//		btnCol = UtilityCommon::RED;
-	//	}
-	//	DrawFormatStringToHandle(
-	//		BUTTON_START_POS_X,
-	//		BUTTON_START_POS_Y + BUTTON_DISTANCE * i,
-	//		btnCol,
-	//		titleFont_,
-	//		string.second.c_str()
-	//	);
-	//	i++;
-	//}
 
 	for (auto& btn : buttons_)
 	{
@@ -164,7 +153,6 @@ void TitleScene::NormalDraw(void)
 			titleFont_,
 			btn.btnStr.c_str()
 		);
-		i++;
 	}
 
 	if (selectState_ == TITLE_STATE::EXIT_MENU)
@@ -219,6 +207,10 @@ void TitleScene::UpdateEase(void)
 {
 
 	easeDistanceCnt_ += SceneManager::GetInstance().GetDeltaTime();
+	logoEaseCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+
+	logoPos_ = easing_->EaseFunc(START_POS, GOAL_POS, (LOGO_EASING_TIME - logoEaseCnt_) / LOGO_EASING_TIME, Easing::EASING_TYPE::ELASTIC_OUT);
+
 	for (auto& btn:buttons_)
 	{
 		if (btn.isEase)continue;
@@ -236,12 +228,12 @@ void TitleScene::UpdateEase(void)
 		Easing::EASING_TYPE easeType = DecideEase(btn.btnType);
 		
 		i++;
-		btn.curPos = easing_->EaseFunc(btn.startPos, goalPos, (EASING_TIME - btn.easeCnt) / EASING_TIME, easeType);
+		btn.curPos = easing_->EaseFunc(btn.startPos, goalPos, (BUTTON_EASING_TIME - btn.easeCnt) / BUTTON_EASING_TIME, easeType);
 		btn.easeCnt -= SceneManager::GetInstance().GetDeltaTime();
 	}
 
 	auto itr = std::find_if(buttons_.begin(), buttons_.end(), [this](auto& btn) {return btn.easeCnt > 0.0f; });
-	if (itr == buttons_.end())
+	if (itr == buttons_.end() && logoEaseCnt_ < 0.0f)
 	{
 		//イージングが終わったらメニュー更新へ
 		ChangeState(TITLE_STATE::MENU);

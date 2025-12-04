@@ -42,8 +42,9 @@ public:
 		E_ROLE_ATK,	//転がり攻撃
 		REACT,
 		//画像
-		TITLE_IMG,	//タイトル画像
-		GAME_OVER_IMG,
+		TITLE_BACK_IMG,	//タイトル背景
+		TITLE_LOGO,		//タイトルロゴ
+		GAME_OVER_IMG,	//
 		GAME_CLEAR_IMG,
 		NUMBERS_IMG,	//カード番号
 		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード

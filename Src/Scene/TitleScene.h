@@ -44,7 +44,10 @@ public:
 	};
 
 	//イージング時間
-	static constexpr float EASING_TIME = 1.0f;
+	static constexpr float BUTTON_EASING_TIME = 1.0f;
+
+	//タイトルロゴイージング時間
+	static constexpr float LOGO_EASING_TIME = 1.5f;
 
 	//次のボタンのイージングまでの間隔時間
 	static constexpr float EASING_DIS_TIME = 0.1f;
@@ -73,6 +76,15 @@ private:
 	//static constexpr int CHECK_EXIT_MENU_START_X = 100;
 	//static constexpr int CHECK_EXIT_MENU_START_Y = 100;
 
+	//ロゴサイズ
+	static constexpr float LOGO_SCALE = 0.5f;
+	static constexpr float LOGO_SIZE_X = 986.0f * LOGO_SCALE;
+	static constexpr float LOGO_SIZE_Y = 759.0f * LOGO_SCALE;
+
+	//ロゴイージング初期座標
+	static constexpr Vector2F START_POS = { -LOGO_SIZE_X,-LOGO_SIZE_Y };
+	static constexpr Vector2F GOAL_POS = { 0.0f,0.0f };
+
 	//ゲーム終了確認メニューの大きさ
 	static constexpr int CHECK_EXIT_MENU_SIZE_X = 600;
 	static constexpr int CHECK_EXIT_MENU_SIZE_Y = 200;
@@ -97,20 +109,26 @@ private:
 	//ボタン格納配列
 	std::list<BTN>buttons_;
 
+	//タイトルロゴ座標
+	Vector2F logoPos_;
+
 	//セレクト中のボタン
 	TITLE_BTN selectBtn_;
 	TITLE_STATE selectState_;
-	//タイトル画像
-	int titleImg_;
 
+	//タイトル背景
+	int imgTitleBack;
+	//タイトルロゴ
+	int imgTitleLogo;
 	//フォント
 	int titleFont_;
-
 	//現在選んでいるボタン
 	int selectNum_;
 
 	//イージング開始の間隔カウント
 	float easeDistanceCnt_;
+	//タイトルイージングカウント
+	float logoEaseCnt_;
 
 	//はいの選択肢を選んでいるか
 	YES_NO yesNoState_;

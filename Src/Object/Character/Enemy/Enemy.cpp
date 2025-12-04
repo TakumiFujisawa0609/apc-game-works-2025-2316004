@@ -67,7 +67,7 @@ void Enemy::Init(void)
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_,ENEMY_NUM);
 	deck_->Init();
-	//cardUI_->Init();
+	cardUI_->MakeObject();
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);

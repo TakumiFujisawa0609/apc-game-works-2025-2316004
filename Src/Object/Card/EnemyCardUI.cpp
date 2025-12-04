@@ -131,6 +131,13 @@ void EnemyCardUI::UpdateNone(void)
 void EnemyCardUI::UpdateDecision(void)
 {
 	DecisionMoveCardAll();
+	//Œˆ’èˆÚ“®‚ªI‚í‚Á‚½‚çnoneó‘Ô‚É–ß‚·
+	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
+	if (it == actions_.end())
+	{
+		SetBasePosActionCards();
+		ChangeSelectState(CARD_SELECT::NONE);
+	}
 }
 
 void EnemyCardUI::UpdateReloadWait(void)

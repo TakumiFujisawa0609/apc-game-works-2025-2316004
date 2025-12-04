@@ -1,6 +1,7 @@
 #include "../pch.h"
 #include "../Application.h"
 #include "../Utility/UtilityCommon.h"
+#include "../Common/Easing.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Card/CardUIDraw.h"
 #include "CardUIController.h"
@@ -33,6 +34,7 @@ void CardUIController::Load(void)
 
 void CardUIController::Init(void)
 {
+	easing_ = std::make_unique<Easing>();
 	cardImg_ = MakeCardUIImg();
 	cardDraw_->Init();
 }
@@ -64,15 +66,15 @@ void CardUIController::SelectCardDrawFrame(const int& _frameImg)
 
 void CardUIController::DecisionMove(void)
 {
+	cardPos_ = easing_->EaseFunc(baseCardPos_, DISITON_CARD_POS,
+		(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME, Easing::EASING_TYPE::CUBIC_OUT);
 	disitionCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
-	cardPos_ = UtilityCommon::Lerp(baseCardPos_, DISITON_CARD_POS,
-		(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME);
 }
 
 void CardUIController::ReactMove(const Vector2F& _goalPos)
 {
-	cardPos_ = UtilityCommon::Lerp(baseCardPos_, _goalPos,
-		(REACT_MOVE_CARD_TIME - reactCnt_) / REACT_MOVE_CARD_TIME);
+	cardPos_ = easing_->EaseFunc(baseCardPos_, _goalPos,
+		(REACT_MOVE_CARD_TIME - reactCnt_) / REACT_MOVE_CARD_TIME,Easing::EASING_TYPE::LERP);
 	reactCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
 }
 
@@ -97,10 +99,11 @@ void CardUIController::ReactUpdate(const Vector2F& _goalPos)
 void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax)
 {
 	float time = (moveTimeMax - _cnt) / moveTimeMax;
-	float startRad = currentAngle_;
+	//float startRad = currentAngle_;
+	float startRad = startAngle_;
 	float goalRad = goalAngle_;
-	currentAngle_ = UtilityCommon::LerpRad(startRad
-		, goalRad, time);
+	currentAngle_ = easing_->EaseFuncRad(startRad
+		, goalRad, time,Easing::EASING_TYPE::LERP);
 
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
@@ -115,14 +118,27 @@ void CardUIController::MoveUpDown(void)
 void CardUIController::ChangeDicisionEnemyCardMove(void)
 {
 	cardPos_ = ENEMY_SELECT_CARD_START_POS;
+	baseCardPos_ = ENEMY_SELECT_CARD_START_POS;
 	numPos_ = cardPos_ + (NUM_LOCAL_POS * cardScl_);
 }
 
 void CardUIController::SyncCardAngleAndPos(void)
 {
 	currentAngle_ = goalAngle_;
+	startAngle_ = currentAngle_;
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
+}
+
+void CardUIController::SetStartAndGoalAngle(const float& _goalrad)
+{
+	goalAngle_ = _goalrad; 
+	startAngle_ = currentAngle_;
+}
+
+void CardUIController::SetStartAngle(void)
+{
+	startAngle_ = currentAngle_;
 }
 
 void CardUIController::ResetCount(void)
@@ -139,13 +155,14 @@ void CardUIController::EraseUsedCard(void)
 {
 	if (state_ != CARD_STATE::USED)return;
 
-	cardScl_ = UtilityCommon::Lerp(cardScl_, 0.0f, (SCL_LERP_TIME - sclCnt_) / SCL_LERP_TIME);
+	cardScl_ = easing_->EaseFunc(cardScl_, 0.0f, (SCL_LERP_TIME - sclCnt_) / SCL_LERP_TIME,Easing::EASING_TYPE::LERP);
 	sclCnt_ -= static_cast<double>(UtilityCommon::FIXED_DELTA_TIME);
 }
 
 void CardUIController::InitCard(const int& _num)
 {
 	currentAngle_ = static_cast<float>(ARROUND_PER_RAD * _num - ARROUND_PER_RAD);
+	startAngle_ = currentAngle_;
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
 }
@@ -158,7 +175,7 @@ void CardUIController::ChangeUsedCard(void)
 
 void CardUIController::ChangeReactCard(void)
 {
-	if (state_ == CARD_STATE::USED|| state_ == CARD_STATE::REACT)return;
+	if (state_ == CARD_STATE::USED || state_ == CARD_STATE::REACT)return;
 	state_ = CARD_STATE::REACT;
 	reactCnt_ = REACT_MOVE_CARD_TIME;
 }
@@ -201,11 +218,7 @@ int CardUIController::MakeCardUIImg(void)
 	Vector2F rightBottomPos = { centerPos.x+NUM_LOCAL_POS.x + numSizeHalf.x,centerPos.y+NUM_LOCAL_POS.y + numSizeHalf.y };
 	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_, true);
 
-
-
 	//ï`âÊêÊÇå≥Ç…ñﬂÇ∑
 	SetDrawScreen(DX_SCREEN_BACK);
 	return img;
-
-
 }

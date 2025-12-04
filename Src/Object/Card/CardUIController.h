@@ -6,6 +6,7 @@
 #include"../Application.h"
 
 class CardUIDraw;
+class Easing;
 
 class CardUIController
 {
@@ -26,11 +27,12 @@ public:
 	};
 	//static constexpr std::wstring CARD_UI_PATH = L"Resource/Image/Card/CardUI.png";
 	//カードサイズ補完時間
-	static constexpr float SCL_LERP_TIME = 0.5;
+	static constexpr float SCL_LERP_TIME = 0.5f;
 	//リロード1枚あたりの時間
 	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
 	//カードセレクト時間
-	static constexpr float SELECT_MOVE_CARD_TIME = 0.09f;
+	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
+	//static constexpr float SELECT_MOVE_CARD_TIME = 1.0f;
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 	//敵の選択カード初期位置
@@ -151,9 +153,13 @@ public:
 	/// @param  
 	void SyncCardAngleAndPos(void);
 
-	/// @brief 目標の角度のセット
-	/// @param _rad 
-	void SetGoalAngle(const float& _rad) { goalAngle_ = _rad; }
+	/// @brief イージングのためのスタート角度(角度補完終了後の現在角度)と目標の角度セット
+	/// @param _goalrad 目標角度
+	void SetStartAndGoalAngle(const float& _goalrad);
+
+	/// @brief スタート角度に現在角度を代入
+	/// @param  
+	void SetStartAngle(void);
 
 	/// @brief 現在の角度セット
 	/// @param _rad 
@@ -222,12 +228,16 @@ private:
 	//カード描画
 	std::unique_ptr<CardUIDraw>cardDraw_;
 
+	//コントローラークラスが使われるイージングの参照
+	std::unique_ptr<Easing>easing_;
+
 	Vector2F cardPos_;		//カードの座標(画面外で初期化)
 	float upDownMovePow_;	//カード上下に動かす移動量
 	float upDownMoveAngle_;	//上下動かし用の角度(sin波で動かすため)
 	Vector2F baseCardPos_;	//カードを上下に動かす基準の座標
 	Vector2F numPos_;		//カードの強さ番号座標(画面外で初期化)
 	float currentAngle_;	//カードの現在の角度
+	float startAngle_;		//始まり角度
 	float goalAngle_;	//カードの目標の角度
 	float cardScl_;
 	float sclCnt_;

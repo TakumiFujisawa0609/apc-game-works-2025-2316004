@@ -38,6 +38,7 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
         easingUpdate_ = [this, t](float) {return EaseBounce(t); };
         break;
     default:
+        easingUpdate_ = nullptr;
         break;
     }
 }

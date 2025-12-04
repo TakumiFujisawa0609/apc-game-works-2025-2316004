@@ -167,10 +167,9 @@ private:
 	//カードUI描画オブジェクト更新
 	void UpdateDrawCardUI(void) override;
 
-
-
 	//角度を現在角度に設定
 	void SetBasePosVisibleCards(void);
+
 	//現在選択中のカード更新
 	//void UpdateVisibleCurrent(void);
 	//見せるカードの更新

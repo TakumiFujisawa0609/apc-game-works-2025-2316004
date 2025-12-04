@@ -5,7 +5,7 @@
 #include "../../Common/Quaternion.h"
 #include"../Template/Singleton.h"
 class Transform;
-
+class Easing;
 class Camera
 {
 	friend class Singleton<Camera>;
@@ -89,6 +89,9 @@ private:
 
 	//カメラの注視点とするターゲットTransform
 	const Transform* targetTransform_;
+
+	//イージング
+	std::unique_ptr<Easing>easing_;
 
 	// カメラモード
 	MODE mode_;

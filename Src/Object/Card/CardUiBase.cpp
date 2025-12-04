@@ -4,6 +4,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Common/Easing.h"
 #include "../Card/CardUIDraw.h"
 #include "../Card/CardUIController.h"
 #include "../Renderer/PixelMaterial.h"
@@ -66,9 +67,14 @@ void CardUIBase::Load(void)
 
 }
 
+void CardUIBase::MakeObject(void)
+{
+	//easing_ = std::unique_ptr<Easing>();
+}
+
 void CardUIBase::Init(void)
 {
-
+	
 }
 
 void CardUIBase::Update(void)
@@ -152,13 +158,13 @@ void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 	
 }
 
-void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos)
-{
-	//’e‚©‚êˆÚ“®
-	_card.cardPos_ = UtilityCommon::Lerp(_card.cardPos_, _goalPos,
-		(CardUIController::REACT_MOVE_CARD_TIME - _card.reactCnt_) / CardUIController::REACT_MOVE_CARD_TIME);
-	_card.reactCnt_ -= DELTA;
-}
+//void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos)
+//{
+//	//’e‚©‚êˆÚ“®
+//	_card.cardPos_ = UtilityCommon::Lerp(_card.cardPos_, _goalPos,
+//		(CardUIController::REACT_MOVE_CARD_TIME - _card.reactCnt_) / CardUIController::REACT_MOVE_CARD_TIME);
+//	_card.reactCnt_ -= DELTA;
+//}
 
 void CardUIBase::AddHandCurrent(void)
 {
@@ -195,5 +201,11 @@ const int CardUIBase::GetTypeImg(const CardBase::CARD_STATUS _status)
 	return typeImg;
 }
 
-
+void CardUIBase::SetBasePosActionCards(void)
+{
+	for (auto& card : actions_)
+	{
+		card->SetBaseCardPos();
+	}
+}
 

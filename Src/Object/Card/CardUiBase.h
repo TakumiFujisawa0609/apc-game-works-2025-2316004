@@ -16,7 +16,7 @@ class PixelMaterial;
 class PixelRenderer;
 class CardUIController;
 class CardUIDraw;
-
+class Easing;
 class CardUIBase
 {
 public:
@@ -82,6 +82,9 @@ public:
 	/// @brief ロード
 	/// @param  
 	virtual void Load(void);
+
+	//カードUIに使用したいオブジェクトを生成する
+	void MakeObject(void);
 
 	/// @brief 初期化
 	/// @param  
@@ -177,6 +180,8 @@ protected:
 	//シェーダー関連
 	std::unique_ptr<PixelMaterial>material_;
 	std::unique_ptr<PixelRenderer>renderer_;
+	//イージング
+	std::unique_ptr<Easing>easing_;
 
 	//円形UIの中心座標
 	Vector2 centerPos_;
@@ -227,9 +232,9 @@ protected:
 	void UpdateUsedCard(void);
 	// カード弾かれ移動
 	void ReactMoveCard(const Vector2F& _goalPos);
-	//特定のカードを弾かれ移動させる
-	void ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos);
-
+	////特定のカードを弾かれ移動させる
+	//void ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos);
+	void SetBasePosActionCards(void);
 	//属性画像取得
 	const int GetTypeImg(const CardBase::CARD_STATUS _status);
 

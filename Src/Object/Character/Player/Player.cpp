@@ -162,7 +162,7 @@ void Player::Init(void)
 	action_->Init();
 	deck_->Init();
 	
-
+	cardUI_->MakeObject();
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{

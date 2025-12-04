@@ -4,7 +4,7 @@
 #include"../Application.h"
 #include "../../Utility/Utility3D.h"
 #include "../../Utility//UtilityCommon.h"
-#include "../../Utility//Utility3D.h"
+#include "../Common/Easing.h"
 #include "../../Object/Common/Transform.h"
 #include"../../Manager/Generic/InputManager.h"
 #include"../../Manager/Generic/InputManagerS.h"
@@ -36,7 +36,7 @@ void Camera::Init(void)
 		{MODE::TARGET_POINT,[this]() {ChangeTargetCamera(); }},
 		{MODE::CHANGE_TARGET,[this]() {ChangeTargetLerp(); }}
 	};
-
+	easing_ = std::make_unique<Easing>();
 	ChangeMode(MODE::FIXED_POINT);
 }
 
@@ -293,7 +293,7 @@ void Camera::SmoothChangeCamera(void)
 	VECTOR goalTargetPos = VAdd(targetPos, localPos);
 	if (changeTargetLerpCnt_ > 0.0)
 	{
-		targetPos_ = UtilityCommon::Lerp(targetPos_, goalTargetPos, lerpRate);
+		targetPos_ = easing_->EaseFunc(targetPos_, goalTargetPos, lerpRate,Easing::EASING_TYPE::LERP);
 	}
 
 
@@ -302,7 +302,7 @@ void Camera::SmoothChangeCamera(void)
 	VECTOR goalPos = VAdd(followPos, localPos);
 	if (changeTargetLerpCnt_ > 0.0)
 	{
-		pos_ = UtilityCommon::Lerp(pos_, goalPos, lerpRate);
+		pos_ = easing_->EaseFunc(pos_, goalPos, lerpRate,Easing::EASING_TYPE::LERP);
 	}
 
 	// ƒJƒƒ‰‚Ìã•ûŒü

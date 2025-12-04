@@ -189,7 +189,7 @@ void PlayerCardUI::ChangeNone(void)
 	for (auto& card : visibleCards_)
 	{
 		//card->SyncCardAngleAndPos();
-		card->SetGoalAngle(0.0f);
+		card->SetStartAndGoalAngle(0.0f);
 	}
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
@@ -199,7 +199,6 @@ void PlayerCardUI::ChangeLeft(void)
 
 	// 時計回りにカードを回す
 	// 対象は、手札UIの全てのカード
-
 	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
 
 	//カードの範囲変数を更新する
@@ -237,7 +236,7 @@ void PlayerCardUI::ChangeLeft(void)
 	{
 		//card.goalAngle_ = card.currentAngle_ - ARROUND_PER_RAD;
 		float currentAngle = card->GetCurrentAngle();
-		card->SetGoalAngle(currentAngle - ARROUND_PER_RAD);
+		card->SetStartAndGoalAngle(currentAngle - ARROUND_PER_RAD);
 		//goalRadit++;
 	}
 	//サウンドを再生
@@ -281,7 +280,7 @@ void PlayerCardUI::ChangeRight(void)
 	{
 		//card.goalAngle_ = card.currentAngle_ + ARROUND_PER_RAD;
 		float currentAngle = card->GetCurrentAngle();
-		card->SetGoalAngle(currentAngle + ARROUND_PER_RAD);
+		card->SetStartAndGoalAngle(currentAngle + ARROUND_PER_RAD);
 	}
 	//サウンドを再生
 	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
@@ -381,7 +380,6 @@ void PlayerCardUI::UpdateDecision(void)
 	DecisionMoveCardAll();
 
 	//cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
-	cardMoveCnt_-= DELTA;
 
 	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrent = GetVisibleCurrentIt();
 	//for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)
@@ -389,13 +387,14 @@ void PlayerCardUI::UpdateDecision(void)
 	{
 		(*it)->MoveOnRevolver(cardMoveCnt_,CardUIController::DISITION_MOVE_CARD_TIME);
 	}
-
+	cardMoveCnt_ -= DELTA;
 	//決定移動が終わったらnone状態に戻す
 	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
 
 	if(it==actions_.end())
 	{
 		SetBasePosVisibleCards();
+		SetBasePosActionCards();
 		ChangeSelectState(CARD_SELECT::NONE);
 	}
 
@@ -463,8 +462,10 @@ void PlayerCardUI::SetBasePosVisibleCards(void)
 	for (auto& card : visibleCards_)
 	{
 		card->SetBaseCardPos();
+		card->SetStartAngle();
 	}
 }
+
 
 void PlayerCardUI::UpdateVisibleCard(void)
 {
@@ -530,7 +531,7 @@ void PlayerCardUI::DesideGoalAngle(void)
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
 		float currentAngle = (*visibleIt)->GetCurrentAngle();
-		(*visibleIt)->SetGoalAngle(currentAngle - ARROUND_PER_RAD);
+		(*visibleIt)->SetStartAndGoalAngle(currentAngle - ARROUND_PER_RAD);
 	}
 }
 
@@ -572,7 +573,7 @@ void PlayerCardUI::ReloadAnimation(void)
 	{
 		//MoveSpecificCard(card);
 
-		card->SetGoalAngle(ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT));
+		card->SetStartAndGoalAngle(ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT));
 		card->MoveOnRevolver(cardMoveCnt_, CardUIController::RELOAD_MOVE_CARD_TIME_PER);
 		i++;
 	}
