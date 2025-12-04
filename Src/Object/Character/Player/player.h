@@ -304,10 +304,10 @@ private:
 
 
 
-#ifdef DEBUG_ON
+#ifdef _DEBUG
 	//デバッグ描画
 	void DrawDebug(void);
-#endif // DEBUG_ON
+#endif // _DEBUG
 
 	//当たり判定初期化
 

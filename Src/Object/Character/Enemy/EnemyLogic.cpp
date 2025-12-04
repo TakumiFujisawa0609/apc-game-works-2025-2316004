@@ -133,15 +133,19 @@ void EnemyLogic::DesideAction(void)
 	if (distance_ > 200.0f)
 	{
 		//遠距離時
-		if (rand < weight_.normal)
+		if (rand > weight_.normal)
 		{
 			//通常攻撃
 			attackType_ = ENEMY_ATTACK_TYPE::NORMAL;
 		}
-		else if(rand < weight_.jump)
+		else if(rand > weight_.jump)
 		{
 			//ジャンプ
 			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
+		}
+		else if (rand > weight_.Roar)
+		{
+			attackType_ = ENEMY_ATTACK_TYPE::ROAR;
 		}
 		else
 		{
@@ -151,12 +155,12 @@ void EnemyLogic::DesideAction(void)
 	}
 	else
 	{
-		if (rand < weight_.normal)
+		if (rand > weight_.normal)
 		{
 			//通常攻撃
 			attackType_ = ENEMY_ATTACK_TYPE::NORMAL;
 		}
-		else if (rand < weight_.jump)
+		else if (rand > weight_.jump)
 		{
 			//ジャンプ攻撃
 			attackType_ = ENEMY_ATTACK_TYPE::JUMP;

@@ -31,7 +31,8 @@ void DrawUI3D::Init(void)
 
 void DrawUI3D::Update(void)
 {
-	testTrans_.pos = Utility3D::AddPosRotate(camera_.lock()->GetPos(), camera_.lock()->GetQuaRot(), { 0.0f,200.0f,500.0f });
+	VECTOR pos = ConvScreenPosToWorldPos({ 0.0f,0.0f,0.99f });
+	testTrans_.pos = pos;
 	testTrans_.quaRot = camera_.lock()->GetQuaRot();
 	testTrans_.Update();
 }

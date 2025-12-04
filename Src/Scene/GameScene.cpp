@@ -127,7 +127,7 @@ void GameScene::NormalDraw(void)
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
-	drawUi3D_->Draw();
+	//drawUi3D_->Draw();
 
 #ifdef _DEBUG
 	//CardSystem::GetInstance().DrawDebug();

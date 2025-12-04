@@ -219,9 +219,9 @@ void Player::Draw(void)
 
 	Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
 
-#ifdef DEBUG_ON
+#ifdef _DEBUG
 	DrawDebug();
-#endif // DEBUG_ON
+#endif // _DEBUG
 }
 void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
@@ -257,7 +257,7 @@ void Player::SetGoalRotate(const double _deg)
 
 	charaRot_.goalQuaRot_ = axis;
 }
-#ifdef DEBUG_ON
+#ifdef _DEBUG
 void Player::DrawDebug(void)
 {
 	unsigned int color = 0xffffff;
@@ -289,7 +289,7 @@ void Player::DrawDebug(void)
 
 }
 
-#endif // DEBUG_ON
+#endif // _DEBUG
 
 void Player::ChangeState(PLAYER_STATE _state)
 {
