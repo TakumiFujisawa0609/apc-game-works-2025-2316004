@@ -4,9 +4,8 @@
 #include "../Object/Character/Base/CharacterBase.h"
 #include "EnemyLogic.h"
 
-EnemyLogic::EnemyLogic(Transform& _myTrans,CharacterBase& _playerChara):
+EnemyLogic::EnemyLogic(Transform& _myTrans):
 	myTrans_(_myTrans),
-	playerChara_(_playerChara),
 	scnMng_(SceneManager::GetInstance())
 {
 }
@@ -29,7 +28,7 @@ void EnemyLogic::Update(void)
 	//すべての行動フラグをリセット
 	isAct_ = {};
 	moveDir_ = Utility3D::VECTOR_ZERO;
-	VECTOR playerPos = playerChara_.GetTransform().pos;
+	VECTOR playerPos = targetChara_.lock()->GetTransform().pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos,playerPos);
 
 
@@ -74,14 +73,14 @@ void EnemyLogic::Update(void)
 
 const VECTOR EnemyLogic::GetLookAtTargetDir(void)const
 {
-	const VECTOR& playerPos = playerChara_.GetTransform().pos;
+	const VECTOR& playerPos = targetChara_.lock()->GetTransform().pos;
 	const VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 	return targetVec;
 }
 
 const float EnemyLogic::GetLookAtTargetDeg(void) const
 {
-	float deg = static_cast<float>(Utility3D::AngleDeg(playerChara_.GetTransform().pos, myTrans_.pos));
+	float deg = static_cast<float>(Utility3D::AngleDeg(targetChara_.lock()->GetTransform().pos, myTrans_.pos));
 	return deg;
 }
 #ifdef _DEBUG
@@ -123,7 +122,7 @@ void EnemyLogic::DebugDraw(void)
 
 void EnemyLogic::DesideAction(void)
 {
-	VECTOR playerPos = playerChara_.GetTransform().pos;
+	VECTOR playerPos = targetChara_.lock()->GetTransform().pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 
 	//ランダムの数値取得
@@ -174,7 +173,7 @@ void EnemyLogic::DesideAction(void)
 
 	//前回の攻撃を代入する
 	prevAttackType_ = attackType_;
-
+	attackType_ = ENEMY_ATTACK_TYPE::JUMP;
 	//SetFreezeCntByAttackType(attackType_);
 	isActioning_ = true;
 }

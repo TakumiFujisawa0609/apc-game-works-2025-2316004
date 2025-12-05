@@ -2,6 +2,8 @@
 #include<DxLib.h>
 #include "../Object/Common/Transform.h"
 
+class CharacterBase;
+
 class LogicBase
 
 {
@@ -89,6 +91,9 @@ public:
     /// @return 攻撃種類
     const ENEMY_ATTACK_TYPE& GetAttackType(void)const { return attackType_; }
 
+    /// @brief ターゲットをセットする
+    /// @param _target 
+    void SetTargetCharacter(std::shared_ptr<CharacterBase>_target);
 
 	/// @brief 方向をモデルの前方向にセット
 	/// @param _trans モデル情報 
@@ -97,6 +102,9 @@ public:
 	/// @brief ターゲットの方向を見る
     virtual const VECTOR GetLookAtTargetDir(void)const;
     virtual const float GetLookAtTargetDeg(void)const;
+
+    //相手の座標情報を取得
+    const Transform GetTargetTransform(void);
 
     void SetDegAndDir(const float& _deg, const VECTOR& _dir)
     {
@@ -127,6 +135,8 @@ protected:
 	VECTOR prevMoveDir_;        //前回の移動方向ベクトル
     //攻撃種類
     ENEMY_ATTACK_TYPE attackType_;
+    
+    std::weak_ptr<CharacterBase> targetChara_;
 
     //アクション入力がされたかどうか
     ACT_FLAG isAct_;

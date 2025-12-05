@@ -27,8 +27,7 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy(CharacterBase& _playerChara):
-	playerChara_(_playerChara),
+Enemy::Enemy(void):
 	cardCenterPos_({})
 {
 	//noneHitTag_.emplace({ Collider::TAG::PLAYER1,Collider::TAG::NML_ATK })
@@ -48,6 +47,10 @@ void Enemy::Load(void)
 	//敵のカードUI生成
 	cardUI_ = std::make_unique<EnemyCardUI>();
 	cardUI_->Load();
+
+	logic_ = std::make_unique<EnemyLogic>(trans_);
+	logic_->Init();
+
 	//アニメーション
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
@@ -78,8 +81,7 @@ void Enemy::Init(void)
 	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 	cardUI_->Init();
 
-	logic_ = std::make_unique<EnemyLogic>(trans_,playerChara_);
-	logic_->Init();
+
 
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
@@ -94,7 +96,7 @@ void Enemy::Init(void)
 	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
 	action_->Init();
 	tag_ = Collider::TAG::ENEMY1;
-
+	capRadius_ = CAP_RADIUS;
 	//カプセル
 	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
 	MakeCollider(TAG_PRIORITY::BODY,{ tag_ }, std::move(geo));
@@ -193,7 +195,6 @@ void Enemy::MoveDirFronInput(void)
 {
 	//入力クラスから角度を取得
 	VECTOR getDir = logic_->GetDir();
-	Quaternion playerRot = playerChara_.GetTransform().quaRot;
 	//charaRot_.dir_ = playerRot.PosAxis(getDir);
 	//charaRot_.dir_ = VNorm(charaRot_.dir_);
 	charaRot_.dir_ = getDir;
@@ -201,7 +202,7 @@ void Enemy::MoveDirFronInput(void)
 void Enemy::SetGoalRotate(const double _deg)
 {
 	Quaternion axis= Quaternion::Euler
-	(Utility3D::GetRotAxisToTarget(trans_.pos, playerChara_.GetTransform().pos, Utility3D::AXIS_Y));
+	(Utility3D::GetRotAxisToTarget(trans_.pos, logic_->GetTargetTransform().pos, Utility3D::AXIS_Y));
 
 	//現在設定されている回転との角度差を取る
 	double angleDiff = Quaternion::Angle(axis, charaRot_.goalQuaRot_);

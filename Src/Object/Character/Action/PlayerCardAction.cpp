@@ -47,8 +47,7 @@ void PlayerCardAction::Init(void)
 	
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
-		deck_.MoveHandToCharge();
-		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+		PutCard();
 		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
 	}
 	else if (deck_.GetDrawCardType()==CardBase::CARD_TYPE::RELOAD)
@@ -135,6 +134,10 @@ void PlayerCardAction::UpdateReload(void)
 	}
 }
 
+void PlayerCardAction::UpdateSonicRave(void)
+{
+}
+
 
 void PlayerCardAction::ChangeAttackOne(void)
 {
@@ -172,6 +175,10 @@ void PlayerCardAction::ChangeReload(void)
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 	
 	cardFuncs_.push([this]() {UpdateReload(); });
+}
+
+void PlayerCardAction::ChangeSonicRave(void)
+{
 }
 
 void PlayerCardAction::ChangeComboAction(void)

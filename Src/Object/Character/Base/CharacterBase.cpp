@@ -18,7 +18,8 @@
 
 CharacterBase::CharacterBase(void) :
 	movedPos_(Utility3D::VECTOR_ZERO),
-	moveDiff_(Utility3D::VECTOR_ZERO)
+	moveDiff_(Utility3D::VECTOR_ZERO),
+	jumpPow_({Utility3D::VECTOR_ZERO})
 {
 }
 
@@ -85,8 +86,6 @@ void CharacterBase::UpdatePost(void)
 		Line& moveLine = dynamic_cast<Line&>(collider_[TAG_PRIORITY::MOVE_LINE]->GetGeometry());
 		moveLine.SetLocalPosPoint1(Utility3D::VECTOR_ZERO);
 		moveLine.SetLocalPosPoint2(moveVec);
-
-		
 	}
 
 	//ìñÇΩÇËîªíËÇÇ∑ÇÈëOÇ…èâä˙âªÇ∑ÇÈ
@@ -120,11 +119,11 @@ void CharacterBase::SetStatus(const float& _spd, const float& _hp, const float& 
 
 void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 {
-	VECTOR subRadiusSize={_stageSize.x-CAP_RADIUS,0.0f,_stageSize.z-CAP_RADIUS};
+	VECTOR subRadiusSize={_stageSize.x- capRadius_,0.0f,_stageSize.z- capRadius_};
 	VECTOR sizeHalf = VScale(subRadiusSize, 0.5f);
 	VECTOR limit = VAdd(_stagePos, sizeHalf);
 	VECTOR moveVec = Utility3D::GetMoveVec(trans_.pos, movedPos_);
-	VECTOR addPos = VScale(moveVec, CAP_RADIUS);
+	VECTOR addPos = VScale(moveVec, capRadius_);
 	VECTOR limitPos = VAdd(trans_.pos, addPos);
 
 	VECTOR pushVec = Utility3D::GetMoveVec(movedPos_, moveDiff_);
@@ -210,4 +209,9 @@ void CharacterBase::MovedPosMove(const VECTOR& _vec, const float& _movePow)
 void CharacterBase::LariatMove(const float& _deg)
 {
 	charaRot_.playerRotY_ = Quaternion::AngleAxis(UtilityCommon::Deg2RadF(_deg), Utility3D::AXIS_Y);
+}
+
+void CharacterBase::SetLogicTargetCharacter(std::shared_ptr<CharacterBase> _targetChara)
+{
+	logic_->SetTargetCharacter(_targetChara);
 }

@@ -213,11 +213,12 @@ public:
 	/// @param _dir 
 	/// @param _movePow 
 	void LariatMove(const float& _deg);
+
+	/// @brief ロジッククラスにターゲットをセット
+	/// @param _targetChara ターゲット
+	void SetLogicTargetCharacter(std::shared_ptr<CharacterBase>_targetChara);
 protected:
-	//カプセル関連
-	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
-	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
-	static constexpr float CAP_RADIUS = 20.0f;						//カプセル球の半径
+
 
 
 	//移動量ラインオフセット
@@ -226,6 +227,8 @@ protected:
 	static constexpr float MOVE_LINE_Y_CHECK_VALUE =  1.5f;
 	//リロードカードステータス
 	static constexpr CardBase::CARD_STATUS RELOAD_CARD_STATUS = { -1,CardBase::CARD_TYPE::RELOAD };
+
+
 
 	//入力
 	std::unique_ptr<LogicBase>logic_;
@@ -261,6 +264,9 @@ protected:
 
 	////カード関連初期化
 	//void CardInit(void);
+
+	//カプセル半径
+	float capRadius_;
 
 	//移動後座標などの更新
 	void UpdatePost(void);

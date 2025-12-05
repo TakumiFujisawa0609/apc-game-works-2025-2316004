@@ -22,8 +22,12 @@ public:
 	static constexpr int RADIUS = 25; //敵のサイズ
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
-	//プレイヤーの大きさ
-	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
+
+	//敵の大きさの倍率
+	static constexpr float MODEL_SIZE_MULTIPLITER = 2.5f;
+
+	//敵の大きさ
+	static constexpr VECTOR MODEL_SCL = { MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER };
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 3;
 
@@ -90,7 +94,7 @@ public:
 
 	const std::shared_ptr<CardDeck> GetHand(void)const { return deck_; }
 
-	Enemy(CharacterBase& _playerChara);
+	Enemy(void);
 	~Enemy(void)override;
 	void Load(void) override;
 	void Init(void) override;
@@ -120,8 +124,13 @@ private:
 	static constexpr int SPINE_FRAME_NO = 1;
 	//敵番号(デッキで判定する用)
 	static constexpr int ENEMY_NUM = 1;
+	//カプセル関連
+	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f*MODEL_SIZE_MULTIPLITER, 0.0f };	//トップ座標
+	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
+	static constexpr float CAP_RADIUS = 30.0f* MODEL_SIZE_MULTIPLITER;				//カプセル球の半径
+
+
 	Vector2 cardCenterPos_; //カードの中心座標
-	CharacterBase& playerChara_;	//プレイヤー情報
 
 #ifdef _DEBUG
 	void DrawDebug(void);

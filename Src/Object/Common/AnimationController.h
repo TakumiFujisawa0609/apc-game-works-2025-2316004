@@ -39,6 +39,12 @@ public :
 	// アニメーション終了後に繰り返すループステップ
 	void SetEndLoop(float startStep, float endStep, float speed);
 
+	//アニメーションの途中からのループ再生
+	void SetMidLoop(const float startStep,const float endStep,float _spd);
+
+	//アニメーション途中ループ終了
+	void SetEndMidLoop(const float _spd);
+
 	// 再生中のアニメーション
 	int GetPlayType(void) const;
 
@@ -82,6 +88,9 @@ private :
 
 	// アニメーションを止めたままにする
 	bool isStop_;
+
+	//途中ループフラグ
+	bool isMidLoop_;
 
 	// アニメーション終了後に繰り返すループステップ
 	float stepEndLoopStart_;

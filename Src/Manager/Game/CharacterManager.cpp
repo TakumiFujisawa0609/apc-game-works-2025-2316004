@@ -8,9 +8,9 @@
 
 void CharacterManager::Load(void)
 {
-	player_ = std::make_unique<Player>();
+	player_ = std::make_shared<Player>();
 	player_->Load();
-	enemy_ = std::make_unique<Enemy>(*player_);
+	enemy_ = std::make_shared<Enemy>();
 	enemy_->Load();
 
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
@@ -20,6 +20,8 @@ void CharacterManager::Load(void)
 
 void CharacterManager::Init(void)
 {
+	player_->SetLogicTargetCharacter(enemy_);
+	enemy_->SetLogicTargetCharacter(player_);
 	player_->Init();
 	enemy_->Init();
 }

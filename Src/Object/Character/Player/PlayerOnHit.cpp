@@ -205,16 +205,15 @@ void PlayerOnHit::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 		{
 			movedPos_.y = hitLinePos.y + Player::RADIUS + POSITION_OFFSET;
 			hitPoint_.isDown = true;
-			action_.JumpPowZero();
 		}
 
 		//移動後座標が当たっているライン座標より下の場合、上に押し出す
 		if(movedPos_.y < hitLinePos.y)
 		{
-			movedPos_.y = hitLinePos.y - POSITION_OFFSET;
+			movedPos_.y = hitLinePos.y + POSITION_OFFSET;
 			hitPoint_.isOverHead = true;
 
-			action_.JumpPowZero();
+			charaObj_.JumpPowZero();
 			//if (action_.GetJumpDecel() > 0.0f)
 			//{
 			//	//オブジェクトの下に当たったら跳ね返るようにする

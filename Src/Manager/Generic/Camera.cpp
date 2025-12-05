@@ -25,6 +25,7 @@ Camera::Camera(void)
 
 Camera::~Camera(void)
 {
+	followTransform_ = nullptr;
 }
 
 void Camera::Init(void)

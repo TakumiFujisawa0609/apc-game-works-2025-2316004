@@ -22,6 +22,7 @@ public:
 		RUSH_ATK, //ロール攻撃
 		CALL_PROJECTILE, //射撃物呼び出し
 		DOUBLE_SPHERE_ATK, //ダブルスフィア攻撃
+        SHOT_CUTTER,     //斬撃飛ばし
         RELOAD, //リロード
     };
     EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
@@ -59,7 +60,9 @@ private:
     //攻撃半径広がるスピード
     static constexpr float JUMP_ATK_COL_SPD = 5.0f;
     //広がる時間
-    static constexpr float JUMP_ATK_CNT_MAX = 1.0f;
+    static constexpr float JUMP_ATK_CNT_MAX = 2.5f;
+    //ジャンプチャージ時間
+    static constexpr float JUMP_CHARGE_TIME = 6.0f;
     //咆哮判定
     static constexpr float ROAR_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ROAR_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
@@ -76,9 +79,17 @@ private:
     static constexpr VECTOR JUMP_ATK_LOCAL = { 0.0f,100.0f,0.0f };
 
     static constexpr float ATK_SPHERE_RADIUS = 50.0f;					//通常攻撃の球体の半径
-    static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃カプセル球の半径
+    static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃の始まりの半径
 	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //咆哮攻撃の球体の半径
 	static constexpr float ROLE_ATK_RADIUS = 150.0f;                     //転がる攻撃の球体の半径
+    //ジャンプ攻撃範囲
+    static constexpr float JUMP_ATK_GOAL_RADIUS = 2500.0f;
+
+    //ジャンプアニメーションループ
+    static constexpr float JUMP_ATK_ANIM_LOOP_START = 12.0f;
+    static constexpr float JUMP_ATK_ANIM_LOOP_END = 13.0f;
+    static constexpr float JUMP_ATK_ANIM_LOOP_SPEED = 5.0f;
+
     //ひっかき攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
     //ジャンプ攻撃のステータス
@@ -92,6 +103,13 @@ private:
 
     //ジャンプ攻撃カウント
     float jumpAtkCnt_;
+    //ジャンプチャージカウント
+    float jumpChargeCnt_;
+    //ジャンプチャージ中のカード勝敗数カウント
+    int jampCardNum_;
+
+    //イージング
+    std::unique_ptr<Easing>easing_;
 
     //遷移
     void ChangeSwip(void);
@@ -106,6 +124,9 @@ private:
     void UpdateJumpAtk(void);
 	void UpdateRoleAtk(void);
     void UpdateReload(void);
+
+    //ジャンプチャージ中、カード負けしても何枚かカードを出す
+    bool IsCardFailureJumpCharge(void);
 
 	//アクションによって処理を分岐
 	void DesideCardAction(void);

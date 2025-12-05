@@ -32,8 +32,8 @@ public:
 private:
 	CharacterManager(void);
 	~CharacterManager(void)override;
-	std::unique_ptr<Player>player_;
-	std::unique_ptr<Enemy>enemy_;
+	std::shared_ptr<Player>player_;
+	std::shared_ptr<Enemy>enemy_;
 	//std::vector<std::unique_ptr<CharacterBase>> characters_;
 };
 

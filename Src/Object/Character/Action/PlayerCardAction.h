@@ -71,12 +71,13 @@ private:
     //更新系
 	void UpdateAttack(void);         //攻撃アクション
     void UpdateReload(void);         //リロード
-
+    void UpdateSonicRave(void);
     //遷移系
 	void ChangeAttackOne(void);         //攻撃アクション1回目
 	void ChangeAttackTwo(void);         //攻撃アクション2回目
 	void ChangeAttackThree(void);       //攻撃アクション3回目
     void ChangeReload(void);            //リロード
+    void ChangeSonicRave(void);         //ソニックレイヴ
 
     //コンボアクション遷移(あれば実装する)
     void ChangeComboAction(void)override;

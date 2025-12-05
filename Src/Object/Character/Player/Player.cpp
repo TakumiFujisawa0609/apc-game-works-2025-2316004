@@ -31,7 +31,6 @@
 #include"../Action/React.h"
 #include"../Action/Dodge.h"
 #include"../Action/PlayerCardAction.h"
-
 #include "./PlayerLogic.h"
 
 
@@ -124,8 +123,10 @@ void Player::Init(void)
 
 	tag_ = Collider::TAG::PLAYER1;
 
+	capRadius_ = RADIUS;
+
 	//カプセル
-	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
+	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, RADIUS);
 	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
 
@@ -324,9 +325,13 @@ void Player::GoalUpdate(void)
 
 void Player::Action(void)
 {
-	static VECTOR dirDown = trans_.GetDown();
-	//重力(各アクションに重力を反映させたいので先に重力を先に書く)
-	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
+	if (!onHit_->GetHitPoint().isOverHead)
+	{
+		static VECTOR dirDown = trans_.GetDown();
+		//重力(各アクションに重力を反映させたいので先に重力を先に書く)
+		//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
+	}
+
 
 
 	//アクション関係の更新

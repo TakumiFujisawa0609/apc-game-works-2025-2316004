@@ -47,6 +47,7 @@ public:
 		ATTACK_THREE, //攻撃アクション3回目
 		HEAL_CARD,       //ヒールカード使用
 		MAGIC_CARD,        //マジックカード使用
+		SONIC_RAVE,		//ソニックレイヴ		
 
 		//敵のアクション
 		SWIP_ATK, //ひっかき攻撃

@@ -115,6 +115,12 @@ void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)
 	cardFuncs_.pop();
 }
 
+void CardActionBase::PutCard(void)
+{
+	deck_.MoveHandToCharge();
+	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+}
+
 void CardActionBase::ChangeComboAction(void)
 {
 }

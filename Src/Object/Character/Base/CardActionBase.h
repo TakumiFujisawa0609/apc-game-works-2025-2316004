@@ -57,6 +57,9 @@ protected:
 	//負けて攻撃が終了
 	void FinishFailureAttack(const Collider::TAG _attackCol);
 
+    //カードを場に出す
+    void PutCard(void);
+
     //移動量
     VECTOR velocity_;
 

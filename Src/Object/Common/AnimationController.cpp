@@ -101,6 +101,9 @@ void AnimationController::Play(int type, bool isLoop,
 		// アニメーションループ
 		isLoop_ = isLoop;
 
+		//途中ループ
+		isMidLoop_ = false;
+
 		// アニメーションしない
 		isStop_ = isStop;
 
@@ -135,7 +138,7 @@ void AnimationController::Update(void)
 		else
 		{
 			// 逆再生の場合
-			if (playAnim_.step < playAnim_.totalTime)
+			if (playAnim_.step < playAnim_.totalTime&&!isMidLoop_)
 			{
 				isEnd = true;
 			}
@@ -206,6 +209,28 @@ void AnimationController::SetEndLoop(float startStep, float endStep, float speed
 	stepEndLoopStart_ = startStep;
 	stepEndLoopEnd_ = endStep;
 	endLoopSpeed_ = speed;
+}
+
+void AnimationController::SetMidLoop(const float startStep, const float endStep, float _spd)
+{
+	isMidLoop_ = true;
+	if (playAnim_.step >= endStep)
+	{
+		playAnim_.speed = _spd;
+		switchLoopReverse_ = -1.0f;
+	}
+	else if (switchLoopReverse_ == -1.0f && playAnim_.step < startStep)
+	{
+		playAnim_.speed = _spd;
+		switchLoopReverse_ = 1.0f;
+	}
+}
+
+void AnimationController::SetEndMidLoop(const float _spd)
+{
+	isMidLoop_ = false;
+	switchLoopReverse_ = 1.0f;
+	playAnim_.speed = _spd;
 }
 
 int AnimationController::GetPlayType(void) const
