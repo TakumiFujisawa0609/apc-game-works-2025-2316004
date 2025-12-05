@@ -25,7 +25,7 @@ public:
 
 	/// @brief リロードゲージ描画
 	/// @param  
-	void DrawReloadGauge(const float& _reloadFrameImg,const float& _reloadPer);
+	void DrawReloadGauge(const int& _reloadFrameImg,const float& _reloadPer);
 
 private:
 

@@ -68,7 +68,7 @@ public:
 
 	/// @brief リロードゲージの描画
 	/// @param  
-	void DrawReloadGauge(const float& _reloadCardFrameImg,const float& _reloadPer);
+	void DrawReloadGauge(const int& _reloadCardFrameImg,const float& _reloadPer);
 
 	/// @brief 選択カード枠描画
 	/// @param _frameImg 

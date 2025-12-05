@@ -114,7 +114,7 @@ void CardUIDraw::DrawCard(void)
 	normalCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
 }
 
-void CardUIDraw::DrawReloadGauge(const float& _reloadFrameImg,const float& _reloadPer)
+void CardUIDraw::DrawReloadGauge(const int& _reloadFrameImg,const float& _reloadPer)
 {
 	//‰æ‘œƒTƒCƒYŽæ“¾
 	GetGraphSizeF(typeImg_, &size_.x, &size_.y);

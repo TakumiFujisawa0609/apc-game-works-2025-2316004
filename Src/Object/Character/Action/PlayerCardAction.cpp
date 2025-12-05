@@ -43,8 +43,13 @@ void PlayerCardAction::Init(void)
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
+	if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
+	{
+		int i = 0;
+	}
+
+
 	//手札に移動
-	
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		PutCard();

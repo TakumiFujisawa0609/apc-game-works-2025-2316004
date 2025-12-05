@@ -78,7 +78,7 @@ void ActionController::Update(void)
 {
 	mainAction_[act_]->Update();
 
-	MoveDirFronInput();
+	MoveDirFromInput();
 	charaObj_.Rotate();
 	DirAndMovePowUpdate();
 
@@ -88,6 +88,10 @@ void ActionController::Update(void)
 }
 
 #ifdef _DEBUG
+const ActionBase& ActionController::GetMainAction(void)
+{
+	return *mainAction_.at(act_);
+}
 void ActionController::DrawDebug(void)
 {
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
@@ -170,9 +174,9 @@ void ActionController::SetFlinchCnt(const float _flinchTime)
 	mainAction_[ACTION_TYPE::REACT]->SetFlinchCnt(_flinchTime);
 }
 
-void ActionController::MoveDirFronInput(void)
+void ActionController::MoveDirFromInput(void)
 {
-	charaObj_.MoveDirFronInput();
+	charaObj_.MoveDirFromInput();
 
 	float deg = logic_.GetMoveDeg();
 	if (/*!Utility3D::EqualsVZero(movePow_)&&*/mainAction_[act_]->GetIsTurnable())

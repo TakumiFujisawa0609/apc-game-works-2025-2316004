@@ -27,6 +27,11 @@ public:
     void Init(void) override;
     void Update() override;
 
+    /// @brief ジャンプチャージ攻撃中
+    /// @param  
+    /// @return 
+    virtual const bool IsJumpAtkCharge(void)const override { return false; }
+
 protected:
     //カードデッキ
     CardDeck& deck_;

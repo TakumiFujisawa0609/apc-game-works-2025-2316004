@@ -97,6 +97,9 @@ public:
 	/// @return 状態
 	const ACTION_TYPE& GetAct(void)const { return act_; }
 
+	/// @brief カードアクションの取得
+	/// @param  
+	/// @return カードアクション
 	const ActionBase::CARD_ACT_TYPE& GetCardAction(void)const;
 	
 	/// @brief 入力クラスの取得
@@ -145,7 +148,10 @@ public:
 		mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
 	}
 
-
+	/// @brief メインアクションの取得
+	/// @param  
+	/// @return 
+	const ActionBase& GetMainAction(void);
 
 
 #ifdef _DEBUG
@@ -227,7 +233,7 @@ private:
 	//void StopSe(const ACT_SE _se);
 
 	//入力方向に応じて方向を決める
-	void MoveDirFronInput(void);
+	void MoveDirFromInput(void);
 	//回転処理
 	void Rotate(void);
 	//方向と移動量の更新

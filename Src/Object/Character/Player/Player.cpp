@@ -228,7 +228,7 @@ void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
 	onHit_->OnHitUpdate(_hitCol);
 }
-void Player::MoveDirFronInput(void)
+void Player::MoveDirFromInput(void)
 {
 	//プレイヤー入力クラスから角度を取得
 	VECTOR getDir = logic_->GetDir();

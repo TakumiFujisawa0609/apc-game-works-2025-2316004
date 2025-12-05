@@ -54,7 +54,7 @@ void CardUIController::DrawModel(void)
 	cardDraw_->DrawModel();
 }
 
-void CardUIController::DrawReloadGauge(const float&_reloadCardFrameImg,const float& _reloadPer)
+void CardUIController::DrawReloadGauge(const int&_reloadCardFrameImg,const float& _reloadPer)
 {
 	cardDraw_->DrawReloadGauge(_reloadCardFrameImg,_reloadPer);
 }

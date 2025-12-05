@@ -4,6 +4,7 @@
 #include "../Player/PlayerOnHit.h"
 #include "../Player/ActionController.h"
 #include "../Base/CardActionBase.h"
+#include "../Base/ActionBase.h"
 #include "../Object/ObjectBase.h"
 
 class AnimationController;
@@ -134,7 +135,7 @@ public:
 	
 	/// @brief 入力方向に応じて方向を決める
 	/// @param  
-	virtual void MoveDirFronInput(void);
+	virtual void MoveDirFromInput(void);
 
 	/// @brief ゴール角度をセット
 	/// @param _deg 
@@ -169,7 +170,7 @@ public:
 	/// @brief キャラクターの中心座標取得
 	/// @param  
 	/// @return キャラクターの中心座標
-	const VECTOR& GetCharaCecterPos(void)const;
+	const VECTOR& GetCharaCenterPos(void)const;
 
 	/// @brief ダメージを与えたことを知らせる
 	/// @param  
@@ -189,7 +190,15 @@ public:
 	/// @return 
 	inline CardUIBase& GetCardUI(void)const { return *cardUI_; }
 
+	/// @brief カードアクションの取得
+	/// @param  
+	/// @return 
 	const CardActionBase::CARD_ACT_TYPE& GetCardAction(void)const;
+
+	/// @brief 敵のジャンプチャージ中取得
+	/// @param  
+	/// @return 
+	const ActionBase& GetMainAction(void)const;
 	
 	/// @brief　使用済みカードについての処理
 	/// @param  

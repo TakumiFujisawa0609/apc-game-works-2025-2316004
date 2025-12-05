@@ -1,4 +1,5 @@
 #include "./CharacterBase.h"
+#include "../Base/CardActionBase.h"
 #include "LogicBase.h"
 
 LogicBase::LogicBase(void):
@@ -12,6 +13,12 @@ LogicBase::LogicBase(void):
 
 LogicBase::~LogicBase(void)
 {
+}
+
+const bool LogicBase::GetIsEnemyJumpCharge(void)const
+{
+	return targetChara_.lock()->GetCardAction() == CardActionBase::CARD_ACT_TYPE::JUMP_ATK
+		&& targetChara_.lock()->GetMainAction().IsJumpAtkCharge();
 }
 
 void LogicBase::SetTargetCharacter(std::shared_ptr<CharacterBase> _target)

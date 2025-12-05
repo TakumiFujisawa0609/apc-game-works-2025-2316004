@@ -7,7 +7,6 @@ class CharacterBase;
 class LogicBase
 
 {
-
 public:
 
     //アクションボタンの種類
@@ -90,6 +89,12 @@ public:
     /// @param  
     /// @return 攻撃種類
     const ENEMY_ATTACK_TYPE& GetAttackType(void)const { return attackType_; }
+
+
+    /// @brief プレイヤーが敵の攻撃種類を取得する
+    /// @param  
+    /// @return 
+    const bool GetIsEnemyJumpCharge(void)const;
 
     /// @brief ターゲットをセットする
     /// @param _target 

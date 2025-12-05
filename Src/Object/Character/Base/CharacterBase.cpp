@@ -148,7 +148,7 @@ void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 
 }
 
-void CharacterBase::MoveDirFronInput(void)
+void CharacterBase::MoveDirFromInput(void)
 {
 }
 
@@ -171,7 +171,7 @@ void CharacterBase::Damage(const int _dam)
 	status_.hp -= _dam;
 }
 
-const VECTOR& CharacterBase::GetCharaCecterPos(void) const
+const VECTOR& CharacterBase::GetCharaCenterPos(void) const
 {
 	return collider_.at(ObjectBase::TAG_PRIORITY::BODY)->GetGeometry().GetCenter();
 }
@@ -184,6 +184,12 @@ void CharacterBase::SetFlinchCnt(const float _flichCnt)
 const CardActionBase::CARD_ACT_TYPE& CharacterBase::GetCardAction(void) const
 {
 	return action_->GetCardAction();
+}
+
+
+const ActionBase& CharacterBase::GetMainAction(void) const
+{
+	return action_->GetMainAction();
 }
 
 void CharacterBase::DeleteCard(void)

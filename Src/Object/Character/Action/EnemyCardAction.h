@@ -40,6 +40,10 @@ public:
     /// @param  
     void Release(void)override;
 
+    /// @brief ジャンプ攻撃チャージ中取得
+    /// @param  
+    /// @return 
+    const bool IsJumpAtkCharge(void)const override;
     
 private:
 
@@ -99,7 +103,8 @@ private:
 	//転がるのステータス
 	static constexpr CardActionBase::ATK_STATUS RUSH_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
 
-
+    //ジャンプ溜め中のカード出した回数
+    static constexpr int JAMP_CHARGE_CARD_NUM_MAX = 3;
 
     //ジャンプ攻撃カウント
     float jumpAtkCnt_;

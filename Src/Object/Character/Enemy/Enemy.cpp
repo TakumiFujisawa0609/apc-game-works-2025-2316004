@@ -191,7 +191,7 @@ void Enemy::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
 	onHit_->OnHitUpdate(_hitCol);
 }
-void Enemy::MoveDirFronInput(void)
+void Enemy::MoveDirFromInput(void)
 {
 	//“ü—ÍƒNƒ‰ƒX‚©‚çŠp“x‚ðŽæ“¾
 	VECTOR getDir = logic_->GetDir();
@@ -215,6 +215,7 @@ void Enemy::SetGoalRotate(const double _deg)
 	}
 	charaRot_.goalQuaRot_ = axis;
 }
+
 #ifdef _DEBUG
 void Enemy::DrawDebug(void)
 {

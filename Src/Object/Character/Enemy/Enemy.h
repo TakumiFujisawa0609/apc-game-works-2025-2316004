@@ -110,7 +110,8 @@ public:
 	/// 入力方向に応じて方向を決める
 	/// </summary>
 	/// <param name=""></param>
-	void MoveDirFronInput(void)override;
+	void MoveDirFromInput(void)override;
+
 	/// <summary>
 	/// ゴール角度をセット
 	/// </summary>

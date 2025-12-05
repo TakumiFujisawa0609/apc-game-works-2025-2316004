@@ -120,14 +120,7 @@ void Camera::ChangeMode(MODE mode)
 	mode_ = mode;
 	changeMode_[mode_]();
 
-	//// •ÏX‚Ì‰Šú‰»ˆ—
-	//switch (mode_)
-	//{
-	//case Camera::MODE::FIXED_POINT:
-	//	break;
-	//case Camera::MODE::FOLLOW:
-	//	break;
-	//}
+
 
 }
 

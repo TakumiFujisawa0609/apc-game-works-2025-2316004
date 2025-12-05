@@ -91,6 +91,11 @@ void EnemyCardAction::Release(void)
 	actionCntl_.GetInput().SetFreezeCntByAttackType();
 }
 
+const bool EnemyCardAction::IsJumpAtkCharge(void) const
+{
+	return jumpChargeCnt_ < JUMP_CHARGE_TIME; 
+}
+
 void EnemyCardAction::ChangeSwip(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::SWIP_ATK), false);
@@ -146,13 +151,13 @@ void EnemyCardAction::UpdateRoar(void)
 
 void EnemyCardAction::UpdateJumpAtk(void)
 {
-	//負けたら終了
-	if (IsCardFailure(Collider::TAG::NML_ATK))return;
-	const Transform& charaTrans = charaObj_.GetTransform();
-
+	////負けたら終了
+	//if (IsCardFailure(Collider::TAG::NML_ATK))return;
 	//ジャンプチャージ
 	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
 	{
+		if (IsCardFailureJumpCharge())return;
+
 		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//アニメーションループ
 		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
@@ -165,6 +170,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	}
 	if (anim_.GetAnimStep() > JUMP_ANIM_END)
 	{
+		const Transform& charaTrans = charaObj_.GetTransform();
 		//ジャンプ攻撃処理
 		CardActionBase::ATK_STATUS& status = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
 
@@ -213,7 +219,7 @@ void EnemyCardAction::UpdateRoleAtk(void)
 	//現在の座標取得
 	const Transform trans = charaObj_.GetTransform();
 	const VECTOR charaPos = trans.pos;
-	const VECTOR& centerPos = charaObj_.GetCharaCecterPos();
+	const VECTOR& centerPos = charaObj_.GetCharaCenterPos();
 	isTurnable_ = false;
 	if (preRoleAtkCnt_ < 0.0f)
 	{
@@ -248,10 +254,18 @@ bool EnemyCardAction::IsCardFailureJumpCharge(void)
 	//カードの勝敗判定
 	deck_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
+	if (jampCardNum_ > JAMP_CHARGE_CARD_NUM_MAX)
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+		actionCntl_.GetInput().IsActioningSet();
+		charaObj_.GetCardUI().ChangeReactActionCard();
+		return true;
+	}
 	if (deck_.IsCardFailure())
 	{
+		charaObj_.GetCardUI().ChangeReactActionCard();
 		PutCard();
-		return true;
+		jampCardNum_++;
 	}
 	return false;
 }

@@ -45,6 +45,7 @@ public:
 		ATTACK_ONE, //攻撃アクション1回目
 		ATTACK_TWO, //攻撃アクション2回目
 		ATTACK_THREE, //攻撃アクション3回目
+		DUEL_FAZE,		//敵のジャンプチャージフェーズの時、カード勝負行動に出る
 		HEAL_CARD,       //ヒールカード使用
 		MAGIC_CARD,        //マジックカード使用
 		SONIC_RAVE,		//ソニックレイヴ		
@@ -99,6 +100,11 @@ public:
 
 	//カードアクションの取得
 	const CARD_ACT_TYPE& GetCardAction(void)const;
+
+	/// @brief ジャンプ攻撃チャージ
+	/// @param  
+	/// @return 
+	virtual const bool IsJumpAtkCharge(void)const { return false; }
 
 protected:
 
