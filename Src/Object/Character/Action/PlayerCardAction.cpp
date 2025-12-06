@@ -143,6 +143,11 @@ void PlayerCardAction::UpdateSonicRave(void)
 {
 }
 
+void PlayerCardAction::UpdateDuel(void)
+{
+
+}
+
 
 void PlayerCardAction::ChangeAttackOne(void)
 {
@@ -184,6 +189,11 @@ void PlayerCardAction::ChangeReload(void)
 
 void PlayerCardAction::ChangeSonicRave(void)
 {
+}
+
+void PlayerCardAction::ChangeDuel(void)
+{
+	cardFuncs_.push([this]() {UpdateDuel(); });
 }
 
 void PlayerCardAction::ChangeComboAction(void)
