@@ -122,13 +122,14 @@ private:
     void ChangeJumpAtk(void);
 	void ChangeRoleAtk(void);
     void ChangeReload(void);
-
+    void ChangeDuel(void)override;
     //更新
     void UpdateSwip(void);
     void UpdateRoar(void);
     void UpdateJumpAtk(void);
 	void UpdateRoleAtk(void);
     void UpdateReload(void);
+    void UpdateDuel(void)override;
 
     //ジャンプチャージ中、カード負けしても何枚かカードを出す
     bool IsCardFailureJumpCharge(void);

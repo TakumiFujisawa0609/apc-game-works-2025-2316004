@@ -62,7 +62,7 @@ public:
 
 	/// @brief カードを使用札に移動
 	/// @param  
-	void MoveHandToCharge(void);
+	void MoveUsingCardToDrawPile(void);
 	//手札のカード取得
 	//std::vector<std::weak_ptr<CardBase>> GetHand(void);
 
@@ -89,8 +89,14 @@ public:
 	/// @brief リロードする
 	/// @param  
 	void Reload(void);
+
+	/// @brief 使用中カードからチャージカードへ移動
+	/// @param  
+	void MoveChargeToUsingCard(void);
+
 private:
 	//メンバ関数
+	
 	//カードを選択したときの制限
 	void CardMoveLimit(void);
 
@@ -101,7 +107,7 @@ private:
 	//山札
 	std::vector<std::unique_ptr<CardBase>>drawPile_;
 	//今使っているカード
-	std::vector<std::unique_ptr<CardBase>>hand_;
+	std::vector<std::unique_ptr<CardBase>>usingCards_;
 	//チャージ中カード
 	std::vector<std::unique_ptr<CardBase>>chargeCard_;
 	//捨て札

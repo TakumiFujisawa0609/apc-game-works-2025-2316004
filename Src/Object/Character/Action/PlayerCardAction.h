@@ -72,15 +72,15 @@ private:
 	void UpdateAttack(void);         //攻撃アクション
     void UpdateReload(void);         //リロード
     void UpdateSonicRave(void);     //ソニックレイヴ
-    void UpdateDuel(void);
+    void UpdateDuel(void)override;  //デュエルモード
+
     //遷移系
 	void ChangeAttackOne(void);         //攻撃アクション1回目
 	void ChangeAttackTwo(void);         //攻撃アクション2回目
 	void ChangeAttackThree(void);       //攻撃アクション3回目
     void ChangeReload(void);            //リロード
     void ChangeSonicRave(void);         //ソニックレイヴ
-    void ChangeDuel(void);              //デュエルモード
-
+    void ChangeDuel(void)override;      //デュエルモード
     //コンボアクション遷移(あれば実装する)
     void ChangeComboAction(void)override;
 };

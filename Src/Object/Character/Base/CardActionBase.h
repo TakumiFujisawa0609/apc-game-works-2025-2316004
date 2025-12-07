@@ -46,6 +46,9 @@ protected:
     //アタックのQueue配列
     std::queue<std::function<void(void)>>cardFuncs_;
 
+    //デュエルモードでの待機中フラグ　true:待機中
+    bool isDuelWait_;
+
     //攻撃座標
     VECTOR atkPos_;
     //状態遷移
@@ -64,6 +67,10 @@ protected:
 
     //カードを場に出す
     void PutCard(void);
+
+    //デュエルモード
+    virtual void ChangeDuel(void) = 0;              //デュエルモード遷移
+    virtual void UpdateDuel(void) = 0;              //デュエルモード更新
 
     //移動量
     VECTOR velocity_;

@@ -197,7 +197,7 @@ void CharacterBase::DeleteCard(void)
 	//現在使っているカードを捨てる
 	deck_->EraseHandCard();
 	//手札に移動
-	deck_->MoveHandToCharge();
+	deck_->MoveUsingCardToDrawPile();
 	cardUI_->ChangeUsedActionCard();
 	//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 }

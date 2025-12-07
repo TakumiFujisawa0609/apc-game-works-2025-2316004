@@ -24,6 +24,7 @@ roleDeg_(0.0f)
 		{ CARD_ACT_TYPE::ROAR_ATK, [this]() {ChangeRoar(); }},
 		{ CARD_ACT_TYPE::JUMP_ATK, [this]() {ChangeJumpAtk(); }},
 		{ CARD_ACT_TYPE::RUSH_ATK, [this]() {ChangeRoleAtk(); }},
+		{ CARD_ACT_TYPE::DUEL_FAZE, [this]() {ChangeDuel(); }},
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 	};
 
@@ -42,7 +43,7 @@ EnemyCardAction::~EnemyCardAction(void)
 void EnemyCardAction::Init(void)
 {
 	actType_ = CARD_ACT_TYPE::NONE;
-	//deck_.MoveHandToCharge();
+	//deck_.MoveUsingCardToDrawPile();
 	easing_ = std::make_unique<Easing>();
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
@@ -136,6 +137,12 @@ void EnemyCardAction::ChangeReload(void)
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
 	cardFuncs_.push([this]() {UpdateReload(); });
+}
+
+void EnemyCardAction::ChangeDuel(void)
+{
+	isDuelWait_ = true;
+	cardFuncs_.push([this]() {UpdateDuel(); });
 }
 
 void EnemyCardAction::UpdateSwip(void)
@@ -247,6 +254,11 @@ void EnemyCardAction::UpdateReload(void)
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 	actType_ = CARD_ACT_TYPE::NONE;
 	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+}
+
+void EnemyCardAction::UpdateDuel(void)
+{
+	isDuelWait_ = true;
 }
 
 bool EnemyCardAction::IsCardFailureJumpCharge(void)

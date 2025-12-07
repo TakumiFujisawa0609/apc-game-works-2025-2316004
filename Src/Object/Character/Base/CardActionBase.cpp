@@ -117,7 +117,7 @@ void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)
 
 void CardActionBase::PutCard(void)
 {
-	deck_.MoveHandToCharge();
+	deck_.MoveUsingCardToDrawPile();
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 

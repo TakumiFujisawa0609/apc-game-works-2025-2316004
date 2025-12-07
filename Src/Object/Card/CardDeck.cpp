@@ -22,7 +22,7 @@ CardDeck::CardDeck(Vector2& _centerPos, int _playerNum):
 CardDeck::~CardDeck(void)
 {
 	drawPile_.clear();
-	hand_.clear();
+	usingCards_.clear();
 	chargeCard_.clear();
 	disCard_.clear();
 	initDeck_.clear();
@@ -53,10 +53,10 @@ void CardDeck::CardCharge(void)
 
 void CardDeck::EraseHandCard(const bool _isLose)
 {
-	hand_.clear();
+	usingCards_.clear();
 
 	//使ったカードの配列を消す
-	UtilityTemplates::EraseVectorArray(hand_);
+	UtilityTemplates::EraseVectorArray(usingCards_);
 
 	if (_isLose == true)
 	{
@@ -105,12 +105,12 @@ void CardDeck::Draw(void)
 
 
 	//手札の表示
-	int handSize = static_cast<int>(hand_.size());
+	int handSize = static_cast<int>(usingCards_.size());
 	if (handSize > 0)
 	{
 		for (int i = 0; i < handSize; i++)
 		{
-			int handCardPow = hand_[i]->GetCardStatus().pow_;
+			int handCardPow = usingCards_[i]->GetCardStatus().pow_;
 			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0x000000, L"(%d)", handCardPow);
 		}
 	}
@@ -130,23 +130,16 @@ void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
 	
 }
 
-void CardDeck::MoveHandToCharge(void)
+void CardDeck::MoveUsingCardToDrawPile(void)
 {
 	//山札にあるカードを手札に加える
-	hand_.emplace_back(std::move(drawPile_[currentNum_]));
+	usingCards_.emplace_back(std::move(drawPile_[currentNum_]));
 
 	//山札からカードを削除する
 	UtilityTemplates::EraseVectorArray(drawPile_);
-	if (currentNum_ == 0)
-	{
-		prevNum_ = static_cast<int>(drawPile_.size()) - 1;
-		nextNum_ = currentNum_ + 1;
-	}
-	else if (currentNum_ > static_cast<int>(drawPile_.size()) - 1)
+	if (currentNum_ > static_cast<int>(drawPile_.size()) - 1)
 	{
 		currentNum_ = 0;
-		prevNum_= currentNum_-1;
-		nextNum_ = 0;
 	}
 	//システム側の処理
 	DrawCardFromDeck();
@@ -158,7 +151,7 @@ void CardDeck::DrawCardFromDeck(void)
 	int cardPow = 0;
 
 	//手札の合計値を出す
-	for (auto& it : hand_)
+	for (auto& it : usingCards_)
 	{
 		cardPow += it->GetCardStatus().pow_;
 	}
@@ -176,7 +169,7 @@ void CardDeck::DrawCardFromDeck(void)
 std::vector<CardBase::CARD_TYPE> CardDeck::GetHandCardType(void)
 {
 	std::vector<CardBase::CARD_TYPE>handCardTypes;
-	for (auto& h : hand_)
+	for (auto& h : usingCards_)
 	{
 		CardBase::CARD_TYPE type = h->GetCardStatus().type_;
 		handCardTypes.emplace_back(type);
@@ -201,6 +194,18 @@ void CardDeck::Reload(void)
 	//それぞれの番号の初期化
 	currentNum_ = 0;
 }
+
+void CardDeck::MoveChargeToUsingCard(void)
+{
+	if (usingCards_.size() >= 2)
+	{
+		//ここは絶対通らないが、エラーチェック
+		return;
+	}
+	//チャージ札に移動
+	chargeCard_.emplace_back(std::move(usingCards_[0]));
+}
+
 
 void CardDeck::CardMoveLimit(void)
 {

@@ -20,6 +20,7 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{ CARD_ACT_TYPE::ATTACK_TWO, [this]() {ChangeAttackTwo(); }},
 		{ CARD_ACT_TYPE::ATTACK_THREE, [this]() {ChangeAttackThree(); }},
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
+		{ CARD_ACT_TYPE::DUEL_FAZE, [this]() {ChangeDuel(); }},
 	};
 	ATK_STATUS initStatus={};
 	atkStatusTable_ = {
@@ -45,7 +46,8 @@ void PlayerCardAction::Init(void)
 	attackStageNum_ = 0;
 	if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
 	{
-		int i = 0;
+		PutCard();
+		ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
 	}
 
 
@@ -145,6 +147,23 @@ void PlayerCardAction::UpdateSonicRave(void)
 
 void PlayerCardAction::UpdateDuel(void)
 {
+	//カードの勝敗による処理
+	if (!deck_.IsCardFailure())
+	{
+		//チャージカードに移動
+		deck_.MoveChargeToUsingCard();
+	}
+	else
+	{
+		//負けたらカードを削除
+		deck_.EraseHandCard();
+	}
+
+	//カードをドローする
+	if (actionCntl_.GetInput().GetIsAct().isCardUse)
+	{
+		deck_.MoveUsingCardToDrawPile();
+	}
 
 }
 
@@ -193,6 +212,7 @@ void PlayerCardAction::ChangeSonicRave(void)
 
 void PlayerCardAction::ChangeDuel(void)
 {
+	isDuelWait_ = true;
 	cardFuncs_.push([this]() {UpdateDuel(); });
 }
 
