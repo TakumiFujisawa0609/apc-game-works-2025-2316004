@@ -128,7 +128,7 @@ void EnemyCardAction::ChangeRoleAtk(void)
 	roleAtkCnt_ = ROLE_TIME;
 	preRolePos_ = charaObj_.GetTransform().pos;
 	
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::NONE), true);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
 	cardFuncs_.push([this]() {UpdateRoleAtk(); });
 }
 
@@ -230,7 +230,7 @@ void EnemyCardAction::UpdateRoleAtk(void)
 		//前隙中
 		preRoleAtkCnt_ -= deltaTIme;
 		//前に進む
-		//actionCntl_.GetInput().GetLookAtTargetDir();
+		actionCntl_.GetInput().GetLookAtTargetDir();
 		roleMoveDeg_ = actionCntl_.GetInput().GetLookAtTargetDeg();
 		roleMoveDir_ = actionCntl_.GetInput().GetLookAtTargetDir();
 		roleMoveDir_.y = 0.0f;
@@ -251,9 +251,6 @@ void EnemyCardAction::UpdateRoleAtk(void)
 		atkPos_ = Utility3D::AddPosRotate(trans.pos, trans.quaRot, { 0.0f,centerPos.y,0.0f });
 		//転がる間の速度
 		speed_ = ROLE_SPEED;
-		//前に進む
-		charaObj_.LariatMove(roleDeg_);
-		roleDeg_ += 30.0f;
 		//当たり判定の作成
 		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, atkPos_, ROLE_ATK_RADIUS);
 		actionCntl_.GetInput().SetDegAndDir(roleMoveDeg_, roleMoveDir_);
