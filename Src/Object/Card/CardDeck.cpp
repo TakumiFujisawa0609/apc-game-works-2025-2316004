@@ -66,7 +66,8 @@ void CardDeck::EraseHandCard(const bool _isLose)
 	else
 	{
 		//カードを捨てるときに勝敗判定のカードの強さを初期化する
-		CardSystem::GetInstance().InitPutCardPow(playerNum_);
+		//CardSystem::GetInstance().InitPutCardPow(playerNum_);
+		CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
 	}
 
 }
@@ -130,6 +131,12 @@ void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
 	
 }
 
+void CardDeck::AddDuelDeck(const CardBase::CARD_STATUS& _status)
+{
+	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_status);
+	enemyDuelDeck_.emplace_back(std::move(card));
+}
+
 void CardDeck::MoveUsingCardToDrawPile(void)
 {
 	//山札にあるカードを手札に加える
@@ -143,6 +150,26 @@ void CardDeck::MoveUsingCardToDrawPile(void)
 	}
 	//システム側の処理
 	DrawCardFromDeck();
+}
+
+void CardDeck::MoveUsingCardToDuelDeck(void)
+{
+	//山札にあるカードを手札に加える
+	usingCards_.emplace_back(std::move(enemyDuelDeck_[currentNum_]));
+
+	//山札からカードを削除する
+	UtilityTemplates::EraseVectorArray(enemyDuelDeck_);
+	if (currentNum_ > static_cast<int>(enemyDuelDeck_.size()) - 1)
+	{
+		currentNum_ = 0;
+	}
+	//システム側の処理
+	DrawCardFromDeck();
+}
+
+void CardDeck::ClearDuelDeck(void)
+{
+	enemyDuelDeck_.clear();
 }
 
 void CardDeck::DrawCardFromDeck(void)
@@ -204,6 +231,43 @@ void CardDeck::MoveChargeToUsingCard(void)
 	}
 	//チャージ札に移動
 	chargeCard_.emplace_back(std::move(usingCards_[0]));
+	usingCards_.clear();
+
+	CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
+}
+
+void CardDeck::DicideDuelDeck(void)
+{
+	int rand = GetRand(static_cast<int>(DUELDECK_PETTERN::DUEL_PETTERN_3));
+	DUELDECK_PETTERN pettern = static_cast<DUELDECK_PETTERN>(rand);
+
+	//現在選択中初期化
+	duelNo_ = 0;
+	switch (pettern)
+	{
+	case CardDeck::DUELDECK_PETTERN::DUEL_PETTERN_1:
+		for (int i = 0; i < DUEL_NUM_MAX; i++)
+		{
+			AddDuelDeck(DUEL_DECK_PETTERN_1[i]);
+		}
+		break;
+	case CardDeck::DUELDECK_PETTERN::DUEL_PETTERN_2:
+		for (int i = 0; i < DUEL_NUM_MAX; i++)
+		{
+			AddDuelDeck(DUEL_DECK_PETTERN_2[i]);
+		}
+		break;
+	case CardDeck::DUELDECK_PETTERN::DUEL_PETTERN_3:
+		for (int i = 0; i < DUEL_NUM_MAX; i++)
+		{
+			AddDuelDeck(DUEL_DECK_PETTERN_3[i]);
+		}
+		break;
+	case CardDeck::DUELDECK_PETTERN::END:
+		break;
+	default:
+		break;
+	}
 }
 
 
@@ -225,5 +289,22 @@ bool CardDeck::IsCardFailure(void)
 	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(playerNum_);
 	using RESULT = CardSystem::BATTLE_RESULT;
 	return result == RESULT::FAILURE_USE_BE_REFLECTED || result == RESULT::BE_DRAW
-		|| result == RESULT::GIVE_DRAW||result== RESULT::NONE;
+		|| result == RESULT::GIVE_DRAW;
 }
+
+bool CardDeck::IsNone(void)
+{
+	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(playerNum_);
+	using RESULT = CardSystem::BATTLE_RESULT;
+	return result == RESULT::NONE;
+}
+
+bool CardDeck::IsCardWin(void)
+{
+	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(playerNum_);
+	using RESULT = CardSystem::BATTLE_RESULT;
+	return result == RESULT::SUCCESS_CARD_BREAK || result == RESULT::SUCCESS_REFLECT
+		|| result == RESULT::SUCCESS_USE|| result == RESULT::SUCCESS_USE_CONTINUE;
+}
+
+

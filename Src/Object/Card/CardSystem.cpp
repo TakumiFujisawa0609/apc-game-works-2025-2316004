@@ -51,7 +51,7 @@ void CardSystem::LoseInitPutCardPow(const int _playerNo)
 		//先出しのカードを消す
 		putCardPow_[FIRST_ATK] = -1;
 		isFirstAtk_[_playerNo] = false;
-
+		playerResult_[_playerNo] = BATTLE_RESULT::NONE;
 		//後出しのカードを先出しにする
 		if (putCardPow_[SECOND_ATK] != -1)
 		{
@@ -71,6 +71,7 @@ void CardSystem::LoseInitPutCardPow(const int _playerNo)
 	else
 	{
 		putCardPow_[SECOND_ATK] = -1;
+		playerResult_[_playerNo] = BATTLE_RESULT::NONE;
 	}
 }
 
@@ -81,12 +82,58 @@ void CardSystem::JudgeIsFirstAtk(const int _playerNo)
 		isFirstAtk_[_playerNo] = true;
 	}
 }
+
+const bool CardSystem::IsNoneCard(void)
+{
+	return putCardPow_[FIRST_ATK] == -1 && putCardPow_[SECOND_ATK] == -1;
+}
 #ifdef _DEBUG
 void CardSystem::DrawDebug(void)
 {
 	DrawFormatString(200, 200, 0x000000, L"CardPow(%d,%d)\nisFirst(%d,%d)"
 		, putCardPow_[0], putCardPow_[1], isFirstAtk_[0], isFirstAtk_[1]);
+	std::wstring resultStr[2];
+	for (int i = 0; i < 2; i++)
+	{
+		switch (playerResult_[i])
+		{
+		case CardSystem::BATTLE_RESULT::NONE:
+			resultStr[i] = L"NONE";
+			break;
+		case CardSystem::BATTLE_RESULT::SUCCESS_USE:
+			resultStr[i] = L"SUCCESS_USE";
+			break;
+		case CardSystem::BATTLE_RESULT::SUCCESS_USE_CONTINUE:
+			resultStr[i] = L"SUCCESS_USE_CONTINUE";
+			break;
+		case CardSystem::BATTLE_RESULT::SUCCESS_CARD_BREAK:
+			resultStr[i] = L"SUCCESS_CARD_BREAK";
+			break;
+		case CardSystem::BATTLE_RESULT::FAILURE_USE_BE_REFLECTED:
+			resultStr[i] = L"FAILURE_USE_BE_REFLECTED";
+			break;
+		case CardSystem::BATTLE_RESULT::SUCCESS_REFLECT:
+			resultStr[i] = L"SUCCESS_REFLECT";
+			break;
+		case CardSystem::BATTLE_RESULT::NOTHING:
+			resultStr[i] = L"NOTHING";
+			break;
+		case CardSystem::BATTLE_RESULT::GIVE_DRAW:
+			resultStr[i] = L"GIVE_DRAW";
+			break;
+		case CardSystem::BATTLE_RESULT::BE_DRAW:
+			resultStr[i] = L"BE_DRAW";
+			break;
+		case CardSystem::BATTLE_RESULT::RELOAD:
+			resultStr[i] = L"RELOAD";
+			break;
+		default:
+			break;
+		}
+	}
 
+	DrawFormatString(200, 250, 0x000000, L"CardResult(%s,%s)"
+		, resultStr[0].c_str(), resultStr[1].c_str());
 }
 #endif // _DEBUG
 
@@ -113,16 +160,18 @@ void CardSystem::CompareCards(void)
 
 	//以下、2つのカードの強さを比較
 	//どちらかのカードが出されていなければ先出し勝利
+	BATTLE_RESULT result[ARRAY_NUM];
+
 	if (putCardPow_[SECOND_ATK] == -1)
 	{
-		result_[FIRST_ATK] = BATTLE_RESULT::SUCCESS_USE;
+		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_USE;
 	}
 	//先出しと後出しカードが同じ強さの時はドロー
 	else if (putCardPow_[FIRST_ATK] == putCardPow_[SECOND_ATK])
 	{
 		//引き分け
-		result_[FIRST_ATK] = BATTLE_RESULT::BE_DRAW;
-		result_[SECOND_ATK] = BATTLE_RESULT::GIVE_DRAW;
+		result[FIRST_ATK] = BATTLE_RESULT::BE_DRAW;
+		result[SECOND_ATK] = BATTLE_RESULT::GIVE_DRAW;
 
 
 		//カードを両方リセット（Re:COM仕様）
@@ -132,14 +181,14 @@ void CardSystem::CompareCards(void)
 	//先出しの勝ち
 	else if (putCardPow_[FIRST_ATK] > putCardPow_[SECOND_ATK])
 	{
-		result_[FIRST_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
-		result_[SECOND_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
+		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
+		result[SECOND_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
 	}
 	//後出しの勝ち
 	else if (putCardPow_[FIRST_ATK] < putCardPow_[SECOND_ATK])
 	{
-		result_[FIRST_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
-		result_[SECOND_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
+		result[FIRST_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
+		result[SECOND_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
 	}
 
 	//各プレイヤーの結果に判定結果を反映する
@@ -147,11 +196,11 @@ void CardSystem::CompareCards(void)
 	{
 		if (isFirstAtk_[i])
 		{
-			playerResult_[i] = result_[FIRST_ATK];
+			playerResult_[i] = result[FIRST_ATK];
 		}
 		else
 		{
-			playerResult_[i] = result_[SECOND_ATK];
+			playerResult_[i] = result[SECOND_ATK];
 		}
 	}
 }

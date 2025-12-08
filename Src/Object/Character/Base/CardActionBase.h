@@ -32,7 +32,15 @@ public:
     /// @return 
     virtual const bool IsJumpAtkCharge(void)const override { return false; }
 
+    /// @brief 敵のジャンプチャージ中のカード勝負数
+    /// @param  
+    /// @return 
+    virtual const int GetJumpCardNum(void)const override { return -1; }
+
 protected:
+    //ジャンプ溜め中のカード出した回数
+    static constexpr int JAMP_CHARGE_CARD_NUM_MAX = 3;
+
     //カードデッキ
     CardDeck& deck_;
     //オブジェクト

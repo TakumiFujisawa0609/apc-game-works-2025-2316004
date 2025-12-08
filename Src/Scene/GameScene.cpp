@@ -119,8 +119,7 @@ void GameScene::NormalUpdate(void)
 
 void GameScene::NormalDraw(void)
 {
-	//デバッグ処理
-	DebagDraw();
+
 
 	//プレイヤーの描画
 	//PlayerManager::GetInstance().DrawPlayerUI();
@@ -130,6 +129,8 @@ void GameScene::NormalDraw(void)
 	//drawUi3D_->Draw();
 
 #ifdef _DEBUG
+	//デバッグ処理
+	DebagDraw();
 	//CardSystem::GetInstance().DrawDebug();
 #endif // _DEBUG
 
@@ -157,25 +158,25 @@ void GameScene::DebagUpdate(void)
 
 void GameScene::DebagDraw(void)
 {
-	DrawBox(
-		0,
-		0,
-		Application::SCREEN_SIZE_X,
-		Application::SCREEN_SIZE_Y,
-		0x00ff00,
-		true
-	);
+	//DrawBox(
+	//	0,
+	//	0,
+	//	Application::SCREEN_SIZE_X,
+	//	Application::SCREEN_SIZE_Y,
+	//	0x00ff00,
+	//	true
+	//);
 
-	DrawFormatString(
-		0, 0,
-		0x000000,
-		L"GameScene"
-	);
+	//DrawFormatString(
+	//	0, 0,
+	//	0x000000,
+	//	L"GameScene"
+	//);
 
-	constexpr float r = 40.0f;
-	float angle = DX_PI_F * 2.0f * static_cast<float>(frame_ % 360) / 60.0f;
+	//constexpr float r = 40.0f;
+	//float angle = DX_PI_F * 2.0f * static_cast<float>(frame_ % 360) / 60.0f;
 
-
+	CardSystem::GetInstance().DrawDebug();
 
 	////円運動を描画
 	//DrawCircleAA(

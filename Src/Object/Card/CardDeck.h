@@ -12,6 +12,14 @@ class CardDeck:
 {
 
 public:
+	enum class DUELDECK_PETTERN
+	{
+		DUEL_PETTERN_1,
+		DUEL_PETTERN_2,
+		DUEL_PETTERN_3,
+		END
+	};
+
 
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
@@ -60,9 +68,22 @@ public:
 	/// @param _status 追加したいカードの強さ
 	void AddDrawPile(const CardBase::CARD_STATUS& _status);
 
+	void AddDuelDeck(const CardBase::CARD_STATUS& _status);
+
 	/// @brief カードを使用札に移動
 	/// @param  
 	void MoveUsingCardToDrawPile(void);
+
+
+	/// @brief デュエルデッキから使用札へ
+	/// @param  
+	void MoveUsingCardToDuelDeck(void);
+
+	/// @brief デュエルデッキの解放
+	/// @param  
+	void ClearDuelDeck(void);
+
+
 	//手札のカード取得
 	//std::vector<std::weak_ptr<CardBase>> GetHand(void);
 
@@ -72,8 +93,16 @@ public:
 	
 	/// @brief カード失敗フラグ
 	/// @param  
-	/// @return true:負け　false:勝ち
+	/// @return true:負け
 	bool IsCardFailure(void);
+
+	/// @brief 何もカードが出ていない状態
+	/// @param  
+	/// @return 
+	bool IsNone(void);
+
+	//カード勝利フラグ	
+	bool IsCardWin(void);
 	
 	/// @brief カードの種類(アタックカードか魔法カードか)の取得
 	/// @param  
@@ -94,7 +123,29 @@ public:
 	/// @param  
 	void MoveChargeToUsingCard(void);
 
+	//デュエルデッキをランダムにけっていする
+	void DicideDuelDeck(void);
+
 private:
+	//メンバ定数
+	
+	static constexpr int DUEL_NUM_MAX = 3;
+	static constexpr CardBase::CARD_STATUS DUEL_DECK_PETTERN_1[DUEL_NUM_MAX] = {
+		{4,CardBase::CARD_TYPE::ATTACK},
+		{6,CardBase::CARD_TYPE::ATTACK},
+		{5,CardBase::CARD_TYPE::ATTACK}
+	};
+																				
+	static constexpr CardBase::CARD_STATUS DUEL_DECK_PETTERN_2[DUEL_NUM_MAX] = {
+		{2,CardBase::CARD_TYPE::ATTACK},
+		{8,CardBase::CARD_TYPE::ATTACK},
+		{6,CardBase::CARD_TYPE::ATTACK}
+	};
+	static constexpr CardBase::CARD_STATUS DUEL_DECK_PETTERN_3[DUEL_NUM_MAX] = { 
+		{5,CardBase::CARD_TYPE::ATTACK},
+		{7,CardBase::CARD_TYPE::ATTACK},
+		{8,CardBase::CARD_TYPE::ATTACK}
+	};
 	//メンバ関数
 	
 	//カードを選択したときの制限
@@ -113,6 +164,9 @@ private:
 	//捨て札
 	std::vector<std::unique_ptr<CardBase>>disCard_;
 
+	//敵用のデュエルデッキ
+	std::vector<std::unique_ptr<CardBase>>enemyDuelDeck_;
+
 	//現在選択中のカード
 	int currentNum_;
 	//一つ先のカード番号
@@ -121,6 +175,8 @@ private:
 	int prevNum_;
 	//カード使用者のプレイヤー番号
 	int playerNum_;
+	//敵デュエルデッキの現在選択中番号
+	int duelNo_;
 	//現在選択中のカード中心座標
 	Vector2& centerPos_;
 

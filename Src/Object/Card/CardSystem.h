@@ -79,6 +79,11 @@ public:
 	/// @param _playerNo 
 	void JudgeIsFirstAtk(const int _playerNo);
 
+	/// @brief 場に何もカードが出されていない状態
+	/// @param  
+	/// @return true:場に何も出ていない	false:何か場にカードが出ている上体
+	const bool IsNoneCard(void);
+
 #ifdef _DEBUG
 	void DrawDebug(void);
 #endif // _DEBUG
@@ -100,8 +105,6 @@ private:
 	//カードを場に出せるか
 	bool canPut_;
 
-	//勝敗結果
-	BATTLE_RESULT result_[ARRAY_NUM];
 
 	//結果返す時のプレイヤーの識別
 	BATTLE_RESULT playerResult_[ARRAY_NUM];

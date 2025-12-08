@@ -8,6 +8,7 @@
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
 #include "../../Card/CardUIBase.h"
+#include "../../Card/CardSystem.h"
 #include "EnemyCardAction.h"
 
 EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
@@ -57,7 +58,11 @@ void EnemyCardAction::Init(void)
 	jampCardNum_ = 0;
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
-		actionCntl_.GetInput().GetAttackType();
+		if (actionCntl_.GetInput().GetAttackType() == LogicBase::ENEMY_ATTACK_TYPE::JUMP)
+		{
+			ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);		//ジャンプチャージ中はデュエルフェーズへ
+			return;
+		}
 		PutCard();
 		DesideCardAction();
 	}
@@ -113,6 +118,7 @@ void EnemyCardAction::ChangeJumpAtk(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP_ATK), false);
 	jumpChargeCnt_ = 0.0f;
+	isDuelWait_ = true;
 	cardFuncs_.push([this]() {UpdateJumpAtk(); });
 }
 
@@ -142,6 +148,12 @@ void EnemyCardAction::ChangeReload(void)
 void EnemyCardAction::ChangeDuel(void)
 {
 	isDuelWait_ = true;
+
+	//ランダムにデュエルデッキを決める
+	deck_.DicideDuelDeck();
+
+	//デュエルdeckから1枚ドロー
+	PutCardToDuelDeck();
 	cardFuncs_.push([this]() {UpdateDuel(); });
 }
 
@@ -161,20 +173,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	////負けたら終了
 	//if (IsCardFailure(Collider::TAG::NML_ATK))return;
 	//ジャンプチャージ
-	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
-	{
-		if (IsCardFailureJumpCharge())return;
 
-		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
-		//アニメーションループ
-		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
-
-	}
-	else if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
-	{
-		//アニメーションループ終了
-		anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
-	}
 	if (anim_.GetAnimStep() > JUMP_ANIM_END)
 	{
 		const Transform& charaTrans = charaObj_.GetTransform();
@@ -258,7 +257,30 @@ void EnemyCardAction::UpdateReload(void)
 
 void EnemyCardAction::UpdateDuel(void)
 {
-	isDuelWait_ = true;
+	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
+	{
+		if (IsCardFailureJumpCharge())
+		{
+			//アニメーションループ終了
+			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			charaObj_.GetCardUI().ChangeUsedActionCard();
+			deck_.EraseHandCard();
+			deck_.ClearDuelDeck();
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+			return;
+		}
+
+		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
+		//アニメーションループ
+		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
+
+	}
+	else if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
+	{
+		//アニメーションループ終了
+		anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);
+	}
 }
 
 bool EnemyCardAction::IsCardFailureJumpCharge(void)
@@ -266,16 +288,21 @@ bool EnemyCardAction::IsCardFailureJumpCharge(void)
 	//カードの勝敗判定
 	deck_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
-	if (jampCardNum_ > JAMP_CHARGE_CARD_NUM_MAX)
+	if (jampCardNum_ >= JAMP_CHARGE_CARD_NUM_MAX)
 	{
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		actionCntl_.GetInput().IsActioningSet();
 		charaObj_.GetCardUI().ChangeReactActionCard();
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return true;
 	}
 	if (deck_.IsCardFailure())
 	{
 		charaObj_.GetCardUI().ChangeReactActionCard();
+		//攻撃判定無効
+		deck_.EraseHandCard(true);
+	}
+	else if (deck_.IsNone())
+	{
 		PutCard();
 		jampCardNum_++;
 	}
@@ -287,14 +314,13 @@ void EnemyCardAction::DesideCardAction(void)
 	//ロジックから攻撃タイプを取得
 	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
 	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
-
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::NORMAL:
 		ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:
-		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);
+		ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);		//ジャンプチャージ中はデュエルフェーズへ
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
 		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);
@@ -303,5 +329,11 @@ void EnemyCardAction::DesideCardAction(void)
 		ChangeCardAction(CARD_ACT_TYPE::RUSH_ATK);
 		break;
 	}
+}
+
+void EnemyCardAction::PutCardToDuelDeck(void)
+{
+	deck_.MoveUsingCardToDuelDeck();
+	//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 

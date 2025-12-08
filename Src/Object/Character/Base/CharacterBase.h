@@ -226,6 +226,7 @@ public:
 	/// @brief ロジッククラスにターゲットをセット
 	/// @param _targetChara ターゲット
 	void SetLogicTargetCharacter(std::shared_ptr<CharacterBase>_targetChara);
+
 protected:
 
 

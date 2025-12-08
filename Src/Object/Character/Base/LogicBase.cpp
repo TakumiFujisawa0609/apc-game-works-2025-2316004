@@ -17,7 +17,7 @@ LogicBase::~LogicBase(void)
 
 const bool LogicBase::GetIsEnemyJumpCharge(void)const
 {
-	return targetChara_.lock()->GetCardAction() == CardActionBase::CARD_ACT_TYPE::JUMP_ATK
+	return targetChara_.lock()->GetCardAction() == CardActionBase::CARD_ACT_TYPE::DUEL_FAZE
 		&& targetChara_.lock()->GetMainAction().IsJumpAtkCharge();
 }
 
@@ -39,4 +39,9 @@ const float LogicBase::GetLookAtTargetDeg(void)const
 const Transform LogicBase::GetTargetTransform(void)
 {
 	return targetChara_.lock()->GetTransform();
+}
+
+const int LogicBase::GetJumpCardNum(void) const
+{
+	return targetChara_.lock()->GetMainAction().GetJumpCardNum();
 }

@@ -44,6 +44,11 @@ public:
     /// @param  
     /// @return 
     const bool IsJumpAtkCharge(void)const override;
+
+    /// @brief 敵のジャンプチャージ中のカード勝負数
+    /// @param  
+    /// @return 
+    virtual const int GetJumpCardNum(void)const override { return jampCardNum_; }
     
 private:
 
@@ -103,8 +108,6 @@ private:
 	//転がるのステータス
 	static constexpr CardActionBase::ATK_STATUS RUSH_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
 
-    //ジャンプ溜め中のカード出した回数
-    static constexpr int JAMP_CHARGE_CARD_NUM_MAX = 3;
 
     //ジャンプ攻撃カウント
     float jumpAtkCnt_;
@@ -136,6 +139,9 @@ private:
 
 	//アクションによって処理を分岐
 	void DesideCardAction(void);
+
+    //デュエルデッキからカードを出す
+    void PutCardToDuelDeck(void);
 
     //攻撃別の当たり判定情報
     std::map<ACT_TYPE, ATK_STATUS>atkTable_;

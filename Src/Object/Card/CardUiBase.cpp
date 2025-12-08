@@ -132,6 +132,7 @@ void CardUIBase::DecisionMoveCardAll(void)
 		card->DecisionMove();
 		//DecisionMoveSpecificCard(card);
 	}
+
 }
 
 

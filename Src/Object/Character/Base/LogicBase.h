@@ -111,6 +111,11 @@ public:
     //相手の座標情報を取得
     const Transform GetTargetTransform(void);
 
+    /// @brief 敵のジャンプチャージ中のカード勝負数
+    /// @param  
+    /// @return 
+    const int GetJumpCardNum(void)const;
+
     void SetDegAndDir(const float& _deg, const VECTOR& _dir)
     {
         moveDeg_ = _deg;

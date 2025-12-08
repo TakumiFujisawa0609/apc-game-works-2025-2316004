@@ -46,13 +46,12 @@ void PlayerCardAction::Init(void)
 	attackStageNum_ = 0;
 	if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
 	{
-		PutCard();
 		ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
 	}
 
 
 	//手札に移動
-	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
+	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		PutCard();
 		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
@@ -148,23 +147,32 @@ void PlayerCardAction::UpdateSonicRave(void)
 void PlayerCardAction::UpdateDuel(void)
 {
 	//カードの勝敗による処理
-	if (!deck_.IsCardFailure())
+	bool w = deck_.IsCardWin();
+	bool f = deck_.IsCardFailure();
+	if (w)
 	{
 		//チャージカードに移動
 		deck_.MoveChargeToUsingCard();
 	}
-	else
+	else if(f)
 	{
 		//負けたらカードを削除
 		deck_.EraseHandCard();
+		charaObj_.DeleteCard();
+
 	}
 
 	//カードをドローする
-	if (actionCntl_.GetInput().GetIsAct().isCardUse)
+	LogicBase& logic = actionCntl_.GetInput();
+	if (logic.GetIsAct().isCardUse && logic.GetJumpCardNum()< JAMP_CHARGE_CARD_NUM_MAX)
 	{
 		deck_.MoveUsingCardToDrawPile();
 	}
-
+	else if (logic.GetJumpCardNum() >= JAMP_CHARGE_CARD_NUM_MAX)
+	{
+		//一定回数カードに勝ったら大技を出す(未実装)
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+	}
 }
 
 
