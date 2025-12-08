@@ -58,11 +58,11 @@ void EnemyCardAction::Init(void)
 	jampCardNum_ = 0;
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
-		if (actionCntl_.GetInput().GetAttackType() == LogicBase::ENEMY_ATTACK_TYPE::JUMP)
-		{
-			ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);		//ジャンプチャージ中はデュエルフェーズへ
-			return;
-		}
+		//if (actionCntl_.GetInput().GetAttackType() == LogicBase::ENEMY_ATTACK_TYPE::JUMP)
+		//{
+		//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);		//ジャンプチャージ中はデュエルフェーズへ
+		//	return;
+		//}
 		PutCard();
 		DesideCardAction();
 	}
@@ -171,10 +171,22 @@ void EnemyCardAction::UpdateRoar(void)
 void EnemyCardAction::UpdateJumpAtk(void)
 {
 	////負けたら終了
-	//if (IsCardFailure(Collider::TAG::NML_ATK))return;
+	if (IsCardFailure(Collider::TAG::NML_ATK))return;
 	//ジャンプチャージ
+	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
+	{
+		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
+		//アニメーションループ
+		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
 
-	if (anim_.GetAnimStep() > JUMP_ANIM_END)
+		if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
+		{
+			//アニメーションループ終了
+			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+		}
+	}
+
+	else if (anim_.GetAnimStep() > JUMP_ANIM_END)
 	{
 		const Transform& charaTrans = charaObj_.GetTransform();
 		//ジャンプ攻撃処理
@@ -191,10 +203,15 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		status.atkRadius = easing_->EaseFunc(JUMP_ATK_RADIUS, JUMP_ATK_GOAL_RADIUS, jumpAtkCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
 		charaObj_.UpdateAttackCol(status.atkRadius);
 
+		//アニメーションループ
+		anim_.SetMidLoop(53.0f, 69.0f, 10.0f);
+
 		if (jumpAtkCnt_ > JUMP_ATK_CNT_MAX)
 		{
 			jumpAtkCnt_ = 0.0f;
 			status.atkRadius = JUMP_ATK_RADIUS;
+			//アニメーションループ終了
+			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
@@ -320,7 +337,7 @@ void EnemyCardAction::DesideCardAction(void)
 		ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:
-		ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);		//ジャンプチャージ中はデュエルフェーズへ
+		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);		//ジャンプチャージ中はデュエルフェーズへ
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
 		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);

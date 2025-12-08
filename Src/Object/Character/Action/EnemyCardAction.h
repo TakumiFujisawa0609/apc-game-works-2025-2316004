@@ -62,7 +62,7 @@ private:
     static constexpr float JUMP_HEIGHT = 100.0f;
     //ジャンプ攻撃アニメーション
     static constexpr float JUMP_ANIM_START = 16.4f;
-    static constexpr float JUMP_ANIM_END = 64.1f;
+    static constexpr float JUMP_ANIM_END = 52.0f;
     ////攻撃2段目判定
     static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 63.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 65.0f;     //攻撃当たり判定終了アニメーションカウント
