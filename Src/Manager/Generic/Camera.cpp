@@ -21,6 +21,7 @@ Camera::Camera(void)
 	followTransform_ = nullptr;
 	isChangingCamera_ = false;
 	changeTargetLerpCnt_ = CHANGE_TARGET_LERP_TIME;
+	shekePerCnt_ = 0.0f;
 }
 
 Camera::~Camera(void)
@@ -30,6 +31,7 @@ Camera::~Camera(void)
 
 void Camera::Init(void)
 {
+	easing_ = std::make_unique<Easing>();
 	changeMode_ = {
 		{MODE::FIXED_POINT,[this]() {ChangeFixedPoint(); }},
 		{MODE::FOLLOW,[this]() {ChangeFollow(); }},
@@ -37,7 +39,12 @@ void Camera::Init(void)
 		{MODE::TARGET_POINT,[this]() {ChangeTargetCamera(); }},
 		{MODE::CHANGE_TARGET,[this]() {ChangeTargetLerp(); }}
 	};
-	easing_ = std::make_unique<Easing>();
+	changeSub_ = {
+		{SUB_MODE::NONE,[this]() {ChangeNone(); }},
+		{SUB_MODE::SHAKE,[this]() {ChangeShake(); }}
+	};
+	subMode_ = SUB_MODE::SHAKE;
+	ChangeSub(SUB_MODE::NONE);
 	ChangeMode(MODE::FIXED_POINT);
 }
 
@@ -53,6 +60,8 @@ void Camera::SetBeforeDraw(void)
 
 	//モード更新
 	modeUpdate_();
+	//イージングなどの更新
+	subUpdate_();
 
 	// カメラの設定(位置と注視点による制御)
 	SetCameraPositionAndTargetAndUpVec(
@@ -70,6 +79,13 @@ void Camera::Draw(void)
 {
 }
 
+void Camera::ChangeSub(const  SUB_MODE _submode)
+{
+	if (subMode_ == _submode)return;
+	subMode_ = _submode;
+	changeSub_[subMode_]();
+}
+
 void Camera::SetFollow(const Transform* follow)
 {
 	followTransform_ = follow;
@@ -79,6 +95,7 @@ void Camera::SetTarget(const Transform* _target)
 {
 	targetTransform_ = _target;
 }
+
 
 VECTOR Camera::GetPos(void) const
 {
@@ -110,18 +127,14 @@ VECTOR Camera::GetForward(void) const
 	return VNorm(VSub(targetPos_, pos_));
 }
 
-void Camera::ChangeMode(MODE mode)
+void Camera::ChangeMode(const MODE mode)
 {
-
 	// カメラの初期設定
 	//SetDefault();
 	if (mode_ == mode)return;
 	// カメラモードの変更
 	mode_ = mode;
 	changeMode_[mode_]();
-
-
-
 }
 
 void Camera::SetDefault(void)
@@ -378,4 +391,39 @@ void Camera::ChangeTargetCamera(void)
 {
 	SetDefault();
 	modeUpdate_ = [this]() {SetBeforeDrawTargetPoint(); };
+}
+void Camera::UpdateNone(void)
+{
+	//何もしない
+}
+void Camera::UpdateShake(void)
+{
+	if (easePer_ > 1.0f)
+	{
+		ChangeSub(SUB_MODE::NONE);
+		return;
+	}
+	if (shekePerCnt_ > SHAKE_PER)
+	{
+		shekePerCnt_ = 0.0f;
+		//動かしても追従するように初期座標更新
+		initPosY_ = pos_.y;
+	}
+	//イージングで座標を揺らす
+	float goalPosY = pos_.y + limit_;
+	pos_.y = easing_->EaseFunc(initPosY_, goalPosY, shekePerCnt_ / SHAKE_PER, Easing::EASING_TYPE::LERP_BACK);
+	//1シェイクにかかる時間をカウント
+	shekePerCnt_ += SceneManager::GetInstance().GetDeltaTime();
+
+}
+void Camera::ChangeNone(void)
+{
+	easePer_ = 0.0f;
+	subUpdate_ = [this]() {UpdateNone(); };
+
+}
+void Camera::ChangeShake(void)
+{
+	initPosY_ = pos_.y;
+	subUpdate_ = [this]() {UpdateShake(); };
 }

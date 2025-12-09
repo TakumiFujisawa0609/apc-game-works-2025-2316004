@@ -24,7 +24,7 @@ public:
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
 
 	//敵の大きさの倍率
-	static constexpr float MODEL_SIZE_MULTIPLITER = 2.5f;
+	static constexpr float MODEL_SIZE_MULTIPLITER = 5.0f;
 
 	//敵の大きさ
 	static constexpr VECTOR MODEL_SCL = { MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER };
@@ -36,7 +36,8 @@ public:
 	static constexpr float MAX_HP = 200.0f;			//体力
 	static constexpr float MAX_ATK = 50.0f;			//攻撃力
 	static constexpr float MAX_DEF = 100.0f;		//防御力
-
+	//アニメーション速度
+	static constexpr float ANIM_SPEED = 10.0f;
 	//格納するカードの強さ
 	static constexpr CardBase::CARD_STATUS CARD_POWS[CARD_NUM_MAX] = {
 		{0,CARD_TYPE::ATTACK},

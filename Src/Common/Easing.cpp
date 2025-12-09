@@ -10,6 +10,9 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
     case Easing::EASING_TYPE::LERP:
         easingUpdate_ = [this, t](float) {return Lerp(t); };
         break;
+    case Easing::EASING_TYPE::LERP_BACK:
+        easingUpdate_ = [this, t](float) {return LerpBack(t); };
+        break;
     case Easing::EASING_TYPE::QUAD_IN:
         easingUpdate_ = [this, t](float) {return EaseQuadIn(t); };
         break;
@@ -21,6 +24,9 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
         break;
     case Easing::EASING_TYPE::QUAD_OUT_IN:
         easingUpdate_ = [this, t](float) {return EaseQuadOutIn(t); };
+        break;
+    case Easing::EASING_TYPE::QUAD_BACK:
+        easingUpdate_ = [this, t](float) {return EaseQuadBack(t); };
         break;
     case Easing::EASING_TYPE::CUBIC_IN:
         easingUpdate_ = [this, t](float) {return EaseCubicIn(t); };
@@ -34,11 +40,31 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
     case Easing::EASING_TYPE::ELASTIC_OUT:
         easingUpdate_ = [this, t](float) {return EaseOutElastic(t); };
         break;
+    case Easing::EASING_TYPE::ELASTIC_BACK:
+        easingUpdate_ = [this, t](float) {return EaseElasticComeBack(t); };
+        break;
     case Easing::EASING_TYPE::BOUNCE:
         easingUpdate_ = [this, t](float) {return EaseBounce(t); };
         break;
     default:
-        easingUpdate_ = nullptr;
+        break;
+    }
+}
+
+void Easing::SetReturnEasing(const float t, EASING_RETURN type)
+{
+    switch (type)
+    {
+    case Easing::EASING_RETURN::ELASTIC:
+        easingUpdate_ = [this, t](float) {return EaseElasticComeBack(t); };
+        break;
+    case Easing::EASING_RETURN::EPICYCLOID:
+        //easingUpdate_ = [this, t](float) {return EaseEpiCycloid(t); };
+        break;
+    case Easing::EASING_RETURN::HYPOCYCLOID:
+        //easingUpdate_ = [this, t](float) {return EaseHypoCycloid(t); };
+        break;
+    default:
         break;
     }
 }
@@ -101,6 +127,8 @@ COLOR_F Easing::EaseFunc(const COLOR_F& start, const COLOR_F& end, const float t
     ret.a += (end.a - start.a) * easingUpdate_(t);
     return ret;
 }
+
+
 
 float Easing::EaseFuncDeg(float& start, float& end, const float t, const EASING_TYPE type)
 {
@@ -171,11 +199,27 @@ float Easing::EaseFuncRad(float& start, float& end, const float t, const EASING_
     return start + diff * easingUpdate_(t);
 }
 
+
 float Easing::Lerp(const float t)
 {
     if (t > 1.0f)return 1.0f;
     //割合だけを返して、Funcで計算
     return t;
+}
+
+float Easing::LerpBack(const float t)
+{
+    if (t > 1.0f)return 0.0f;
+    float ret = 0.0f;
+    if (t <= 0.5f)
+    {
+        ret = Lerp(t / 0.5f);
+    }
+    else
+    {
+        ret = Lerp((1.0f - t) / 0.5f);
+    }
+    return ret;
 }
 
 
@@ -221,6 +265,14 @@ float Easing::EaseBounce(const float t)
     return ret;
 }
 
+float Easing::EaseElasticComeBack(const float t)
+{
+    if (t > 1.0f)return 0.0f;   //最終的に元に戻るようにするため
+    float ret = EaseOutElastic(t);
+    ret -= 1.0f;
+    return ret;
+}
+
 float Easing::EaseQuadIn(const float t)
 {
     if (t >= 1.0f)return 1.0f;
@@ -239,6 +291,16 @@ float Easing::EaseQuadOut(const float t)
     quad.graph_vertex = { 1.0f,1.0f };
     float ret = quad.QuadFunc(t);
     return ret;
+}
+
+float Easing::EaseQuadBack(const float t)
+{
+    if (t > 1.0f)return 0.0f;
+    MATH_FUNC ret;
+    ret.accel = -4.0f;
+    ret.graph_vertex = { 0.5f,1.0f };
+
+    return ret.QuadFunc(t);
 }
 
 

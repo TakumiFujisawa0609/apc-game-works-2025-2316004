@@ -16,7 +16,8 @@ public :
 		PLAYER1,		//プレイヤー1
 		ENEMY1,			//敵1
 		NML_ATK,			//剣
-		ROAR_ATK,
+		ROAR_ATK,		//方向
+		JUMP_ATK,		//ジャンプ
 		STAGE,			//ステージ
 	};
 

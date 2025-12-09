@@ -14,10 +14,7 @@ public:
 
 	//当たり判定をする範囲
 	static constexpr float HIT_RANGE_NORMAL = 1000.0f;	//通常の当たり判定距離
-	static constexpr float HIT_RANGE_START = 600.0f;	//開始地点の当たり判定距離
-	static constexpr float HIT_RANGE_GOAL = 600.0f;		//終了地点の当たり判定距離
-	static constexpr float HIT_RANGE_TARGET = 2500.0f;	//ターゲット用の当たり判定距離
-	static constexpr float HIT_RANGE_WIND = 2500.0f;	//風用の当たり判定距離
+	static constexpr float HIT_RANGE_JUMP_ATK = 5000.0f;
 	static constexpr float HIT_RANGE_STAGE = 30000.0f;	//風用の当たり判定距離
 
 	//更新用

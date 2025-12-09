@@ -24,7 +24,7 @@ public:
 	static constexpr VECTOR DEFAULT_CAMERA_POS = { 0.0f, 100.0f, -500.0f };
 
 	// 追従位置からカメラ位置までの相対座標
-	static constexpr VECTOR LOCAL_F2C_POS = { 0.0f, 100.0f, -400.0f };
+	static constexpr VECTOR LOCAL_F2C_POS = { 0.0f, 100.0f, -800.0f };
 	static constexpr VECTOR TARGET_CAM_LOCAL_F2C_POS = { 0.0f, 500.0f, -700.0f };
 
 	// 追従位置から注視点までの相対座標
@@ -32,13 +32,16 @@ public:
 
 	// カメラのX回転上限度角
 	static constexpr float LIMIT_X_UP_RAD = 60.0f * (DX_PI_F / 180.0f);
-	static constexpr float LIMIT_X_DW_RAD = 15.0f * (DX_PI_F / 180.0f);
+	static constexpr float LIMIT_X_DW_RAD = 5.0f * (DX_PI_F / 180.0f);
 
 	//ターゲットカメラ遷移時の補完時間
 	static constexpr double CHANGE_TARGET_LERP_TIME = 0.7;
 
 	//カメラ感度
 	static constexpr float FOV_PER = 0.2f;
+
+	//1シェイクにかかる時間
+	static constexpr float SHAKE_PER = 0.05f;
 	
 	// カメラモード
 	enum class MODE
@@ -49,6 +52,13 @@ public:
 		SELF_SHOT,
 		CHANGE_TARGET,
 		TARGET_POINT
+	};
+
+	//イージングモード
+	enum class SUB_MODE
+	{
+		NONE,
+		SHAKE
 	};
 
 	Camera(void);
@@ -74,13 +84,25 @@ public:
 	VECTOR GetForward(void) const;
 
 	// カメラモードの変更
-	void ChangeMode(MODE mode);
+	void ChangeMode(const MODE mode);
+	
+	/// @brief サブ処理の変更
+	/// @param _submode サブ処理(イージングなど)
+	void ChangeSub(const SUB_MODE _submode);
 
 	// 追従対象の設定
 	void SetFollow(const Transform* _follow);
 
 	//ターゲットとする対象の設定
 	void SetTarget(const Transform* _target);
+
+	/// @brief シェイク時にセットするカウント(割合)
+	/// @param t 現在の割合
+	void SetShakeStatus(const float t,const float limit) 
+	{
+		easePer_ = t;
+		limit_ = limit;
+	}
 
 private:
 
@@ -95,11 +117,16 @@ private:
 
 	// カメラモード
 	MODE mode_;
-
+	//サブモード
+	SUB_MODE subMode_;
 	//カメラ更新
 	std::function<void(void)>modeUpdate_;
+	//イージングなど、、同時に動かしたい更新
+	std::function<void(void)>subUpdate_;
+
 	//遷移
 	std::map<MODE, std::function<void(void)>>changeMode_;
+	std::map<SUB_MODE, std::function<void(void)>>changeSub_;
 
 	// カメラの位置
 	VECTOR pos_;
@@ -118,7 +145,11 @@ private:
 
 	// カメラの上方向
 	VECTOR cameraUp_;
-
+	//1シェイクのカウント
+	float shekePerCnt_;
+	float limit_;		//動かす範囲
+	float easePer_;		//シェイク全体時間
+	float initPosY_;		//動かす前のカメラ座標Y
 	//ターゲットカメラ遷移カウント
 	double changeTargetLerpCnt_;
 
@@ -153,6 +184,14 @@ private:
 	void ChangeSelfShot(void);
 	void ChangeTargetLerp(void);
 	void ChangeTargetCamera(void);
+
+	//サブモード別更新
+	void UpdateNone(void);
+	void UpdateShake(void);
+
+	//遷移
+	void ChangeNone(void);
+	void ChangeShake(void);
 
 
 };

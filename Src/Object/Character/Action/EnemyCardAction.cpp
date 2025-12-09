@@ -4,6 +4,7 @@
 #include "../Base/CharacterBase.h"
 #include"../Enemy/EnemyLogic.h"
 #include "../../Common/AnimationController.h"
+#include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
@@ -179,10 +180,16 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		//アニメーションループ
 		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
 
+		//溜めのカメラシェイク
+		scnMng_.GetCamera().lock()->SetShakeStatus(jumpChargeCnt_ / JUMP_CHARGE_TIME, 10.0f);
+		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
+
 		if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
 		{
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			charaObj_.GetCardUI().ChangeUsedActionCard();
+			deck_.EraseHandCard();
 		}
 	}
 
@@ -202,6 +209,10 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		//攻撃範囲拡大
 		status.atkRadius = easing_->EaseFunc(JUMP_ATK_RADIUS, JUMP_ATK_GOAL_RADIUS, jumpAtkCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
 		charaObj_.UpdateAttackCol(status.atkRadius);
+
+		//溜めのカメラシェイク
+		scnMng_.GetCamera().lock()->SetShakeStatus(jumpAtkCnt_ / JUMP_ATK_CNT_MAX, 30.0f);
+		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//アニメーションループ
 		anim_.SetMidLoop(53.0f, 69.0f, 10.0f);

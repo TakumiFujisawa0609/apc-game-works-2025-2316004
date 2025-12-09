@@ -6,20 +6,34 @@
 class Easing
 {
 public:
+	//2点間を定めてイージング
 	enum class EASING_TYPE
 	{
 		LERP,			//線形補間
+		LERP_BACK,		//行って戻る補完
 		QUAD_IN,		//二次関数(だんだん早く)
 		QUAD_OUT,		//二次関数(だんだん遅く)
+		QUAD_BACK,		//二次関数(行って戻る)
 		QUAD_IN_OUT,	//二次関数(スローインスローアウト)
 		QUAD_OUT_IN,	//二次関数(ファストインファストアウト)
 		CUBIC_IN,		//三次関数(だんだん早く)
 		CUBIC_OUT,		//三次関数(だんだん遅く)
 		EXPO,			//指数関数(〇次関数より若干緩やか)
 		ELASTIC_OUT,	//ばね
-		BOUNCE			//跳ねるような動き
+		BOUNCE,			//跳ねるような動き
+
+		//元の位置に戻すイージング
+		ELASTIC_BACK,	//元の位置に戻るばね
 
 	};
+	//最終的にスタート位置に戻るイージング
+	enum class EASING_RETURN
+	{
+		ELASTIC,
+		EPICYCLOID,
+		HYPOCYCLOID,
+	};
+
 
 	//半分の割合
 	static constexpr float HALF = 0.5f;
@@ -46,12 +60,15 @@ public:
 		}
 	};
 
-	//イージングセット
+	//イージングセット(OneWay)
 	void SetEasing(const float t, const EASING_TYPE type);
+
+	//イージングセット(Return)
+	void SetReturnEasing(const float t, const EASING_RETURN type);
 
 	/// @brief イージング計算
 	/// @param start 初期位置
-	/// @param end 終了位置
+	/// @param end 終了位置(元の位置に戻すイージングを使用したい場合は動いて良い最大値を代入)
 	/// @param t 現在時間
 	/// @param type 使用するイージング種類
 	/// @return 計算結果
@@ -62,6 +79,7 @@ public:
 	Vector2 EaseFunc(const Vector2& start, const Vector2& end, const float t, const EASING_TYPE type);
 	VECTOR EaseFunc(const VECTOR& start, const VECTOR& end, const float t, const EASING_TYPE type);
 	COLOR_F EaseFunc(const COLOR_F& start, const COLOR_F& end, const float t, const EASING_TYPE type);
+
 
 	/// @brief 角度の最終計算(360度などの制限があるため、別で処理する)
 	/// @param start 初期位置
@@ -85,20 +103,23 @@ private:
 	/// @brief 線形補完
 	/// @param t 時間
 	/// @return 
-	static float Lerp(const float t);
+	float Lerp(const float t);
+	float LerpBack(const float t);		//戻る補完
+
 	//---------------------------------------------------------------------------------------------
 	//二次関数系
 	//---------------------------------------------------------------------------------------------
 	// 二次関数的な動き(だんだん早く)
-	static float EaseQuadIn(const float t);
+	float EaseQuadIn(const float t);
 
 	// 二次関数的な動き(だんだん遅く)
 	float EaseQuadOut(const float t);
 
+	//二次関数的な動き(元に戻る)
+	float EaseQuadBack(const float t);
 
 	//二次関数的な動き(スローインスローアウト的な)
 	float EaseQuadInOut(const float t);
-
 
 	//二次関数的な動き(ファストインファストアウト的な)
 	float EaseQuadOutIn(const float t);
@@ -129,6 +150,9 @@ private:
 
 	//バウンドの動き 
 	float EaseBounce(const float t);
+	
+	//最終的に元の位置に戻るイージング
+	float EaseElasticComeBack(const float t);
 
 	//外周を回る(お花の形)
 	Vector2F EaseEpiCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
