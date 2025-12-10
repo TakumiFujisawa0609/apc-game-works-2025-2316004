@@ -23,8 +23,8 @@ public:
 private:
 
     //攻撃1段目判定
-	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 14.0f;   //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 25.0f;     //攻撃当たり判定終了アニメーションカウント
+	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 24.0f;   //攻撃当たり判定開始アニメーションカウント
+	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 36.0f;     //攻撃当たり判定終了アニメーションカウント
     //攻撃2段目判定
 	static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
@@ -70,6 +70,7 @@ private:
 
     //更新系
 	void UpdateAttack(void);         //攻撃アクション
+    void UpdateAttackThree(void);    //攻撃アクション３段階目(１，２段目とは違う演出を入れる)
     void UpdateReload(void);         //リロード
     void UpdateSonicRave(void);     //ソニックレイヴ
     void UpdateDuel(void)override;  //デュエルモード

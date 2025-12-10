@@ -191,7 +191,7 @@ private:
 	static constexpr Vector2 HPBAR_SIZE = { 200,30 };
 
 	//カプセル関連
-	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f, 0.0f };	//トップ座標
+	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 200.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,50.0f,0.0f };	//ダウン座標
 	//static constexpr float CAP_RADIUS = 25.0f;						//半径
 

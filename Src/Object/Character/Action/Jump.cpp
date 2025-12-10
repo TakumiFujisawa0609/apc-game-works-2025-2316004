@@ -25,7 +25,7 @@ void Jump::Init(void)
 	velocity_.y = sqrtf(2.0f * GRAVITY * JUMP_HEIGHT);
 	jumpPow_.y = velocity_.y;
 
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP),true,0.0f,12.0f,false);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP),true,25.0f,39.0f,false);
 }
 
 void Jump::Update(void)
@@ -39,7 +39,7 @@ void Jump::Update(void)
 
 	velocity_.y -= GRAVITY;
 	jumpPow_.y = velocity_.y;
-	anim_.SetEndLoop(11.0f, 12.0f, 3.0f);
+	anim_.SetEndLoop(36.0f, 39.0f, 3.0f);
 	if (charaObj_.GetHitPoint().isDown)
 	{
 		jumpPow_.y = 0.0f;

@@ -144,7 +144,7 @@ void GameScene::ChangeNormal(void)
 	updataFunc_ = std::bind(&GameScene::NormalUpdate, this);
 	drawFunc_ = std::bind(&GameScene::NormalDraw, this);
 }
-
+#ifdef _DEBUG
 void GameScene::DebagUpdate(void)
 {
 	// ÉVÅ[ÉìëJà⁄
@@ -155,6 +155,9 @@ void GameScene::DebagUpdate(void)
 	}
 	frame_++;
 }
+
+
+
 
 void GameScene::DebagDraw(void)
 {
@@ -187,3 +190,4 @@ void GameScene::DebagDraw(void)
 	//	0xff8888, 
 	//	true);
 }
+#endif // _DEBUG

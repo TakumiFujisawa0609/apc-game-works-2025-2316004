@@ -192,7 +192,7 @@ void PlayerCardAction::ChangeAttackTwo(void)
 
 void PlayerCardAction::ChangeAttackThree(void)
 {
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false,60.0f,86.0f);
 	ChangeActionCardInit();
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }

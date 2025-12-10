@@ -15,7 +15,9 @@ void ResourceManager::Init(void)
 	std::unique_ptr<ResourceData> res;
 
 	//ÉÇÉfÉãìoò^
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Player.mv1");
+	//res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Player.mv1");
+	//resourcesMap_.emplace(SRC::PLAYER, std::move(res));
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Ninja.mv1");
 	resourcesMap_.emplace(SRC::PLAYER, std::move(res));
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Mutant.mv1");
@@ -29,19 +31,22 @@ void ResourceManager::Init(void)
 
 
 	//ÉAÉjÉÅÅ[ÉVÉáÉììoò^
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"Idle.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerIdle.mv1");
 	resourcesMap_.emplace(SRC::P_IDLE, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"SlowRun.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerRun.mv1");
 	resourcesMap_.emplace(SRC::P_RUN, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack1.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_1, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack2.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_2 , std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack3.mv1");
+	//res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack3.mv1");
+	//resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttackCombo.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerJump.mv1");

@@ -37,6 +37,12 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
     case Easing::EASING_TYPE::EXPO:
         easingUpdate_ = [this, t](float) {return EaseExpo(t); };
         break;
+    case Easing::EASING_TYPE::SIN_BACK:
+        easingUpdate_ = [this, t](float) {return EaseSinBack(t); };
+        break;
+    case Easing::EASING_TYPE::COS_BACK:
+        easingUpdate_ = [this, t](float) {return EaseCosBack(t); };
+        break;
     case Easing::EASING_TYPE::ELASTIC_OUT:
         easingUpdate_ = [this, t](float) {return EaseOutElastic(t); };
         break;
@@ -386,6 +392,24 @@ float Easing::EaseExpo(const float t, const int expo)
     return ret;
 }
 
+
+float Easing::EaseSinBack(const float t)
+{
+    if (t >= 1.0f)return 0.0f;
+    TRIG_FUNC sinFunc;
+    sinFunc.amplitude = 1.0f;
+    sinFunc.lambda = 2.0f;
+    return sinFunc.SinFunc(t);;
+}
+
+float Easing::EaseCosBack(const float t)
+{
+    if (t >= 1.0f)return 0.0f;
+    TRIG_FUNC cosFunc;
+    cosFunc.amplitude = -0.5f;
+    cosFunc.lambda = 1.0f;
+    return cosFunc.CosFunc(t);
+}
 
 Vector2F Easing::EaseEpiCycloid(const Vector2F& start, const float t, const float halfRadiusNum, const float smallRadius)
 {

@@ -59,8 +59,12 @@ private:
 	//処理の変更
 	void ChangeNormal(void) override;
 	
+#ifdef _DEBUG
 	//デバッグ処理
 	void DebagUpdate(void);
 	void DebagDraw(void);
+#endif // _DEBUG
+
+
 
 };

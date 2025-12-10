@@ -87,11 +87,13 @@ void ActionController::Update(void)
 	CardMove();
 }
 
-#ifdef _DEBUG
+
 const ActionBase& ActionController::GetMainAction(void)
 {
 	return *mainAction_.at(act_);
 }
+
+#ifdef _DEBUG
 void ActionController::DrawDebug(void)
 {
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);

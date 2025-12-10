@@ -411,7 +411,7 @@ void Camera::UpdateShake(void)
 	}
 	//イージングで座標を揺らす
 	float goalPosY = pos_.y + limit_;
-	pos_.y = easing_->EaseFunc(initPosY_, goalPosY, shekePerCnt_ / SHAKE_PER, Easing::EASING_TYPE::LERP_BACK);
+	pos_.y = easing_->EaseFunc(initPosY_, goalPosY, shekePerCnt_ / SHAKE_PER, Easing::EASING_TYPE::COS_BACK);
 	//1シェイクにかかる時間をカウント
 	shekePerCnt_ += SceneManager::GetInstance().GetDeltaTime();
 

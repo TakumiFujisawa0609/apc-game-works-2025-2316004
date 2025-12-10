@@ -19,6 +19,8 @@ public:
 		CUBIC_IN,		//三次関数(だんだん早く)
 		CUBIC_OUT,		//三次関数(だんだん遅く)
 		EXPO,			//指数関数(〇次関数より若干緩やか)
+		SIN_BACK,		//サイン(もとに戻ってくる)
+		COS_BACK,		//コサイン(もとに戻ってくる)
 		ELASTIC_OUT,	//ばね
 		BOUNCE,			//跳ねるような動き
 
@@ -59,6 +61,29 @@ public:
 			return (accel * pow) + graph_vertex.y;
 		}
 	};
+	//サイン計算
+	struct TRIG_FUNC
+	{
+		//公式：a*sin((2π/λ)*x)
+
+		//振れ幅(a)
+		float amplitude = 1.0f;
+		//波長
+		float lambda = 1.0f;
+
+		float SinFunc(const float t)
+		{
+			float phase = (DX_TWO_PI_F / lambda) * t;
+			return amplitude * sin(phase);
+		}
+		float CosFunc(const float t)
+		{
+			float phase = (DX_TWO_PI_F / lambda) * t;
+			//距離を0から始めるための計算
+			return amplitude * cos(phase) - amplitude;
+		}
+	};
+
 
 	//イージングセット(OneWay)
 	void SetEasing(const float t, const EASING_TYPE type);
@@ -154,10 +179,19 @@ private:
 	//最終的に元の位置に戻るイージング
 	float EaseElasticComeBack(const float t);
 
+	//三角関数
+	//----------------------------------------------------------------------------------------------
+	//サイン波(初めから早く)
+	float EaseSinBack(const float t);
+	//コサイン波(遅く始まる)
+	float EaseCosBack(const float t);
+
 	//外周を回る(お花の形)
 	Vector2F EaseEpiCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
 
 	//内側を回る(とんがりお花)
 	Vector2F EaseHypoCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
+
+
 };
 
