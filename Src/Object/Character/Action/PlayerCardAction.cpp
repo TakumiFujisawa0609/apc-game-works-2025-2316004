@@ -1,5 +1,6 @@
 #include "../Utility/Utility3D.h"
 #include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Generic/Camera.h"
 #include "../Player/ActionController.h"
 #include "../../Common/AnimationController.h"
 #include "../../Card/CardDeck.h"
@@ -49,6 +50,7 @@ void PlayerCardAction::Init(void)
 		ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
 	}
 
+	
 
 	//手札に移動
 	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
@@ -112,6 +114,53 @@ void PlayerCardAction::ChangeActionCardInit(void)
 void PlayerCardAction::UpdateAttack(void)
 {
 	AttackMotion(atkStatusTable_[actType_],Collider::TAG::NML_ATK ,ATK_ONE_LOCAL);
+}
+
+void PlayerCardAction::UpdateAttackThree(void)
+{
+	//攻撃中にカード負けしたら処理を飛ばす
+	if (IsCardFailure(Collider::TAG::NML_ATK))return;
+	const float animStep = anim_.GetAnimStep();			//現在のアニメステップ
+	const float atkStartStep = atkStatusTable_[actType_].colStartCnt;
+	const float atkEndStep = atkStatusTable_[actType_].colEndCnt;
+
+	if (anim_.GetAnimStep() < atkStatusTable_[actType_].colStartCnt)
+	{
+		anim_.SetAnimSpeed(ATTACK_THREE_ANIM_SPD);
+	}
+
+	//攻撃判定処理
+	else if (animStep >= atkStartStep &&
+		animStep <= atkEndStep)
+	{
+		atkAnimLerpCnt_ += scnMng_.GetDeltaTime();
+		//アニメーション速度補完
+		anim_.SetAnimSpeed(CharacterBase::ANIM_SPEED, true, ATTACK_THREE_ANIM_SPD, atkAnimLerpCnt_ / ATTACK_THREE_ANIM_LERP_TIME,Easing::EASING_TYPE::QUAD_IN);
+		//攻撃当たり判定の座標生成
+		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, ATK_ONE_LOCAL);
+		//攻撃判定有効
+		isAliveAtkCol_ = true;
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, atkStatusTable_[actType_].atkRadius);
+	}
+	else if (anim_.IsEnd())		//アニメーション終了でアイドル状態変更
+	{
+		const float ATK_END_CNT = 0.5f;
+		if (atkThreeEndCnt_ > ATK_END_CNT)
+		{
+			charaObj_.GetCardUI().ChangeUsedActionCard();
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+			return;
+		}
+		atkThreeEndCnt_+= scnMng_.GetDeltaTime();
+		scnMng_.GetCamera().lock()->SetShakeStatus(atkThreeEndCnt_ / ATK_END_CNT, 50.0f, Easing::EASING_TYPE::ELASTIC_BACK);
+		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::ONE_SHAKE);
+
+	}
+	else if (animStep > atkEndStep)	//攻撃終了後
+	{
+		//攻撃判定無効
+		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK);
+	}
 }
 
 void PlayerCardAction::UpdateReload(void)
@@ -193,8 +242,10 @@ void PlayerCardAction::ChangeAttackTwo(void)
 void PlayerCardAction::ChangeAttackThree(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false,60.0f,86.0f);
+	atkThreeEndCnt_ = 0.0f;
+	atkAnimLerpCnt_ = 0.0f;;
 	ChangeActionCardInit();
-	cardFuncs_.push([this]() {UpdateAttack(); });
+	cardFuncs_.push([this]() {UpdateAttackThree(); });
 }
 
 void PlayerCardAction::ChangeReload(void)

@@ -25,6 +25,7 @@ public:
 
 	//敵の大きさの倍率
 	static constexpr float MODEL_SIZE_MULTIPLITER = 5.0f;
+	//static constexpr float MODEL_SIZE_MULTIPLITER = 1.0f;
 
 	//敵の大きさ
 	static constexpr VECTOR MODEL_SCL = { MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER };
@@ -131,8 +132,19 @@ private:
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
 	static constexpr float CAP_RADIUS = 30.0f* MODEL_SIZE_MULTIPLITER;				//カプセル球の半径
 
+	//それぞれの当たり判定座標
+	VECTOR leftArmPos_;
+	VECTOR leftForeArmPos_;
+	VECTOR leftHandPos_;
+	VECTOR rightArmPos_;
+	VECTOR rightForeArmPos_;
+	VECTOR rightHandPos_;
 
 	Vector2 cardCenterPos_; //カードの中心座標
+
+	//コライダ作成
+	void MakeColliderGeometry(void)override;
+
 
 #ifdef _DEBUG
 	void DrawDebug(void);

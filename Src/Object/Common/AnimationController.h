@@ -2,6 +2,9 @@
 #include<DxLib.h>
 #include <string>
 #include <map>
+#include "../Common/Easing.h"
+
+class Easing;
 class SceneManager;
 
 class AnimationController
@@ -51,8 +54,13 @@ public :
 	//アニメーションステップゲッタ
 	const float GetAnimStep(void)const;
 
-	//アニメーションスピードセッタ
-	void SetAnimSpeed(const float _spd);
+	/// @brief アニメーションスピードセッタ(イージングで、だんだん増やしていくのも可)
+	/// @param _spd セットしたいスピード
+	/// @param _isEase イージングを使用するか
+	/// @param _startSpd イージング使用時の始まりのスピード
+	/// @param _t 時間
+	/// @param _easeType 使用したいイージングタイプ
+	void SetAnimSpeed(const float _spd, const bool _isEase = false, const float _startSpd=0.0f, const float _t = 1.0f, Easing::EASING_TYPE _easeType = Easing::EASING_TYPE::LERP);
 
 	// 再生終了
 	bool IsEnd(void) const;
@@ -73,7 +81,8 @@ private :
 	//ヒップフレームの番号
 	static constexpr int HIP_FRAME_NO = 0;
 
-
+	//イージング
+	std::unique_ptr<Easing>easing_;
 	// モデルのハンドルID
 	int modelId_;
 
@@ -91,6 +100,9 @@ private :
 
 	//途中ループフラグ
 	bool isMidLoop_;
+
+	//イージング使用中フラグ
+	bool isEase_;
 
 	// アニメーション終了後に繰り返すループステップ
 	float stepEndLoopStart_;

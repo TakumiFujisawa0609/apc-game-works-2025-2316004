@@ -18,6 +18,12 @@ public:
 	enum class  TAG_PRIORITY
 	{
 		BODY,
+		LEFT_ONE,
+		LEFT_TWO,
+		LEFT_THREE,
+		RIGHT_ONE,
+		RIGHT_TWO,
+		RIGHT_THREE,
 		MOVE_LINE,
 		UPDOWN_LINE,
 		ATK_SPHERE,

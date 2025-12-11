@@ -310,7 +310,7 @@ private:
 #endif // _DEBUG
 
 	//“–‚½‚è”»’è‰Šú‰»
-
+	void MakeColliderGeometry(void)override;
 	//ƒvƒŒƒCƒ„[ó‘Ô
 	//ó‘Ô‘JˆÚ
 	void ChangeState(PLAYER_STATE _state);

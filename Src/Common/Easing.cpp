@@ -43,11 +43,14 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
     case Easing::EASING_TYPE::COS_BACK:
         easingUpdate_ = [this, t](float) {return EaseCosBack(t); };
         break;
+    case Easing::EASING_TYPE::ELASTIC_IN:
+        easingUpdate_ = [this, t](float) {return EaseInElastic(t); };
+        break;
     case Easing::EASING_TYPE::ELASTIC_OUT:
         easingUpdate_ = [this, t](float) {return EaseOutElastic(t); };
         break;
     case Easing::EASING_TYPE::ELASTIC_BACK:
-        easingUpdate_ = [this, t](float) {return EaseElasticComeBack(t); };
+        easingUpdate_ = [this, t](float) {return EaseBackElastic(t); };
         break;
     case Easing::EASING_TYPE::BOUNCE:
         easingUpdate_ = [this, t](float) {return EaseBounce(t); };
@@ -62,7 +65,7 @@ void Easing::SetReturnEasing(const float t, EASING_RETURN type)
     switch (type)
     {
     case Easing::EASING_RETURN::ELASTIC:
-        easingUpdate_ = [this, t](float) {return EaseElasticComeBack(t); };
+        easingUpdate_ = [this, t](float) {return EaseBackElastic(t); };
         break;
     case Easing::EASING_RETURN::EPICYCLOID:
         //easingUpdate_ = [this, t](float) {return EaseEpiCycloid(t); };
@@ -239,6 +242,17 @@ float Easing::EaseOutElastic(const float t)
     return ret;
 }
 
+float Easing::EaseBackElastic(const float t)
+{
+    if (t > 1.0f)return 0.0f;
+    float ret = 0.0f;
+    const float c4 = ((2.0f * DX_PI_F) / 3.0f) - 6.1f;
+
+    //この式はグラフを見ながら試行錯誤した式
+    ret = (powf(2, -10.0f * t) * sinf((t * 10.0f - 0.088f) * c4));
+    return ret;
+}
+
 
 float Easing::EaseBounce(const float t)
 {
@@ -271,13 +285,6 @@ float Easing::EaseBounce(const float t)
     return ret;
 }
 
-float Easing::EaseElasticComeBack(const float t)
-{
-    if (t > 1.0f)return 0.0f;   //最終的に元に戻るようにするため
-    float ret = EaseOutElastic(t);
-    ret -= 1.0f;
-    return ret;
-}
 
 float Easing::EaseQuadIn(const float t)
 {
@@ -389,6 +396,15 @@ float Easing::EaseExpo(const float t, const int expo)
     float expoFunc = powf(base, inv_t);
     ret = expoFunc;
 
+    return ret;
+}
+
+float Easing::EaseInElastic(const float t)
+{
+    if (t >= 1.0f)return 1.0f;
+    float ret = 0.0f;
+    const float c4 = (2.0f * DX_PI_F) / 3.0f;
+    ret = -(powf(2, 10.0f * t - 10) * sinf((t * 10.0f - 10.75f) * c4) + 1.0f);
     return ret;
 }
 

@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "../../Manager/Generic/SceneManager.h"
+#include "../Common/Easing.h"
 #include "AnimationController.h"
 
 AnimationController::AnimationController(const int _modelId, const int _hipNum) :
@@ -13,7 +14,7 @@ AnimationController::AnimationController(const int _modelId, const int _hipNum) 
 	stepEndLoopStart_(0.0f),
 	stepEndLoopEnd_(0.0f)
 {
-
+	easing_ = std::make_unique<Easing>();
 }
 
 AnimationController::~AnimationController(void)
@@ -122,6 +123,7 @@ void AnimationController::Update(void)
 
 	if (!isStop_)
 	{
+
 		// 再生
 		playAnim_.step += (deltaTime * playAnim_.speed * switchLoopReverse_);
 
@@ -243,8 +245,15 @@ const float AnimationController::GetAnimStep(void) const
 	return playAnim_.step;
 }
 
-void AnimationController::SetAnimSpeed(const float _spd)
+void AnimationController::SetAnimSpeed(const float _spd, const bool _isEase, const float _startSpd, const float _t, Easing::EASING_TYPE _easeType)
 {
+	if (_isEase)
+	{
+		playAnim_.speed = easing_->EaseFunc(_startSpd, _spd, _t, _easeType);
+		return;
+	}
+
+	//イージングを使用しないならば、そのままスピードを代入
 	playAnim_.speed = _spd;
 }
 

@@ -285,6 +285,9 @@ protected:
 
 	//ˆÚ“®§ŒÀ
 	void MoveLimit(const VECTOR& _stagePos, const VECTOR& _stageSize);
+
+	//ƒRƒ‰ƒCƒ_ì¬
+	virtual void MakeColliderGeometry(void) = 0;;
 private:
 
 };

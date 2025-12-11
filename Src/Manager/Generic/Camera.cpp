@@ -41,7 +41,8 @@ void Camera::Init(void)
 	};
 	changeSub_ = {
 		{SUB_MODE::NONE,[this]() {ChangeNone(); }},
-		{SUB_MODE::SHAKE,[this]() {ChangeShake(); }}
+		{SUB_MODE::SHAKE,[this]() {ChangeShake(); }},
+		{SUB_MODE::ONE_SHAKE,[this]() {ChanegShakeOne(); }}
 	};
 	subMode_ = SUB_MODE::SHAKE;
 	ChangeSub(SUB_MODE::NONE);
@@ -81,7 +82,8 @@ void Camera::Draw(void)
 
 void Camera::ChangeSub(const  SUB_MODE _submode)
 {
-	if (subMode_ == _submode)return;
+	//同じモード、またはすでに連続シェイクが入っている場合は処理を抜ける
+	if (subMode_ == _submode || (subMode_ == SUB_MODE::SHAKE && _submode == SUB_MODE::ONE_SHAKE))return;
 	subMode_ = _submode;
 	changeSub_[subMode_]();
 }
@@ -398,6 +400,7 @@ void Camera::UpdateNone(void)
 }
 void Camera::UpdateShake(void)
 {
+	//シェイク時間が終わったらNone状態へ
 	if (easePer_ > 1.0f)
 	{
 		ChangeSub(SUB_MODE::NONE);
@@ -406,15 +409,33 @@ void Camera::UpdateShake(void)
 	if (shekePerCnt_ > SHAKE_PER)
 	{
 		shekePerCnt_ = 0.0f;
-		//動かしても追従するように初期座標更新
-		initPosY_ = pos_.y;
 	}
-	//イージングで座標を揺らす
-	float goalPosY = pos_.y + limit_;
-	pos_.y = easing_->EaseFunc(initPosY_, goalPosY, shekePerCnt_ / SHAKE_PER, Easing::EASING_TYPE::COS_BACK);
+	//ローカル座標を計算
+	float localPosY = easing_->EaseFunc(0.0f, limit_, shekePerCnt_ / SHAKE_PER, easeType_);
+
+	//ローカル座標を足す
+	pos_.y += localPosY;
+
 	//1シェイクにかかる時間をカウント
 	shekePerCnt_ += SceneManager::GetInstance().GetDeltaTime();
 
+}
+void Camera::UpdateShakeOne(void)
+{
+	//シェイク時間が終わったらNone状態へ
+	if (easePer_ > 1.0f)
+	{
+		ChangeSub(SUB_MODE::NONE);
+		return;
+	}
+	//ローカル座標を計算
+	float localPosY = easing_->EaseFunc(0.0f, limit_, easePer_, easeType_);
+
+	//ローカル座標を足す
+	pos_.y += localPosY;
+
+	//1シェイクにかかる時間をカウント
+	shekePerCnt_ += SceneManager::GetInstance().GetDeltaTime();
 }
 void Camera::ChangeNone(void)
 {
@@ -425,5 +446,13 @@ void Camera::ChangeNone(void)
 void Camera::ChangeShake(void)
 {
 	initPosY_ = pos_.y;
+	limit_ = initLimit_;
 	subUpdate_ = [this]() {UpdateShake(); };
+}
+
+void Camera::ChanegShakeOne(void)
+{
+	initPosY_ = pos_.y;
+	limit_ = initLimit_;
+	subUpdate_ = [this]() {UpdateShakeOne(); };
 }

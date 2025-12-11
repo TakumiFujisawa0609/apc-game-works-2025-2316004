@@ -3,7 +3,8 @@
 #include <functional>
 #include <map>
 #include "../../Common/Quaternion.h"
-#include"../Template/Singleton.h"
+#include "../Template/Singleton.h"
+#include "../Common/Easing.h"
 class Transform;
 class Easing;
 class Camera
@@ -41,7 +42,7 @@ public:
 	static constexpr float FOV_PER = 0.2f;
 
 	//1シェイクにかかる時間
-	static constexpr float SHAKE_PER = 0.05f;
+	static constexpr float SHAKE_PER = 0.1f;
 	
 	// カメラモード
 	enum class MODE
@@ -57,8 +58,9 @@ public:
 	//イージングモード
 	enum class SUB_MODE
 	{
-		NONE,
-		SHAKE
+		NONE,		//何もない
+		SHAKE,		//連続シェイク
+		ONE_SHAKE,	//一回のみシェイク
 	};
 
 	Camera(void);
@@ -97,11 +99,13 @@ public:
 	void SetTarget(const Transform* _target);
 
 	/// @brief シェイク時にセットするカウント(割合)
-	/// @param t 現在の割合
-	void SetShakeStatus(const float t,const float limit) 
+	/// @param t 現在の時間割合
+	/// @param limit 範囲の加減
+	void SetShakeStatus(const float t,const float limit=0.0f,const Easing::EASING_TYPE _easeType=Easing::EASING_TYPE::COS_BACK)
 	{
 		easePer_ = t;
-		limit_ = limit;
+		initLimit_ = limit;
+		easeType_ = _easeType;
 	}
 
 private:
@@ -145,8 +149,11 @@ private:
 
 	// カメラの上方向
 	VECTOR cameraUp_;
-	//1シェイクのカウント
-	float shekePerCnt_;
+	
+	//カメラシェイクのステータス
+	Easing::EASING_TYPE easeType_;	//イージングの種類
+	float shekePerCnt_;//1シェイクのカウント
+	float initLimit_;	//初めに設定する範囲
 	float limit_;		//動かす範囲
 	float easePer_;		//シェイク全体時間
 	float initPosY_;		//動かす前のカメラ座標Y
@@ -188,11 +195,11 @@ private:
 	//サブモード別更新
 	void UpdateNone(void);
 	void UpdateShake(void);
+	void UpdateShakeOne(void);
 
 	//遷移
 	void ChangeNone(void);
 	void ChangeShake(void);
-
-
+	void ChanegShakeOne(void);
 };
 

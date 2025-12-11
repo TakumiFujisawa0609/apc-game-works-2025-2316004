@@ -12,6 +12,7 @@
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
 #include"../../Common/Geometry/Capsule.h"
+#include"../../Common/Geometry/Sphere.h"
 #include"../../Common/Geometry/Line.h"
 #include"../Manager/Resource/ResourceManager.h"
 #include"../Manager/Generic/Camera.h"
@@ -97,23 +98,8 @@ void Enemy::Init(void)
 	action_->Init();
 	tag_ = Collider::TAG::ENEMY1;
 	capRadius_ = CAP_RADIUS;
-	//カプセル
-	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
-	MakeCollider(TAG_PRIORITY::BODY,{ tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
-	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
-	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
-	MakeCollider(TAG_PRIORITY::MOVE_LINE, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::MOVE_LINE);
-	//上下ライン
-	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
-	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
 
-	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 
-	//敵のカードUI生成
-	//cardUI_->Init();
 	//Transformの設定
 	trans_.quaRot = Quaternion();
 	trans_.scl = MODEL_SCL;
@@ -122,10 +108,11 @@ void Enemy::Init(void)
 
 	trans_.pos = { 0.0f,0.0f,500.0f };
 	trans_.localPos = { 0.0f,RADIUS,0.0f };
+	trans_.Update();
 
+	MakeColliderGeometry();
 
-
-
+	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
 }
 
 void Enemy::Update(void)
@@ -140,6 +127,15 @@ void Enemy::Update(void)
 	action_->Update();
 	cardUI_->Update();
 	
+	//肩の座標を取得
+	leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);
+	leftForeArmPos_ = MV1GetFramePosition(trans_.modelId, 10);
+	leftHandPos_ = MV1GetFramePosition(trans_.modelId, 11);
+
+	rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
+	rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
+	rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
+
 
 	//回転の同期
 	UpdatePost();
@@ -171,7 +167,8 @@ void Enemy::Draw(void)
 	//float hpBoxEnd= hpPer * 400.0f;
 	//int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
 	//DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
-	//DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1);
+	//DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1); 
+
 
 	Utility2D::DrawBarGraph(
 		{ BOX_START_X,BOX_START_Y },
@@ -217,6 +214,59 @@ void Enemy::SetGoalRotate(const double _deg)
 }
 
 #ifdef _DEBUG
+void Enemy::MakeColliderGeometry(void)
+{
+	//肩の座標を取得
+	leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);
+	leftForeArmPos_ = MV1GetFramePosition(trans_.modelId, 10);
+	leftHandPos_ = MV1GetFramePosition(trans_.modelId, 11);
+
+	//カプセル
+	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
+	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
+
+	//左手第一関節
+	geo = std::make_unique<Sphere>(leftArmPos_, 100.0f);
+	MakeCollider(TAG_PRIORITY::LEFT_ONE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_ONE);
+	//左手第二関節
+	geo = std::make_unique<Sphere>(leftForeArmPos_, 100.0f);
+	MakeCollider(TAG_PRIORITY::LEFT_TWO, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_TWO);
+
+	geo = std::make_unique<Sphere>(leftHandPos_, 100.0f);
+	MakeCollider(TAG_PRIORITY::LEFT_THREE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_THREE);
+
+
+	rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
+	rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
+	rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
+
+	//右手第一関節
+	geo = std::make_unique<Sphere>(rightArmPos_, 100.0f);
+	MakeCollider(TAG_PRIORITY::RIGHT_ONE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_ONE);
+	//右手第二関節
+	geo = std::make_unique<Sphere>(rightForeArmPos_, 100.0f);
+	MakeCollider(TAG_PRIORITY::RIGHT_TWO, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_TWO);
+
+	geo = std::make_unique<Sphere>(rightHandPos_, 100.0f);
+	MakeCollider(TAG_PRIORITY::RIGHT_THREE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_THREE);
+
+
+	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
+	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
+	MakeCollider(TAG_PRIORITY::MOVE_LINE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::MOVE_LINE);
+	//上下ライン
+	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
+	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
+}
 void Enemy::DrawDebug(void)
 {
 	////DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
@@ -226,6 +276,19 @@ void Enemy::DrawDebug(void)
 	{
 		col.second->GetGeometry().Draw();
 	}
+
+
+	//肩の座標を取得
+	VECTOR leftArm = VScale(MV1GetFramePosition(trans_.modelId, 9), 1.0f);
+	VECTOR leftForeArm = VScale(MV1GetFramePosition(trans_.modelId, 10), MODEL_SIZE_MULTIPLITER);
+	VECTOR leftHand = MV1GetFramePosition(trans_.modelId, 11);
+	VECTOR localPosArm = VSub(leftArm, trans_.pos);
+	VECTOR localPosForeArm = VSub(leftForeArm, trans_.pos);
+	VECTOR localPosHand = VSub(trans_.pos, leftHand);
+
+	//DrawSphere3D(leftArm, 200.0f, 5, 0xff0000, 0xff0000, false);
+
+
 
 	//DrawFormatString(600, 300, 0x000000, L"Dir(%f,%f,%f)\nDeg(%f)", logic_->GetDir().x, logic_->GetDir().y, logic_->GetDir().z,logic_->GetMoveDeg());
 

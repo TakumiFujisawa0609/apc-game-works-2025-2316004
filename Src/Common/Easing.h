@@ -21,7 +21,8 @@ public:
 		EXPO,			//指数関数(〇次関数より若干緩やか)
 		SIN_BACK,		//サイン(もとに戻ってくる)
 		COS_BACK,		//コサイン(もとに戻ってくる)
-		ELASTIC_OUT,	//ばね
+		ELASTIC_IN,		//前半ばね(だんだん大きく)
+		ELASTIC_OUT,	//後半ばね
 		BOUNCE,			//跳ねるような動き
 
 		//元の位置に戻すイージング
@@ -170,14 +171,18 @@ private:
 	// 指数を決めてその動きをする
 	float EaseExpo(const float t,const int expo=2);
 
+	//前半ばね
+	float EaseInElastic(const float t);
+
 	//後半にばねのような動き 
 	float EaseOutElastic(const float t);
+
+	//元に戻ってくるばね
+	float EaseBackElastic(const float t);
 
 	//バウンドの動き 
 	float EaseBounce(const float t);
 	
-	//最終的に元の位置に戻るイージング
-	float EaseElasticComeBack(const float t);
 
 	//三角関数
 	//----------------------------------------------------------------------------------------------

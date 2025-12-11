@@ -29,10 +29,16 @@ private:
 	static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
     //攻撃3段目判定
-	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 19.0f;   //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 28.0f;     //攻撃当たり判定終了アニメーションカウント
+	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 73.0f;   //攻撃当たり判定開始アニメーションカウント
+	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 83.0f;     //攻撃当たり判定終了アニメーションカウント
+    static constexpr float ATK_SPHERE_RADIUS = 120.0f;				//カプセル球の半径
+    //攻撃アニメーション3段階目の溜め時のアニメ速度
+    static constexpr float ATTACK_THREE_ANIM_SPD = 10.0f;
+    //攻撃3段階目アニメスピード補完時間
+    static constexpr float ATTACK_THREE_ANIM_LERP_TIME = 0.4f;       
+    //
 
-    static constexpr float ATK_SPHERE_RADIUS = 120.0f;						//カプセル球の半径
+
     //1段目攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
     //2段目攻撃のステータス
@@ -56,6 +62,9 @@ private:
     //リロードカウント
     float pushReloadCnt_;
 
+    //3段階目攻撃判定終了カウント
+    float atkThreeEndCnt_;
+    float atkAnimLerpCnt_;
     //攻撃条件
     bool IsAttackable(void);
     //連続攻撃条件
