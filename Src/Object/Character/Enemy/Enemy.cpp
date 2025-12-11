@@ -112,7 +112,7 @@ void Enemy::Init(void)
 
 	MakeColliderGeometry();
 
-	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
+	
 }
 
 void Enemy::Update(void)
@@ -266,6 +266,8 @@ void Enemy::MakeColliderGeometry(void)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
 	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
+
+	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_);
 }
 void Enemy::DrawDebug(void)
 {

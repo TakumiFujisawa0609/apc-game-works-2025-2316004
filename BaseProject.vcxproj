@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Character\Enemy\EnemyOnHit.cpp" />
+    <ClCompile Include="Src\Object\Character\Base\CharacterOnHitBase.cpp" />
     <ClCompile Include="Src\Manager\Generic\DrawUI2D.cpp" />
     <ClCompile Include="Src\Manager\Generic\DrawUI3D.cpp" />
     <ClCompile Include="Src\Manager\Generic\DrawUIBase.cpp" />
@@ -109,6 +111,8 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Character\Enemy\EnemyOnHit.h" />
+    <ClInclude Include="Src\Object\Character\Base\CharacterOnHitBase.h" />
     <ClInclude Include="Src\Manager\Generic\DrawUI2D.h" />
     <ClInclude Include="Src\Manager\Generic\DrawUI3D.h" />
     <ClInclude Include="Src\Manager\Generic\DrawUIBase.h" />

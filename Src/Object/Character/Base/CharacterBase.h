@@ -1,7 +1,7 @@
 #pragma once
 #include<map>
 #include "../../Card/CardBase.h"
-#include "../Player/PlayerOnHit.h"
+#include "../Base/CharacterOnHitBase.h"
 #include "../Player/ActionController.h"
 #include "../Base/CardActionBase.h"
 #include "../Base/ActionBase.h"
@@ -213,7 +213,7 @@ public:
 	/// @brief ヒットポイントを当たり判定から取得
 	/// @param  
 	/// @return 
-	const PlayerOnHit::HIT_POINT& GetHitPoint(void)const;
+	const CharacterOnHitBase::HIT_POINT& GetHitPoint(void)const;
 
 	/// @brief 移動量を設定して動かす
 	/// @param _movePow 移動量
@@ -252,7 +252,7 @@ protected:
 	//当たり判定用のカプセル
 	std::unique_ptr<Capsule>cap_;
 	//当たった時の処理
-	std::unique_ptr<PlayerOnHit>onHit_;
+	std::unique_ptr<CharacterOnHitBase>onHit_;
 
 	//当たり判定の要素
 	VECTOR movedPos_;		//移動後座標

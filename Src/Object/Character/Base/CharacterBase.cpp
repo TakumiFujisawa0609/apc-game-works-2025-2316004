@@ -3,7 +3,7 @@
 #include "../Object/Common/AnimationController.h"
 #include "../Object/Character/Player/ActionController.h"
 #include "../Object/Character/Base/LogicBase.h"
-#include "../Object/Character/Player/PlayerOnHit.h"
+#include "../Object/Character/Base/CharacterOnHitBase.h"
 #include "../Manager/Game/GravityManager.h"
 #include"../Object/Card/CardDeck.h"
 #include"../Object/Card/CardUIBase.h"
@@ -32,7 +32,6 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag,const Collider::
 	//“–‚½‚è”»’è‚ª‘¶İ‚µ‚½‚çíœ‚·‚é
 	if (IsAliveCollider(_charaTag, _attackTag))return;
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-	onHit_->InitIsHitAtk();
 	isDamage_ = false;
 	MakeCollider(TAG_PRIORITY::ATK_SPHERE,{ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
 }
@@ -202,7 +201,7 @@ void CharacterBase::DeleteCard(void)
 	//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 }
 
-const PlayerOnHit::HIT_POINT& CharacterBase::GetHitPoint(void) const
+const CharacterOnHitBase::HIT_POINT& CharacterBase::GetHitPoint(void) const
 {
 	return onHit_->GetHitPoint();
 }
