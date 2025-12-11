@@ -54,6 +54,9 @@ void ResourceManager::Init(void)
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerDodge.mv1");
 	resourcesMap_.emplace(SRC::P_DODGE, std::move(res));	
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"CardReload.mv1");
+	resourcesMap_.emplace(SRC::P_RELOAD, std::move(res));	
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerReact.mv1");
 	resourcesMap_.emplace(SRC::REACT, std::move(res));	
@@ -69,6 +72,10 @@ void ResourceManager::Init(void)
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_JumpAttack.mv1");
 	resourcesMap_.emplace(SRC::E_JUMP_ATK, std::move(res));
+	
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_JumpAttack.mv1");
+	resourcesMap_.emplace(SRC::E_KNOCK_DOWN, std::move(res));
+
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Roar.mv1");
 	resourcesMap_.emplace(SRC::E_ROAR_ATK, std::move(res));

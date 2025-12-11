@@ -50,6 +50,7 @@ public:
 		ATTACK_3,
 		JUMP,
 		DODGE,
+		CARD_RELOAD,
 		//“G
 		SWIP_ATK,
 		ROAR_ATK,

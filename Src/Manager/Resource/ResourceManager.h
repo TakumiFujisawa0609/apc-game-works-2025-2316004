@@ -33,6 +33,7 @@ public:
 		P_ATTACK_3,	//攻撃3
 		P_JUMP,		//ジャンプ
 		P_DODGE,	//回避
+		P_RELOAD,
 		//敵
 		E_IDLE,		//待機
 		E_RUN,		//走る
@@ -40,7 +41,9 @@ public:
 		E_JUMP_ATK, //ジャンプ攻撃
 		E_ROAR_ATK,	//咆哮攻撃
 		E_ROLE_ATK,	//転がり攻撃
+		E_KNOCK_DOWN,	//大ダウン
 		REACT,
+
 		//画像
 		TITLE_BACK_IMG,	//タイトル背景
 		TITLE_LOGO,		//タイトルロゴ

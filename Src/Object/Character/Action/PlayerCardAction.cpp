@@ -169,8 +169,10 @@ void PlayerCardAction::UpdateReload(void)
 	{
 		pushReloadCnt_ += scnMng_.GetDeltaTime();
 		float per = pushReloadCnt_ / RELOAD_TIME;
-
 		charaObj_.GetCardUI().SetReloadCount(per);
+
+		//アニメーションループ
+		anim_.SetMidLoop(RELOAD_LOOP_START, RELOAD_LOOP_END, 10.0f);
 	}
 	else
 	{
@@ -256,7 +258,7 @@ void PlayerCardAction::ChangeReload(void)
 	}
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), true);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
 
 	float per = pushReloadCnt_ / RELOAD_TIME;
 	charaObj_.GetCardUI().SetReloadCount(per);
