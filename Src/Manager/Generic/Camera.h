@@ -98,6 +98,9 @@ public:
 	//ターゲットとする対象の設定
 	void SetTarget(const Transform* _target);
 
+	//ターゲットの座標セット
+	void SetTargetPos(const VECTOR _targetPos);
+
 	/// @brief シェイク時にセットするカウント(割合)
 	/// @param t 現在の時間割合
 	/// @param limit 範囲の加減
@@ -116,8 +119,13 @@ private:
 	//カメラの注視点とするターゲットTransform
 	const Transform* targetTransform_;
 
+	//ターゲットの座標(フレーム座標)
+	VECTOR targetPoses_;
+
 	//イージング
 	std::unique_ptr<Easing>easing_;
+
+
 
 	// カメラモード
 	MODE mode_;

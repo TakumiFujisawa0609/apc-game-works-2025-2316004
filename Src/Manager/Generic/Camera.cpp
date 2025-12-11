@@ -98,6 +98,11 @@ void Camera::SetTarget(const Transform* _target)
 	targetTransform_ = _target;
 }
 
+void Camera::SetTargetPos(const VECTOR _targetPos)
+{
+	targetPoses_ = _targetPos;
+}
+
 
 VECTOR Camera::GetPos(void) const
 {
@@ -258,13 +263,10 @@ void Camera::ProcessRot(void)
 	{
 		angles_.x = LIMIT_X_DW_RAD;
 	}
-
-
 }
 
 void Camera::SmoothChangeCamera(void)
 {
-
 	// 同期先の位置	
 	VECTOR followPos = followTransform_->pos;
 	VECTOR targetPos = targetTransform_->pos;
@@ -290,7 +292,6 @@ void Camera::SmoothChangeCamera(void)
 		rot_.Slerp(rot_, goalrot, lerpRate);
 	}
 	
-
 	//カメラ角度の同期
 	angles_ = targetRot;
 
@@ -339,10 +340,10 @@ void Camera::SetBeforeDrawFollow(void)
 	// 追従対象との相対位置を同期
 	SyncFollow();
 
-	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
-	//{
-	//	ChangeMode(MODE::TARGET_POINT);
-	//}
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
+	{
+		ChangeMode(MODE::TARGET_POINT);
+	}
 }
 
 void Camera::SetBeforeDrawSelfShot(void)
@@ -357,7 +358,6 @@ void Camera::SetBeforeDrawLerpCamera(void)
 void Camera::SetBeforeDrawTargetPoint(void)
 {
 	ProcessRot();
-
 	SyncTargetFollow();
 
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
