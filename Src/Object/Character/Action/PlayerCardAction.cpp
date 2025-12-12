@@ -45,15 +45,12 @@ void PlayerCardAction::Init(void)
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
-	if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
-	{
-		ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
-	}
-
-	
-
+	//if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
+	//{
+	//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
+	//}
 	//手札に移動
-	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
+	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		PutCard();
 		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
