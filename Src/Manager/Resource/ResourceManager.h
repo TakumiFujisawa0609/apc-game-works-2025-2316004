@@ -37,7 +37,7 @@ public:
 		//“G
 		E_IDLE,		//‘Ò‹@
 		E_RUN,		//‘–‚é
-		E_SWIP_ATK,	//‰¡“ã‚¬UŒ‚
+		E_STOMP_ATK,	//‰¡“ã‚¬UŒ‚
 		E_JUMP_ATK, //ƒWƒƒƒ“ƒvUŒ‚
 		E_ROAR_ATK,	//™ôšKUŒ‚
 		E_ROLE_ATK,	//“]‚ª‚èUŒ‚

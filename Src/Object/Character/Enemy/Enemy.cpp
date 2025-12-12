@@ -58,7 +58,7 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_SWIP_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_STOMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));

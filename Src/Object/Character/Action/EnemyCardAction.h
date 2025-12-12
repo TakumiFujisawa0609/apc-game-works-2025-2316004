@@ -52,9 +52,13 @@ public:
     
 private:
 
-    //攻撃1段目判定
-    static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 35.0f;   //攻撃当たり判定開始アニメーションカウント
+    //スタンプ
+    static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 27.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 46.0f;     //攻撃当たり判定終了アニメーションカウント
+
+    static constexpr float STOMP_ATK_SHAKE_CNT = 1.0f;              //カメラシェイク時間
+    static constexpr int STOMP_ATK_ROCK_NUM = 9;
+
 
     //重力
     static constexpr float GRAVITY = 0.1f;
@@ -87,7 +91,7 @@ private:
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
     static constexpr VECTOR JUMP_ATK_LOCAL = { 0.0f,100.0f,0.0f };
 
-    static constexpr float ATK_SPHERE_RADIUS = 50.0f;					//通常攻撃の球体の半径
+    static constexpr float ATK_SPHERE_RADIUS = 300.0f;					//通常攻撃の球体の半径
     static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃の始まりの半径
 	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //咆哮攻撃の球体の半径
 	static constexpr float ROLE_ATK_RADIUS = 150.0f;                     //転がる攻撃の球体の半径
@@ -102,6 +106,8 @@ private:
     static constexpr float JUMP_ATK_ANIM_LOOP_END = 13.0f;
     static constexpr float JUMP_ATK_ANIM_LOOP_SPEED = 5.0f;
 
+
+
     //ひっかき攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
     //ジャンプ攻撃のステータス
@@ -113,7 +119,7 @@ private:
 
 
     //ジャンプ攻撃カウント
-    float jumpAtkCnt_;
+    float cameraShakeCnt_;
     //ジャンプチャージカウント
     float jumpChargeCnt_;
     //ジャンプチャージ中のカード勝敗数カウント
@@ -123,14 +129,14 @@ private:
     std::unique_ptr<Easing>easing_;
 
     //遷移
-    void ChangeSwip(void);
+    void ChangeStomp(void);
     void ChangeRoar(void);
     void ChangeJumpAtk(void);
 	void ChangeRoleAtk(void);
     void ChangeReload(void);
     void ChangeDuel(void)override;
     //更新
-    void UpdateSwip(void);
+    void UpdateStomp(void);
     void UpdateRoar(void);
     void UpdateJumpAtk(void);
 	void UpdateRoleAtk(void);
@@ -148,6 +154,10 @@ private:
 
     //攻撃別の当たり判定情報
     std::map<ACT_TYPE, ATK_STATUS>atkTable_;
+
+    //岩生成フラグ
+    bool isGenerateRock_;
+    std::vector<VECTOR>lockPos_;
 
     //転がる攻撃関連
     float preRoleAtkCnt_;//前隙カウント

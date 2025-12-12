@@ -25,7 +25,7 @@ public:
 
     enum class ENEMY_ATTACK_TYPE {
         NONE,
-        NORMAL,
+        STOMP,
         JUMP,
         ROAR,
         ROLE

@@ -67,13 +67,13 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Run.mv1");
 	resourcesMap_.emplace(SRC::E_RUN, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Swiping.mv1");
-	resourcesMap_.emplace(SRC::E_SWIP_ATK, std::move(res));
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"MutantStomp.mv1");
+	resourcesMap_.emplace(SRC::E_STOMP_ATK, std::move(res));
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_JumpAttack.mv1");
 	resourcesMap_.emplace(SRC::E_JUMP_ATK, std::move(res));
 	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_JumpAttack.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"MutantKnockDown.mv1");
 	resourcesMap_.emplace(SRC::E_KNOCK_DOWN, std::move(res));
 
 

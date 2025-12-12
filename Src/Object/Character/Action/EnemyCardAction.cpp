@@ -14,7 +14,7 @@
 
 EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
 CardActionBase(_actCntl, _charaObj, _deck),
-jumpAtkCnt_(0.0f),
+cameraShakeCnt_(0.0f),
 roleAtkCnt_(0.0f),
 preRoleAtkCnt_(0.0f),
 preRolePos_(Utility3D::VECTOR_ZERO),
@@ -22,7 +22,7 @@ roleDeg_(0.0f)
 {
 	isTurnable_ = false;
 	changeAction_ = {
-		{ CARD_ACT_TYPE::SWIP_ATK, [this]() {ChangeSwip(); }},
+		{ CARD_ACT_TYPE::STOMP_ATK, [this]() {ChangeStomp(); }},
 		{ CARD_ACT_TYPE::ROAR_ATK, [this]() {ChangeRoar(); }},
 		{ CARD_ACT_TYPE::JUMP_ATK, [this]() {ChangeJumpAtk(); }},
 		{ CARD_ACT_TYPE::RUSH_ATK, [this]() {ChangeRoleAtk(); }},
@@ -31,7 +31,7 @@ roleDeg_(0.0f)
 	};
 
 	atkStatusTable_ = {
-		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::STOMP_ATK, SWIP_ATK},
 		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
 		{CARD_ACT_TYPE::RUSH_ATK, RUSH_ATK }
@@ -48,11 +48,11 @@ void EnemyCardAction::Init(void)
 	//deck_.MoveUsingCardToDrawPile();
 	easing_ = std::make_unique<Easing>();
 	atkStatusTable_ = {
-		{CARD_ACT_TYPE::SWIP_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::STOMP_ATK, SWIP_ATK},
 		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
-	jumpAtkCnt_ = 0.0f;
+	cameraShakeCnt_ = 0.0f;
 	speed_ = 0.0f;
 	roleAtkCnt_ = 0.0f;
 	roleDeg_ = 0.0f;
@@ -103,10 +103,11 @@ const bool EnemyCardAction::IsJumpAtkCharge(void) const
 	return jumpChargeCnt_ < JUMP_CHARGE_TIME; 
 }
 
-void EnemyCardAction::ChangeSwip(void)
+void EnemyCardAction::ChangeStomp(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::SWIP_ATK), false);
-	cardFuncs_.push([this]() {UpdateSwip(); });
+	isGenerateRock_ = false;
+	cardFuncs_.push([this]() {UpdateStomp(); });
 }
 
 void EnemyCardAction::ChangeRoar(void)
@@ -158,10 +159,58 @@ void EnemyCardAction::ChangeDuel(void)
 	cardFuncs_.push([this]() {UpdateDuel(); });
 }
 
-void EnemyCardAction::UpdateSwip(void)
+void EnemyCardAction::UpdateStomp(void)
 {
-	//攻撃モーション
-	AttackMotion(atkStatusTable_[actType_],Collider::TAG::NML_ATK, ATK_ONE_LOCAL);
+	////負けたら終了
+	if (IsCardFailure(Collider::TAG::NML_ATK))return;
+
+	if (anim_.GetAnimStep() > ATTACK_ONE_COL_START_ANIM_CNT)
+	{
+		const Transform& charaTrans = charaObj_.GetTransform();
+		//ジャンプ攻撃処理
+		CardActionBase::ATK_STATUS& status = atkStatusTable_[CARD_ACT_TYPE::STOMP_ATK];
+
+		cameraShakeCnt_ += SceneManager::GetInstance().GetDeltaTime();
+		//攻撃中
+		atkPos_ = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, { 0.0f,0.0f,0.0f });
+		//攻撃判定有効
+		isAliveAtkCol_ = true;
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, status.atkRadius);
+
+		//溜めのカメラシェイク
+		scnMng_.GetCamera().lock()->SetShakeStatus(cameraShakeCnt_ / STOMP_ATK_SHAKE_CNT, 30.0f);
+		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
+
+		//地面から岩の玉を生成してあらゆる方向に飛ばす
+		if (!isGenerateRock_)
+		{
+			for (int i = 0; i < STOMP_ATK_ROCK_NUM; i++)
+			{
+				//岩生成(敵の脚から出現)
+				lockPos_.emplace_back(atkPos_);
+			}
+		}
+		else
+		{
+			//岩の座標更新
+			for (auto& lockPos : lockPos_)
+			{
+				
+			}
+		}
+
+
+		if (cameraShakeCnt_ > JUMP_ATK_CNT_MAX)
+		{
+			cameraShakeCnt_ = 0.0f;
+			status.atkRadius = JUMP_ATK_RADIUS;
+			//アニメーションループ終了
+			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		}
+
+	}
 }
 
 void EnemyCardAction::UpdateRoar(void)
@@ -199,7 +248,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		//ジャンプ攻撃処理
 		CardActionBase::ATK_STATUS& status = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
 
-		jumpAtkCnt_ += SceneManager::GetInstance().GetDeltaTime();
+		cameraShakeCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//攻撃中
 		atkPos_ = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, { 0.0f,0.0f,0.0f });
 		//攻撃判定有効
@@ -207,19 +256,19 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, status.atkRadius);
 
 		//攻撃範囲拡大
-		status.atkRadius = easing_->EaseFunc(JUMP_ATK_RADIUS, JUMP_ATK_GOAL_RADIUS, jumpAtkCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
+		status.atkRadius = easing_->EaseFunc(JUMP_ATK_RADIUS, JUMP_ATK_GOAL_RADIUS, cameraShakeCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
 		charaObj_.UpdateAttackCol(status.atkRadius);
 
 		//溜めのカメラシェイク
-		scnMng_.GetCamera().lock()->SetShakeStatus(jumpAtkCnt_ / JUMP_ATK_CNT_MAX, 30.0f);
+		scnMng_.GetCamera().lock()->SetShakeStatus(cameraShakeCnt_ / JUMP_ATK_CNT_MAX, 30.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//アニメーションループ
 		anim_.SetMidLoop(53.0f, 69.0f, 10.0f);
 
-		if (jumpAtkCnt_ > JUMP_ATK_CNT_MAX)
+		if (cameraShakeCnt_ > JUMP_ATK_CNT_MAX)
 		{
-			jumpAtkCnt_ = 0.0f;
+			cameraShakeCnt_ = 0.0f;
 			status.atkRadius = JUMP_ATK_RADIUS;
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
@@ -341,8 +390,8 @@ void EnemyCardAction::DesideCardAction(void)
 	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
 	switch (attackType)
 	{
-	case LogicBase::ENEMY_ATTACK_TYPE::NORMAL:
-		ChangeCardAction(CARD_ACT_TYPE::SWIP_ATK);
+	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:
+		ChangeCardAction(CARD_ACT_TYPE::STOMP_ATK);
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:
 		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);		//ジャンプチャージ中はデュエルフェーズへ

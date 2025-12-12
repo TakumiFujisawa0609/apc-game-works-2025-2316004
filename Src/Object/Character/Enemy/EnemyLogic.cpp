@@ -135,7 +135,7 @@ void EnemyLogic::DesideAction(void)
 		if (rand > weight_.normal)
 		{
 			//í èÌçUåÇ
-			attackType_ = ENEMY_ATTACK_TYPE::NORMAL;
+			attackType_ = ENEMY_ATTACK_TYPE::STOMP;
 		}
 		else if(rand > weight_.jump)
 		{
@@ -157,7 +157,7 @@ void EnemyLogic::DesideAction(void)
 		if (rand > weight_.normal)
 		{
 			//í èÌçUåÇ
-			attackType_ = ENEMY_ATTACK_TYPE::NORMAL;
+			attackType_ = ENEMY_ATTACK_TYPE::STOMP;
 		}
 		else if (rand > weight_.jump)
 		{
@@ -173,7 +173,7 @@ void EnemyLogic::DesideAction(void)
 
 	//ëOâÒÇÃçUåÇÇë„ì¸Ç∑ÇÈ
 	prevAttackType_ = attackType_;
-	attackType_ = ENEMY_ATTACK_TYPE::JUMP;
+	attackType_ = ENEMY_ATTACK_TYPE::STOMP;
 	//SetFreezeCntByAttackType(attackType_);
 	isActioning_ = true;
 }
@@ -184,7 +184,7 @@ void EnemyLogic::SetFreezeCntByAttackType(void)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::NONE:
 		break;
-	case LogicBase::ENEMY_ATTACK_TYPE::NORMAL:
+	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:
 		freezeCnt_ = NORMAL_FREEZE_TIME;
 		break;
 	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:

@@ -136,7 +136,7 @@ void TitleScene::NormalDraw(void)
 	);
 	
 	//É^ÉCÉgÉãÉçÉS
-	DrawExtendGraph(logoPos_.x, logoPos_.y, logoPos_.x+LOGO_SIZE_X, logoPos_.y+LOGO_SIZE_Y, imgTitleLogo, true);
+	DrawExtendGraphF(logoPos_.x, logoPos_.y, logoPos_.x + LOGO_SIZE_X, logoPos_.y + LOGO_SIZE_Y, imgTitleLogo, true);
 
 
 	for (auto& btn : buttons_)

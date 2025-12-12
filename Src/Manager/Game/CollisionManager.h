@@ -13,7 +13,7 @@ class CollisionManager
 public:
 
 	//“–‚½‚è”»’è‚ğ‚·‚é”ÍˆÍ
-	static constexpr float HIT_RANGE_NORMAL = 1000.0f;	//’Êí‚Ì“–‚½‚è”»’è‹——£
+	static constexpr float HIT_RANGE_NORMAL = 5000.0f;	//’Êí‚Ì“–‚½‚è”»’è‹——£
 	static constexpr float HIT_RANGE_JUMP_ATK = 5000.0f;
 	static constexpr float HIT_RANGE_STAGE = 30000.0f;	//•——p‚Ì“–‚½‚è”»’è‹——£
 

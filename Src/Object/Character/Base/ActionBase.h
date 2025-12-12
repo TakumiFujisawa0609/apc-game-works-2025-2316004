@@ -52,7 +52,7 @@ public:
 		SONIC_RAVE,		//ソニックレイヴ		
 
 		//敵のアクション
-		SWIP_ATK, //ひっかき攻撃
+		STOMP_ATK, //ひっかき攻撃
 		ROAR_ATK, //咆哮
 		JUMP_ATK, //ジャンプ攻撃
 		RUSH_ATK,  //ロール攻撃
