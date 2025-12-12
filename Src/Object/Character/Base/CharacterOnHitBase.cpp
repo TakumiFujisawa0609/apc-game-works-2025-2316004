@@ -23,7 +23,8 @@ CharacterOnHitBase::CharacterOnHitBase(CharacterBase& _chara, VECTOR& _movedPos,
 	moveDiff_(_moveDiff),
 	colParam_(_colParam),
 	action_(_action),
-	trans_(_trans)
+	trans_(_trans),
+	hitPoint_({})
 {
 }
 

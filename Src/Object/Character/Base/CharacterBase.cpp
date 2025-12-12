@@ -100,9 +100,6 @@ void CharacterBase::UpdatePost(void)
 	//ˆÚ“®‘O‚ÌÀ•W‚ğŠi”[‚·‚é
 	moveDiff_ = trans_.pos;
 
-
-	
-
 	//ˆÚ“®
 	trans_.pos = movedPos_;
 }

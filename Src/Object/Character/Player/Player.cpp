@@ -129,7 +129,7 @@ void Player::Init(void)
 
 	MakeColliderGeometry();
 
-	onHit_ = std::make_unique<PlayerOnHit>(*this,movedPos_, moveDiff_, *action_, collider_, trans_);
+	
 
 	//プレイヤー状態
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
@@ -189,7 +189,6 @@ void Player::Update(void)
 	stateUpdate_();
 
 	cardUI_->Update();
-
 	//回転の同期
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
@@ -297,6 +296,8 @@ void Player::MakeColliderGeometry(void)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
 	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
+
+	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_);
 }
 
 void Player::ChangeState(PLAYER_STATE _state)
@@ -339,15 +340,12 @@ void Player::Action(void)
 		//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 	}
 
-
-
 	//アクション関係の更新
 	logic_->Update();
 
 	action_->Update();
 
 	UpdatePost();
-
 
 }
 

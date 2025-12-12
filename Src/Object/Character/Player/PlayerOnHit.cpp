@@ -26,16 +26,11 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos,VECTOR& _moveD
 	using TAG = Collider::TAG;
 	colUpdates_={
 		{ TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); } },
-		{ TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); } },
 		{ TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); } },
 		{ TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); } },
 		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
 	};
 
-	hitPoint_ = {};
-
-	moveDiff_ = Utility3D::VECTOR_ZERO;
-	movedPos_ = Utility3D::VECTOR_ZERO;
 }
 
 PlayerOnHit::~PlayerOnHit(void)
@@ -78,6 +73,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	//Ç®å›Ç¢ÇÃãóó£ÇÇ∆ÇÈ
 	float dis = static_cast<float>(Utility3D::Distance(myPos, hitCharaPos));
 	float minDist = myCap.GetRadius() + hitCap.GetRadius();
+
 	//Ç®å›Ç¢ÇÃãóó£Ç™ó£ÇÍÇƒÇ¢ÇΩÇÁâüÇµèoÇ≥Ç»Ç¢
 	if (dis > minDist)return;
 
@@ -90,7 +86,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	vec.y = 0.0f;
 
 	//âüÇµèoÇµ
-	movedPos_ = VAdd(moveDiff_, VScale(vec, pushPow));
+	movedPos_ = {};
 
 }
 

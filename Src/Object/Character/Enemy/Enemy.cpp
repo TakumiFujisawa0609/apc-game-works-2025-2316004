@@ -124,7 +124,7 @@ void Enemy::Update(void)
 	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
 	cardUI_->Update();
 	

@@ -21,9 +21,8 @@ public:
 	PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff,
 		ActionController& _action, std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& _colParam, Transform& _trans);
 
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
+	/// @brief デストラクタ
+	/// @param  
 	~PlayerOnHit(void)override;
 	
 	/// @brief  初期化
@@ -56,32 +55,6 @@ private:
 	static constexpr int UP_AND_DOWN_LINE_COL_NO = 2;
 	//雄たけび硬直時間
 	static constexpr float ROAR_FLICTION_TIME = 0.1f;
-
-
-
-
-
-
-
-
-
-	////プレイヤー
-	//ActionController& action_;
-	////移動量
-	//VECTOR& movedPos_;
-	////移動前
-	//VECTOR& moveDiff_;
-	////プレイヤーの情報
-	//Transform& trans_;
-
-	////当たり判定ごとの更新
-	//std::map<Collider::TAG, std::function<void(const std::weak_ptr<Collider> _hitCol)>>colUpdates_;
-	////当たり判定関係
-	//std::map<ObjectBase::TAG_PRIORITY,std::shared_ptr<Collider>>& colParam_;
-	////キャラクターの情報
-	//CharacterBase& charaObj_;
-	////当たった箇所
-	//HIT_POINT hitPoint_;
 
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;		//キャラ同士
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃
