@@ -7,8 +7,8 @@
 #include"../Player/ActionController.h"
 
 #include"../Player/Player.h"
-
-#include"../Player/PlayerOnHit.h"
+#include"../Base/CharacterOnHitBase.h"
+#include"../Enemy/EnemyOnHit.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
 #include"../../Common/Geometry/Capsule.h"
@@ -18,6 +18,7 @@
 #include"../Manager/Generic/Camera.h"
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
+
 
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
@@ -267,7 +268,7 @@ void Enemy::MakeColliderGeometry(void)
 	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
 
-	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_);
+	onHit_ = std::make_unique<EnemyOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_);
 }
 void Enemy::DrawDebug(void)
 {

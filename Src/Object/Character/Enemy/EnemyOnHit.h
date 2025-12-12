@@ -15,9 +15,8 @@ public:
 	EnemyOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _movedDiff,
 		ActionController& _action, std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& _colParam, Transform& _trans);
 
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
+	/// @brief デストラクタ
+	/// @param  
 	~EnemyOnHit(void)override;
 
 	/// @brief  初期化
@@ -37,5 +36,7 @@ public:
 private:
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃
 	void CollDuelSpecialAttack(const std::weak_ptr<Collider> _hitCol);	//デュエルで負けたときの反応
+	void CollChara(const std::weak_ptr<Collider> _hitCol)override;
+
 };
 

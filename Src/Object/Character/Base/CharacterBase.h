@@ -15,6 +15,7 @@ class InputBase;
 class Capsule;
 class LogicBase;
 class PlayerOnHit;
+class EnemyOnHit;
 
 
 

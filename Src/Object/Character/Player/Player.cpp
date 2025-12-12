@@ -22,6 +22,7 @@
 #include"../Object/Card/PlayerCardUI.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
+#include"../Base/CharacterOnHitBase.h"
 #include"./PlayerOnHit.h"
 
 #include"../Base/ActionBase.h"
@@ -128,7 +129,7 @@ void Player::Init(void)
 
 	MakeColliderGeometry();
 
-	onHit_ = std::make_unique<PlayerOnHit>(*this,movedPos_, moveDiff_, *action_, collider_, trans_, tag_);
+	onHit_ = std::make_unique<PlayerOnHit>(*this,movedPos_, moveDiff_, *action_, collider_, trans_);
 
 	//ÉvÉåÉCÉÑÅ[èÛë‘
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
