@@ -86,8 +86,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	vec.y = 0.0f;
 
 	//âüÇµèoÇµ
-	movedPos_ = {};
-
+	trans_.pos = VAdd(moveDiff_, VScale(vec, pushPow));
 }
 
 void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)

@@ -190,6 +190,10 @@ void Player::Update(void)
 
 	cardUI_->Update();
 	//回転の同期
+
+
+
+
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
 }
@@ -339,7 +343,6 @@ void Player::Action(void)
 		//重力(各アクションに重力を反映させたいので先に重力を先に書く)
 		//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 	}
-
 	//アクション関係の更新
 	logic_->Update();
 

@@ -90,6 +90,7 @@ void CharacterBase::UpdatePost(void)
 	//当たり判定をする前に初期化する
 	onHit_->InitHitPoint();
 
+	//移動制限
 	MoveLimit(Stage::STAGE_POS, { Stage::STAGE_SIZE,0.0f, Stage::STAGE_SIZE });
 	////地面接地ライン
 	//if (movedPos_.y < 0.0f)
