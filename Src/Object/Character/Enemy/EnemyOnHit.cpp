@@ -47,6 +47,14 @@ void EnemyOnHit::DrawDebug(void)
 
 void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
+	auto& parentChara = _hitCol.lock()->GetParentCharacter();
+	if (parentChara.GetIsDamage())return;
+
+	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
+	//ダメージを与えたことを知らせる
+	parentChara.SetIsDamage();
+	charaObj_.Damage(20);
+	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
 void EnemyOnHit::CollDuelSpecialAttack(const std::weak_ptr<Collider> _hitCol)
