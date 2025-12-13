@@ -95,7 +95,7 @@ private:
     static constexpr float ATK_SPHERE_RADIUS = 300.0f;					//通常攻撃の球体の半径
     static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃の始まりの半径
 	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //咆哮攻撃の球体の半径
-	static constexpr float ROLE_ATK_RADIUS = 150.0f;                     //転がる攻撃の球体の半径
+	static constexpr float ROLE_ATK_RADIUS = 300.0f;                     //転がる攻撃の球体の半径
     //ジャンプ攻撃範囲
     static constexpr float JUMP_ATK_GOAL_RADIUS = 2500.0f;
     //ジャンプ溜めカメラシェイク

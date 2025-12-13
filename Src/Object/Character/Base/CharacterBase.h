@@ -32,7 +32,7 @@ public:
 	//最大ＨＰ
 	static constexpr float HP_MAX = 200.0f;
 	//転がるアニメーション速度
-	static constexpr float ROLL_ANIM_SPEED = 100.0f;
+	static constexpr float ROLL_ANIM_SPEED = 20.0f;
 
 	//当たり判定
 	static constexpr int CUPSULE_COL_NO = 0;

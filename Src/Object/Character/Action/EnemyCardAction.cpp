@@ -137,7 +137,7 @@ void EnemyCardAction::ChangeRoleAtk(void)
 	preRoleAtkCnt_ = ROLE_PRE_TIME;
 	roleAtkCnt_ = ROLE_TIME;
 	preRolePos_ = charaObj_.GetTransform().pos;
-	
+	atk_= atkStatusTable_[CARD_ACT_TYPE::RUSH_ATK];
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
 	cardFuncs_.push([this]() {UpdateRoleAtk(); });
 }
@@ -307,11 +307,11 @@ void EnemyCardAction::UpdateRoleAtk(void)
 	{
 		roleAtkCnt_ -= deltaTIme;
 		//攻撃中
-		atkPos_ = Utility3D::AddPosRotate(trans.pos, trans.quaRot, { 0.0f,centerPos.y,0.0f });
+		atk_.pos = Utility3D::AddPosRotate(trans.pos, trans.quaRot, { 0.0f,0.0f,0.0f });
 		//転がる間の速度
 		speed_ = ROLE_SPEED;
 		//当たり判定の作成
-		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, atkPos_, ROLE_ATK_RADIUS);
+		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, atk_.pos, ROLE_ATK_RADIUS);
 		actionCntl_.GetInput().SetDegAndDir(roleMoveDeg_, roleMoveDir_);
 		if (roleAtkCnt_ < 0.0f)
 		{
@@ -385,8 +385,8 @@ bool EnemyCardAction::IsCardFailureJumpCharge(void)
 void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
-	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
+	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:
