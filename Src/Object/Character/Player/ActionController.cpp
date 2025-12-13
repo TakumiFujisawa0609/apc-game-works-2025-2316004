@@ -88,7 +88,7 @@ void ActionController::Update(void)
 }
 
 
-const ActionBase& ActionController::GetMainAction(void)
+ActionBase& ActionController::GetMainAction(void)
 {
 	return *mainAction_.at(act_);
 }

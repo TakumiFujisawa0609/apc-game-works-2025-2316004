@@ -23,9 +23,8 @@ public:
     //移動量
     VECTOR velocity_;
 
+    VECTOR& jumpPow_;		// ジャンプ量
     //オブジェクト
     CharacterBase& charaObj_;
-
-    VECTOR& jumpPow_;		// ジャンプ量
 };
 

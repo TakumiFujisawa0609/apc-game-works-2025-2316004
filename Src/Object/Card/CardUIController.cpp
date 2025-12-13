@@ -99,7 +99,6 @@ void CardUIController::ReactUpdate(const Vector2F& _goalPos)
 void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax)
 {
 	float time = (moveTimeMax - _cnt) / moveTimeMax;
-	//float startRad = currentAngle_;
 	float startRad = startAngle_;
 	float goalRad = goalAngle_;
 	currentAngle_ = easing_->EaseFuncRad(startRad

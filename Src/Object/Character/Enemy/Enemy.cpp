@@ -8,7 +8,8 @@
 
 #include"../Player/Player.h"
 #include"../Base/CharacterOnHitBase.h"
-#include"../Enemy/EnemyOnHit.h"
+#include"./EnemyOnHit.h"
+#include"./EnemyRock.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
 #include"../../Common/Geometry/Capsule.h"
@@ -156,6 +157,14 @@ void Enemy::Draw(void)
 	MV1DrawModel(trans_.modelId);
 	//deck_->Draw();
 	cardUI_->Draw();
+
+	if (!rock_.empty())
+	{
+		for (auto& rock : rock_)
+		{
+			rock->Draw();
+		}
+	}
 
 	//HPƒo[•`‰æ
 	const int BOX_START_X = 600;

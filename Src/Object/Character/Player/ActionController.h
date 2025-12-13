@@ -151,7 +151,7 @@ public:
 	/// @brief メインアクションの取得
 	/// @param  
 	/// @return 
-	const ActionBase& GetMainAction(void);
+	ActionBase& GetMainAction(void);
 
 
 #ifdef _DEBUG

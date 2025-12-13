@@ -173,7 +173,7 @@ void EnemyLogic::DesideAction(void)
 
 	//‘O‰ñ‚ÌUŒ‚‚ğ‘ã“ü‚·‚é
 	prevAttackType_ = attackType_;
-	attackType_ = ENEMY_ATTACK_TYPE::STOMP;
+	//attackType_ = ENEMY_ATTACK_TYPE::STOMP;
 	//SetFreezeCntByAttackType(attackType_);
 	isActioning_ = true;
 }

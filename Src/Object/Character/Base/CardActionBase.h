@@ -13,14 +13,14 @@ class CardActionBase :
 public:
 
 
-    //攻撃のステータス
-   struct ATK_STATUS
-    {
-        float colStartCnt;
-        float colEndCnt;
-        float atkRadius;
-        bool isDamage=false;
-    };
+   // //攻撃のステータス
+   //struct ATK_STATUS
+   // {
+   //     float colStartCnt;
+   //     float colEndCnt;
+   //     float atkRadius;
+   //     bool isDamage=false;
+   // };
 
     CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
     ~CardActionBase(void)override;

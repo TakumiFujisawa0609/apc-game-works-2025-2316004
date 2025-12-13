@@ -5,6 +5,7 @@
 #include "../Base/CardActionBase.h"
 
 class CardDeck;
+class EnemyRock;
 class CharacterBase;
 
 class EnemyCardAction :
@@ -57,7 +58,7 @@ private:
     static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 46.0f;     //攻撃当たり判定終了アニメーションカウント
 
     static constexpr float STOMP_ATK_SHAKE_CNT = 1.0f;              //カメラシェイク時間
-    static constexpr int STOMP_ATK_ROCK_NUM = 9;
+    static constexpr int STOMP_ATK_ROCK_NUM = 9;                    //岩の生成数
 
 
     //重力
@@ -109,13 +110,13 @@ private:
 
 
     //ひっかき攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
+    static constexpr ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
     //ジャンプ攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS JUMP_ATK = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,JUMP_ATK_RADIUS };
+    static constexpr ATK_STATUS JUMP_ATK = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,JUMP_ATK_RADIUS };
     //咆哮のステータス
-    static constexpr CardActionBase::ATK_STATUS ROAR_ATK = { ROAR_COL_START_ANIM_CNT,ROAR_COL_END_ANIM_CNT,ROAR_ATK_RADIUS };
+    static constexpr ATK_STATUS ROAR_ATK = { ROAR_COL_START_ANIM_CNT,ROAR_COL_END_ANIM_CNT,ROAR_ATK_RADIUS };
 	//転がるのステータス
-	static constexpr CardActionBase::ATK_STATUS RUSH_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
+	static constexpr ATK_STATUS RUSH_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
 
 
     //ジャンプ攻撃カウント
@@ -157,7 +158,6 @@ private:
 
     //岩生成フラグ
     bool isGenerateRock_;
-    std::vector<VECTOR>lockPos_;
 
     //転がる攻撃関連
     float preRoleAtkCnt_;//前隙カウント

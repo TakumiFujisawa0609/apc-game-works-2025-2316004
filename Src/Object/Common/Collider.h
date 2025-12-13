@@ -19,6 +19,7 @@ public :
 		ROAR_ATK,		//方向
 		JUMP_ATK,		//ジャンプ
 		STAGE,			//ステージ
+		ROCK,
 	};
 
 	/// <summary>

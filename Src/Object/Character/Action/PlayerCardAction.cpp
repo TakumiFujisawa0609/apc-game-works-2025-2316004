@@ -30,6 +30,8 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
 		{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
 	};
+
+	atk_ = {};
 }
 
 PlayerCardAction::~PlayerCardAction(void)
@@ -138,6 +140,7 @@ void PlayerCardAction::UpdateAttackThree(void)
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, atkStatusTable_[actType_].atkRadius);
+
 	}
 	else if (anim_.IsEnd())		//アニメーション終了でアイドル状態変更
 	{
@@ -227,6 +230,7 @@ void PlayerCardAction::UpdateDuel(void)
 void PlayerCardAction::ChangeAttackOne(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
+	atk_ = NORMAL_ATK_ONE;
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
@@ -235,6 +239,7 @@ void PlayerCardAction::ChangeAttackTwo(void)
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_2), false);
 	//攻撃段階を増やす
 	ChangeActionCardInit();
+	atk_ = NORMAL_ATK_TWO;
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
@@ -242,7 +247,8 @@ void PlayerCardAction::ChangeAttackThree(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false,60.0f,86.0f);
 	atkThreeEndCnt_ = 0.0f;
-	atkAnimLerpCnt_ = 0.0f;;
+	atkAnimLerpCnt_ = 0.0f;
+	atk_ = NORMAL_ATK_THREE;
 	ChangeActionCardInit();
 	cardFuncs_.push([this]() {UpdateAttackThree(); });
 }

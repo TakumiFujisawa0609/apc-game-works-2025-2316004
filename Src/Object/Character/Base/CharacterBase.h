@@ -16,6 +16,7 @@ class Capsule;
 class LogicBase;
 class PlayerOnHit;
 class EnemyOnHit;
+class EnemyRock;
 
 
 
@@ -163,7 +164,7 @@ public:
 	/// @brief ダメージを食らったか
 	/// @param  
 	/// @return 
-	const bool& GetIsDamage(void)const { return isDamage_; }
+	const bool GetIsDamage(void)const;
 
 	/// @brief 着地時のジャンプ力初期化
 	/// @param  
@@ -176,7 +177,7 @@ public:
 
 	/// @brief ダメージを与えたことを知らせる
 	/// @param  
-	void SetIsDamage(void) { isDamage_ = true; }
+	void SetIsDamage(void);
 
 	/// @brief のけぞり時間のセット
 	/// @param _flichCnt のけぞり時間
@@ -228,6 +229,20 @@ public:
 	/// @brief ロジッククラスにターゲットをセット
 	/// @param _targetChara ターゲット
 	void SetLogicTargetCharacter(std::shared_ptr<CharacterBase>_targetChara);
+	
+	/// @brief 岩配列
+	/// @param _num 岩の生成数
+	/// @param _atkPos 攻撃座標
+	void AddEnemyRock(const int _num,const VECTOR& _atkPos);
+
+	/// @brief 岩配列更新
+	/// @param  
+	void EnemyRockUpdate(void);
+
+	/// @brief 岩の消去
+	/// @param  
+	void ClearEnemyRock(void);
+
 
 protected:
 
@@ -254,6 +269,10 @@ protected:
 	std::unique_ptr<Capsule>cap_;
 	//当たった時の処理
 	std::unique_ptr<CharacterOnHitBase>onHit_;
+
+
+	//敵のスタンプ攻撃時に発生する岩
+	std::vector<std::unique_ptr<EnemyRock>>rock_;
 
 	//当たり判定の要素
 	VECTOR movedPos_;		//移動後座標

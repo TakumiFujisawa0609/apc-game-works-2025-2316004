@@ -13,6 +13,8 @@
 #include "../../Common/Geometry/Sphere.h"
 #include "../../Common/Geometry/Line.h"
 
+#include "../Object/Character/Enemy/EnemyRock.h"
+
 #include "../Object/ObjectBase.h"
 #include "CharacterBase.h"
 
@@ -168,9 +170,19 @@ void CharacterBase::Damage(const int _dam)
 	status_.hp -= _dam;
 }
 
+const bool CharacterBase::GetIsDamage(void) const
+{
+	return action_->GetMainAction().GetIsDamage();
+}
+
 const VECTOR& CharacterBase::GetCharaCenterPos(void) const
 {
 	return collider_.at(ObjectBase::TAG_PRIORITY::BODY)->GetGeometry().GetCenter();
+}
+
+void CharacterBase::SetIsDamage(void)
+{
+	action_->GetMainAction().SetIsDamage();
 }
 
 void CharacterBase::SetFlinchCnt(const float _flichCnt)
@@ -217,4 +229,30 @@ void CharacterBase::LariatMove(const float& _deg)
 void CharacterBase::SetLogicTargetCharacter(std::shared_ptr<CharacterBase> _targetChara)
 {
 	logic_->SetTargetCharacter(_targetChara);
+}
+
+void CharacterBase::AddEnemyRock(const int _num, const VECTOR& _atkPos)
+{
+	for (int i = 0; i < _num; i++)
+	{
+		VECTOR pos = _atkPos;
+	
+		std::unique_ptr<EnemyRock> rock = std::make_unique<EnemyRock>(i, pos);
+		rock_.emplace_back(std::move(rock));
+	}
+
+}
+
+void CharacterBase::EnemyRockUpdate(void)
+{
+	if (rock_.empty())return;
+	for (auto& rock : rock_)
+	{
+		rock->Update();
+	}
+}
+
+void CharacterBase::ClearEnemyRock(void)
+{
+	rock_.clear();
 }

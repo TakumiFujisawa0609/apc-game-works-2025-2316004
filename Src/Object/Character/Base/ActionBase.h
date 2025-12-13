@@ -62,16 +62,14 @@ public:
 		NUM,
 	};
 
+	//攻撃のステータス
 	struct ATK_STATUS
 	{
-		float colRadius;
-		float colStartFrame;
-		float colEndFrame;
-	};
-
-	struct ACTION_STATUS
-	{
-
+		float colStartCnt=0.0f;
+		float colEndCnt=0.0f;
+		float atkRadius=0.0f;
+		VECTOR pos = {};
+		bool isDamage = false;
 	};
 	
 	/// @brief 移動量の取得(ベクトル)
@@ -112,6 +110,13 @@ public:
 	/// @return 
 	virtual const int GetJumpCardNum(void)const { return -1; }
 
+	/// @brief 攻撃がダメージを与えたかを返す
+	/// @param  
+	const bool GetIsDamage(void)const { return atk_.isDamage; }
+
+	/// @brief ダメージを与えたことをセット
+	/// @param  
+	void SetIsDamage(void) { atk_.isDamage = true; }
 protected:
 
 	//移動スピード
@@ -146,6 +151,9 @@ protected:
 	bool isAliveAtkCol_;
 	//状態
 	CARD_ACT_TYPE actType_;
+
+	//現在の攻撃
+	ATK_STATUS atk_;
 
 private:
 	// 回転完了までの時間

@@ -29,6 +29,7 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos,VECTOR& _moveD
 		{ TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); } },
 		{ TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); } },
 		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
+		{ TAG::ROCK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
 	};
 
 }
@@ -126,8 +127,6 @@ void PlayerOnHit::DrawDebug(void)
 	//colParam_[MOVE_LINE_COL_NO].geometry_->DrawPlayerUI();
 	//colParam_[UP_AND_DOWN_LINE_COL_NO].geometry_->DrawPlayerUI();
 	//colParam_[EYE_LINE_NO].geometry_->DrawPlayerUI();
-
-
 }
 #endif // DEBUG_ON
 
