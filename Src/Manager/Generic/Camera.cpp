@@ -182,6 +182,9 @@ void Camera::OnHit(const std::weak_ptr<Collider> _hitCol)
 		{
 			int pHit = HitCheck_Sphere_Triangle(pos_, HIT_RADIUS
 				, hit.Position[0], hit.Position[1], hit.Position[2]);
+
+			
+
 			if (pHit)
 			{
 				VECTOR normal = hit.Normal;
