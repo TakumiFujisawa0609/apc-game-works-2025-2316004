@@ -69,6 +69,9 @@ void GameScene::Init(void)
 	CharacterManager::GetInstance().Init();
 	//重力管理クラスを生成
 	GravityManager::CreateInstance();
+	
+	//カメラの当たり判定作成
+	scnMng_.GetCamera().lock()->MakeColliderGeometry();
 	stage_->Init();
 	skyDome_->Init();
 	drawUi3D_->Init();

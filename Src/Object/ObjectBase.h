@@ -1,6 +1,7 @@
 #pragma once
 #include<memory>
 #include<map>
+#include<vector>
 #include "Common/Transform.h"
 #include "../Common/IntVector3.h"
 #include "./Common/Collider.h"
@@ -29,6 +30,7 @@ public:
 		ATK_SPHERE,
 		DOUBLE_SPHERE_1,
 		DOUBLE_SPHERE_2,
+		CAMERA_SPHERE,
 	};
 
 	// コンストラクタ
@@ -37,10 +39,10 @@ public:
 	// デストラクタ
 	virtual ~ObjectBase(void);
 
-	virtual void Load(void) = 0;
+	virtual void Load(void) {}
 	virtual void Init(void) = 0;
 	virtual void Update(void) = 0;
-	virtual void Draw(void) = 0;
+	virtual void Draw(void) {}
 	
 	/// @brief 基本情報の取得
 	/// @param  

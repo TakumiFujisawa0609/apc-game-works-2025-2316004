@@ -1,4 +1,5 @@
-#include <math.h>
+#include "../pch.h"
+
 #include <DxLib.h>
 #include <EffekseerForDXLib.h>
 #include"../Application.h"
@@ -6,6 +7,8 @@
 #include "../../Utility//UtilityCommon.h"
 #include "../Common/Easing.h"
 #include "../../Object/Common/Transform.h"
+#include "../../Object/Common/Geometry/Sphere.h"
+#include "../../Object/Common/Geometry/Line.h"
 #include"../../Manager/Generic/InputManager.h"
 #include"../../Manager/Generic/InputManagerS.h"
 #include"../../Manager/Generic/SceneManager.h"
@@ -51,6 +54,10 @@ void Camera::Init(void)
 
 void Camera::Update(void)
 {
+	//モード更新
+	modeUpdate_();
+	//イージングなどの更新
+	subUpdate_();
 }
 
 void Camera::SetBeforeDraw(void)
@@ -58,11 +65,6 @@ void Camera::SetBeforeDraw(void)
 
 	// クリップ距離を設定する(SetDrawScreenでリセットされる)
 	SetCameraNearFar(CAMERA_NEAR, CAMERA_FAR);
-
-	//モード更新
-	modeUpdate_();
-	//イージングなどの更新
-	subUpdate_();
 
 	// カメラの設定(位置と注視点による制御)
 	SetCameraPositionAndTargetAndUpVec(
@@ -142,6 +144,56 @@ void Camera::ChangeMode(const MODE mode)
 	// カメラモードの変更
 	mode_ = mode;
 	changeMode_[mode_]();
+}
+
+
+
+void Camera::MakeColliderGeometry(void)
+{
+	tag_ = Collider::TAG::CAMERA;
+	//球体の当たり判定
+	std::unique_ptr<Geometry>geo = std::make_unique<Sphere>(pos_, HIT_RADIUS);
+	MakeCollider(TAG_PRIORITY::CAMERA_SPHERE, { tag_ }, std::move(geo));
+	tagPrioritys_.emplace_back(TAG_PRIORITY::CAMERA_SPHERE);
+
+	//ステージ以外都は当たり判定しない
+	noneHitTag_.emplace(Collider::TAG::ENEMY1);
+	noneHitTag_.emplace(Collider::TAG::JUMP_ATK);
+	noneHitTag_.emplace(Collider::TAG::NML_ATK);
+	noneHitTag_.emplace(Collider::TAG::ROAR_ATK);
+	noneHitTag_.emplace(Collider::TAG::ROCK);
+	noneHitTag_.emplace(Collider::TAG::PLAYER1);
+}
+
+void Camera::OnHit(const std::weak_ptr<Collider> _hitCol)
+{
+	const std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
+
+	//当たったタグがステージではなかった場合は抜ける
+	if (std::find(tags.begin(), tags.end(), Collider::TAG::STAGE) == tags.end())return;
+
+	Geometry& cameraGeo = collider_[TAG_PRIORITY::CAMERA_SPHERE]->GetGeometry();
+	auto& modelInfo = cameraGeo.GetHitModelInfo();
+	for (int i=0;i<modelInfo.HitNum;i++)
+	{
+		auto hit = modelInfo.Dim[i];
+		//一定回数の押し出し処理をする
+		for (int tryCnt = 0; tryCnt < COL_TRY_CNT_MAX; tryCnt++)
+		{
+			int pHit = HitCheck_Sphere_Triangle(pos_, HIT_RADIUS
+				, hit.Position[0], hit.Position[1], hit.Position[2]);
+			if (pHit)
+			{
+				VECTOR normal = hit.Normal;
+
+				pos_ = VAdd(pos_, VScale(normal, 3.0f));
+
+				continue;
+			}
+			break;
+		}
+	}
+
 }
 
 void Camera::SetDefault(void)
@@ -335,7 +387,7 @@ void Camera::SetBeforeDrawFixedPoint(void)
 void Camera::SetBeforeDrawFollow(void)
 {
 	// カメラ操作
-	//ProcessRot();
+	ProcessRot();
 
 	// 追従対象との相対位置を同期
 	SyncFollow();

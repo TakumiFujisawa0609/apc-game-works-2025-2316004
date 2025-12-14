@@ -3,11 +3,12 @@
 #include <functional>
 #include <map>
 #include "../../Common/Quaternion.h"
+#include "../../Object/ObjectBase.h"
 #include "../Template/Singleton.h"
 #include "../Common/Easing.h"
 class Transform;
 class Easing;
-class Camera
+class Camera:public ObjectBase
 {
 	friend class Singleton<Camera>;
 public:
@@ -33,7 +34,8 @@ public:
 
 	// カメラのX回転上限度角
 	static constexpr float LIMIT_X_UP_RAD = 60.0f * (DX_PI_F / 180.0f);
-	static constexpr float LIMIT_X_DW_RAD = 5.0f * (DX_PI_F / 180.0f);
+	//static constexpr float LIMIT_X_DW_RAD = 5.0f * (DX_PI_F / 180.0f);
+	static constexpr float LIMIT_X_DW_RAD = -30.0f * (DX_PI_F / 180.0f);
 
 	//ターゲットカメラ遷移時の補完時間
 	static constexpr double CHANGE_TARGET_LERP_TIME = 0.7;
@@ -44,6 +46,15 @@ public:
 	//1シェイクにかかる時間
 	static constexpr float SHAKE_PER = 0.1f;
 	
+	//当たり判定の半径
+	static constexpr float HIT_RADIUS = 30.0f;
+
+	//当たった時の押し出し回数
+	static constexpr int COL_TRY_CNT_MAX = 10;
+
+	//ヒットした法線方向へのオフセット
+	static constexpr float HIT_NORMAL_OFFSET = 30.0f;
+
 	// カメラモード
 	enum class MODE
 	{
@@ -66,10 +77,13 @@ public:
 	Camera(void);
 	~Camera(void);
 
-	void Init(void);
-	void Update(void);
+	//当たり判定配列の格納
+	void MakeColliderGeometry(void);
+
+	void Init(void)override;
+	void Update(void)override;
 	void SetBeforeDraw(void);
-	void Draw(void);
+	void Draw(void)override;
 
 	// カメラ位置
 	VECTOR GetPos(void) const;
@@ -143,6 +157,9 @@ private:
 	// カメラの位置
 	VECTOR pos_;
 
+	//移動後座標
+	VECTOR goalPos_;
+
 	// カメラ角度(rad)
 	VECTOR angles_;
 
@@ -170,6 +187,12 @@ private:
 
 	//ターゲットカメラ遷移中フラグ
 	bool isChangingCamera_;
+
+
+
+	/// @brief 当たったときの処理
+	/// @param _hitCol ヒットしたコライダ
+	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 
 	// カメラを初期位置に戻す
 	void SetDefault(void);

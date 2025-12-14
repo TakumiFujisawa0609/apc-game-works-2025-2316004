@@ -58,6 +58,8 @@ protected:
 	//押し出す移動量
 	static constexpr float POSITION_OFFSET = 0.1f;
 
+
+
 	//プレイヤー
 	ActionController& action_;
 	//移動量

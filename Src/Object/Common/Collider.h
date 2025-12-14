@@ -15,11 +15,12 @@ public :
 	{
 		PLAYER1,		//プレイヤー1
 		ENEMY1,			//敵1
-		NML_ATK,			//剣
+		NML_ATK,		//剣
 		ROAR_ATK,		//方向
 		JUMP_ATK,		//ジャンプ
 		STAGE,			//ステージ
-		ROCK,
+		ROCK,			//敵の攻撃用岩
+		CAMERA,			//カメラ
 	};
 
 	/// <summary>

@@ -81,11 +81,13 @@ void SceneManager::Update(void)
 		Fade();
 	}
 	
+	// カメラ更新
+	camera_->Update();
+
 	//シーンごとの更新
 	scenes_.back()->Update();
 
-	// カメラ更新
-	camera_->Update();
+
 
 }
 
