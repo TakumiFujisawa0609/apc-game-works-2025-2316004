@@ -41,7 +41,7 @@ PauseScene::~PauseScene(void)
 void PauseScene::Load(void)
 {
 	imgTest_ = resMng_.Load(ResourceManager::SRC::TEST).handleId_;
-	pauseFont_ = CreateFontToHandle(FontManager::FONT_BOKUTATI.c_str(), FONT_SIZE, FONT_THICK);
+	pauseFont_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, FONT_THICK);
 }
 
 void PauseScene::Init(void)

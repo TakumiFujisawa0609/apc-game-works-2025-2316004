@@ -53,13 +53,14 @@ bool Application::Init()
 	ResourceManager::CreateInstance();
 	ResourceManager::GetInstance().Init();
 
+	//サウンド管理初期化
+	SoundManager::CreateInstance();
+	SoundManager::GetInstance().Init();
+
 	// シーン管理初期化
 	SceneManager::CreateInstance();		
 	SceneManager::GetInstance().Init();	
 
-	//サウンド管理初期化
-	SoundManager::CreateInstance();
-	SoundManager::GetInstance().Init();
 
 	// FPS初期化
 	fps_ = std::make_unique<FpsControl>();

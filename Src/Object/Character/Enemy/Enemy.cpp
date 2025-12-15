@@ -91,13 +91,8 @@ void Enemy::Init(void)
 
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
 
-	using ACTION_TYPE = ActionController::ACTION_TYPE;
-	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_,status_.speed);
-	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
-  	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
-	action_->Init();
+	AddAction();
+
 	tag_ = Collider::TAG::ENEMY1;
 	capRadius_ = CAP_RADIUS;
 
@@ -125,7 +120,7 @@ void Enemy::Update(void)
 	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
 	cardUI_->Update();
 	
@@ -278,6 +273,17 @@ void Enemy::MakeColliderGeometry(void)
 	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
 
 	onHit_ = std::make_unique<EnemyOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_);
+}
+void Enemy::AddAction(void)
+{
+	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
+	using ACTION_TYPE = ActionController::ACTION_TYPE;
+	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
+	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed, footSE_, FOOT_SE_DIS);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
+	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
+	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
+	action_->Init();
 }
 void Enemy::DrawDebug(void)
 {

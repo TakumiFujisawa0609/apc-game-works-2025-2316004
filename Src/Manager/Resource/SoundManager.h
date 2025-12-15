@@ -17,7 +17,22 @@ public:
 		TITLE_BGM,					//タイトルBGM
 		GAME_BGM,					//ゲームBGM
 		//SE
-		CARD_MOVE,
+
+		//足音
+		PLAYER_FOOT_SE,				//プレイヤー足音
+		ENEMY_FOOT_SE,				//エネミー足音
+		ENEMY_STOMP_SE,				//エネミー爆発音
+		ENEMY_CHARGE_SE,			//エネミーチャージ音
+		ENEMY_JUMP_LAND_SE,			//エネミージャンプ着地音
+
+
+		//カード関連
+		CARD_MOVE,					//カード移動
+		CARD_BE_REFLECTED,			//カード弾かれ音
+		CARD_BREAK,					//カード弾き音(カードに勝った)
+		CARD_RELOAD,				//カードリロード音
+		CARD_RELOAD_FINISH,				//カードリロード終了音
+
 	};
 
 	/// <summary>
@@ -84,7 +99,7 @@ public:
 	/// </summary>
 	/// <param name="_src">リソース種類</param>
 	/// <returns>trueの場合読み込み成功,falseの場合失敗</returns>
-	const bool LoadResource(const SRC _src);
+	const bool LoadResource(const SRC _src, const float _pitch = 0.0f);
 
 	/// <summary>
 	/// 音源の再生
@@ -111,6 +126,8 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	const void SetLoadedSoundsVolume(void) { for (int i = 0; i < TYPE_MAX; i++) { SetSystemVolume(volume_[i], i); } };
+
+	void SetSoundVolumeSRC(const SRC _src, const int _volumePercent);
 
 	/// <summary>
 	/// 音量の設定
@@ -157,7 +174,7 @@ private:
 	SoundManager& operator=(const SoundManager&) = delete;
 
 	//内部読み込み処理
-	bool _Load(const SRC _src);
+	bool _Load(const SRC _src, const float _pich = 0.0f);
 
 	//再生種類を取得
 	int GetPlayType(const PLAYTYPE _playType);

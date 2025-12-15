@@ -19,7 +19,8 @@ cameraShakeCnt_(0.0f),
 roleAtkCnt_(0.0f),
 preRoleAtkCnt_(0.0f),
 preRolePos_(Utility3D::VECTOR_ZERO),
-roleDeg_(0.0f)
+roleDeg_(0.0f),
+soundMng_(SoundManager::GetInstance())
 {
 	isTurnable_ = false;
 	changeAction_ = {
@@ -59,6 +60,11 @@ void EnemyCardAction::Init(void)
 	roleDeg_ = 0.0f;
 	jampCardNum_ = 0;
 	atk_ = {};
+
+	soundMng_.LoadResource(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
+	soundMng_.LoadResource(SoundManager::SRC::ENEMY_CHARGE_SE);
+	soundMng_.LoadResource(SoundManager::SRC::ENEMY_STOMP_SE);
+
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//if (actionCntl_.GetInput().GetAttackType() == LogicBase::ENEMY_ATTACK_TYPE::JUMP)
@@ -127,6 +133,7 @@ void EnemyCardAction::ChangeJumpAtk(void)
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP_ATK), false);
 	jumpChargeCnt_ = 0.0f;
 	isDuelWait_ = true;
+	soundMng_.Play(SoundManager::SRC::ENEMY_CHARGE_SE, SoundManager::PLAYTYPE::LOOP);
 	//ジャンプ攻撃処理
 	atk_ = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
 	cardFuncs_.push([this]() {UpdateJumpAtk(); });
@@ -170,12 +177,17 @@ void EnemyCardAction::ChangeDuel(void)
 void EnemyCardAction::UpdateStomp(void)
 {
 	////負けたら終了
-	if (IsCardFailure(Collider::TAG::NML_ATK))return;
+	if (IsCardFailure(Collider::TAG::NML_ATK))
+	{
+		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+		charaObj_.ClearEnemyRock();
+		return;
+	}
+
 
 	if (anim_.GetAnimStep() > ATTACK_ONE_COL_START_ANIM_CNT)
 	{
 		const Transform& charaTrans = charaObj_.GetTransform();
-
 
 		//攻撃中
 		atk_.pos = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, { 0.0f,0.0f,0.0f });
@@ -188,6 +200,13 @@ void EnemyCardAction::UpdateStomp(void)
 		scnMng_.GetCamera().lock()->SetShakeStatus(cameraShakeCnt_ / STOMP_ATK_SHAKE_CNT, 30.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
+		//地響き音再生
+		const bool isPlayStompSE_ = soundMng_.IsPlay(SoundManager::SRC::ENEMY_STOMP_SE);
+		if (!isPlayStompSE_)
+		{
+			soundMng_.Play(SoundManager::SRC::ENEMY_STOMP_SE, SoundManager::PLAYTYPE::BACK);
+		}
+
 		//地面から岩の玉を生成してあらゆる方向に飛ばす
 		if (!isGenerateRock_)
 		{
@@ -199,7 +218,7 @@ void EnemyCardAction::UpdateStomp(void)
 			charaObj_.EnemyRockUpdate();
 		}
 
-
+		//ため時間が終わったら
 		if (cameraShakeCnt_ > STOMP_ATK_SHAKE_CNT)
 		{
 			cameraShakeCnt_ = 0.0f;
@@ -208,6 +227,8 @@ void EnemyCardAction::UpdateStomp(void)
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 			charaObj_.ClearEnemyRock();
+			charaObj_.GetCardUI().ChangeUsedActionCard();
+			deck_.EraseHandCard();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
 
@@ -222,7 +243,13 @@ void EnemyCardAction::UpdateRoar(void)
 void EnemyCardAction::UpdateJumpAtk(void)
 {
 	////負けたら終了
-	if (IsCardFailure(Collider::TAG::NML_ATK))return;
+	if (IsCardFailure(Collider::TAG::NML_ATK))
+	{
+		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+		soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
+		return;
+	}
+
 	//ジャンプチャージ
 	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
 	{
@@ -238,6 +265,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		{
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
 			charaObj_.GetCardUI().ChangeUsedActionCard();
 			deck_.EraseHandCard();
 		}
@@ -261,6 +289,13 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		//溜めのカメラシェイク
 		scnMng_.GetCamera().lock()->SetShakeStatus(cameraShakeCnt_ / JUMP_ATK_CNT_MAX, 30.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
+
+		//サウンド再生
+		if (!soundMng_.IsPlay(SoundManager::SRC::ENEMY_JUMP_LAND_SE))
+		{
+			soundMng_.Play(SoundManager::SRC::ENEMY_JUMP_LAND_SE, SoundManager::PLAYTYPE::BACK);
+		}
+
 
 		//アニメーションループ
 		anim_.SetMidLoop(53.0f, 69.0f, 10.0f);
@@ -386,7 +421,7 @@ void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
 	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::ROLE;
+	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:

@@ -138,7 +138,6 @@ protected:
 
 	//怯み時間
 	float flinchCnt_;
-
 	//シングルトンクラス
 	SceneManager& scnMng_;
 	//アクションコントローラー

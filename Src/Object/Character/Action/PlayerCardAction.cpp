@@ -13,7 +13,8 @@
 
 PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
 	CardActionBase(_actCntl, _charaObj, _deck),
-	pushReloadCnt_()
+	pushReloadCnt_(),
+	soundMng_(SoundManager::GetInstance())
 {
 	isTurnable_ = false;
 	changeAction_={
@@ -47,6 +48,8 @@ void PlayerCardAction::Init(void)
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
+	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
+	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
 	//if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
 	//{
 	//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
@@ -61,6 +64,8 @@ void PlayerCardAction::Init(void)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
+
+
 }
 
 void PlayerCardAction::Update()
@@ -178,6 +183,8 @@ void PlayerCardAction::UpdateReload(void)
 	{
 		cardFuncs_.pop();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		//カードリロード音停止
+		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
 		actType_ = CARD_ACT_TYPE::NONE;
 		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 	}
@@ -187,6 +194,9 @@ void PlayerCardAction::UpdateReload(void)
 		cardFuncs_.pop();
 		actType_ = CARD_ACT_TYPE::NONE;
 		pushReloadCnt_ = 0.0f;
+		//カードリロード音停止、完了音再生
+		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
+		soundMng_.Play(SoundManager::SRC::CARD_RELOAD_FINISH,SoundManager::PLAYTYPE::BACK);
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
 }
@@ -263,6 +273,8 @@ void PlayerCardAction::ChangeReload(void)
 	deck_.EraseHandCard();
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
 
+	//リロード音再生
+	soundMng_.Play(SoundManager::SRC::CARD_RELOAD, SoundManager::PLAYTYPE::LOOP);
 	float per = pushReloadCnt_ / RELOAD_TIME;
 	charaObj_.GetCardUI().SetReloadCount(per);
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);

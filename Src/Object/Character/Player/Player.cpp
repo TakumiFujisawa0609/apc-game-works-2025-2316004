@@ -136,13 +136,8 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
-	using ACTION_TYPE = ActionController::ACTION_TYPE;
-	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_,status_.speed);
-	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_,*this,jumpPow_);
-	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_,trans_ ,status_.speed);
-	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION,*action_, *this, *deck_);
+	AddAction();
+
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
 
@@ -283,6 +278,18 @@ void Player::DrawDebug(void)
 }
 
 #endif // _DEBUG
+
+void Player::AddAction(void)
+{
+	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
+	using ACTION_TYPE = ActionController::ACTION_TYPE;
+	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
+	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
+	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
+	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, trans_, status_.speed);
+	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
+	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
+}
 
 void Player::MakeColliderGeometry(void)
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include<map>
+#include "../Manager/Resource/SoundManager.h"
 #include "../../Card/CardBase.h"
 #include "../Base/CharacterOnHitBase.h"
 #include "../Player/ActionController.h"
@@ -274,6 +275,9 @@ protected:
 	//敵のスタンプ攻撃時に発生する岩
 	std::vector<std::unique_ptr<EnemyRock>>rock_;
 
+	//使う足音
+	SoundManager::SRC footSE_;
+
 	//当たり判定の要素
 	VECTOR movedPos_;		//移動後座標
 	VECTOR moveDiff_;		//移動前座標
@@ -286,6 +290,9 @@ protected:
 	//ステータス
 	STATUS status_;
 	
+	//サウンドマネージャ
+	SoundManager& soundMng_;
+
 	//ステータス
 	STATUS maxStatus_;
 	//カードUI(とりあえず)
@@ -306,6 +313,9 @@ protected:
 
 	//移動制限
 	void MoveLimit(const VECTOR& _stagePos, const VECTOR& _stageSize);
+
+	//アクションの追加
+	virtual void AddAction(void) = 0;
 
 	//コライダ作成
 	virtual void MakeColliderGeometry(void) = 0;;

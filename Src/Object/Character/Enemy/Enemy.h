@@ -127,6 +127,10 @@ private:
 	static constexpr int SPINE_FRAME_NO = 1;
 	//敵番号(デッキで判定する用)
 	static constexpr int ENEMY_NUM = 1;
+
+	//足音間隔
+	static constexpr float FOOT_SE_DIS = 0.6f;
+
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 150.0f*MODEL_SIZE_MULTIPLITER, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
@@ -145,6 +149,8 @@ private:
 	//コライダ作成
 	void MakeColliderGeometry(void)override;
 
+	//アクションの追加
+	void AddAction(void)override;
 
 #ifdef _DEBUG
 	void DrawDebug(void);

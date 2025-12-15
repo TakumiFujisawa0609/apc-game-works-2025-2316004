@@ -2,6 +2,7 @@
 #include <DxLib.h>
 #include "../Application.h"
 #include "../Utility/UtilityCommon.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Generic/InputManagerS.h"
@@ -25,7 +26,7 @@ TitleScene::~TitleScene(void)
 void TitleScene::Load(void)
 {
 	//フォントの登録
-	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_DOT.c_str(), FONT_SIZE, 0);
+	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 	//タイトル画像の読み込み
 	imgTitleBack = resMng_.Load(ResourceManager::SRC::TITLE_BACK_IMG).handleId_;
 
@@ -33,6 +34,9 @@ void TitleScene::Load(void)
 	imgTitleLogo = resMng_.Load(ResourceManager::SRC::TITLE_LOGO).handleId_;
 
 	titleFont_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::TITLE_BGM);
+
 
 	yesNoState_ = YES_NO::NO;
 }
@@ -76,6 +80,8 @@ void TitleScene::Init(void)
 	easeDistanceCnt_ = 0.0f;
 	logoPos_ = { -LOGO_SIZE_X,-LOGO_SIZE_Y };
 	logoEaseCnt_ = BUTTON_EASING_TIME;
+
+	SoundManager::GetInstance().Play(SoundManager::SRC::TITLE_BGM,SoundManager::PLAYTYPE::LOOP);
 }
 
 Easing::EASING_TYPE TitleScene::DecideEase(TITLE_BTN _btn)

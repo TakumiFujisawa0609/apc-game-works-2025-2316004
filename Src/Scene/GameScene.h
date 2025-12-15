@@ -31,6 +31,9 @@ public:
 
 private:
 
+	//BGM
+	static constexpr int BGM_GAME_VOL = 50;
+
 	int frame_;
 	//スカイドーム
 	std::unique_ptr<SkyDome> skyDome_;

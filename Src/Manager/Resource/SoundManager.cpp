@@ -63,22 +63,54 @@ void SoundManager::Init(void)
 
 #pragma region BGM
     res.type = TYPE::BGM;
-    res.path = path_Bgm + L"Battle3.mp3";
+    res.path = path_Bgm + L"GameTitle.mp3";
+    resourcesMap_.emplace(SRC::TITLE_BGM, res);
+
+    res.path = path_Bgm + L"GameSceneK.mp3";
     resourcesMap_.emplace(SRC::GAME_BGM, res);
 #pragma endregion
 
 #pragma region SE
 	res.type = TYPE::SE;
-    res.path = path_Se + L"CardSound.mp3";
+//    res.path = path_Se + L"CardSound.mp3";
+    res.path = path_Se + L"CardSelect2.mp3";
     resourcesMap_.emplace(SRC::CARD_MOVE, res);
+
+    res.path = path_Se + L"CardReflected.mp3";
+    resourcesMap_.emplace(SRC::CARD_BE_REFLECTED, res);
+
+    res.path = path_Se + L"CardBreak.mp3";
+    resourcesMap_.emplace(SRC::CARD_BREAK, res);
+
+ 	res.path = path_Se + L"CardReload1.mp3";
+	resourcesMap_.emplace(SRC::CARD_RELOAD, res);
+
+	res.path = path_Se + L"CardReloadFinish.mp3";
+	resourcesMap_.emplace(SRC::CARD_RELOAD_FINISH, res);
+
+    res.path = path_Se + L"PlayerFoot.mp3";
+	resourcesMap_.emplace(SRC::PLAYER_FOOT_SE, res);
+
+    res.path = path_Se + L"EnemyFoot.mp3";
+	resourcesMap_.emplace(SRC::ENEMY_FOOT_SE, res);
+
+    res.path = path_Se + L"EnemyStomp.mp3";
+	resourcesMap_.emplace(SRC::ENEMY_STOMP_SE, res);
+
+    res.path = path_Se + L"EnemyCharge.mp3";
+	resourcesMap_.emplace(SRC::ENEMY_CHARGE_SE, res);
+
+    //res.path = path_Se + L"EnemyJumpDown.mp3";
+    res.path = path_Se + L"Enemy_Bomb2.mp3";
+	resourcesMap_.emplace(SRC::ENEMY_JUMP_LAND_SE, res);
 
 #pragma endregion
 
 }
 
-const bool SoundManager::LoadResource(const SRC _src)
+const bool SoundManager::LoadResource(const SRC _src, const float _pitch)
 {
-    return _Load(_src);
+    return _Load(_src, _pitch);
 }
 
 void SoundManager::Play(const SRC _src, const PLAYTYPE _playType)
@@ -88,7 +120,7 @@ void SoundManager::Play(const SRC _src, const PLAYTYPE _playType)
 
     //音源が再生済みか調べる
 	if (CheckSoundMem(loadedMap_[_src].handleId) == 1 &&
-        _playType != PLAYTYPE::BACK)
+        _playType == PLAYTYPE::BACK)
 	{
 		Stop(_src);  // 再生済みなら停止
 	}
@@ -113,6 +145,19 @@ bool SoundManager::IsPlay(const SRC _src) const
     return CheckSoundMem(it->second.handleId) == 1;
 }
 
+void SoundManager::SetSoundVolumeSRC(const SRC _src, const int _volumePercent)
+{
+    constexpr int VOLUME_MAX = 255;  //最大音量
+    constexpr int DIV = 100;         //音量の割合を計算するための定数
+    const auto& lPair = loadedMap_.find(_src);
+    if (lPair == loadedMap_.end())
+    {
+        return; // 見つからない場合は処理しない
+    }
+    //音量設定
+	ChangeVolumeSoundMem(VOLUME_MAX * _volumePercent / DIV, lPair->second.handleId);
+}
+
 void SoundManager::SetSystemVolume(const int _volumePercent, const int _type)
 {    
     constexpr int VOLUME_MAX = 255;  //最大音量
@@ -133,7 +178,7 @@ void SoundManager::SetSystemVolume(const int _volumePercent, const int _type)
 	}
 }
 
-bool SoundManager::_Load(const SRC _src)
+bool SoundManager::_Load(const SRC _src, const float _pitch)
 {
     // ロード済みチェック
     const auto& lPair = loadedMap_.find(_src);
@@ -149,11 +194,17 @@ bool SoundManager::_Load(const SRC _src)
         return false;   // 登録されていない
     }
 
+    //ピッチ調整
+    if (_pitch != 0.0f)
+    {
+        SetCreateSoundPitchRate(_pitch);
+    }
     // ロード処理
     rPair->second.handleId = LoadSoundMem(rPair->second.path.c_str());
-
-    // 念のためコピーコンストラクタ
     loadedMap_.emplace(_src, rPair->second);
+
+    //ピッチを元に戻す
+	SetCreateSoundPitchRate(0.0f);
 
     return true;
 }

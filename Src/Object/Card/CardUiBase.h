@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <list>
+#include "../Manager/Resource/SoundManager.h"
 #include "../ObjectBase.h"
 #include "CardUiBase.h"
 #include "./CardBase.h"
@@ -138,6 +139,10 @@ public:
 	/// @param  
 	virtual void InitCardUI(void) = 0;
 
+	/// @brief カード勝敗サウンド再生
+	/// @param  
+	void PlayCardSound(void);
+
 protected:
 
 	//カードUI状態
@@ -207,6 +212,8 @@ protected:
 	//状態
 	CARD_SELECT selectState_;
 
+	//カード買ったとき流すサウンド
+	SoundManager::SRC cardWinRes_;
 
 	//手札選択カードの計算
 	void AddHandCurrent(void);	//足し算

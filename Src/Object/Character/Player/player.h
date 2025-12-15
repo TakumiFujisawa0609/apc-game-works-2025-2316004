@@ -166,7 +166,8 @@ private:
 	static constexpr float MAX_HP = 200.0f;			//体力
 	static constexpr float MAX_ATK = 50.0f;			//攻撃力
 	static constexpr float MAX_DEF = 100.0f;		//防御力
-
+	//足音間隔
+	static constexpr float FOOT_SE_DIS = 0.2f;
 
 	//重力の割合
 	static constexpr float GRAVITY_PER = 20.0f;
@@ -308,6 +309,9 @@ private:
 	//デバッグ描画
 	void DrawDebug(void);
 #endif // _DEBUG
+
+	//アクションの追加
+	void AddAction(void)override;
 
 	//当たり判定初期化
 	void MakeColliderGeometry(void)override;

@@ -4,6 +4,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Card/CardSystem.h"
 #include "../Card/CardUIController.h"
 #include "EnemyCardUI.h"
 
@@ -21,14 +22,16 @@ void EnemyCardUI::Load(void)
 	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::ENEMY_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = -1;	//敵はリロードカードを使わないので読み込まない
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_BREAK);
+
+	cardWinRes_ = SoundManager::SRC::CARD_BREAK;
 }
 
 void EnemyCardUI::Init(void)
 {
 	//カード初期化
 	InitCardUI();
-
+	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::CARD_BREAK, CARD_BREAK_SOUND_VOLUME);
 	//状態遷移登録
 	changeMoveState_ = {
 	{CARD_SELECT::NONE, [this]() {ChangeNone(); } },

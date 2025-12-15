@@ -67,6 +67,9 @@ private:
     //リロードカウント
     float pushReloadCnt_;
 
+    //サウンドマネージャ
+	SoundManager& soundMng_;
+
     //3段階目攻撃判定終了カウント
     float atkThreeEndCnt_;
     float atkAnimLerpCnt_;

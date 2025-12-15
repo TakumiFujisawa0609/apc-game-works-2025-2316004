@@ -8,7 +8,7 @@
 #include "../Manager/Resource/SoundManager.h"
 
 #include "../Card/CardUIController.h"
-
+#include "../Card/CardSystem.h"
 #include "PlayerCardUI.h"
 
 PlayerCardUI::PlayerCardUI(void):
@@ -44,7 +44,9 @@ void PlayerCardUI::Load(void)
 	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
 
 	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE);
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
+	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
 
 }
 void PlayerCardUI::Init(void)
@@ -237,7 +239,6 @@ void PlayerCardUI::ChangeLeft(void)
 		//card.goalAngle_ = card.currentAngle_ - ARROUND_PER_RAD;
 		float currentAngle = card->GetCurrentAngle();
 		card->SetStartAndGoalAngle(currentAngle - ARROUND_PER_RAD);
-		//goalRadit++;
 	}
 	//サウンドを再生
 	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
@@ -316,7 +317,6 @@ void PlayerCardUI::ChangeDecision(void)
 	EraseHandCard();
 	//カードの範囲変数を更新する
 	DesideGoalAngle();
-
 
 	cardUpdate_ = [this]() {UpdateDecision(); };
 }

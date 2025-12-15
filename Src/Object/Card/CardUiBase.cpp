@@ -6,6 +6,7 @@
 #include "../Manager/Resource/SoundManager.h"
 #include "../Common/Easing.h"
 #include "../Card/CardUIDraw.h"
+#include "../Card/CardSystem.h"
 #include "../Card/CardUIController.h"
 #include "../Renderer/PixelMaterial.h"
 #include "../Renderer/PixelRenderer.h"
@@ -48,6 +49,7 @@ void CardUIBase::ChangeUsedActionCard(void)
 
 void CardUIBase::ChangeReactActionCard(void)
 {
+	PlayCardSound();
 	for (auto& act : actions_)
 	{
 		act->ChangeReactCard();
@@ -59,6 +61,24 @@ void CardUIBase::ChangeUsingActionCard(void)
 	for (auto& act : actions_)
 	{
 		act->ChangeUsing();
+	}
+}
+
+void CardUIBase::PlayCardSound(void)
+{
+	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(0);
+	SoundManager::SRC winRes = SoundManager::SRC::NONE;
+	if (result == CardSystem::BATTLE_RESULT::BE_DRAW || result == CardSystem::BATTLE_RESULT::GIVE_DRAW || result == CardSystem::BATTLE_RESULT::NONE)
+	{
+		winRes = SoundManager::SRC::CARD_BE_REFLECTED;
+	}
+	else if (result == CardSystem::BATTLE_RESULT::SUCCESS_CARD_BREAK)
+	{
+		winRes = cardWinRes_;
+	}
+	if (!SoundManager::GetInstance().IsPlay(winRes))
+	{
+		SoundManager::GetInstance().Play(winRes, SoundManager::PLAYTYPE::BACK);
 	}
 }
 

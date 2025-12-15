@@ -1,3 +1,5 @@
+#include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Base/ActionBase.h"
 #include"../Base/LogicBase.h"
 #include"../Utility/Utility3D.h"
@@ -6,9 +8,11 @@
 #include"../../Common/AnimationController.h"
 #include "Run.h"
 
-Run::Run(ActionController& _actCntl, float& _speed):
+Run::Run(ActionController& _actCntl, float& _speed, SoundManager::SRC _src, const float  _footSeDis):
 	ActionBase(_actCntl),
-	moveSpd_(_speed)
+	moveSpd_(_speed),
+	footSESrc_(_src),
+	footSeDis_(_footSeDis)
 {
 	speed_ = moveSpd_;
 }
@@ -20,6 +24,8 @@ Run::~Run(void)
 void Run::Init(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUN));
+	footSECnt_ = 0.0f;
+	SoundManager::GetInstance().LoadResource(footSESrc_);
 }
 
 void Run::Update(void)
@@ -50,5 +56,15 @@ void Run::Update(void)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::DODGE);
 		return;
+	}
+
+	if (footSECnt_ <= 0.0f)
+	{
+		SoundManager::GetInstance().Play(footSESrc_, SoundManager::PLAYTYPE::BACK);
+		footSECnt_ = footSeDis_;
+	}
+	else
+	{
+		footSECnt_ -= scnMng_.GetDeltaTime();
 	}
 }

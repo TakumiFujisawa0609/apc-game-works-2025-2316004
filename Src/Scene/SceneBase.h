@@ -16,7 +16,7 @@ public:
 	static constexpr float LOADING_TIME = 0.0f;
 
 	//フォントサイズ
-	static constexpr int FONT_SIZE = 28;
+	static constexpr int FONT_SIZE = 30;
 
 	//ローディング
 	static constexpr int COMMA_MAX_NUM = 7;											//「now loading......」のコンマの数

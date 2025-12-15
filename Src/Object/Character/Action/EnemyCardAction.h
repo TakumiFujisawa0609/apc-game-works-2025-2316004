@@ -54,7 +54,7 @@ public:
 private:
 
     //スタンプ
-    static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 27.0f;   //攻撃当たり判定開始アニメーションカウント
+    static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 22.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 46.0f;     //攻撃当たり判定終了アニメーションカウント
 
     static constexpr float STOMP_ATK_SHAKE_CNT = 1.0f;              //カメラシェイク時間
@@ -158,6 +158,9 @@ private:
 
     //岩生成フラグ
     bool isGenerateRock_;
+
+    //サウンド
+	SoundManager& soundMng_;
 
     //転がる攻撃関連
     float preRoleAtkCnt_;//前隙カウント

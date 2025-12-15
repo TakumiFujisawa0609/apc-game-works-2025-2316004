@@ -181,7 +181,7 @@ void CardSystem::CompareCards(void)
 	//êÊèoÇµÇÃèüÇø
 	else if (putCardPow_[FIRST_ATK] > putCardPow_[SECOND_ATK])
 	{
-		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
+		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_USE;
 		result[SECOND_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
 	}
 	//å„èoÇµÇÃèüÇø
