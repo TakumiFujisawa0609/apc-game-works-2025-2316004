@@ -7,11 +7,26 @@ class Dodge :
 {
 
 public:
-
+    /// @brief コンストラクタ
+    /// @param _actCntl アクションコントローラ
+    /// @param _trans モデル情報
+    /// @param _spd 回避速度
     Dodge(ActionController& _actCntl,Transform& _trans,float& _spd);
+
+    /// @brief デストラクタ
+    /// @param  
     ~Dodge(void)override;
+
+    /// @brief ロード
+    /// @param  
+	void Load(void) override;
+	/// @brief 初期化
+	/// @param
     void Init(void) override;
-    void Update() override;
+
+	///@brief 更新
+	/// @param
+    void Update(void) override;
 private:
 
     //通常移動スピードにプラスする

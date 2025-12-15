@@ -29,6 +29,9 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SkyDome/SkyDome.mv1");
 	resourcesMap_.emplace(SRC::SKY_DOME, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Rock.mv1");
+	resourcesMap_.emplace(SRC::SPHERE_ROCK, std::move(res));
+
 
 	//アニメーション登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerIdle.mv1");

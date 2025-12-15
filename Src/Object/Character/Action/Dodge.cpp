@@ -19,6 +19,10 @@ Dodge::~Dodge(void)
 {
 }
 
+void Dodge::Load(void)
+{
+}
+
 void Dodge::Init(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::DODGE),false);

@@ -14,6 +14,10 @@ Idle::~Idle(void)
 {
 }
 
+void Idle::Load(void)
+{
+}
+
 void Idle::Init(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::IDLE));

@@ -71,7 +71,10 @@ void ActionController::Init(void)
 
 void ActionController::Load(void)
 {
-
+	for (auto& action : mainAction_)
+	{
+		action.second->Load();
+	}
 }
 
 void ActionController::Update(void)

@@ -15,10 +15,30 @@ public:
 
     static constexpr float CARD_ACT_TIME_MAX = 5.0f; //カードアクション時間(デバッグ用)
 
+    /// @brief コンストラクタ
+    /// @param _actCntl アクションコントローラ
+	/// @param _charaObj キャラクターオブジェクト
+    /// @param _deck デッキ
     PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
+
+    /// @brief デストラクタ
+    /// @param  
     ~PlayerCardAction(void)override;
+
+	/// @brief ロード
+	/// @param  
+	void Load(void) override;
+
+    /// @brief 初期化
+    /// @param  
     void Init(void) override;
+
+	/// @brief 更新
+    /// @param  
     void Update(void) override;
+
+	/// @brief 解放
+	/// @param
     void Release(void)override;
 private:
 

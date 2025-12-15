@@ -18,6 +18,11 @@ React::~React(void)
 {
 }
 
+void React::Load(void)
+{
+
+}
+
 void React::Init(void)
 {
 	bool isLoop = false;

@@ -24,6 +24,7 @@ public:
 		ENEMY_1,	//敵1
 		CARD_MDL,		//カード
 		SKY_DOME,	//スカイドーム
+		SPHERE_ROCK,		//岩
 		//アニメーション
 		//プレイヤー
 		P_IDLE,		//待機

@@ -21,11 +21,16 @@ Run::~Run(void)
 {
 }
 
+void Run::Load(void)
+{
+	SoundManager::GetInstance().LoadResource(footSESrc_);
+}
+
 void Run::Init(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUN));
 	footSECnt_ = 0.0f;
-	SoundManager::GetInstance().LoadResource(footSESrc_);
+
 }
 
 void Run::Update(void)

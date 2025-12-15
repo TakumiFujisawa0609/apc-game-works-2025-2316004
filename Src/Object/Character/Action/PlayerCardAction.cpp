@@ -43,13 +43,18 @@ PlayerCardAction::~PlayerCardAction(void)
 	std::swap(cardFuncs_, empty);
 }
 
+void PlayerCardAction::Load(void)
+{
+	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
+	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
+}
+
 void PlayerCardAction::Init(void)
 {
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
-	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
-	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
+
 	//if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
 	//{
 	//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
@@ -64,8 +69,6 @@ void PlayerCardAction::Init(void)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
-
-
 }
 
 void PlayerCardAction::Update()

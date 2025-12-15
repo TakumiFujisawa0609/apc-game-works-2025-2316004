@@ -44,6 +44,13 @@ EnemyCardAction::~EnemyCardAction(void)
 {
 }
 
+void EnemyCardAction::Load(void)
+{
+	soundMng_.LoadResource(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
+	soundMng_.LoadResource(SoundManager::SRC::ENEMY_CHARGE_SE);
+	soundMng_.LoadResource(SoundManager::SRC::ENEMY_STOMP_SE);
+}
+
 void EnemyCardAction::Init(void)
 {
 	actType_ = CARD_ACT_TYPE::NONE;
@@ -61,9 +68,6 @@ void EnemyCardAction::Init(void)
 	jampCardNum_ = 0;
 	atk_ = {};
 
-	soundMng_.LoadResource(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
-	soundMng_.LoadResource(SoundManager::SRC::ENEMY_CHARGE_SE);
-	soundMng_.LoadResource(SoundManager::SRC::ENEMY_STOMP_SE);
 
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
@@ -421,7 +425,7 @@ void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
 	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
+	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::STOMP;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:

@@ -1,6 +1,7 @@
 #include "EnemyRock.h"
 #include "../pch.h"
 #include "../Utility/Utility3D.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "EnemyRock.h"
 
 EnemyRock::EnemyRock(int& _num,VECTOR& _startPos):
@@ -16,6 +17,7 @@ EnemyRock::EnemyRock(int& _num,VECTOR& _startPos):
 	velocity_.y = sqrtf(2.0f * GRAVITY * JUMP_HEIGHT);
 	jumpPow_.y = velocity_.y;
 
+	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::SPHERE_ROCK));
 	trans_.pos = _startPos;
 }
 
@@ -48,7 +50,8 @@ void EnemyRock::Update(void)
 
 void EnemyRock::Draw(void)
 {
-	DrawSphere3D(trans_.pos, 150.0f, 5, 0xff0000, 0xff0000, true);
+	//DrawSphere3D(trans_.pos, 150.0f, 5, 0xff0000, 0xff0000, true);
+	MV1DrawModel(trans_.modelId);
 }
 
 void EnemyRock::OnHit(const std::weak_ptr<Collider> _hitCol)

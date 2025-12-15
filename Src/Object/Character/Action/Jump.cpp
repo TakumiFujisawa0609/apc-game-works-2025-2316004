@@ -20,6 +20,10 @@ Jump::~Jump(void)
 {
 }
 
+void Jump::Load(void)
+{
+}
+
 void Jump::Init(void)
 {
 	velocity_.y = sqrtf(2.0f * GRAVITY * JUMP_HEIGHT);

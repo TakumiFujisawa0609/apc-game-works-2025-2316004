@@ -26,8 +26,20 @@ public:
         SHOT_CUTTER,     //斬撃飛ばし
         RELOAD, //リロード
     };
+
+    /// @brief コンストラクタ
+    /// @param _actCntl アクションコントローラ
+	/// @param _charaObj キャラクターオブジェクト
+    /// @param _deck デッキ
     EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
+
+    /// @brief デストラクタ
+    /// @param  
     ~EnemyCardAction(void)override;
+
+	/// @brief ロード
+	/// @param  
+	void Load(void) override;
 
     /// @brief 初期化
     /// @param  

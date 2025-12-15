@@ -6,9 +6,26 @@ class Jump :
 
 public:
 
+    /// @brief コンストラクタ
+    /// @param _actCntl アクションコントローラ
+	/// @param _charaObj キャラクターオブジェクト
+    /// @param _jumpPow ジャンプ力
     Jump(ActionController& _actCntl,CharacterBase& _charaObj,VECTOR& _jumpPow);
+
+	/// @brief デストラクタ
+	/// @param
     ~Jump(void)override;
+
+	/// @brief ロード
+	/// @param
+	void Load(void) override;
+
+	/// @brief 初期化
+	/// @param
     void Init(void) override;
+
+	/// @brief 更新
+	/// @param
     void Update(void) override;
 
 public:

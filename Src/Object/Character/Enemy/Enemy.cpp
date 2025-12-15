@@ -34,6 +34,9 @@ Enemy::Enemy(void):
 	cardCenterPos_({})
 {
 	//noneHitTag_.emplace({ Collider::TAG::PLAYER1,Collider::TAG::NML_ATK })
+	//各ステータスの設定
+	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
+
 }
 
 Enemy::~Enemy(void)
@@ -48,11 +51,7 @@ void Enemy::Load(void)
 		Quaternion::Euler({ 0.0f,UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
 	//敵のカードUI生成
-	cardUI_ = std::make_unique<EnemyCardUI>();
-	cardUI_->Load();
 
-	logic_ = std::make_unique<EnemyLogic>(trans_);
-	logic_->Init();
 
 	//アニメーション
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
@@ -64,6 +63,15 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
 
+	cardUI_ = std::make_unique<EnemyCardUI>();
+	logic_ = std::make_unique<EnemyLogic>(trans_);
+	deck_ = std::make_shared<CardDeck>(cardCenterPos_, ENEMY_NUM);
+
+	cardUI_->Load();
+
+	AddAction();
+
+	action_->Load();
 
 }
 
@@ -71,7 +79,7 @@ void Enemy::Init(void)
 {
 	//カードデッキ
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
-	deck_ = std::make_shared<CardDeck>(cardCenterPos_,ENEMY_NUM);
+
 	deck_->Init();
 	cardUI_->MakeObject();
 	for (int i = 0; i < CARD_NUM_MAX; i++)
@@ -84,14 +92,9 @@ void Enemy::Init(void)
 	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 	cardUI_->Init();
 
+	action_->Init();
 
-
-	//各ステータスの設定
-	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
-
-	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_,InputManager::JOYPAD_NO::PAD1);
-
-	AddAction();
+	logic_->Init();
 
 	tag_ = Collider::TAG::ENEMY1;
 	capRadius_ = CAP_RADIUS;
@@ -276,6 +279,7 @@ void Enemy::MakeColliderGeometry(void)
 }
 void Enemy::AddAction(void)
 {
+	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_, InputManager::JOYPAD_NO::PAD1);
 	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
@@ -283,7 +287,7 @@ void Enemy::AddAction(void)
 	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
-	action_->Init();
+
 }
 void Enemy::DrawDebug(void)
 {

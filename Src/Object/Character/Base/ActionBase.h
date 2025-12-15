@@ -12,6 +12,8 @@ public:
 	ActionBase(ActionController& _actCntl);
 	virtual ~ActionBase();
 
+	virtual void Load(void) = 0;
+
 	/// @brief ‰Šú‰»
 	/// @param  
 	virtual void Init(void) = 0;

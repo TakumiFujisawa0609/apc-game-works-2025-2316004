@@ -56,6 +56,9 @@ Player::Player(void)
 	//パッド番号を設定
 	padNum_ = static_cast<InputManager::JOYPAD_NO>(playerNum_ + 1);
 
+	//各ステータスの設定
+	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
+
 
 }
 
@@ -72,6 +75,7 @@ void Player::Load(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
 
+
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED*2.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
@@ -83,6 +87,10 @@ void Player::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 
+
+	logic_ = std::make_unique<PlayerLogic>(padNum_, InputManager::CONTROLL_TYPE::ALL);
+	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
+	AddAction();
 	//animType_.emplace(
 	//	{ ANIM_TYPE::P_IDLE,static_cast<int>(ANIM_TYPE::P_IDLE) }
 	//	, { ANIM_TYPE::P_RUN,static_cast<int>(ANIM_TYPE::P_RUN) }
@@ -90,24 +98,20 @@ void Player::Load(void)
 
 
 	//プレイヤー入力
-	logic_ = std::make_unique<PlayerLogic>(padNum_, InputManager::CONTROLL_TYPE::ALL);
+
 	logic_->Init();
 
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
-	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
+
 
 	cardUI_ = std::make_unique<PlayerCardUI>();
 	cardUI_->Load();
 	
 	deck_->Load();
-
-	//アクション
-	action_ = std::make_unique<ActionController>(*this,*logic_,trans_,*deck_,*animationController_,padNum_);
 	action_->Load();
 
-	//各ステータスの設定
-	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
+
 
 }
 
@@ -136,7 +140,7 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
-	AddAction();
+
 
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
@@ -281,6 +285,8 @@ void Player::DrawDebug(void)
 
 void Player::AddAction(void)
 {
+	//アクション
+	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_, padNum_);
 	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
