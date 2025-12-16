@@ -154,7 +154,7 @@ void Enemy::Draw(void)
 	//í èÌï`âÊ
 	MV1DrawModel(trans_.modelId);
 	//deck_->Draw();
-	cardUI_->Draw();
+
 
 	if (!rock_.empty())
 	{
@@ -163,7 +163,7 @@ void Enemy::Draw(void)
 			rock->Draw();
 		}
 	}
-
+	cardUI_->Draw();
 	////HPÉoÅ[ï`âÊ
 	//const int BOX_START_X = 600;
 	//const int BOX_START_Y = 10;

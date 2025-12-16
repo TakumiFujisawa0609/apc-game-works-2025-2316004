@@ -38,6 +38,7 @@ GameScene::~GameScene(void)
 	CollisionManager::GetInstance().Destroy();
 	CharacterManager::GetInstance().Destroy();
 	SoundManager::GetInstance().Release();
+	scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
 
 }
 
