@@ -13,13 +13,17 @@ void CharacterManager::Load(void)
 	enemy_ = std::make_shared<Enemy>();
 	enemy_->Load();
 
-	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
-	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform());
+
 	SceneManager::GetInstance().GetCamera().lock()->SetTarget(&enemy_->GetTransform());
 }
 
 void CharacterManager::Init(void)
 {
+	//プレイヤーのローカル中心座標計算
+	const float playerCenterLocalPosY = (Player::CAP_LOCAL_TOP.y - Player::CAP_LOCAL_DOWN.y) * 0.5f;
+	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform(),{0.0f,playerCenterLocalPosY ,0.0f});
+	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+
 	player_->SetLogicTargetCharacter(enemy_);
 	enemy_->SetLogicTargetCharacter(player_);
 	player_->Init();

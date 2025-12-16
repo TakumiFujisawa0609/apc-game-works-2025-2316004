@@ -73,7 +73,7 @@ public:
 	//“–‚½‚Á‚½‚Ìî•ñæ“¾
 	inline const MV1_COLL_RESULT_POLY& GetHitLineInfo(void)const { return hitLineInfo_; }
 	//“–‚½‚Á‚½‚Ìî•ñæ“¾
-	inline const MV1_COLL_RESULT_POLY_DIM& GetHitModelInfo(void)const { return hitInfo_; }
+	inline const MV1_COLL_RESULT_POLY_DIM& GetHitInfo(void)const { return hitInfo_; }
 	//eƒ‚ƒfƒ‹ID‚Ìæ“¾
 	inline const int GetParentModel(void)const { return parentModelId_; }
 

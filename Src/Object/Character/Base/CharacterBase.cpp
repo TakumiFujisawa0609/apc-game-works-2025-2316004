@@ -232,16 +232,32 @@ void CharacterBase::SetLogicTargetCharacter(std::shared_ptr<CharacterBase> _targ
 	logic_->SetTargetCharacter(_targetChara);
 }
 
-void CharacterBase::AddEnemyRock(const int _num, const VECTOR& _atkPos)
+void CharacterBase::AddEnemyRock(const int _num, VECTOR& _atkPos)
 {
 	for (int i = 0; i < _num; i++)
 	{
-		VECTOR pos = _atkPos;
-	
-		std::unique_ptr<EnemyRock> rock = std::make_unique<EnemyRock>(i, pos);
+		std::unique_ptr<EnemyRock> rock = std::make_unique<EnemyRock>(i, _atkPos);
 		rock_.emplace_back(std::move(rock));
 	}
+}
 
+void CharacterBase::LoadEnemyRock(void)
+{
+	if (rock_.empty())return;
+	for (auto& rock : rock_)
+	{
+		rock->Load();
+	}
+}
+
+void CharacterBase::SetIsAliveEnemyRock(const bool _isAlive)
+{
+	if (rock_.empty())return;
+	for (auto& rock : rock_)
+	{
+		rock->SetIsAlive(_isAlive);
+		rock->Init();
+	}
 }
 
 void CharacterBase::EnemyRockUpdate(void)

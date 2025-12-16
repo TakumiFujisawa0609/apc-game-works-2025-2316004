@@ -115,7 +115,7 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	//ƒvƒŒƒCƒ„[‚Ì‘Ì‚Ì‹…‚ª“–‚½‚Á‚½‚ç
 	if (bodyShere->IsHit())
 	{
-		auto& hitInfo = hitModel.GetHitModelInfo();
+		auto& hitInfo = hitModel.GetHitInfo();
 		for (int i = 0; i < hitInfo.HitNum; i++)
 		{
 			hitPoint_.isSide = true;

@@ -88,14 +88,20 @@ const bool Model::IsHit(Capsule& _capsule)
 
 const bool Model::IsHit(Line& _line)
 {
+	VECTOR pos1 = _line.GetPosPoint1();
+	VECTOR pos2 = _line.GetPosPoint2();
 	//îªíË
-	auto col = MV1CollCheck_Line(GetParentModel(), -1, _line.GetPosPoint1(), _line.GetPosPoint2());
+	auto col = MV1CollCheck_Line(GetParentModel(), -1, pos1, pos2);
+	auto colDim = MV1CollCheck_LineDim(GetParentModel(), -1, pos1, pos2);
 
 	//ìñÇΩÇ¡ÇƒÇ¢ÇΩÇÁèÓïÒçXêV
 	if (col.HitFlag)
 	{
 		_line.SetHitLineInfo(col);
 		SetHitLineInfo(col);
+
+		_line.SetHitInfo(colDim);
+		SetHitInfo(colDim);
 	}
 	return col.HitFlag;
 }

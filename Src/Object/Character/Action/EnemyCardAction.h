@@ -171,6 +171,7 @@ private:
     //岩生成フラグ
     bool isGenerateRock_;
 
+
     //サウンド
 	SoundManager& soundMng_;
 

@@ -53,7 +53,21 @@ public:
 	static constexpr int COL_TRY_CNT_MAX = 10;
 
 	//ヒットした法線方向へのオフセット
-	static constexpr float HIT_NORMAL_OFFSET = 30.0f;
+	static constexpr float HIT_NORMAL_OFFSET = 2.0f;
+
+	// 衝突時の押し戻し試行回数
+	static constexpr int CNT_TRY_COLLISION_CAMERA = 30;
+
+	// 衝突判定用球体半径
+	static constexpr float COL_CAPSULE_SPHERE = 50.0f;
+	static constexpr float COL_SPHERE_SPHERE = 40.0f;
+
+	// 衝突時の押し戻し量
+	static constexpr float COLLISION_BACK_DIS = 2.0f;
+
+
+
+
 
 	// カメラモード
 	enum class MODE
@@ -107,7 +121,7 @@ public:
 	void ChangeSub(const SUB_MODE _submode);
 
 	// 追従対象の設定
-	void SetFollow(const Transform* _follow);
+	void SetFollow(const Transform* _follow,const VECTOR _localCenterPos);
 
 	//ターゲットとする対象の設定
 	void SetTarget(const Transform* _target);
@@ -125,10 +139,19 @@ public:
 		easeType_ = _easeType;
 	}
 
+	void SetStageTransform(const Transform* _stageTrans)
+	{
+		stageTransform_ = _stageTrans;
+	}
+
 private:
+
+	//追従対象のフレームナンバー
+	static constexpr int FOLLOW_FRAME_NUM = 1;
 
 	// カメラが追従対象とするTransform
 	const Transform* followTransform_;
+	VECTOR followLocalCenterPos_;
 
 	//カメラの注視点とするターゲットTransform
 	const Transform* targetTransform_;
@@ -139,7 +162,8 @@ private:
 	//イージング
 	std::unique_ptr<Easing>easing_;
 
-
+	//ステージのTransform
+	const Transform* stageTransform_;
 
 	// カメラモード
 	MODE mode_;
@@ -188,11 +212,17 @@ private:
 	//ターゲットカメラ遷移中フラグ
 	bool isChangingCamera_;
 
-
+	//追従対象フレーム座標
+	VECTOR followFramePos_;
+	//追従対象の中心座標
+	VECTOR followCenterPos_;
 
 	/// @brief 当たったときの処理
 	/// @param _hitCol ヒットしたコライダ
 	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override;
+
+	//カメラ当たり判定の線分更新
+	void UpdateCameraColliderLine(void);
 
 	// カメラを初期位置に戻す
 	void SetDefault(void);
@@ -208,6 +238,10 @@ private:
 
 	//スムーズにターゲットカメラに変わる
 	void SmoothChangeCamera(void);
+
+	/// @brief あたり判定
+	/// @param  
+	void Collision(void);
 
 	// モード別更新ステップ
 	void SetBeforeDrawFixedPoint(void);

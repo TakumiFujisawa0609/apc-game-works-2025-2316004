@@ -6,6 +6,7 @@
 #include"../Enemy/EnemyRock.h"
 #include "../../Common/AnimationController.h"
 #include "../Manager/Generic/Camera.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
@@ -38,6 +39,10 @@ soundMng_(SoundManager::GetInstance())
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
 		{CARD_ACT_TYPE::RUSH_ATK, RUSH_ATK }
 	};
+
+	charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM,atk_.pos);
+
+
 }
 
 EnemyCardAction::~EnemyCardAction(void)
@@ -49,6 +54,9 @@ void EnemyCardAction::Load(void)
 	soundMng_.LoadResource(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
 	soundMng_.LoadResource(SoundManager::SRC::ENEMY_CHARGE_SE);
 	soundMng_.LoadResource(SoundManager::SRC::ENEMY_STOMP_SE);
+
+	charaObj_.LoadEnemyRock();
+
 }
 
 void EnemyCardAction::Init(void)
@@ -214,7 +222,7 @@ void EnemyCardAction::UpdateStomp(void)
 		//地面から岩の玉を生成してあらゆる方向に飛ばす
 		if (!isGenerateRock_)
 		{
-			charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM, atk_.pos);
+			charaObj_.SetIsAliveEnemyRock(true);
 			isGenerateRock_ = true;
 		}
 		else
@@ -229,8 +237,9 @@ void EnemyCardAction::UpdateStomp(void)
 			atk_.atkRadius = JUMP_ATK_RADIUS;
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			charaObj_.SetIsAliveEnemyRock(false);
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
-			charaObj_.ClearEnemyRock();
+			//charaObj_.ClearEnemyRock();
 			charaObj_.GetCardUI().ChangeUsedActionCard();
 			deck_.EraseHandCard();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);

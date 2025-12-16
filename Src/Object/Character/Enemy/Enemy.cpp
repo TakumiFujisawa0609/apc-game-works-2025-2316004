@@ -123,7 +123,7 @@ void Enemy::Update(void)
 	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
-	logic_->Update();
+	//logic_->Update();
 	action_->Update();
 	cardUI_->Update();
 	
@@ -221,7 +221,7 @@ void Enemy::SetGoalRotate(const double _deg)
 	charaRot_.goalQuaRot_ = axis;
 }
 
-#ifdef _DEBUG
+
 void Enemy::MakeColliderGeometry(void)
 {
 	//肩の座標を取得
@@ -289,6 +289,7 @@ void Enemy::AddAction(void)
 	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
 
 }
+#ifdef _DEBUG
 void Enemy::DrawDebug(void)
 {
 	////DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);

@@ -234,7 +234,15 @@ public:
 	/// @brief 岩配列
 	/// @param _num 岩の生成数
 	/// @param _atkPos 攻撃座標
-	void AddEnemyRock(const int _num,const VECTOR& _atkPos);
+	void AddEnemyRock(const int _num,VECTOR& _atkPos);
+
+	/// @brief 岩配列ロード
+	/// @param  
+	void LoadEnemyRock(void);
+
+	/// @brief 岩の生存フラグセット
+	/// @param _isAlive 
+	void SetIsAliveEnemyRock(const bool _isAlive);
 
 	/// @brief 岩配列更新
 	/// @param  

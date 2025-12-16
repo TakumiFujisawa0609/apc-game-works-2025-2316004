@@ -40,9 +40,13 @@ void EnemyOnHit::Load(void)
 {
 }
 
+#ifdef _DEBUG
 void EnemyOnHit::DrawDebug(void)
 {
 }
+#endif // _DEBUG
+
+
 
 
 void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)

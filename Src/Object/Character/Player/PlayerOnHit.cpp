@@ -7,6 +7,7 @@
 #include "../../../Object/Common/Geometry/Line.h"
 #include"../../../Object/Common/Geometry/Model.h"
 #include "../Object/Character/Base/CharacterBase.h"
+#include "../Object/Character/Enemy/EnemyRock.h"
 #include"../../../Utility/Utility3D.h"
 #include"./ActionController.h"
 
@@ -29,7 +30,7 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos,VECTOR& _moveD
 		{ TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); } },
 		{ TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); } },
 		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
-		{ TAG::ROCK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
+		{ TAG::ROCK, [this](const std::weak_ptr<Collider>_hitCol) {CollRock(_hitCol); } },
 	};
 
 }
@@ -120,7 +121,18 @@ void PlayerOnHit::CollRoarAttack(const std::weak_ptr<Collider> _hitCol)
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
-#ifdef DEBUG_ON
+void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
+{
+	auto& rock = dynamic_cast<EnemyRock&>(_hitCol.lock()->GetParent());
+	//ダメージを与えていた場合、処理を抜ける
+	if (rock.GetIsDamaged())return;
+	charaObj_.Damage(10);
+	//のけぞり時間セット
+	rock.SetIsDamaged();
+	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+}
+
+#ifdef _DEBUG
 void PlayerOnHit::DrawDebug(void)
 {
 	//colParam_[BODY_SPHERE_COL_NO].geometry_->DrawPlayerUI();
@@ -128,6 +140,6 @@ void PlayerOnHit::DrawDebug(void)
 	//colParam_[UP_AND_DOWN_LINE_COL_NO].geometry_->DrawPlayerUI();
 	//colParam_[EYE_LINE_NO].geometry_->DrawPlayerUI();
 }
-#endif // DEBUG_ON
+#endif // _DEBUG
 
 

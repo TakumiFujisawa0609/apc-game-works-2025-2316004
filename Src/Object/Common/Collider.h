@@ -44,7 +44,7 @@ public :
 	inline const std::set<TAG>& GetNotHitTags(void)const { return notHitTags_; }
 
 	//親を取得
-	inline const ObjectBase& GetParent(void)const { return parent_; }
+	ObjectBase& GetParent(void)const { return parent_; }
 
 	//子クラスがキャラクターである場合、キャラクターベースを取得する
 	CharacterBase& GetParentCharacter(void);

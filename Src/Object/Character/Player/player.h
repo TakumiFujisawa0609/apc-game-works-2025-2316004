@@ -43,6 +43,9 @@ public:
 	static constexpr float DODGE_ANIM_SPD = 80.0f;
 
 
+	//カプセル関連
+	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 200.0f, 0.0f };	//トップ座標
+	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,50.0f,0.0f };	//ダウン座標
 
 	enum class FLOOR_COL
 	{
@@ -191,9 +194,6 @@ private:
 	static constexpr Vector2 START_HPBAR_POS = { 10,10 };
 	static constexpr Vector2 HPBAR_SIZE = { 200,30 };
 
-	//カプセル関連
-	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 200.0f, 0.0f };	//トップ座標
-	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,50.0f,0.0f };	//ダウン座標
 	//static constexpr float CAP_RADIUS = 25.0f;						//半径
 
 	//カード最大枚数

@@ -1,5 +1,7 @@
 #include "../Utility/Utility3D.h"
+#include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include "../Manager/Generic/Camera.h"
 #include "../Renderer/ModelMaterial.h"
 #include "../Renderer/ModelRenderer.h"
 #include"../Object/Common/Geometry/Model.h"
@@ -25,6 +27,8 @@ void Stage::Init(void)
 		Quaternion::Euler({ 0.0f,0.0f, 0.0f });
 
 	trans_.scl = { STAGE_SCL ,0.1f ,STAGE_SCL };
+
+	scnMng_.GetCamera().lock()->SetStageTransform(&trans_);
 
 	//ƒJƒvƒZƒ‹
 	tag_ = Collider::TAG::STAGE;

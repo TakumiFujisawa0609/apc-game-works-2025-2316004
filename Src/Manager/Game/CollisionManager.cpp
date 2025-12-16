@@ -63,10 +63,31 @@ void CollisionManager::Update(void)
 				//“–‚½‚è”»’è‚ÌðŒ‚É‡‚í‚È‚©‚Á‚½‚Ì‚Å”ò‚Î‚·
 				continue;
 			}
+		
+			if (GetTopTags(colliders3D_[i]) == Collider::TAG::STAGE &&
+				GetTopTags(colliders3D_[j]) == Collider::TAG::CAMERA)
+			{
+				//“–‚½‚è”»’è
+				if (IsCollision(colliders3D_[i], colliders3D_[j]))
+				{
+					//‚»‚ê‚¼‚ê‚Ì“–‚½‚Á‚½ˆ—
+					colliders3D_[i]->OnHit(colliders3D_[j]);
+					colliders3D_[j]->OnHit(colliders3D_[i]);
+
+					//“–‚½‚Á‚½Œã‚Ìˆ—
+					colliders3D_[i]->GetGeometry().HitAfter();
+					colliders3D_[j]->GetGeometry().HitAfter();
+				}
+				continue;
+			}
+
+
 
 			//“–‚½‚è”»’è
 			if(IsCollision(colliders3D_[i],colliders3D_[j]))
 			{
+
+
 				//‚»‚ê‚¼‚ê‚Ì“–‚½‚Á‚½ˆ—
 				colliders3D_[i]->OnHit(colliders3D_[j]);
 				colliders3D_[j]->OnHit(colliders3D_[i]);
@@ -117,8 +138,9 @@ CollisionManager::CollisionManager(void)
 	hitRange_[Collider::TAG::NML_ATK] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::ROAR_ATK] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::JUMP_ATK] = HIT_RANGE_NORMAL;
-	hitRange_[Collider::TAG::CAMERA] = HIT_RANGE_NORMAL;
+	hitRange_[Collider::TAG::CAMERA] = HIT_RANGE_CAMERA;
 	hitRange_[Collider::TAG::STAGE] = HIT_RANGE_STAGE;
+	hitRange_[Collider::TAG::ROCK] = HIT_RANGE_ROCK;
 }
 
 CollisionManager::~CollisionManager(void)
