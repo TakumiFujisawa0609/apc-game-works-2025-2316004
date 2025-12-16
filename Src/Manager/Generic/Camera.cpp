@@ -81,23 +81,23 @@ void Camera::SetBeforeDraw(void)
 
 void Camera::Draw(void)
 {
-	DrawFormatString(0, 0, GetColor(255, 255, 255), L"Camera Pos:(%.2f,%.2f,%.2f)", pos_.x, pos_.y, pos_.z);
-	//DrawFormatString(0, 32, GetColor(255, 255, 255), L"Frame Pos:(%.2f,%.2f,%.2f)", followFramePos_.x, followFramePos_.y, followFramePos_.z);
+	//DrawFormatString(0, 0, GetColor(255, 255, 255), L"Camera Pos:(%.2f,%.2f,%.2f)", pos_.x, pos_.y, pos_.z);
+	////DrawFormatString(0, 32, GetColor(255, 255, 255), L"Frame Pos:(%.2f,%.2f,%.2f)", followFramePos_.x, followFramePos_.y, followFramePos_.z);
 
 
-	if (collider_.size() > 0)
-	{
-		//VECTOR local = VSub(followTransform_->pos, pos_);
-		//DrawFormatString(0, 64, GetColor(255, 255, 255), L"Local Pos:(%.2f,%.2f,%.2f)", local.x, local.y, local.z);
+	//if (collider_.size() > 0)
+	//{
+	//	//VECTOR local = VSub(followTransform_->pos, pos_);
+	//	//DrawFormatString(0, 64, GetColor(255, 255, 255), L"Local Pos:(%.2f,%.2f,%.2f)", local.x, local.y, local.z);
 
-		// “¯Šúæ‚ÌˆÊ’u
-		VECTOR followPos = VAdd(followTransform_->pos, followLocalCenterPos_);
+	//	// “¯Šúæ‚ÌˆÊ’u
+	//	VECTOR followPos = VAdd(followTransform_->pos, followLocalCenterPos_);
 
-		VECTOR pos = collider_[TAG_PRIORITY::CAMERA_LINE]->GetGeometry().GetPosPoint2();
-		DrawSphere3D(
-			pos, 50.0f, 8, GetColor(255, 0, 0), GetColor(255, 0, 0), TRUE);
-	}
-	
+	//	VECTOR pos = collider_[TAG_PRIORITY::CAMERA_LINE]->GetGeometry().GetPosPoint2();
+	//	DrawSphere3D(
+	//		pos, 50.0f, 8, GetColor(255, 0, 0), GetColor(255, 0, 0), TRUE);
+	//}
+	//
 
 	
 }

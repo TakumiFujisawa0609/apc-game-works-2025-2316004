@@ -144,12 +144,12 @@ void EnemyLogic::DesideAction(void)
 		}
 		else if (rand > weight_.Roar)
 		{
-			attackType_ = ENEMY_ATTACK_TYPE::ROAR;
+			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
 		}
 		else
 		{
 			//“]‚ª‚éUŒ‚
-			attackType_ = ENEMY_ATTACK_TYPE::ROLE;
+			attackType_ = ENEMY_ATTACK_TYPE::STOMP;
 		}
 	}
 	else
@@ -167,14 +167,12 @@ void EnemyLogic::DesideAction(void)
 		else
 		{
 			//™ôšK
-			attackType_ = ENEMY_ATTACK_TYPE::ROAR;
+			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
 		}
 	}
 
 	//‘O‰ñ‚ÌUŒ‚‚ğ‘ã“ü‚·‚é
 	prevAttackType_ = attackType_;
-	//attackType_ = ENEMY_ATTACK_TYPE::STOMP;
-	//SetFreezeCntByAttackType(attackType_);
 	isActioning_ = true;
 }
 
