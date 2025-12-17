@@ -236,9 +236,14 @@ float Easing::LerpBack(const float t)
 float Easing::EaseOutElastic(const float t)
 {
     if (t > 1.0f)return 1.0f;
+    const float ELASTIC_DECAY = 10.0f;  //減衰率
+    const float ELASTIC_FREQUENCY = 3.0f; //振動数
+    const float ANGULAR_FREQ = DX_TWO_PI_F / ELASTIC_FREQUENCY;       //サイン波がどれだけの速さで変化するか
+    const float PHASE_SHIFT = 0.75f; //位相のずれ
+    const float OFFSET = 1.0f; //オフセット
+
     float ret = 0.0f;
-    const float c4 = (2.0f * DX_PI_F) / 3.0f;
-    ret = (powf(2, -10.0f * t) * sinf((t * 10.0f - 0.75f) * c4) + 1.0f);
+    ret = (powf(2.0f, -ELASTIC_DECAY * t) * sinf((t * ELASTIC_DECAY - PHASE_SHIFT) * ANGULAR_FREQ) + OFFSET);
     return ret;
 }
 
@@ -246,7 +251,7 @@ float Easing::EaseBackElastic(const float t)
 {
     if (t > 1.0f)return 0.0f;
     float ret = 0.0f;
-    const float c4 = ((2.0f * DX_PI_F) / 3.0f) - 6.1f;
+    const float c4 = (DX_TWO_PI_F / 3.0f) - 6.1f;
 
     //この式はグラフを見ながら試行錯誤した式
     ret = (powf(2, -10.0f * t) * sinf((t * 10.0f - 0.088f) * c4));

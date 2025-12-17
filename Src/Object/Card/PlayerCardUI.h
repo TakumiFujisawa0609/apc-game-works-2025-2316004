@@ -52,8 +52,6 @@ public:
 
 private:
 
-
-
 	//楕円の半径
 	static constexpr float RADIUS_X = 186.0f;	//横半径
 	//static constexpr float RADIUS_X = 170.0f;	//横半径
@@ -105,16 +103,8 @@ private:
 
 	Vector2F radius_;
 
-	////カードUI状態
-	//std::function<void(void)>cardUpdate_;
-	////状態遷移
-	//std::map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
-
-	//見せるカード
-	//std::list<CARD_UI_INFO>visibleCards_;
-	std::list<std::shared_ptr<CardUIController>>visibleCards_;
-	std::list<std::shared_ptr<CardUI>>visibleDrawCard_;			//実際に描画するカード
-	std::list<std::shared_ptr<CardUI>>::iterator visibleDrawIt_;			//実際に描画するカード
+	std::list<std::shared_ptr<CardUIController>>visibleCards_;				//見せるカード
+	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;	//リロード用の現在のカードイテレータ
 	//選択フレーム画像
 	int selectFrameImg_;
 	//リロードフレーム
@@ -126,25 +116,8 @@ private:
 	Vector2F numPos_;
 	//カードセレクトの動き時間
 	float cardMoveCnt_;
-	
-	//補完角度リスト(左)
-	std::list<float>goalLeftRad_;
-	//補完角度リスト(右)
-	std::list<float>goalRightRad_;
 	//リロード終了
 	bool isReloadEnd_;
-
-
-
-	//std::unique_ptr<CardUI>uiDraw_;
-	std::unique_ptr<CardUIController>uiController_;
-
-
-	//現在選択中のカード
-	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrent_;
-	//リロード用の現在のカードイテレータ
-	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;
-
 
 	//カード状態遷移
 	void ChangeNone(void)override;		//通常

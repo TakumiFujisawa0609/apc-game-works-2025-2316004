@@ -240,6 +240,9 @@ public:
 	/// @param  
 	void LoadEnemyRock(void);
 
+	//岩の当たり判定削除
+	void DeleteEnemyRockCol(void);
+
 	/// @brief 岩の生存フラグセット
 	/// @param _isAlive 
 	void SetIsAliveEnemyRock(const bool _isAlive);

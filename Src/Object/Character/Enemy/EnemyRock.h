@@ -41,6 +41,10 @@ public:
 	/// @brief ダメージフラグのセット
 	/// @param  
 	void SetIsDamaged(void) { isDamaged_ = true; }
+
+	/// @brief 岩の当たり判定削除
+    /// @param  
+    void DeleteRockCollider(void);
 private:
     //ジャンプ力
     static constexpr float POW_JUMP = 100.0f;

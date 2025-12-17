@@ -16,6 +16,7 @@ EnemyRock::EnemyRock(int& _num, VECTOR& _startPos):
 
 EnemyRock::~EnemyRock(void)
 {
+	int i = 0;
 }
 
 void EnemyRock::Load(void)
@@ -79,4 +80,9 @@ void EnemyRock::Draw(void)
 
 void EnemyRock::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
+}
+
+void EnemyRock::DeleteRockCollider(void)
+{
+	DeleteCollider(TAG_PRIORITY::ROCK_SPHERE);
 }

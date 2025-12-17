@@ -192,7 +192,8 @@ void EnemyCardAction::UpdateStomp(void)
 	if (IsCardFailure(Collider::TAG::NML_ATK))
 	{
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
-		charaObj_.ClearEnemyRock();
+		charaObj_.SetIsAliveEnemyRock(false);
+		charaObj_.DeleteEnemyRockCol();
 		return;
 	}
 
@@ -238,6 +239,7 @@ void EnemyCardAction::UpdateStomp(void)
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 			charaObj_.SetIsAliveEnemyRock(false);
+			charaObj_.DeleteEnemyRockCol();
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 			//charaObj_.ClearEnemyRock();
 			charaObj_.GetCardUI().ChangeUsedActionCard();
@@ -433,8 +435,8 @@ bool EnemyCardAction::IsCardFailureJumpCharge(void)
 void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
-	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::STOMP;
+	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::STOMP;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:

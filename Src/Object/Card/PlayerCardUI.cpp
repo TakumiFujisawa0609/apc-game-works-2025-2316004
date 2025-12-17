@@ -232,11 +232,8 @@ void PlayerCardUI::ChangeLeft(void)
 	//手札選択カードを更新
 	AddHandCurrent();
 
-	//目標角度を代入
-	auto goalRadit = goalLeftRad_.begin();
 	for (auto& card : visibleCards_)
 	{
-		//card.goalAngle_ = card.currentAngle_ - ARROUND_PER_RAD;
 		float currentAngle = card->GetCurrentAngle();
 		card->SetStartAndGoalAngle(currentAngle - ARROUND_PER_RAD);
 	}
@@ -379,10 +376,7 @@ void PlayerCardUI::UpdateDecision(void)
 	
 	DecisionMoveCardAll();
 
-	//cardMoveCnt_-= SceneManager::GetInstance().GetDeltaTime();
-
 	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrent = GetVisibleCurrentIt();
-	//for (auto it = visibleCurrent_; it != visibleCards_.end(); it++)
 	for (auto it = visibleCurrent; it != visibleCards_.end(); it++)
 	{
 		(*it)->MoveOnRevolver(cardMoveCnt_,CardUIController::DISITION_MOVE_CARD_TIME);
@@ -527,7 +521,6 @@ void PlayerCardUI::DesideGoalAngle(void)
 	//カードの範囲変数を更新する
 	//auto visibleIt = std::next(visibleCurrent_);
 	auto visibleIt = std::next(GetVisibleCurrentIt());
-	auto goalDegIt = goalLeftRad_.begin();
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
 		float currentAngle = (*visibleIt)->GetCurrentAngle();

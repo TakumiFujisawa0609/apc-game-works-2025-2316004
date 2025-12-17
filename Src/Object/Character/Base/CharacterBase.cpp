@@ -250,6 +250,15 @@ void CharacterBase::LoadEnemyRock(void)
 	}
 }
 
+void CharacterBase::DeleteEnemyRockCol(void)
+{
+	if (rock_.empty())return;
+	for (auto& rock : rock_)
+	{
+		rock->DeleteRockCollider();
+	}
+}
+
 void CharacterBase::SetIsAliveEnemyRock(const bool _isAlive)
 {
 	if (rock_.empty())return;

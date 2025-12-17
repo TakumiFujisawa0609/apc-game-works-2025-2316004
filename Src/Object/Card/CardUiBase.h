@@ -182,8 +182,6 @@ protected:
 	std::list<std::shared_ptr<CardUIController>>::iterator handCurrent_;
 	//⑤アクション中カード
 	std::list<std::shared_ptr<CardUIController>>actions_;
-	//チャージカード
-	//std::list<std>
 	//シェーダー関連
 	std::unique_ptr<PixelMaterial>material_;
 	std::unique_ptr<PixelRenderer>renderer_;
