@@ -20,7 +20,7 @@ class PlayerOnHit;
 class PlayerCardUI;
 class ModelMaterial;
 class ModelRenderer;
-
+class PlayerHpUI;
 class Idle;
 class Run;
 class Jump;
@@ -293,6 +293,9 @@ private:
 	float time_;
 	//ゴール時間格納
 	float goalTime_;
+	//プレイヤーHp割合
+	float hpPer_;
+
 	//プレイヤー状態
 	PLAYER_STATE state_;	//プレイヤーの状態(生存状態)
 	//プレイヤーの状態遷移
@@ -302,7 +305,8 @@ private:
 	//カードの位置
 	Vector2 cardCenterPos_;
 
-
+	//プレイヤーHPバーUI
+	std::unique_ptr<PlayerHpUI> playerHpUI_;
 
 
 #ifdef _DEBUG

@@ -20,6 +20,7 @@
 #include"../../Common/Geometry/Line.h"
 #include"../Object/Card/CardDeck.h"
 #include"../Object/Card/PlayerCardUI.h"
+#include"./PlayerHpUI.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
 #include"../Base/CharacterOnHitBase.h"
@@ -43,11 +44,12 @@ namespace
 	
 }
 Player::Player(void)
-	:playerNum_()
-	, cntl_()
-	, padNum_()
-	, state_()
-	, stateUpdate_()
+	:playerNum_(),
+	cntl_(),
+	padNum_(),
+	state_(),
+	stateUpdate_(),
+	hpPer_(1.0f)
 {
 	trans_ = Transform();
 	playerNum_ = 0;
@@ -111,6 +113,9 @@ void Player::Load(void)
 	deck_->Load();
 	action_->Load();
 
+	playerHpUI_ = std::make_unique<PlayerHpUI>(hpPer_);
+	playerHpUI_->Load();
+
 
 
 }
@@ -140,7 +145,7 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
-
+	playerHpUI_->Init();
 
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
@@ -190,7 +195,7 @@ void Player::Update(void)
 	cardUI_->Update();
 	//‰ñ“]‚Ì“¯Šú
 
-
+	playerHpUI_->Update();
 
 
 	trans_.quaRot = charaRot_.playerRotY_;
@@ -210,6 +215,8 @@ void Player::Draw(void)
 	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 
 	Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
+
+	playerHpUI_->Draw();
 
 #ifdef _DEBUG
 	DrawDebug();

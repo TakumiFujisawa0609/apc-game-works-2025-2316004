@@ -12,10 +12,10 @@ Texture2D    noizeTexture            : register(t11);	    	// ノイズマップテクス
 // 定数バッファ：スロット4番目(b5と書く)
 cbuffer cbParam : register(b4)
 {
-	float4 g_color;
-	float g_rate;	//0.0f~1.0f
-	float g_time;
-	float2 dummy;
+    float4 g_color;
+    float g_rate; //0.0f-1.0f
+    float g_time;
+    float2 dummy;
 }
 
 float4 main(PS_INPUT PSInput) : SV_TARGET0

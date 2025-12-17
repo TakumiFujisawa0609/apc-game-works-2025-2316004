@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\Character\Player\PlayerHpUI.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyRock.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyOnHit.cpp" />
     <ClCompile Include="Src\Object\Character\Base\CharacterOnHitBase.cpp" />
@@ -111,6 +112,7 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\Character\Player\PlayerHpUI.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyRock.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyOnHit.h" />
     <ClInclude Include="Src\Object\Character\Base\CharacterOnHitBase.h" />
