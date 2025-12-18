@@ -5,6 +5,7 @@
 #include"../Enemy/EnemyLogic.h"
 #include"../Enemy/EnemyRock.h"
 #include "../../Common/AnimationController.h"
+#include "../Object/Common/EffectController.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Generic/SceneManager.h"
@@ -42,6 +43,7 @@ soundMng_(SoundManager::GetInstance())
 
 	charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM,atk_.pos);
 
+	effect_ = std::make_unique<EffectController>();
 
 }
 
@@ -56,6 +58,7 @@ void EnemyCardAction::Load(void)
 	soundMng_.LoadResource(SoundManager::SRC::ENEMY_STOMP_SE);
 
 	charaObj_.LoadEnemyRock();
+	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::BLAST).handleId_,EffectController::EFF_TYPE::BLAST);
 
 }
 
@@ -75,7 +78,6 @@ void EnemyCardAction::Init(void)
 	roleDeg_ = 0.0f;
 	jampCardNum_ = 0;
 	atk_ = {};
-
 
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
@@ -276,6 +278,8 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		scnMng_.GetCamera().lock()->SetShakeStatus(jumpChargeCnt_ / JUMP_CHARGE_TIME, 10.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
+	
+
 		if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
 		{
 			//アニメーションループ終了
@@ -309,8 +313,10 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		if (!soundMng_.IsPlay(SoundManager::SRC::ENEMY_JUMP_LAND_SE))
 		{
 			soundMng_.Play(SoundManager::SRC::ENEMY_JUMP_LAND_SE, SoundManager::PLAYTYPE::BACK);
+			effect_->Play(EffectController::EFF_TYPE::BLAST, atk_.pos, {},{ atk_.atkRadius,atk_.atkRadius,atk_.atkRadius},true);
 		}
-
+		effect_->SetScale(EffectController::EFF_TYPE::BLAST, static_cast<int>(EFF_TYPE::BLAST),
+			{ atk_.atkRadius * BLAST_EFF_SCL,atk_.atkRadius * BLAST_EFF_SCL,atk_.atkRadius * BLAST_EFF_SCL });
 
 		//アニメーションループ
 		anim_.SetMidLoop(53.0f, 69.0f, 10.0f);
@@ -322,6 +328,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
+			effect_->Delete(EffectController::EFF_TYPE::BLAST,static_cast<int>(EFF_TYPE::BLAST));
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
 
@@ -436,7 +443,7 @@ void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
 	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::STOMP;
+	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:

@@ -7,6 +7,7 @@
 class CardDeck;
 class EnemyRock;
 class CharacterBase;
+class EffectController;
 
 class EnemyCardAction :
     public CardActionBase
@@ -25,6 +26,11 @@ public:
 		DOUBLE_SPHERE_ATK, //ダブルスフィア攻撃
         SHOT_CUTTER,     //斬撃飛ばし
         RELOAD, //リロード
+    };
+
+    enum class EFF_TYPE
+    {
+        BLAST,
     };
 
     /// @brief コンストラクタ
@@ -119,7 +125,8 @@ private:
     static constexpr float JUMP_ATK_ANIM_LOOP_END = 13.0f;
     static constexpr float JUMP_ATK_ANIM_LOOP_SPEED = 5.0f;
 
-
+    //爆発エフェクトサイズ
+	static constexpr float BLAST_EFF_SCL = 1.3f;
 
     //ひっかき攻撃のステータス
     static constexpr ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
@@ -170,7 +177,6 @@ private:
 
     //岩生成フラグ
     bool isGenerateRock_;
-
 
     //サウンド
 	SoundManager& soundMng_;

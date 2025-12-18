@@ -32,6 +32,9 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Rock.mv1");
 	resourcesMap_.emplace(SRC::SPHERE_ROCK, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"KeyBlade/KeyBlade1.mv1");
+	resourcesMap_.emplace(SRC::KEY_BLADE, std::move(res));
+
 
 	//アニメーション登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerIdle.mv1");
@@ -133,6 +136,10 @@ void ResourceManager::Init(void)
 	//複数画像
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png", CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
 	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
+
+	//エフェクト登録
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/Blast.efkefc");
+	resourcesMap_.emplace(SRC::BLAST, std::move(res));
 
 }
 

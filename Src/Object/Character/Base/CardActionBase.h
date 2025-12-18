@@ -5,7 +5,7 @@
 
 class CardDeck;
 class CharacterBase;
-
+class EffectController;
 class CardActionBase :
     public ActionBase
 {
@@ -53,6 +53,9 @@ protected:
     std::map<CARD_ACT_TYPE, ATK_STATUS>atkStatusTable_;
     //アタックのQueue配列
     std::queue<std::function<void(void)>>cardFuncs_;
+
+    //エフェクトコントローラ
+    std::unique_ptr<EffectController>effect_;
 
     //デュエルモードでの待機中フラグ　true:待機中
     bool isDuelWait_;

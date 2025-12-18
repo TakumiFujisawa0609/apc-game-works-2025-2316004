@@ -25,6 +25,7 @@
 #include"./ActionController.h"
 #include"../Base/CharacterOnHitBase.h"
 #include"./PlayerOnHit.h"
+#include "./Weapon.h"
 
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
@@ -60,7 +61,7 @@ Player::Player(void)
 
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
-
+	weapon_ = std::make_unique<Weapon>();
 
 }
 
@@ -98,14 +99,11 @@ void Player::Load(void)
 	//	, { ANIM_TYPE::P_RUN,static_cast<int>(ANIM_TYPE::P_RUN) }
 	//)
 
-
 	//プレイヤー入力
-
 	logic_->Init();
 
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
-
 
 	cardUI_ = std::make_unique<PlayerCardUI>();
 	cardUI_->Load();
@@ -116,7 +114,7 @@ void Player::Load(void)
 	playerHpUI_ = std::make_unique<PlayerHpUI>(hpPer_);
 	playerHpUI_->Load();
 
-
+	weapon_->Load();
 
 }
 
@@ -131,6 +129,8 @@ void Player::Init(void)
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
 	trans_.pos={ 0.0f,0.0f,-500.0f };
 	trans_.localPos = { 0.0f,Player::RADIUS,-0.0f };
+	//武器の追従対象をセット
+	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
 
 	tag_ = Collider::TAG::PLAYER1;
 
@@ -146,7 +146,7 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
 	playerHpUI_->Init();
-
+	weapon_->Init();
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
 
@@ -196,7 +196,7 @@ void Player::Update(void)
 	//回転の同期
 
 	playerHpUI_->Update();
-
+	weapon_->Update();
 
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
@@ -217,6 +217,8 @@ void Player::Draw(void)
 	Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
 
 	playerHpUI_->Draw();
+
+	weapon_->Draw();
 
 #ifdef _DEBUG
 	DrawDebug();

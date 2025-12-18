@@ -4,6 +4,7 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Player/ActionController.h"
 #include "../../Common/AnimationController.h"
+#include "../Object/Common/EffectController.h"
 #include "../../Card/CardDeck.h"
 #include "../../Card/CardBase.h"
 #include "../../Card/CardUIBase.h"

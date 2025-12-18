@@ -481,6 +481,12 @@ void Camera::SetBeforeDrawFixedPoint(void)
 
 void Camera::SetBeforeDrawFollow(void)
 {
+	VECTOR prePos = pos_;
+	if (followTransform_ == nullptr)
+	{
+		ChangeMode(MODE::FIXED_POINT);
+		return;
+	}
 	// ƒJƒƒ‰‘€ì
 	ProcessRot();
 
@@ -491,6 +497,8 @@ void Camera::SetBeforeDrawFollow(void)
 	UpdateCameraColliderLine();
 
 	Collision();
+
+	pos_ = easing_->EaseFunc(prePos, pos_, 0.1f, Easing::EASING_TYPE::LERP);
 	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
 	//{
 	//	ChangeMode(MODE::TARGET_POINT);
@@ -508,6 +516,11 @@ void Camera::SetBeforeDrawLerpCamera(void)
 
 void Camera::SetBeforeDrawTargetPoint(void)
 {
+	if (followTransform_ == nullptr)
+	{
+		ChangeMode(MODE::FIXED_POINT);
+		return;
+	}
 	ProcessRot();
 	SyncTargetFollow();
 

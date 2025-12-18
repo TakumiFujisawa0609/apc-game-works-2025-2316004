@@ -18,6 +18,7 @@ class Cupsule;
 class Line;
 class PlayerOnHit;
 class PlayerCardUI;
+class Weapon;
 class ModelMaterial;
 class ModelRenderer;
 class PlayerHpUI;
@@ -199,6 +200,9 @@ private:
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
 
+	//手のフレーム番号
+	static constexpr int HAND_FRAME_NO = 36;
+
 	//格納するカードの強さ
 	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
 	static constexpr CardBase::CARD_STATUS CARD_POWS[CARD_NUM_MAX] = {
@@ -304,10 +308,10 @@ private:
 	std::function<void(void)>stateUpdate_;
 	//カードの位置
 	Vector2 cardCenterPos_;
-
 	//プレイヤーHPバーUI
 	std::unique_ptr<PlayerHpUI> playerHpUI_;
-
+	//武器オブジェクト
+	std::unique_ptr<Weapon>weapon_;
 
 #ifdef _DEBUG
 	//デバッグ描画

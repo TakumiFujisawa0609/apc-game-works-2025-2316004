@@ -91,6 +91,12 @@ void SoundManager::Init(void)
     res.path = path_Se + L"PlayerFoot.mp3";
 	resourcesMap_.emplace(SRC::PLAYER_FOOT_SE, res);
 
+    res.path = path_Se + L"Blade_Atk.mp3";
+	resourcesMap_.emplace(SRC::PLAYER_ATTACK_SE, res);
+
+    res.path = path_Se + L"Blade_Atk.mp3";
+	resourcesMap_.emplace(SRC::PLAYER_HIT_SE, res);
+
     res.path = path_Se + L"EnemyFoot.mp3";
 	resourcesMap_.emplace(SRC::ENEMY_FOOT_SE, res);
 
@@ -100,7 +106,6 @@ void SoundManager::Init(void)
     res.path = path_Se + L"EnemyCharge.mp3";
 	resourcesMap_.emplace(SRC::ENEMY_CHARGE_SE, res);
 
-    //res.path = path_Se + L"EnemyJumpDown.mp3";
     res.path = path_Se + L"Enemy_Bomb2.mp3";
 	resourcesMap_.emplace(SRC::ENEMY_JUMP_LAND_SE, res);
 

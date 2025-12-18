@@ -26,6 +26,7 @@
     <ClCompile Include="Src\Manager\Generic\DrawUI2D.cpp" />
     <ClCompile Include="Src\Manager\Generic\DrawUI3D.cpp" />
     <ClCompile Include="Src\Manager\Generic\DrawUIBase.cpp" />
+    <ClCompile Include="Src\Object\Common\EffectController.cpp" />
     <ClCompile Include="Src\Scene\GameOverScene.cpp" />
     <ClCompile Include="Src\Common\Easing.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIController.cpp" />
@@ -105,11 +106,13 @@
     <ClCompile Include="Src\Scene\GameScene.cpp" />
     <ClCompile Include="Src\Scene\SceneBase.cpp" />
     <ClCompile Include="Src\Scene\TitleScene.cpp" />
+    <ClCompile Include="Src\Utility\ModelFrameUtility.cpp" />
     <ClCompile Include="Src\Utility\Utility2D.cpp" />
     <ClCompile Include="Src\Utility\Utility3D.cpp" />
     <ClCompile Include="Src\Utility\UtilityCommon.cpp" />
     <ClCompile Include="Src\Utility\UtilityDraw.cpp" />
     <ClCompile Include="Src\Object\Stage.cpp" />
+    <ClCompile Include="Src\Object\Character\Player\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Object\Character\Player\PlayerHpUI.h" />
@@ -119,6 +122,7 @@
     <ClInclude Include="Src\Manager\Generic\DrawUI2D.h" />
     <ClInclude Include="Src\Manager\Generic\DrawUI3D.h" />
     <ClInclude Include="Src\Manager\Generic\DrawUIBase.h" />
+    <ClInclude Include="Src\Object\Common\EffectController.h" />
     <ClInclude Include="Src\Scene\GameOverScene.h" />
     <ClInclude Include="Src\Common\Easing.h" />
     <ClInclude Include="Src\Object\Card\CardUIController.h" />
@@ -240,12 +244,14 @@
     <ClInclude Include="Src\Scene\GameScene.h" />
     <ClInclude Include="Src\Scene\SceneBase.h" />
     <ClInclude Include="Src\Scene\TitleScene.h" />
+    <ClInclude Include="Src\Utility\ModelFrameUtility.h" />
     <ClInclude Include="Src\Utility\UtilityTemplates.h" />
     <ClInclude Include="Src\Utility\Utility2D.h" />
     <ClInclude Include="Src\Utility\Utility3D.h" />
     <ClInclude Include="Src\Utility\UtilityCommon.h" />
     <ClInclude Include="Src\Utility\UtilityDraw.h" />
     <ClInclude Include="Src\Object\Stage.h" />
+    <ClInclude Include="Src\Object\Character\Player\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Src\Shader\Common\Pixel\PixelShader2DHeader.hlsli" />

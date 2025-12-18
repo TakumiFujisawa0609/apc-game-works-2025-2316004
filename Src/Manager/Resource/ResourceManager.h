@@ -25,6 +25,7 @@ public:
 		CARD_MDL,		//カード
 		SKY_DOME,	//スカイドーム
 		SPHERE_ROCK,		//岩
+		KEY_BLADE,	//鍵剣
 		//アニメーション
 		//プレイヤー
 		P_IDLE,		//待機
@@ -34,7 +35,7 @@ public:
 		P_ATTACK_3,	//攻撃3
 		P_JUMP,		//ジャンプ
 		P_DODGE,	//回避
-		P_RELOAD,
+		P_RELOAD,	//リロード
 		//敵
 		E_IDLE,		//待機
 		E_RUN,		//走る
@@ -61,6 +62,9 @@ public:
 
 		//ピクセルシェーダ
 		CARD_PS,
+
+		//エフェクト
+		BLAST,
 	};
 	
 	/// @brief 初期化

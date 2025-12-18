@@ -24,6 +24,9 @@ public:
 		ENEMY_STOMP_SE,				//エネミー爆発音
 		ENEMY_CHARGE_SE,			//エネミーチャージ音
 		ENEMY_JUMP_LAND_SE,			//エネミージャンプ着地音
+		PLAYER_ATTACK_SE,			//プレイヤー攻撃音
+		PLAYER_DODGE_SE,			//プレイヤー回避音
+		PLAYER_HIT_SE,				//プレイヤーヒット音
 
 
 		//カード関連
