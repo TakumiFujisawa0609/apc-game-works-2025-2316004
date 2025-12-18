@@ -30,7 +30,7 @@ CharacterBase::~CharacterBase(void)
 {
 }
 
-void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag,const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
+void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
 {
 	//“–‚½‚è”»’è‚ª‘¶İ‚µ‚½‚çíœ‚·‚é
 	if (IsAliveCollider(_charaTag, _attackTag))return;

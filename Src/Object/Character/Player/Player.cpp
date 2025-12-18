@@ -258,6 +258,17 @@ void Player::SetGoalRotate(const double _deg)
 
 	charaRot_.goalQuaRot_ = axis;
 }
+void Player::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
+{
+	//‚·‚Å‚É“–‚½‚è”»’è‚ª‚ ‚éê‡‚Íì‚ç‚È‚¢
+	if (weapon_->IsAliveCollider(_charaTag, _attackTag))return;
+	weapon_->MakeWeaponCollider();
+}
+void Player::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)
+{
+	if (!weapon_->IsAliveCollider(_charaTag, _attackCol))return;
+	weapon_->DeleteWeaponCollider();
+}
 #ifdef _DEBUG
 void Player::DrawDebug(void)
 {

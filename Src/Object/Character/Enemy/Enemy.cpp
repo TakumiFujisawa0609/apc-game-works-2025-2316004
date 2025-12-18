@@ -123,7 +123,7 @@ void Enemy::Update(void)
 	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
 	cardUI_->Update();
 	
@@ -164,28 +164,28 @@ void Enemy::Draw(void)
 		}
 	}
 	cardUI_->Draw();
-	////HPバー描画
-	//const int BOX_START_X = 600;
-	//const int BOX_START_Y = 10;
-	//const int BOX_END_X = 300;
-	////const int BOX_END_X =0;
-	//const int BOX_END_Y = BOX_START_Y + 20;
+	//HPバー描画
+	const int BOX_START_X = 600;
+	const int BOX_START_Y = 10;
+	const int BOX_END_X = 300;
+	//const int BOX_END_X =0;
+	const int BOX_END_Y = BOX_START_Y + 20;
 
-	//float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-	////float hpBoxEnd= hpPer * 400.0f;
-	////int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
-	////DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
-	////DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1); 
+	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
+	//float hpBoxEnd= hpPer * 400.0f;
+	//int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
+	//DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
+	//DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1); 
 
 
-	//Utility2D::DrawBarGraph(
-	//	{ BOX_START_X,BOX_START_Y },
-	//	{ BOX_END_X,BOX_END_Y },
-	//	hpPer,
-	//	0x000000,
-	//	0x0000ff,
-	//	2
-	//);
+	Utility2D::DrawBarGraph(
+		{ BOX_START_X,BOX_START_Y },
+		{ BOX_END_X,BOX_END_Y },
+		hpPer,
+		0x000000,
+		0x0000ff,
+		2
+	);
 
 #ifdef _DEBUG
 	DrawDebug();
@@ -219,6 +219,16 @@ void Enemy::SetGoalRotate(const double _deg)
 		charaRot_.stepRotTime_ = TIME_ROT;
 	}
 	charaRot_.goalQuaRot_ = axis;
+}
+
+void Enemy::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
+{
+	//当たり判定が存在したら削除する
+	if (IsAliveCollider(_charaTag, _attackTag))return;
+
+	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
+	isDamage_ = false;
+	MakeCollider(TAG_PRIORITY::ATK_SPHERE, { _charaTag,_attackTag }, std::move(sphere), { Collider::TAG::STAGE });
 }
 
 

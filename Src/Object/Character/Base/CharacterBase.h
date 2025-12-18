@@ -126,11 +126,11 @@ public:
 	/// @param _charaTag 自身のタグ
 	/// @param _atkPos 作りたい攻撃の座標
 	/// @param _radius 当たり判定の半径
-	void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag,const VECTOR& _atkPos,const float& _radius);
+	virtual void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius);
 
 	/// @brief 攻撃の当たり判定削除
 	/// @param _charaTag 自身のタグ
-	void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol);
+	virtual void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol);
 	
 	/// @brief キャラタグの取得
 	/// @param  

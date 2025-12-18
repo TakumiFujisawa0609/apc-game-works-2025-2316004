@@ -51,7 +51,7 @@ private:
     //攻撃3段目判定
 	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 73.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 83.0f;     //攻撃当たり判定終了アニメーションカウント
-    static constexpr float ATK_SPHERE_RADIUS = 120.0f;				//カプセル球の半径
+    static constexpr float ATK_SPHERE_RADIUS = 0.0f;				//カプセル球の半径
     //攻撃アニメーション3段階目の溜め時のアニメ速度
     static constexpr float ATTACK_THREE_ANIM_SPD = 10.0f;
     //攻撃3段階目アニメスピード補完時間
@@ -65,11 +65,11 @@ private:
 
 
     //1段目攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
+    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS,false };
     //2段目攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_TWO = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
+    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_TWO = { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS,false };
     //3段目攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_THREE = { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };
+    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_THREE = { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS ,false };
 
     //リロードのボタン押す時間
     static constexpr float RELOAD_TIME = 3.0f;

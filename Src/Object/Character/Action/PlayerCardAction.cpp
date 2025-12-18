@@ -143,11 +143,11 @@ void PlayerCardAction::UpdateAttackThree(void)
 		atkAnimLerpCnt_ += scnMng_.GetDeltaTime();
 		//アニメーション速度補完
 		anim_.SetAnimSpeed(CharacterBase::ANIM_SPEED, true, ATTACK_THREE_ANIM_SPD, atkAnimLerpCnt_ / ATTACK_THREE_ANIM_LERP_TIME,Easing::EASING_TYPE::QUAD_IN);
-		//攻撃当たり判定の座標生成
-		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, ATK_ONE_LOCAL);
+		////攻撃当たり判定の座標生成
+		//atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, ATK_ONE_LOCAL);
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, atkStatusTable_[actType_].atkRadius);
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, {}, 0.0f);
 
 	}
 	else if (anim_.IsEnd())		//アニメーション終了でアイドル状態変更
@@ -275,7 +275,6 @@ void PlayerCardAction::ChangeReload(void)
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
-
 	//リロード音再生
 	soundMng_.Play(SoundManager::SRC::CARD_RELOAD, SoundManager::PLAYTYPE::LOOP);
 	float per = pushReloadCnt_ / RELOAD_TIME;

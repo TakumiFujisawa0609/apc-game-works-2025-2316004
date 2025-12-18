@@ -104,6 +104,10 @@ void EnemyCardAction::Release(void)
 {
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
+
+	//カメラシェイクを元に戻す
+	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+
 	actionCntl_.GetInput().IsActioningSet();
 	//カード機能配列の解放
 	if (!cardFuncs_.empty())

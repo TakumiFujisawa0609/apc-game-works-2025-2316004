@@ -55,6 +55,12 @@ public:
 	/// @param _hitCol ヒットしたコライダ
 	virtual void OnHit(const std::weak_ptr<Collider> _hitCol);
 
+	/// @brief 特定のオブジェクトがあるかどうかを判定する
+	/// @param _chataTag 自身のタグ
+	/// @param _tag 作りたいタグ
+	/// @return true:特定のオブジェクトが存在する	false存在しない
+	const bool IsAliveCollider(const Collider::TAG _chataTag, const Collider::TAG _tag);
+
 protected:
 
 	// シングルトン参照
@@ -83,11 +89,7 @@ protected:
 	/// @param _notHitTags 衝突させないタグ
 	void MakeCollider(const TAG_PRIORITY _tagPriority,const std::set<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::set<Collider::TAG> _notHitTags = {});
 
-	/// @brief 特定のオブジェクトがあるかどうかを判定する
-	/// @param _chataTag 自身のタグ
-	/// @param _tag 作りたいタグ
-	/// @return turue:特定のオブジェクトが存在する	false存在しない
-	const bool IsAliveCollider(const Collider::TAG _chataTag, const Collider::TAG _tag);
+
 
 
 	//特定の配列番号の当たり判定の削除

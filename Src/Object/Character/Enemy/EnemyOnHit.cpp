@@ -8,6 +8,7 @@
 #include "../Object/Character/Base/CharacterBase.h"
 #include "../../../Utility/Utility3D.h"
 #include "../Object/Character/Player/ActionController.h"
+#include "../Object/Character/Player/Weapon.h"
 #include "../Base/CharacterOnHitBase.h"
 #include "EnemyOnHit.h"
 namespace
@@ -51,12 +52,11 @@ void EnemyOnHit::DrawDebug(void)
 
 void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
-	auto& parentChara = _hitCol.lock()->GetParentCharacter();
-	if (parentChara.GetIsDamage())return;
-
-	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
+	auto& parent = _hitCol.lock()->GetParent();
+	auto& weapon = dynamic_cast<Weapon&>(parent);
+	if (weapon.GetIsDamage())return;
 	//ダメージを与えたことを知らせる
-	parentChara.SetIsDamage();
+	weapon.SetIsDamage();
 	charaObj_.Damage(20);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
