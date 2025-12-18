@@ -65,6 +65,7 @@ public:
 
 		//エフェクト
 		BLAST,
+		KEY_BLADE_HIT_EFF
 	};
 	
 	/// @brief 初期化

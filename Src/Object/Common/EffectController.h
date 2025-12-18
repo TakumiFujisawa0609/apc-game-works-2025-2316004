@@ -13,6 +13,7 @@ public:
 	{
 		NONE,
 		BLAST,		//爆発
+		KEY_BLADE_HIT, //キーブレードヒット
 		DASH,		//ダッシュ
 		JUMP,		//ジャンプ
 		PUNCH_HIT,	//パンチヒット

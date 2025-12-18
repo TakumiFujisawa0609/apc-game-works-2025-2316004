@@ -141,6 +141,9 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/Blast.efkefc");
 	resourcesMap_.emplace(SRC::BLAST, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"ExpandStar/ExpandStar.efkefc");
+	resourcesMap_.emplace(SRC::KEY_BLADE_HIT_EFF, std::move(res));
+
 }
 
 void ResourceManager::SceneChangeRelease(void)

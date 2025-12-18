@@ -4,13 +4,14 @@
 #include "../Utility/Utility3D.h"
 #include "../Utility/UtilityCommon.h"
 #include "../Utility/ModelFrameUtility.h"
+#include "../Object/Common/EffectController.h"
 #include "../Object/Common/Geometry/Geometry.h"
 #include "../Object/Common/Geometry/Capsule.h"
 #include "Weapon.h"
 
 Weapon::Weapon(void)
 {
-
+	effect_ = std::make_unique<EffectController>();
 }
 
 Weapon::~Weapon(void)
@@ -20,6 +21,9 @@ Weapon::~Weapon(void)
 void Weapon::Load(void)
 {
 	trans_.SetModel(ResourceManager::GetInstance().LoadModelDuplicate(ResourceManager::SRC::KEY_BLADE));
+	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::KEY_BLADE_HIT_EFF).handleId_,
+		EffectController::EFF_TYPE::KEY_BLADE_HIT);
+
 }
 
 void Weapon::Init(void)
@@ -97,4 +101,8 @@ void Weapon::DeleteWeaponCollider(void)
 
 void Weapon::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
+	if (isDamage_)return;
+	//エフェクト再生
+	VECTOR bladeFramePos = MV1GetFramePosition(trans_.modelId, EFFECT_PLAY_FRAME_NO);
+	effect_->Play(EffectController::EFF_TYPE::KEY_BLADE_HIT, bladeFramePos, {}, { EFFECT_PLAY_SCL,EFFECT_PLAY_SCL,EFFECT_PLAY_SCL });
 }

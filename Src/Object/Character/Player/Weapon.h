@@ -1,5 +1,6 @@
 #pragma once
 #include "../Object/ObjectBase.h"
+class EffectController;
 class Weapon :
     public ObjectBase
 {
@@ -50,6 +51,10 @@ private:
 
 	//武器の大きさ
 	static constexpr float WEAPON_SCL = 0.2f;
+	//エフェクト再生位置のフレーム番号
+	static constexpr int EFFECT_PLAY_FRAME_NO = 1;
+	static constexpr float EFFECT_PLAY_SCL = 20.0f;
+
 
 	//武器の最大頂点座標
 	static constexpr VECTOR MAX_VERTEX_POS = { 91.0f,533.0f,19.7f };
@@ -60,6 +65,9 @@ private:
 	static constexpr float CAPSULE_COL_RADIUS = MAX_VERTEX_POS.x* WEAPON_SCL;
 	//カプセルコライダーの高さ
 	static constexpr float CAPSULE_COL_HEIGHT = (MAX_VERTEX_POS.y - MIN_VERTEX_POS.y) * WEAPON_SCL;
+
+	//エフェクト
+	std::shared_ptr<EffectController> effect_;
 
 	//武器の追従対象
 	Transform* targetTrans_;
