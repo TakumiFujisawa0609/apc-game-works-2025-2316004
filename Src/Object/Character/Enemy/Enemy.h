@@ -129,6 +129,11 @@ public:
 	/// @param _radius 半径(球の当たり判定用)
 	void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)override;
 
+	/// @brief ダメージ処理
+	/// @param _dam ダメージ数
+	virtual void Damage(const int _dam);
+
+
 private:
 
 	//定数

@@ -160,7 +160,7 @@ public:
 
 	/// @brief ダメージ処理
 	/// @param _dam ダメージ数
-	void Damage(const int _dam);
+	virtual void Damage(const int _dam);
 
 	/// @brief ダメージを食らったか
 	/// @param  
@@ -316,6 +316,9 @@ protected:
 
 	//Hp割合計算
 	float hpPer_;
+
+	//減る前の体力
+	float preHpPer_;
 
 	//移動後座標などの更新
 	void UpdatePost(void);

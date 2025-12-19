@@ -67,7 +67,7 @@ void Enemy::Load(void)
 	cardUI_ = std::make_unique<EnemyCardUI>();
 	logic_ = std::make_unique<EnemyLogic>(trans_);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, ENEMY_NUM);
-	hpUi_ = std::make_unique<EnemyHpUI>(hpPer_);
+	hpUi_ = std::make_unique<EnemyHpUI>(hpPer_,preHpPer_);
 	cardUI_->Load();
 
 	AddAction();
@@ -129,7 +129,6 @@ void Enemy::Update(void)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
 	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-
 	//logic_->Update();
 	action_->Update();
 	cardUI_->Update();
@@ -338,3 +337,11 @@ void Enemy::DrawDebug(void)
 	//logic_->DebugDraw();
 }
 #endif // _DEBUG
+
+void Enemy::Damage(const int _dam)
+{
+	//ダメージを受ける前にUI補間するためのpreHpを計算
+	hpUi_->Shake();
+	preHpPer_ = hpPer_;
+	status_.hp -= _dam;
+}

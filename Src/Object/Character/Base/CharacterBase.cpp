@@ -22,7 +22,9 @@ CharacterBase::CharacterBase(void) :
 	movedPos_(Utility3D::VECTOR_ZERO),
 	moveDiff_(Utility3D::VECTOR_ZERO),
 	jumpPow_({Utility3D::VECTOR_ZERO}),
-	soundMng_(SoundManager::GetInstance())
+	soundMng_(SoundManager::GetInstance()),
+	hpPer_(1.0f),
+	preHpPer_(hpPer_)
 {
 }
 
@@ -168,6 +170,8 @@ void CharacterBase::Rotate(void)
 
 void CharacterBase::Damage(const int _dam)
 {
+	//ダメージを受ける前にUI補間するためのpreHpを計算
+	preHpPer_ = hpPer_;
 	status_.hp -= _dam;
 }
 
