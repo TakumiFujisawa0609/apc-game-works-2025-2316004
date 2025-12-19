@@ -94,7 +94,7 @@ void SoundManager::Init(void)
     res.path = path_Se + L"Blade_Atk.mp3";
 	resourcesMap_.emplace(SRC::PLAYER_ATTACK_SE, res);
 
-    res.path = path_Se + L"Blade_Atk.mp3";
+    res.path = path_Se + L"KeyBladeHit.mp3";
 	resourcesMap_.emplace(SRC::PLAYER_HIT_SE, res);
 
     res.path = path_Se + L"EnemyFoot.mp3";
@@ -125,7 +125,7 @@ void SoundManager::Play(const SRC _src, const PLAYTYPE _playType)
 
     //‰¹Œ¹‚ªÄ¶Ï‚İ‚©’²‚×‚é
 	if (CheckSoundMem(loadedMap_[_src].handleId) == 1 &&
-        _playType == PLAYTYPE::BACK)
+        _playType != PLAYTYPE::BACK)
 	{
 		Stop(_src);  // Ä¶Ï‚İ‚È‚ç’â~
 	}

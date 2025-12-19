@@ -1,15 +1,15 @@
 #pragma once
-class PlayerHpUI
+class EnemyHpUI
 {
 public:
-	PlayerHpUI(float& _hpPer);
-	~PlayerHpUI(void);
+	EnemyHpUI(float& _hpPer);
+	~EnemyHpUI(void);
 	void Load(void);
 	void Init(void);
 	void Update(void);
 	void Draw(void);
 private:
 	// ƒvƒŒƒCƒ„[‚Ì‘Ì—Í‚ÌŠ„‡
-	float& playerHpPer_;
+	float& enemyHpPer_;
 };
 

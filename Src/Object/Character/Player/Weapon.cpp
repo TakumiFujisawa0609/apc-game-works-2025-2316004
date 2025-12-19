@@ -1,6 +1,7 @@
 #include "../pch.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Utility/Utility3D.h"
 #include "../Utility/UtilityCommon.h"
 #include "../Utility/ModelFrameUtility.h"
@@ -24,6 +25,9 @@ void Weapon::Load(void)
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::KEY_BLADE_HIT_EFF).handleId_,
 		EffectController::EFF_TYPE::KEY_BLADE_HIT);
 
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::PLAYER_HIT_SE, -1000);
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::PLAYER_ATTACK_SE, -1000);
+
 }
 
 void Weapon::Init(void)
@@ -43,10 +47,6 @@ void Weapon::Init(void)
 
 void Weapon::Update(void)
 {
-	if (InputManager::GetInstance().IsNew(KEY_INPUT_UP))
-	{
-		localRot_.z+=0.1f;
-	}
 
 	// 対象フレームの位置にtargetを配置し、
 	// 対象フレームの回転に加え、指定した相対座標・回転を加える
@@ -62,10 +62,10 @@ void Weapon::Update(void)
 void Weapon::Draw(void)
 {
 	MV1DrawModel(trans_.modelId);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), L"localRot(%f,%f,%f)",localRot_.x, localRot_.y, localRot_.z);
+	//DrawFormatString(0, 0, GetColor(255, 255, 255), L"localRot(%f,%f,%f)",localRot_.x, localRot_.y, localRot_.z);
 
-	if (collider_.size()==0)return;
-	collider_[TAG_PRIORITY::ATK_SPHERE]->GetGeometry().Draw();
+	//if (collider_.size()==0)return;
+	//collider_[TAG_PRIORITY::ATK_SPHERE]->GetGeometry().Draw();
 }
 
 void Weapon::SetTargetAndFrameNo(Transform* _targetTrans, int _frameNo)
@@ -92,6 +92,9 @@ void Weapon::MakeWeaponCollider(void)
 	std::unique_ptr<Capsule> geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, CAP_TOP, CAPSULE_COL_RADIUS);
 	MakeCollider(TAG_PRIORITY::ATK_SPHERE, { Collider::TAG::PLAYER1,Collider::TAG::NML_ATK }, std::move(geo), noneHitTag_);
 	tagPrioritys_.emplace_back(TAG_PRIORITY::ATK_SPHERE);
+
+	//攻撃発生時にSE再生
+	SoundManager::GetInstance().Play(SoundManager::SRC::PLAYER_ATTACK_SE, SoundManager::PLAYTYPE::BACK);
 }
 
 void Weapon::DeleteWeaponCollider(void)
@@ -105,4 +108,5 @@ void Weapon::OnHit(const std::weak_ptr<Collider> _hitCol)
 	//エフェクト再生
 	VECTOR bladeFramePos = MV1GetFramePosition(trans_.modelId, EFFECT_PLAY_FRAME_NO);
 	effect_->Play(EffectController::EFF_TYPE::KEY_BLADE_HIT, bladeFramePos, {}, { EFFECT_PLAY_SCL,EFFECT_PLAY_SCL,EFFECT_PLAY_SCL });
+	SoundManager::GetInstance().Play(SoundManager::SRC::PLAYER_HIT_SE, SoundManager::PLAYTYPE::BACK);
 }

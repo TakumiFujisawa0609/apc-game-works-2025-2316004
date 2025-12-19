@@ -446,8 +446,8 @@ bool EnemyCardAction::IsCardFailureJumpCharge(void)
 void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
-	//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
+	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:

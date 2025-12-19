@@ -98,8 +98,6 @@ void Camera::Draw(void)
 	//		pos, 50.0f, 8, GetColor(255, 0, 0), GetColor(255, 0, 0), TRUE);
 	//}
 	//
-
-	
 }
 
 void Camera::ChangeSub(const  SUB_MODE _submode)

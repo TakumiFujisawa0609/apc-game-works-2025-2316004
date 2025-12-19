@@ -4,6 +4,7 @@
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Generic/Camera.h"
 #include "GameOverScene.h"
 
 GameOverScene::GameOverScene(void)
@@ -27,6 +28,7 @@ void GameOverScene::Load(void)
 
 void GameOverScene::Init(void)
 {
+	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
 }
 
 void GameOverScene::NormalUpdate(void)
