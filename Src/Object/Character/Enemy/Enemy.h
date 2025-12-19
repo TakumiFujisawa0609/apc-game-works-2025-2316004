@@ -14,6 +14,8 @@ class Run;
 class Jump;
 class React;
 class EnemyCardAction;
+class EnemyHpUI;
+
 class Enemy :public CharacterBase
 {
 public:
@@ -152,6 +154,9 @@ private:
 	VECTOR rightHandPos_;
 
 	Vector2 cardCenterPos_; //カードの中心座標
+
+	//敵のHPのUI
+	std::unique_ptr<EnemyHpUI>hpUi_;
 
 	//コライダ作成
 	void MakeColliderGeometry(void)override;

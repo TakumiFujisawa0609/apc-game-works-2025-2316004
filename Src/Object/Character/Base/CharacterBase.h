@@ -311,11 +311,11 @@ protected:
 	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
 	bool isDamage_;
 
-	////カード関連初期化
-	//void CardInit(void);
-
 	//カプセル半径
 	float capRadius_;
+
+	//Hp割合計算
+	float hpPer_;
 
 	//移動後座標などの更新
 	void UpdatePost(void);

@@ -58,6 +58,9 @@ public:
 		RELOAD_FRAME,	//リロードカードのフレーム
 		RELOAD_GAGE,	//リロードゲージ
 		CARD_SELECT_FRAME_IMG,//カード枠画像
+		E_HP_BAR_MASK,	//エネミー体力ゲージマスク
+		E_HP_BAR_FRAME,	//エネミー体力ゲージフレーム
+		E_HP_COVER,
 
 
 		//ピクセルシェーダ

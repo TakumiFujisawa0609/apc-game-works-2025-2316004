@@ -10,6 +10,7 @@
 #include"../Base/CharacterOnHitBase.h"
 #include"./EnemyOnHit.h"
 #include"./EnemyRock.h"
+#include"./EnemyHpUi.h"
 #include"../Object/Common/AnimationController.h"
 #include"../Enemy/EnemyLogic.h"
 #include"../../Common/Geometry/Capsule.h"
@@ -66,12 +67,14 @@ void Enemy::Load(void)
 	cardUI_ = std::make_unique<EnemyCardUI>();
 	logic_ = std::make_unique<EnemyLogic>(trans_);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, ENEMY_NUM);
-
+	hpUi_ = std::make_unique<EnemyHpUI>(hpPer_);
 	cardUI_->Load();
 
 	AddAction();
 
 	action_->Load();
+
+	hpUi_->Load();
 
 }
 
@@ -95,6 +98,8 @@ void Enemy::Init(void)
 	action_->Init();
 
 	logic_->Init();
+
+	hpUi_->Init();
 
 	tag_ = Collider::TAG::ENEMY1;
 	capRadius_ = CAP_RADIUS;
@@ -123,9 +128,12 @@ void Enemy::Update(void)
 	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
-	logic_->Update();
+	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
+
+	//logic_->Update();
 	action_->Update();
 	cardUI_->Update();
+	hpUi_->Update();
 	
 	//肩の座標を取得
 	leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);
@@ -165,27 +173,29 @@ void Enemy::Draw(void)
 	}
 	cardUI_->Draw();
 	//HPバー描画
-	const int BOX_START_X = 600;
-	const int BOX_START_Y = 10;
-	const int BOX_END_X = 300;
-	//const int BOX_END_X =0;
-	const int BOX_END_Y = BOX_START_Y + 20;
+	hpUi_->Draw();
 
-	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-	//float hpBoxEnd= hpPer * 400.0f;
-	//int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
-	//DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
-	//DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1); 
+	//const int BOX_START_X = 600;
+	//const int BOX_START_Y = 10;
+	//const int BOX_END_X = 300;
+	////const int BOX_END_X =0;
+	//const int BOX_END_Y = BOX_START_Y + 20;
 
 
-	Utility2D::DrawBarGraph(
-		{ BOX_START_X,BOX_START_Y },
-		{ BOX_END_X,BOX_END_Y },
-		hpPer,
-		0x000000,
-		0x0000ff,
-		2
-	);
+	////float hpBoxEnd= hpPer * 400.0f;
+	////int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
+	////DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
+	////DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1); 
+
+
+	//Utility2D::DrawBarGraph(
+	//	{ BOX_START_X,BOX_START_Y },
+	//	{ BOX_END_X,BOX_END_Y },
+	//	hpPer_,
+	//	0x000000,
+	//	0x0000ff,
+	//	2
+	//);
 
 #ifdef _DEBUG
 	DrawDebug();

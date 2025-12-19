@@ -131,6 +131,15 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadGage.png");
 	resourcesMap_.emplace(SRC::RELOAD_GAGE, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_HpBarMask.png");
+	resourcesMap_.emplace(SRC::E_HP_BAR_MASK, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_HpBarFrame.png");
+	resourcesMap_.emplace(SRC::E_HP_BAR_FRAME, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_GaugeCover.png");
+	resourcesMap_.emplace(SRC::E_HP_COVER, std::move(res));
+
 
 
 	//ï°êîâÊëú
