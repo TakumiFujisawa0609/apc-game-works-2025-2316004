@@ -11,7 +11,7 @@ cbuffer cbParam : register(b4)
 float4 main(PS_INPUT PSInput) : SV_TARGET0
 {
     float2 uv = PSInput.uv;
-    float4 srcCol = srcCol = tex.Sample(texSampler, uv);
+    float4 srcCol = tex.Sample(texSampler, uv);
     //float4 col=
     if (srcCol.a < 0.01f || uv.x > g_hp_lerp)
     {

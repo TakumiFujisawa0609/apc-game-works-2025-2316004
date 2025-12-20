@@ -82,7 +82,6 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"MutantKnockDown.mv1");
 	resourcesMap_.emplace(SRC::E_KNOCK_DOWN, std::move(res));
 
-
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Roar.mv1");
 	resourcesMap_.emplace(SRC::E_ROAR_ATK, std::move(res));
 
@@ -133,6 +132,15 @@ void ResourceManager::Init(void)
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_HpBarMask.png");
 	resourcesMap_.emplace(SRC::E_HP_BAR_MASK, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"RadiusHp_Mask.png");
+	resourcesMap_.emplace(SRC::P_HP_ARCBAR_MASK, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"RadiusHpBer.png");
+	resourcesMap_.emplace(SRC::P_HP_ARCBAR_FRAME, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"LineHpGaugeMask.png");
+	resourcesMap_.emplace(SRC::P_HP_LINEBAR_MASK , std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_HpBarFrame.png");
 	resourcesMap_.emplace(SRC::E_HP_BAR_FRAME, std::move(res));

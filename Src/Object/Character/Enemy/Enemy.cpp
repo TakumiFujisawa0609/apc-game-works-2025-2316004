@@ -129,7 +129,7 @@ void Enemy::Update(void)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
 	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
 	cardUI_->Update();
 	hpUi_->Update();
@@ -340,8 +340,6 @@ void Enemy::DrawDebug(void)
 
 void Enemy::Damage(const int _dam)
 {
-	//ダメージを受ける前にUI補間するためのpreHpを計算
-	hpUi_->Shake();
-	preHpPer_ = hpPer_;
+	////ダメージを受ける前にUI補間するためのpreHpを計算
 	status_.hp -= _dam;
 }

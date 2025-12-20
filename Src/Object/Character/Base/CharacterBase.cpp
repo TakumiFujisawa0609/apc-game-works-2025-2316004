@@ -2,6 +2,7 @@
 //スマートポインタをデストラクタで解放するためのインクルード
 #include "../Object/Common/AnimationController.h"
 #include "../Object/Character/Player/ActionController.h"
+#include "../Object/Character/Base/HpUIBase.h"
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Object/Character/Base/CharacterOnHitBase.h"
 #include "../Manager/Game/GravityManager.h"
@@ -171,6 +172,7 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	//ダメージを受ける前にUI補間するためのpreHpを計算
+	hpUi_->Shake();
 	preHpPer_ = hpPer_;
 	status_.hp -= _dam;
 }

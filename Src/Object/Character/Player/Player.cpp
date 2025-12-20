@@ -20,6 +20,7 @@
 #include"../../Common/Geometry/Line.h"
 #include"../Object/Card/CardDeck.h"
 #include"../Object/Card/PlayerCardUI.h"
+#include"../Base/HpUIBase.h"
 #include"./PlayerHpUI.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
@@ -111,8 +112,8 @@ void Player::Load(void)
 	deck_->Load();
 	action_->Load();
 
-	playerHpUI_ = std::make_unique<PlayerHpUI>(hpPer_);
-	playerHpUI_->Load();
+	hpUi_ = std::make_unique<PlayerHpUI>(hpPer_,preHpPer_);
+	hpUi_->Load();
 
 	weapon_->Load();
 
@@ -145,7 +146,7 @@ void Player::Init(void)
 	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
 	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
 
-	playerHpUI_->Init();
+	hpUi_->Init();
 	weapon_->Init();
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
@@ -189,13 +190,15 @@ void Player::Update(void)
 	//VECTOR jumpPow = action_->GetJumpPow();
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow, 90.0f);
 
+	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
+
 	//プレイヤー状態更新
 	stateUpdate_();
 
 	cardUI_->Update();
 	//回転の同期
 
-	playerHpUI_->Update();
+	hpUi_->Update();
 	weapon_->Update();
 
 	trans_.quaRot = charaRot_.playerRotY_;
@@ -212,11 +215,11 @@ void Player::Draw(void)
 	//カードUI描画
 	cardUI_->Draw();
 
-	float hpPer = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 
-	Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
 
-	playerHpUI_->Draw();
+	//Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
+
+	hpUi_->Draw();
 
 	weapon_->Draw();
 

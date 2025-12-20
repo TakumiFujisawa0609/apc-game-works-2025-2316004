@@ -14,6 +14,7 @@ class CardDeck;
 class CardUIBase;
 class InputBase;
 class Capsule;
+class HpUIBase;
 class LogicBase;
 class PlayerOnHit;
 class EnemyOnHit;
@@ -282,6 +283,8 @@ protected:
 	//“–‚½‚Á‚½‚Ìˆ—
 	std::unique_ptr<CharacterOnHitBase>onHit_;
 
+	//“G‚ÌHP‚ÌUI
+	std::unique_ptr<HpUIBase>hpUi_;
 
 	//“G‚ÌƒXƒ^ƒ“ƒvUŒ‚‚É”­¶‚·‚éŠâ
 	std::vector<std::unique_ptr<EnemyRock>>rock_;

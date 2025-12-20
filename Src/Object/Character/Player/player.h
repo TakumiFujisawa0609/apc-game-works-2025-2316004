@@ -318,8 +318,6 @@ private:
 	std::function<void(void)>stateUpdate_;
 	//カードの位置
 	Vector2 cardCenterPos_;
-	//プレイヤーHPバーUI
-	std::unique_ptr<PlayerHpUI> playerHpUI_;
 	//武器オブジェクト
 	std::unique_ptr<Weapon>weapon_;
 

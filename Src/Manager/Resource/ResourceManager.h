@@ -57,6 +57,10 @@ public:
 		RELOAD_CARD_IMG,//リロードカード
 		RELOAD_FRAME,	//リロードカードのフレーム
 		RELOAD_GAGE,	//リロードゲージ
+		P_HP_ARCBAR_MASK,	//HPバーマスク(円形の部分)
+		P_HP_ARCBAR_FRAME,	//円形ゲージフレーム
+		P_HP_LINEBAR_MASK,	//HPバーマスク(線形の部分)
+		P_HP_BAR_FRAME,	//HPフレーム
 		CARD_SELECT_FRAME_IMG,//カード枠画像
 		E_HP_BAR_MASK,	//エネミー体力ゲージマスク
 		E_HP_BAR_FRAME,	//エネミー体力ゲージフレーム
