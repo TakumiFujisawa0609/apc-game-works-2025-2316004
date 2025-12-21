@@ -32,7 +32,11 @@ public:
 	/// @return プレイヤー人数
 	int GetPlayerNum(void);
 
+	//フルスクリーンフラグ
+	const bool GetIsFullScreen(void) { return isFullScreen_; }
 
+	//フルスクリーンの設定
+	void SetIsFullScreen(const bool _isFullScreen);
 
 
 
@@ -46,5 +50,8 @@ private:
 	~DataBank(void);
 	int playerNum_;		//プレイヤーの人数
 	int maxPlayerNum_;	//コントローラー数よりプレイヤー人数が多くならないようにする
+
+	//フルスクリーンの設定
+	bool isFullScreen_;
 };
 

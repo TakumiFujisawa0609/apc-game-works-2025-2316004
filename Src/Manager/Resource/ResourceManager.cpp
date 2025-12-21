@@ -139,8 +139,14 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"RadiusHpBer.png");
 	resourcesMap_.emplace(SRC::P_HP_ARCBAR_FRAME, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"RadiusHp_OutLine.png");
+	resourcesMap_.emplace(SRC::P_HP_ARC_OUTLINE,move(res));
+
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"LineHpGaugeMask.png");
 	resourcesMap_.emplace(SRC::P_HP_LINEBAR_MASK , std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"LineHp_OutLine.png");
+	resourcesMap_.emplace(SRC::P_HP_LINE_OUT_LINE , std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_HpBarFrame.png");
 	resourcesMap_.emplace(SRC::E_HP_BAR_FRAME, std::move(res));
@@ -157,6 +163,10 @@ void ResourceManager::Init(void)
 	//エフェクト登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/Blast.efkefc");
 	resourcesMap_.emplace(SRC::BLAST, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/EnemyCharge.efkefc");
+	resourcesMap_.emplace(SRC::E_JUMP_CHARGE_EFF, std::move(res));
+
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"ExpandStar/ExpandStar.efkefc");
 	resourcesMap_.emplace(SRC::KEY_BLADE_HIT_EFF, std::move(res));

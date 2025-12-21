@@ -46,6 +46,7 @@ PlayerCardAction::~PlayerCardAction(void)
 void PlayerCardAction::Load(void)
 {
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
+	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, 60.0f);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
 }
 
@@ -83,6 +84,8 @@ void PlayerCardAction::Release(void)
 	//当たり判定削除
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	//charaObj_.GetCardUI().ChangeUsedActionCard();
+
+	SoundManager::GetInstance().Stop(SoundManager::SRC::CARD_RELOAD);
 
 	//リロード処理中ならカードUI状態をNoneにする
 	if(actType_==CARD_ACT_TYPE::RELOAD)

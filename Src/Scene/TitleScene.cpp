@@ -6,12 +6,14 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Generic/InputManagerS.h"
+#include "../Manager/Generic/DataBank.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Common/Easing.h"
 #include "TitleScene.h"
 
-TitleScene::TitleScene(void)
+TitleScene::TitleScene(void):
+	soundMng_(SoundManager::GetInstance())
 {
 	//更新関数のセット
 	updataFunc_ = std::bind(&TitleScene::LoadingUpdate, this);
@@ -35,7 +37,10 @@ void TitleScene::Load(void)
 
 	titleFont_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::TITLE_BGM);
+	soundMng_.LoadResource(SoundManager::SRC::TITLE_BGM);
+	soundMng_.LoadResource(SoundManager::SRC::MOVE_BTN_SE);
+	soundMng_.LoadResource(SoundManager::SRC::DESIDE_BTN_SE);
+	soundMng_.LoadResource(SoundManager::SRC::GAME_START_SE);
 
 
 	yesNoState_ = YES_NO::NO;
@@ -48,6 +53,7 @@ void TitleScene::Init(void)
 		{TITLE_STATE::MENU,[this]() {UpdateMenu();}},
 		{TITLE_STATE::START_GAME,[this]() {UpdateSelectGame();}},
 		{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
+		{TITLE_STATE::SCREEN,[this]() { UpdateScreen(); }},
 		{TITLE_STATE::EXIT_MENU,[this]() {UpdateExitMenu();}},
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
 	};
@@ -55,6 +61,7 @@ void TitleScene::Init(void)
 	buttonStrTable_ = {
 		{TITLE_BTN::START_GAME,L"START　GAME"},
 		{TITLE_BTN::TUTORIAL,L"TUTORIAL"},
+		{TITLE_BTN::SCREEN,L"SCREEN"},
 		{TITLE_BTN::EXIT,L"EXIT"}
 	};
 
@@ -257,10 +264,12 @@ void TitleScene::UpdateMenu(void)
 
 	if (insS.IsTrgDown(INPUT_EVENT::UP))
 	{
+		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		selectNum_--;
 	}
 	else if (insS.IsTrgDown(INPUT_EVENT::DOWN))
 	{
+		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		selectNum_++;
 	}
 	//０以下にならないように
@@ -270,8 +279,30 @@ void TitleScene::UpdateMenu(void)
 	//selectState_ = static_cast<TITLE_STATE>(selectNum_);
 	if (insS.IsTrgDown(INPUT_EVENT::OK))
 	{
+		if (selectNum_ != static_cast<int>(TITLE_BTN::START_GAME))
+		{
+			soundMng_.Play(SoundManager::SRC::DESIDE_BTN_SE, SoundManager::PLAYTYPE::BACK);
+		}
+		else
+		{
+			soundMng_.Play(SoundManager::SRC::GAME_START_SE, SoundManager::PLAYTYPE::BACK);
+		}
 		ChangeState(static_cast<TITLE_STATE>(selectNum_));
 	}
+}
+
+void TitleScene::UpdateScreen(void)
+{
+	bool isFull = DataBank::GetInstance().GetIsFullScreen();
+	if (isFull)
+	{
+		DataBank::GetInstance().SetIsFullScreen(false);
+	}
+	else
+	{
+		DataBank::GetInstance().SetIsFullScreen(true);
+	}
+	ChangeState(static_cast<TITLE_STATE>(TITLE_STATE::MENU));
 }
 
 void TitleScene::UpdateTutorial(void)
@@ -282,6 +313,11 @@ void TitleScene::UpdateTutorial(void)
 
 void TitleScene::UpdateSelectGame(void)
 {
+	if (!soundMng_.IsPlay(SoundManager::SRC::GAME_START_SE))
+	{
+		soundMng_.Play(SoundManager::SRC::GAME_START_SE, SoundManager::PLAYTYPE::BACK);
+	}
+
 	//ゲームシーンに遷移
 	SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME);
 }
@@ -291,16 +327,19 @@ void TitleScene::UpdateExitMenu(void)
 	InputManagerS& insS = InputManagerS::GetInstance();
 	if (insS.IsTrgDown(INPUT_EVENT::LEFT))
 	{ 
+		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		yesNoState_ = YES_NO::YES; 
 	}
 	else if(insS.IsTrgDown(INPUT_EVENT::RIGHT))
 	{ 
+		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		yesNoState_ = YES_NO::NO; 
 	}
 
 	if (insS.IsTrgDown(INPUT_EVENT::OK))
 	{
-		if (yesNoState_ == YES_NO::YES) { 
+		if (yesNoState_ == YES_NO::YES) 
+		{ 
 			Application::GetInstance().IsGameEnd(); 
 		}
 		else { ChangeState(TITLE_STATE::MENU);}

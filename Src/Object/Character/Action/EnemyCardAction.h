@@ -94,7 +94,7 @@ private:
     //広がる時間
     static constexpr float JUMP_ATK_CNT_MAX = 2.5f;
     //ジャンプチャージ時間
-    static constexpr float JUMP_CHARGE_TIME = 6.0f;
+    static constexpr float JUMP_CHARGE_TIME = 3.0f;
     //咆哮判定
     static constexpr float ROAR_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ROAR_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
@@ -125,8 +125,9 @@ private:
     static constexpr float JUMP_ATK_ANIM_LOOP_END = 13.0f;
     static constexpr float JUMP_ATK_ANIM_LOOP_SPEED = 5.0f;
 
-    //爆発エフェクトサイズ
-	static constexpr float BLAST_EFF_SCL = 1.3f;
+    //エフェクトサイズ
+	static constexpr float BLAST_EFF_SCL = 1.3f;            //爆発
+	static constexpr float JUMP_CHARGE_EFF_SCL = 1000.0f;      //ジャンプチャージ
 
     //ひっかき攻撃のステータス
     static constexpr ATK_STATUS SWIP_ATK = { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS };

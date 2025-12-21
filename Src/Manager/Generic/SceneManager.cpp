@@ -1,6 +1,7 @@
 #include <chrono>
 #include <DxLib.h>
 #include <EffekseerForDXLib.h>
+#include "../Generic/DataBank.h"
 #include "../../Scene/TitleScene.h"
 #include "../../Scene/GameScene.h"
 #include "../../Scene/GameClearScene.h"
@@ -29,6 +30,9 @@ void SceneManager::Init(void)
 
 	//ウィンドウがアクティブ状態でなくとも処理を行う
 	SetAlwaysRunFlag(true);
+
+	//データバンクを生成
+	DataBank::CreateInstance();
 
 	// 3D用の設定
 	Init3D();

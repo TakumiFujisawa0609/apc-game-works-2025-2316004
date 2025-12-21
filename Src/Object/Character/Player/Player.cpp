@@ -50,8 +50,7 @@ Player::Player(void)
 	cntl_(),
 	padNum_(),
 	state_(),
-	stateUpdate_(),
-	hpPer_(1.0f)
+	stateUpdate_()
 {
 	trans_ = Transform();
 	playerNum_ = 0;
@@ -100,6 +99,8 @@ void Player::Load(void)
 	//	, { ANIM_TYPE::P_RUN,static_cast<int>(ANIM_TYPE::P_RUN) }
 	//)
 
+
+
 	//ƒvƒŒƒCƒ„[“ü—Í
 	logic_->Init();
 
@@ -116,6 +117,9 @@ void Player::Load(void)
 	hpUi_->Load();
 
 	weapon_->Load();
+
+	SoundManager::GetInstance().LoadResource(SoundManager::SRC::ENEMY_HIT_SE);
+	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::ENEMY_HIT_SE, 80);
 
 }
 
@@ -338,6 +342,8 @@ void Player::MakeColliderGeometry(void)
 	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
 
 	onHit_ = std::make_unique<PlayerOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_);
+	onHit_->Init();
+	onHit_->Load();
 }
 
 void Player::ChangeState(PLAYER_STATE _state)

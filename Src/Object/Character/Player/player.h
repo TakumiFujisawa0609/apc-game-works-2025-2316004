@@ -208,7 +208,7 @@ private:
 	//static constexpr float CAP_RADIUS = 25.0f;						//半径
 
 	//カード最大枚数
-	static constexpr int CARD_NUM_MAX = 20;
+	static constexpr int CARD_NUM_MAX = 15;
 
 	//手のフレーム番号
 	static constexpr int HAND_FRAME_NO = 36;
@@ -272,12 +272,7 @@ private:
 		{1,CARD_TYPE::ATTACK},
 		{2,CARD_TYPE::ATTACK},
 		{3,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK}
+		{4,CARD_TYPE::ATTACK}
 
 	};
 
@@ -307,8 +302,6 @@ private:
 	float time_;
 	//ゴール時間格納
 	float goalTime_;
-	//プレイヤーHp割合
-	float hpPer_;
 
 	//プレイヤー状態
 	PLAYER_STATE state_;	//プレイヤーの状態(生存状態)

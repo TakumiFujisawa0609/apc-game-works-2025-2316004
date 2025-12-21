@@ -15,7 +15,7 @@ EnemyHpUI::EnemyHpUI(float& _hpPer, float& _preHp) :
 	initCoverPos_ = BAR_COVER_POS;
 	barPos_ = initBarPos_;
 	barCoverPos_ = initCoverPos_;
-	material_ = std::make_unique<PixelMaterial>(L"EnemyHpBarPS.cso",3);
+	material_ = std::make_unique<PixelMaterial>(L"LineHpBarPS.cso", LINE_CONST_BUF);
 	renderer_ = std::make_unique<PixelRenderer>(*material_);
 }
 
@@ -56,8 +56,6 @@ void EnemyHpUI::Draw(void)
 	DrawExtendGraphF(barCoverPos_.x, barCoverPos_.y, barCoverPos_.x + BAR_COVER_SIZE.x, barCoverPos_.y + BAR_COVER_SIZE.y, barFrame_, true);
 	renderer_->Draw(barPos_.x,barPos_.y);
 	DrawExtendGraphF(barCoverPos_.x, barCoverPos_.y, barCoverPos_.x + BAR_COVER_SIZE.x, barCoverPos_.y + BAR_COVER_SIZE.y, barCoverHandle_, true);
-
-	DrawFormatString(0, 128, 0x000000, L"barPos(%f,%f)", barPos_.x, barPos_.y);
 }
 
 

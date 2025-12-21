@@ -41,15 +41,15 @@ float4 main(PS_INPUT PSInput) : SV_TARGET0
     }
     float angle01 = angle / TWO_PI;
     
-    if (angle01 > g_hp_lerp * 0.75)
+    if (angle01 > g_hp_lerp * g_start_arc)
     {
         discard;
     }
-    if (angle01 < g_hp_Per * 0.75)
+    if (angle01 < g_hp_Per * g_start_arc)
     {
         srcCol.rgb = g_color_1;
     }
-    else if (angle01 < g_hp_lerp)
+    else if (angle01 < g_hp_lerp * g_start_arc)
     {
         srcCol.rgb = float3(1.0f, 0.0f, 0.0f);
     }

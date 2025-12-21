@@ -12,11 +12,12 @@ public:
 	enum class EFF_TYPE
 	{
 		NONE,
-		BLAST,		//爆発
 		KEY_BLADE_HIT, //キーブレードヒット
 		DASH,		//ダッシュ
 		JUMP,		//ジャンプ
 		PUNCH_HIT,	//パンチヒット
+		BLAST,		//爆発
+		E_JUMP_CHARGE,
 	};
 
 	//コンストラクタ

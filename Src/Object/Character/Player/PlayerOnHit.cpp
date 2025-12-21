@@ -101,6 +101,7 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	//ダメージを与えたことを知らせる
 	parentChara.SetIsDamage();
 	charaObj_.Damage(20);
+	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	
 }
@@ -126,9 +127,10 @@ void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
 	auto& rock = dynamic_cast<EnemyRock&>(_hitCol.lock()->GetParent());
 	//ダメージを与えていた場合、処理を抜ける
 	if (rock.GetIsDamaged())return;
-	charaObj_.Damage(10);
+	charaObj_.Damage(5);
 	//のけぞり時間セット
 	rock.SetIsDamaged();
+	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 

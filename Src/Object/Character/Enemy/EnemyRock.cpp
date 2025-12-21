@@ -74,8 +74,11 @@ void EnemyRock::Draw(void)
 	if (!isAlive_)return;
 	//DrawSphere3D(trans_.pos, 150.0f, 5, 0xff0000, 0xff0000, true);
 	MV1DrawModel(trans_.modelId);
-
-	//DrawFormatString(200, 200 + num_ * 20, 0xffffff, L"RockNum:%f,%f,%f", trans_.pos.x, trans_.pos.y, trans_.pos.z);
+	//for (auto& col : collider_)
+	//{
+	//	col.second->GetGeometry().Draw();
+	//}
+	//DrawFormatString(200, 200 + num_ * 20, 0xffffff, L"RockNum:%d", collider_.size());
 }
 
 void EnemyRock::OnHit(const std::weak_ptr<Collider> _hitCol)

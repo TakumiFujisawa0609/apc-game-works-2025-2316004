@@ -61,6 +61,8 @@ public:
 		P_HP_ARCBAR_FRAME,	//円形ゲージフレーム
 		P_HP_LINEBAR_MASK,	//HPバーマスク(線形の部分)
 		P_HP_BAR_FRAME,	//HPフレーム
+		P_HP_ARC_OUTLINE,	//円形アウトライン
+		P_HP_LINE_OUT_LINE,	//線形アウトライン
 		CARD_SELECT_FRAME_IMG,//カード枠画像
 		E_HP_BAR_MASK,	//エネミー体力ゲージマスク
 		E_HP_BAR_FRAME,	//エネミー体力ゲージフレーム
@@ -72,7 +74,8 @@ public:
 
 		//エフェクト
 		BLAST,
-		KEY_BLADE_HIT_EFF
+		KEY_BLADE_HIT_EFF,
+		E_JUMP_CHARGE_EFF,
 	};
 	
 	/// @brief 初期化

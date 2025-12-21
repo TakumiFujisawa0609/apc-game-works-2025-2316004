@@ -69,7 +69,8 @@ void GameScene::Init(void)
 	CardSystem::CreateInstance();
 
 	CharacterManager::GetInstance().Init();
-
+	//シェイク状態を初期化
+	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 	//カメラの当たり判定作成
 	scnMng_.GetCamera().lock()->MakeColliderGeometry();
 

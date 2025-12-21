@@ -109,6 +109,21 @@ void SoundManager::Init(void)
     res.path = path_Se + L"Enemy_Bomb2.mp3";
 	resourcesMap_.emplace(SRC::ENEMY_JUMP_LAND_SE, res);
 
+
+    res.path = path_Se + L"PlayerDamage.mp3";
+    resourcesMap_.emplace(SRC::ENEMY_HIT_SE, res);
+
+
+    res.path = path_Se + L"CursolButtonSE.mp3";
+	resourcesMap_.emplace(SRC::MOVE_BTN_SE, res);
+
+    res.path = path_Se + L"DesideButton3.mp3";
+	resourcesMap_.emplace(SRC::DESIDE_BTN_SE, res);
+
+    res.path = path_Se + L"DesideButton.mp3";
+	resourcesMap_.emplace(SRC::GAME_START_SE, res);
+
+
 #pragma endregion
 
 }

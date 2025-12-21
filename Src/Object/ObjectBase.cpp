@@ -54,6 +54,8 @@ const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Coll
 
 void ObjectBase::DeleteCollider(const TAG_PRIORITY _priority)
 {
+	auto it = collider_.find(_priority);
+	if (it == collider_.end() || it->second == nullptr)return;
 	//ƒRƒ‰ƒCƒ_‚Ìíœ
 	collider_[_priority]->Kill();
 

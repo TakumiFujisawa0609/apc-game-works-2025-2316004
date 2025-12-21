@@ -24,6 +24,7 @@ public:
 		ENEMY_STOMP_SE,				//エネミー爆発音
 		ENEMY_CHARGE_SE,			//エネミーチャージ音
 		ENEMY_JUMP_LAND_SE,			//エネミージャンプ着地音
+		ENEMY_HIT_SE,			//エネミーヒット着地音
 		PLAYER_ATTACK_SE,			//プレイヤー攻撃音
 		PLAYER_DODGE_SE,			//プレイヤー回避音
 		PLAYER_HIT_SE,				//プレイヤーヒット音
@@ -35,6 +36,11 @@ public:
 		CARD_BREAK,					//カード弾き音(カードに勝った)
 		CARD_RELOAD,				//カードリロード音
 		CARD_RELOAD_FINISH,				//カードリロード終了音
+
+		//ボタン
+		MOVE_BTN_SE	,				//移動ボタン
+		DESIDE_BTN_SE,				//決定ボタン
+		GAME_START_SE				//ゲームスタート音
 
 	};
 
@@ -130,6 +136,9 @@ public:
 	/// <returns></returns>
 	const void SetLoadedSoundsVolume(void) { for (int i = 0; i < TYPE_MAX; i++) { SetSystemVolume(volume_[i], i); } };
 
+	/// @brief 一つの素材の音量設定
+	/// @param _src どの音か
+	/// @param _volumePercent 設定したい音量
 	void SetSoundVolumeSRC(const SRC _src, const int _volumePercent);
 
 	/// <summary>
@@ -166,6 +175,7 @@ private:
 
 	//読み込み済み
 	std::unordered_map<SRC, SoundResource> loadedMap_;
+
 
 	// コンストラクタ
 	SoundManager(void);

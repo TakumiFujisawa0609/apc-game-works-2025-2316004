@@ -87,7 +87,6 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 	{
 		//UŒ‚”»’è–³Œø
 		FinishFailureAttack(_attackTag);
-
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		actionCntl_.GetInput().IsActioningSet();
 		charaObj_.GetCardUI().ChangeReactActionCard();

@@ -766,7 +766,7 @@
     <FxCompile Include="Src\Shader\Model\CardVS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardNormalPS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardReloadPS.hlsl" />
-    <FxCompile Include="Src\Shader\Model\EnemyHpBarPS.hlsl" />
-    <FxCompile Include="Src\Shader\Model\PlayerHpBar.hlsl" />
+    <FxCompile Include="Src\Shader\Model\LineHpBarPS.hlsl" />
+    <FxCompile Include="Src\Shader\Model\ArcHpBarPS.hlsl" />
   </ItemGroup>
 </Project>

@@ -337,9 +337,3 @@ void Enemy::DrawDebug(void)
 	//logic_->DebugDraw();
 }
 #endif // _DEBUG
-
-void Enemy::Damage(const int _dam)
-{
-	////ダメージを受ける前にUI補間するためのpreHpを計算
-	status_.hp -= _dam;
-}

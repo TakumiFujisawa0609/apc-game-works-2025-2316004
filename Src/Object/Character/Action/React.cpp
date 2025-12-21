@@ -30,7 +30,7 @@ void React::Init(void)
 	{
 		isLoop = true;
 	}
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::REACT), isLoop, 0.0f, 16.0f);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::REACT), isLoop, 3.0f, 16.0f);
 }
 
 void React::Update(void)

@@ -3,6 +3,7 @@
 #include "../Common/Easing.h"
 #include "SceneBase.h"
 
+class SoundManager;
 class Easing;
 class TitleScene : public SceneBase
 {
@@ -10,11 +11,15 @@ class TitleScene : public SceneBase
 public:
 	enum class TITLE_STATE
 	{
+		//ボタンメニュ
 		START_GAME,
 		TUTORIAL,
+		SCREEN,
 		EXIT_MENU,
+		//その他
 		EASE_MENU,
 		MENU,
+	
 		EXIT,
 		MAX
 	};
@@ -23,6 +28,7 @@ public:
 	{
 		START_GAME,
 		TUTORIAL,
+		SCREEN,
 		EXIT,
 		MAX
 	};
@@ -106,6 +112,9 @@ private:
 	//YES,NOの文字列
 	std::unordered_map<YES_NO, std::wstring>yesNoStrTable_;
 
+	//サウンド
+	SoundManager& soundMng_;
+
 	//ボタン格納配列
 	std::list<BTN>buttons_;
 
@@ -154,6 +163,9 @@ private:
 	//メニュー処理
 	void UpdateMenu(void);
 
+	//スクリーンの設定
+	void UpdateScreen(void);
+
 	//チュートリアル
 	void UpdateTutorial(void);
 
@@ -162,4 +174,6 @@ private:
 
 	//ゲーム終了確認メニュー
 	void UpdateExitMenu(void);
+
+	//
 };

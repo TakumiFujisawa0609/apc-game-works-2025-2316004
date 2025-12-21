@@ -161,7 +161,7 @@ public:
 
 	/// @brief ダメージ処理
 	/// @param _dam ダメージ数
-	virtual void Damage(const int _dam);
+	void Damage(const int _dam);
 
 	/// @brief ダメージを食らったか
 	/// @param  

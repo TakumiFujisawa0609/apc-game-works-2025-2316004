@@ -21,6 +21,7 @@ void DataBank::Init(void)
 {
 	playerNum_ = 0;
 	maxPlayerNum_ = GetJoypadNum();
+	isFullScreen_ = false;
 }
 
 void DataBank::Destroy(void)
@@ -46,6 +47,12 @@ bool DataBank::SetPlayerNum(int _num)
 int DataBank::GetPlayerNum(void)
 {
 	return playerNum_;
+}
+
+void DataBank::SetIsFullScreen(const bool _isFullScreen)
+{
+	isFullScreen_ = _isFullScreen;
+	ChangeWindowMode(!isFullScreen_);
 }
 
 
