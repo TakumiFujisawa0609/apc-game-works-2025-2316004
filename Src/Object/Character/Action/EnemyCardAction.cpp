@@ -49,6 +49,7 @@ soundMng_(SoundManager::GetInstance())
 
 EnemyCardAction::~EnemyCardAction(void)
 {
+	//Release();
 }
 
 void EnemyCardAction::Load(void)
@@ -106,7 +107,6 @@ void EnemyCardAction::Release(void)
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::JUMP_ATK);
-	//charaObj_.DeleteEnemyRockCol();
 	
 	//カメラシェイクを元に戻す
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
@@ -155,10 +155,11 @@ void EnemyCardAction::ChangeJumpAtk(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP_ATK), false);
 	jumpChargeCnt_ = 0.0f;
-	isDuelWait_ = true;
+
 	soundMng_.Play(SoundManager::SRC::ENEMY_CHARGE_SE, SoundManager::PLAYTYPE::LOOP);
 	//ジャンプ攻撃処理
-	atk_ = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
+
+	SetAtk(JUMP_ATK);
 	//effect_->Play(EffectController::EFF_TYPE::E_JUMP_CHARGE, charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, { JUMP_CHARGE_EFF_SCL,JUMP_CHARGE_EFF_SCL ,JUMP_CHARGE_EFF_SCL });
 
 	cardFuncs_.push([this]() {UpdateJumpAtk(); });
@@ -169,7 +170,7 @@ void EnemyCardAction::ChangeRoleAtk(void)
 	preRoleAtkCnt_ = ROLE_PRE_TIME;
 	roleAtkCnt_ = ROLE_TIME;
 	preRolePos_ = charaObj_.GetTransform().pos;
-	atk_= atkStatusTable_[CARD_ACT_TYPE::RUSH_ATK];
+	SetAtk(RUSH_ATK);
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
 	cardFuncs_.push([this]() {UpdateRoleAtk(); });
 }
@@ -217,9 +218,9 @@ void EnemyCardAction::UpdateStomp(void)
 
 		//攻撃中
 		atk_.pos = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, { 0.0f,0.0f,0.0f });
-		//攻撃判定有効
-		isAliveAtkCol_ = true;
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
+		////攻撃判定有効
+		//isAliveAtkCol_ = true;
+		//charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
 
 		//溜めのカメラシェイク
 		cameraShakeCnt_ += SceneManager::GetInstance().GetDeltaTime();
@@ -259,7 +260,6 @@ void EnemyCardAction::UpdateStomp(void)
 			deck_.EraseHandCard();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
-
 	}
 }
 
@@ -457,7 +457,7 @@ void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
 	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::STOMP;
+	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:

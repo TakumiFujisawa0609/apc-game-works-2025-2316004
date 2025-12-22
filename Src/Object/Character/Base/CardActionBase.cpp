@@ -121,6 +121,14 @@ void CardActionBase::PutCard(void)
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 
+void CardActionBase::SetAtk(const ATK_STATUS& _atkStatus)
+{
+	atk_ = _atkStatus;
+
+	//ƒ_ƒ[ƒW‚Ì‰Šú‰»
+	atk_.isDamage = false;
+}
+
 void CardActionBase::ChangeComboAction(void)
 {
 }

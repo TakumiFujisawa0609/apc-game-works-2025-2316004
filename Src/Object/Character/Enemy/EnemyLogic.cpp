@@ -46,14 +46,14 @@ void EnemyLogic::Update(void)
 
 	moveCnt_ -= scnMng_.GetDeltaTime();
 
-	if (distance_ > 250.0f&&!isActioning_)
-	{
-		//距離が遠いときは近づく
-		isAct_.isRun = true;
-		moveDir_ = targetVec;
-		moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
-		return;
-	}
+	//if (distance_ > 250.0f&&!isActioning_)
+	//{
+	//	//距離が遠いときは近づく
+	//	isAct_.isRun = true;
+	//	moveDir_ = targetVec;
+	//	moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
+	//	return;
+	//}
 
 	//硬直がなかったらカード使用可能
 	if (freezeCnt_ <= 0.0f)

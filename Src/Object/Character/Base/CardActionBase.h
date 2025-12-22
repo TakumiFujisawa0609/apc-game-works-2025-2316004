@@ -70,6 +70,7 @@ protected:
     /// @param _attackTag 使っている当たり判定タグ
     /// @return 
     bool IsCardFailure(const Collider::TAG& _attackTag);
+
     //攻撃終了
     void FinishAttack(const Collider::TAG _attackCol);
 
@@ -78,6 +79,9 @@ protected:
 
     //カードを場に出す
     void PutCard(void);
+
+    //攻撃情報をセット
+    void SetAtk(const ATK_STATUS& _actType);
 
     //デュエルモード
     virtual void ChangeDuel(void) = 0;              //デュエルモード遷移

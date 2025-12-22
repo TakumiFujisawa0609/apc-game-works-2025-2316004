@@ -121,12 +121,12 @@ public:
 	/// <param name="_deg"></param>
 	void SetGoalRotate(const double _deg)override;
 
-	/// @brief 攻撃の当たり判定作成
-	/// @param _charaTag キャラクタータグ
-	/// @param _attackTag 攻撃タグ
-	/// @param _atkPos 攻撃座標(球の当たり判定用)
-	/// @param _radius 半径(球の当たり判定用)
-	void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)override;
+	///// @brief 攻撃の当たり判定作成
+	///// @param _charaTag キャラクタータグ
+	///// @param _attackTag 攻撃タグ
+	///// @param _atkPos 攻撃座標(球の当たり判定用)
+	///// @param _radius 半径(球の当たり判定用)
+	//void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)override;
 
 
 

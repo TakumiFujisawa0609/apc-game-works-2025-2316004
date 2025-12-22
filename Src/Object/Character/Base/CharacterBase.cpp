@@ -38,7 +38,7 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const Collider:
 	//“–‚½‚è”»’è‚ª‘¶İ‚µ‚½‚çíœ‚·‚é
 	if (IsAliveCollider(_charaTag, _attackTag))return;
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-	isDamage_ = false;
+//	isDamage_ = false;
 	MakeCollider(TAG_PRIORITY::ATK_SPHERE,{ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
 }
 
@@ -271,7 +271,11 @@ void CharacterBase::SetIsAliveEnemyRock(const bool _isAlive)
 	for (auto& rock : rock_)
 	{
 		rock->SetIsAlive(_isAlive);
-		rock->Init();
+		if (_isAlive)
+		{
+			rock->Init();
+		}
+
 	}
 }
 

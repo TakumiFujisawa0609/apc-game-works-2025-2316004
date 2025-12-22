@@ -113,10 +113,10 @@ void GameScene::NormalUpdate(void)
 	//常にUIの座標を追従
 	drawUi3D_->Update();
 
-	//終了した当たり判定の消去
-	CollisionManager::GetInstance().Sweep();
 	//更新はアクション中のみ
 	CollisionManager::GetInstance().Update();
+	//終了した当たり判定の消去
+	CollisionManager::GetInstance().Sweep();
 
 #ifdef _DEBUG
 	//デバッグ処理

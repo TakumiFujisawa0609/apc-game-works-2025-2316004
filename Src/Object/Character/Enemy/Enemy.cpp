@@ -230,15 +230,15 @@ void Enemy::SetGoalRotate(const double _deg)
 	charaRot_.goalQuaRot_ = axis;
 }
 
-void Enemy::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
-{
-	//“–‚½‚è”»’è‚ª‘¶İ‚µ‚½‚çíœ‚·‚é
-	if (IsAliveCollider(_charaTag, _attackTag))return;
-
-	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-	isDamage_ = false;
-	MakeCollider(TAG_PRIORITY::ATK_SPHERE, { _charaTag,_attackTag }, std::move(sphere), { Collider::TAG::STAGE });
-}
+//void Enemy::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
+//{
+//	//“–‚½‚è”»’è‚ª‘¶İ‚µ‚½‚çíœ‚·‚é
+//	if (IsAliveCollider(_charaTag, _attackTag))return;
+//
+//	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
+//	isDamage_ = false;
+//	MakeCollider(TAG_PRIORITY::ATK_SPHERE, { _charaTag,_attackTag }, std::move(sphere), { Collider::TAG::STAGE });
+//}
 
 
 void Enemy::MakeColliderGeometry(void)

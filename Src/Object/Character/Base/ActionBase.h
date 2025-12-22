@@ -71,7 +71,7 @@ public:
 		float colEndCnt=0.0f;
 		float atkRadius=0.0f;
 		VECTOR pos = {};
-		bool isDamage = false;
+		bool isDamage = true;
 	};
 	
 	/// @brief ˆÚ“®—Ê‚ÌŽæ“¾(ƒxƒNƒgƒ‹)

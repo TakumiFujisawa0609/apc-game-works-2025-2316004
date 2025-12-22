@@ -95,8 +95,9 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
 
 	auto& parentChara = _hitCol.lock()->GetParentCharacter();
-	if (parentChara.GetIsDamage())return;
-	
+	bool getIsDam = parentChara.GetIsDamage();
+	if (getIsDam)return;
+
 	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
 	//ダメージを与えたことを知らせる
 	parentChara.SetIsDamage();
