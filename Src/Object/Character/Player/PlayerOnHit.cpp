@@ -101,7 +101,11 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
 	//ダメージを与えたことを知らせる
 	parentChara.SetIsDamage();
-	charaObj_.Damage(20);
+
+	//ダメージを計算
+	float damage = parentChara.GetMainAction().GetAtkStatus().atkPoint;
+
+	charaObj_.Damage(damage);
 	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	

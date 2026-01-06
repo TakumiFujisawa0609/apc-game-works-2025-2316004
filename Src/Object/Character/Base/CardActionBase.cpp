@@ -81,7 +81,7 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 {
 	//カードの勝敗判定
-	deck_.CardUseUpdate();
+	//deck_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
 	if (deck_.IsCardFailure())
 	{

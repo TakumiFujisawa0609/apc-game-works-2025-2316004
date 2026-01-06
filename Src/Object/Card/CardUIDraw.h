@@ -63,8 +63,5 @@ private:
 
 	//ƒJ[ƒh‚Ì•`‰æ
 	void DrawCard(void);
-
-
-
 };
 

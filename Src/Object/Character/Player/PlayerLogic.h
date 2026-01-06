@@ -84,7 +84,7 @@ public:
     /// @brief コンストラクタ
     /// @param _padNum パッド番号
     /// @param _cntl 操作タイプ
-    PlayerLogic(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
+    PlayerLogic(Transform& _myTrans,InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
     ~PlayerLogic(void)override;
 
 	/// @brief 変更時の初期化

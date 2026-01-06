@@ -2,7 +2,8 @@
 #include "../Base/CardActionBase.h"
 #include "LogicBase.h"
 
-LogicBase::LogicBase(void):
+LogicBase::LogicBase(Transform& _myTrans):
+	myTrans_(_myTrans),
 	actCntl_(ACT_CNTL::NONE),
 	moveDeg_(-1.0f),
 	moveDir_({}),
@@ -28,12 +29,15 @@ void LogicBase::SetTargetCharacter(std::shared_ptr<CharacterBase> _target)
 
 const VECTOR LogicBase::GetLookAtTargetDir(void)const
 {
-	return {};
+	const VECTOR& targetPos = targetChara_.lock()->GetTransform().pos;
+	const VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, targetPos);
+	return targetVec;
 }
 
 const float LogicBase::GetLookAtTargetDeg(void)const
 {
-	return 0.0;
+	float deg = static_cast<float>(Utility3D::AngleDeg(targetChara_.lock()->GetTransform().pos, myTrans_.pos));
+	return deg;
 }
 
 const Transform LogicBase::GetTargetTransform(void)
@@ -44,4 +48,10 @@ const Transform LogicBase::GetTargetTransform(void)
 const int LogicBase::GetJumpCardNum(void) const
 {
 	return targetChara_.lock()->GetMainAction().GetJumpCardNum();
+}
+
+const float LogicBase::GetTargetDis(void) const
+{
+	const VECTOR targetPos = targetChara_.lock()->GetTransform().pos;
+	return static_cast<float>(Utility3D::Distance(myTrans_.pos, targetPos));
 }

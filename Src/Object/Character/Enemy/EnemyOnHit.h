@@ -34,6 +34,9 @@ public:
 	void DrawDebug(void)override;
 #endif // _DEBUG
 private:
+	//最大追加ダメージ(プレイヤーとのカードの強さを比べる)
+	static constexpr int MAX_ADD_DAMAGE = 10;
+
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃
 	void CollDuelSpecialAttack(const std::weak_ptr<Collider> _hitCol);	//デュエルで負けたときの反応
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;

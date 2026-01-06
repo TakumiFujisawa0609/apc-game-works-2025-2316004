@@ -62,9 +62,6 @@ void PlayerHpUI::Update(void)
 	renderer_->SetPos(barPos_);
 	material_->SetConstBuf(2, { hpPer_,preHp_,0.0f,0.0f });
 
-
-
-
 	//renderer_->SetPos(barPos_);
 	//lineRenderer_->SetPos({ barPos_.x + (GAUGE_SIZE / 2.0f,barPos_.y) });
 

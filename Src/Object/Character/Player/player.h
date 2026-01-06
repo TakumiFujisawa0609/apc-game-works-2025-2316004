@@ -170,7 +170,7 @@ public:
 	void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)override;
 
 	/// @brief 攻撃の当たり判定削除
-/// @param _charaTag 自身のタグ
+	/// @param _charaTag 自身のタグ
 	void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)override;
 
 private:

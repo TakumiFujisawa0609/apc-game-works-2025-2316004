@@ -21,7 +21,6 @@
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
 
-
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
 #include"../Action/Run.h"
@@ -129,7 +128,7 @@ void Enemy::Update(void)
 	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
 
 	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-	logic_->Update();
+	//logic_->Update();
 	action_->Update();
 	cardUI_->Update();
 	hpUi_->Update();
@@ -230,16 +229,6 @@ void Enemy::SetGoalRotate(const double _deg)
 	charaRot_.goalQuaRot_ = axis;
 }
 
-//void Enemy::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
-//{
-//	//“–‚½‚è”»’è‚ª‘¶İ‚µ‚½‚çíœ‚·‚é
-//	if (IsAliveCollider(_charaTag, _attackTag))return;
-//
-//	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-//	isDamage_ = false;
-//	MakeCollider(TAG_PRIORITY::ATK_SPHERE, { _charaTag,_attackTag }, std::move(sphere), { Collider::TAG::STAGE });
-//}
-
 
 void Enemy::MakeColliderGeometry(void)
 {
@@ -329,8 +318,6 @@ void Enemy::DrawDebug(void)
 	VECTOR localPosHand = VSub(trans_.pos, leftHand);
 
 	//DrawSphere3D(leftArm, 200.0f, 5, 0xff0000, 0xff0000, false);
-
-
 
 	//DrawFormatString(600, 300, 0x000000, L"Dir(%f,%f,%f)\nDeg(%f)", logic_->GetDir().x, logic_->GetDir().y, logic_->GetDir().z,logic_->GetMoveDeg());
 

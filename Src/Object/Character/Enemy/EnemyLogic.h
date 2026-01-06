@@ -26,11 +26,6 @@ public:
 	/// @param  
 	void Update(void) override;
 
-	/// @brief 相手の方向を見る
-	/// @param  
-	const VECTOR GetLookAtTargetDir(void)const override;
-	const float GetLookAtTargetDeg(void)const override;
-
 	//攻撃種類によって硬直時間をセット
 	void SetFreezeCntByAttackType(void)override;
 #ifdef _DEBUG
@@ -55,9 +50,6 @@ private:
 	static constexpr float BACK_DEG = 180.0f;
 	static constexpr float RIGHT_DEG = 90.0f;
 
-	//自身のモデル情報
-	Transform& myTrans_;
-
 	//シーンマネージャ
 	SceneManager& scnMng_;
 
@@ -67,8 +59,7 @@ private:
 	//移動時間
 	float moveCnt_;
 
-	//プレイヤーと敵の距離
-	float distance_;
+
 
 	//攻撃の重み付け
 	AttackWeight weight_;

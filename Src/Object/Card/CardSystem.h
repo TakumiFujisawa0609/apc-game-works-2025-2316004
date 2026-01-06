@@ -84,6 +84,12 @@ public:
 	/// @return true:場に何も出ていない	false:何か場にカードが出ている上体
 	const bool IsNoneCard(void);
 
+	//カード２枚のカード強さの取得
+	const int GetCardDif(void)const { return cardDif_; }
+
+	//カードの強さの初期化
+	void InitCardDif(void) { cardDif_ = 0; }
+
 #ifdef _DEBUG
 	void DrawDebug(void);
 #endif // _DEBUG
@@ -108,6 +114,12 @@ private:
 
 	//結果返す時のプレイヤーの識別
 	BATTLE_RESULT playerResult_[ARRAY_NUM];
+
+	//攻撃前のカード勝利結果
+	BATTLE_RESULT preResult_[ARRAY_NUM];
+
+	//2枚のカードの強さの差
+	int cardDif_;
 
 	//先出しかどうか true:先出し
 	bool isFirstAtk_[ARRAY_NUM];

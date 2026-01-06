@@ -6,6 +6,7 @@
 #include "../../../Manager/Resource/ResourceManager.h"
 //#include "../../Manager/System/SoundManager.h"
 #include "../../../Manager/Generic/SceneManager.h"
+#include "../../../Manager/Generic/UI2DManager.h"
 //#include"../../Manager/System/DateBank.h"
 
 #include "../../../Manager/Generic/Camera.h"
@@ -76,7 +77,7 @@ void Player::Load(void)
 	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::PLAYER));
 	trans_.quaRot = Quaternion();
 	trans_.quaRotLocal =
-		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(0.0f), 0.0f });
+		Quaternion::Euler({ 0.0f, 0.0f, 0.0f });
 
 
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
@@ -91,15 +92,13 @@ void Player::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 
 
-	logic_ = std::make_unique<PlayerLogic>(padNum_, InputManager::CONTROLL_TYPE::ALL);
+	logic_ = std::make_unique<PlayerLogic>(trans_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
 	AddAction();
 	//animType_.emplace(
 	//	{ ANIM_TYPE::P_IDLE,static_cast<int>(ANIM_TYPE::P_IDLE) }
 	//	, { ANIM_TYPE::P_RUN,static_cast<int>(ANIM_TYPE::P_RUN) }
 	//)
-
-
 
 	//プレイヤー入力
 	logic_->Init();
@@ -205,8 +204,7 @@ void Player::Update(void)
 	hpUi_->Update();
 	weapon_->Update();
 
-	trans_.quaRot = charaRot_.playerRotY_;
-	trans_.Update();
+
 }
 
 void Player::Draw(void)
@@ -218,8 +216,6 @@ void Player::Draw(void)
 	
 	//カードUI描画
 	cardUI_->Draw();
-
-
 
 	//Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
 
@@ -391,6 +387,10 @@ void Player::Action(void)
 	action_->Update();
 
 	UpdatePost();
+
+	trans_.quaRot = charaRot_.playerRotY_;
+	//trans_.quaRot = Quaternion::LookRotation(charaRot_.dir_);
+	trans_.Update();
 
 }
 

@@ -18,7 +18,8 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 {
 	isTurnable_ = false;
 	changeAction_={
-		{ CARD_ACT_TYPE::ATTACK_ONE, [this]() {ChangeAttackOne(); }},
+		{ CARD_ACT_TYPE::ATTACK_ONE_SHORT, [this]() {ChangeShortAttackOne(); }},
+		{ CARD_ACT_TYPE::ATTACK_ONE_MIDDLE, [this]() {ChangeMiddleAttackOne(); }},
 		{ CARD_ACT_TYPE::ATTACK_TWO, [this]() {ChangeAttackTwo(); }},
 		{ CARD_ACT_TYPE::ATTACK_THREE, [this]() {ChangeAttackThree(); }},
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
@@ -26,7 +27,7 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 	};
 	ATK_STATUS initStatus={};
 	atkStatusTable_ = {
-		{CARD_ACT_TYPE::ATTACK_ONE,NORMAL_ATK_ONE},
+		{CARD_ACT_TYPE::ATTACK_ONE_SHORT,NORMAL_ATK_ONE},
 		{CARD_ACT_TYPE::ATTACK_TWO,NORMAL_ATK_TWO},
 		{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
 		{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
@@ -64,7 +65,7 @@ void PlayerCardAction::Init(void)
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		PutCard();
-		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE);
+		DisideAttackOne();
 	}
 	else if (deck_.GetDrawCardType()==CardBase::CARD_TYPE::RELOAD)
 	{
@@ -113,6 +114,23 @@ bool PlayerCardAction::IsCanComboAttack(void)
 		&& actionCntl_.IsCardDisitionControll();
 }
 
+void PlayerCardAction::DisideAttackOne(void)
+{
+	//相手との距離を取得
+	const float dis = actionCntl_.GetInput().GetTargetDis();
+
+	const float MIDDLE_DIS = 200.0f;
+
+	if (dis >= MIDDLE_DIS)
+	{
+		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE_MIDDLE);
+	}
+	else
+	{
+		ChangeCardAction(CARD_ACT_TYPE::ATTACK_ONE_SHORT);
+	}
+}
+
 void PlayerCardAction::ChangeActionCardInit(void)
 {
 	attackStageNum_++;
@@ -124,6 +142,46 @@ void PlayerCardAction::ChangeActionCardInit(void)
 void PlayerCardAction::UpdateAttack(void)
 {
 	AttackMotion(atkStatusTable_[actType_],Collider::TAG::NML_ATK ,ATK_ONE_LOCAL);
+}
+
+void PlayerCardAction::UpdateMiddleAttack(void)
+{
+	//攻撃中にカード負けしたら処理を飛ばす
+	if (IsCardFailure(Collider::TAG::NML_ATK))return;
+
+	//突き攻撃の速度は要調整
+	const float deg = actionCntl_.GetInput().GetLookAtTargetDeg();
+	VECTOR dir = actionCntl_.GetInput().GetLookAtTargetDir();
+	dir.y = 0.0f;
+	isTurnable_ = true;
+	actionCntl_.GetInput().SetDegAndDir(deg, dir);
+	charaObj_.LariatMove(deg);
+	//攻撃判定処理
+	if (anim_.GetAnimStep() >= atk_.colStartCnt &&
+		anim_.GetAnimStep() <= atk_.colEndCnt)
+	{
+
+
+		//なぜか一定範囲内に入らないと敵の方向に向いてくれない不具合を直す
+		speed_ = 10.0f;
+
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, atk_.atkRadius);
+
+	}
+	else if (anim_.IsEnd())		//アニメーション終了でアイドル状態変更
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		return;
+	}
+	else if (anim_.GetAnimStep() > atk_.colEndCnt)	//攻撃終了後
+	{
+		//攻撃判定無効
+		speed_ = 0.0f;
+		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK);
+		charaObj_.GetCardUI().ChangeUsedActionCard();
+		//次の攻撃につなげる
+		ChangeComboAction();
+	}
 }
 
 void PlayerCardAction::UpdateAttackThree(void)
@@ -243,11 +301,25 @@ void PlayerCardAction::UpdateDuel(void)
 }
 
 
-void PlayerCardAction::ChangeAttackOne(void)
+void PlayerCardAction::ChangeShortAttackOne(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
 	atk_ = NORMAL_ATK_ONE;
 	cardFuncs_.push([this]() {UpdateAttack(); });
+}
+
+void PlayerCardAction::ChangeMiddleAttackOne(void)
+{
+
+
+
+	//アニメーションと攻撃判定を調整する
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
+	atk_ = NORMAL_ATK_ONE;
+	cardFuncs_.push([this]() {UpdateMiddleAttack(); });
+
+
+
 }
 
 void PlayerCardAction::ChangeAttackTwo(void)
@@ -312,7 +384,7 @@ void PlayerCardAction::ChangeComboAction(void)
 	{
 		if (IsAttackable() && IsCanComboAttack())
 		{
-			if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE))
+			if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE_SHORT))
 			{
 				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
@@ -323,6 +395,5 @@ void PlayerCardAction::ChangeComboAction(void)
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
 			}
 		}
-
 	}
 }

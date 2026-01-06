@@ -161,7 +161,7 @@ public:
 
 	/// @brief ダメージ処理
 	/// @param _dam ダメージ数
-	void Damage(const int _dam);
+	void Damage(const int _dam = 0);
 
 	/// @brief ダメージを食らったか
 	/// @param  
@@ -313,6 +313,9 @@ protected:
 	std::unique_ptr<CardUIBase>cardUI_;
 	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
 	bool isDamage_;
+
+	//ダメージ
+	float damagePoint_;
 
 	//カプセル半径
 	float capRadius_;

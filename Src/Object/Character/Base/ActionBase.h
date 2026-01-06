@@ -44,20 +44,21 @@ public:
 	{
 		NONE = -1,
 		//プレイヤーのアクション
-		ATTACK_ONE, //攻撃アクション1回目
-		ATTACK_TWO, //攻撃アクション2回目
-		ATTACK_THREE, //攻撃アクション3回目
-		DUEL_FAZE,		//敵のジャンプチャージフェーズの時、カード勝負行動に出る
-		DUEL_WAIT_FAZE,	//デュエルのカード待機
-		HEAL_CARD,       //ヒールカード使用
-		MAGIC_CARD,        //マジックカード使用
-		SONIC_RAVE,		//ソニックレイヴ		
+		ATTACK_ONE_SHORT,	//攻撃アクション1回目(近距離)
+		ATTACK_ONE_MIDDLE,	//攻撃アクション1回目(中距離)
+		ATTACK_TWO,			//攻撃アクション2回目
+		ATTACK_THREE,		//攻撃アクション3回目
+		DUEL_FAZE,			//敵のジャンプチャージフェーズの時、カード勝負行動に出る
+		DUEL_WAIT_FAZE,		//デュエルのカード待機
+		HEAL_CARD,			//ヒールカード使用
+		MAGIC_CARD,			//マジックカード使用
+		SONIC_RAVE,			//ソニックレイヴ		
 
 		//敵のアクション
-		STOMP_ATK, //ひっかき攻撃
-		ROAR_ATK, //咆哮
-		JUMP_ATK, //ジャンプ攻撃
-		RUSH_ATK,  //ロール攻撃
+		STOMP_ATK,			//ひっかき攻撃
+		ROAR_ATK,			//咆哮
+		JUMP_ATK,			//ジャンプ攻撃
+		RUSH_ATK,			//ロール攻撃
 
 		//共通
 		RELOAD, //リロード
@@ -70,6 +71,7 @@ public:
 		float colStartCnt=0.0f;
 		float colEndCnt=0.0f;
 		float atkRadius=0.0f;
+		float atkPoint = 0.0f;		//攻撃力
 		VECTOR pos = {};
 		bool isDamage = true;
 	};
@@ -82,7 +84,7 @@ public:
 	/// @brief 1方向に動く移動量
 	/// @param  
 	/// @return 1方向に動く移動量
-	const float&GetSpeed(void) { return speed_; }
+	const float& GetSpeed(void) { return speed_; }
 
 	
 	/// @brief 方向転換可能かどうかの取得
@@ -98,6 +100,11 @@ public:
 	/// @brief のけぞりカウントのセット
 	/// @param _flinchTime のけぞりカウント
 	void SetFlinchCnt(const float _flinchTime) { flinchCnt_ = _flinchTime; }
+
+	/// @brief 攻撃ステータスの取得
+	/// @param  
+	/// @return 攻撃ステータス
+	const ATK_STATUS& GetAtkStatus(void)const { return atk_; }
 
 	//カードアクションの取得
 	const CARD_ACT_TYPE& GetCardAction(void)const;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+#include "../Object/Card/CardBase.h"
 class DataBank
 {
 public:	
@@ -38,6 +38,11 @@ public:
 	//フルスクリーンの設定
 	void SetIsFullScreen(const bool _isFullScreen);
 
+	//プレイヤーのカードデータ保存
+	void AddPlayerCardData(const CardBase::CARD_STATUS _status);
+
+	//エネミーのカードデータ保存
+	void AddEnemyCardData(const CardBase::CARD_STATUS _status);
 
 
 
@@ -53,5 +58,11 @@ private:
 
 	//フルスクリーンの設定
 	bool isFullScreen_;
+
+	//プレイヤーのカードデッキ
+	std::vector<CardBase::CARD_STATUS> playerCardDatas_;
+
+	//敵のカードデッキ
+	std::vector<CardBase::CARD_STATUS> enemyCardDatas_;
 };
 

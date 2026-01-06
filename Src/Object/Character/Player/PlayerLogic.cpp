@@ -3,7 +3,8 @@
 #include "../Object/Character/Base/CharacterBase.h"
 #include "PlayerLogic.h"
 
-PlayerLogic::PlayerLogic(InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):
+PlayerLogic::PlayerLogic(Transform& _myTrans, InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):
+	LogicBase(_myTrans),
 	padNum_(_padNum),
 	cntl_(_cntl)
 {
@@ -89,7 +90,7 @@ void PlayerLogic::InputAll(void)
 	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
 	isAct_ = {};
-	moveDir_ = Utility3D::VECTOR_ZERO;
+	//moveDir_ = Utility3D::VECTOR_ZERO;
 	//ˆÚ“®Šp“x‚ðŒˆ‚ß‚é
 	if (ins.IsNew(MOVE_FRONT_KEY))
 	{

@@ -5,7 +5,7 @@
 #include "EnemyLogic.h"
 
 EnemyLogic::EnemyLogic(Transform& _myTrans):
-	myTrans_(_myTrans),
+	LogicBase(_myTrans),
 	scnMng_(SceneManager::GetInstance())
 {
 }
@@ -40,7 +40,6 @@ void EnemyLogic::Update(void)
 
 	//y座標までは追従しない
 	targetVec.y = 0.0f;
-	distance_ = static_cast<float>(Utility3D::Distance(myTrans_.pos, playerPos));
 
 	cardCoolCnt_ -= scnMng_.GetDeltaTime();
 
@@ -71,18 +70,6 @@ void EnemyLogic::Update(void)
 
 }
 
-const VECTOR EnemyLogic::GetLookAtTargetDir(void)const
-{
-	const VECTOR& playerPos = targetChara_.lock()->GetTransform().pos;
-	const VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
-	return targetVec;
-}
-
-const float EnemyLogic::GetLookAtTargetDeg(void) const
-{
-	float deg = static_cast<float>(Utility3D::AngleDeg(targetChara_.lock()->GetTransform().pos, myTrans_.pos));
-	return deg;
-}
 #ifdef _DEBUG
 void EnemyLogic::DebugUpdate(void)
 {
@@ -114,7 +101,9 @@ void EnemyLogic::DebugUpdate(void)
 #ifdef _DEBUG
 void EnemyLogic::DebugDraw(void)
 {
-	DrawFormatString(50, 100, 0x000000, L"Dis(%f)", distance_);
+	//距離の計算
+	float distance = GetTargetDis();
+	DrawFormatString(50, 100, 0x000000, L"Dis(%f)", distance);
 }
 #endif // _DEBUG
 
@@ -122,14 +111,13 @@ void EnemyLogic::DebugDraw(void)
 
 void EnemyLogic::DesideAction(void)
 {
-	VECTOR playerPos = targetChara_.lock()->GetTransform().pos;
-	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, playerPos);
 
+	const float distance = GetTargetDis();
 	//ランダムの数値取得
 	int rand = GetRand(100);
 
 	
-	if (distance_ > 200.0f)
+	if (distance > 200.0f)
 	{
 		//遠距離時
 		if (rand > weight_.normal)

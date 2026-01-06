@@ -174,6 +174,8 @@ void CharacterBase::Damage(const int _dam)
 	//ダメージを受ける前にUI補間するためのpreHpを計算
 	hpUi_->Shake();
 	preHpPer_ = hpPer_;
+
+	//ダメージ分hpを減らす
 	status_.hp -= _dam;
 }
 
@@ -230,7 +232,7 @@ void CharacterBase::MovedPosMove(const VECTOR& _vec, const float& _movePow)
 
 void CharacterBase::LariatMove(const float& _deg)
 {
-	charaRot_.playerRotY_ = Quaternion::AngleAxis(UtilityCommon::Deg2RadF(_deg), Utility3D::AXIS_Y);
+	charaRot_.playerRotY_=Quaternion::AngleAxis(UtilityCommon::Deg2RadF(_deg), Utility3D::AXIS_Y);
 }
 
 void CharacterBase::SetLogicTargetCharacter(std::shared_ptr<CharacterBase> _targetChara)

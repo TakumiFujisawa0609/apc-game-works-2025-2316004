@@ -51,7 +51,7 @@ public:
 
 	/// @brief コンストラクタ
     /// @param  
-    LogicBase(void);
+    LogicBase(Transform& _myTrans);
 	
     /// @brief デストラクタ
     /// @param  
@@ -90,7 +90,6 @@ public:
     /// @return 攻撃種類
     const ENEMY_ATTACK_TYPE& GetAttackType(void)const { return attackType_; }
 
-
     /// @brief プレイヤーが敵の攻撃種類を取得する
     /// @param  
     /// @return 
@@ -105,8 +104,8 @@ public:
     void SetMoveDirTransformFront(void) { moveDir_ = prevMoveDir_;}
 
 	/// @brief ターゲットの方向を見る
-    virtual const VECTOR GetLookAtTargetDir(void)const;
-    virtual const float GetLookAtTargetDeg(void)const;
+    const VECTOR GetLookAtTargetDir(void)const;
+    const float GetLookAtTargetDeg(void)const;
 
     //相手の座標情報を取得
     const Transform GetTargetTransform(void);
@@ -116,6 +115,9 @@ public:
     /// @return 
     const int GetJumpCardNum(void)const;
 
+    /// @brief 方向を決める
+    /// @param _deg デグリー角度
+    /// @param _dir ベクトル
     void SetDegAndDir(const float& _deg, const VECTOR& _dir)
     {
         moveDeg_ = _deg;
@@ -129,6 +131,16 @@ public:
     /// @brief 攻撃種類によって硬直時間をセット
     /// @param  
     virtual void SetFreezeCntByAttackType(void) {};
+
+    /// @brief 相手のキャラクターの情報の取得
+    /// @param  
+    /// @return 
+    const std::weak_ptr<CharacterBase>GetTargetCharacter(void)const { return targetChara_; }
+
+    /// @brief ターゲットと自分の距離の取得
+    /// @param  
+    /// @return 
+    const float GetTargetDis(void)const;
 
 #ifdef _DEBUG
     virtual void DebugDraw(void) {};
@@ -153,6 +165,9 @@ protected:
 
     //アクション中
 	bool isActioning_;
+
+    //自身のモデル情報
+    Transform& myTrans_;
 
 };
 

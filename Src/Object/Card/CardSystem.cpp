@@ -155,13 +155,13 @@ void CardSystem::CompareCards(void)
 	//お互いに手札が0枚なら処理を抜ける
 	if (putCardPow_[FIRST_ATK]==-1 && putCardPow_[SECOND_ATK] ==-1)
 	{
+		cardDif_ = 0;
 		return;
 	}
 
 	//以下、2つのカードの強さを比較
 	//どちらかのカードが出されていなければ先出し勝利
 	BATTLE_RESULT result[ARRAY_NUM];
-
 	if (putCardPow_[SECOND_ATK] == -1)
 	{
 		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_USE;
@@ -181,14 +181,20 @@ void CardSystem::CompareCards(void)
 	//先出しの勝ち
 	else if (putCardPow_[FIRST_ATK] > putCardPow_[SECOND_ATK])
 	{
-		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_USE;
+		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
 		result[SECOND_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
+
+		//2枚のカードの強さを計算する(カードの差が低いほどダメージを上げるための計算)
+		cardDif_ = putCardPow_[FIRST_ATK] - putCardPow_[SECOND_ATK];
 	}
 	//後出しの勝ち
 	else if (putCardPow_[FIRST_ATK] < putCardPow_[SECOND_ATK])
 	{
 		result[FIRST_ATK] = BATTLE_RESULT::FAILURE_USE_BE_REFLECTED;
 		result[SECOND_ATK] = BATTLE_RESULT::SUCCESS_CARD_BREAK;
+
+		//2枚のカードの強さを計算する(カードの差が低いほどダメージを上げるための計算)
+		cardDif_ = putCardPow_[SECOND_ATK] - putCardPow_[FIRST_ATK];
 	}
 
 	//各プレイヤーの結果に判定結果を反映する
@@ -202,6 +208,7 @@ void CardSystem::CompareCards(void)
 		{
 			playerResult_[i] = result[SECOND_ATK];
 		}
+		preResult_[i] = result[i];
 	}
 }
 

@@ -35,7 +35,7 @@ public:
 		CARD_BE_REFLECTED,			//カード弾かれ音
 		CARD_BREAK,					//カード弾き音(カードに勝った)
 		CARD_RELOAD,				//カードリロード音
-		CARD_RELOAD_FINISH,				//カードリロード終了音
+		CARD_RELOAD_FINISH,			//カードリロード終了音
 
 		//ボタン
 		MOVE_BTN_SE	,				//移動ボタン

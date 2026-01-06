@@ -6,6 +6,7 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
+//#include "../Manager/Generic/UI2DManager.h"
 
 
 #include "../Manager/Generic/DrawUI3D.h"
@@ -61,6 +62,9 @@ void GameScene::Load(void)
 
 	CharacterManager::CreateInstance();
 	CharacterManager::GetInstance().Load();
+
+	//UI2DManager::CreateInstance();
+	//UI2DManager::GetInstance().Load();
 }
 
 void GameScene::Init(void)
@@ -69,6 +73,7 @@ void GameScene::Init(void)
 	CardSystem::CreateInstance();
 
 	CharacterManager::GetInstance().Init();
+	//UI2DManager::GetInstance().Init();
 	//シェイク状態を初期化
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 	//カメラの当たり判定作成
@@ -110,8 +115,14 @@ void GameScene::NormalUpdate(void)
 
 	//キャラクターの更新
 	CharacterManager::GetInstance().Update();
+
+	//カード勝敗状態の監視
+	CardSystem::GetInstance().CompareCards();
+
+	//UI2DManager::GetInstance().Update();
+
 	//常にUIの座標を追従
-	drawUi3D_->Update();
+	//drawUi3D_->Update();
 
 	//更新はアクション中のみ
 	CollisionManager::GetInstance().Update();
@@ -137,6 +148,7 @@ void GameScene::NormalDraw(void)
 	CharacterManager::GetInstance().Draw();
 	//drawUi3D_->Draw();
 
+	//UI2DManager::GetInstance().Draw();
 #ifdef _DEBUG
 	//デバッグ処理
 	DebagDraw();

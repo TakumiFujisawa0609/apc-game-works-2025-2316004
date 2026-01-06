@@ -5,10 +5,12 @@
 #include "../../../Object/Common/Geometry/Capsule.h"
 #include "../../../Object/Common/Geometry/Line.h"
 #include"../../../Object/Common/Geometry/Model.h"
+#include "../Object/Card/CardSystem.h"
 #include "../Object/Character/Base/CharacterBase.h"
 #include "../../../Utility/Utility3D.h"
 #include "../Object/Character/Player/ActionController.h"
 #include "../Object/Character/Player/Weapon.h"
+#include "../Object/Character/Base/LogicBase.h"
 #include "../Base/CharacterOnHitBase.h"
 #include "EnemyOnHit.h"
 namespace
@@ -57,7 +59,16 @@ void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	if (weapon.GetIsDamage()||charaObj_.GetCardAction()==CardActionBase::CARD_ACT_TYPE::JUMP_ATK)return;
 	//ダメージを与えたことを知らせる
 	weapon.SetIsDamage();
-	charaObj_.Damage(20);
+
+	//相手キャラの技攻撃力取得
+	const float& atkPoint = action_.GetInput().GetTargetCharacter().lock()->GetMainAction().GetAtkStatus().atkPoint;
+	//相手の数字との差が近いほどダメージを追加する
+	const int cardDif= CardSystem::GetInstance().GetCardDif();
+	float addDam = 0;
+	//カードシステムからカードの強さの差を取得し、０でなければダメージを追加する
+	cardDif==0?addDam=0:addDam= MAX_ADD_DAMAGE - cardDif;
+	float damage = atkPoint + addDam;
+	charaObj_.Damage(damage);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 

@@ -55,6 +55,16 @@ void DataBank::SetIsFullScreen(const bool _isFullScreen)
 	ChangeWindowMode(!isFullScreen_);
 }
 
+void DataBank::AddPlayerCardData(const CardBase::CARD_STATUS _status)
+{
+	playerCardDatas_.emplace_back(_status);
+}
+
+void DataBank::AddEnemyCardData(const CardBase::CARD_STATUS _status)
+{
+
+}
+
 
 DataBank::DataBank(void)
 {

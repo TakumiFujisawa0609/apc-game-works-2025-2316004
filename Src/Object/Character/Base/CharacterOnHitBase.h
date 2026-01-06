@@ -39,6 +39,11 @@ public:
 	/// @param  
 	void InitHitPoint(void) { hitPoint_ = {}; }
 
+	/// @brief ダメージ計算
+	/// @param  
+	/// @return 
+	const float DamageCulc(void);
+
 
 #ifdef _DEBUG
 	/// @brief デバッグ表示

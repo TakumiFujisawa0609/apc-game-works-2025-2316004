@@ -35,7 +35,7 @@ soundMng_(SoundManager::GetInstance())
 	};
 
 	atkStatusTable_ = {
-		{CARD_ACT_TYPE::STOMP_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::STOMP_ATK, STOMP_ATK},
 		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
 		{CARD_ACT_TYPE::RUSH_ATK, RUSH_ATK }
@@ -70,7 +70,7 @@ void EnemyCardAction::Init(void)
 	//deck_.MoveUsingCardToDrawPile();
 	easing_ = std::make_unique<Easing>();
 	atkStatusTable_ = {
-		{CARD_ACT_TYPE::STOMP_ATK, SWIP_ATK},
+		{CARD_ACT_TYPE::STOMP_ATK, STOMP_ATK},
 		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
@@ -212,7 +212,7 @@ void EnemyCardAction::UpdateStomp(void)
 	}
 
 
-	if (anim_.GetAnimStep() > ATTACK_ONE_COL_START_ANIM_CNT)
+	if (anim_.GetAnimStep() > STOMP_COL_START_ANIM_CNT)
 	{
 		const Transform& charaTrans = charaObj_.GetTransform();
 
@@ -360,7 +360,6 @@ void EnemyCardAction::UpdateRoleAtk(void)
 		//前隙中
 		preRoleAtkCnt_ -= deltaTIme;
 		//前に進む
-		actionCntl_.GetInput().GetLookAtTargetDir();
 		roleMoveDeg_ = actionCntl_.GetInput().GetLookAtTargetDeg();
 		roleMoveDir_ = actionCntl_.GetInput().GetLookAtTargetDir();
 		roleMoveDir_.y = 0.0f;
@@ -430,7 +429,7 @@ void EnemyCardAction::UpdateDuel(void)
 bool EnemyCardAction::IsCardFailureJumpCharge(void)
 {
 	//カードの勝敗判定
-	deck_.CardUseUpdate();
+	//deck_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
 	if (jampCardNum_ >= JAMP_CHARGE_CARD_NUM_MAX)
 	{

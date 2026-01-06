@@ -65,8 +65,6 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	//球の当たり判定(プレイヤーの周囲)
 	auto& bodyShere = colParam_[TAG_PRIORITY::BODY];
 
-
-
 	if (moveLineCol->IsHit())
 	{
 		////Y座標のみ半径分上に移動させる

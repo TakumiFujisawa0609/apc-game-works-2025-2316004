@@ -44,8 +44,6 @@ void Stage::Init(void)
 	renderer_ = std::make_unique<ModelRenderer>(trans_.modelId,*material_);
 
 	trans_.Update();
-
-
 }
 
 void Stage::Update(void)

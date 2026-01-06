@@ -1,21 +1,21 @@
 #pragma once
 #include "../Application.h"
 #include "../Common/Vector2F.h"
-
+#include "./UIBase2D.h"
 class Easing;
 class ResourceManager;
 class PixelRenderer;
 class PixelMaterial;
 
-class HpUIBase
+class HpUIBase:public UIBase2D
 {
 public:
 	HpUIBase(float& _hpPer, float& _preHp);
 	virtual ~HpUIBase(void);
-	virtual void Load(void);
-	virtual void Init(void);
-	virtual void Update(void);
-	virtual void Draw(void);
+	virtual void Load(void)override;
+	virtual void Init(void)override;
+	virtual void Update(void)override;
+	virtual void Draw(void)override;
 
 	//シェイク時間セット
 	void Shake(void);
@@ -25,7 +25,6 @@ protected:
 	static constexpr int ARC_CONST_BUF = 2;			//円形
 	static constexpr int LINE_CONST_BUF = 3;		//線形
 
-
 	//補間時間
 	static constexpr float LERP_TIME = 0.3f;
 	static constexpr float WAIT_TIME = 0.5f;
@@ -34,7 +33,6 @@ protected:
 	static constexpr float SHAKE_CNT = 0.3f;
 	static constexpr float COVER_SHAKE_POW_Y = 30.0f;
 	static constexpr float BAR_SHAKE_POW_Y = 30.0f;
-
 
 	//Hpバーサイズ
 	static constexpr Vector2F BAR_COVER_SIZE = { 500.0f ,20.0f };
