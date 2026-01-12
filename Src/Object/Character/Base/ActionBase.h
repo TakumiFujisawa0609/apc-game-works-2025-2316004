@@ -155,6 +155,8 @@ protected:
 	AnimationController& anim_;
 	//•ûŒü“]Š·‰Â”\‚©‚Ç‚¤‚©
 	bool isTurnable_;
+	//“G‚Ö‚Ì•ûŒü“]Š·
+	bool isTargetTurn_;
 	//UŒ‚‚Ì“–‚½‚è”»’è’†‚©
 	bool isAliveAtkCol_;
 	//ó‘Ô

@@ -4,8 +4,8 @@
 #include "../Object/Character/Base/CharacterBase.h"
 #include "EnemyLogic.h"
 
-EnemyLogic::EnemyLogic(Transform& _myTrans):
-	LogicBase(_myTrans),
+EnemyLogic::EnemyLogic(Transform& _myTrans, float& _radius):
+	LogicBase(_myTrans, _radius),
 	scnMng_(SceneManager::GetInstance())
 {
 }

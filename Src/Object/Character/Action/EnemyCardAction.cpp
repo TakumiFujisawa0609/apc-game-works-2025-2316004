@@ -359,9 +359,9 @@ void EnemyCardAction::UpdateRoleAtk(void)
 	{
 		//前隙中
 		preRoleAtkCnt_ -= deltaTIme;
-		//前に進む
-		roleMoveDeg_ = actionCntl_.GetInput().GetLookAtTargetDeg();
-		roleMoveDir_ = actionCntl_.GetInput().GetLookAtTargetDir();
+		////前に進む
+		//roleMoveDeg_ = actionCntl_.GetInput().GetLookAtTargetDeg();
+		//roleMoveDir_ = actionCntl_.GetInput().GetLookAtTargetDir();
 		roleMoveDir_.y = 0.0f;
 		isTurnable_ = true;
 		return;

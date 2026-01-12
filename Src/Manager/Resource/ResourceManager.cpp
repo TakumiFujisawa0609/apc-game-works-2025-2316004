@@ -44,7 +44,10 @@ void ResourceManager::Init(void)
 	resourcesMap_.emplace(SRC::P_RUN, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack1.mv1");
-	resourcesMap_.emplace(SRC::P_ATTACK_1, std::move(res));
+	resourcesMap_.emplace(SRC::P_ATTACK_1_SHORT, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerStabAttack.mv1");
+	resourcesMap_.emplace(SRC::P_ATTACK_1_MIDDLE, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack2.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_2 , std::move(res));

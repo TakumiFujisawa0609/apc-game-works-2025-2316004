@@ -42,9 +42,16 @@ public:
     void Release(void)override;
 private:
 
-    //攻撃1段目判定
+    //攻撃1段目判定(近距離)
 	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 24.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 36.0f;     //攻撃当たり判定終了アニメーションカウント
+    //攻撃1段目判定(中距離)
+	static constexpr float ATTACK_ONE_MID_COL_START_ANIM_CNT = 22.0f;   //攻撃当たり判定開始アニメーションカウント
+	static constexpr float ATTACK_ONE_MID_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
+    //アニメーションスタート位置
+    static constexpr float ATTACK_ONE_MID_ANIM_START = 13.0f;
+    static constexpr float ATTACK_ONE_MID_ANIM_END = 37.0f;
+
     //攻撃2段目判定
 	static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
@@ -68,9 +75,12 @@ private:
     static constexpr float ATTACK_TWO_POINT = 15.0f;
     static constexpr float ATTACK_THREE_POINT =25.0f;
 
-    //1段目攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE = 
+    //1段目攻撃のステータス(近距離)
+    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE_SHORT = 
     { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS,ATTACK_ONE_POINT,false };
+    //1段目攻撃のステータス(中距離)
+    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE_MIDDLE = 
+    { ATTACK_ONE_MID_COL_START_ANIM_CNT,ATTACK_ONE_MID_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS,ATTACK_ONE_POINT,false };
     //2段目攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_TWO = 
     { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,ATK_SPHERE_RADIUS,ATTACK_TWO_POINT,false };
@@ -93,6 +103,9 @@ private:
 
     //リロードカウント
     float pushReloadCnt_;
+
+    //中距離攻撃突きカウント
+    float midAtkCnt_;
 
     //サウンドマネージャ
 	SoundManager& soundMng_;

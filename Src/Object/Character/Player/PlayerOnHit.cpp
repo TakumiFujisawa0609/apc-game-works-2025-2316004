@@ -49,7 +49,7 @@ void PlayerOnHit::Load(void)
 void PlayerOnHit::Init(void)
 {
 	hitPoint_ = {};
-	bodyRadius_ = Player::RADIUS;
+	bodyRadius_ = Player::CAP_RADIUS;
 	movedPos_ = Utility3D::VECTOR_ZERO;
 }
 

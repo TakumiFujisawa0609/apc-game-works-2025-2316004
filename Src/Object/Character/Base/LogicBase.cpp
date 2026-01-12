@@ -2,8 +2,9 @@
 #include "../Base/CardActionBase.h"
 #include "LogicBase.h"
 
-LogicBase::LogicBase(Transform& _myTrans):
+LogicBase::LogicBase(Transform& _myTrans,float& _radius):
 	myTrans_(_myTrans),
+	radius_(_radius),
 	actCntl_(ACT_CNTL::NONE),
 	moveDeg_(-1.0f),
 	moveDir_({}),
@@ -27,17 +28,22 @@ void LogicBase::SetTargetCharacter(std::shared_ptr<CharacterBase> _target)
 	targetChara_ = _target;
 }
 
-const VECTOR LogicBase::GetLookAtTargetDir(void)const
+void LogicBase::GetLookAtTargetDir(void)
 {
 	const VECTOR& targetPos = targetChara_.lock()->GetTransform().pos;
 	const VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos, targetPos);
-	return targetVec;
+	moveDir_ = targetVec;
 }
 
-const float LogicBase::GetLookAtTargetDeg(void)const
+void LogicBase::GetLookAtTargetDeg(void)
 {
 	float deg = static_cast<float>(Utility3D::AngleDeg(targetChara_.lock()->GetTransform().pos, myTrans_.pos));
-	return deg;
+	moveDeg_ += deg;
+}
+
+const bool LogicBase::HitTarget(void) const
+{
+	return false;
 }
 
 const Transform LogicBase::GetTargetTransform(void)

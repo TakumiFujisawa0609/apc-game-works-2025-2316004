@@ -51,7 +51,7 @@ public:
 
 	/// @brief コンストラクタ
     /// @param  
-    LogicBase(Transform& _myTrans);
+    LogicBase(Transform& _myTrans,float& _radius);
 	
     /// @brief デストラクタ
     /// @param  
@@ -104,8 +104,11 @@ public:
     void SetMoveDirTransformFront(void) { moveDir_ = prevMoveDir_;}
 
 	/// @brief ターゲットの方向を見る
-    const VECTOR GetLookAtTargetDir(void)const;
-    const float GetLookAtTargetDeg(void)const;
+    void GetLookAtTargetDir(void);
+    void GetLookAtTargetDeg(void);
+
+    //ターゲットと当たった
+    const bool HitTarget(void)const;
 
     //相手の座標情報を取得
     const Transform GetTargetTransform(void);
@@ -118,7 +121,7 @@ public:
     /// @brief 方向を決める
     /// @param _deg デグリー角度
     /// @param _dir ベクトル
-    void SetDegAndDir(const float& _deg, const VECTOR& _dir)
+    void SetDegAndDir(const float _deg, const VECTOR _dir)
     {
         moveDeg_ = _deg;
         moveDir_ = _dir;
@@ -158,6 +161,7 @@ protected:
     //攻撃種類
     ENEMY_ATTACK_TYPE attackType_;
     
+    //ターゲット
     std::weak_ptr<CharacterBase> targetChara_;
 
     //アクション入力がされたかどうか
@@ -169,5 +173,7 @@ protected:
     //自身のモデル情報
     Transform& myTrans_;
 
+    //カプセル半径
+    float& radius_;
 };
 

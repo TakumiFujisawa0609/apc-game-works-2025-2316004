@@ -155,9 +155,6 @@ void CharacterBase::MoveDirFromInput(void)
 {
 }
 
-void CharacterBase::SetGoalRotate(const double _deg)
-{
-}
 
 void CharacterBase::Rotate(void)
 {
@@ -233,6 +230,7 @@ void CharacterBase::MovedPosMove(const VECTOR& _vec, const float& _movePow)
 void CharacterBase::LariatMove(const float& _deg)
 {
 	charaRot_.playerRotY_=Quaternion::AngleAxis(UtilityCommon::Deg2RadF(_deg), Utility3D::AXIS_Y);
+	//input
 }
 
 void CharacterBase::SetLogicTargetCharacter(std::shared_ptr<CharacterBase> _targetChara)

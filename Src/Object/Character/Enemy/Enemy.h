@@ -119,7 +119,7 @@ public:
 	/// ゴール角度をセット
 	/// </summary>
 	/// <param name="_deg"></param>
-	void SetGoalRotate(const double _deg)override;
+	void SetGoalRotate(void)override;
 
 	///// @brief 攻撃の当たり判定作成
 	///// @param _charaTag キャラクタータグ

@@ -84,7 +84,7 @@ public:
     /// @brief コンストラクタ
     /// @param _padNum パッド番号
     /// @param _cntl 操作タイプ
-    PlayerLogic(Transform& _myTrans,InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
+    PlayerLogic(Transform& _myTrans,float& _radius,InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
     ~PlayerLogic(void)override;
 
 	/// @brief 変更時の初期化
@@ -127,6 +127,9 @@ private:
     //スティックの角度(0～1000を返す)
     Vector2 LStickAngleSize_;
     float stickDeg_;            //パッドのスティックの角度
+
+    //カメラ
+    std::weak_ptr<Camera>camera_;
 
     InputManager::CONTROLL_TYPE cntl_;              //入力デバイス
     InputManager::JOYPAD_NO padNum_;                //パッド番号

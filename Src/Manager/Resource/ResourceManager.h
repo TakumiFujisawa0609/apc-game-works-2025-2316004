@@ -30,7 +30,8 @@ public:
 		//プレイヤー
 		P_IDLE,		//待機
 		P_RUN,		//走る
-		P_ATTACK_1,	//攻撃1
+		P_ATTACK_1_SHORT,	//攻撃1(近距離)
+		P_ATTACK_1_MIDDLE,	//攻撃1(中距離)
 		P_ATTACK_2,	//攻撃2
 		P_ATTACK_3,	//攻撃3
 		P_JUMP,		//ジャンプ

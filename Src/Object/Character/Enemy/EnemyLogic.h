@@ -7,7 +7,7 @@ class EnemyLogic :
     public LogicBase
 {
 public:
-	EnemyLogic(Transform& _myTrans);
+	EnemyLogic(Transform& _myTrans, float& _radius);
 	~EnemyLogic(void) override;
 
 	struct AttackWeight {

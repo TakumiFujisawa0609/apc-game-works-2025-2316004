@@ -82,7 +82,6 @@ void ActionController::Update(void)
 	mainAction_[act_]->Update();
 
 	MoveDirFromInput();
-	//mainAction_[act_]->Update();
 	charaObj_.Rotate();
 	DirAndMovePowUpdate();
 
@@ -183,11 +182,10 @@ void ActionController::MoveDirFromInput(void)
 {
 	charaObj_.MoveDirFromInput();
 
-	float deg = logic_.GetMoveDeg();
 	if (mainAction_[act_]->GetIsTurnable())
 	{
 		//•âŠ®Šp“x‚Ìİ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
-		charaObj_.SetGoalRotate(deg);
+		charaObj_.SetGoalRotate();
 	}
 	////•âŠ®Šp“x‚Ìİ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
 	//SetGoalRotate(deg);

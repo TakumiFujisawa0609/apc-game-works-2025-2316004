@@ -37,6 +37,7 @@ Enemy::Enemy(void):
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 
+	capRadius_ = CAP_RADIUS;
 }
 
 Enemy::~Enemy(void)
@@ -64,7 +65,7 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
 
 	cardUI_ = std::make_unique<EnemyCardUI>();
-	logic_ = std::make_unique<EnemyLogic>(trans_);
+	logic_ = std::make_unique<EnemyLogic>(trans_, capRadius_);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, ENEMY_NUM);
 	hpUi_ = std::make_unique<EnemyHpUI>(hpPer_,preHpPer_);
 	cardUI_->Load();
@@ -111,7 +112,7 @@ void Enemy::Init(void)
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
 	trans_.pos = { 0.0f,0.0f,500.0f };
-	trans_.localPos = { 0.0f,RADIUS,0.0f };
+	trans_.localPos = { 0.0f,0.0f,0.0f };
 	trans_.Update();
 
 	MakeColliderGeometry();
@@ -212,7 +213,7 @@ void Enemy::MoveDirFromInput(void)
 	//charaRot_.dir_ = VNorm(charaRot_.dir_);
 	charaRot_.dir_ = getDir;
 }
-void Enemy::SetGoalRotate(const double _deg)
+void Enemy::SetGoalRotate(void)
 {
 	Quaternion axis= Quaternion::Euler
 	(Utility3D::GetRotAxisToTarget(trans_.pos, logic_->GetTargetTransform().pos, Utility3D::AXIS_Y));

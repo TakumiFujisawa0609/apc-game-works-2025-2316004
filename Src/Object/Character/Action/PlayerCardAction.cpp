@@ -27,7 +27,7 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 	};
 	ATK_STATUS initStatus={};
 	atkStatusTable_ = {
-		{CARD_ACT_TYPE::ATTACK_ONE_SHORT,NORMAL_ATK_ONE},
+		{CARD_ACT_TYPE::ATTACK_ONE_SHORT,NORMAL_ATK_ONE_SHORT},
 		{CARD_ACT_TYPE::ATTACK_TWO,NORMAL_ATK_TWO},
 		{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
 		{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
@@ -149,26 +149,23 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure(Collider::TAG::NML_ATK))return;
 
-	//突き攻撃の速度は要調整
-	const float deg = actionCntl_.GetInput().GetLookAtTargetDeg();
-	VECTOR dir = actionCntl_.GetInput().GetLookAtTargetDir();
-	dir.y = 0.0f;
-	isTurnable_ = true;
-	actionCntl_.GetInput().SetDegAndDir(deg, dir);
-	charaObj_.LariatMove(deg);
+	//charaObj_.LariatMove(deg);
+
+	midAtkCnt_ += scnMng_.GetDeltaTime();
+
 	//攻撃判定処理
-	if (anim_.GetAnimStep() >= atk_.colStartCnt &&
-		anim_.GetAnimStep() <= atk_.colEndCnt)
+	//if (anim_.GetAnimStep() >= atk_.colStartCnt &&
+	//	anim_.GetAnimStep() <= atk_.colEndCnt)
+	if (midAtkCnt_ < 1.0f)
 	{
-
-
 		//なぜか一定範囲内に入らないと敵の方向に向いてくれない不具合を直す
 		speed_ = 10.0f;
+
 
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, atk_.atkRadius);
 
 	}
-	else if (anim_.IsEnd())		//アニメーション終了でアイドル状態変更
+	else if (midAtkCnt_ > 1.0f)		//アニメーション終了でアイドル状態変更
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
@@ -303,8 +300,8 @@ void PlayerCardAction::UpdateDuel(void)
 
 void PlayerCardAction::ChangeShortAttackOne(void)
 {
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
-	atk_ = NORMAL_ATK_ONE;
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1_SHORT), false);
+	atk_ = NORMAL_ATK_ONE_SHORT;
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
 
@@ -312,12 +309,18 @@ void PlayerCardAction::ChangeMiddleAttackOne(void)
 {
 
 
-
+	midAtkCnt_ = 0.0f;
 	//アニメーションと攻撃判定を調整する
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1), false);
-	atk_ = NORMAL_ATK_ONE;
-	cardFuncs_.push([this]() {UpdateMiddleAttack(); });
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1_MIDDLE), false
+		, ATTACK_ONE_MID_ANIM_START, ATTACK_ONE_MID_ANIM_END,false);
+	atk_ = NORMAL_ATK_ONE_MIDDLE;
 
+	//突き攻撃の速度は要調整
+	actionCntl_.GetInput().GetLookAtTargetDir();
+	//dir.y = 0.0f;
+	isTurnable_ = true;
+
+	cardFuncs_.push([this]() {UpdateMiddleAttack(); });
 
 
 }

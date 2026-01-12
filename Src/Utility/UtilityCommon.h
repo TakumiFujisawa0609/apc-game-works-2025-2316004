@@ -63,8 +63,6 @@ public:
 	// 回転が少ない方の回転向きを取得する(時計回り:1、反時計回り:-1)
 	static int DirNearAroundDeg(float from, float to);
 
-
-
 	//// 線形補間
 	//static int Lerp(int start, int end, float t);
 	//static float Lerp(float start, float end, float t);
@@ -93,20 +91,6 @@ public:
 	/// @param max 範囲の最大値
 	/// @return 0からN-1の範囲に補正した値
 	static int WrapIndex(int index, int max);
-	
-	/// @brief イーズイン
-	/// @param time 時間
-	/// @param start 開始値
-	/// @param change 変化量
-	/// @return 計算結果
-	static float EaseInQuad(const float time, const float start, const float change);
-
-	/// @brief イーズアウト
-	/// @param time 時間
-	/// @param start 開始値
-	/// @param change 変化量
-	/// @return 計算結果
-	static float EaseOutQuad(const float time, const float start, const float change);
 	
 	/// @brief CSVファイルの読み込み
 	/// @param filePath ファイルパス

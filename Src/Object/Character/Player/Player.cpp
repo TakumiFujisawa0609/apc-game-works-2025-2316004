@@ -63,6 +63,7 @@ Player::Player(void)
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 	weapon_ = std::make_unique<Weapon>();
+	capRadius_ = CAP_RADIUS;
 
 }
 
@@ -87,12 +88,13 @@ void Player::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::CARD_RELOAD), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RELOAD));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_MIDDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_MIDDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_SHORT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_SHORT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 
 
-	logic_ = std::make_unique<PlayerLogic>(trans_, padNum_, InputManager::CONTROLL_TYPE::ALL);
+	logic_ = std::make_unique<PlayerLogic>(trans_, capRadius_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
 	AddAction();
 	//animType_.emplace(
@@ -132,17 +134,16 @@ void Player::Init(void)
 
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
 	trans_.pos={ 0.0f,0.0f,-500.0f };
-	trans_.localPos = { 0.0f,Player::RADIUS,-0.0f };
+	trans_.localPos = { 0.0f,Player::CAP_RADIUS,-0.0f };
 	//武器の追従対象をセット
 	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
 
 	tag_ = Collider::TAG::PLAYER1;
 
-	capRadius_ = RADIUS;
+	
+
 
 	MakeColliderGeometry();
-
-	
 
 	//プレイヤー状態
 	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
@@ -204,7 +205,6 @@ void Player::Update(void)
 	hpUi_->Update();
 	weapon_->Update();
 
-
 }
 
 void Player::Draw(void)
@@ -233,21 +233,19 @@ void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 }
 void Player::MoveDirFromInput(void)
 {
-	//プレイヤー入力クラスから角度を取得
-	VECTOR getDir = logic_->GetDir();
-	//カメラの入力角度でプレイヤーの方向を変える
-	Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
-	charaRot_.dir_ = cameraRot.PosAxis(getDir);
+	////プレイヤー入力クラスから角度を取得
+	//VECTOR getDir = logic_->GetDir();
+	////カメラの入力角度でプレイヤーの方向を変える
+	//Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
+	charaRot_.dir_ = logic_->GetDir();
 	charaRot_.dir_ = VNorm(charaRot_.dir_);
 	//charaRot_.dir_ = getDir;
 
 }
-void Player::SetGoalRotate(const double _deg)
+void Player::SetGoalRotate(void)
 {
-	//カメラの角度を取得
-	VECTOR cameraRot = scnMng_.GetCamera().lock()->GetAngles();
-	Quaternion axis = Quaternion::AngleAxis(
-		static_cast<double>(cameraRot.y) + UtilityCommon::Deg2RadD(_deg), Utility3D::AXIS_Y);
+	//ベクトルからクォータニオンへ
+	Quaternion axis = Quaternion::LookRotation(logic_->GetDir());
 
 	//現在設定されている回転との角度差を取る
 	double angleDiff = Quaternion::Angle(axis, charaRot_.goalQuaRot_);
@@ -323,7 +321,7 @@ void Player::AddAction(void)
 void Player::MakeColliderGeometry(void)
 {
 	//カプセル
-	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, RADIUS);
+	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
 	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
 

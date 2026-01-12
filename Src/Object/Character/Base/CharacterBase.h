@@ -49,7 +49,8 @@ public:
 		IDLE,
 		RUN,
 		REACT,
-		ATTACK_1,
+		ATTACK_1_MIDDLE,
+		ATTACK_1_SHORT,
 		ATTACK_2,
 		ATTACK_3,
 		JUMP,
@@ -144,7 +145,7 @@ public:
 
 	/// @brief ゴール角度をセット
 	/// @param _deg 
-	virtual void SetGoalRotate(const double _deg);
+	virtual void SetGoalRotate(void) = 0;
 	
 	/// @brief 方向関連の変数の取得
 	/// @param  
@@ -278,12 +279,10 @@ protected:
 	std::unique_ptr<AnimationController>animationController_;
 	//デッキ
 	std::shared_ptr<CardDeck>deck_;
-	//当たり判定用のカプセル
-	std::unique_ptr<Capsule>cap_;
 	//当たった時の処理
 	std::unique_ptr<CharacterOnHitBase>onHit_;
 
-	//敵のHPのUI
+	//HPのUI
 	std::unique_ptr<HpUIBase>hpUi_;
 
 	//敵のスタンプ攻撃時に発生する岩

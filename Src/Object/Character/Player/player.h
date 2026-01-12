@@ -37,7 +37,7 @@ class Player :public CharacterBase
 public:
 	using CARD_TYPE = CardBase::CARD_TYPE;
 	//半径
-	static constexpr float RADIUS = 25.0f;
+	static constexpr float CAP_RADIUS = 25.0f;
 	//デフォルトのアニメーションスピード
 	static constexpr float DEFAULT_ANIM_SPD = 60.0f;
 	//ドッジアニメーション速度
@@ -160,7 +160,7 @@ public:
 	/// ゴール角度をセット
 	/// </summary>
 	/// <param name="_deg"></param>
-	void SetGoalRotate(const double _deg)override;
+	void SetGoalRotate(void)override;
 
 	/// @brief 攻撃の当たり判定作成
 	/// @param _charaTag キャラクタータグ

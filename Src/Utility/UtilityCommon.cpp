@@ -397,15 +397,6 @@ int UtilityCommon::WrapIndex(int index, int max)
     return (index % max + max) % max;
 }
 
-float UtilityCommon::EaseInQuad(const float time, const float start, const float change)
-{
-    return change * time * time + start;
-}
-
-float UtilityCommon::EaseOutQuad(const float time, const float start, const float change)
-{
-    return -change * time * (time - 2) + start;
-}
 
 std::vector<std::vector<int>> UtilityCommon::LoadCSVData(const std::wstring& filePath)
 {
