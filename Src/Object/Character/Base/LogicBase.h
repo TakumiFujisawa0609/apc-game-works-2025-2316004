@@ -51,7 +51,7 @@ public:
 
 	/// @brief コンストラクタ
     /// @param  
-    LogicBase(Transform& _myTrans,float& _radius);
+    LogicBase(Transform& _myTrans);
 	
     /// @brief デストラクタ
     /// @param  
@@ -172,8 +172,5 @@ protected:
 
     //自身のモデル情報
     Transform& myTrans_;
-
-    //カプセル半径
-    float& radius_;
 };
 

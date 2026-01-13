@@ -94,7 +94,7 @@ void Player::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 
 
-	logic_ = std::make_unique<PlayerLogic>(trans_, capRadius_, padNum_, InputManager::CONTROLL_TYPE::ALL);
+	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
 	AddAction();
 	//animType_.emplace(

@@ -35,8 +35,6 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 	};
 
 	atk_ = {};
-
-
 	easing_ = std::make_unique<Easing>();
 }
 
@@ -65,9 +63,13 @@ void PlayerCardAction::Init(void)
 	//{
 	//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
 	//}
-	//手札に移動
+	
+	//キーによる移動はしない
+	charaObj_.SetIsCanMoveable(false);
+
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
+		//手札に移動
 		PutCard();
 		DisideAttackOne();
 	}
@@ -89,7 +91,7 @@ void PlayerCardAction::Release(void)
 	//当たり判定削除
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	//charaObj_.GetCardUI().ChangeUsedActionCard();
-
+	charaObj_.SetIsCanMoveable(true);
 	SoundManager::GetInstance().Stop(SoundManager::SRC::CARD_RELOAD);
 
 	//リロード処理中ならカードUI状態をNoneにする

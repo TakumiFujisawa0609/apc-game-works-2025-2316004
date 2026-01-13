@@ -84,7 +84,7 @@ public:
     /// @brief コンストラクタ
     /// @param _padNum パッド番号
     /// @param _cntl 操作タイプ
-    PlayerLogic(Transform& _myTrans,float& _radius,InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
+    PlayerLogic(Transform& _myTrans,bool& _isCanMoveAble,InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl);
     ~PlayerLogic(void)override;
 
 	/// @brief 変更時の初期化
@@ -123,7 +123,7 @@ private:
     //スティック
     float leftStickX_;          //スティックの角度X
     float leftStickY_;          //スティックの角度Y
-
+    bool& isCanMoveable_;       //移動可能か
     //スティックの角度(0～1000を返す)
     Vector2 LStickAngleSize_;
     float stickDeg_;            //パッドのスティックの角度

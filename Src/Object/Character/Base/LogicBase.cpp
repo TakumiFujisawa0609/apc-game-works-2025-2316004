@@ -2,9 +2,8 @@
 #include "../Base/CardActionBase.h"
 #include "LogicBase.h"
 
-LogicBase::LogicBase(Transform& _myTrans,float& _radius):
+LogicBase::LogicBase(Transform& _myTrans):
 	myTrans_(_myTrans),
-	radius_(_radius),
 	actCntl_(ACT_CNTL::NONE),
 	moveDeg_(-1.0f),
 	moveDir_({}),

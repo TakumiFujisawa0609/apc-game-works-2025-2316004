@@ -25,7 +25,8 @@ CharacterBase::CharacterBase(void) :
 	jumpPow_({Utility3D::VECTOR_ZERO}),
 	soundMng_(SoundManager::GetInstance()),
 	hpPer_(1.0f),
-	preHpPer_(hpPer_)
+	preHpPer_(hpPer_),
+	isMoveable_(true)
 {
 }
 

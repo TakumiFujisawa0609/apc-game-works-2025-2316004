@@ -174,6 +174,7 @@ public:
 	/// @param _charaTag 自身のタグ
 	void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)override;
 
+
 private:
 
 	//ステータス関連
@@ -303,6 +304,7 @@ private:
 	float time_;
 	//ゴール時間格納
 	float goalTime_;
+
 
 	//プレイヤー状態
 	PLAYER_STATE state_;	//プレイヤーの状態(生存状態)

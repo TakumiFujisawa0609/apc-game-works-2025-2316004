@@ -65,7 +65,7 @@ void Enemy::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
 
 	cardUI_ = std::make_unique<EnemyCardUI>();
-	logic_ = std::make_unique<EnemyLogic>(trans_, capRadius_);
+	logic_ = std::make_unique<EnemyLogic>(trans_);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, ENEMY_NUM);
 	hpUi_ = std::make_unique<EnemyHpUI>(hpPer_,preHpPer_);
 	cardUI_->Load();

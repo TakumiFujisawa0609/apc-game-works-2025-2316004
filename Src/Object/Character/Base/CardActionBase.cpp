@@ -30,6 +30,7 @@ CardActionBase::~CardActionBase(void)
 
 void CardActionBase::Init(void)
 {
+
 }
 
 void CardActionBase::Update()

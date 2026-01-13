@@ -263,6 +263,10 @@ public:
 	const bool GetIsHitTarget(void)const;
 
 
+	/// @brief 操作可能かどうかセット
+	/// @param _isCanMoveable true:操作可能	false:操作不可能
+	void SetIsCanMoveable(const bool _isCanMoveable) { isMoveable_ = _isCanMoveable; }
+
 protected:
 
 	//移動量ラインオフセット
@@ -309,6 +313,8 @@ protected:
 	//サウンドマネージャ
 	SoundManager& soundMng_;
 
+	//移動操作可能か
+	bool isMoveable_;
 
 	//ステータス
 	STATUS maxStatus_;

@@ -5,8 +5,9 @@
 #include "../../../Manager/Generic/Camera.h"
 #include "PlayerLogic.h"
 
-PlayerLogic::PlayerLogic(Transform& _myTrans, float& _radius, InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):
-	LogicBase(_myTrans,_radius),
+PlayerLogic::PlayerLogic(Transform& _myTrans,bool& _isCanMoveAble , InputManager::JOYPAD_NO _padNum, InputManager::CONTROLL_TYPE _cntl):
+	LogicBase(_myTrans),
+	isCanMoveable_(_isCanMoveAble),
 	padNum_(_padNum),
 	cntl_(_cntl),
 	camera_(SceneManager::GetInstance().GetCamera())
@@ -97,56 +98,60 @@ void PlayerLogic::InputAll(void)
 	VECTOR dir = {};
 	//moveDir_ = Utility3D::VECTOR_ZERO;
 	//移動角度を決める
-	if (ins.IsNew(MOVE_FRONT_KEY))
+	if (isCanMoveable_)
 	{
-		isAct_.isRun = true;
-		deg = FLONT_DEG;
-		dir = Utility3D::DIR_F;
-		prevMoveDir_ = moveDir_;
-	}
-	else if (ins.IsNew(MOVE_LEFT_KEY))
-	{
-		isAct_.isRun = true;
-		deg = LEFT_DEG;
-		dir = Utility3D::DIR_L;
-		prevMoveDir_ = moveDir_;
-	}
-	else if (ins.IsNew(MOVE_BACK_KEY))
-	{
-		isAct_.isRun = true;
-		deg = BACK_DEG;
-		dir = Utility3D::DIR_B;
-		prevMoveDir_ = moveDir_;
-	}
-	else if (ins.IsNew(MOVE_RIGHT_KEY))
-	{
-		isAct_.isRun = true;
-		deg = RIGHT_DEG;
-		dir = Utility3D::DIR_R;
-		prevMoveDir_ = moveDir_;
+		if (ins.IsNew(MOVE_FRONT_KEY))
+		{
+			isAct_.isRun = true;
+			deg = FLONT_DEG;
+			dir = Utility3D::DIR_F;
+			prevMoveDir_ = moveDir_;
+		}
+		else if (ins.IsNew(MOVE_LEFT_KEY))
+		{
+			isAct_.isRun = true;
+			deg = LEFT_DEG;
+			dir = Utility3D::DIR_L;
+			prevMoveDir_ = moveDir_;
+		}
+		else if (ins.IsNew(MOVE_BACK_KEY))
+		{
+			isAct_.isRun = true;
+			deg = BACK_DEG;
+			dir = Utility3D::DIR_B;
+			prevMoveDir_ = moveDir_;
+		}
+		else if (ins.IsNew(MOVE_RIGHT_KEY))
+		{
+			isAct_.isRun = true;
+			deg = RIGHT_DEG;
+			dir = Utility3D::DIR_R;
+			prevMoveDir_ = moveDir_;
+		}
+
+		auto& inputS = InputManagerS::GetInstance();
+
+		//スティックの倒れ値が200以上だったら
+		if (inputS.IsPressed(INPUT_EVENT::UP) || inputS.IsPressed(INPUT_EVENT::DOWN)
+			|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
+		{
+			//スティックサイズの取得
+			LStickAngleSize_ = inputS.GetKnockLStickSize(padNum_);
+
+			//スティックの角度を求める
+			stickDeg_ = inputS.GetLStickDeg(padNum_);
+
+			//スティックの角度によって移動方向を決める
+			deg = stickDeg_;
+
+			//ベクトルの計算
+			VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
+			dir = VNorm(stickDir);
+			prevMoveDir_ = moveDir_;
+			isAct_.isRun = true;
+		}
 	}
 
-	auto& inputS = InputManagerS::GetInstance();
-	
-	//スティックの倒れ値が200以上だったら
-	if (inputS.IsPressed(INPUT_EVENT::UP) || inputS.IsPressed(INPUT_EVENT::DOWN)
-		|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
-	{
-		//スティックサイズの取得
-		LStickAngleSize_ = inputS.GetKnockLStickSize(padNum_);
-
-		//スティックの角度を求める
-		stickDeg_ = inputS.GetLStickDeg(padNum_);
-
-		//スティックの角度によって移動方向を決める
-		deg = stickDeg_;
-
-		//ベクトルの計算
-		VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y)};
-		dir = VNorm(stickDir);
-		prevMoveDir_ = moveDir_;
-		isAct_.isRun = true;
-	}
 
 	//移動操作の時はカメラの角度を参照する
 	if (isAct_.isRun)

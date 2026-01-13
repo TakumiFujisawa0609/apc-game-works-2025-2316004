@@ -137,7 +137,6 @@ protected:
 	float stepJump_;		// ジャンプの入力受付時間
 	//VECTOR jumpPow_;		// ジャンプ量
 	float jumpDeceralation_;	//ジャンプ減衰量
-
 	//怯み時間
 	float flinchCnt_;
 	//シングルトンクラス
