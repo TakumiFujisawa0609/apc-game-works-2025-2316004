@@ -76,11 +76,6 @@ public:
 		bool isDamage = true;
 	};
 	
-	/// @brief 移動量の取得(ベクトル)
-	/// @param 
-	/// @return 移動量
-	inline VECTOR& GetMovePow(void) { return movePow_; }
-	
 	/// @brief 1方向に動く移動量
 	/// @param  
 	/// @return 1方向に動く移動量
@@ -92,6 +87,7 @@ public:
 	/// @return 方向転換可能かどうか
 	const bool& GetIsTurnable(void) { return isTurnable_; }
 	
+
 	/// @brief 攻撃当たり判定中かの取得
 	/// @param  
 	/// @return 
@@ -132,11 +128,8 @@ protected:
 	static constexpr float MOVE_SPEED = 6.0f;
 
 	//移動
-//------------------------
+	//------------------------
 	float speed_;			// 移動スピード
-	VECTOR moveDir_;		// 移動方向
-	VECTOR movePow_;		// 移動量
-	VECTOR dir_;			//方向
 
 	//ジャンプ
 	//-----------------------

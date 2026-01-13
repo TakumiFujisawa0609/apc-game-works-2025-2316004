@@ -80,7 +80,7 @@ void EnemyCardAction::Init(void)
 	roleDeg_ = 0.0f;
 	jampCardNum_ = 0;
 	atk_ = {};
-
+	atk_.isDamage = false;
 	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//if (actionCntl_.GetInput().GetAttackType() == LogicBase::ENEMY_ATTACK_TYPE::JUMP)

@@ -59,7 +59,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	//‘Šè‚Ìƒ^ƒO‚ğ‚Æ‚é
 	CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
 	std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
-	
+	isHitTarget_ = true;
 	//UŒ‚‚Ìê‡‚Í–³‹
 	if (std::ranges::any_of(tags, [](Collider::TAG tag) { return tag == Collider::TAG::NML_ATK || tag == Collider::TAG::ROAR_ATK; })
 		||charaObj_.GetCardAction()==ActionBase::CARD_ACT_TYPE::RUSH_ATK)

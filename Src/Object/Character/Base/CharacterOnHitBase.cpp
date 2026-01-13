@@ -40,6 +40,12 @@ void CharacterOnHitBase::OnHitUpdate(const std::weak_ptr<Collider> _hitCol)
 	}
 }
 
+void CharacterOnHitBase::InitHit(void)
+{
+	hitPoint_ = {};
+	isHitTarget_ = false;
+}
+
 
 void CharacterOnHitBase::CollNone(void)
 {

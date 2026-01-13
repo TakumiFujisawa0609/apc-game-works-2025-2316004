@@ -88,7 +88,7 @@ void Player::Load(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::CARD_RELOAD), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RELOAD));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_MIDDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_MIDDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_MIDDLE), ATK_MID_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_MIDDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_SHORT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_SHORT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
@@ -139,9 +139,6 @@ void Player::Init(void)
 	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
 
 	tag_ = Collider::TAG::PLAYER1;
-
-	
-
 
 	MakeColliderGeometry();
 

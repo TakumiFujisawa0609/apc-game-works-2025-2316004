@@ -128,7 +128,3 @@ void CardActionBase::SetAtk(const ATK_STATUS& _atkStatus)
 	//ƒ_ƒ[ƒW‚Ì‰Šú‰»
 	atk_.isDamage = false;
 }
-
-void CardActionBase::ChangeComboAction(void)
-{
-}

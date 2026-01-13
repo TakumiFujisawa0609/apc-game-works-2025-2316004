@@ -78,10 +78,6 @@ void CharacterBase::UpdatePost(void)
 {
 	//移動後座標の更新
 	movedPos_ = VAdd(trans_.pos, action_->GetMovePow());
-	//movedPos_ = VAdd(trans_.pos, movePow_);
-	//ジャンプ力の追加
-	//movedPos_ = VAdd(movedPos_, action_->GetJumpPow());
-	movedPos_ = VAdd(movedPos_, jumpPow_);
 
 	//移動量ラインの更新
 	VECTOR moveVec = VSub(movedPos_, trans_.pos);
@@ -94,7 +90,7 @@ void CharacterBase::UpdatePost(void)
 	}
 
 	//当たり判定をする前に初期化する
-	onHit_->InitHitPoint();
+	onHit_->InitHit();
 
 	//移動制限
 	MoveLimit(Stage::STAGE_POS, { Stage::STAGE_SIZE,0.0f, Stage::STAGE_SIZE });
@@ -291,4 +287,9 @@ void CharacterBase::EnemyRockUpdate(void)
 void CharacterBase::ClearEnemyRock(void)
 {
 	rock_.clear();
+}
+
+const bool CharacterBase::GetIsHitTarget(void) const
+{
+	return onHit_->GetIsHitTarget();
 }

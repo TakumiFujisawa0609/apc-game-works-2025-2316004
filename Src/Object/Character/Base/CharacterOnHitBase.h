@@ -37,12 +37,17 @@ public:
 
 	/// @brief 当たり判定をする前の初期化
 	/// @param  
-	void InitHitPoint(void) { hitPoint_ = {}; }
+	void InitHit(void);
 
 	/// @brief ダメージ計算
 	/// @param  
 	/// @return 
 	const float DamageCulc(void);
+
+	/// @brief ターゲットと当たったかどうかの取得
+	/// @param  
+	/// @return ターゲットと当たったかどうか
+	const bool GetIsHitTarget(void)const { return isHitTarget_; }
 
 
 #ifdef _DEBUG
@@ -72,6 +77,9 @@ protected:
 	VECTOR& moveDiff_;
 	//プレイヤーの情報
 	Transform& trans_;
+
+	//相手の身体を当たったかどうか
+	bool isHitTarget_;
 
 	//当たり判定ごとの更新
 	std::map<Collider::TAG, std::function<void(const std::weak_ptr<Collider> _hitCol)>>colUpdates_;

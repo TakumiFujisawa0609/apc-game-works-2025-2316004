@@ -1,4 +1,5 @@
 #include "../Utility/Utility3D.h"
+#include "../Common/Easing.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Player/ActionController.h"
@@ -34,6 +35,9 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 	};
 
 	atk_ = {};
+
+
+	easing_ = std::make_unique<Easing>();
 }
 
 PlayerCardAction::~PlayerCardAction(void)
@@ -56,7 +60,7 @@ void PlayerCardAction::Init(void)
 	//カードの属性を受け取ってアニメーションを再生
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
-
+	atk_.isDamage = false;
 	//if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
 	//{
 	//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
@@ -149,35 +153,34 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure(Collider::TAG::NML_ATK))return;
 
-	//charaObj_.LariatMove(deg);
-
-	midAtkCnt_ += scnMng_.GetDeltaTime();
-
+	//キャラ同士で当たったか
+	const bool isHitTarget = charaObj_.GetIsHitTarget();
+	const float delta= scnMng_.GetDeltaTime();
 	//攻撃判定処理
-	//if (anim_.GetAnimStep() >= atk_.colStartCnt &&
-	//	anim_.GetAnimStep() <= atk_.colEndCnt)
-	if (midAtkCnt_ < 1.0f)
+	if (anim_.GetAnimStep() >= atk_.colStartCnt&& midAtkCnt_>0.0f) { midAtkCnt_ -= delta; }
+
+	if(midAtkCnt_> 0.0f&&!atk_.isDamage)
 	{
-		//なぜか一定範囲内に入らないと敵の方向に向いてくれない不具合を直す
-		speed_ = 10.0f;
+		speed_ = easing_->EaseFunc(ATTACK_ONE_MID_SPD, 0.0f, (ATTACK_ONE_MID_TIME - midAtkCnt_) / ATTACK_ONE_MID_TIME, Easing::EASING_TYPE::QUAD_OUT);
 
-
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atkPos_, atk_.atkRadius);
-
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, {}, 0.0f);
 	}
-	else if (midAtkCnt_ > 1.0f)		//アニメーション終了でアイドル状態変更
+	else if (midAtkCnt_ <= 0.0f|| atk_.isDamage)		//アニメーション終了でアイドル状態変更
 	{
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-		return;
-	}
-	else if (anim_.GetAnimStep() > atk_.colEndCnt)	//攻撃終了後
-	{
+		midAtkOverCnt_ -= delta;
 		//攻撃判定無効
 		speed_ = 0.0f;
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK);
 		charaObj_.GetCardUI().ChangeUsedActionCard();
-		//次の攻撃につなげる
-		ChangeComboAction();
+		
+		if (midAtkOverCnt_ < 0.0f)
+		{
+			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+		}
+		else
+		{
+			ChangeComboAction();
+		}
 	}
 }
 
@@ -307,14 +310,12 @@ void PlayerCardAction::ChangeShortAttackOne(void)
 
 void PlayerCardAction::ChangeMiddleAttackOne(void)
 {
-
-
-	midAtkCnt_ = 0.0f;
+	midAtkCnt_ = ATTACK_ONE_MID_TIME;
 	//アニメーションと攻撃判定を調整する
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1_MIDDLE), false
 		, ATTACK_ONE_MID_ANIM_START, ATTACK_ONE_MID_ANIM_END,false);
 	atk_ = NORMAL_ATK_ONE_MIDDLE;
-
+	midAtkOverCnt_ = ATTACK_ONE_MID_COMBO_TIME;
 	//突き攻撃の速度は要調整
 	actionCntl_.GetInput().GetLookAtTargetDir();
 	//dir.y = 0.0f;
@@ -387,12 +388,12 @@ void PlayerCardAction::ChangeComboAction(void)
 	{
 		if (IsAttackable() && IsCanComboAttack())
 		{
-			if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_ONE_SHORT))
+			if (attackStageNum_ == ATTACK_ONE)
 			{
 				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
 			}
-			else if (attackStageNum_ == static_cast<int>(CARD_ACT_TYPE::ATTACK_TWO))
+			else if (attackStageNum_ == ATTACK_TWO)
 			{
 				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);

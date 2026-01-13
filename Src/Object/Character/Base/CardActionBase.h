@@ -91,7 +91,7 @@ protected:
     VECTOR velocity_;
 
     //コンボアクション遷移(あれば実装する)
-    virtual void ChangeComboAction(void);
+    virtual void ChangeComboAction(void) {};
 private:
 
 };

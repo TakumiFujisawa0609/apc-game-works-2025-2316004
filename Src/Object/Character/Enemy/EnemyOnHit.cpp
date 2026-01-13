@@ -78,36 +78,6 @@ void EnemyOnHit::CollDuelSpecialAttack(const std::weak_ptr<Collider> _hitCol)
 
 void EnemyOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 {
-	////相手のタグをとる
-	//CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
-	//std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
-
-	////攻撃の場合は無視
-	//if (std::ranges::any_of(tags, [](Collider::TAG tag) { return tag == Collider::TAG::NML_ATK || tag == Collider::TAG::ROAR_ATK; })
-	//	|| charaObj_.GetCardAction() == ActionBase::CARD_ACT_TYPE::RUSH_ATK)
-	//{
-	//	return;
-	//}
-	//Geometry& myCap = colParam_[TAG_PRIORITY::BODY]->GetGeometry();
-	//Geometry& hitCap = _hitCol.lock()->GetGeometry();
-	////自分の座標
-	//VECTOR myPos = charaObj_.GetTransform().pos;
-	//VECTOR hitCharaPos = parentChara.GetTransform().pos;
-
-	////お互いの距離をとる
-	//float dis = static_cast<float>(Utility3D::Distance(myPos, hitCharaPos));
-	//float minDist = myCap.GetRadius() + hitCap.GetRadius();
-	////お互いの距離が離れていたら押し出さない
-	//if (dis > minDist)return;
-
-	////押し出し量の計算
-	//float pushPow = abs(minDist - dis);
-
-	////押し出す方向ベクトルの計算
-	//VECTOR vec = Utility3D::GetMoveVec(parentChara.GetTransform().pos, charaObj_.GetTransform().pos);
-	////Y成分はいらない
-	//vec.y = 0.0f;
-
-	////押し出し
-	//movedPos_ = VAdd(moveDiff_, VScale(vec, pushPow));
+	//相手と当たった
+	isHitTarget_ = true;
 }

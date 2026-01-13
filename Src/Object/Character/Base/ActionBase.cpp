@@ -20,8 +20,6 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	stepJump_(0.0f),
 	speed_(0.0f),
 	flinchCnt_(0.0f),
-	dir_({}),
-	moveDir_({}),
 	actType_(CARD_ACT_TYPE::NONE)
 	//movePow_({})
 {

@@ -257,10 +257,13 @@ public:
 	/// @param  
 	void ClearEnemyRock(void);
 
+	/// @brief ターゲットと当たったかどうかの取得
+	/// @param  
+	/// @return ターゲットと当たったかどうか
+	const bool GetIsHitTarget(void)const;
+
 
 protected:
-
-
 
 	//移動量ラインオフセット
 	static constexpr float MOVE_LINE_Y_OFFSET = - 1.0f;
@@ -305,6 +308,7 @@ protected:
 	
 	//サウンドマネージャ
 	SoundManager& soundMng_;
+
 
 	//ステータス
 	STATUS maxStatus_;

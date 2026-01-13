@@ -42,7 +42,8 @@ public:
 	static constexpr float DEFAULT_ANIM_SPD = 60.0f;
 	//ドッジアニメーション速度
 	static constexpr float DODGE_ANIM_SPD = 80.0f;
-
+	//中距離攻撃アニメ速度
+	static constexpr float ATK_MID_ANIM_SPD = 40.0f;
 
 	//カプセル関連
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 200.0f, 0.0f };	//トップ座標
