@@ -23,7 +23,7 @@ TitleScene::TitleScene(void):
 
 TitleScene::~TitleScene(void)
 {
-	DeleteFontToHandle(titleFont_);
+	titleFont_ = DeleteFontToHandle(titleFont_);
 }
 
 void TitleScene::Load(void)
@@ -207,6 +207,8 @@ void TitleScene::NormalDraw(void)
 			i++;
 		}
 	}
+
+
 
 }
 

@@ -12,6 +12,8 @@
 
 class CardUI;
 class CardUIController;
+class PixelRenderer;
+class PixelMaterial;
 
 class PlayerCardUI
 	:public CardUIBase
@@ -143,8 +145,9 @@ private:
 	//角度を現在角度に設定
 	void SetBasePosVisibleCards(void);
 
-	//現在選択中のカード更新
-	//void UpdateVisibleCurrent(void);
+	//カードゲージ(残り枚数描画)
+	void DrawCardNum(void);
+	
 	//見せるカードの更新
 	void UpdateVisibleCard(void);
 	//手札の消去
@@ -159,8 +162,13 @@ private:
 	//上下に見せカードを動かす
 	void MoveUpDownVisibleCards(void);
 
+	//現在選択中のカードの配列を取得
 	std::list<std::shared_ptr<CardUIController>>::iterator GetVisibleCurrentIt(void);
 	std::list<std::shared_ptr<CardUIController>>::iterator GetSearchHandIt(std::shared_ptr<CardUIController> target);
+
+	//カード残り枚数のゲージ
+	std::unique_ptr<PixelMaterial> cardGaugePSMaterial;
+	std::unique_ptr<PixelRenderer> cardGaugePSRederer_;
 
 };
 

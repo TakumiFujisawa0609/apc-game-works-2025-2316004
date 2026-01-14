@@ -6,6 +6,8 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Renderer/PixelMaterial.h"
+#include "../Renderer/PixelMaterial.h"
 
 #include "../Card/CardUIController.h"
 #include "../Card/CardSystem.h"
@@ -98,6 +100,8 @@ void PlayerCardUI::Draw(void)
 		}
 
 	}
+
+
 
 	//ƒJ[ƒh•`‰æ(‹¤’Ê)
 	CardUIBase::Draw();
@@ -458,6 +462,11 @@ void PlayerCardUI::SetBasePosVisibleCards(void)
 		card->SetBaseCardPos();
 		card->SetStartAngle();
 	}
+}
+
+void PlayerCardUI::DrawCardNum(void)
+{
+
 }
 
 
