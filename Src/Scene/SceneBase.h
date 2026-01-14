@@ -16,6 +16,7 @@ public:
 	static constexpr float LOADING_TIME = 0.0f;
 
 	//フォントサイズ
+	//static constexpr int FONT_SIZE = 30;
 	static constexpr int FONT_SIZE = 30;
 
 	//ローディング
@@ -61,9 +62,7 @@ protected:
 	float loadingTime_;
 
 	//選択ボタンフォントハンドル
-	int buttnFontHandle_;
-
-	//
+	int buttonFontHandle_;
 
 	//更新関数
 	virtual void LoadingUpdate(void);

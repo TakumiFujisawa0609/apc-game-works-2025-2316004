@@ -11,13 +11,13 @@ SceneBase::SceneBase(void) :
 	,scnMng_(SceneManager::GetInstance())
 	,inputMng_(InputManager::GetInstance())
 {
-	buttnFontHandle_ = -1;
+	buttonFontHandle_ = -1;
 	loadingTime_ = -1;
 }
 
 SceneBase::~SceneBase(void)
 {
-	DeleteFontToHandle(buttnFontHandle_); //フォントの削除
+	DeleteFontToHandle(buttonFontHandle_); //フォントの削除
 }
 
 void SceneBase::Load(void)
@@ -93,6 +93,6 @@ void SceneBase::DrawNowLoading(void)
 	{
 		loadStr += dotStr;
 	}
-	DrawStringToHandle(LOADING_STRING_POS_X, LOADING_STRING_POS_Y, loadStr.c_str(), 0xffffff, buttnFontHandle_);
+	DrawStringToHandle(LOADING_STRING_POS_X, LOADING_STRING_POS_Y, loadStr.c_str(), 0xffffff, buttonFontHandle_);
 
 }

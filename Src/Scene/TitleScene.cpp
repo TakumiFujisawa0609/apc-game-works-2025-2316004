@@ -23,12 +23,13 @@ TitleScene::TitleScene(void):
 
 TitleScene::~TitleScene(void)
 {
+	DeleteFontToHandle(titleFont_);
 }
 
 void TitleScene::Load(void)
 {
 	//フォントの登録
-	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 	//タイトル画像の読み込み
 	imgTitleBack = resMng_.Load(ResourceManager::SRC::TITLE_BACK_IMG).handleId_;
 
@@ -139,7 +140,6 @@ void TitleScene::NormalDraw(void)
 		L"TitleScene"
 	);
 
-
 	DrawExtendGraph(
 		0,
 		0,
@@ -198,7 +198,7 @@ void TitleScene::NormalDraw(void)
 			unsigned int btnCol = UtilityCommon::WHITE;
 			if(yesNoState_==str.first){ btnCol = UtilityCommon::RED; }
 			DrawFormatStringToHandle(
-				startPos.x + YES_NO_DISTANCE_X +i* YES_NO_DISTANCE_Y,
+				startPos.x + YES_NO_DISTANCE_X + i * YES_NO_DISTANCE_Y,
 				startPos.y + YES_NO_DISTANCE_Y,
 				btnCol,
 				titleFont_,

@@ -6,12 +6,6 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
-//#include "../Manager/Generic/UI2DManager.h"
-
-
-#include "../Manager/Generic/DrawUI3D.h"
-
-
 #include "../Manager/Game/CollisionManager.h"
 #include "../Manager/Game/CharacterManager.h"
 #include "../Manager/Game/GravityManager.h"
@@ -30,6 +24,10 @@ GameScene::GameScene(void)
 	updataFunc_ = std::bind(&GameScene::LoadingUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&GameScene::LoadingDraw, this);
+
+	CharacterManager::CreateInstance();
+	CollisionManager::CreateInstance();
+	CardSystem::CreateInstance();
 }
 
 GameScene::~GameScene(void)
@@ -44,7 +42,7 @@ GameScene::~GameScene(void)
 void GameScene::Load(void)
 {
 	//フォントの登録
-	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
@@ -55,15 +53,11 @@ void GameScene::Load(void)
 	skyDome_ = std::make_unique<SkyDome>();
 	skyDome_->Load();
 
-	CharacterManager::CreateInstance();
 	CharacterManager::GetInstance().Load();
 }
 
 void GameScene::Init(void)
 {
-	CollisionManager::CreateInstance();
-	CardSystem::CreateInstance();
-
 	CharacterManager::GetInstance().Init();
 	//シェイク状態を初期化
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
@@ -124,8 +118,6 @@ void GameScene::NormalUpdate(void)
 
 void GameScene::NormalDraw(void)
 {
-
-
 	//プレイヤーの描画
 	//PlayerManager::GetInstance().DrawPlayerUI();
 	skyDome_->Draw();

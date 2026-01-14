@@ -65,14 +65,9 @@ public:
 		REACT,//パンチされた状態
 		JUMP
 	};
-
-
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	/// <param name="_playerNum">プレイヤー番号</param>
-	/// <param name="_cntl">コントローラー識別番号</param>
-	/// <param name="_tag">プレイヤーごとのタグ</param>
+	
+	/// @brief コンストラクタ
+	/// @param  
 	Player(void);
 
 	// デストラクタ
@@ -82,45 +77,27 @@ public:
 	/// 読み込み
 	/// </summary>
 	/// <param name=""></param>
+	
+	/// @brief 読み込み
+	/// @param  
 	void Load(void)override;
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 初期化
+	/// @param  
 	void Init(void)override;
-
-	/// <summary>
-	/// 更新
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 更新
+	/// @param  
 	void Update(void)override;
 
 	/// <summary>
 	/// 描画
 	/// </summary>
 	/// <param name=""></param>
+	
+	/// @brief 描画
+	/// @param  
 	void Draw(void)override;
-
-	///// <summary>
-	///// 当たり判定後の処理
-	///// </summary>
-	///// <param name="_hitColTag">相手側の当たり判定</param>
-	//void OnHit(const std::weak_ptr<Collider> _hitCol)override;
-
-	/// <summary>
-	/// プレイヤー番号
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>プレイヤー番号</returns>
-	inline const int& GetPlayerNum(void)const { return playerNum_; }
-
-	/// <summary>
-	/// 使用するコントローラー
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>使用するコントローラー</returns>
-	inline const InputManager::CONTROLL_TYPE& GetCntl(void)const { return cntl_; }
 
 	/// <summary>
 	/// コントローラー番号
@@ -318,21 +295,7 @@ private:
 
 	//当たり判定初期化
 	void MakeColliderGeometry(void)override;
-	//生存しているとき
-	//------------------------------
-	//状態遷移
-	void ChangeAlive(void);
-	//生存更新
-	void AliveUpdate(void);
-	//------------------------------
-	//死亡しているとき
-	//------------------------------
-	void ChangeDeath(void);
-	void DeathUpdate(void);
-	//------------------------------
-	//ゴールした時
-	void ChangeGoal(void);
-	void GoalUpdate(void);
+
 	
 	//アクション関係
 	void Action(void);

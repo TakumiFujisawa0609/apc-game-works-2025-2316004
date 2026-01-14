@@ -26,7 +26,7 @@ void GameClearScene::Load(void)
 {
 	imgGameClear_ = ResourceManager::GetInstance().Load(ResourceManager::SRC::GAME_CLEAR_IMG).handleId_;
 	//フォントの登録
-	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 }
 
 void GameClearScene::Init(void)
@@ -72,7 +72,7 @@ void GameClearScene::NormalDraw(void)
 		SceneBase::BACK_TITLE_STRING_POS.x,
 		SceneBase::BACK_TITLE_STRING_POS.y,
 		UtilityCommon::WHITE,
-		buttnFontHandle_,
+		buttonFontHandle_,
 		L"'Bボタンまたはスペースキー'でタイトルに戻る"
 	);
 

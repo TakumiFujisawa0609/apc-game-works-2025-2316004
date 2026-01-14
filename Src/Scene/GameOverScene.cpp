@@ -22,7 +22,7 @@ GameOverScene::~GameOverScene(void)
 void GameOverScene::Load(void)
 {
 	//フォントの登録
-	buttnFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 	imgGameOver_ = resMng_.GetInstance().Load(ResourceManager::SRC::GAME_OVER_IMG).handleId_;
 }
 
@@ -47,7 +47,7 @@ void GameOverScene::NormalDraw(void)
 		BACK_TITLE_STRING_POS.x,
 		BACK_TITLE_STRING_POS.y,
 		UtilityCommon::WHITE,
-		buttnFontHandle_,
+		buttonFontHandle_,
 		L"'Bボタンまたはスペースキー'でタイトルに戻る"
 	);
 }

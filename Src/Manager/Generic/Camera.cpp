@@ -432,7 +432,7 @@ void Camera::Collision(void)
 
 		isCol = true;
 		//‹——£”»’è
-		float dis = Utility3D::Distance(followFramePos_, hit.HitPosition);
+		float dis = static_cast<float>(Utility3D::Distance(followFramePos_, hit.HitPosition));
 		if (dis < minDist)
 		{
 			minDist = dis;

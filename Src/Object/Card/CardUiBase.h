@@ -241,9 +241,5 @@ protected:
 	void SetBasePosActionCards(void);
 	//‘®«‰æ‘œæ“¾
 	const int GetTypeImg(const CardBase::CARD_STATUS _status);
-
-
-	//ƒJ[ƒhUI‰æ‘œì¬
-	int MakeCardUIImg(void);
 };
 

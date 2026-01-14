@@ -106,7 +106,7 @@ private:
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,0.0f,50.0f };
     //カードリロード中の音量
-    static constexpr float CARD_RELOAD_VOL = 60.0f;
+    static constexpr int CARD_RELOAD_VOL = 60;
 
     //攻撃の当たり判定始まりカウント
     float attackStartAnimcnt_;
