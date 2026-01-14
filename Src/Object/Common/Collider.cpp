@@ -21,6 +21,7 @@ Collider::Collider(ObjectBase& _parent, const std::set<TAG> _tags, std::unique_p
 
 Collider::~Collider(void)
 {
+	tagTable_.clear();
 }
 
 Geometry& Collider::GetGeometry(void) const

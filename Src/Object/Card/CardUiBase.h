@@ -84,9 +84,6 @@ public:
 	/// @param  
 	virtual void Load(void);
 
-	//カードUIに使用したいオブジェクトを生成する
-	void MakeObject(void);
-
 	/// @brief 初期化
 	/// @param  
 	virtual void Init(void);

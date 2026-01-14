@@ -77,10 +77,6 @@ void PlayerLogic::InputKeyBoard(void)
 		moveDeg_ = RIGHT_DEG; 
 		moveDir_ = Utility3D::DIR_R;
 	}
-	//if (actCntl_==ACT_CNTL::MOVE&&ins.IsNew(DASH_KEY))
-	//{
-	//	actCntl_ = ACT_CNTL::DASHMOVE;
-	//}
 
 	//カード使用
 	if (ins.IsTrgDown(CARD_CHARGE_KEY)) { actCntl_ = ACT_CNTL::CARD_CHARGE; }
@@ -202,10 +198,7 @@ void PlayerLogic::InputPad(void)
 		|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
 	{ 
 		actCntl_ = ACT_CNTL::MOVE;
-		//if (ins.IsNew(InputManager::CONTROL_TYPE::PLAYER_DASH, padNum_, InputManager::TYPE::PAD))
-		//{
-		//	actCntl_ = ACT_CNTL::DASHMOVE;
-		//}
+
 		//スティックの角度を求める
 		stickDeg_ = inputS.GetLStickDeg(padNum_);
 	}

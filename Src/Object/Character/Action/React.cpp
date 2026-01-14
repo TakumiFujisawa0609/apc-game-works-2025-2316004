@@ -30,7 +30,7 @@ void React::Init(void)
 	{
 		isLoop = true;
 	}
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::REACT), isLoop, 3.0f, 16.0f);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::REACT), isLoop, ANIM_START, LOOP_END);
 }
 
 void React::Update(void)
@@ -45,7 +45,7 @@ void React::Update(void)
 	else
 	{
 		flinchCnt_ -= SceneManager::GetInstance().GetDeltaTime();
-		anim_.SetEndLoop(14.0f, 16.0f, 3.0f);
+		anim_.SetEndLoop(LOOP_START, LOOP_END, LOOP_SPD);
 		if (flinchCnt_ < 0.0f)
 		{
 			flinchCnt_ = 0.0f;

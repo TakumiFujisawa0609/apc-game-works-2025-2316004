@@ -52,7 +52,7 @@ void TitleScene::Init(void)
 		{TITLE_STATE::EASE_MENU,[this]() {UpdateEase();}},
 		{TITLE_STATE::MENU,[this]() {UpdateMenu();}},
 		{TITLE_STATE::START_GAME,[this]() {UpdateSelectGame();}},
-		{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
+		//{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
 		{TITLE_STATE::SCREEN,[this]() { UpdateScreen(); }},
 		{TITLE_STATE::EXIT_MENU,[this]() {UpdateExitMenu();}},
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
@@ -60,8 +60,8 @@ void TitleScene::Init(void)
 
 	buttonStrTable_ = {
 		{TITLE_BTN::START_GAME,L"STARTÅ@GAME"},
-		{TITLE_BTN::TUTORIAL,L"TUTORIAL"},
-		{TITLE_BTN::SCREEN,L"SCREEN"},
+		//{TITLE_BTN::TUTORIAL,L"TUTORIAL"},
+		{TITLE_BTN::SCREEN,L"SCREEN"},																							
 		{TITLE_BTN::EXIT,L"EXIT"}
 	};
 
@@ -98,13 +98,14 @@ Easing::EASING_TYPE TitleScene::DecideEase(TITLE_BTN _btn)
 	case TitleScene::TITLE_BTN::START_GAME:
 		return Easing::EASING_TYPE::ELASTIC_OUT;
 		break;
-	case TitleScene::TITLE_BTN::TUTORIAL:
+	case TitleScene::TITLE_BTN::SCREEN:
 		return Easing::EASING_TYPE::BOUNCE;
 		break;
 	case TitleScene::TITLE_BTN::EXIT:
 		return Easing::EASING_TYPE::QUAD_IN_OUT;
 		break;
 	default:
+		return Easing::EASING_TYPE::CUBIC_OUT;
 		break;
 	}
 }
@@ -197,8 +198,8 @@ void TitleScene::NormalDraw(void)
 			unsigned int btnCol = UtilityCommon::WHITE;
 			if(yesNoState_==str.first){ btnCol = UtilityCommon::RED; }
 			DrawFormatStringToHandle(
-				startPos.x + 70+i* YES_NO_DISTANCE,
-				startPos.y + 100,
+				startPos.x + YES_NO_DISTANCE_X +i* YES_NO_DISTANCE_Y,
+				startPos.y + YES_NO_DISTANCE_Y,
 				btnCol,
 				titleFont_,
 				str.second.c_str()
@@ -262,12 +263,12 @@ void TitleScene::UpdateMenu(void)
 
 	//selectNum_ = static_cast<int>(selectState_);
 
-	if (insS.IsTrgDown(INPUT_EVENT::UP))
+	if (insS.IsTrgDown(INPUT_EVENT::UP)||ins.IsTrgDown(KEY_INPUT_W))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		selectNum_--;
 	}
-	else if (insS.IsTrgDown(INPUT_EVENT::DOWN))
+	else if (insS.IsTrgDown(INPUT_EVENT::DOWN) || ins.IsTrgDown(KEY_INPUT_S))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		selectNum_++;
@@ -325,12 +326,13 @@ void TitleScene::UpdateSelectGame(void)
 void TitleScene::UpdateExitMenu(void)
 {
 	InputManagerS& insS = InputManagerS::GetInstance();
-	if (insS.IsTrgDown(INPUT_EVENT::LEFT))
+	InputManager& ins = InputManager::GetInstance();
+	if (insS.IsTrgDown(INPUT_EVENT::LEFT)||ins.IsTrgDown(KEY_INPUT_A))
 	{ 
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		yesNoState_ = YES_NO::YES; 
 	}
-	else if(insS.IsTrgDown(INPUT_EVENT::RIGHT))
+	else if(insS.IsTrgDown(INPUT_EVENT::RIGHT)||ins.IsTrgDown(KEY_INPUT_D))
 	{ 
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		yesNoState_ = YES_NO::NO; 

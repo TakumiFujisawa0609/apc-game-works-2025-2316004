@@ -389,7 +389,7 @@ void Camera::SmoothChangeCamera(void)
 	VECTOR goalTargetPos = VAdd(targetPos, localPos);
 	if (changeTargetLerpCnt_ > 0.0)
 	{
-		targetPos_ = easing_->EaseFunc(targetPos_, goalTargetPos, lerpRate,Easing::EASING_TYPE::LERP);
+		targetPos_ = easing_->EaseFunc(targetPos_, goalTargetPos, static_cast<float>(lerpRate),Easing::EASING_TYPE::LERP);
 	}
 
 
@@ -398,7 +398,7 @@ void Camera::SmoothChangeCamera(void)
 	VECTOR goalPos = VAdd(followPos, localPos);
 	if (changeTargetLerpCnt_ > 0.0)
 	{
-		pos_ = easing_->EaseFunc(pos_, goalPos, lerpRate,Easing::EASING_TYPE::LERP);
+		pos_ = easing_->EaseFunc(pos_, goalPos, static_cast<float>(lerpRate),Easing::EASING_TYPE::LERP);
 	}
 
 	// ƒJƒƒ‰‚Ìã•ûŒü

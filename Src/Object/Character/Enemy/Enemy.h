@@ -161,7 +161,8 @@ private:
 
 	//アクションの追加
 	void AddAction(void)override;
-
+	//アニメーションの追加
+	void AddAnimation(void)override;
 #ifdef _DEBUG
 	void DrawDebug(void);
 #endif // _DEBUG

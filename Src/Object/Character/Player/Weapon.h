@@ -66,6 +66,9 @@ private:
 	//カプセルコライダーの高さ
 	static constexpr float CAPSULE_COL_HEIGHT = (MAX_VERTEX_POS.y - MIN_VERTEX_POS.y) * WEAPON_SCL;
 
+	//攻撃SEのピッチ
+	static constexpr int ATK_SE_PITCH = -1000;
+
 	//エフェクト
 	std::shared_ptr<EffectController> effect_;
 

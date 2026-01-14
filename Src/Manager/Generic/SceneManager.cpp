@@ -90,9 +90,6 @@ void SceneManager::Update(void)
 
 	//シーンごとの更新
 	scenes_.back()->Update();
-
-
-
 }
 
 void SceneManager::Draw(void)
@@ -171,6 +168,7 @@ void SceneManager::PopScene()
 void SceneManager::Release(void)
 {
 	//全てのシーンで使うシングルトンクラスやリソースはここで解放する
+	DataBank::Destroy();
 }
 
 void SceneManager::ChangeScene(SCENE_ID nextId)

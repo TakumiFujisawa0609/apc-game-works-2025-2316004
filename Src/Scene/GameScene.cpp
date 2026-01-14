@@ -39,8 +39,6 @@ GameScene::~GameScene(void)
 	CollisionManager::GetInstance().Destroy();
 	CharacterManager::GetInstance().Destroy();
 	SoundManager::GetInstance().Release();
-	//scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
-
 }
 
 void GameScene::Load(void)
@@ -57,14 +55,8 @@ void GameScene::Load(void)
 	skyDome_ = std::make_unique<SkyDome>();
 	skyDome_->Load();
 
-	drawUi3D_ = std::make_unique<DrawUI3D>(SceneManager::GetInstance().GetCamera());
-	drawUi3D_->Load();
-
 	CharacterManager::CreateInstance();
 	CharacterManager::GetInstance().Load();
-
-	//UI2DManager::CreateInstance();
-	//UI2DManager::GetInstance().Load();
 }
 
 void GameScene::Init(void)
@@ -73,7 +65,6 @@ void GameScene::Init(void)
 	CardSystem::CreateInstance();
 
 	CharacterManager::GetInstance().Init();
-	//UI2DManager::GetInstance().Init();
 	//シェイク状態を初期化
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 	//カメラの当たり判定作成
@@ -85,7 +76,6 @@ void GameScene::Init(void)
 
 	stage_->Init();
 	skyDome_->Init();
-	drawUi3D_->Init();
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
 	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
 	SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, static_cast<int>(SoundManager::TYPE::BGM));
@@ -119,11 +109,6 @@ void GameScene::NormalUpdate(void)
 	//カード勝敗状態の監視
 	CardSystem::GetInstance().CompareCards();
 
-	//UI2DManager::GetInstance().Update();
-
-	//常にUIの座標を追従
-	//drawUi3D_->Update();
-
 	//更新はアクション中のみ
 	CollisionManager::GetInstance().Update();
 	//終了した当たり判定の消去
@@ -155,8 +140,6 @@ void GameScene::NormalDraw(void)
 	//CardSystem::GetInstance().DrawDebug();
 #endif // _DEBUG
 
-	//player_->DrawPlayerUI();
-	//enemy_->DrawPlayerUI();
 }
 
 void GameScene::ChangeNormal(void)

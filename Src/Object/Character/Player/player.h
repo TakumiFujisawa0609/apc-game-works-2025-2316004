@@ -66,13 +66,6 @@ public:
 		JUMP
 	};
 
-	enum class PLAYER_STATE
-	{
-		ALIVE
-		, DEATH
-		, GOAL
-	};
-
 
 	/// <summary>
 	/// コンストラクタ
@@ -195,8 +188,8 @@ private:
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
 	//プレイヤーの大きさ
 	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
-	//パンチの範囲
-	static constexpr float PUNCH_RADIUS = 50.0f;
+	//プレイヤーの初期のZ座標
+	static constexpr float INIT_POS_Z = -500.0f;
 	//プレイヤーナンバー(デッキクラスで判定用)
 	static constexpr int PLAYER_NUM = 0;
 
@@ -305,11 +298,6 @@ private:
 	//ゴール時間格納
 	float goalTime_;
 
-
-	//プレイヤー状態
-	PLAYER_STATE state_;	//プレイヤーの状態(生存状態)
-	//プレイヤーの状態遷移
-	std::map<PLAYER_STATE, std::function<void(void)>>changeStates_;
 	//状態更新
 	std::function<void(void)>stateUpdate_;
 	//カードの位置
@@ -322,14 +310,14 @@ private:
 	void DrawDebug(void);
 #endif // _DEBUG
 
+	//アニメーションの追加
+	void AddAnimation(void)override;
+
 	//アクションの追加
 	void AddAction(void)override;
 
 	//当たり判定初期化
 	void MakeColliderGeometry(void)override;
-	//プレイヤー状態
-	//状態遷移
-	void ChangeState(PLAYER_STATE _state);
 	//生存しているとき
 	//------------------------------
 	//状態遷移

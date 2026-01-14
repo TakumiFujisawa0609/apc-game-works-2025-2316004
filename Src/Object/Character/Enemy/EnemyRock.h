@@ -61,6 +61,9 @@ private:
     //“–‚½‚è”»’è‹…‚Ì”¼Œa
 	static constexpr float ROCK_COL_RADIUS = 150.0f;
 
+    //…•½•û–Ê‚Ö‚ÌˆÚ“®‘¬“x
+    static constexpr float MOVE_HORIZONTAL_SPD = 20.0f;
+
 	//”Ô†
 	int num_;
 

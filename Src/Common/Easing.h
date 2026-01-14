@@ -85,6 +85,11 @@ public:
 		}
 	};
 
+	//コンストラクタ
+	Easing(void);
+
+	//デストラクタ
+	~Easing(void);
 
 	//イージングセット(OneWay)
 	void SetEasing(const float t, const EASING_TYPE type);

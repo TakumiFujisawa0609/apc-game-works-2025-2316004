@@ -174,9 +174,6 @@
     <ClCompile Include="Src\Object\Character\Action\Idle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Character\Action\Jump.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Object\Character\Action\PlayerCardAction.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -292,15 +289,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Scene\GameOverScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\Generic\DrawUIBase.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\Generic\DrawUI3D.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\Generic\DrawUI2D.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Object\Character\Base\CharacterOnHitBase.cpp">
@@ -596,9 +584,6 @@
     <ClInclude Include="Src\Object\Character\Action\Idle.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Character\Action\Jump.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Object\Character\Action\PlayerCardAction.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -716,15 +701,6 @@
     <ClInclude Include="Src\Scene\GameOverScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Manager\Generic\DrawUIBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\Generic\DrawUI3D.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\Generic\DrawUI2D.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Object\Character\Base\CharacterOnHitBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -768,7 +744,6 @@
   <ItemGroup>
     <FxCompile Include="Src\Shader\Model\StagePS.hlsl" />
     <FxCompile Include="Src\Shader\Model\StageVS.hlsl" />
-    <FxCompile Include="Src\Shader\Model\WaterWaveVS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardVS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardNormalPS.hlsl" />
     <FxCompile Include="Src\Shader\Model\CardReloadPS.hlsl" />

@@ -76,22 +76,18 @@ void EnemyLogic::DebugUpdate(void)
 	//ˆÚ“®Šp“x‚ðŒˆ‚ß‚é
 	if (InputManager::GetInstance().IsNew(KEY_INPUT_UP))
 	{
-		moveDeg_ = FLONT_DEG;
 		moveDir_ = Utility3D::DIR_F;
 	}
 	else if (InputManager::GetInstance().IsNew(KEY_INPUT_LEFT))
 	{
-		moveDeg_ = LEFT_DEG;
 		moveDir_ = Utility3D::DIR_L;
 	}
 	else if (InputManager::GetInstance().IsNew(KEY_INPUT_DOWN))
 	{
-		moveDeg_ = BACK_DEG;
 		moveDir_ = Utility3D::DIR_B;
 	}
 	else if (InputManager::GetInstance().IsNew(KEY_INPUT_RIGHT))
 	{
-		moveDeg_ = RIGHT_DEG;
 		moveDir_ = Utility3D::DIR_R;
 	}
 }
@@ -114,10 +110,10 @@ void EnemyLogic::DesideAction(void)
 
 	const float distance = GetTargetDis();
 	//ƒ‰ƒ“ƒ_ƒ€‚Ì”’lŽæ“¾
-	int rand = GetRand(100);
+	int rand = GetRand(UtilityCommon::PERCENT_MAX);
 
 	
-	if (distance > 200.0f)
+	if (distance > ATK_DISTANCE)
 	{
 		//‰“‹——£Žž
 		if (rand > weight_.normal)

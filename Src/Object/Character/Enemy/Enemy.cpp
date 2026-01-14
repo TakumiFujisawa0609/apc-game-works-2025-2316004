@@ -55,14 +55,7 @@ void Enemy::Load(void)
 
 
 	//アニメーション
-	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
-	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_RUN));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_STOMP_ATK));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
+	AddAnimation();
 
 	cardUI_ = std::make_unique<EnemyCardUI>();
 	logic_ = std::make_unique<EnemyLogic>(trans_);
@@ -84,7 +77,6 @@ void Enemy::Init(void)
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 
 	deck_->Init();
-	cardUI_->MakeObject();
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
 		deck_->AddDrawPile(CARD_POWS[i]);
@@ -124,10 +116,6 @@ void Enemy::Update(void)
 {
 	animationController_->Update();
 
-	//static VECTOR dirDown = trans_.GetDown();
-	//////重力(各アクションに重力を反映させたいので先に重力を先に書く)
-	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
-
 	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 	logic_->Update();
 	action_->Update();
@@ -147,11 +135,6 @@ void Enemy::Update(void)
 	//回転の同期
 	UpdatePost();
 	trans_.quaRot = charaRot_.playerRotY_;
-
-	//if (!deck_->IsCardFailure())
-	//{
-	//	int i = 0;
-	//}
 
 	trans_.Update();
 }
@@ -293,11 +276,22 @@ void Enemy::AddAction(void)
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed, footSE_, FOOT_SE_DIS);
-	action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
 
 }
+void Enemy::AddAnimation(void)
+{
+	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_STOMP_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
+}
+
 #ifdef _DEBUG
 void Enemy::DrawDebug(void)
 {

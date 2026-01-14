@@ -21,7 +21,6 @@ EnemyHpUI::EnemyHpUI(float& _hpPer, float& _preHp) :
 
 EnemyHpUI::~EnemyHpUI(void)
 {
-	Vector2F vec = { static_cast<float>(Application::SCREEN_SIZE_X - 500.0f),20.0f };
 }
 
 void EnemyHpUI::Load(void)
@@ -36,8 +35,8 @@ void EnemyHpUI::Init(void)
 {
 	HpUIBase::Init();
 	material_->AddTextureBuf(hpMask_);
-	material_->AddConstBuf({ 0.2f, 0.8f, 1.0f,0.0f });	//バーの色(明るい青)
-	material_->AddConstBuf({ 0.6f, 0.2f, 0.8f,0.0f });	//バーの色(紫)
+	material_->AddConstBuf(BAR_LIGHT_BLUE);	//バーの色(明るい青)
+	material_->AddConstBuf(BAR_PURPLE);	//バーの色(紫)
 	material_->AddConstBuf({ hpPer_,0.0f,0.0f,0.0f });
 	renderer_->MakeSquareVertex(barCoverPos_, BAR_SIZE);
 	//renderer_->SetPos(barCoverPos_);
@@ -48,7 +47,7 @@ void EnemyHpUI::Update(void)
 {
 	HpUIBase::Update();
 	renderer_->SetPos(barPos_);
-	material_->SetConstBuf(2, { hpPer_,preHp_,0.0f,0.0f });
+	material_->SetConstBuf(PRE_HP_CONST_BUF, { hpPer_,preHp_,0.0f,0.0f });
 }
 
 void EnemyHpUI::Draw(void)

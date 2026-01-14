@@ -40,7 +40,6 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 	, movePow_(Utility3D::VECTOR_ZERO)
 	, moveDir_(Utility3D::VECTOR_ZERO)
 	,dir_(Utility3D::VECTOR_ZERO)
-	,cardCenterPos_({0,0})
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
@@ -61,9 +60,6 @@ void ActionController::Init(void)
 
 	//初期化の前に追加したアクションの初期化
 	mainAction_[act_]->Init();
-
-	//カードデッキ
-	cardCenterPos_ = { 140,140 };//カードの中心位置
 
 	isCardAct_ = false;
 	cardActTime_ = 0.0f;

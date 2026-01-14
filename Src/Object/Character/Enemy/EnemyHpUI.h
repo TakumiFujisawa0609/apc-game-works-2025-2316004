@@ -20,5 +20,12 @@ private:
 	static constexpr Vector2F BAR_COVER_SIZE = { 500.0f ,20.0f };
 	static constexpr Vector2F BAR_SIZE = { 470.0f ,16.0f };
 
+	//バーの色(明るい青)
+	static constexpr FLOAT4 BAR_LIGHT_BLUE = { 0.2f, 0.8f, 1.0f,0.0f };
+	//バーの色(紫)
+	static constexpr FLOAT4 BAR_PURPLE = { 0.6f, 0.2f, 0.8f,0.0f };
+
+	//減る前のHP保存用定数バッファの番号
+	static constexpr int PRE_HP_CONST_BUF = 2;
 };
 

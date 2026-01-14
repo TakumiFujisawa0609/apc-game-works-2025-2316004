@@ -61,7 +61,7 @@ void EnemyRock::Update(void)
 	jumpPow_.y = velocity_.y;
 	
 	VECTOR vec = VNorm(VSub(goalPos_, startPos_));
-	trans_.pos = VAdd(trans_.pos, VScale(vec, 20.0f));
+	trans_.pos = VAdd(trans_.pos, VScale(vec, MOVE_HORIZONTAL_SPD));
 	trans_.pos = VAdd(trans_.pos, jumpPow_);
 
 	trans_.Update();

@@ -63,6 +63,10 @@ private:
 	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 73.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 83.0f;     //攻撃当たり判定終了アニメーションカウント
     static constexpr float ATK_SPHERE_RADIUS = 0.0f;				//カプセル球の半径
+    //攻撃３段階目アニメーションスタート
+    static constexpr float ATTACK_THREE_ANIM_START = 60.0f;
+    //攻撃３段階目アニメーションゴール
+    static constexpr float ATTACK_THREE_ANIM_GOAL = 86.0f;
     //攻撃アニメーション3段階目の溜め時のアニメ速度
     static constexpr float ATTACK_THREE_ANIM_SPD = 10.0f;
     //攻撃3段階目アニメスピード補完時間
@@ -101,7 +105,8 @@ private:
     static constexpr float RELOAD_TIME = 3.0f;
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,0.0f,50.0f };
-
+    //カードリロード中の音量
+    static constexpr float CARD_RELOAD_VOL = 60.0f;
 
     //攻撃の当たり判定始まりカウント
     float attackStartAnimcnt_;

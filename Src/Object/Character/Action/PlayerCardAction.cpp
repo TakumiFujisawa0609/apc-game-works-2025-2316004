@@ -49,7 +49,7 @@ PlayerCardAction::~PlayerCardAction(void)
 void PlayerCardAction::Load(void)
 {
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
-	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, 60.0f);
+	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, CARD_RELOAD_VOL);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
 }
 
@@ -157,24 +157,24 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 
 	//キャラ同士で当たったか
 	const bool isHitTarget = charaObj_.GetIsHitTarget();
-	const float delta= scnMng_.GetDeltaTime();
+	const float delta = scnMng_.GetDeltaTime();
 	//攻撃判定処理
-	if (anim_.GetAnimStep() >= atk_.colStartCnt&& midAtkCnt_>0.0f) { midAtkCnt_ -= delta; }
+	if (anim_.GetAnimStep() >= atk_.colStartCnt && midAtkCnt_ > 0.0f) { midAtkCnt_ -= delta; }
 
-	if(midAtkCnt_> 0.0f&&!atk_.isDamage)
+	if (midAtkCnt_ > 0.0f && !atk_.isDamage)
 	{
 		speed_ = easing_->EaseFunc(ATTACK_ONE_MID_SPD, 0.0f, (ATTACK_ONE_MID_TIME - midAtkCnt_) / ATTACK_ONE_MID_TIME, Easing::EASING_TYPE::QUAD_OUT);
 
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, {}, 0.0f);
 	}
-	else if (midAtkCnt_ <= 0.0f|| atk_.isDamage)		//アニメーション終了でアイドル状態変更
+	else if (midAtkCnt_ <= 0.0f || atk_.isDamage)		//アニメーション終了でアイドル状態変更
 	{
 		midAtkOverCnt_ -= delta;
 		//攻撃判定無効
 		speed_ = 0.0f;
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK);
 		charaObj_.GetCardUI().ChangeUsedActionCard();
-		
+
 		if (midAtkOverCnt_ < 0.0f)
 		{
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
@@ -243,7 +243,8 @@ void PlayerCardAction::UpdateReload(void)
 		charaObj_.GetCardUI().SetReloadCount(per);
 
 		//アニメーションループ
-		anim_.SetMidLoop(RELOAD_LOOP_START, RELOAD_LOOP_END, 10.0f);
+		constexpr float LOOP_SPD = 10.0f;
+		anim_.SetMidLoop(RELOAD_LOOP_START, RELOAD_LOOP_END, LOOP_SPD);
 	}
 	else
 	{
@@ -339,7 +340,7 @@ void PlayerCardAction::ChangeAttackTwo(void)
 
 void PlayerCardAction::ChangeAttackThree(void)
 {
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false,60.0f,86.0f);
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_3), false, ATTACK_THREE_ANIM_START, ATTACK_THREE_ANIM_GOAL);
 	atkThreeEndCnt_ = 0.0f;
 	atkAnimLerpCnt_ = 0.0f;
 	atk_ = NORMAL_ATK_THREE;
@@ -383,7 +384,6 @@ void PlayerCardAction::ChangeComboAction(void)
 		{
 			ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 		}
-		
 	}
 
 	if (actionCntl_.GetInput().GetIsAct().isCardUse)

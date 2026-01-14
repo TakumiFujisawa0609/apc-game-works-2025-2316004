@@ -345,7 +345,8 @@ protected:
 
 	//アクションの追加
 	virtual void AddAction(void) = 0;
-
+	//アニメーションの追加
+	virtual void AddAnimation(void) = 0;
 	//コライダ作成
 	virtual void MakeColliderGeometry(void) = 0;;
 private:

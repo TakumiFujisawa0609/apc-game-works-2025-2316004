@@ -217,8 +217,7 @@ private:
 
 	//山札(デッキクラスに格納用)
 	std::vector<std::shared_ptr<CardBase>>drawPile_;
-	//カードの位置
-	Vector2 cardCenterPos_;	
+
 
 	//カード選択
 	void CardMove(void);
@@ -234,8 +233,6 @@ private:
 
 	//入力方向に応じて方向を決める
 	void MoveDirFromInput(void);
-	//回転処理
-	void Rotate(void);
 	//方向と移動量の更新
 	void DirAndMovePowUpdate(void);
 

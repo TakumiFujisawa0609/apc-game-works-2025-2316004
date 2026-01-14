@@ -26,7 +26,7 @@ void Stage::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,0.0f, 0.0f });
 
-	trans_.scl = { STAGE_SCL ,0.1f ,STAGE_SCL };
+	trans_.scl = { STAGE_SCL ,STAGE_SCL_Y ,STAGE_SCL };
 
 	scnMng_.GetCamera().lock()->SetStageTransform(&trans_);
 
@@ -36,11 +36,12 @@ void Stage::Init(void)
 	std::unique_ptr<Geometry>geo = std::make_unique<Model>(trans_.pos, trans_.quaRot, trans_.modelId);
 	MakeCollider(TAG_PRIORITY::BODY,{ tag_ }, std::move(geo), { Collider::TAG::NML_ATK,Collider::TAG::ROAR_ATK });
 
+	constexpr int STAGE_VS_CONST_BUF = 1;
 	material_=std::make_unique<ModelMaterial>(
-		L"StageVS.cso", 1,
+		L"StageVS.cso", STAGE_VS_CONST_BUF,
 		L"StagePS.cso", 0
 	);
-	material_->AddConstBufVS({ 300.0f,0.0f,0.0f,0.0f });
+	material_->AddConstBufVS({ STAGE_UV_SCL,0.0f,0.0f,0.0f });
 	renderer_ = std::make_unique<ModelRenderer>(trans_.modelId,*material_);
 
 	trans_.Update();

@@ -87,11 +87,6 @@ void CardUIBase::Load(void)
 
 }
 
-void CardUIBase::MakeObject(void)
-{
-	//easing_ = std::unique_ptr<Easing>();
-}
-
 void CardUIBase::Init(void)
 {
 	

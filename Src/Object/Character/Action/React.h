@@ -26,5 +26,16 @@ public:
     void Update(void) override;
 private:
 
+    //アニメーションスタート
+    static constexpr float ANIM_START = 3.0f;
+
+    //ループスタート
+    static constexpr float LOOP_START = 14.0f;
+
+    //ループ終端
+    static constexpr float LOOP_END = 16.0f;
+
+    //ループアニメーション速度
+    static constexpr float LOOP_SPD = 3.0f;
 };
 

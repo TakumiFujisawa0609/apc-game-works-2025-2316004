@@ -2,20 +2,11 @@
 #include "../../../Utility/Utility3D.h"
 #include "../../../Utility/UtilityCommon.h"
 #include "../../../Utility/Utility2D.h"
-
 #include "../../../Manager/Resource/ResourceManager.h"
-//#include "../../Manager/System/SoundManager.h"
 #include "../../../Manager/Generic/SceneManager.h"
-#include "../../../Manager/Generic/UI2DManager.h"
-//#include"../../Manager/System/DateBank.h"
-
 #include "../../../Manager/Generic/Camera.h"
 #include "../Manager/Game/GravityManager.h"
-//#include "../../Renderer/ModelMaterial.h"
-//#include "../../Renderer/ModelRenderer.h"
-
 #include "../Manager/Game/CharacterManager.h"
-//#include"../../Object/Common/EffectController.h"
 #include"../../Common/Geometry/Capsule.h"
 #include"../../Common/Geometry/Sphere.h"
 #include"../../Common/Geometry/Line.h"
@@ -28,7 +19,6 @@
 #include"../Base/CharacterOnHitBase.h"
 #include"./PlayerOnHit.h"
 #include "./Weapon.h"
-
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
 #include"../Action/Run.h"
@@ -50,7 +40,6 @@ Player::Player(void)
 	:playerNum_(),
 	cntl_(),
 	padNum_(),
-	state_(),
 	stateUpdate_()
 {
 	trans_ = Transform();
@@ -69,7 +58,6 @@ Player::Player(void)
 
 Player::~Player(void)
 {
-	changeStates_.clear();
 	collider_.clear();
 }
 
@@ -80,27 +68,11 @@ void Player::Load(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, 0.0f, 0.0f });
 
-
-	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
-	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE),ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED*2.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::CARD_RELOAD), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RELOAD));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_MIDDLE), ATK_MID_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_MIDDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_SHORT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_SHORT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
-
+	AddAnimation();
 
 	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
 	AddAction();
-	//animType_.emplace(
-	//	{ ANIM_TYPE::P_IDLE,static_cast<int>(ANIM_TYPE::P_IDLE) }
-	//	, { ANIM_TYPE::P_RUN,static_cast<int>(ANIM_TYPE::P_RUN) }
-	//)
 
 	//プレイヤー入力
 	logic_->Init();
@@ -133,7 +105,7 @@ void Player::Init(void)
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
-	trans_.pos={ 0.0f,0.0f,-500.0f };
+	trans_.pos={ 0.0f,0.0f,INIT_POS_Z };
 	trans_.localPos = { 0.0f,Player::CAP_RADIUS,-0.0f };
 	//武器の追従対象をセット
 	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
@@ -142,23 +114,15 @@ void Player::Init(void)
 
 	MakeColliderGeometry();
 
-	//プレイヤー状態
-	changeStates_.emplace(PLAYER_STATE::ALIVE, [this]() {ChangeAlive(); });
-	changeStates_.emplace(PLAYER_STATE::DEATH, [this]() {ChangeDeath(); });
-	changeStates_.emplace(PLAYER_STATE::GOAL, [this]() {ChangeGoal(); });
-
 	hpUi_->Init();
 	weapon_->Init();
 
 	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
 
-	//生存状態
-	ChangeState(PLAYER_STATE::ALIVE);
 
 	action_->Init();
 	deck_->Init();
-	
-	cardUI_->MakeObject();
+
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
@@ -177,31 +141,20 @@ void Player::Init(void)
 
 void Player::Update(void)
 {
-	//animationController_->Update();
-#ifdef DEBUG_ON
-	//CubeMove();
-#endif // DEBUG_ON
-
+	//アニメーション
 	animationController_->Update();
 
-	////プレイヤーの下を設定
-	////static VECTOR dirDown = charaObj_.GetTransform().GetDown();
-	//static VECTOR dirDown = trans_.GetDown();
-	////重力(各アクションに重力を反映させたいので先に重力を先に書く)
-	//VECTOR jumpPow = action_->GetJumpPow();
-	//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow, 90.0f);
-
+	//HP割合を計算
 	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 
 	//プレイヤー状態更新
-	stateUpdate_();
+	Action();
 
 	cardUI_->Update();
 	//回転の同期
 
 	hpUi_->Update();
 	weapon_->Update();
-
 }
 
 void Player::Draw(void)
@@ -230,10 +183,7 @@ void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 }
 void Player::MoveDirFromInput(void)
 {
-	////プレイヤー入力クラスから角度を取得
-	//VECTOR getDir = logic_->GetDir();
-	////カメラの入力角度でプレイヤーの方向を変える
-	//Quaternion cameraRot = scnMng_.GetCamera().lock()->GetQuaRotOutX();
+	//プレイヤー入力クラスから角度を取得
 	charaRot_.dir_ = logic_->GetDir();
 	charaRot_.dir_ = VNorm(charaRot_.dir_);
 	//charaRot_.dir_ = getDir;
@@ -283,14 +233,6 @@ void Player::DrawDebug(void)
 	VECTOR pos = trans_.pos;
 	//DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetAct()),isDamage_);
 	DrawFormatString(0, 300, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
-	//// フレームの取得
-	//int frmNo = MV1SearchFrame(trans_.modelId, L"Maria_sword");
-	//if (frmNo == -1) {
-	//	// エラー処理またはログ出力
-	//	return;
-	//}
-
-
 
 	//// 手の位置とグローバルマトリクスを取得
 	//const auto& posFream = MV1GetFramePosition(trans_.modelId, frmNo);
@@ -300,6 +242,21 @@ void Player::DrawDebug(void)
 }
 
 #endif // _DEBUG
+
+void Player::AddAnimation(void)
+{
+	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED * 2.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::CARD_RELOAD), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RELOAD));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_MIDDLE), ATK_MID_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_MIDDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_SHORT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_SHORT));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
+}
 
 void Player::AddAction(void)
 {
@@ -337,36 +294,6 @@ void Player::MakeColliderGeometry(void)
 	onHit_->Load();
 }
 
-void Player::ChangeState(PLAYER_STATE _state)
-{
-	state_ = _state;
-	changeStates_[state_]();
-}
-void Player::ChangeAlive(void)
-{
-	stateUpdate_ = std::bind(&Player::AliveUpdate, this);
-}
-void Player::AliveUpdate(void)
-{
-	//アクション関係更新
-	Action();
-}
-void Player::ChangeDeath(void)
-{
-	stateUpdate_ = std::bind(&Player::DeathUpdate, this);
-}
-void Player::DeathUpdate(void)
-{
-
-}
-void Player::ChangeGoal(void)
-{
-
-}
-void Player::GoalUpdate(void)
-{
-
-}
 
 void Player::Action(void)
 {

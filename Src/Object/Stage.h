@@ -11,6 +11,11 @@ class Stage :
 public:
     //ステージのスケール
     static constexpr float STAGE_SCL = 30.0f;
+    static constexpr float STAGE_SCL_Y = 0.1f;
+
+    //UVスケール
+    static constexpr float STAGE_UV_SCL = 300.0f;
+
     //ステージのサイズ
     static constexpr float STAGE_SIZE = 200.0f * STAGE_SCL;
     //ステージの座標

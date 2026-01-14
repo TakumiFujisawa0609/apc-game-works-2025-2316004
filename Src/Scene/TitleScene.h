@@ -13,7 +13,7 @@ public:
 	{
 		//ボタンメニュ
 		START_GAME,
-		TUTORIAL,
+		//TUTORIAL,
 		SCREEN,
 		EXIT_MENU,
 		//その他
@@ -27,7 +27,7 @@ public:
 	enum class TITLE_BTN
 	{
 		START_GAME,
-		TUTORIAL,
+		//TUTORIAL,
 		SCREEN,
 		EXIT,
 		MAX
@@ -99,7 +99,8 @@ private:
 	static constexpr int QUESTION_OFFSET = 30;
 	
 	//はい、いいえの文字間隔
-	static constexpr int YES_NO_DISTANCE = 100;
+	static constexpr int YES_NO_DISTANCE_X = 70;
+	static constexpr int YES_NO_DISTANCE_Y = 100;
 	
 	//イージング
 	std::unique_ptr<Easing>easing_;

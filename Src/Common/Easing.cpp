@@ -3,6 +3,14 @@
 #include "Easing.h"
 
 
+Easing::Easing(void)
+{
+}
+
+Easing::~Easing(void)
+{
+}
+
 void Easing::SetEasing(const float t, const EASING_TYPE type)
 {
     switch (type)
