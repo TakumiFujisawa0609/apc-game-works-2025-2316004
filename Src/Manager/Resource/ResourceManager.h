@@ -64,6 +64,8 @@ public:
 		P_HP_BAR_FRAME,	//HPフレーム
 		P_HP_ARC_OUTLINE,	//円形アウトライン
 		P_HP_LINE_OUT_LINE,	//線形アウトライン
+		P_CARD_NUM_GAUGE_MASK,	//カード枚数ゲージマスク
+		P_CARD_NUM_GAUGE_FRAME,	//カード枚数ゲージフレーム
 		CARD_SELECT_FRAME_IMG,//カード枠画像
 		E_HP_BAR_MASK,	//エネミー体力ゲージマスク
 		E_HP_BAR_FRAME,	//エネミー体力ゲージフレーム

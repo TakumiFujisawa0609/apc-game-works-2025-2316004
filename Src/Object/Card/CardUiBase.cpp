@@ -106,6 +106,7 @@ void CardUIBase::Update(void)
 
 void CardUIBase::Draw(void)
 {
+	if (actions_.empty())return;
 	for (auto& card : actions_)
 	{
 		//DrawCard(card);
@@ -173,14 +174,6 @@ void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 	}
 	
 }
-
-//void CardUIBase::ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos)
-//{
-//	//’e‚©‚êˆÚ“®
-//	_card.cardPos_ = UtilityCommon::Lerp(_card.cardPos_, _goalPos,
-//		(CardUIController::REACT_MOVE_CARD_TIME - _card.reactCnt_) / CardUIController::REACT_MOVE_CARD_TIME);
-//	_card.reactCnt_ -= DELTA;
-//}
 
 void CardUIBase::AddHandCurrent(void)
 {

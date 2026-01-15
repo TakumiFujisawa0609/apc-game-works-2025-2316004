@@ -28,7 +28,7 @@ int DataBank::GetPlayerNum(void)
 void DataBank::SetIsFullScreen(const bool _isFullScreen)
 {
 	isFullScreen_ = _isFullScreen;
-	ChangeWindowMode(!isFullScreen_);
+    ChangeWindowMode(!isFullScreen_);
 }
 
 void DataBank::AddPlayerCardData(const CardBase::CARD_STATUS _status)

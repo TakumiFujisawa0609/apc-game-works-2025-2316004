@@ -93,9 +93,26 @@ private:
 	static constexpr float ARROUND_PER_QUAD_DEG = ARROUND_PER_DEG * ARROUND_NUM_PER_QUAD;//90度当たりの枚数
 	static constexpr float ARROUND_PER_QUAD_RAD = ARROUND_PER_QUAD_DEG * DX_PI_F / 180.0f;//90度当たりの枚数
 
+
+	//バーの色(明るい緑)
+	static constexpr FLOAT4 BAR_LIGHT_GREEN = { 0.2f, 0.6f, 1.0f,0.0f };
+	//バーの色(青)
+	static constexpr FLOAT4 BAR_BLUE = { 0.2f, 1.0f, 0.4f,0.0f };
+	//ゲージ座標
+	static constexpr Vector2F BAR_POS = { 50.0f,Application::SCREEN_SIZE_Y - 70 };
+	//static constexpr Vector2F BAR_POS0 = { 0,0 };
+	// 
+	//ゲージの大きさ
+	static constexpr float BAR_SCALE = 0.1f;
+	//マスクサイズ
+	static constexpr Vector2F BAR_SIZE = { 1095,618 };
+
 	//弾かれる前のゴール座標
-	static constexpr Vector2F REACT_GOAL_CARD_POS = {  - 200.0f, Application::SCREEN_HALF_Y + 500 };
-	//手札の選択カードと
+	static constexpr Vector2F REACT_GOAL_CARD_POS = {-200.0f, Application::SCREEN_HALF_Y + 500 };
+	//カード残り枚数ゲージシェーダ定数バッファサイズ
+	static constexpr int CARD_NUM_GAUGE_CONST_BUF_SIZE = 3;
+	//カード残り枚数ゲージシェーダ定数バッファインデックス
+	static constexpr int CARD_NUM_GAUGE_CONST_BUF_IDX = 2;
 
 	//選択カード番号
 	static constexpr int SELECT_CARD_NO = 1;
@@ -121,6 +138,14 @@ private:
 	//リロード終了
 	bool isReloadEnd_;
 
+	//残りカード枚数ゲージ
+	float cardNumPer_;
+	//残りカード枚数ゲージ
+	int cardNumFrameImg_;
+	//残りカード枚数マスク画像
+	int cardNumMaskImg_;
+	//カード残り枚数ゲージの大きさ
+	Vector2F barSize_;
 	//カード状態遷移
 	void ChangeNone(void)override;		//通常
 	void ChangeLeft(void)override;		//左に移動
@@ -167,8 +192,8 @@ private:
 	std::list<std::shared_ptr<CardUIController>>::iterator GetSearchHandIt(std::shared_ptr<CardUIController> target);
 
 	//カード残り枚数のゲージ
-	std::unique_ptr<PixelMaterial> cardGaugePSMaterial;
-	std::unique_ptr<PixelRenderer> cardGaugePSRederer_;
+	std::unique_ptr<PixelMaterial> cardGaugePSMaterial_;
+	std::unique_ptr<PixelRenderer> cardGaugePSRenderer_;
 
 };
 

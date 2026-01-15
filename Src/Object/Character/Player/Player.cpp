@@ -117,9 +117,6 @@ void Player::Init(void)
 	hpUi_->Init();
 	weapon_->Init();
 
-	//atkTable_.emplace(ATK_TYPE::NML_ATK_1,)
-
-
 	action_->Init();
 	deck_->Init();
 
@@ -162,8 +159,6 @@ void Player::Draw(void)
 	//通常描画
 	MV1DrawModel(trans_.modelId);
 
-	//action_->DrawDebug();
-	
 	//カードUI描画
 	cardUI_->Draw();
 
@@ -174,6 +169,7 @@ void Player::Draw(void)
 	weapon_->Draw();
 
 #ifdef _DEBUG
+	//action_->DrawDebug();
 	DrawDebug();
 #endif // _DEBUG
 }
@@ -235,7 +231,6 @@ void Player::DrawDebug(void)
 	DrawFormatString(0, 300, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
 
 	//// 手の位置とグローバルマトリクスを取得
-	//const auto& posFream = MV1GetFramePosition(trans_.modelId, frmNo);
 	VECTOR atkPos = Utility3D::AddPosRotate(trans_.pos, trans_.quaRot, { 0.0f,100.0f,40.0f });
 	DrawSphere3D(atkPos, 10, 10, 0xffffff, 0xffffff, false);
 

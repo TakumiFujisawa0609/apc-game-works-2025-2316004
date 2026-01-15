@@ -7,7 +7,7 @@
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
 #include "../Renderer/PixelMaterial.h"
-#include "../Renderer/PixelMaterial.h"
+#include "../Renderer/PixelRenderer.h"
 
 #include "../Card/CardUIController.h"
 #include "../Card/CardSystem.h"
@@ -23,6 +23,7 @@ isReloadEnd_(false)
 	int i = -1;
 	//複数画像はコンストラクタで初期化必須
 	cardNoImg_ = &i;
+
 }
 
 PlayerCardUI::~PlayerCardUI(void)
@@ -44,6 +45,8 @@ void PlayerCardUI::Load(void)
 	reloadGage_ = res.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
 	reloadFrame_ = res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
+	cardNumFrameImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
+	cardNumMaskImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
 
 	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
@@ -54,6 +57,9 @@ void PlayerCardUI::Load(void)
 void PlayerCardUI::Init(void)
 {
 
+	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(L"LineHpBarPS.cso", CARD_NUM_GAUGE_CONST_BUF_SIZE);
+	cardGaugePSRenderer_ = std::make_unique<PixelRenderer>(*cardGaugePSMaterial_);
+	cardGaugePSMaterial_->AddTextureBuf(cardNumMaskImg_);
 	changeMoveState_ = {
 		{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
 		{CARD_SELECT::LEFT, [this]() {ChangeLeft(); } },
@@ -62,6 +68,13 @@ void PlayerCardUI::Init(void)
 		{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } },
 		{CARD_SELECT::RELOAD, [this]() {ChangeReload(); } }
 	};
+
+	cardGaugePSMaterial_->AddConstBuf(BAR_LIGHT_GREEN);
+	cardGaugePSMaterial_->AddConstBuf(BAR_BLUE);
+	cardGaugePSMaterial_->AddConstBuf({ cardNumPer_,cardNumPer_,0.0f,0.0f });
+	barSize_ = BAR_SIZE * BAR_SCALE;
+	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, barSize_);
+
 	InitCardUI();
 	ChangeSelectState(CARD_SELECT::NONE);
 	SetBasePosVisibleCards();
@@ -73,6 +86,11 @@ void PlayerCardUI::Update(void)
 	CardUIBase::Update();
 
 	MoveUpDownVisibleCards();
+
+	float initCardNum = static_cast<float>(initialCards_.size());
+	float handCardNum = static_cast<float>(handCards_.size());
+	cardNumPer_ = handCardNum / initCardNum;
+	cardGaugePSMaterial_->SetConstBuf(CARD_NUM_GAUGE_CONST_BUF_IDX, { cardNumPer_,cardNumPer_,0.0f,0.0f });
 
 	//弾かれるカードの大きさ補完
 	ReactMoveCard(REACT_GOAL_CARD_POS);
@@ -101,8 +119,9 @@ void PlayerCardUI::Draw(void)
 
 	}
 
-
-
+	cardGaugePSRenderer_->Draw();
+	//DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumMaskImg_, true);
+	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + barSize_.x, BAR_POS.y + barSize_.y, cardNumFrameImg_, true);
 	//カード描画(共通)
 	CardUIBase::Draw();
 
@@ -332,15 +351,17 @@ void PlayerCardUI::ChangeReload(void)
 	handCards_.clear();
 	visibleCards_.clear();
 	//手札にすべての初期札を入れる
-	for (auto& it : initialCards_)
-	{
-		it->ResetCount();
-		handCards_.emplace_back(it);
-	}
+	//for (auto& it : initialCards_)
+	//{
+	//	it->ResetCount();
+	//	handCards_.emplace_back(it);
+	//}
 	isReloadEnd_ = false;
 	//一番最後の配列を見る
-	reloadAnimCurr_ = std::prev(handCards_.end());
-	//visibleCurrent_ = visibleCards_.end();
+	//reloadAnimCurr_ = std::prev(handCards_.end());
+	reloadAnimCurr_ = std::prev(initialCards_.end());
+
+	//リロードアニメーション中はカレントを終端にする
 	handCurrent_ = handCards_.end();
 	cardUpdate_ = [this]() {UpdateReload(); };
 }
@@ -377,7 +398,6 @@ void PlayerCardUI::UpdateRight(void)
 
 void PlayerCardUI::UpdateDecision(void)
 {
-	
 	DecisionMoveCardAll();
 
 	std::list<std::shared_ptr<CardUIController>>::iterator visibleCurrent = GetVisibleCurrentIt();
@@ -414,6 +434,8 @@ void PlayerCardUI::UpdateReloadWait(void)
 void PlayerCardUI::UpdateReload(void)
 {
 	ReloadAnimation();
+
+	//リロードが終了したら
 	if (isReloadEnd_)
 	{
 		//見せるカードの現在位置イテレータを初期化
@@ -545,7 +567,6 @@ void PlayerCardUI::ReloadAnimation(void)
 		return;
 	}
 		
-
 	//見せカードの0番目にリロードカードが来たら終了
 	//endItをbeginの５個先(６枚目)に指定する
 	//６枚目までイテレータを回す
@@ -553,14 +574,17 @@ void PlayerCardUI::ReloadAnimation(void)
 	//定期的に見せカード配列に格納する
 	if (cardMoveCnt_ < 0.0f)
 	{
-		//reloadAnimCurr_->currentAngle_ = static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT);
 		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
 
 		//見せるカード配列に追加
 		//サウンドを再生
 		SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
 		visibleCards_.emplace_front(*reloadAnimCurr_);
-		if(visibleCards_.size()>VISIBLE_CARD_MAX&& reloadAnimCurr_==std::prev(handCards_.end()))
+
+		handCards_.emplace_front(*reloadAnimCurr_);
+
+		//if(visibleCards_.size()>VISIBLE_CARD_MAX&& reloadAnimCurr_==std::prev(handCards_.end()))
+		if(visibleCards_.size()>VISIBLE_CARD_MAX&& reloadAnimCurr_==std::prev(initialCards_.end()))
 		{
 			isReloadEnd_ = true;
 		}
@@ -583,13 +607,14 @@ void PlayerCardUI::ReloadAnimation(void)
 	if(visibleCards_.size()>VISIBLE_CARD_MAX)
 	{
 		visibleCards_.pop_back();
-		//visibleDrawCard_.pop_back();
 	}
-	if(reloadAnimCurr_==handCards_.begin())
+	//if(reloadAnimCurr_==handCards_.begin())
+	if(reloadAnimCurr_==initialCards_.begin())
 	{
 		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
 		visibleCards_.emplace_front(*reloadAnimCurr_);
-		reloadAnimCurr_ = std::prev(handCards_.end());
+		//reloadAnimCurr_ = std::prev(handCards_.end());
+		reloadAnimCurr_ = std::prev(initialCards_.end());
 	}
 }
 

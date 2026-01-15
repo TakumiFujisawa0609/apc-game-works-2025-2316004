@@ -45,7 +45,7 @@ private:
 	static constexpr float MOVE_COOL_TIME = 0.5f;
 
 	//プレイヤーに攻撃を仕掛けるプレイヤーとの距離
-	static constexpr float ATK_DISTANCE = 200.0f;
+	static constexpr float ATK_DISTANCE = 250.0f;
 
 	//シーンマネージャ
 	SceneManager& scnMng_;

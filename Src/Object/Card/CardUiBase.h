@@ -171,7 +171,7 @@ protected:
 	//ƒ^ƒCƒv‰æ‘œ
 	std::unordered_map<CardBase::CARD_TYPE, int> typeImgs_;
 	//‡@‰ŠúƒJ[ƒh
-	std::vector<std::shared_ptr<CardUIController>>initialCards_;
+	std::list<std::shared_ptr<CardUIController>>initialCards_;
 	//‡AèD
 	std::list<std::shared_ptr<CardUIController>>handCards_;
 	//‡BèDUI‚Í”h¶‚ÌPlayerCardUI

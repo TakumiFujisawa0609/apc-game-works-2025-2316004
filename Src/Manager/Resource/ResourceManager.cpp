@@ -157,6 +157,11 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_GaugeCover.png");
 	resourcesMap_.emplace(SRC::E_HP_COVER, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardNumGaugeMask.png");
+	resourcesMap_.emplace(SRC::P_CARD_NUM_GAUGE_MASK, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardNumGaugeFrame.png");
+	resourcesMap_.emplace(SRC::P_CARD_NUM_GAUGE_FRAME, std::move(res));
 
 
 	//ï°êîâÊëú
@@ -169,7 +174,6 @@ void ResourceManager::Init(void)
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/EnemyCharge.efkefc");
 	resourcesMap_.emplace(SRC::E_JUMP_CHARGE_EFF, std::move(res));
-
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"ExpandStar/ExpandStar.efkefc");
 	resourcesMap_.emplace(SRC::KEY_BLADE_HIT_EFF, std::move(res));
