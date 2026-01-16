@@ -267,6 +267,9 @@ public:
 	/// @param _isCanMoveable true:操作可能	false:操作不可能
 	void SetIsCanMoveable(const bool _isCanMoveable) { isMoveable_ = _isCanMoveable; }
 
+
+	//カードを使用済みにする(自分の攻撃中、敵の攻撃に当たった時)
+	void SetUsedCard(void);
 protected:
 
 	//移動量ラインオフセット

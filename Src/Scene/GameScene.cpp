@@ -108,6 +108,8 @@ void GameScene::NormalUpdate(void)
 	//終了した当たり判定の消去
 	CollisionManager::GetInstance().Sweep();
 
+
+
 #ifdef _DEBUG
 	//デバッグ処理
 	DebagUpdate();

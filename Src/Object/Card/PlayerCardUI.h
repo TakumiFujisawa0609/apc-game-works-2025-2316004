@@ -113,9 +113,12 @@ private:
 	static constexpr int CARD_NUM_GAUGE_CONST_BUF_SIZE = 3;
 	//カード残り枚数ゲージシェーダ定数バッファインデックス
 	static constexpr int CARD_NUM_GAUGE_CONST_BUF_IDX = 2;
-
 	//選択カード番号
 	static constexpr int SELECT_CARD_NO = 1;
+	//フォントサイズ
+	static constexpr int FONT_SIZE = 32;
+	//フォントの輪郭幅
+	static constexpr int FONT_EDGE_SIZE = 2;
 
 	////初期カード
 	//std::vector<CARD_UI_INFO>uiInfos_;
@@ -146,6 +149,9 @@ private:
 	int cardNumMaskImg_;
 	//カード残り枚数ゲージの大きさ
 	Vector2F barSize_;
+	//フォント
+	int fontHandle_;
+
 	//カード状態遷移
 	void ChangeNone(void)override;		//通常
 	void ChangeLeft(void)override;		//左に移動
@@ -182,7 +188,7 @@ private:
 	//リロードアニメーション
 	void ReloadAnimation(void);
 	////使用済みのカードを消す
-	//void UpdateUsedCard(void);
+	void ReloadCardArray(void);
 
 	//上下に見せカードを動かす
 	void MoveUpDownVisibleCards(void);

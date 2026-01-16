@@ -126,7 +126,7 @@ void Player::Init(void)
 		deck_->AddDrawPile(CARD_POWS[i]);
 		cardUI_->AddCardUi(CARD_POWS[i]);
 	}
-	//デッキの先頭にリロードカード追加
+	//デッキの末尾にリロードカード追加
 	deck_->AddDrawPile(RELOAD_CARD_STATUS);
 	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 	cardUI_->Init();
@@ -242,7 +242,7 @@ void Player::AddAnimation(void)
 {
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED * 2.0f, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED , resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));

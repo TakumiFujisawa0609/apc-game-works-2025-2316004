@@ -36,6 +36,7 @@ void TitleScene::Load(void)
 	//タイトルロゴの読み込み
 	imgTitleLogo = resMng_.Load(ResourceManager::SRC::TITLE_LOGO).handleId_;
 
+	//タイトル用フォントの登録
 	titleFont_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	soundMng_.LoadResource(SoundManager::SRC::TITLE_BGM);

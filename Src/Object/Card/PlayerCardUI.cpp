@@ -6,6 +6,7 @@
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Manager/Resource/FontManager.h"
 #include "../Renderer/PixelMaterial.h"
 #include "../Renderer/PixelRenderer.h"
 
@@ -47,7 +48,7 @@ void PlayerCardUI::Load(void)
 	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
 	cardNumFrameImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
 	cardNumMaskImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
-
+	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
 	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
@@ -56,7 +57,6 @@ void PlayerCardUI::Load(void)
 }
 void PlayerCardUI::Init(void)
 {
-
 	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(L"LineHpBarPS.cso", CARD_NUM_GAUGE_CONST_BUF_SIZE);
 	cardGaugePSRenderer_ = std::make_unique<PixelRenderer>(*cardGaugePSMaterial_);
 	cardGaugePSMaterial_->AddTextureBuf(cardNumMaskImg_);
@@ -122,6 +122,18 @@ void PlayerCardUI::Draw(void)
 	cardGaugePSRenderer_->Draw();
 	//DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumMaskImg_, true);
 	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + barSize_.x, BAR_POS.y + barSize_.y, cardNumFrameImg_, true);
+
+	int handCardSize = handCards_.size();
+
+	DrawFormatStringToHandle(
+		50,
+		550,
+		UtilityCommon::RED,
+		fontHandle_,
+		L"%d",
+		handCardSize
+	);
+
 	//カード描画(共通)
 	CardUIBase::Draw();
 
@@ -318,7 +330,6 @@ void PlayerCardUI::ChangeDecision(void)
 		ChangeSelectState(CARD_SELECT::RELOAD_WAIT);
 		return;
 	}
-	//disitionCnt_ = DISITION_MOVE_CARD_TIME;
 
 
 	actions_.emplace_back(*handCurrent_);
@@ -350,13 +361,9 @@ void PlayerCardUI::ChangeReload(void)
 {
 	handCards_.clear();
 	visibleCards_.clear();
-	//手札にすべての初期札を入れる
-	//for (auto& it : initialCards_)
-	//{
-	//	it->ResetCount();
-	//	handCards_.emplace_back(it);
-	//}
+
 	isReloadEnd_ = false;
+
 	//一番最後の配列を見る
 	//reloadAnimCurr_ = std::prev(handCards_.end());
 	reloadAnimCurr_ = std::prev(initialCards_.end());
@@ -415,7 +422,6 @@ void PlayerCardUI::UpdateDecision(void)
 		SetBasePosActionCards();
 		ChangeSelectState(CARD_SELECT::NONE);
 	}
-
 }
 
 void PlayerCardUI::UpdateReloadWait(void)
@@ -574,22 +580,34 @@ void PlayerCardUI::ReloadAnimation(void)
 	//定期的に見せカード配列に格納する
 	if (cardMoveCnt_ < 0.0f)
 	{
-		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
-
-		//見せるカード配列に追加
 		//サウンドを再生
 		SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
-		visibleCards_.emplace_front(*reloadAnimCurr_);
 
-		handCards_.emplace_front(*reloadAnimCurr_);
+		ReloadCardArray();
 
-		//if(visibleCards_.size()>VISIBLE_CARD_MAX&& reloadAnimCurr_==std::prev(handCards_.end()))
+		//見せカードが7枚以上の時は終了
 		if(visibleCards_.size()>VISIBLE_CARD_MAX&& reloadAnimCurr_==std::prev(initialCards_.end()))
 		{
 			isReloadEnd_ = true;
 		}
-		cardMoveCnt_ = CardUIController::RELOAD_MOVE_CARD_TIME_PER;
+		
 		reloadAnimCurr_--;
+
+		//先頭まで来たら最後尾に戻し、見せカードにリロードカードを追加
+		if (reloadAnimCurr_ == initialCards_.begin())
+		{
+			(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
+			visibleCards_.emplace_front(*reloadAnimCurr_);
+
+			auto insertIt = (*reloadAnimCurr_);
+			insertIt->ResetCount();
+			handCards_.emplace_front(insertIt);
+
+			//リロードカードの対象を最後尾に戻す
+			reloadAnimCurr_ = std::prev(initialCards_.end());
+		}
+		cardMoveCnt_ = CardUIController::RELOAD_MOVE_CARD_TIME_PER;
+
 	}
 
 	//見せカードの移動
@@ -597,7 +615,6 @@ void PlayerCardUI::ReloadAnimation(void)
 	int i = 0;
 	for (auto& card : visibleCards_)
 	{
-		//MoveSpecificCard(card);
 
 		card->SetStartAndGoalAngle(ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT));
 		card->MoveOnRevolver(cardMoveCnt_, CardUIController::RELOAD_MOVE_CARD_TIME_PER);
@@ -608,13 +625,21 @@ void PlayerCardUI::ReloadAnimation(void)
 	{
 		visibleCards_.pop_back();
 	}
-	//if(reloadAnimCurr_==handCards_.begin())
-	if(reloadAnimCurr_==initialCards_.begin())
+}
+
+void PlayerCardUI::ReloadCardArray(void)
+{
+	//リロードカードの現在位置にセット
+	(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
+	//見せるカード配列に追加
+	visibleCards_.emplace_front(*reloadAnimCurr_);
+
+	//手札配列に追加
+	if (std::find(handCards_.begin(), handCards_.end(), *reloadAnimCurr_) == handCards_.end())
 	{
-		(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
-		visibleCards_.emplace_front(*reloadAnimCurr_);
-		//reloadAnimCurr_ = std::prev(handCards_.end());
-		reloadAnimCurr_ = std::prev(initialCards_.end());
+		auto insertIt = (*reloadAnimCurr_);
+		insertIt->ResetCount();
+		handCards_.emplace_front(insertIt);
 	}
 }
 

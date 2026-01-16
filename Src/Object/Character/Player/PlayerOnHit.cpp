@@ -105,7 +105,12 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	//ダメージを計算
 	float damage = parentChara.GetMainAction().GetAtkStatus().atkPoint;
 
+	//ダメージ処理
 	charaObj_.Damage(damage);
+	
+	//攻撃中に敵の攻撃を食らった場合、カードを消費する
+	charaObj_.SetUsedCard();
+
 	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	

@@ -103,6 +103,7 @@ private:
 
     //リロードのボタン押す時間
     static constexpr float RELOAD_TIME = 3.0f;
+
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,0.0f,50.0f };
     //カードリロード中の音量

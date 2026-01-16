@@ -148,6 +148,12 @@ void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 
 }
 
+void CharacterBase::SetUsedCard(void)
+{
+	cardUI_->ChangeReactActionCard();
+	deck_->EraseHandCard();
+}
+
 void CharacterBase::MoveDirFromInput(void)
 {
 }
