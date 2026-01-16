@@ -119,7 +119,7 @@ private:
 	static constexpr int FONT_SIZE = 32;
 	//フォントの輪郭幅
 	static constexpr int FONT_EDGE_SIZE = 2;
-
+	static constexpr Vector2 FONT_POS = { 50,550 };
 	////初期カード
 	//std::vector<CARD_UI_INFO>uiInfos_;
 

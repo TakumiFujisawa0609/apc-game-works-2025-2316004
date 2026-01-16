@@ -125,9 +125,10 @@ void PlayerCardUI::Draw(void)
 
 	int handCardSize = handCards_.size();
 
+	//カードの残り枚数の描画
 	DrawFormatStringToHandle(
-		50,
-		550,
+		FONT_POS.x,
+		FONT_POS.y,
 		UtilityCommon::RED,
 		fontHandle_,
 		L"%d",
