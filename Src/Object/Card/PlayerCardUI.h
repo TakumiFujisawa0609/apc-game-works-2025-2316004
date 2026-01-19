@@ -99,16 +99,19 @@ private:
 	//バーの色(青)
 	static constexpr FLOAT4 BAR_BLUE = { 0.2f, 1.0f, 0.4f,0.0f };
 	//ゲージ座標
-	static constexpr Vector2F BAR_POS = { 50.0f,Application::SCREEN_SIZE_Y - 70 };
-	//static constexpr Vector2F BAR_POS0 = { 0,0 };
-	// 
+	static constexpr Vector2F BAR_POS = { 30.0f,Application::SCREEN_SIZE_Y - 70 };
 	//ゲージの大きさ
 	static constexpr float BAR_SCALE = 0.1f;
 	//マスクサイズ
-	static constexpr Vector2F BAR_SIZE = { 1095,618 };
+	static constexpr Vector2F BAR_SIZE = { 1095 * BAR_SCALE,618 * BAR_SCALE };
+
+	//ゲージ背景位置
+	static constexpr Vector2F BAR_BG_POS = { BAR_POS.x - 20.0f,BAR_POS.y - 40.0f };
+	//ゲージサイズ
+	static constexpr Vector2F BAR_BG_SIZE = { BAR_SIZE.x + 40.0f,BAR_SIZE.y + 70.0f };
 
 	//弾かれる前のゴール座標
-	static constexpr Vector2F REACT_GOAL_CARD_POS = {-200.0f, Application::SCREEN_HALF_Y + 500 };
+	static constexpr Vector2F REACT_GOAL_CARD_POS = {-200.0f, Application::SCREEN_HALF_Y + 500.0f };
 	//カード残り枚数ゲージシェーダ定数バッファサイズ
 	static constexpr int CARD_NUM_GAUGE_CONST_BUF_SIZE = 3;
 	//カード残り枚数ゲージシェーダ定数バッファインデックス
@@ -119,7 +122,7 @@ private:
 	static constexpr int FONT_SIZE = 32;
 	//フォントの輪郭幅
 	static constexpr int FONT_EDGE_SIZE = 2;
-	static constexpr Vector2 FONT_POS = { 50,550 };
+	static constexpr Vector2F FONT_POS = { BAR_POS.x,550.0f };
 	////初期カード
 	//std::vector<CARD_UI_INFO>uiInfos_;
 
@@ -147,8 +150,8 @@ private:
 	int cardNumFrameImg_;
 	//残りカード枚数マスク画像
 	int cardNumMaskImg_;
-	//カード残り枚数ゲージの大きさ
-	Vector2F barSize_;
+	//残りカード枚数ゲージ背景
+	int cardNumBgImg_;
 	//フォント
 	int fontHandle_;
 
@@ -200,6 +203,7 @@ private:
 	//カード残り枚数のゲージ
 	std::unique_ptr<PixelMaterial> cardGaugePSMaterial_;
 	std::unique_ptr<PixelRenderer> cardGaugePSRenderer_;
+
 
 };
 

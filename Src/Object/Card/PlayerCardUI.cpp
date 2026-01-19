@@ -50,6 +50,7 @@ void PlayerCardUI::Load(void)
 	cardNumMaskImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
 	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
+	cardNumBgImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
 	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
@@ -59,6 +60,7 @@ void PlayerCardUI::Init(void)
 {
 	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(L"LineHpBarPS.cso", CARD_NUM_GAUGE_CONST_BUF_SIZE);
 	cardGaugePSRenderer_ = std::make_unique<PixelRenderer>(*cardGaugePSMaterial_);
+
 	cardGaugePSMaterial_->AddTextureBuf(cardNumMaskImg_);
 	changeMoveState_ = {
 		{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
@@ -72,8 +74,8 @@ void PlayerCardUI::Init(void)
 	cardGaugePSMaterial_->AddConstBuf(BAR_LIGHT_GREEN);
 	cardGaugePSMaterial_->AddConstBuf(BAR_BLUE);
 	cardGaugePSMaterial_->AddConstBuf({ cardNumPer_,cardNumPer_,0.0f,0.0f });
-	barSize_ = BAR_SIZE * BAR_SCALE;
-	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, barSize_);
+	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, BAR_SIZE);
+
 
 	InitCardUI();
 	ChangeSelectState(CARD_SELECT::NONE);
@@ -119,14 +121,18 @@ void PlayerCardUI::Draw(void)
 
 	}
 
+	//カード残り枚数ゲージ背景の描画
+	DrawExtendGraphF(BAR_BG_POS.x, BAR_BG_POS.y, BAR_BG_POS.x + BAR_BG_SIZE.x, BAR_BG_POS.y + BAR_BG_SIZE.y, cardNumBgImg_, true);
+
+	//カード残り枚数ゲージの描画
 	cardGaugePSRenderer_->Draw();
 	//DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumMaskImg_, true);
-	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + barSize_.x, BAR_POS.y + barSize_.y, cardNumFrameImg_, true);
+	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumFrameImg_, true);
 
 	int handCardSize = handCards_.size();
 
 	//カードの残り枚数の描画
-	DrawFormatStringToHandle(
+	DrawFormatStringFToHandle(
 		FONT_POS.x,
 		FONT_POS.y,
 		UtilityCommon::RED,

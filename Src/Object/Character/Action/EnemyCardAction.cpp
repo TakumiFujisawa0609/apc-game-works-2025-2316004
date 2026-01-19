@@ -17,7 +17,7 @@
 
 EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
 CardActionBase(_actCntl, _charaObj, _deck),
-cameraShakeCnt_(0.0f),
+atkCnt_(0.0f),
 roleAtkCnt_(0.0f),
 preRoleAtkCnt_(0.0f),
 preRolePos_(Utility3D::VECTOR_ZERO),
@@ -74,7 +74,7 @@ void EnemyCardAction::Init(void)
 		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
-	cameraShakeCnt_ = 0.0f;
+	atkCnt_ = 0.0f;
 	speed_ = 0.0f;
 	roleAtkCnt_ = 0.0f;
 	roleDeg_ = 0.0f;
@@ -223,8 +223,8 @@ void EnemyCardAction::UpdateStomp(void)
 		//charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
 
 		//溜めのカメラシェイク
-		cameraShakeCnt_ += SceneManager::GetInstance().GetDeltaTime();
-		scnMng_.GetCamera().lock()->SetShakeStatus(cameraShakeCnt_ / STOMP_ATK_SHAKE_CNT, 30.0f);
+		atkCnt_ += SceneManager::GetInstance().GetDeltaTime();
+		scnMng_.GetCamera().lock()->SetShakeStatus(atkCnt_ / STOMP_ATK_SHAKE_CNT, 30.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//地響き音再生
@@ -246,9 +246,9 @@ void EnemyCardAction::UpdateStomp(void)
 		}
 
 		//ため時間が終わったら
-		if (cameraShakeCnt_ > STOMP_ATK_SHAKE_CNT)
+		if (atkCnt_ > STOMP_ATK_SHAKE_CNT)
 		{
-			cameraShakeCnt_ = 0.0f;
+			atkCnt_ = 0.0f;
 			atk_.atkRadius = JUMP_ATK_RADIUS;
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
@@ -283,7 +283,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	{
 		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//アニメーションループ
-		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
+		anim_.SetMidLoop(JUMP_CHARGE_ANIM_LOOP_START, JUMP_CHARGE_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
 
 		//溜めのカメラシェイク
 		scnMng_.GetCamera().lock()->SetShakeStatus(jumpChargeCnt_ / JUMP_CHARGE_TIME, 10.0f);
@@ -304,11 +304,12 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		}
 	}
 
+	//ジャンプアニメーションが終わったらドーム型の攻撃をする
 	else if (anim_.GetAnimStep() > JUMP_ANIM_END)
 	{
 		const Transform& charaTrans = charaObj_.GetTransform();
 
-		cameraShakeCnt_ += SceneManager::GetInstance().GetDeltaTime();
+		atkCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//攻撃中
 		atk_.pos = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, { 0.0f,0.0f,0.0f });
 		//攻撃判定有効
@@ -316,11 +317,11 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
 
 		//攻撃範囲拡大
-		atk_.atkRadius = easing_->EaseFunc(JUMP_ATK_RADIUS, JUMP_ATK_GOAL_RADIUS, cameraShakeCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
+		atk_.atkRadius = easing_->EaseFunc(JUMP_ATK_RADIUS, JUMP_ATK_GOAL_RADIUS, atkCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
 		charaObj_.UpdateAttackCol(atk_.atkRadius);
 
-		//溜めのカメラシェイク
-		scnMng_.GetCamera().lock()->SetShakeStatus(cameraShakeCnt_ / JUMP_ATK_CNT_MAX, 30.0f);
+		//溜めのカメラシェイク()
+		scnMng_.GetCamera().lock()->SetShakeStatus(atkCnt_ / JUMP_ATK_CNT_MAX, 30.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//サウンド再生
@@ -332,12 +333,12 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		effect_->SetScale(EffectController::EFF_TYPE::BLAST, static_cast<int>(EFF_TYPE::BLAST),
 			{ atk_.atkRadius * BLAST_EFF_SCL,atk_.atkRadius * BLAST_EFF_SCL,atk_.atkRadius * BLAST_EFF_SCL });
 
-		//アニメーションループ
-		anim_.SetMidLoop(53.0f, 69.0f, 10.0f);
+		//攻撃アニメーションループ
+		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_ATTACK_LOOP_SPEED);
 
-		if (cameraShakeCnt_ > JUMP_ATK_CNT_MAX)
+		if (atkCnt_ > JUMP_ATK_CNT_MAX)
 		{
-			cameraShakeCnt_ = 0.0f;
+			atkCnt_ = 0.0f;
 			atk_.atkRadius = JUMP_ATK_RADIUS;
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
@@ -415,7 +416,7 @@ void EnemyCardAction::UpdateDuel(void)
 
 		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//アニメーションループ
-		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
+		anim_.SetMidLoop(JUMP_CHARGE_ANIM_LOOP_START, JUMP_CHARGE_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
 
 	}
 	else if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)

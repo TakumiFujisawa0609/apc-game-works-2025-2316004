@@ -163,6 +163,9 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardNumGaugeFrame.png");
 	resourcesMap_.emplace(SRC::P_CARD_NUM_GAUGE_FRAME, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardNumBack.png");
+	resourcesMap_.emplace(SRC::P_CARD_NUM_GAUGE_BACK, std::move(res));
+
 
 	//ï°êîâÊëú
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png", CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);

@@ -29,6 +29,11 @@ public:
 	// 描画矩形の生成
 	void MakeSquareVertex(Vector2F pos, Vector2F size);
 	void MakeSquareVertex(void);
+	//中心から作る矩形
+	void MakeSquareVertexFromCenter(Vector2F centerPos, Vector2F size);
+	void MakeSquareVertexFromCenter(void);
+	//頂点の作成
+	void MakeVertex(float sX, float sY, float eX, float eY);
 
 	// 座標設定
 	void SetPos(Vector2F pos);
@@ -39,6 +44,7 @@ public:
 	// 描画
 	void Draw(void);
 	void Draw(float x, float y);
+	void DrawFromCenter(float centerX, float centerY);
 
 private:
 

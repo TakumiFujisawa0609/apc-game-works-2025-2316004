@@ -102,10 +102,17 @@ private:
     //ジャンプ溜めカメラシェイク
     static constexpr float JUMP_CHARGE_SHAKE_LIMIT = 10.0f;
     static constexpr float JUMP_ATK_SHAKE_LIMIT = 30.0f;
-    //ジャンプアニメーションループ
-    static constexpr float JUMP_ATK_ANIM_LOOP_START = 12.0f;
-    static constexpr float JUMP_ATK_ANIM_LOOP_END = 13.0f;
+    //ジャンプアニメーションループ(溜めアニメーション)
+    static constexpr float JUMP_CHARGE_ANIM_LOOP_START = 12.0f;
+    static constexpr float JUMP_CHARGE_ANIM_LOOP_END = 13.0f;
     static constexpr float JUMP_ATK_ANIM_LOOP_SPEED = 5.0f;
+	//ジャンプアニメーションループ(攻撃アニメーション)
+	static constexpr float JUMP_ATK_ANIM_LOOP_START = 53.0f;
+	static constexpr float JUMP_ATK_ANIM_LOOP_END = 69.0f;
+	//ジャンプアニメーションループ速度
+	static constexpr float JUMP_ATK_ANIM_ATTACK_LOOP_SPEED = 10.0f;
+
+
     //ジャンプ攻撃力
     static constexpr float JUMP_ATK_POWER = 10.0f;
 
@@ -131,7 +138,7 @@ private:
 
 
     //エフェクトサイズ
-	static constexpr float BLAST_EFF_SCL = 1.3f;            //爆発
+	static constexpr float BLAST_EFF_SCL = 1.4f;            //爆発
 	static constexpr float JUMP_CHARGE_EFF_SCL = 1000.0f;      //ジャンプチャージ
 
     //ひっかき攻撃のステータス
@@ -146,8 +153,9 @@ private:
 	static constexpr ATK_STATUS RUSH_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,ROLE_ATK_RADIUS };
 
 
-    //ジャンプ攻撃カウント
-    float cameraShakeCnt_;
+    //攻撃カウント
+    float atkCnt_;
+
     //ジャンプチャージカウント
     float jumpChargeCnt_;
     //ジャンプチャージ中のカード勝敗数カウント

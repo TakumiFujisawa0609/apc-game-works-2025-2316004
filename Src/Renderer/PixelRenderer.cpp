@@ -14,12 +14,32 @@ void PixelRenderer::MakeSquareVertex(Vector2F pos, Vector2F size)
 	pos_ = pos;
 	size_ = size;
 
-	int cnt = 0;
 	float sX = pos.x;
 	float sY = pos.y;
 	float eX = pos.x + size.x;
 	float eY = pos.y + size.y;
 
+	MakeVertex(sX, sY, eX, eY);
+}
+
+void PixelRenderer::MakeSquareVertexFromCenter(Vector2F centerPos, Vector2F size)
+{
+	pos_ = { centerPos.x - size.x / 2.0f, centerPos.y - size.y / 2.0f };
+	size_ = size;
+	float sX = centerPos.x - size.x / 2.0f;
+	float sY = centerPos.y - size.y / 2.0f;
+	float eX = centerPos.x + size.x / 2.0f;
+	float eY = centerPos.y + size.y / 2.0f;
+	MakeVertex(sX, sY, eX, eY);
+}
+
+void PixelRenderer::MakeSquareVertexFromCenter(void)
+{
+	MakeSquareVertexFromCenter(pos_, size_);
+}
+
+void PixelRenderer::MakeVertex(float sX, float sY, float eX, float eY)
+{
 	// ４頂点の初期化
 	for (int i = 0; i < 4; i++)
 	{
@@ -30,6 +50,7 @@ void PixelRenderer::MakeSquareVertex(Vector2F pos, Vector2F size)
 		vertexs_[i].sv = 0.0f;
 	}
 
+	int cnt = 0;
 	// 左上
 	vertexs_[cnt].pos = VGet(sX, sY, 0.0f);
 	vertexs_[cnt].u = 0.0f;
@@ -82,7 +103,6 @@ void PixelRenderer::MakeSquareVertex(Vector2F pos, Vector2F size)
 	indexes_[cnt++] = 1;
 	indexes_[cnt++] = 2;
 	indexes_[cnt++] = 3;
-
 }
 
 void PixelRenderer::MakeSquareVertex(void)
@@ -102,7 +122,6 @@ void PixelRenderer::SetSize(Vector2F size)
 
 void PixelRenderer::Draw(void)
 {
-
 	// ピクセルシェーダ設定
 	SetUsePixelShader(normalCardPSMaterial_.GetShader());
 
@@ -179,5 +198,13 @@ void PixelRenderer::Draw(float x, float y)
 	pos_.x = x;
 	pos_.y = y;
 	MakeSquareVertex();
+	Draw();
+}
+
+void PixelRenderer::DrawFromCenter(float centerX, float centerY)
+{
+	pos_.x = centerX;
+	pos_.y = centerY;
+	MakeSquareVertexFromCenter();
 	Draw();
 }

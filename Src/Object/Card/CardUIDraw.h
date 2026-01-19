@@ -1,6 +1,7 @@
 #pragma once
 #include"./CardBase.h"
 
+class Easing;
 class PixelMaterial;
 class PixelRenderer;
 class CardUIController;
@@ -31,12 +32,13 @@ private:
 
 	//カード強さ番号の倍率
 	static constexpr float CARD_SCL = 0.5f;
-
 	//カード初期座標
 	static constexpr VECTOR CARD_INIT_POS = { 50.0f,200.0f,0.0f };
-
 	//選択中のフォグの強さ
 	static constexpr float SELECT_FOG_STRENGTH = 0.3f;
+	//選択カード枠の大きさイージング時間
+	static constexpr float SELECT_CARD_FRAME_EASING_TIME = 0.3f;
+
 
 	//フレーム固定座標
 	static constexpr Vector2F LEFT_UP_FRAME_POS = { 19.5f,343.0f };
@@ -44,13 +46,25 @@ private:
 
 	//シェーダの定数バッファスロット
 	static constexpr int CONST_BUF_SLOT_NUM = 3;
+	//選択カードの定数バッファスロット
+	static constexpr int CARD_NUM_CONST_BUF_SIZE = 3;
+	//選択カードアウトラインサイズ
+	static constexpr float SELECT_CARD_OUTLINE_SIZE = 100.0f;	
+
 	//通常カードピクセルマテリアル
 	std::unique_ptr<PixelMaterial> normalCardPSMaterial_;
 	//通常カードピクセルレンダラー
 	std::unique_ptr<PixelRenderer> normalCardPSRenderer_;
 	//リロードカード
 	std::unique_ptr<PixelMaterial> reloadCardPSMaterial_;
-	std::unique_ptr<PixelRenderer> reloadCardPSRederer_;
+	std::unique_ptr<PixelRenderer> reloadCardPSRenderer_;
+
+	//選択カード枠マテリアル
+	std::unique_ptr<PixelMaterial> selectCardPSMaterial_;
+	std::unique_ptr<PixelRenderer> selectCardPSRenderer_;
+
+	//イージング
+	std::unique_ptr<Easing>easing_;
 
 	int& typeImg_;		//カードの種類画像
 
@@ -60,7 +74,7 @@ private:
 	Vector2F rightTopPos_;	//左上座標
 	Vector2F leftDownPos_;	//右下座標
 	float& scl_;			//サイズ
-
+	float selectEaseCnt_;	//選択枠イージングカウント
 	//カードの描画
 	void DrawCard(void);
 };

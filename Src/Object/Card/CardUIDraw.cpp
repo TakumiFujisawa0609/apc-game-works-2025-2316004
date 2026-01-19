@@ -4,6 +4,7 @@
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Renderer/PixelMaterial.h"
 #include "../Renderer/PixelRenderer.h"
+#include "../Common/Easing.h"
 #include "CardUIDraw.h"
 
 CardUIDraw::CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl):
@@ -11,6 +12,7 @@ CardUIDraw::CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl):
 	centerPos_(_centerPos),
 	scl_(_scl)
 {
+
 }
 
 CardUIDraw::~CardUIDraw(void)
@@ -33,9 +35,8 @@ void CardUIDraw::Init(void)
 	leftDownPos_ = centerPos_ + halfSize_ * scl_;
 
 	Vector2 rightTopPos = {static_cast<int>(rightTopPos_.x),static_cast<int>(rightTopPos_.y)};
-	Vector2 size = {};
-	size = { static_cast<int>(size_.x),static_cast<int>(size_.y) };
 
+	easing_ = std::make_unique<Easing>();
 
 	trans_.pos = CARD_INIT_POS;
 	trans_.quaRot = Quaternion();
@@ -56,13 +57,19 @@ void CardUIDraw::Init(void)
 	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	reloadCardPSMaterial_->AddConstBuf({ 1.0f,0.0f, 0.0f,1.0f });		//アウトラインの色
 	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//アウトラインの広がる時間
-	reloadCardPSRederer_ = std::make_unique<PixelRenderer>(*reloadCardPSMaterial_);
-	reloadCardPSRederer_->MakeSquareVertex(rightTopPos_, size_);
+	reloadCardPSRenderer_ = std::make_unique<PixelRenderer>(*reloadCardPSMaterial_);
+	reloadCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
+
+	selectCardPSMaterial_ = std::make_unique<PixelMaterial>(L"SelectCardPS.cso", CARD_NUM_CONST_BUF_SIZE);
+	selectCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,0.0f });		//カードの色
+	selectCardPSRenderer_ = std::make_unique<PixelRenderer>(*selectCardPSMaterial_);
+	selectCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
 
 	trans_.Update();
 }
 void CardUIDraw::Update(void)
 {
+	selectCardPSMaterial_->SetConstBuf(0, { SceneManager::GetInstance().GetTotalTime(),1.0f, 1.0f,0.0f});
 	trans_.Update();
 }
 void CardUIDraw::Draw(void)
@@ -80,18 +87,19 @@ void CardUIDraw::DrawSelectedFrame(const int& _frameImg)
 	//カード描画
 	DrawCard();
 
+
+
 	//左上の座標
-	//Vector2F rightTopPos = centerPos_ - halfSize * scl_;//選択中のカード追
-	Vector2F rightTopPos = LEFT_UP_FRAME_POS;
-	//右下の座標
-	//Vector2F leftDownPos = centerPos_ + halfSize * scl_;
-	Vector2F leftDownPos = RIGHT_DOWN_FRAME_POS;
-	DrawExtendGraphF(
-		rightTopPos.x, rightTopPos.y,
-		leftDownPos.x, leftDownPos.y,
-		_frameImg,
-		true
-	);
+	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;//選択中のカード
+	//サイズのコピー
+	Vector2F size = easing_->EaseFunc(size_, size_ + 10.0f, selectEaseCnt_ / SELECT_CARD_FRAME_EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
+	Vector2F size2 = easing_->EaseFunc(rightTopPos, rightTopPos - 10.0f, selectEaseCnt_ / SELECT_CARD_FRAME_EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
+
+	selectEaseCnt_ += SceneManager::GetInstance().GetDeltaTime();
+	selectEaseCnt_ > SELECT_CARD_FRAME_EASING_TIME ? selectEaseCnt_ = 0.0f : selectEaseCnt_;
+	//シェーダーに値セット
+	//selectCardPSRenderer_->SetSize(size);
+	selectCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
 }
 
 void CardUIDraw::DrawModel(void)
@@ -125,13 +133,7 @@ void CardUIDraw::DrawReloadGauge(const int& _reloadFrameImg,const float& _reload
 	//右下の座標
 	Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
 	reloadCardPSMaterial_->SetConstBuf(1, { 0.0f,0.0f,_reloadPer,0.0f });
-	reloadCardPSRederer_->SetSize(size_ * scl_);
-	reloadCardPSRederer_->Draw(rightTopPos.x, rightTopPos.y);
+	reloadCardPSRenderer_->SetSize(size_ * scl_);
+	reloadCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
 
-	DrawExtendGraphF(
-		rightTopPos.x, rightTopPos.y,
-		leftDownPos.x, leftDownPos.y,
-		_reloadFrameImg,
-		true
-	);
 }
