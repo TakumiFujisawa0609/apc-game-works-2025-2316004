@@ -63,13 +63,14 @@ void CardUIDraw::Init(void)
 	selectCardPSMaterial_ = std::make_unique<PixelMaterial>(L"SelectCardPS.cso", CARD_NUM_CONST_BUF_SIZE);
 	selectCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,0.0f });		//カードの色
 	selectCardPSRenderer_ = std::make_unique<PixelRenderer>(*selectCardPSMaterial_);
-	selectCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
+	selectCardPSRenderer_->MakeSquareVertexFromCenter(centerPos_, size_);
 
 	trans_.Update();
 }
 void CardUIDraw::Update(void)
 {
 	selectCardPSMaterial_->SetConstBuf(0, { SceneManager::GetInstance().GetTotalTime(),1.0f, 1.0f,0.0f});
+	SelectFrameEasing();
 	trans_.Update();
 }
 void CardUIDraw::Draw(void)
@@ -81,25 +82,12 @@ void CardUIDraw::Draw(void)
 
 void CardUIDraw::DrawSelectedFrame(const int& _frameImg)
 {
-
 	float totalTime = SceneManager::GetInstance().GetTotalTime();
 	normalCardPSMaterial_->SetConstBuf(1, { SELECT_FOG_STRENGTH,totalTime, 0.0f,1.0f });		//カードの色
 	//カード描画
 	DrawCard();
-
-
-
-	//左上の座標
-	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;//選択中のカード
-	//サイズのコピー
-	Vector2F size = easing_->EaseFunc(size_, size_ + 10.0f, selectEaseCnt_ / SELECT_CARD_FRAME_EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
-	Vector2F size2 = easing_->EaseFunc(rightTopPos, rightTopPos - 10.0f, selectEaseCnt_ / SELECT_CARD_FRAME_EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
-
-	selectEaseCnt_ += SceneManager::GetInstance().GetDeltaTime();
-	selectEaseCnt_ > SELECT_CARD_FRAME_EASING_TIME ? selectEaseCnt_ = 0.0f : selectEaseCnt_;
-	//シェーダーに値セット
-	//selectCardPSRenderer_->SetSize(size);
-	selectCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
+	//選択枠描画
+	selectCardPSRenderer_->DrawFromCenter(centerPos_.x, centerPos_.y);
 }
 
 void CardUIDraw::DrawModel(void)
@@ -122,6 +110,17 @@ void CardUIDraw::DrawCard(void)
 	normalCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
 }
 
+void CardUIDraw::SelectFrameEasing(void)
+{
+	//サイズのコピー
+	Vector2F size = easing_->EaseFunc(size_ - SELECT_CARD_FRAME_MOVE_AMOUNT, size_, selectEaseCnt_ / SELECT_CARD_FRAME_EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
+
+	selectEaseCnt_ += SceneManager::GetInstance().GetDeltaTime();
+	selectEaseCnt_ > SELECT_CARD_FRAME_EASING_TIME ? selectEaseCnt_ = 0.0f : selectEaseCnt_;
+	//シェーダーに値セット
+	selectCardPSRenderer_->SetSize(size);
+}
+
 void CardUIDraw::DrawReloadGauge(const int& _reloadFrameImg,const float& _reloadPer)
 {
 	//画像サイズ取得
@@ -135,5 +134,4 @@ void CardUIDraw::DrawReloadGauge(const int& _reloadFrameImg,const float& _reload
 	reloadCardPSMaterial_->SetConstBuf(1, { 0.0f,0.0f,_reloadPer,0.0f });
 	reloadCardPSRenderer_->SetSize(size_ * scl_);
 	reloadCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
-
 }

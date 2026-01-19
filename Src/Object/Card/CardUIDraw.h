@@ -37,7 +37,9 @@ private:
 	//選択中のフォグの強さ
 	static constexpr float SELECT_FOG_STRENGTH = 0.3f;
 	//選択カード枠の大きさイージング時間
-	static constexpr float SELECT_CARD_FRAME_EASING_TIME = 0.3f;
+	static constexpr float SELECT_CARD_FRAME_EASING_TIME = 1.0f;
+	//選択カード枠移動量
+	static constexpr float SELECT_CARD_FRAME_MOVE_AMOUNT = 10.0f;
 
 
 	//フレーム固定座標
@@ -77,5 +79,8 @@ private:
 	float selectEaseCnt_;	//選択枠イージングカウント
 	//カードの描画
 	void DrawCard(void);
+
+	//選択枠イージング
+	void SelectFrameEasing(void);
 };
 
