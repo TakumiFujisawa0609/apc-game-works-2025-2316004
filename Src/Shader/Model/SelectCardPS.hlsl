@@ -8,7 +8,7 @@ cbuffer cbParam : register(b4)
     float2 g_resolution;
     float dummy;
 }
-
+float d; // kernel offset
 
 struct Rect
 {
@@ -41,8 +41,6 @@ float2 WalkPointOnRectPerimeter(float2 dim, float t)
     ) * dim.x / width;
 }
 
- 
- 
 float4 main(PS_INPUT PSInput) : SV_TARGET
 {
 
@@ -66,7 +64,6 @@ float4 main(PS_INPUT PSInput) : SV_TARGET
     
     float4 frag_color = center_color;
 
-    
     // íÜâõÇÃãÈå`ÇÃäOë§ÇÃèÍçá
     if (!IsPointInsideRect(frag_coord, center_rect))
     {
@@ -75,7 +72,7 @@ float4 main(PS_INPUT PSInput) : SV_TARGET
         mix_factor = (1.0 - sin((mix_factor + 0.5) * pi)) * 0.5;
         frag_color = lerp(border_color1, border_color2, mix_factor);
     }
-    if (frag_color.a < 0.01f)
+    if(frag_color.a < 0.01)
     {
         discard;
     }

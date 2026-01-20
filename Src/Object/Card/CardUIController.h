@@ -62,17 +62,17 @@ public:
 	/// @param  
 	void Draw(void);
 
-	/// @brief 描画モデル
-	/// @param  
-	void DrawModel(void);
-
 	/// @brief リロードゲージの描画
 	/// @param  
 	void DrawReloadGauge(const int& _reloadCardFrameImg,const float& _reloadPer);
 
 	/// @brief 選択カード枠描画
-	/// @param _frameImg 
-	void SelectCardDrawFrame(const int& _frameImg);
+	/// @param  
+	void SelectCardDrawFrame(void);
+
+	/// @brief 選択カード描画
+	/// @param  
+	void DrawSelectCard(void);
 
 
 	/// @brief 選択移動
@@ -175,7 +175,7 @@ public:
 
 	/// @brief カードタイプ画像ノセット
 	/// @param _type 
-	void SetTypeImg_(const int& _type) { typeImg_ = _type; }
+	void SetTypeImg(const int& _type) { typeImg_ = _type; }
 
 	/// @brief 上下に動かす基準となる座標のセット(状態遷移時のみ)
 	/// @param  
@@ -203,7 +203,8 @@ private:
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X - 100.0f, Application::SCREEN_HALF_Y + 200.0f };
 
 	//倍率1の時のカードの強さの描画座標
-	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
+	//static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
+	static constexpr Vector2F NUM_LOCAL_POS = { 89.0f,130.0f };
 
 
 	//楕円中心

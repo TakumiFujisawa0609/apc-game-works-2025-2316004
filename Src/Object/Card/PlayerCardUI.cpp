@@ -103,7 +103,11 @@ void PlayerCardUI::Draw(void)
 	//逆順で描画
 	for (auto& card : visibleCards_ | std::ranges::views::reverse)
 	{
-		//DrawCard(card);
+		//選択中のカードはスキップ
+		if (GetSearchHandIt(card)==handCurrent_)
+		{
+			continue;
+		}
 		card->Draw();
 		if (card->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 		{
@@ -113,12 +117,14 @@ void PlayerCardUI::Draw(void)
 
 	if (handCurrent_ != handCards_.end())
 	{
-		(*handCurrent_)->SelectCardDrawFrame(selectFrameImg_);
+		(*handCurrent_)->DrawSelectCard();
+		//リロードカードの描画
 		if ((*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 		{
-			(*handCurrent_)->DrawReloadGauge(reloadCardFrameImg_,reloadPer_);
+			(*handCurrent_)->DrawReloadGauge(reloadCardFrameImg_, reloadPer_);
 		}
-
+		//選択カード枠描画
+		(*handCurrent_)->SelectCardDrawFrame();
 	}
 
 	//カード残り枚数ゲージ背景の描画

@@ -18,11 +18,12 @@ public:
 	void Update(void)override;
 	void Draw(void)override;
 
-	void DrawSelectedFrame(const int& _frameImg);
-
-	/// @brief カード３Dモデル描画
+	/// @brief 選択カード枠描画
 	/// @param  
-	void DrawModel(void);
+	void DrawSelectedFrame(void);
+
+	//選択カード描画
+	void DrawSelectCard(void);
 
 	/// @brief リロードゲージ描画
 	/// @param  

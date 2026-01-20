@@ -8,9 +8,11 @@
 #include "../Object/Common/EffectController.h"
 #include "../Object/Common/Geometry/Geometry.h"
 #include "../Object/Common/Geometry/Capsule.h"
+#include "../Object/Character/Base/CharacterBase.h"
 #include "Weapon.h"
 
-Weapon::Weapon(void)
+Weapon::Weapon(CharacterBase& _chara):
+character_(_chara)
 {
 	effect_ = std::make_unique<EffectController>();
 }
@@ -104,8 +106,9 @@ void Weapon::DeleteWeaponCollider(void)
 
 void Weapon::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
-	if (isDamage_)return;
+	if (character_.GetIsDamage())return;
 	//エフェクト再生
+	character_.SetIsDamage();
 	VECTOR bladeFramePos = MV1GetFramePosition(trans_.modelId, EFFECT_PLAY_FRAME_NO);
 	effect_->Play(EffectController::EFF_TYPE::KEY_BLADE_HIT, bladeFramePos, {}, { EFFECT_PLAY_SCL,EFFECT_PLAY_SCL,EFFECT_PLAY_SCL });
 	SoundManager::GetInstance().Play(SoundManager::SRC::PLAYER_HIT_SE, SoundManager::PLAYTYPE::BACK);

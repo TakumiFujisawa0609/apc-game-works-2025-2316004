@@ -1,11 +1,12 @@
 #pragma once
 #include "../Object/ObjectBase.h"
 class EffectController;
+class CharacterBase;
 class Weapon :
     public ObjectBase
 {
 public:
-    Weapon(void);
+    Weapon(CharacterBase& _chara);
 	~Weapon(void) override;
 
 	/// @brief ロード
@@ -74,6 +75,9 @@ private:
 
 	//武器の追従対象
 	Transform* targetTrans_;
+
+	//武器を使う親キャラクター
+	CharacterBase& character_;
 
 	//追従するフレームの番号
 	int followFrameNo_;

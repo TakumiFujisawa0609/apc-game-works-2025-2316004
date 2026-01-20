@@ -51,7 +51,9 @@ Player::Player(void)
 
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
-	weapon_ = std::make_unique<Weapon>();
+
+	//武器の生成(自分を親として渡す)
+	weapon_ = std::make_unique<Weapon>(*this);
 	capRadius_ = CAP_RADIUS;
 
 }
@@ -213,6 +215,7 @@ void Player::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG
 	if (!weapon_->IsAliveCollider(_charaTag, _attackCol))return;
 	weapon_->DeleteWeaponCollider();
 }
+
 #ifdef _DEBUG
 void Player::DrawDebug(void)
 {

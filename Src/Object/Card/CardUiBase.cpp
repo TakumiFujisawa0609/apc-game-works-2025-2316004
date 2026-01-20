@@ -127,7 +127,7 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 	if (num == -1) { num = 9; }
 	int drawNumImg = cardNoImg_[num];
 	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
-	info->SetTypeImg_(typeImg);
+	info->SetTypeImg(typeImg);
 	info->SetStatus(_status);
 	info->Load();
 	info->Init();

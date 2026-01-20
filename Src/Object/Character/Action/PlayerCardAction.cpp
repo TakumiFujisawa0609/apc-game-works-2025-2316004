@@ -125,7 +125,7 @@ void PlayerCardAction::DisideAttackOne(void)
 	//相手との距離を取得
 	const float dis = actionCntl_.GetInput().GetTargetDis();
 
-	const float MIDDLE_DIS = 200.0f;
+	const float MIDDLE_DIS = 300.0f;
 
 	if (dis >= MIDDLE_DIS)
 	{
@@ -167,7 +167,7 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, {}, 0.0f);
 	}
-	else if (midAtkCnt_ <= 0.0f || atk_.isDamage)		//アニメーション終了でアイドル状態変更
+	else if (midAtkCnt_ <= 0.0f || charaObj_.GetIsDamage())		//アニメーション終了でアイドル状態変更
 	{
 		midAtkOverCnt_ -= delta;
 		//攻撃判定無効

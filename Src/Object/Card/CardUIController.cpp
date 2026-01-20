@@ -49,19 +49,20 @@ void CardUIController::Draw(void)
 	cardDraw_->Draw();
 }
 
-void CardUIController::DrawModel(void)
-{
-	cardDraw_->DrawModel();
-}
 
 void CardUIController::DrawReloadGauge(const int&_reloadCardFrameImg,const float& _reloadPer)
 {
 	cardDraw_->DrawReloadGauge(_reloadCardFrameImg,_reloadPer);
 }
 
-void CardUIController::SelectCardDrawFrame(const int& _frameImg)
+void CardUIController::SelectCardDrawFrame(void)
 {
-	cardDraw_->DrawSelectedFrame(_frameImg);
+	cardDraw_->DrawSelectedFrame();
+}
+
+void CardUIController::DrawSelectCard(void)
+{
+	cardDraw_->DrawSelectCard();
 }
 
 void CardUIController::DecisionMove(void)
@@ -189,8 +190,8 @@ int CardUIController::MakeCardUIImg(void)
 {
 	//サイズ
 	int img = -1;
-	const int GRAPH_SIZE_X = 120;
-	const int GRAPH_SIZE_Y = 160;
+	constexpr int GRAPH_SIZE_X = 120;
+	constexpr int GRAPH_SIZE_Y = 160;
 	constexpr float NUM_SCL = 0.18f;
 	//描画可能なスクリーンの作成
 	img = MakeScreen(GRAPH_SIZE_X, GRAPH_SIZE_Y, true);
@@ -206,15 +207,16 @@ int CardUIController::MakeCardUIImg(void)
 	//番号サイズ取得
 	Vector2F size = { 0.0f,0.0f };
 	GetGraphSizeF(cardNoImg_, &size.x, &size.y);
+	//縮小倍率をかける
 	size *= NUM_SCL;
 
 	//中央合わせ
 	centerPos -= size / 2.0f;
 
 	//座標計算
-	Vector2F numSizeHalf = size;
-	Vector2F leftTopPos = { centerPos.x + NUM_LOCAL_POS.x,centerPos.y + NUM_LOCAL_POS.y };
-	Vector2F rightBottomPos = { centerPos.x+NUM_LOCAL_POS.x + numSizeHalf.x,centerPos.y+NUM_LOCAL_POS.y + numSizeHalf.y };
+	Vector2F numSizeHalf = size / 2.0f;
+	Vector2F leftTopPos = NUM_LOCAL_POS - numSizeHalf;
+	Vector2F rightBottomPos = NUM_LOCAL_POS + numSizeHalf;
 	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_, true);
 
 	//描画先を元に戻す
