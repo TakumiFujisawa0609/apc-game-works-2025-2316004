@@ -140,7 +140,7 @@ private:
     //void AttackMotion(const float _atkColStart, const float _atlColEnd);
 
     //１段目を中距離攻撃アクションか近距離攻撃アクションかを決める
-    void DisideAttackOne(void);
+    void DesideAttackOne(void);
 
     //攻撃状態遷移時のカード初期化
     void ChangeActionCardInit(void);

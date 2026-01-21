@@ -59,10 +59,6 @@ void PlayerCardAction::Init(void)
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
 	atk_.isDamage = false;
-	//if (actionCntl_.GetInput().GetIsEnemyJumpCharge())
-	//{
-	//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);
-	//}
 	
 	//キーによる移動はしない
 	charaObj_.SetIsCanMoveable(false);
@@ -71,7 +67,7 @@ void PlayerCardAction::Init(void)
 	{
 		//手札に移動
 		PutCard();
-		DisideAttackOne();
+		DesideAttackOne();
 	}
 	else if (deck_.GetDrawCardType()==CardBase::CARD_TYPE::RELOAD)
 	{
@@ -90,7 +86,6 @@ void PlayerCardAction::Release(void)
 	deck_.EraseHandCard();
 	//当たり判定削除
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
-	//charaObj_.GetCardUI().ChangeUsedActionCard();
 	charaObj_.SetIsCanMoveable(true);
 	SoundManager::GetInstance().Stop(SoundManager::SRC::CARD_RELOAD);
 
@@ -120,7 +115,7 @@ bool PlayerCardAction::IsCanComboAttack(void)
 		&& actionCntl_.IsCardDisitionControll();
 }
 
-void PlayerCardAction::DisideAttackOne(void)
+void PlayerCardAction::DesideAttackOne(void)
 {
 	//相手との距離を取得
 	const float dis = actionCntl_.GetInput().GetTargetDis();
@@ -207,7 +202,6 @@ void PlayerCardAction::UpdateAttackThree(void)
 		//アニメーション速度補完
 		anim_.SetAnimSpeed(CharacterBase::ANIM_SPEED, true, ATTACK_THREE_ANIM_SPD, atkAnimLerpCnt_ / ATTACK_THREE_ANIM_LERP_TIME,Easing::EASING_TYPE::QUAD_IN);
 		////攻撃当たり判定の座標生成
-		//atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, ATK_ONE_LOCAL);
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, {}, 0.0f);
