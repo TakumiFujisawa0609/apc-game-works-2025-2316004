@@ -12,11 +12,28 @@ class CharacterManager :public Singleton<CharacterManager>
 public:
 	static constexpr int CHARA_MAX = 2;
 
-
+	/// @brief ロード
+	/// @param  
 	void Load(void);
+
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
+
+	/// @brief 更新
+	/// @param  
 	void Update(void);
+
+	/// @brief 描画
+	/// @param  
 	void Draw(void);
+
+	/// @brief 2D描画
+	/// @param  
+	void Draw2D(void);
+
+	/// @brief 解放
+	/// @param  
 	void Release(void);
 
 	/// @brief ゲームクリアシーン遷移条件(敵のHPによるもの)

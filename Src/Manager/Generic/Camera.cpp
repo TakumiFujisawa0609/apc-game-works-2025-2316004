@@ -41,14 +41,22 @@ void Camera::Init(void)
 		{MODE::FOLLOW,[this]() {ChangeFollow(); }},
 		{MODE::SELF_SHOT,[this]() {ChangeSelfShot(); }},
 		{MODE::TARGET_POINT,[this]() {ChangeTargetCamera(); }},
-		{MODE::CHANGE_TARGET,[this]() {ChangeTargetLerp(); }}
+		{MODE::CHANGE_TARGET,[this]() {ChangeTargetLerp(); }},
+		{MODE::START_DIRECTION ,[this]() {ChangeStartDirection(); }}
 	};
 	changeSub_ = {
 		{SUB_MODE::NONE,[this]() {ChangeNone(); }},
 		{SUB_MODE::SHAKE,[this]() {ChangeShake(); }},
-		{SUB_MODE::ONE_SHAKE,[this]() {ChanegShakeOne(); }}
+		{SUB_MODE::ONE_SHAKE,[this]() {ChangeShakeOne(); }}
+	};
+	changeDirectionMode_ = {
+		{DIRECTION_MODE::NONE,[this]() {ChangeDirectionNone(); }},
+		{DIRECTION_MODE::PLAYER_AND_ENEMY_VIEW,[this]() {ChangeDirectionLegLowAngle(); }},
+		{DIRECTION_MODE::ENEMY_ONLY_VIEW,[this]() {ChangeDirectionEnemyOnlyAngle(); }},
+		{DIRECTION_MODE::PLAYER_ONLY_VIEW,[this]() {ChangeDirectionPlayerOnlyAngle(); }}
 	};
 	subMode_ = SUB_MODE::SHAKE;
+	directionEaseCnt_ = 0.0f;
 	ChangeSub(SUB_MODE::NONE);
 	ChangeMode(MODE::FIXED_POINT);
 }
@@ -81,7 +89,14 @@ void Camera::SetBeforeDraw(void)
 
 void Camera::Draw(void)
 {
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), L"Camera Pos:(%.2f,%.2f,%.2f)", pos_.x, pos_.y, pos_.z);
+	float degX = UtilityCommon::Rad2DegF(angles_.x);
+	float degY = UtilityCommon::Rad2DegF(angles_.y);
+	float degZ = UtilityCommon::Rad2DegF(angles_.z);
+	DrawFormatString(0, 0, GetColor(255, 255, 255)
+		, L"F2CPos:(%.2f,%.2f,%.2f)\nF2TPos:(%.2f,%.2f,%.2f)\nangle:(%.2f,%.2f,%.2f)"
+		, localF2CPos_.x, localF2CPos_.y, localF2CPos_.z,
+		localF2TPos_.x, localF2TPos_.y, localF2TPos_.z ,
+		degX, degY, degZ);
 	////DrawFormatString(0, 32, GetColor(255, 255, 255), L"Frame Pos:(%.2f,%.2f,%.2f)", followFramePos_.x, followFramePos_.y, followFramePos_.z);
 
 
@@ -190,9 +205,6 @@ void Camera::MakeColliderGeometry(void)
 void Camera::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
 
-
-	
-
 		//Geometry& cameraGeo = collider_[TAG_PRIORITY::CAMERA_SPHERE]->GetGeometry();
 	//auto& modelInfo = cameraGeo.GetHitInfo();
 	//for (int i=0;i<modelInfo.HitNum;i++)
@@ -250,13 +262,10 @@ void Camera::SetDefault(void)
 
 }
 
-void Camera::SyncFollow(void)
+void Camera::SyncFollow(const Transform* _followTransform)
 {
-
-	//auto& gIns = GravityManager::GetInstance();
-
 	// 同期先の位置
-	VECTOR followPos = VAdd(followTransform_->pos, followLocalCenterPos_);
+	VECTOR followPos = VAdd(_followTransform->pos, followLocalCenterPos_);
 
 	// 重力の方向制御に従う
 	Quaternion gRot = Quaternion::Euler(Utility3D::VECTOR_ZERO);
@@ -270,16 +279,21 @@ void Camera::SyncFollow(void)
 	VECTOR localPos;
 
 	// 注視点(通常重力でいうところのY値を追従対象と同じにする)
-	localPos = rotOutX_.PosAxis(LOCAL_F2T_POS);
+	localPos = rotOutX_.PosAxis(localF2TPos_);
 	targetPos_ = VAdd(followPos, localPos);
 
 	// カメラ位置
-	localPos = rot_.PosAxis(LOCAL_F2C_POS);
+	localPos = rot_.PosAxis(localF2CPos_);
 	pos_ = VAdd(followPos, localPos);
 
 	// カメラの上方向
 	cameraUp_ = gRot.GetUp();
 
+}
+
+VECTOR Camera::GetSyncFollowPos(const Transform* _followTransform)
+{
+	return VECTOR();
 }
 
 void Camera::SyncTargetFollow(void)
@@ -295,7 +309,6 @@ void Camera::SyncTargetFollow(void)
 	Quaternion gRot = Quaternion::Euler(Utility3D::VECTOR_ZERO);
 
 	// 正面から設定されたY軸分、回転させる
-	//rotOutX_ = gRot.Mult(Quaternion::AngleAxis(angles_.y, Utility3D::AXIS_Y));
 	rotOutX_ = gRot.Mult(Quaternion::AngleAxis(static_cast<double>(targetRot.y), Utility3D::AXIS_Y));
 
 	// 正面から設定されたX軸分、回転させる
@@ -325,13 +338,6 @@ void Camera::ProcessRot(void)
 	//int x_t, y_t;
 	Vector2 mPos;
 	mPos = InputManager::GetInstance().GetMousePos();
-	//GetMousePoint(&x_t, &y_t);
-	//マウスの移動量をクランプして、カメラの角度に反映する
-	//angles_.y += float(std::clamp(mPos.x - Application::SCREEN_SIZE_X / 2, -120, 120)) * FOV_PER / GetFPS();
-	//angles_.x += float(std::clamp(mPos.y - Application::SCREEN_SIZE_Y / 2, -120, 120)) * FOV_PER / GetFPS();
-
-	// マウスの位置を画面中央に戻す
-	//SetMousePoint(Application::SCREEN_SIZE_X / 2, Application::SCREEN_SIZE_Y / 2);
 
 	// マウスを表示状態にする
 	SetMouseDispFlag(FALSE);
@@ -467,10 +473,17 @@ void Camera::Collision(void)
 			sphereCnt++;
 		}
 	}
-
-
-
 }
+
+void Camera::ChangeDirectionMode(const DIRECTION_MODE _mode)
+{
+	if (directionMode_ == _mode)return;
+	directionCnt_ = 0.0f;
+	
+	directionMode_ = _mode;
+	changeDirectionMode_[directionMode_]();
+}
+
 
 void Camera::SetBeforeDrawFixedPoint(void)
 {
@@ -489,7 +502,7 @@ void Camera::SetBeforeDrawFollow(void)
 	ProcessRot();
 
 	// 追従対象との相対位置を同期
-	SyncFollow();
+	SyncFollow(followTransform_);
 
 	//線分当たり判定の更新
 	UpdateCameraColliderLine();
@@ -528,6 +541,11 @@ void Camera::SetBeforeDrawTargetPoint(void)
 	}
 }
 
+void Camera::SetBeforeDrawStartDirection(void)
+{
+	directionUpdate_();
+}
+
 void Camera::ChangeFixedPoint(void)
 {
 	SetDefault();
@@ -537,6 +555,8 @@ void Camera::ChangeFixedPoint(void)
 void Camera::ChangeFollow(void)
 {
 	SetDefault();
+	localF2CPos_ = LOCAL_F2C_POS;
+	localF2TPos_ = LOCAL_F2T_POS;
 	modeUpdate_ = [this]() {SetBeforeDrawFollow(); };
 }
 
@@ -555,6 +575,12 @@ void Camera::ChangeTargetCamera(void)
 {
 	SetDefault();
 	modeUpdate_ = [this]() {SetBeforeDrawTargetPoint(); };
+}
+void Camera::ChangeStartDirection(void)
+{
+	directionMode_ = DIRECTION_MODE::NONE;
+	ChangeDirectionMode(DIRECTION_MODE::PLAYER_AND_ENEMY_VIEW);
+	modeUpdate_ = [this]() {SetBeforeDrawStartDirection(); };
 }
 void Camera::UpdateNone(void)
 {
@@ -612,9 +638,99 @@ void Camera::ChangeShake(void)
 	subUpdate_ = [this]() {UpdateShake(); };
 }
 
-void Camera::ChanegShakeOne(void)
+void Camera::ChangeShakeOne(void)
 {
 	initPosY_ = pos_.y;
 	limit_ = initLimit_;
 	subUpdate_ = [this]() {UpdateShakeOne(); };
+}
+
+void Camera::DirectionNone(void)
+{
+}
+
+
+
+void Camera::DirectionLegLowAngle(void)
+{
+	if(directionCnt_>PLAYER_AND_ENEMY_VIEW_TIME)
+	{
+		ChangeDirectionMode(DIRECTION_MODE::ENEMY_ONLY_VIEW);
+		return;
+	}
+	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
+	SyncFollow(targetTransform_);
+	angles_.y += UtilityCommon::Deg2RadF(0.1f);
+}
+
+void Camera::DirectionEnemyOnlyAngle(void)
+{
+	//if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
+	//{
+	//	ChangeDirectionMode(DIRECTION_MODE::PLAYER_ONLY_VIEW);
+	//	return;
+	//}
+
+
+	if (InputManager::GetInstance().IsNew(KEY_INPUT_DOWN))
+	{
+		localF2CPos_.z += 10.0f;
+	}
+	else if (InputManager::GetInstance().IsNew(KEY_INPUT_UP))
+	{
+		localF2CPos_.z -= 10.0f;
+	}
+
+	SyncFollow(targetTransform_);
+
+	//localF2CPos_ = easing_->EaseFunc(easingStartPos_, easingGoalPos_, directionCnt_ / PLAYER_AND_ENEMY_VIEW_TIME
+	//	, Easing::EASING_TYPE::QUAD_IN_OUT);
+	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
+	
+	localF2CPos_.y += 1.0f;
+}
+
+void Camera::DirectionPlayerOnlyAngle(void)
+{
+
+
+	//localF2CPos_.z = easing_->EaseFunc(startF2CPosZ_, goalF2CPosZ_, directionCnt_ / 1.0f, Easing::EASING_TYPE::BOUNCE);
+	SyncFollow(followTransform_);
+	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
+}
+
+void Camera::ChangeDirectionNone(void)
+{
+	directionUpdate_ = [this]() {DirectionNone(); };
+}
+
+void Camera::ChangeDirectionLegLowAngle(void)
+{
+	localF2CPos_ = { 0.0f, -600, -1400.0f };
+	localF2TPos_ = LOCAL_F2T_POS;
+	followLocalCenterPos_ = { 0.0f,80.0f,0.0f };
+	directionCnt_ = 0.0f;
+	directionUpdate_ = [this]() {DirectionLegLowAngle(); };
+}
+
+void Camera::ChangeDirectionEnemyOnlyAngle(void)
+{
+	//localF2CPos_ = LOCAL_F2C_POS;
+	//localF2TPos_ = { 0.0f, 500.0f, 200.0f };
+	followLocalCenterPos_ = { 0.0f,160.0f,0.0f };
+	directionCnt_ = 0.0f;
+	//SyncFollow(targetTransform_);
+	//easingStartPos_ = localF2CPos_;
+	//easingGoalPos_ = { 0.0f, 500.0f, 200.0f };
+	directionUpdate_ = [this]() {DirectionEnemyOnlyAngle(); };
+}
+
+void Camera::ChangeDirectionPlayerOnlyAngle(void)
+{
+	localF2CPos_ = LOCAL_F2C_POS;
+	localF2TPos_ = LOCAL_F2T_POS;
+	followLocalCenterPos_ = { 0.0f,0.0f,0.0f };
+	directionCnt_ = 0.0f;
+	angles_.y = UtilityCommon::Deg2RadF(-145.0f);
+	directionUpdate_ = [this]() {DirectionPlayerOnlyAngle(); };
 }

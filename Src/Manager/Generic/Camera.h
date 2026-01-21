@@ -65,10 +65,6 @@ public:
 	// 衝突時の押し戻し量
 	static constexpr float COLLISION_BACK_DIS = 2.0f;
 
-
-
-
-
 	// カメラモード
 	enum class MODE
 	{
@@ -77,7 +73,18 @@ public:
 		FOLLOW,
 		SELF_SHOT,
 		CHANGE_TARGET,
-		TARGET_POINT
+		TARGET_POINT,
+		START_DIRECTION,
+	};
+
+	//カメラ演出
+	enum class DIRECTION_MODE
+	{
+		NONE,
+		EASING,
+		PLAYER_AND_ENEMY_VIEW,
+		ENEMY_ONLY_VIEW,
+		PLAYER_ONLY_VIEW,
 	};
 
 	//イージングモード
@@ -149,6 +156,9 @@ private:
 	//追従対象のフレームナンバー
 	static constexpr int FOLLOW_FRAME_NUM = 1;
 
+	//プレイヤーと敵を両方映す時間
+	static constexpr float PLAYER_AND_ENEMY_VIEW_TIME = 2.0f;
+
 	// カメラが追従対象とするTransform
 	const Transform* followTransform_;
 	VECTOR followLocalCenterPos_;
@@ -174,9 +184,25 @@ private:
 	//イージングなど、、同時に動かしたい更新
 	std::function<void(void)>subUpdate_;
 
-	//遷移
+	//カメラモード遷移
 	std::map<MODE, std::function<void(void)>>changeMode_;
 	std::map<SUB_MODE, std::function<void(void)>>changeSub_;
+
+	//演出カウント
+	float directionCnt_;
+	//イージング初期値
+	float startF2CPosZ_;
+	//イージング終端値
+	float goalF2CPosZ_;
+	//イージングカウント
+	float directionEaseCnt_;
+	//カメラ演出モード
+	DIRECTION_MODE directionMode_;
+	//カメラ演出更新
+	std::function<void(void)>directionUpdate_;
+	//カメラ演出遷移
+	std::map<DIRECTION_MODE, std::function<void(void)>>changeDirectionMode_;
+
 
 	// カメラの位置
 	VECTOR pos_;
@@ -216,10 +242,23 @@ private:
 	VECTOR followFramePos_;
 	//追従対象の中心座標
 	VECTOR followCenterPos_;
+	//追従位置から注視点までの相対座標
+	VECTOR localF2TPos_;
+	//追従位置からカメラ位置までの相対座標
+	VECTOR localF2CPos_;
+	//イージングスタート位置
+	VECTOR easingStartPos_;
+	//イージングゴール位置
+	VECTOR easingGoalPos_;
+
 
 	/// @brief 当たったときの処理
 	/// @param _hitCol ヒットしたコライダ
 	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override;
+	//イージング演出時、次の状態格納
+	DIRECTION_MODE nextDirectionMode_;
+	//イージング演出次のタイプ格納
+	float directionEasingTime_;
 
 	//カメラ当たり判定の線分更新
 	void UpdateCameraColliderLine(void);
@@ -228,9 +267,11 @@ private:
 	void SetDefault(void);
 
 	// 追従対象との位置同期を取る
-	void SyncFollow(void);
+	void SyncFollow(const Transform* _followTransform);
+	VECTOR GetSyncFollowPos(const Transform* _followTransform);
 
 	//ターゲットカメラの追従
+	//void SyncTargetFollow(void);
 	void SyncTargetFollow(void);
 
 	// カメラ操作
@@ -239,9 +280,13 @@ private:
 	//スムーズにターゲットカメラに変わる
 	void SmoothChangeCamera(void);
 
-	/// @brief あたり判定
+	/// @brief 当たり判定
 	/// @param  
 	void Collision(void);
+
+	/// @brief 演出モード変更
+	/// @param _mode 切り替えたい演出モード
+	void ChangeDirectionMode(const DIRECTION_MODE _mode);
 
 	// モード別更新ステップ
 	void SetBeforeDrawFixedPoint(void);
@@ -249,6 +294,7 @@ private:
 	void SetBeforeDrawSelfShot(void);
 	void SetBeforeDrawLerpCamera(void);
 	void SetBeforeDrawTargetPoint(void);
+	void SetBeforeDrawStartDirection(void);
 
 	//遷移
 	void ChangeFixedPoint(void);
@@ -256,15 +302,30 @@ private:
 	void ChangeSelfShot(void);
 	void ChangeTargetLerp(void);
 	void ChangeTargetCamera(void);
+	void ChangeStartDirection(void);
 
 	//サブモード別更新
 	void UpdateNone(void);
 	void UpdateShake(void);
 	void UpdateShakeOne(void);
 
-	//遷移
+	//サブモード遷移
 	void ChangeNone(void);
 	void ChangeShake(void);
-	void ChanegShakeOne(void);
+	void ChangeShakeOne(void);
+
+	//カメラ演出
+	//更新
+	void DirectionNone(void);
+	void DirectionLegLowAngle(void);
+	void DirectionEnemyOnlyAngle(void);
+	void DirectionPlayerOnlyAngle(void);
+
+	//遷移
+	void ChangeDirectionNone(void);
+	void ChangeDirectionLegLowAngle(void);
+	void ChangeDirectionEnemyOnlyAngle(void);
+	void ChangeDirectionPlayerOnlyAngle(void);
+
 };
 

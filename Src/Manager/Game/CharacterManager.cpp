@@ -19,10 +19,10 @@ void CharacterManager::Load(void)
 
 void CharacterManager::Init(void)
 {
-	//プレイヤーのローカル中心座標計算
+	//プレイヤーのローカル中心座標をカプセルの中央に合わせる
 	const float playerCenterLocalPosY = (Player::CAP_LOCAL_TOP.y - Player::CAP_LOCAL_DOWN.y) * 0.5f;
 	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform(),{0.0f,playerCenterLocalPosY ,0.0f});
-	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::START_DIRECTION);
 
 	player_->SetLogicTargetCharacter(enemy_);
 	enemy_->SetLogicTargetCharacter(player_);
@@ -42,6 +42,12 @@ void CharacterManager::Draw(void)
 {
 	enemy_->Draw();
 	player_->Draw();
+}
+
+void CharacterManager::Draw2D(void)
+{
+	enemy_->Draw2D();
+	player_->Draw2D();
 }
 
 void CharacterManager::Release(void)

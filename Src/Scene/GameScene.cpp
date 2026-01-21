@@ -125,7 +125,9 @@ void GameScene::NormalDraw(void)
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
-	//drawUi3D_->Draw();
+
+	//UI‚È‚Ç‚Ì•`‰æ
+	CharacterManager::GetInstance().Draw2D();
 
 	//UI2DManager::GetInstance().Draw();
 #ifdef _DEBUG

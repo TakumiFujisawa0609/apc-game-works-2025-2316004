@@ -143,7 +143,6 @@ void Enemy::Draw(void)
 {
 	//’Êí•`‰æ
 	MV1DrawModel(trans_.modelId);
-	//deck_->Draw();
 
 
 	if (!rock_.empty())
@@ -153,9 +152,7 @@ void Enemy::Draw(void)
 			rock->Draw();
 		}
 	}
-	cardUI_->Draw();
-	//HPƒo[•`‰æ
-	hpUi_->Draw();
+
 
 	//const int BOX_START_X = 600;
 	//const int BOX_START_Y = 10;
@@ -179,10 +176,18 @@ void Enemy::Draw(void)
 	//	2
 	//);
 
+
+
+}
+void Enemy::Draw2D(void)
+{
+	cardUI_->Draw();
+	//HPƒo[•`‰æ
+	hpUi_->Draw();
+
 #ifdef _DEBUG
 	DrawDebug();
 #endif // _DEBUG
-
 }
 void Enemy::OnHit(const std::weak_ptr<Collider> _hitCol)
 {

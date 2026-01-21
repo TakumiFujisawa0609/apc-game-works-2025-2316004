@@ -120,6 +120,9 @@ public:
 	/// @param  
 	virtual void Draw(void)override = 0;
 
+	//2DŠÖ˜A‚Ì•`‰æ
+	virtual void Draw2D(void) = 0;
+
 	/// @brief “–‚½‚Á‚½‚Ìˆ—
 	/// @param _hitCol 
 	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override = 0;

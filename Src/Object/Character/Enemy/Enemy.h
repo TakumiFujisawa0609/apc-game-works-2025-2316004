@@ -94,15 +94,38 @@ public:
 	};
 
 
-
+	/// @brief デッキの取得
+	/// @param  
+	/// @return 
 	const std::shared_ptr<CardDeck> GetHand(void)const { return deck_; }
 
+	/// @brief コンストラクタ
+	/// @param  
 	Enemy(void);
+
+	/// @brief デストラクタ
+	/// @param  
 	~Enemy(void)override;
+
+	/// @brief ロード
+	/// @param  
 	void Load(void) override;
+
+	/// @brief 初期化
+	/// @param  
 	void Init(void) override;
+
+	/// @brief 更新
+	/// @param  
 	void Update(void) override;
+
+	/// @brief 描画
+	/// @param  
 	void Draw(void) override;
+
+	/// @brief 2D描画
+	/// @param  
+	void Draw2D(void) override;
 
 	/// <summary>
 	/// オブジェクトに当たった時の処理

@@ -72,11 +72,6 @@ public:
 
 	// デストラクタ
 	~Player(void)override;
-
-	/// <summary>
-	/// 読み込み
-	/// </summary>
-	/// <param name=""></param>
 	
 	/// @brief 読み込み
 	/// @param  
@@ -89,48 +84,30 @@ public:
 	/// @brief 更新
 	/// @param  
 	void Update(void)override;
-
-	/// <summary>
-	/// 描画
-	/// </summary>
-	/// <param name=""></param>
 	
 	/// @brief 描画
 	/// @param  
 	void Draw(void)override;
 
-	/// <summary>
-	/// コントローラー番号
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>コントローラー番号</returns>
-	inline const InputManager::JOYPAD_NO& GetPadNum(void)const { return padNum_; }
-
-	//プレイヤーの手札
-	//const std::weak_ptr<CardDeck> GetHand(void)const { return action_->GetHand(); }
-
-	/// <summary>
-	/// 手札
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>手札</returns>
+	/// @brief 2D関連の描画
+	/// @param  
+	void Draw2D(void)override;
+	
+	/// @brief 手札
+	/// @param  
+	/// @return 手札
 	const std::weak_ptr<CardDeck>& GetHand(void) { return deck_; }
 
-	/// <summary>
-	/// 当たった時の処理
-	/// </summary>
-	/// <param name="_hitCol">相手のコライダ</param>
+	/// @brief 当たった時の処理
+	/// @param _hitCol 相手のコライダ
 	void OnHit(const std::weak_ptr<Collider> _hitCol)override;
-
-	/// <summary>
-	/// 入力方向に応じて方向を決める
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 入力方向に応じて方向を決める
+	/// @param  
 	void MoveDirFromInput(void)override;
-	/// <summary>
-	/// ゴール角度をセット
-	/// </summary>
-	/// <param name="_deg"></param>
+
+	/// @brief ゴール角度をセット
+	/// @param  
 	void SetGoalRotate(void)override;
 
 	/// @brief 攻撃の当たり判定作成

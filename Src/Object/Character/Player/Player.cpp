@@ -161,14 +161,16 @@ void Player::Draw(void)
 	//’Êí•`‰æ
 	MV1DrawModel(trans_.modelId);
 
+	weapon_->Draw();
+}
+void Player::Draw2D(void)
+{
 	//ƒJ[ƒhUI•`‰æ
 	cardUI_->Draw();
 
 	//Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
 
 	hpUi_->Draw();
-
-	weapon_->Draw();
 
 #ifdef _DEBUG
 	//action_->DrawDebug();

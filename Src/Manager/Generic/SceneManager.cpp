@@ -56,10 +56,11 @@ void SceneManager::Init3D(void)
 	SetUseBackCulling(true);
 
 	// ライトの設定
-	SetUseLighting(true);
+	SetUseLighting(false);
 	
 	// ライトの設定
-	ChangeLightTypeDir({ 0.3f, -0.7f, 0.8f });
+	//ChangeLightTypeDir({ 0.3f, -0.7f, 0.8f });
+	//ChangeLightTypeDir({ 1.0f, -1.0f, 1.0f });
 
 	// フォグ設定
 	SetFogEnable(true);
