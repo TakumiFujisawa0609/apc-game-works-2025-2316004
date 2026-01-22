@@ -18,9 +18,12 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
     case Easing::EASING_TYPE::LERP:
         easingUpdate_ = [this, t](float) {return Lerp(t); };
         break;
-    case Easing::EASING_TYPE::LERP_BACK:
+    case Easing::EASING_TYPE::LERP_COMEBACK:
         easingUpdate_ = [this, t](float) {return LerpBack(t); };
         break;
+	case Easing::EASING_TYPE::OUT_BACK:
+		easingUpdate_ = [this, t](float) {return OutBack(t); };
+		break;
     case Easing::EASING_TYPE::QUAD_IN:
         easingUpdate_ = [this, t](float) {return EaseQuadIn(t); };
         break;
@@ -237,6 +240,15 @@ float Easing::LerpBack(const float t)
         ret = Lerp((1.0f - t) / 0.5f);
     }
     return ret;
+}
+
+float Easing::OutBack(const float t)
+{
+	if (t > 1.0f)return 1.0f;
+    const float c1 = 1.70158;
+    const float c3 = c1 + 1;
+
+    return 1 + c3 * pow(t - 1, 3) + c1 * pow(t - 1, 2);
 }
 
 

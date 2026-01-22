@@ -119,6 +119,10 @@ public:
 	/// @param  
 	void Update(void) override;
 
+	/// @brief ‰‰o‚ÌXV
+	/// @param  
+	void DirectionUpdate(void) override;
+
 	/// @brief •`‰æ
 	/// @param  
 	void Draw(void) override;

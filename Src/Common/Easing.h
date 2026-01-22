@@ -9,21 +9,22 @@ public:
 	//2点間を定めてイージング
 	enum class EASING_TYPE
 	{
-		LERP,			//線形補間
-		LERP_BACK,		//行って戻る補完
-		QUAD_IN,		//二次関数(だんだん早く)
-		QUAD_OUT,		//二次関数(だんだん遅く)
-		QUAD_BACK,		//二次関数(行って戻る)
-		QUAD_IN_OUT,	//二次関数(スローインスローアウト)
-		QUAD_OUT_IN,	//二次関数(ファストインファストアウト)
-		CUBIC_IN,		//三次関数(だんだん早く)
-		CUBIC_OUT,		//三次関数(だんだん遅く)
-		EXPO,			//指数関数(〇次関数より若干緩やか)
-		SIN_BACK,		//サイン(もとに戻ってくる)
-		COS_BACK,		//コサイン(もとに戻ってくる)
-		ELASTIC_IN,		//前半ばね(だんだん大きく)
-		ELASTIC_OUT,	//後半ばね
-		BOUNCE,			//跳ねるような動き
+		LERP,				//線形補間
+		LERP_COMEBACK,		//行って戻る補完
+		OUT_BACK,			//目的地を少し超えて目的に戻る
+		QUAD_IN,			//二次関数(だんだん早く)
+		QUAD_OUT,			//二次関数(だんだん遅く)
+		QUAD_BACK,			//二次関数(行って戻る)
+		QUAD_IN_OUT,		//二次関数(スローインスローアウト)
+		QUAD_OUT_IN,		//二次関数(ファストインファストアウト)
+		CUBIC_IN,			//三次関数(だんだん早く)
+		CUBIC_OUT,			//三次関数(だんだん遅く)
+		EXPO,				//指数関数(〇次関数より若干緩やか)
+		SIN_BACK,			//サイン(もとに戻ってくる)
+		COS_BACK,			//コサイン(もとに戻ってくる)
+		ELASTIC_IN,			//前半ばね(だんだん大きく)
+		ELASTIC_OUT,		//後半ばね
+		BOUNCE,				//跳ねるような動き
 
 		//元の位置に戻すイージング
 		ELASTIC_BACK,	//元の位置に戻るばね
@@ -136,6 +137,8 @@ private:
 	/// @return 
 	float Lerp(const float t);
 	float LerpBack(const float t);		//戻る補完
+
+	float OutBack(const float t);		//目的地を少し超えて戻る
 
 	//---------------------------------------------------------------------------------------------
 	//二次関数系

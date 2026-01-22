@@ -103,7 +103,7 @@ void Enemy::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
-	trans_.pos = { 0.0f,0.0f,500.0f };
+	trans_.pos = { 0.0f,0.0f,CENTER_POS_Z_OFFSET };
 	trans_.localPos = { 0.0f,0.0f,0.0f };
 	trans_.Update();
 
@@ -136,6 +136,15 @@ void Enemy::Update(void)
 	UpdatePost();
 	trans_.quaRot = charaRot_.playerRotY_;
 
+	trans_.Update();
+}
+
+void Enemy::DirectionUpdate(void)
+{
+	animationController_->Update();
+	action_->Update();
+	//Transform‚ÌXV
+	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
 }
 

@@ -34,25 +34,19 @@ public:
 	static const std::wstring PATH_CSV;
 	static const std::wstring PATH_SHADER;
 	//-------------------------------------------
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>初期化成功の場合true,そうじゃない場合false</returns>
+	
+	/// @brief 初期化
+	/// @param  
+	/// @return true:初期化成功 false:初期化失敗
 	bool Init(void);
-
-	/// <summary>
-	/// ゲームの実行ループ
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief ゲームの実行ループ
+	/// @param  
 	void Run(void);
-
-	/// <summary>
-	/// リソースの破棄
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns>解放成功の場合true,そうじゃない場合false</returns>
+	
+	/// @brief リソースの破棄
+	/// @param  
+	/// @return 初期化成功 false:初期化失敗
 	bool Release(void);
 
 	/// @brief ゲームの終了判定をセットする

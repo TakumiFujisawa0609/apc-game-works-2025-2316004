@@ -112,6 +112,7 @@
     <ClCompile Include="Src\Object\Stage.cpp" />
     <ClCompile Include="Src\Object\Character\Player\Weapon.cpp" />
     <ClCompile Include="Src\Object\Character\Base\UIBase2D.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Object\Character\Base\HpUIBase.h" />
@@ -250,6 +251,7 @@
     <ClInclude Include="Src\Object\Stage.h" />
     <ClInclude Include="Src\Object\Character\Player\Weapon.h" />
     <ClInclude Include="Src\Object\Character\Base\UIBase2D.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Src\Shader\Common\Pixel\PixelShader2DHeader.hlsli" />

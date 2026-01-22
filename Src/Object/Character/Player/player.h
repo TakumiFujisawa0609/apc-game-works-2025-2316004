@@ -84,6 +84,10 @@ public:
 	/// @brief 更新
 	/// @param  
 	void Update(void)override;
+
+	/// @brief 演出時の更新
+	/// @param  
+	void DirectionUpdate(void) override;
 	
 	/// @brief 描画
 	/// @param  

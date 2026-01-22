@@ -38,6 +38,12 @@ void CharacterManager::Update(void)
 	enemy_->Update();
 }
 
+void CharacterManager::DirectionUpdate(void)
+{
+	enemy_->DirectionUpdate();
+	player_->DirectionUpdate();
+}
+
 void CharacterManager::Draw(void)
 {
 	enemy_->Draw();

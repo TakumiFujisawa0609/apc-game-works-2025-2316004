@@ -107,7 +107,7 @@ void Player::Init(void)
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
-	trans_.pos={ 0.0f,0.0f,INIT_POS_Z };
+	trans_.pos={ 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
 	trans_.localPos = { 0.0f,Player::CAP_RADIUS,-0.0f };
 	//武器の追従対象をセット
 	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
@@ -154,6 +154,19 @@ void Player::Update(void)
 
 	hpUi_->Update();
 	weapon_->Update();
+}
+
+void Player::DirectionUpdate(void)
+{
+	//アニメーション
+	animationController_->Update();
+
+	//武器の更新
+	weapon_->Update();
+
+	//Transformの更新
+	trans_.quaRot = charaRot_.playerRotY_;
+	trans_.Update();
 }
 
 void Player::Draw(void)

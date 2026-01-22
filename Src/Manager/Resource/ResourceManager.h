@@ -68,9 +68,12 @@ public:
 		P_CARD_NUM_GAUGE_FRAME,	//カード枚数ゲージフレーム
 		P_CARD_NUM_GAUGE_BACK,	//カード枚数ゲージ背景
 		CARD_SELECT_FRAME_IMG,//カード枠画像
-		E_HP_BAR_MASK,	//エネミー体力ゲージマスク
-		E_HP_BAR_FRAME,	//エネミー体力ゲージフレーム
-		E_HP_COVER,
+		E_HP_BAR_MASK,	//敵体力体力ゲージマスク
+		E_HP_BAR_FRAME,	//敵体力体力ゲージフレーム
+		E_HP_COVER,		//敵体力ゲージカバー
+
+		INTENSIVE_LINE_1,	//集中線画像1(複数画像でアニメーション)
+		INTENSIVE_LINE_2,	//集中線画像2(複数画像でアニメーション)
 
 
 		//ピクセルシェーダ

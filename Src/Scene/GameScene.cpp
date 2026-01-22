@@ -48,6 +48,10 @@ void GameScene::Load(void)
 	pauseScene_ = std::make_shared<PauseScene>();
 	pauseScene_->Load();
 
+	//集中線画像のロード
+	intensiveLineImg_1 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
+	intensiveLineImg_2 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_2).handleId_;
+
 	stage_ = std::make_unique<Stage>();
 
 	skyDome_ = std::make_unique<SkyDome>();
@@ -121,13 +125,12 @@ void GameScene::NormalUpdate(void)
 void GameScene::NormalDraw(void)
 {
 	//プレイヤーの描画
-	//PlayerManager::GetInstance().DrawPlayerUI();
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
 
 	//UIなどの描画
-	CharacterManager::GetInstance().Draw2D();
+	//CharacterManager::GetInstance().Draw2D();
 
 	//UI2DManager::GetInstance().Draw();
 #ifdef _DEBUG
@@ -138,11 +141,24 @@ void GameScene::NormalDraw(void)
 
 }
 
+void GameScene::DirectionDraw(void)
+{
+	//プレイヤーの描画
+	skyDome_->Draw();
+	stage_->Draw();
+	CharacterManager::GetInstance().Draw();
+}
+
+void GameScene::DirectionUpdate(void)
+{
+	CharacterManager::GetInstance().DirectionUpdate();
+}
+
 void GameScene::ChangeNormal(void)
 {
 	//処理変更
-	updataFunc_ = std::bind(&GameScene::NormalUpdate, this);
-	drawFunc_ = std::bind(&GameScene::NormalDraw, this);
+	updataFunc_ = [this]() {DirectionUpdate(); };
+	drawFunc_ = [this]() {DirectionDraw(); };
 }
 #ifdef _DEBUG
 void GameScene::DebagUpdate(void)
@@ -155,9 +171,6 @@ void GameScene::DebagUpdate(void)
 	}
 	frame_++;
 }
-
-
-
 
 void GameScene::DebagDraw(void)
 {

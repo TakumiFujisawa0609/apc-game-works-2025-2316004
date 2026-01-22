@@ -116,6 +116,10 @@ public:
 	/// @param  
 	virtual void Update(void)override = 0;
 
+	/// @brief 演出時の更新
+	/// @param  
+	virtual void DirectionUpdate(void) = 0;
+
 	/// @brief 描画
 	/// @param  
 	virtual void Draw(void)override = 0;
@@ -281,7 +285,8 @@ protected:
 	static constexpr float MOVE_LINE_Y_CHECK_VALUE =  1.5f;
 	//リロードカードステータス
 	static constexpr CardBase::CARD_STATUS RELOAD_CARD_STATUS = { -1,CardBase::CARD_TYPE::RELOAD };
-
+	//中心からのZオフセット
+	static constexpr float CENTER_POS_Z_OFFSET = 600.0f;
 
 
 	//入力

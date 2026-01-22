@@ -85,6 +85,7 @@ public:
 		PLAYER_AND_ENEMY_VIEW,
 		ENEMY_ONLY_VIEW,
 		PLAYER_ONLY_VIEW,
+		END
 	};
 
 	//イージングモード
@@ -158,6 +159,11 @@ private:
 
 	//プレイヤーと敵を両方映す時間
 	static constexpr float PLAYER_AND_ENEMY_VIEW_TIME = 2.0f;
+
+	//プレイヤーの頭上位置
+	static constexpr VECTOR PLAYER_HEAD_POS = { 0.0f,160.0f,0.0f };
+	//敵の頭上位置
+	static constexpr VECTOR PLAYER_WAIST = { 0.0f,80.0f,0.0f };
 
 	// カメラが追従対象とするTransform
 	const Transform* followTransform_;
@@ -246,10 +252,19 @@ private:
 	VECTOR localF2TPos_;
 	//追従位置からカメラ位置までの相対座標
 	VECTOR localF2CPos_;
-	//イージングスタート位置
-	VECTOR easingStartPos_;
-	//イージングゴール位置
-	VECTOR easingGoalPos_;
+	//イージングスタートF2C位置
+	VECTOR easingStartF2CPos_;
+	//イージングゴールF2C位置
+	VECTOR easingGoalF2CPos_;
+	//イージングスタートF2C位置
+	VECTOR easingStartF2TPos_;
+	//イージングゴールF2C位置
+	VECTOR easingGoalF2TPos_;
+	VECTOR startFollowLocalCenterPos_;
+	VECTOR goalFollowLocalCenterPos_;
+	VECTOR startAngles_;
+	VECTOR goalAngles_;
+
 
 
 	/// @brief 当たったときの処理
@@ -317,15 +332,17 @@ private:
 	//カメラ演出
 	//更新
 	void DirectionNone(void);
-	void DirectionLegLowAngle(void);
-	void DirectionEnemyOnlyAngle(void);
-	void DirectionPlayerOnlyAngle(void);
+	void DirectionPlayerAndTarget(void);
+	void DirectionEnemyOnly(void);
+	void DirectionPlayerOnly(void);
+	void EndDirection(void);
+
 
 	//遷移
 	void ChangeDirectionNone(void);
-	void ChangeDirectionLegLowAngle(void);
-	void ChangeDirectionEnemyOnlyAngle(void);
-	void ChangeDirectionPlayerOnlyAngle(void);
-
+	void ChangeDirectionLegLow(void);
+	void ChangeDirectionEnemyOnly(void);
+	void ChangeDirectionPlayerOnly(void);
+	void ChangeEndDirection(void);
 };
 
