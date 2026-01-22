@@ -13,7 +13,7 @@
 GameClearScene::GameClearScene(void)
 {
 	//更新関数のセット
-	updataFunc_ = std::bind(&GameClearScene::LoadingUpdate, this);
+	updateFunc_ = std::bind(&GameClearScene::LoadingUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&GameClearScene::LoadingDraw, this);
 }
@@ -81,6 +81,6 @@ void GameClearScene::NormalDraw(void)
 void GameClearScene::ChangeNormal(void)
 {
 	//処理変更
-	updataFunc_ = std::bind(&GameClearScene::NormalUpdate, this);
+	updateFunc_ = std::bind(&GameClearScene::NormalUpdate, this);
 	drawFunc_ = std::bind(&GameClearScene::NormalDraw, this);
 }

@@ -30,7 +30,7 @@ void SceneBase::Init(void)
 
 void SceneBase::Update(void)
 {
-	updataFunc_();
+	updateFunc_();
 	return;
 }
 

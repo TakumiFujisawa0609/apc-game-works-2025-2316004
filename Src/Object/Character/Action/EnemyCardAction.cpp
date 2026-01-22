@@ -222,9 +222,12 @@ void EnemyCardAction::UpdateStomp(void)
 		//isAliveAtkCol_ = true;
 		//charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
 
+		//カメラシェイク制限値
+		constexpr float CAMERA_SHAKE_LIMIT = 30.0f;
+
 		//溜めのカメラシェイク
 		atkCnt_ += SceneManager::GetInstance().GetDeltaTime();
-		scnMng_.GetCamera().lock()->SetShakeStatus(atkCnt_ / STOMP_ATK_SHAKE_CNT, 30.0f);
+		scnMng_.GetCamera().lock()->SetShakeStatus(atkCnt_ / STOMP_ATK_SHAKE_CNT, CAMERA_SHAKE_LIMIT);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//地響き音再生

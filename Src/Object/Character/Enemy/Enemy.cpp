@@ -144,6 +144,8 @@ void Enemy::DirectionUpdate(void)
 	animationController_->Update();
 	action_->Update();
 	//Transform‚ÌXV
+	//if(scnMng_.GetCamera().lock()->GetDirectionMode()==Camera::DIRECTION_MODE::)
+
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
 }

@@ -16,7 +16,7 @@ TitleScene::TitleScene(void):
 	soundMng_(SoundManager::GetInstance())
 {
 	//更新関数のセット
-	updataFunc_ = std::bind(&TitleScene::LoadingUpdate, this);
+	updateFunc_ = std::bind(&TitleScene::LoadingUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&TitleScene::LoadingDraw, this);
 }
@@ -216,7 +216,7 @@ void TitleScene::NormalDraw(void)
 void TitleScene::ChangeNormal(void)
 {
 	//処理変更
-	updataFunc_ = std::bind(&TitleScene::NormalUpdate, this);
+	updateFunc_ = std::bind(&TitleScene::NormalUpdate, this);
 	drawFunc_ = std::bind(&TitleScene::NormalDraw, this);
 }
 

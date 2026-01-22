@@ -55,7 +55,7 @@ protected:
 	SceneManager& scnMng_;
 
 	//更新処理管理
-	std::function<void(void)> updataFunc_;
+	std::function<void(void)> updateFunc_;
 	std::function<void(void)> drawFunc_;
 
 	//ローディング経過時間

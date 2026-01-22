@@ -55,18 +55,16 @@ private:
 	int intensiveLineImg_2;
 	//更新関数
 	void NormalUpdate(void) override;
-
 	//演出時の更新
 	void DirectionUpdate(void);
-
 	//描画関数
 	void NormalDraw(void) override;
-
 	//演出時の描画
 	void DirectionDraw(void);
 
 	//処理の変更
 	void ChangeNormal(void) override;
+	void ChangeDirection(void);
 	
 #ifdef _DEBUG
 	//デバッグ処理

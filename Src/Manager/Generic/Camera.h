@@ -81,9 +81,9 @@ public:
 	enum class DIRECTION_MODE
 	{
 		NONE,
-		EASING,
 		PLAYER_AND_ENEMY_VIEW,
 		ENEMY_ONLY_VIEW,
+		ENEMY_ROAR_VIEW,
 		PLAYER_ONLY_VIEW,
 		END
 	};
@@ -152,8 +152,20 @@ public:
 		stageTransform_ = _stageTrans;
 	}
 
+	const bool IsEndDirectionMode(void)
+	{
+		return mode_ == MODE::FOLLOW;
+	}
+
+	const DIRECTION_MODE GetDirectionMode(void) const
+	{
+		return directionMode_;
+	}
+
 private:
 
+	//カメラの初期角度
+	static constexpr float DEFAULT_CAMERA_ANGLES_RAD_X = 30.0f;
 	//追従対象のフレームナンバー
 	static constexpr int FOLLOW_FRAME_NUM = 1;
 
@@ -164,6 +176,25 @@ private:
 	static constexpr VECTOR PLAYER_HEAD_POS = { 0.0f,160.0f,0.0f };
 	//敵の頭上位置
 	static constexpr VECTOR PLAYER_WAIST = { 0.0f,80.0f,0.0f };
+
+	//プレイヤーと敵を移す時のイージング追従位置から注視店までの相対座標
+	static constexpr VECTOR PLAYER_AND_ENEMY_LOCAL_F2C_POS = { 0.0f, -600, -1400.0f };
+
+	//敵のみを移す演出時の追従位置から注視点までの相対座標
+	static constexpr VECTOR ENEMY_ONLY_LOCAL_F2T_POS = { 0.0f, 500.0f, 200.0f };
+
+	//プレイヤーのみを移す演出時の追従位置からカメラまでのイージング初期の相対座標
+	static constexpr VECTOR PLAYER_ONLY_LOCAL_F2C_START_POS = { 500.0f, 100.0f, -800.0f };
+	//プレイヤーのみを移す演出時の追従位置からカメラまでのイージング終端の相対座標
+	static constexpr VECTOR PLAYER_ONLY_LOCAL_F2C_GOAL_POS = { 0.0f,-150.0f,-170.0f };
+	//プレイヤーのみを移す演出時のカメラY角度
+	static constexpr float PLAYER_ONLY_CAMERA_ANGLE_Y = -145.0f;
+
+	//敵咆哮演出時のカメラ振動範囲
+	static constexpr float ENEMY_ROAR_SHAKE_LIMIT = 5.0f;
+
+
+	//敵のみを移す演出時の追従位置からカメラまでの相対座標
 
 	// カメラが追従対象とするTransform
 	const Transform* followTransform_;
@@ -334,6 +365,7 @@ private:
 	void DirectionNone(void);
 	void DirectionPlayerAndTarget(void);
 	void DirectionEnemyOnly(void);
+	void DirectionEnemyRoar(void);
 	void DirectionPlayerOnly(void);
 	void EndDirection(void);
 
@@ -342,6 +374,7 @@ private:
 	void ChangeDirectionNone(void);
 	void ChangeDirectionLegLow(void);
 	void ChangeDirectionEnemyOnly(void);
+	void ChangeDirectionEnemyRoar(void);
 	void ChangeDirectionPlayerOnly(void);
 	void ChangeEndDirection(void);
 };

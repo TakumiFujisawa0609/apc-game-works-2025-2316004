@@ -21,7 +21,7 @@
 GameScene::GameScene(void)
 {
 	//更新関数のセット
-	updataFunc_ = std::bind(&GameScene::LoadingUpdate, this);
+	updateFunc_ = std::bind(&GameScene::LoadingUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&GameScene::LoadingDraw, this);
 
@@ -109,6 +109,7 @@ void GameScene::NormalUpdate(void)
 
 	//更新はアクション中のみ
 	CollisionManager::GetInstance().Update();
+
 	//終了した当たり判定の消去
 	CollisionManager::GetInstance().Sweep();
 
@@ -130,7 +131,7 @@ void GameScene::NormalDraw(void)
 	CharacterManager::GetInstance().Draw();
 
 	//UIなどの描画
-	//CharacterManager::GetInstance().Draw2D();
+	CharacterManager::GetInstance().Draw2D();
 
 	//UI2DManager::GetInstance().Draw();
 #ifdef _DEBUG
@@ -151,13 +152,19 @@ void GameScene::DirectionDraw(void)
 
 void GameScene::DirectionUpdate(void)
 {
+	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
+	{
+		updateFunc_ = [this]() {NormalUpdate(); };
+		drawFunc_ = [this]() {NormalDraw(); };
+		return;
+	}
 	CharacterManager::GetInstance().DirectionUpdate();
 }
 
 void GameScene::ChangeNormal(void)
 {
 	//処理変更
-	updataFunc_ = [this]() {DirectionUpdate(); };
+	updateFunc_ = [this]() {DirectionUpdate(); };
 	drawFunc_ = [this]() {DirectionDraw(); };
 }
 #ifdef _DEBUG
@@ -167,7 +174,7 @@ void GameScene::DebagUpdate(void)
 	InputManager& ins = InputManager::GetInstance();
 	if (ins.IsTrgDown(KEY_INPUT_SPACE))
 	{
-		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
 	}
 	frame_++;
 }

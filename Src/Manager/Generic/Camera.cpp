@@ -53,6 +53,7 @@ void Camera::Init(void)
 		{DIRECTION_MODE::NONE,[this]() {ChangeDirectionNone(); }},
 		{DIRECTION_MODE::PLAYER_AND_ENEMY_VIEW,[this]() {ChangeDirectionLegLow(); }},
 		{DIRECTION_MODE::ENEMY_ONLY_VIEW,[this]() {ChangeDirectionEnemyOnly(); }},
+		{DIRECTION_MODE::ENEMY_ROAR_VIEW,[this]() {ChangeDirectionEnemyRoar(); }},
 		{DIRECTION_MODE::PLAYER_ONLY_VIEW,[this]() {ChangeDirectionPlayerOnly(); }},
 		{DIRECTION_MODE::END,[this]() {ChangeEndDirection(); }}
 	};
@@ -532,7 +533,7 @@ void Camera::ChangeFixedPoint(void)
 
 void Camera::ChangeFollow(void)
 {
-	SetDefault();
+	//SetDefault();
 	localF2CPos_ = LOCAL_F2C_POS;
 	localF2TPos_ = LOCAL_F2T_POS;
 	modeUpdate_ = [this]() {SetBeforeDrawFollow(); };
@@ -645,31 +646,40 @@ void Camera::DirectionEnemyOnly(void)
 {
 	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
 	{
-		ChangeDirectionMode(DIRECTION_MODE::PLAYER_ONLY_VIEW);
+		ChangeDirectionMode(DIRECTION_MODE::ENEMY_ROAR_VIEW);
 		return;
 	}
 	
-	//ローカル座標をイージングで補完
+	////ローカル座標をイージングで補完
 	localF2CPos_ = easing_->EaseFunc(easingStartF2CPos_, easingGoalF2CPos_, directionCnt_ / 1.0f
 		, Easing::EASING_TYPE::OUT_BACK);
+	localF2TPos_ = easing_->EaseFunc(easingStartF2TPos_, easingGoalF2TPos_, directionCnt_ / 1.0f
+		, Easing::EASING_TYPE::OUT_BACK);
+
 
 	SyncFollow(targetTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
 	
 }
 
+void Camera::DirectionEnemyRoar(void)
+{
+	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
+	{
+		ChangeSub(SUB_MODE::NONE);
+		ChangeDirectionMode(DIRECTION_MODE::PLAYER_ONLY_VIEW);
+		return;
+	}
+	SetShakeStatus(directionCnt_ / PLAYER_AND_ENEMY_VIEW_TIME, ENEMY_ROAR_SHAKE_LIMIT);
+	ChangeSub(SUB_MODE::SHAKE);
+	SyncFollow(targetTransform_);
+	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
+
+}
+
 void Camera::DirectionPlayerOnly(void)
 {
 	//localF2CPos_.z = easing_->EaseFunc(startF2CPosZ_, goalF2CPosZ_, directionCnt_ / 1.0f, Easing::EASING_TYPE::BOUNCE);
-
-	if (InputManager::GetInstance().IsNew(KEY_INPUT_UP))
-	{
-		localF2CPos_.y -= 10.0f;
-	}
-	else if (InputManager::GetInstance().IsNew(KEY_INPUT_DOWN))
-	{
-		localF2CPos_.y += 10.0f;
-	}
 
 	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
 	{
@@ -688,6 +698,12 @@ void Camera::DirectionPlayerOnly(void)
 
 void Camera::EndDirection(void)
 {
+	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
+	{
+		ChangeMode(MODE::FOLLOW);
+		return;
+	}
+
 	angles_ = easing_->EaseFunc(startAngles_, goalAngles_, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
 	localF2CPos_ = easing_->EaseFunc(easingStartF2CPos_, LOCAL_F2C_POS, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
 	followLocalCenterPos_ = easing_->EaseFunc(startFollowLocalCenterPos_, goalFollowLocalCenterPos_, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
@@ -703,35 +719,42 @@ void Camera::ChangeDirectionNone(void)
 
 void Camera::ChangeDirectionLegLow(void)
 {
-	localF2CPos_ = { 0.0f, -600, -1400.0f };
+	localF2CPos_ = PLAYER_AND_ENEMY_LOCAL_F2C_POS;
 	localF2TPos_ = LOCAL_F2T_POS;
-	followLocalCenterPos_ = { 0.0f,80.0f,0.0f };
+	followLocalCenterPos_ = PLAYER_WAIST;
 	directionCnt_ = 0.0f;
 	directionUpdate_ = [this]() {DirectionPlayerAndTarget(); };
 }
 
 void Camera::ChangeDirectionEnemyOnly(void)
 {
-	localF2TPos_ = { 0.0f, 500.0f, 200.0f };
+	//localF2TPos_ = { 0.0f, 500.0f, 200.0f };
 	//followLocalCenterPos_ = PLAYER_HEAD_POS;	//イージング前は
-	directionCnt_ = 0.0f;
 	//SyncFollow(targetTransform_);
+	directionCnt_ = 0.0f;
 	easingStartF2CPos_ = localF2CPos_;
 	easingGoalF2CPos_ = LOCAL_F2C_POS;
+	easingStartF2TPos_ = localF2TPos_;
+	easingGoalF2TPos_= ENEMY_ONLY_LOCAL_F2T_POS;
 
 	directionUpdate_ = [this]() {DirectionEnemyOnly(); };
+}
+
+void Camera::ChangeDirectionEnemyRoar(void)
+{
+	directionUpdate_= [this]() {DirectionEnemyRoar(); };
 }
 
 void Camera::ChangeDirectionPlayerOnly(void)
 {
 	localF2TPos_ = LOCAL_F2T_POS;
 
-	easingStartF2CPos_ = { 500.0f, 100.0f, -800.0f };;
-	easingGoalF2CPos_ = { 0.0f,-150.0f,-170.0f };
+	easingStartF2CPos_ = PLAYER_ONLY_LOCAL_F2C_START_POS;
+	easingGoalF2CPos_ = PLAYER_ONLY_LOCAL_F2C_GOAL_POS;
 
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	directionCnt_ = 0.0f;
-	angles_.y = UtilityCommon::Deg2RadF(-145.0f);
+	angles_.y = UtilityCommon::Deg2RadF(PLAYER_ONLY_CAMERA_ANGLE_Y);
 	directionUpdate_ = [this]() {DirectionPlayerOnly(); };
 }
 
@@ -741,7 +764,7 @@ void Camera::ChangeEndDirection(void)
 	//localF2TPos_ = LOCAL_F2T_POS;
 	easingStartF2CPos_ = localF2CPos_;
 	startAngles_ = angles_;
-	goalAngles_ = VECTOR(UtilityCommon::Deg2RadF(30.0f), 0.0f, 0.0f);
+	goalAngles_ = { UtilityCommon::Deg2RadF(DEFAULT_CAMERA_ANGLES_RAD_X), 0.0f, 0.0f };
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	startFollowLocalCenterPos_ = followLocalCenterPos_;
 	goalFollowLocalCenterPos_ = Utility3D::VECTOR_ZERO;
