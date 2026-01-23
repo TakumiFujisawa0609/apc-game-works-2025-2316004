@@ -50,6 +50,11 @@ public:
 	/// @return 
 	const bool IsSceneChangeGameOverCondition(void)const;
 
+	/// @brief ‰‰o’†‚Ì“G‚Ì™ôšKó‘Ôæ“¾
+	/// @param  
+	/// @return 
+	const bool GetIsEnemyRoar(void)const;
+
 private:
 	CharacterManager(void);
 	~CharacterManager(void)override;

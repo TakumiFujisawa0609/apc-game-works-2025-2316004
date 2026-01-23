@@ -40,8 +40,8 @@ void CharacterManager::Update(void)
 
 void CharacterManager::DirectionUpdate(void)
 {
-	enemy_->DirectionUpdate();
-	player_->DirectionUpdate();
+	enemy_->UpdateDirection();
+	player_->UpdateDirection();
 }
 
 void CharacterManager::Draw(void)
@@ -66,6 +66,10 @@ const bool CharacterManager::IsSceneChageClearCondition(void) const
 const bool CharacterManager::IsSceneChangeGameOverCondition(void) const
 {
 	return player_->GetStatus().hp <= 0;
+}
+const bool CharacterManager::GetIsEnemyRoar(void) const
+{
+	return enemy_->GetIsRoar();
 }
 CharacterManager::CharacterManager(void)
 {

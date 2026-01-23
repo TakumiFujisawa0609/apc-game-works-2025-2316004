@@ -397,8 +397,6 @@ void Camera::SmoothChangeCamera(void)
 		changeTargetLerpCnt_ = CHANGE_TARGET_LERP_TIME;
 		ChangeMode(Camera::MODE::TARGET_POINT);
 	}
-
-
 }
 
 void Camera::Collision(void)
@@ -664,14 +662,14 @@ void Camera::DirectionEnemyOnly(void)
 
 void Camera::DirectionEnemyRoar(void)
 {
-	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
+	if (directionCnt_ > ENEMY_ROAR_VIEW_TIME)
 	{
 		ChangeSub(SUB_MODE::NONE);
 		ChangeDirectionMode(DIRECTION_MODE::PLAYER_ONLY_VIEW);
 		return;
 	}
-	SetShakeStatus(directionCnt_ / PLAYER_AND_ENEMY_VIEW_TIME, ENEMY_ROAR_SHAKE_LIMIT);
-	ChangeSub(SUB_MODE::SHAKE);
+	//SetShakeStatus(directionCnt_ / PLAYER_AND_ENEMY_VIEW_TIME, ENEMY_ROAR_SHAKE_LIMIT);
+	//ChangeSub(SUB_MODE::SHAKE);
 	SyncFollow(targetTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
 
@@ -728,9 +726,6 @@ void Camera::ChangeDirectionLegLow(void)
 
 void Camera::ChangeDirectionEnemyOnly(void)
 {
-	//localF2TPos_ = { 0.0f, 500.0f, 200.0f };
-	//followLocalCenterPos_ = PLAYER_HEAD_POS;	//イージング前は
-	//SyncFollow(targetTransform_);
 	directionCnt_ = 0.0f;
 	easingStartF2CPos_ = localF2CPos_;
 	easingGoalF2CPos_ = LOCAL_F2C_POS;
@@ -760,8 +755,6 @@ void Camera::ChangeDirectionPlayerOnly(void)
 
 void Camera::ChangeEndDirection(void)
 {
-	//localF2CPos_ = LOCAL_F2C_POS;
-	//localF2TPos_ = LOCAL_F2T_POS;
 	easingStartF2CPos_ = localF2CPos_;
 	startAngles_ = angles_;
 	goalAngles_ = { UtilityCommon::Deg2RadF(DEFAULT_CAMERA_ANGLES_RAD_X), 0.0f, 0.0f };

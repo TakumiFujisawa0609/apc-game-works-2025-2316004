@@ -8,6 +8,8 @@ class CardDeck;
 class EnemyInput;
 class ActionController;
 class AnimationController;
+class PixelMaterial;
+class PixelRenderer;
 
 class Idle;
 class Run;
@@ -23,6 +25,8 @@ public:
 	static constexpr int RADIUS = 25; //敵のサイズ
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
+
+
 
 	//敵の大きさの倍率
 	static constexpr float MODEL_SIZE_MULTIPLITER = 5.0f;
@@ -40,6 +44,14 @@ public:
 	static constexpr float MAX_DEF = 100.0f;		//防御力
 	//アニメーション速度
 	static constexpr float ANIM_SPEED = 10.0f;
+	//咆哮アニメーション速度
+	static constexpr float ROAR_ANIM_SPEED = 30.0f;
+	//咆哮アニメーション咆哮開始位置
+	static constexpr float ROAR_ANIM_START_ANIM = 50.0f;
+	//咆哮アニメーション咆哮終了位置
+	static constexpr float ROAR_ANIM_END_ANIM = 127.0f;
+	//カメラシェイク強さ
+	static constexpr float CAM_SHAKE_LIMIT = 10.0f;
 	//格納するカードの強さ
 	static constexpr CardBase::CARD_STATUS CARD_POWS[CARD_NUM_MAX] = {
 		{1,CARD_TYPE::ATTACK},
@@ -121,7 +133,7 @@ public:
 
 	/// @brief 演出時の更新
 	/// @param  
-	void DirectionUpdate(void) override;
+	void UpdateDirection(void) override;
 
 	/// @brief 描画
 	/// @param  
@@ -148,14 +160,14 @@ public:
 	/// <param name="_deg"></param>
 	void SetGoalRotate(void)override;
 
-	///// @brief 攻撃の当たり判定作成
-	///// @param _charaTag キャラクタータグ
-	///// @param _attackTag 攻撃タグ
-	///// @param _atkPos 攻撃座標(球の当たり判定用)
-	///// @param _radius 半径(球の当たり判定用)
-	//void MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)override;
+	/// @brief 咆哮演出時の更新
+	/// @param  
+	void UpdateRoarDirection(void);
 
-
+	/// @brief 咆哮状態の取得
+	/// @param  
+	/// @return true:咆哮状態 false:通常状態
+	const bool GetIsRoar(void)const { return isRoar_; }
 
 private:
 
@@ -182,6 +194,10 @@ private:
 	VECTOR rightHandPos_;
 
 	Vector2 cardCenterPos_; //カードの中心座標
+
+	//咆哮状態かどうか
+	bool isRoar_;
+
 
 	//コライダ作成
 	void MakeColliderGeometry(void)override;

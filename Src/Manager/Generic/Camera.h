@@ -172,6 +172,9 @@ private:
 	//プレイヤーと敵を両方映す時間
 	static constexpr float PLAYER_AND_ENEMY_VIEW_TIME = 2.0f;
 
+	//敵の咆哮を映す時間
+	static constexpr float ENEMY_ROAR_VIEW_TIME = 6.0f;
+
 	//プレイヤーの頭上位置
 	static constexpr VECTOR PLAYER_HEAD_POS = { 0.0f,160.0f,0.0f };
 	//敵の頭上位置

@@ -28,6 +28,11 @@ void SceneManager::Init(void)
 	// デルタタイム
 	preTime_ = std::chrono::system_clock::now();
 
+	mainScreen_ = MakeScreen(
+		Application::SCREEN_SIZE_X,
+		Application::SCREEN_SIZE_Y,
+		true);
+
 	//ウィンドウがアクティブ状態でなくとも処理を行う
 	SetAlwaysRunFlag(true);
 
@@ -98,7 +103,8 @@ void SceneManager::Draw(void)
 	
 	// 描画先グラフィック領域の指定
 	// (３Ｄ描画で使用するカメラの設定などがリセットされる)
-	SetDrawScreen(DX_SCREEN_BACK);
+	//SetDrawScreen(DX_SCREEN_BACK);
+	SetDrawScreen(mainScreen_);
 
 	// 画面を初期化
 	ClearDrawScreen();
@@ -116,13 +122,18 @@ void SceneManager::Draw(void)
 	}
 
 	// 主にポストエフェクト用
-	camera_->Draw();
+	//camera_->Draw();
 
 	// Effekseerにより再生中のエフェクトを描画する。
 	DrawEffekseer3D();
 	
 	// 暗転・明転
 	fader_->Draw();
+
+	SetDrawScreen(DX_SCREEN_BACK);
+
+	// メインスクリーンを画面に描画する
+	DrawGraph(0, 0, mainScreen_, false);
 
 }
 

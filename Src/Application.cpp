@@ -100,6 +100,11 @@ void Application::Run()
 		//フレームレート計算
 		fps_->CalcFrameRate();
 
+#ifdef _DEBUG
+		fps_->DrawFrameRate();
+#endif // _DEBUG
+
+
 		ScreenFlip();
 	}
 

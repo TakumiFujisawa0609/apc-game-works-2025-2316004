@@ -2,10 +2,6 @@
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
 #include"../../../Application.h"
-#include"../../Card/CardDeck.h"
-#include"../Object/Card/EnemyCardUI.h"
-#include"../Player/ActionController.h"
-
 #include"../Player/Player.h"
 #include"../Base/CharacterOnHitBase.h"
 #include"./EnemyOnHit.h"
@@ -20,7 +16,9 @@
 #include"../Manager/Generic/Camera.h"
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
-
+#include"../../Card/CardDeck.h"
+#include"../Object/Card/EnemyCardUI.h"
+#include"../Player/ActionController.h"
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
 #include"../Action/Run.h"
@@ -38,6 +36,8 @@ Enemy::Enemy(void):
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 
 	capRadius_ = CAP_RADIUS;
+
+	isRoar_ = false;
 }
 
 Enemy::~Enemy(void)
@@ -50,9 +50,6 @@ void Enemy::Load(void)
 	trans_.quaRot = Quaternion();
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
-
-	//敵のカードUI生成
-
 
 	//アニメーション
 	AddAnimation();
@@ -97,6 +94,7 @@ void Enemy::Init(void)
 	capRadius_ = CAP_RADIUS;
 
 
+
 	//Transformの設定
 	trans_.quaRot = Quaternion();
 	trans_.scl = MODEL_SCL;
@@ -108,8 +106,6 @@ void Enemy::Init(void)
 	trans_.Update();
 
 	MakeColliderGeometry();
-
-	
 }
 
 void Enemy::Update(void)
@@ -139,13 +135,14 @@ void Enemy::Update(void)
 	trans_.Update();
 }
 
-void Enemy::DirectionUpdate(void)
+void Enemy::UpdateDirection(void)
 {
 	animationController_->Update();
 	action_->Update();
-	//Transformの更新
-	//if(scnMng_.GetCamera().lock()->GetDirectionMode()==Camera::DIRECTION_MODE::)
+	UpdateRoarDirection();
 
+
+	//Transformの更新
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
 }
@@ -208,8 +205,6 @@ void Enemy::MoveDirFromInput(void)
 {
 	//入力クラスから角度を取得
 	VECTOR getDir = logic_->GetDir();
-	//charaRot_.dir_ = playerRot.PosAxis(getDir);
-	//charaRot_.dir_ = VNorm(charaRot_.dir_);
 	charaRot_.dir_ = getDir;
 }
 void Enemy::SetGoalRotate(void)
@@ -229,6 +224,32 @@ void Enemy::SetGoalRotate(void)
 	charaRot_.goalQuaRot_ = axis;
 }
 
+void Enemy::UpdateRoarDirection(void)
+{
+	if (scnMng_.GetCamera().lock()->GetDirectionMode() == Camera::DIRECTION_MODE::ENEMY_ROAR_VIEW)
+	{
+		isRoar_ = false;
+		animationController_->Play(static_cast<int>(ANIM_TYPE::ROAR_ATK), false);
+		float roarAnimStep = animationController_->GetAnimStep();
+		const float ROAR_TIME = ROAR_ANIM_END_ANIM - ROAR_ANIM_SPEED;
+		if (roarAnimStep >= ROAR_ANIM_START_ANIM)
+		{
+			//カメラシェイク
+			float t = (roarAnimStep - ROAR_ANIM_START_ANIM) / ROAR_TIME;
+			scnMng_.GetCamera().lock()->SetShakeStatus(t, CAM_SHAKE_LIMIT);
+			scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
+
+			isRoar_ = true;
+
+		}
+	}
+	else
+	{
+		isRoar_ = false;
+		animationController_->Play(static_cast<int>(ANIM_TYPE::IDLE), false);
+	}
+}
+
 
 void Enemy::MakeColliderGeometry(void)
 {
@@ -242,36 +263,36 @@ void Enemy::MakeColliderGeometry(void)
 	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
 
-	//左手第一関節
-	geo = std::make_unique<Sphere>(leftArmPos_, 100.0f);
-	MakeCollider(TAG_PRIORITY::LEFT_ONE, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_ONE);
-	//左手第二関節
-	geo = std::make_unique<Sphere>(leftForeArmPos_, 100.0f);
-	MakeCollider(TAG_PRIORITY::LEFT_TWO, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_TWO);
+	////左手第一関節
+	//geo = std::make_unique<Sphere>(leftArmPos_, 100.0f);
+	//MakeCollider(TAG_PRIORITY::LEFT_ONE, { tag_ }, std::move(geo));
+	//tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_ONE);
+	////左手第二関節
+	//geo = std::make_unique<Sphere>(leftForeArmPos_, 100.0f);
+	//MakeCollider(TAG_PRIORITY::LEFT_TWO, { tag_ }, std::move(geo));
+	//tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_TWO);
 
-	geo = std::make_unique<Sphere>(leftHandPos_, 100.0f);
-	MakeCollider(TAG_PRIORITY::LEFT_THREE, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_THREE);
+	//geo = std::make_unique<Sphere>(leftHandPos_, 100.0f);
+	//MakeCollider(TAG_PRIORITY::LEFT_THREE, { tag_ }, std::move(geo));
+	//tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_THREE);
 
 
-	rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
-	rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
-	rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
+	//rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
+	//rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
+	//rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
 
-	//右手第一関節
-	geo = std::make_unique<Sphere>(rightArmPos_, 100.0f);
-	MakeCollider(TAG_PRIORITY::RIGHT_ONE, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_ONE);
-	//右手第二関節
-	geo = std::make_unique<Sphere>(rightForeArmPos_, 100.0f);
-	MakeCollider(TAG_PRIORITY::RIGHT_TWO, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_TWO);
+	////右手第一関節
+	//geo = std::make_unique<Sphere>(rightArmPos_, 100.0f);
+	//MakeCollider(TAG_PRIORITY::RIGHT_ONE, { tag_ }, std::move(geo));
+	//tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_ONE);
+	////右手第二関節
+	//geo = std::make_unique<Sphere>(rightForeArmPos_, 100.0f);
+	//MakeCollider(TAG_PRIORITY::RIGHT_TWO, { tag_ }, std::move(geo));
+	//tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_TWO);
 
-	geo = std::make_unique<Sphere>(rightHandPos_, 100.0f);
-	MakeCollider(TAG_PRIORITY::RIGHT_THREE, { tag_ }, std::move(geo));
-	tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_THREE);
+	//geo = std::make_unique<Sphere>(rightHandPos_, 100.0f);
+	//MakeCollider(TAG_PRIORITY::RIGHT_THREE, { tag_ }, std::move(geo));
+	//tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_THREE);
 
 
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
@@ -304,7 +325,7 @@ void Enemy::AddAnimation(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_STOMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ROAR_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
 }
 

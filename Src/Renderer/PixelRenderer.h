@@ -35,6 +35,10 @@ public:
 	//頂点の作成
 	void MakeVertex(float sX, float sY, float eX, float eY);
 
+	/// @brief スクリーンサイズに合わせた頂点作成
+	/// @param  
+	void MakeScreenVertex(void);
+
 	// 座標設定
 	void SetPos(Vector2F pos);
 
@@ -45,6 +49,7 @@ public:
 	void Draw(void);
 	void Draw(float x, float y);
 	void DrawFromCenter(float centerX, float centerY);
+
 
 private:
 
@@ -61,6 +66,6 @@ private:
 	WORD indexes_[NUM_VERTEX_IDX];
 
 	// ピクセルマテリアル
-	PixelMaterial& normalCardPSMaterial_;
+	PixelMaterial& material_;
 
 };

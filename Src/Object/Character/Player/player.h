@@ -87,7 +87,7 @@ public:
 
 	/// @brief ‰‰o‚ÌXV
 	/// @param  
-	void DirectionUpdate(void) override;
+	void UpdateDirection(void) override;
 	
 	/// @brief •`‰æ
 	/// @param  

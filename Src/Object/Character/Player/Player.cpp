@@ -156,7 +156,7 @@ void Player::Update(void)
 	weapon_->Update();
 }
 
-void Player::DirectionUpdate(void)
+void Player::UpdateDirection(void)
 {
 	//アニメーション
 	animationController_->Update();

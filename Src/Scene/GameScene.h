@@ -3,6 +3,8 @@
 #include "SceneBase.h"
 
 class PauseScene;
+class PixelMaterial;
+class PixelRenderer;
 class CharacterBase;
 class SkyDome;
 class Player;
@@ -34,6 +36,16 @@ private:
 	//BGM
 	static constexpr int BGM_GAME_VOL = 50;
 
+	//集中線シェーダー関連
+	//定数バッファの個数
+	static constexpr int INTENSIVE_CBUFFER_NUM = 1;
+
+	//集中線アニメーション速度
+	static constexpr int INTENSIVE_LINE_ANIM_SPEED = 5;
+
+	//ポストエフェクト用スクリーン
+	int postEffectScreen_;
+
 	int frame_;
 	//スカイドーム
 	std::unique_ptr<SkyDome> skyDome_;
@@ -50,9 +62,22 @@ private:
 	//敵
 	std::unique_ptr<Enemy>enemy_;
 
+	//シェーダクラス
+	std::unique_ptr<PixelMaterial> intensiveMaterial_;
+	std::unique_ptr<PixelRenderer> intensiveRenderer_;
+
 	//集中線
 	int intensiveLineImg_1;
 	int intensiveLineImg_2;
+	//集中線アニメーション
+	int intensiveLineAnimImg_;
+
+	//集中線アニメーションフレーム
+	int intensiveLineAnimFrame_;
+
+	//集中線アニメーション更新
+	void UpdateIntensiveLineAnim(void);
+
 	//更新関数
 	void NormalUpdate(void) override;
 	//演出時の更新
@@ -64,7 +89,6 @@ private:
 
 	//処理の変更
 	void ChangeNormal(void) override;
-	void ChangeDirection(void);
 	
 #ifdef _DEBUG
 	//デバッグ処理

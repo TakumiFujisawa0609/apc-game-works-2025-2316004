@@ -6,7 +6,7 @@
 #include "../../Common/Fader.h"
 
 // 推奨しませんが、どうしても使いたい方は
-#define mainCamera SceneManager::GetInstance().GetCamera().lock()
+//#define mainCamera SceneManager::GetInstance().GetCamera().lock()
 
 class SceneBase;
 class Fader;
@@ -56,12 +56,6 @@ public:
 	/// @brief すべてのシーンを切り替える
 	/// @param scene 切り替え先のシーン
 	void ChangeAllScene(std::shared_ptr<SceneBase> scene);
-
-	/// <summary>
-	/// シーンをプッシュする。スタックの数が増える
-	/// 一番上のシーンのUpdateしか呼ばれません。
-	/// </summary>
-	/// <param name="scene">積むシーン</param>
 	
 	/// @brief シーンをプッシュする。スタックの数が増える
 	/// 一番上のシーンのUpdateしか呼ばれません。
@@ -101,6 +95,11 @@ public:
 	/// @return カメラ
 	std::weak_ptr<Camera> GetCamera(void) const { return camera_; }
 
+	/// @brief メインスクリーンのハンドルを返す
+	/// @param  
+	/// @return メインスクリーンのハンドル
+	inline int GetMainScreen(void) const { return mainScreen_; }
+
 private:
 
 	SCENE_ID sceneId_;
@@ -124,21 +123,25 @@ private:
 
 	//経過時間
 	float totalTime_;
+
+	//メインスクリーン
+	int mainScreen_;
+
 	
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
-	SceneManager();
+	SceneManager(void);
 
 	// デストラクタも同様
-	~SceneManager() = default;
+	~SceneManager(void) = default;
 
 	// デルタタイムをリセットする
-	void ResetDeltaTime();
+	void ResetDeltaTime(void);
 
 	// シーン遷移
 	void DoChangeScene(SCENE_ID sceneId);
 
 	// フェード
-	void Fade();
+	void Fade(void);
 
 };

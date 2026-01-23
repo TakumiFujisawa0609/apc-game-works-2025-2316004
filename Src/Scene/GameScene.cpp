@@ -10,6 +10,8 @@
 #include "../Manager/Game/CharacterManager.h"
 #include "../Manager/Game/GravityManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Renderer/PixelMaterial.h"
+#include "../Renderer/PixelRenderer.h"
 #include "../Object/Character/Player/Player.h"
 #include "../Object/SkyDome/SkyDome.h"
 #include "../Object/Character/Enemy/Enemy.h"
@@ -24,6 +26,8 @@ GameScene::GameScene(void)
 	updateFunc_ = std::bind(&GameScene::LoadingUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&GameScene::LoadingDraw, this);
+
+	postEffectScreen_ = MakeScreen(Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, true);
 
 	CharacterManager::CreateInstance();
 	CollisionManager::CreateInstance();
@@ -70,7 +74,12 @@ void GameScene::Init(void)
 
 	//重力管理クラスを生成
 	GravityManager::CreateInstance();
-	
+
+	intensiveMaterial_ = std::make_unique<PixelMaterial>(L"IntensivePS.cso", INTENSIVE_CBUFFER_NUM);
+	intensiveMaterial_->AddTextureBuf(scnMng_.GetMainScreen());
+	intensiveMaterial_->AddConstBuf({ 0.0f,1.0f,0.0f,0.0f });
+	intensiveRenderer_ = std::make_unique<PixelRenderer>(*intensiveMaterial_);
+	intensiveRenderer_->MakeScreenVertex();
 
 	stage_->Init();
 	skyDome_->Init();
@@ -79,6 +88,18 @@ void GameScene::Init(void)
 	SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, static_cast<int>(SoundManager::TYPE::BGM));
 
 
+}
+
+void GameScene::UpdateIntensiveLineAnim(void)
+{
+
+	if (!CharacterManager::GetInstance().GetIsEnemyRoar())return;
+	intensiveLineAnimFrame_++;
+	if (intensiveLineAnimFrame_ >= INTENSIVE_LINE_ANIM_SPEED)
+	{
+		intensiveLineAnimFrame_ = 0;
+	}
+	intensiveLineAnimImg_ = (intensiveLineAnimFrame_ % INTENSIVE_LINE_ANIM_SPEED / 2 == 0) ? intensiveLineImg_1 : intensiveLineImg_2;
 }
 
 void GameScene::NormalUpdate(void)
@@ -148,6 +169,23 @@ void GameScene::DirectionDraw(void)
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
+
+	if (CharacterManager::GetInstance().GetIsEnemyRoar())
+	{
+		//集中線描画
+		DrawGraph(0, 0, intensiveLineAnimImg_, true);
+	}
+
+
+	//SetDrawScreen(postEffectScreen_);
+
+	//intensiveMaterial_->SetTextureBuf(0, scnMng_.GetMainScreen());
+	//intensiveRenderer_->Draw();
+
+	//SetDrawScreen(scnMng_.GetMainScreen());
+
+	//DrawGraph(0, 0, postEffectScreen_, true);
+
 }
 
 void GameScene::DirectionUpdate(void)
@@ -159,6 +197,13 @@ void GameScene::DirectionUpdate(void)
 		return;
 	}
 	CharacterManager::GetInstance().DirectionUpdate();
+	UpdateIntensiveLineAnim();
+
+	//集中線シェーダー有効化
+	float totalTime = scnMng_.GetInstance().GetTotalTime();
+	intensiveMaterial_->SetConstBuf(0, { totalTime,1.0f,0.0f,0.0f });
+
+
 }
 
 void GameScene::ChangeNormal(void)
@@ -181,6 +226,8 @@ void GameScene::DebagUpdate(void)
 
 void GameScene::DebagDraw(void)
 {
+
+
 	//DrawBox(
 	//	0,
 	//	0,

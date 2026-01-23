@@ -1,6 +1,7 @@
+#include "../Application.h"
 #include "PixelRenderer.h"
 
-PixelRenderer::PixelRenderer(PixelMaterial& pixelMaterial) : normalCardPSMaterial_(pixelMaterial)
+PixelRenderer::PixelRenderer(PixelMaterial& pixelMaterial) : material_(pixelMaterial)
 {
 }
 
@@ -110,6 +111,13 @@ void PixelRenderer::MakeSquareVertex(void)
 	MakeSquareVertex(pos_, size_);
 }
 
+void PixelRenderer::MakeScreenVertex(void)
+{
+	const float SCREEN_SIZE_X = static_cast<float>(Application::SCREEN_SIZE_X);
+	const float SCREEN_SIZE_Y = static_cast<float>(Application::SCREEN_SIZE_Y);
+	MakeSquareVertex({ 0.0f,0.0f }, { SCREEN_SIZE_X,SCREEN_SIZE_Y });
+}
+
 void PixelRenderer::SetPos(Vector2F pos)
 {
 	pos_ = pos;
@@ -123,12 +131,12 @@ void PixelRenderer::SetSize(Vector2F size)
 void PixelRenderer::Draw(void)
 {
 	// ピクセルシェーダ設定
-	SetUsePixelShader(normalCardPSMaterial_.GetShader());
+	SetUsePixelShader(material_.GetShader());
 
 	size_t size;
 
 	// ピクセルシェーダにテクスチャを転送
-	const auto& textures = normalCardPSMaterial_.GetTextures();
+	const auto& textures = material_.GetTextures();
 	size = textures.size();
 	for (int i = 0; i < size; i++)
 	{
@@ -136,10 +144,10 @@ void PixelRenderer::Draw(void)
 	}
 
 	// 定数バッファハンドル
-	int constBuf = normalCardPSMaterial_.GetConstBuf();
+	int constBuf = material_.GetConstBuf();
 
 	FLOAT4* constBufsPtr = (FLOAT4*)GetBufferShaderConstantBuffer(constBuf);
-	const auto& constBufs = normalCardPSMaterial_.GetConstBufs();
+	const auto& constBufs = material_.GetConstBufs();
 
 	size = constBufs.size();
 	for (int i = 0; i < size; i++)
@@ -162,7 +170,7 @@ void PixelRenderer::Draw(void)
 		constBuf, DX_SHADERTYPE_PIXEL, CONSTANT_BUF_SLOT_BEGIN_PS);
 
 	// テクスチャアドレスタイプの取得
-	auto texA = normalCardPSMaterial_.GetTextureAddress();
+	auto texA = material_.GetTextureAddress();
 	int texAType = static_cast<int>(texA);
 
 	// テクスチャアドレスタイプを変更
@@ -208,3 +216,4 @@ void PixelRenderer::DrawFromCenter(float centerX, float centerY)
 	MakeSquareVertexFromCenter();
 	Draw();
 }
+

@@ -118,7 +118,7 @@ public:
 
 	/// @brief ‰‰o‚ÌXV
 	/// @param  
-	virtual void DirectionUpdate(void) = 0;
+	virtual void UpdateDirection(void) = 0;
 
 	/// @brief •`‰æ
 	/// @param  

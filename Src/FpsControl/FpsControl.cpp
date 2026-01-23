@@ -8,7 +8,6 @@ FpsControl::FpsControl()
 	prevFrameTime_ = 0;
 	frameCnt_ = 0;
 	updateFrameRateTime_ = 0;
-	frameCnt_ = 0;
 }
 
 FpsControl::~FpsControl()
@@ -22,7 +21,6 @@ void FpsControl::Init()
 	prevFrameTime_ = 0;
 	frameCnt_ = 0;
 	updateFrameRateTime_ = 0;
-	frameCnt_ = 0;
 }
 
 bool FpsControl::UpdateFrameRate()
@@ -65,6 +63,9 @@ void FpsControl::CalcFrameRate()
 		//フレームレートを求める
 		//理想通りなら 60000 / 1000 で60となる
 		frameRate_ = castFrameCnt / difTime;
+
+		//フレームカウントをリセット
+		frameCnt_ = 0;
 
 		//フレームレート更新時間を更新
 		updateFrameRateTime_ = currentTime_;
