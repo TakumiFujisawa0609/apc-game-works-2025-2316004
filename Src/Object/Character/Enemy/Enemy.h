@@ -127,13 +127,13 @@ public:
 	/// @param  
 	void Init(void) override;
 
-	/// @brief 更新
-	/// @param  
-	void Update(void) override;
+	///// @brief 更新
+	///// @param  
+	//void Update(void) override;
 
-	/// @brief 演出時の更新
-	/// @param  
-	void UpdateDirection(void) override;
+	///// @brief 演出時の更新
+	///// @param  
+	//void UpdateDirection(void) override;
 
 	/// @brief 描画
 	/// @param  
@@ -201,6 +201,12 @@ private:
 
 	//コライダ作成
 	void MakeColliderGeometry(void)override;
+
+	//通常更新
+	void UpdateNormal(void)override;
+
+	//演出時の更新
+	void UpdateDirection(void)override;
 
 	//アクションの追加
 	void AddAction(void)override;

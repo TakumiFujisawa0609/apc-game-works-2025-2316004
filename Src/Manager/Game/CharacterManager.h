@@ -55,6 +55,14 @@ public:
 	/// @return 
 	const bool GetIsEnemyRoar(void)const;
 
+
+	/// @brief ’Êíó‘Ô‚ÖˆÚs
+	/// @param  
+	void ChangeCharacterNormalUpdate(void);
+
+	//‰‰oó‘Ô‚Ö
+	void ChangeCharacterDirectionUpdate(void);
+
 private:
 	CharacterManager(void);
 	~CharacterManager(void)override;

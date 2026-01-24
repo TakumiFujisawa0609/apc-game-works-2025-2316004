@@ -56,8 +56,8 @@ void SceneBase::LoadingUpdate(void)
 		//フェードイン開始
 		scnMng_.StartFadeIn();
 
-		//通常の処理へ移る
-		ChangeNormal();
+		//通常の処理へ移る(シーン遷移時に処理する関数へ)
+		OnSceneEnter();
 	}
 }
 
@@ -75,7 +75,7 @@ void SceneBase::NormalDraw(void)
 {
 }
 
-void SceneBase::ChangeNormal(void)
+void SceneBase::OnSceneEnter(void)
 {
 }
 

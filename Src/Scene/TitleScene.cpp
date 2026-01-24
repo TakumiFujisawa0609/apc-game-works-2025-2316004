@@ -23,6 +23,7 @@ TitleScene::TitleScene(void):
 
 TitleScene::~TitleScene(void)
 {
+	soundMng_.Stop(SoundManager::SRC::TITLE_BGM);
 	titleFont_ = DeleteFontToHandle(titleFont_);
 }
 
@@ -213,7 +214,7 @@ void TitleScene::NormalDraw(void)
 
 }
 
-void TitleScene::ChangeNormal(void)
+void TitleScene::OnSceneEnter(void)
 {
 	//èàóùïœçX
 	updateFunc_ = std::bind(&TitleScene::NormalUpdate, this);

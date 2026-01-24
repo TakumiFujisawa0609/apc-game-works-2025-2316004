@@ -80,14 +80,12 @@ public:
 	/// @brief 初期化
 	/// @param  
 	void Init(void)override;
-	
-	/// @brief 更新
-	/// @param  
-	void Update(void)override;
+	//
+	///// @brief 更新
+	///// @param  
+	//void Update(void)override;
 
-	/// @brief 演出時の更新
-	/// @param  
-	void UpdateDirection(void) override;
+
 	
 	/// @brief 描画
 	/// @param  
@@ -124,6 +122,7 @@ public:
 	/// @brief 攻撃の当たり判定削除
 	/// @param _charaTag 自身のタグ
 	void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)override;
+
 
 
 private:
@@ -277,6 +276,9 @@ private:
 	//当たり判定初期化
 	void MakeColliderGeometry(void)override;
 
+	//演出時の更新
+	void UpdateDirection(void) override;
+	void UpdateNormal(void)override;
 	
 	//アクション関係
 	void Action(void);

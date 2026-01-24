@@ -29,6 +29,6 @@ private:
 	void NormalDraw(void) override;
 
 	//ˆ—‚Ì•ÏX
-	void ChangeNormal(void) override;
+	void OnSceneEnter(void) override;
 };
 

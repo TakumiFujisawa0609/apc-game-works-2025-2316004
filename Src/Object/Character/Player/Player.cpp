@@ -113,7 +113,7 @@ void Player::Init(void)
 	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
 
 	tag_ = Collider::TAG::PLAYER1;
-
+	
 	MakeColliderGeometry();
 
 	hpUi_->Init();
@@ -138,7 +138,25 @@ void Player::Init(void)
 	trans_.Update();
 }
 
-void Player::Update(void)
+//void Player::Update(void)
+//{
+//
+//}
+
+void Player::UpdateDirection(void)
+{
+	//アニメーション
+	animationController_->Update();
+
+	//武器の更新
+	weapon_->Update();
+
+	//Transformの更新
+	trans_.quaRot = charaRot_.playerRotY_;
+	trans_.Update();
+}
+
+void Player::UpdateNormal(void)
 {
 	//アニメーション
 	animationController_->Update();
@@ -154,19 +172,6 @@ void Player::Update(void)
 
 	hpUi_->Update();
 	weapon_->Update();
-}
-
-void Player::UpdateDirection(void)
-{
-	//アニメーション
-	animationController_->Update();
-
-	//武器の更新
-	weapon_->Update();
-
-	//Transformの更新
-	trans_.quaRot = charaRot_.playerRotY_;
-	trans_.Update();
 }
 
 void Player::Draw(void)
@@ -230,6 +235,7 @@ void Player::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG
 	if (!weapon_->IsAliveCollider(_charaTag, _attackCol))return;
 	weapon_->DeleteWeaponCollider();
 }
+
 
 #ifdef _DEBUG
 void Player::DrawDebug(void)

@@ -19,6 +19,14 @@ class GameScene : public SceneBase
 
 public:
 	
+	enum class UPDATE_PHASE   
+	{
+		NONE,
+		NORMAL,
+		DIRECTION,
+
+	};
+
 	// コンストラクタ
 	GameScene(void);
 
@@ -47,6 +55,11 @@ private:
 	int postEffectScreen_;
 
 	int frame_;
+
+	//更新フェーズ
+	UPDATE_PHASE updatePhase_;
+	std::map<UPDATE_PHASE, std::function<void(void)>>changeUpdate_;
+
 	//スカイドーム
 	std::unique_ptr<SkyDome> skyDome_;
 
@@ -62,9 +75,7 @@ private:
 	//敵
 	std::unique_ptr<Enemy>enemy_;
 
-	//シェーダクラス
-	std::unique_ptr<PixelMaterial> intensiveMaterial_;
-	std::unique_ptr<PixelRenderer> intensiveRenderer_;
+
 
 	//集中線
 	int intensiveLineImg_1;
@@ -79,16 +90,24 @@ private:
 	void UpdateIntensiveLineAnim(void);
 
 	//更新関数
-	void NormalUpdate(void) override;
-	//演出時の更新
-	void DirectionUpdate(void);
+	void NoneUpdate(void);				//何もしない
+	void NormalUpdate(void) override;	//通常
+	void DirectionUpdate(void);			//演出時の更新
 	//描画関数
-	void NormalDraw(void) override;
-	//演出時の描画
-	void DirectionDraw(void);
+	void NormalDraw(void) override;		//通常
+	void DirectionDraw(void);			//演出時の描画
+
+	/// @brief 更新フェーズの変更
+	/// @param _phase 
+	void ChangeUpdatePhase(const UPDATE_PHASE _phase);
+
+	//各状態の遷移処理
+	void ChangeNone(void);
+	void ChangeDirection(void);
+	void ChangeNormal(void);
 
 	//処理の変更
-	void ChangeNormal(void) override;
+	void OnSceneEnter(void) override;
 	
 #ifdef _DEBUG
 	//デバッグ処理

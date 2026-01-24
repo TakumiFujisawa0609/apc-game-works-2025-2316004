@@ -52,7 +52,7 @@ void GameOverScene::NormalDraw(void)
 	);
 }
 
-void GameOverScene::ChangeNormal(void)
+void GameOverScene::OnSceneEnter(void)
 {
 	//ˆ—•ÏX
 	updateFunc_ = std::bind(&GameOverScene::NormalUpdate, this);

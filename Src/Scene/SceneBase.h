@@ -73,7 +73,7 @@ protected:
 	virtual void NormalDraw(void);
 
 	//ローディング処理から通常処理へ
-	virtual void ChangeNormal(void);
+	virtual void OnSceneEnter(void);
 	
 	//「now loading......」の描画
 	void DrawNowLoading(void);

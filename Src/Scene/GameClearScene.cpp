@@ -78,7 +78,7 @@ void GameClearScene::NormalDraw(void)
 
 }
 
-void GameClearScene::ChangeNormal(void)
+void GameClearScene::OnSceneEnter(void)
 {
 	//ˆ—•ÏX
 	updateFunc_ = std::bind(&GameClearScene::NormalUpdate, this);

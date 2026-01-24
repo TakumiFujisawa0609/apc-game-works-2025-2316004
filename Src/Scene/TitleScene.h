@@ -156,7 +156,7 @@ private:
 	void NormalDraw(void) override;
 
 	//処理の変更
-	void ChangeNormal(void) override;
+	void OnSceneEnter(void) override;
 
 	//初めのイージング処理
 	void UpdateEase(void);

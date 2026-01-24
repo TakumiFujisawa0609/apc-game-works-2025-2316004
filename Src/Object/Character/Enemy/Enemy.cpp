@@ -108,32 +108,10 @@ void Enemy::Init(void)
 	MakeColliderGeometry();
 }
 
-void Enemy::Update(void)
-{
-	animationController_->Update();
-
-	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-	//logic_->Update();
-	action_->Update();
-	cardUI_->Update();
-	hpUi_->Update();
-	
-	//å®ÇÃç¿ïWÇéÊìæ
-	leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);
-	leftForeArmPos_ = MV1GetFramePosition(trans_.modelId, 10);
-	leftHandPos_ = MV1GetFramePosition(trans_.modelId, 11);
-
-	rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
-	rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
-	rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
-
-
-	//âÒì]ÇÃìØä˙
-	UpdatePost();
-	trans_.quaRot = charaRot_.playerRotY_;
-
-	trans_.Update();
-}
+//void Enemy::Update(void)
+//{
+//
+//}
 
 void Enemy::UpdateDirection(void)
 {
@@ -160,32 +138,6 @@ void Enemy::Draw(void)
 			rock->Draw();
 		}
 	}
-
-
-	//const int BOX_START_X = 600;
-	//const int BOX_START_Y = 10;
-	//const int BOX_END_X = 300;
-	////const int BOX_END_X =0;
-	//const int BOX_END_Y = BOX_START_Y + 20;
-
-
-	////float hpBoxEnd= hpPer * 400.0f;
-	////int hpBox_x = (BOX_START_X - 1) + static_cast<int>(hpBoxEnd);
-	////DrawBox(BOX_START_X, BOX_START_Y, BOX_END_X, BOX_END_Y, 0x000000, -1);
-	////DrawBox(BOX_START_X-1, BOX_START_Y-1, hpBox_x, BOX_END_Y, 0x0000ff, -1); 
-
-
-	//Utility2D::DrawBarGraph(
-	//	{ BOX_START_X,BOX_START_Y },
-	//	{ BOX_END_X,BOX_END_Y },
-	//	hpPer_,
-	//	0x000000,
-	//	0x0000ff,
-	//	2
-	//);
-
-
-
 }
 void Enemy::Draw2D(void)
 {
@@ -305,6 +257,34 @@ void Enemy::MakeColliderGeometry(void)
 	tagPrioritys_.emplace_back(TAG_PRIORITY::UPDOWN_LINE);
 
 	onHit_ = std::make_unique<EnemyOnHit>(*this, movedPos_, moveDiff_, *action_, collider_, trans_);
+}
+void Enemy::UpdateNormal(void)
+{
+	animationController_->Update();
+
+	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
+	//logic_->Update();
+	action_->Update();
+	cardUI_->Update();
+	hpUi_->Update();
+
+	////å®ÇÃç¿ïWÇéÊìæ
+	//leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);
+	//leftForeArmPos_ = MV1GetFramePosition(trans_.modelId, 10);
+	//leftHandPos_ = MV1GetFramePosition(trans_.modelId, 11);
+
+	//rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
+	//rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
+	//rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
+
+
+	//âÒì]ÇÃìØä˙
+	UpdatePost();
+	trans_.quaRot = charaRot_.playerRotY_;
+
+	trans_.Update();
+
+
 }
 void Enemy::AddAction(void)
 {

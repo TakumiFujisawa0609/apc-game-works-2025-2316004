@@ -66,6 +66,14 @@ void GameScene::Load(void)
 
 void GameScene::Init(void)
 {
+	changeUpdate_ = {
+		{UPDATE_PHASE::NONE,[this]() {ChangeNone(); }},
+		{UPDATE_PHASE::DIRECTION,[this]() {ChangeDirection(); }},
+		{UPDATE_PHASE::NORMAL,[this]() {ChangeNormal(); }}
+	};
+	updatePhase_ = UPDATE_PHASE::NONE;
+	ChangeUpdatePhase(UPDATE_PHASE::DIRECTION);
+
 	CharacterManager::GetInstance().Init();
 	//シェイク状態を初期化
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
@@ -74,12 +82,6 @@ void GameScene::Init(void)
 
 	//重力管理クラスを生成
 	GravityManager::CreateInstance();
-
-	intensiveMaterial_ = std::make_unique<PixelMaterial>(L"IntensivePS.cso", INTENSIVE_CBUFFER_NUM);
-	intensiveMaterial_->AddTextureBuf(scnMng_.GetMainScreen());
-	intensiveMaterial_->AddConstBuf({ 0.0f,1.0f,0.0f,0.0f });
-	intensiveRenderer_ = std::make_unique<PixelRenderer>(*intensiveMaterial_);
-	intensiveRenderer_->MakeScreenVertex();
 
 	stage_->Init();
 	skyDome_->Init();
@@ -100,6 +102,11 @@ void GameScene::UpdateIntensiveLineAnim(void)
 		intensiveLineAnimFrame_ = 0;
 	}
 	intensiveLineAnimImg_ = (intensiveLineAnimFrame_ % INTENSIVE_LINE_ANIM_SPEED / 2 == 0) ? intensiveLineImg_1 : intensiveLineImg_2;
+}
+
+void GameScene::NoneUpdate(void)
+{
+	//何もしない
 }
 
 void GameScene::NormalUpdate(void)
@@ -188,29 +195,49 @@ void GameScene::DirectionDraw(void)
 
 }
 
-void GameScene::DirectionUpdate(void)
+
+void GameScene::ChangeUpdatePhase(const UPDATE_PHASE _phase)
 {
-	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
-	{
-		updateFunc_ = [this]() {NormalUpdate(); };
-		drawFunc_ = [this]() {NormalDraw(); };
-		return;
-	}
-	CharacterManager::GetInstance().DirectionUpdate();
-	UpdateIntensiveLineAnim();
+	if (updatePhase_ == _phase)return;
+	updatePhase_ = _phase;
+	changeUpdate_[updatePhase_]();
+}
 
-	//集中線シェーダー有効化
-	float totalTime = scnMng_.GetInstance().GetTotalTime();
-	intensiveMaterial_->SetConstBuf(0, { totalTime,1.0f,0.0f,0.0f });
+void GameScene::ChangeNone(void)
+{
+}
 
-
+void GameScene::ChangeDirection(void)
+{
+	CharacterManager::GetInstance().ChangeCharacterDirectionUpdate();
+	updateFunc_ = [this]() {DirectionUpdate(); };
+	drawFunc_ = [this]() {DirectionDraw(); };
 }
 
 void GameScene::ChangeNormal(void)
 {
-	//処理変更
-	updateFunc_ = [this]() {DirectionUpdate(); };
-	drawFunc_ = [this]() {DirectionDraw(); };
+	CharacterManager::GetInstance().ChangeCharacterNormalUpdate();
+	updateFunc_ = [this]() {NormalUpdate(); };
+	drawFunc_ = [this]() {NormalDraw(); };
+}
+
+void GameScene::DirectionUpdate(void)
+{
+	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
+	{
+		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
+		return;
+	}
+	CharacterManager::GetInstance().Update();
+	UpdateIntensiveLineAnim();
+
+
+}
+
+void GameScene::OnSceneEnter(void)
+{
+	//演出状態へ移行
+	ChangeDirection();
 }
 #ifdef _DEBUG
 void GameScene::DebagUpdate(void)

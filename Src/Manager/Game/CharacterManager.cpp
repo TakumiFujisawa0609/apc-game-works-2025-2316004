@@ -40,8 +40,10 @@ void CharacterManager::Update(void)
 
 void CharacterManager::DirectionUpdate(void)
 {
-	enemy_->UpdateDirection();
-	player_->UpdateDirection();
+	//if()
+
+	//enemy_->UpdateDirection();
+	//player_->UpdateDirection();
 }
 
 void CharacterManager::Draw(void)
@@ -70,6 +72,16 @@ const bool CharacterManager::IsSceneChangeGameOverCondition(void) const
 const bool CharacterManager::GetIsEnemyRoar(void) const
 {
 	return enemy_->GetIsRoar();
+}
+void CharacterManager::ChangeCharacterNormalUpdate(void)
+{
+	player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::NORMAL);
+	enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::NORMAL);
+}
+void CharacterManager::ChangeCharacterDirectionUpdate(void)
+{
+	player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::DIRECTION);
+	enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::DIRECTION);
 }
 CharacterManager::CharacterManager(void)
 {

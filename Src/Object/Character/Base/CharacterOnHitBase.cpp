@@ -94,7 +94,7 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 		//座標が当たっているライン座標より上のとき、地面と当たる
 		if (movedPos_.y > hitLinePos.y)
 		{
-			movedPos_.y = hitLinePos.y + bodyRadius_ + POSITION_OFFSET;
+			movedPos_.y = hitLinePos.y /*+ bodyRadius_*/ + POSITION_OFFSET;
 			hitPoint_.isDown = true;
 		}
 

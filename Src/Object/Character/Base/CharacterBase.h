@@ -26,6 +26,9 @@ class CharacterBase :public ObjectBase
 {
 public:
 
+	//ヒットストップ止めるフレーム数
+	static constexpr int HIT_STOP_FRAME = 5;
+
 	//アニメーション速度
 	static constexpr float ANIM_SPEED = 40.0f;
 
@@ -94,6 +97,13 @@ public:
 		CARD_ACTION	//カードアクション
 	};
 
+	enum class UPDATE_PHASE
+	{
+		NONE,
+		NORMAL,
+		DIRECTION,
+		HIT_STOP
+	};
 	/// @brief コンストラクタ
 	/// @param  
 	CharacterBase(void);
@@ -114,11 +124,11 @@ public:
 
 	/// @brief 更新
 	/// @param  
-	virtual void Update(void)override = 0;
+	void Update(void)override;
 
-	/// @brief 演出時の更新
-	/// @param  
-	virtual void UpdateDirection(void) = 0;
+	///// @brief 演出時の更新
+	///// @param  
+	//virtual void UpdateDirection(void) = 0;
 
 	/// @brief 描画
 	/// @param  
@@ -269,14 +279,17 @@ public:
 	/// @return ターゲットと当たったかどうか
 	const bool GetIsHitTarget(void)const;
 
-
 	/// @brief 操作可能かどうかセット
 	/// @param _isCanMoveable true:操作可能	false:操作不可能
 	void SetIsCanMoveable(const bool _isCanMoveable) { isMoveable_ = _isCanMoveable; }
 
-
 	//カードを使用済みにする(自分の攻撃中、敵の攻撃に当たった時)
 	void SetUsedCard(void);
+
+
+	/// @brief 遷移先の更新フェーズ設定
+	/// @param _phase どの更新フェーズにするか
+	void ChangeUpdatePhase(const UPDATE_PHASE _phase);
 protected:
 
 	//移動量ラインオフセット
@@ -320,6 +333,12 @@ protected:
 	ROTATION charaRot_;
 	//ステータス
 	STATUS status_;
+	//更新フェーズ
+	UPDATE_PHASE updatePhase_;
+	//更新フェーズ変更
+	std::map <UPDATE_PHASE, std::function<void(void)>>changeUpdate_;
+	//更新フェーズの更新
+	std::function<void(void)>phazeUpdate_;
 	
 	//サウンドマネージャ
 	SoundManager& soundMng_;
@@ -346,6 +365,9 @@ protected:
 	//減る前の体力
 	float preHpPer_;
 
+	//ヒットストップ用カウンタ(フレーム)
+	int hitStopFrame_;
+
 	//移動後座標などの更新
 	void UpdatePost(void);
 	//ステータスの設定
@@ -360,6 +382,19 @@ protected:
 	virtual void AddAnimation(void) = 0;
 	//コライダ作成
 	virtual void MakeColliderGeometry(void) = 0;;
+
+	//更新フェーズ	
+	void UpdateNone(void);						//何もしない
+	virtual void UpdateNormal(void) = 0;		//通常更新
+	virtual void UpdateDirection(void) = 0;		//演出時更新
+	void UpdateHitStop(void);		//ヒットストップ更新
+
+
+	//遷移先の更新フェーズ
+	void ChangeUpdateNone(void);
+	void ChangeUpdateNormal(void);
+	void ChangeUpdateDirection(void);
+	void ChangeUpdateHitStop(void);
 private:
 
 };
