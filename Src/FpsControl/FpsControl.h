@@ -2,6 +2,7 @@
 
 //フレームレート
 static constexpr float FRAME_RATE(1000 / 60);
+//static constexpr float FRAME_RATE(1000 / 30);
 
 class FpsControl
 {

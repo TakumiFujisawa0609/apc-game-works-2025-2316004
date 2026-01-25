@@ -69,7 +69,8 @@ void GameScene::Init(void)
 	changeUpdate_ = {
 		{UPDATE_PHASE::NONE,[this]() {ChangeNone(); }},
 		{UPDATE_PHASE::DIRECTION,[this]() {ChangeDirection(); }},
-		{UPDATE_PHASE::NORMAL,[this]() {ChangeNormal(); }}
+		{UPDATE_PHASE::NORMAL,[this]() {ChangeNormal(); }},
+		{UPDATE_PHASE::SLOW,[this]() {ChangeSlow(); }}
 	};
 	updatePhase_ = UPDATE_PHASE::NONE;
 	ChangeUpdatePhase(UPDATE_PHASE::DIRECTION);
@@ -221,6 +222,12 @@ void GameScene::ChangeNormal(void)
 	drawFunc_ = [this]() {NormalDraw(); };
 }
 
+void GameScene::ChangeSlow(void)
+{
+	CharacterManager::GetInstance().ChangeCharacterNormalUpdate();
+	updateFunc_ = [this]() {SlowUpdate(); };
+}
+
 void GameScene::DirectionUpdate(void)
 {
 	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
@@ -232,6 +239,13 @@ void GameScene::DirectionUpdate(void)
 	UpdateIntensiveLineAnim();
 
 
+}
+
+void GameScene::SlowUpdate(void)
+{
+	if (--slowFrame_ > 0)return;
+	slowFrame_ = FRAME_PER_UPDATE;
+	NormalUpdate();
 }
 
 void GameScene::OnSceneEnter(void)

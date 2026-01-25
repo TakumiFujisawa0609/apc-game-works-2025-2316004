@@ -24,6 +24,7 @@ public:
 		NONE,
 		NORMAL,
 		DIRECTION,
+		SLOW
 
 	};
 
@@ -51,6 +52,9 @@ private:
 	//集中線アニメーション速度
 	static constexpr int INTENSIVE_LINE_ANIM_SPEED = 5;
 
+	//スローの時、何フレームに1回更新するか
+	static constexpr int FRAME_PER_UPDATE = 2;
+
 	//ポストエフェクト用スクリーン
 	int postEffectScreen_;
 
@@ -75,7 +79,8 @@ private:
 	//敵
 	std::unique_ptr<Enemy>enemy_;
 
-
+	//スローカウンタ(フレーム)
+	int slowFrame_;
 
 	//集中線
 	int intensiveLineImg_1;
@@ -93,6 +98,7 @@ private:
 	void NoneUpdate(void);				//何もしない
 	void NormalUpdate(void) override;	//通常
 	void DirectionUpdate(void);			//演出時の更新
+	void SlowUpdate(void);				//スロー
 	//描画関数
 	void NormalDraw(void) override;		//通常
 	void DirectionDraw(void);			//演出時の描画
@@ -105,7 +111,7 @@ private:
 	void ChangeNone(void);
 	void ChangeDirection(void);
 	void ChangeNormal(void);
-
+	void ChangeSlow(void);
 	//処理の変更
 	void OnSceneEnter(void) override;
 	
