@@ -71,6 +71,8 @@ public:
 		E_HP_BAR_MASK,	//敵体力体力ゲージマスク
 		E_HP_BAR_FRAME,	//敵体力体力ゲージフレーム
 		E_HP_COVER,		//敵体力ゲージカバー
+		SKIP_BUTTOM,		//スキップボタン画像
+		SKIP_BUTTOM_MASK,		//スキップボタン画像
 
 		INTENSIVE_LINE_1,	//集中線画像1(複数画像でアニメーション)
 		INTENSIVE_LINE_2,	//集中線画像2(複数画像でアニメーション)

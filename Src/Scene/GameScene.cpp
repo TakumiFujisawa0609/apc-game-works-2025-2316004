@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include <DxLib.h>
 #include "../Application.h"
+#include "../Common/Fader.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Generic/SceneManager.h"
@@ -55,6 +56,15 @@ void GameScene::Load(void)
 	//集中線画像のロード
 	intensiveLineImg_1 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
 	intensiveLineImg_2 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_2).handleId_;
+
+	imgSkipButtom_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM).handleId_;
+	imgSkipButtomMask_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM_MASK).handleId_;
+	skipArcGaugeMaterial_ = std::make_unique<PixelMaterial>(L"ArcHpBarPS.cso", 2);
+	skipArcGaugeRenderer_ = std::make_unique<PixelRenderer>(*skipArcGaugeMaterial_);
+	skipArcGaugeMaterial_->AddTextureBuf(imgSkipButtomMask_);
+	skipArcGaugeMaterial_->AddConstBuf({ 1.0f,0.0f,0.0f,1.0f });
+	skipArcGaugeMaterial_->AddConstBuf({ 0.0f,0.0f,0.0f,0.0f });
+	skipArcGaugeRenderer_->MakeSquareVertexFromCenter(SKIP_BTN_POS, SKIP_BTN_SIZE);
 
 	stage_ = std::make_unique<Stage>();
 
@@ -113,20 +123,11 @@ void GameScene::NoneUpdate(void)
 
 void GameScene::FadeUpdate(void)
 {
-	//if (scnMng_.GetIsEndFade())
-	//{
-	//	ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
-	//	return;
-	//}
-
+	scnMng_.Fade();
 	if (scnMng_.GetIsEndFade())
 	{
-		scnMng_.StartFadeIn();
-		scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
 	}
-	scnMng_.Fade();
-
-
 }
 
 void GameScene::NormalUpdate(void)
@@ -196,7 +197,10 @@ void GameScene::DirectionDraw(void)
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
-
+	skipArcGaugeRenderer_->Draw();
+	const Vector2F leftTop = SKIP_BTN_POS - (SKIP_BTN_SIZE / 2.0f);
+	const Vector2F rightDown= SKIP_BTN_POS+ (SKIP_BTN_SIZE / 2.0f);
+	DrawExtendGraph(leftTop.x, leftTop.y, rightDown.x, rightDown.y, imgSkipButtom_,true);
 	if (CharacterManager::GetInstance().GetIsEnemyRoar())
 	{
 		//集中線描画
@@ -229,8 +233,9 @@ void GameScene::ChangeNone(void)
 
 void GameScene::ChangeFade(void)
 {
-	scnMng_.StartFadeOut();
+	scnMng_.StartFadeIn();
 	isSkippingDirection_ = true;
+	scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
 	updateFunc_ = [this]() {FadeUpdate(); };
 }
 
@@ -257,34 +262,47 @@ void GameScene::ChangeSlow(void)
 
 void GameScene::DirectionUpdate(void)
 {
+
+
+	if (InputManager::GetInstance().IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_TOP))
+	{
+		if (skipKeepCnt_ > SKIP_BTN_TIME)
+		{
+			Skip();
+		}
+		skipKeepCnt_ += scnMng_.GetDeltaTime();
+	}
+	else
+	{
+		skipKeepCnt_ = 0.0f;
+	}
+
+	float per = skipKeepCnt_ / SKIP_BTN_TIME;
+	//割合、どこから始めるかをセット
+	skipArcGaugeMaterial_->SetConstBuf(1, { 0.0f,per,1.0f,0.0f });
+
+	if (isSkippingDirection_)
+	{
+		scnMng_.Fade();
+		if (scnMng_.GetIsEndFade())
+		{
+			ChangeUpdatePhase(UPDATE_PHASE::FADE);
+			return;
+		}
+	}
+
+
+
+
+
 	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
 	{
 		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
 		return;
 	}
 
-	if (InputManager::GetInstance().IsPadBtnTrgDown(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_RIGHT))
-	{
-		ChangeUpdatePhase(UPDATE_PHASE::FADE);
-		//Skip();
-	}
-	if (isSkippingDirection_)
-	{
-		scnMng_.Fade();
-	}
-
-	if (scnMng_.GetInstance().GetIsEndFade())
-	{
-		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
-		scnMng_.StartFadeIn();
-		scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
-		return;
-	}
-
 	CharacterManager::GetInstance().Update();
 	UpdateIntensiveLineAnim();
-
-
 }
 
 void GameScene::SlowUpdate(void)

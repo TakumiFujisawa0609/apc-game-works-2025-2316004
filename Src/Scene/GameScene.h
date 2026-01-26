@@ -56,10 +56,21 @@ private:
 	//スローの時、何フレームに1回更新するか
 	static constexpr int FRAME_PER_UPDATE = 2;
 
+	//スキップボタン画像の位置
+	static constexpr Vector2F SKIP_BTN_POS = { 100.0f,100.0f };
+	//スキップボタンサイズ
+	static constexpr Vector2F SKIP_BTN_SIZE = { 64.0f,64.0f };
+	//スキップボタン長押し時間
+	static constexpr float SKIP_BTN_TIME = 2.0f;
+
 	//ポストエフェクト用スクリーン
 	int postEffectScreen_;
 
 	int frame_;
+
+	//スキップボタン画像
+	int imgSkipButtom_;
+	int imgSkipButtomMask_;
 
 	//更新フェーズ
 	UPDATE_PHASE updatePhase_;
@@ -80,6 +91,11 @@ private:
 	//敵
 	std::unique_ptr<Enemy>enemy_;
 
+	//円形ゲージシェーダ
+	std::unique_ptr<PixelMaterial>skipArcGaugeMaterial_;
+	std::unique_ptr<PixelRenderer>skipArcGaugeRenderer_;
+
+
 	//スローカウンタ(フレーム)
 	int slowFrame_;
 
@@ -94,6 +110,8 @@ private:
 
 	//スキップ中
 	bool isSkippingDirection_;
+	//長押しカウンタ
+	float skipKeepCnt_;
 
 	//集中線アニメーション更新
 	void UpdateIntensiveLineAnim(void);

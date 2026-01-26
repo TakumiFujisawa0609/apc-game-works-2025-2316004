@@ -299,6 +299,7 @@ void SceneManager::Fade(void)
 			// 明転が終了したら、フェード処理終了
 			fader_->SetFade(Fader::STATE::NONE);
 			//isSceneChanging_ = false;
+			isEndFade_ = true;
 		}
 		break;
 	case Fader::STATE::FADE_OUT:

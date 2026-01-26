@@ -94,6 +94,7 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
 	resourcesMap_.emplace(SRC::STAGE, std::move(res));
 
+
 	//ピクセルシェーダ登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::PIXEL_SHADER, PATH_SHADER + L"CardPS.cso");
 	resourcesMap_.emplace(SRC::CARD_PS, std::move(res));
@@ -171,6 +172,12 @@ void ResourceManager::Init(void)
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"Intensive_Line_2.png");
 	resourcesMap_.emplace(SRC::INTENSIVE_LINE_2, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"XBottom.png");
+	resourcesMap_.emplace(SRC::SKIP_BUTTOM, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"XBottomMask.png");
+	resourcesMap_.emplace(SRC::SKIP_BUTTOM_MASK, std::move(res));
 
 
 	//複数画像

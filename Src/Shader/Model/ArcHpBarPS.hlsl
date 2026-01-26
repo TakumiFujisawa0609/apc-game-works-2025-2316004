@@ -6,6 +6,7 @@ cbuffer cbParam : register(b4)
     float g_hp_Per;         //Hp割合
     float g_hp_lerp;        //補間割合
     float g_start_arc;      //スタート角度(1.0:右から反時計回り    0.75:上から反時計回り)
+    float g_goal_arc;
     
     float dummy;
 }
@@ -30,6 +31,9 @@ float4 main(PS_INPUT PSInput) : SV_TARGET0
     
     //角度
     float angle = atan2(p.y, p.x);
+    
+    //開始位置を上からにする
+    angle += PI * 0.5f;
     
     if(angle<0)
     {
