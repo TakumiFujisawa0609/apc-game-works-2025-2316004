@@ -56,6 +56,8 @@ void SceneBase::LoadingUpdate(void)
 		//フェードイン開始
 		scnMng_.StartFadeIn();
 
+		scnMng_.SetIsSceneChange(false);
+
 		//通常の処理へ移る(シーン遷移時に処理する関数へ)
 		OnSceneEnter();
 	}

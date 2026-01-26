@@ -71,10 +71,17 @@ public:
 	/// @param nextId 変更先のシーン
 	void ChangeScene(SCENE_ID nextId);
 	
-	/// @brief フェードを始める
+	/// @brief フェードを始める(だんだん明るくなる)
 	/// @param  
 	void StartFadeIn(void);
+
+	/// @brief フェードアウトを始める(だんだん暗くなる)
+	void StartFadeOut(void);
 	
+	/// @brief シーンチェンジのセット
+	/// @param _isSceneChange 
+	inline void SetIsSceneChange(const bool _isSceneChange) {isSceneChanging_ = _isSceneChange;}
+
 	/// @brief 現在のシーンIDを返す
 	/// @param  
 	/// @return 現在のシーンID
@@ -99,6 +106,21 @@ public:
 	/// @param  
 	/// @return メインスクリーンのハンドル
 	inline int GetMainScreen(void) const { return mainScreen_; }
+
+	/// @brief フェード終了フラグ取得
+	/// @param  
+	/// @return フェード終了フラグ
+	inline bool GetIsEndFade(void)const { return isEndFade_; }
+
+	/// @brief フェードの取得
+	/// @param  
+	/// @return 
+	const Fader& GetFader(void);
+
+
+	/// @brief  フェード
+	/// @param  
+	void Fade(void);
 
 private:
 
@@ -127,6 +149,9 @@ private:
 	//メインスクリーン
 	int mainScreen_;
 
+	//フェードが終了したか
+	bool isEndFade_;
+
 	
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
@@ -141,7 +166,9 @@ private:
 	// シーン遷移
 	void DoChangeScene(SCENE_ID sceneId);
 
-	// フェード
-	void Fade(void);
+
+
+	//シーン遷移用フェード
+	void SceneChangeFade(void);
 
 };

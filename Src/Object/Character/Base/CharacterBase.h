@@ -376,6 +376,9 @@ protected:
 	//移動制限
 	void MoveLimit(const VECTOR& _stagePos, const VECTOR& _stageSize);
 
+	//影描画
+	void DrawShadow(void);
+
 	//アクションの追加
 	virtual void AddAction(void) = 0;
 	//アニメーションの追加

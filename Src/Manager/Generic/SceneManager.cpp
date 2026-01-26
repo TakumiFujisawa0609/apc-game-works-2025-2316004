@@ -61,11 +61,11 @@ void SceneManager::Init3D(void)
 	SetUseBackCulling(true);
 
 	// ライトの設定
-	SetUseLighting(false);
+	SetUseLighting(true);
 	
-	// ライトの設定
-	//ChangeLightTypeDir({ 0.3f, -0.7f, 0.8f });
-	//ChangeLightTypeDir({ 1.0f, -1.0f, 1.0f });
+	 //ライトの設定
+	ChangeLightTypeDir({ 0.3f, -0.7f, 0.8f });
+	ChangeLightTypeDir({ 1.0f, -1.0f, 1.0f });
 
 	// フォグ設定
 	SetFogEnable(true);
@@ -88,7 +88,8 @@ void SceneManager::Update(void)
 	fader_->Update();
 	if (isSceneChanging_)
 	{
-		Fade();
+		SceneChangeFade();
+		//Fade();
 	}
 	
 	// カメラ更新
@@ -190,7 +191,7 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 
 	// フェード処理が終わってからシーンを変える場合もあるため、
 	// 遷移先シーンをメンバ変数に保持
-	waitSceneId_ = nextId;
+  	waitSceneId_ = nextId;
 
 	// フェードアウト(暗転)を開始する
 	fader_->SetFade(Fader::STATE::FADE_OUT);
@@ -203,9 +204,17 @@ void SceneManager::StartFadeIn(void)
 	//フェードを明ける
 	fader_->SetFade(Fader::STATE::FADE_IN);
 
-	//シーンチェンジ
-	isSceneChanging_ = false;
+	////シーンチェンジ
+	//isSceneChanging_ = false;
 }
+
+void SceneManager::StartFadeOut(void)
+{
+	//フェードを明ける
+	fader_->SetFade(Fader::STATE::FADE_OUT);
+}
+
+
 
 SceneManager::SceneManager(void)
 {
@@ -256,7 +265,7 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME:
 		CreateScene(std::make_unique<GameScene>());
-		break;
+ 		break;
 	case SCENE_ID::GAME_CLEAR:
 		CreateScene(std::make_unique<GameClearScene>());
 		break;
@@ -271,10 +280,16 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 
 }
 
+const Fader& SceneManager::GetFader(void)
+{
+	return *fader_;
+}
+
 void SceneManager::Fade(void)
 {
 
 	Fader::STATE fState = fader_->GetState();
+	isEndFade_ = false;
 	switch (fState)
 	{
 	case Fader::STATE::FADE_IN:
@@ -291,11 +306,23 @@ void SceneManager::Fade(void)
 		if (fader_->IsEnd())
 		{
 			// 完全に暗転してからシーン遷移
-			DoChangeScene(waitSceneId_);
+			//DoChangeScene(waitSceneId_);
 			// 暗転から明転へ
 			//fader_->SetFade(Fader::STATE::FADE_IN);
-			fader_->SetFade(Fader::STATE::NONE);
+			//fader_->SetFade(Fader::STATE::NONE);
+
+			isEndFade_ = true;
 		}
 		break;
 	}
+}
+
+void SceneManager::SceneChangeFade(void)
+{
+	if (isEndFade_)
+	{
+		DoChangeScene(waitSceneId_);
+		fader_->SetFade(Fader::STATE::NONE);
+	}
+	Fade();
 }

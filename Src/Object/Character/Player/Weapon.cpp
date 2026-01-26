@@ -1,5 +1,7 @@
 #include "../pch.h"
 #include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Generic/Camera.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
 #include "../Utility/Utility3D.h"
@@ -110,6 +112,8 @@ void Weapon::OnHit(const std::weak_ptr<Collider> _hitCol)
 	//エフェクト再生
 	character_.SetIsDamage();
 	character_.ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::HIT_STOP);
+	scnMng_.GetInstance().GetCamera().lock()->SetShakeStatus(-1.0f, 100.0f, Easing::EASING_TYPE::ELASTIC_BACK, 0.5f);
+	scnMng_.GetInstance().GetCamera().lock()->ChangeSub(Camera::SUB_MODE::ONE_SHAKE);
 	VECTOR bladeFramePos = MV1GetFramePosition(trans_.modelId, EFFECT_PLAY_FRAME_NO);
 	effect_->Play(EffectController::EFF_TYPE::KEY_BLADE_HIT, bladeFramePos, {}, { EFFECT_PLAY_SCL,EFFECT_PLAY_SCL,EFFECT_PLAY_SCL });
 	SoundManager::GetInstance().Play(SoundManager::SRC::PLAYER_HIT_SE, SoundManager::PLAYTYPE::BACK);

@@ -68,6 +68,7 @@ void GameScene::Init(void)
 {
 	changeUpdate_ = {
 		{UPDATE_PHASE::NONE,[this]() {ChangeNone(); }},
+		{UPDATE_PHASE::FADE,[this]() {ChangeFade(); }},
 		{UPDATE_PHASE::DIRECTION,[this]() {ChangeDirection(); }},
 		{UPDATE_PHASE::NORMAL,[this]() {ChangeNormal(); }},
 		{UPDATE_PHASE::SLOW,[this]() {ChangeSlow(); }}
@@ -108,6 +109,24 @@ void GameScene::UpdateIntensiveLineAnim(void)
 void GameScene::NoneUpdate(void)
 {
 	//âΩÇ‡ÇµÇ»Ç¢
+}
+
+void GameScene::FadeUpdate(void)
+{
+	//if (scnMng_.GetIsEndFade())
+	//{
+	//	ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
+	//	return;
+	//}
+
+	if (scnMng_.GetIsEndFade())
+	{
+		scnMng_.StartFadeIn();
+		scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+	}
+	scnMng_.Fade();
+
+
 }
 
 void GameScene::NormalUpdate(void)
@@ -208,8 +227,16 @@ void GameScene::ChangeNone(void)
 {
 }
 
+void GameScene::ChangeFade(void)
+{
+	scnMng_.StartFadeOut();
+	isSkippingDirection_ = true;
+	updateFunc_ = [this]() {FadeUpdate(); };
+}
+
 void GameScene::ChangeDirection(void)
 {
+	isSkippingDirection_ = false;
 	CharacterManager::GetInstance().ChangeCharacterDirectionUpdate();
 	updateFunc_ = [this]() {DirectionUpdate(); };
 	drawFunc_ = [this]() {DirectionDraw(); };
@@ -235,6 +262,25 @@ void GameScene::DirectionUpdate(void)
 		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
 		return;
 	}
+
+	if (InputManager::GetInstance().IsPadBtnTrgDown(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_RIGHT))
+	{
+		ChangeUpdatePhase(UPDATE_PHASE::FADE);
+		//Skip();
+	}
+	if (isSkippingDirection_)
+	{
+		scnMng_.Fade();
+	}
+
+	if (scnMng_.GetInstance().GetIsEndFade())
+	{
+		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
+		scnMng_.StartFadeIn();
+		scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+		return;
+	}
+
 	CharacterManager::GetInstance().Update();
 	UpdateIntensiveLineAnim();
 
@@ -253,6 +299,12 @@ void GameScene::OnSceneEnter(void)
 	//ââèoèÛë‘Ç÷à⁄çs
 	ChangeDirection();
 }
+void GameScene::Skip(void)
+{
+	if (isSkippingDirection_)return;
+	scnMng_.StartFadeOut();
+	isSkippingDirection_ = true;
+}
 #ifdef _DEBUG
 void GameScene::DebagUpdate(void)
 {
@@ -267,8 +319,6 @@ void GameScene::DebagUpdate(void)
 
 void GameScene::DebagDraw(void)
 {
-
-
 	//DrawBox(
 	//	0,
 	//	0,

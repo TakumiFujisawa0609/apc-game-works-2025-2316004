@@ -26,7 +26,8 @@ public:
 	static constexpr VECTOR DEFAULT_CAMERA_POS = { 0.0f, 100.0f, -500.0f };
 
 	// 追従位置からカメラ位置までの相対座標
-	static constexpr VECTOR LOCAL_F2C_POS = { 0.0f, 100.0f, -800.0f };
+	static constexpr VECTOR LOCAL_F2C_POS = { 0.0f, 800.0f, -1100.0f };
+	static constexpr VECTOR ENEMY_ONLY_LOCAL_F2C_POS = { 0.0f, 100.0f, -800.0f };
 	static constexpr VECTOR TARGET_CAM_LOCAL_F2C_POS = { 0.0f, 500.0f, -700.0f };
 
 	// 追従位置から注視点までの相対座標
@@ -136,16 +137,14 @@ public:
 
 	//ターゲットの座標セット
 	void SetTargetPos(const VECTOR _targetPos);
-
+	
 	/// @brief シェイク時にセットするカウント(割合)
-	/// @param t 現在の時間割合
+	/// @param t 現在の時間割合(1回のみのシェイクにする場合は‐1を入れる)
 	/// @param limit 範囲の加減
-	void SetShakeStatus(const float t,const float limit=0.0f,const Easing::EASING_TYPE _easeType=Easing::EASING_TYPE::COS_BACK)
-	{
-		easePer_ = t;
-		initLimit_ = limit;
-		easeType_ = _easeType;
-	}
+	/// @param _easeType 使用したいイージング
+	/// @param shakeTime 1回のシェイク時間(1回シェイクをしたい場合のみ)
+	void SetShakeStatus(const float t, const float limit = 0.0f
+		, const Easing::EASING_TYPE _easeType = Easing::EASING_TYPE::COS_BACK, const float shakeTime=0.0f);
 
 	void SetStageTransform(const Transform* _stageTrans)
 	{
@@ -272,6 +271,10 @@ private:
 	float limit_;		//動かす範囲
 	float easePer_;		//シェイク全体時間
 	float initPosY_;		//動かす前のカメラ座標Y
+	
+	//1回のみのシェイク時間
+	float oneShakeTime_;
+
 	//ターゲットカメラ遷移カウント
 	double changeTargetLerpCnt_;
 

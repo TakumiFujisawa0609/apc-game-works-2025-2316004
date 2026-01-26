@@ -142,6 +142,15 @@ void Camera::SetTargetPos(const VECTOR _targetPos)
 	targetPoses_ = _targetPos;
 }
 
+void Camera::SetShakeStatus(const float t, const float limit
+	, const Easing::EASING_TYPE _easeType,const float shakeTime)
+{
+	easePer_ = t;
+	initLimit_ = limit;
+	oneShakeTime_ = shakeTime;
+	easeType_ = _easeType;
+}
+
 
 VECTOR Camera::GetPos(void) const
 {
@@ -588,13 +597,21 @@ void Camera::UpdateShake(void)
 void Camera::UpdateShakeOne(void)
 {
 	//シェイク時間が終わったらNone状態へ
-	if (easePer_ > 1.0f)
+	if (easePer_ > 1.0f|| shekePerCnt_> oneShakeTime_)
 	{
 		ChangeSub(SUB_MODE::NONE);
 		return;
 	}
 	//ローカル座標を計算
-	float localPosY = easing_->EaseFunc(0.0f, limit_, easePer_, easeType_);
+	float localPosY = 0.0f;
+	if (easePer_ != -1.0f)
+	{
+		localPosY = easing_->EaseFunc(0.0f, limit_, easePer_, easeType_);
+	}
+	else
+	{
+		localPosY = easing_->EaseFunc(0.0f, limit_, shekePerCnt_ /oneShakeTime_, easeType_);
+	}
 
 	//ローカル座標を足す
 	pos_.y += localPosY;
@@ -605,6 +622,7 @@ void Camera::UpdateShakeOne(void)
 void Camera::ChangeNone(void)
 {
 	easePer_ = 0.0f;
+	shekePerCnt_ = 0.0f;
 	subUpdate_ = [this]() {UpdateNone(); };
 
 }
@@ -728,7 +746,7 @@ void Camera::ChangeDirectionEnemyOnly(void)
 {
 	directionCnt_ = 0.0f;
 	easingStartF2CPos_ = localF2CPos_;
-	easingGoalF2CPos_ = LOCAL_F2C_POS;
+	easingGoalF2CPos_ = ENEMY_ONLY_LOCAL_F2C_POS;
 	easingStartF2TPos_ = localF2TPos_;
 	easingGoalF2TPos_= ENEMY_ONLY_LOCAL_F2T_POS;
 

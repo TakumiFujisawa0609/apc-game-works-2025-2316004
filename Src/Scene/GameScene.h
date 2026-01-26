@@ -22,6 +22,7 @@ public:
 	enum class UPDATE_PHASE   
 	{
 		NONE,
+		FADE,
 		NORMAL,
 		DIRECTION,
 		SLOW
@@ -91,11 +92,15 @@ private:
 	//集中線アニメーションフレーム
 	int intensiveLineAnimFrame_;
 
+	//スキップ中
+	bool isSkippingDirection_;
+
 	//集中線アニメーション更新
 	void UpdateIntensiveLineAnim(void);
 
 	//更新関数
 	void NoneUpdate(void);				//何もしない
+	void FadeUpdate(void);
 	void NormalUpdate(void) override;	//通常
 	void DirectionUpdate(void);			//演出時の更新
 	void SlowUpdate(void);				//スロー
@@ -109,11 +114,15 @@ private:
 
 	//各状態の遷移処理
 	void ChangeNone(void);
+	void ChangeFade(void);
 	void ChangeDirection(void);
 	void ChangeNormal(void);
 	void ChangeSlow(void);
 	//処理の変更
 	void OnSceneEnter(void) override;
+
+	//演出スキップ
+	void Skip(void);
 	
 #ifdef _DEBUG
 	//デバッグ処理
