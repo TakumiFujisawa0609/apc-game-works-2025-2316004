@@ -71,9 +71,7 @@ public:
 	void Init(void) override;
 
 private:
-	//メニュー始まりの座標
-	static constexpr float BUTTON_START_POS_X = 700.0f;
-	static constexpr float BUTTON_START_POS_Y = 100.0f;
+
 
 	//メニュー座標の間隔
 	static constexpr float BUTTON_DISTANCE = 100;
@@ -89,7 +87,12 @@ private:
 
 	//ロゴイージング初期座標
 	static constexpr Vector2F START_POS = { -LOGO_SIZE_X,-LOGO_SIZE_Y };
-	static constexpr Vector2F GOAL_POS = { 0.0f,0.0f };
+	static constexpr Vector2F GOAL_POS = { 0.0f,Application::SCREEN_HALF_Y - LOGO_SIZE_Y / 2.0f };
+
+	//メニュー始まりの座標
+	static constexpr float BUTTON_START_POS_X = 700.0f;
+	static constexpr float BUTTON_START_POS_Y = Application::SCREEN_HALF_Y - LOGO_SIZE_Y / 2.0f;
+
 
 	//ゲーム終了確認メニューの大きさ
 	static constexpr int CHECK_EXIT_MENU_SIZE_X = 600;
@@ -142,6 +145,10 @@ private:
 
 	//はいの選択肢を選んでいるか
 	YES_NO yesNoState_;
+
+	//サイズ確認(デバッグ用)
+	int fontSize_;
+	int thick_;
 
 	//ボタンごとでイージングを変えてみる
 	Easing::EASING_TYPE DecideEase(TITLE_BTN _btn);

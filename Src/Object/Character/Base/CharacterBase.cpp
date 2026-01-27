@@ -177,6 +177,14 @@ void CharacterBase::ChangeUpdatePhase(const UPDATE_PHASE _phase)
 	changeUpdate_[updatePhase_]();
 }
 
+void CharacterBase::ChangeDirectToNormal(void)
+{
+	animationController_->Play(static_cast<int>(ANIM_TYPE::IDLE));
+	phazeUpdate_ = [this]() {UpdateNormal(); };
+}
+
+
+
 void CharacterBase::MoveDirFromInput(void)
 {
 }

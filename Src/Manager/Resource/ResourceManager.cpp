@@ -173,7 +173,7 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"Intensive_Line_2.png");
 	resourcesMap_.emplace(SRC::INTENSIVE_LINE_2, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"XBottom.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"YBottom.png");
 	resourcesMap_.emplace(SRC::SKIP_BUTTOM, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"XBottomMask.png");

@@ -263,7 +263,7 @@ void Enemy::UpdateNormal(void)
 	animationController_->Update();
 
 	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
 	cardUI_->Update();
 	hpUi_->Update();

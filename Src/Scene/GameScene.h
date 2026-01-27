@@ -57,11 +57,13 @@ private:
 	static constexpr int FRAME_PER_UPDATE = 2;
 
 	//スキップボタン画像の位置
-	static constexpr Vector2F SKIP_BTN_POS = { 100.0f,100.0f };
+	static constexpr Vector2F SKIP_BTN_POS = { 30.0f,30.0f };
 	//スキップボタンサイズ
 	static constexpr Vector2F SKIP_BTN_SIZE = { 64.0f,64.0f };
 	//スキップボタン長押し時間
-	static constexpr float SKIP_BTN_TIME = 2.0f;
+	static constexpr float SKIP_BTN_TIME = 1.0f;
+	//ボタン長押し文字のY座標オフセット
+	static constexpr float SKIP_BTN_STR_OFFSET_Y = 16.0f;
 
 	//ポストエフェクト用スクリーン
 	int postEffectScreen_;
@@ -95,9 +97,11 @@ private:
 	std::unique_ptr<PixelMaterial>skipArcGaugeMaterial_;
 	std::unique_ptr<PixelRenderer>skipArcGaugeRenderer_;
 
-
 	//スローカウンタ(フレーム)
 	int slowFrame_;
+
+	//フォント
+	int fontHandle_;
 
 	//集中線
 	int intensiveLineImg_1;

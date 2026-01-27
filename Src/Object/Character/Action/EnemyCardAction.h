@@ -89,7 +89,7 @@ private:
     //広がる時間
     static constexpr float JUMP_ATK_CNT_MAX = 2.5f;
     //ジャンプチャージ時間
-    static constexpr float JUMP_CHARGE_TIME = 3.0f;
+    static constexpr float JUMP_CHARGE_TIME = 6.0f;
     //ジャンプ高さ
     static constexpr float JUMP_HEIGHT = 100.0f;
     //ジャンプ攻撃アニメーション

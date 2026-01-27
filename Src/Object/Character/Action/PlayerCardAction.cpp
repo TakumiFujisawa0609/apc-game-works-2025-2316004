@@ -59,7 +59,7 @@ void PlayerCardAction::Init(void)
 	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
 	atk_.isDamage = false;
-	
+	speed_ = 0.0f;
 	//ƒL[‚É‚æ‚éˆÚ“®‚Í‚µ‚È‚¢
 	charaObj_.SetIsCanMoveable(false);
 

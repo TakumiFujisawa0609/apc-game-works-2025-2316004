@@ -123,7 +123,7 @@ void SceneManager::Draw(void)
 	}
 
 	// 主にポストエフェクト用
-	//camera_->Draw();
+	camera_->Draw();
 
 	// Effekseerにより再生中のエフェクトを描画する。
 	DrawEffekseer3D();
@@ -196,6 +196,7 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 	// フェードアウト(暗転)を開始する
 	fader_->SetFade(Fader::STATE::FADE_OUT);
 	isSceneChanging_ = true;
+	isEndFade_ = false;
 
 }
 

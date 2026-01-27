@@ -59,6 +59,10 @@ void Camera::Init(void)
 	};
 	subMode_ = SUB_MODE::SHAKE;
 	directionEaseCnt_ = 0.0f;
+	startF2CPosZ_ = {};
+	goalF2CPosZ_ = {};
+	localF2CPos_ = {};
+	localF2TPos_ = {};
 	ChangeSub(SUB_MODE::NONE);
 	ChangeMode(MODE::FIXED_POINT);
 }
@@ -211,7 +215,6 @@ void Camera::MakeColliderGeometry(void)
 	MakeCollider(TAG_PRIORITY::CAMERA_LINE, { tag_ }, std::move(geo),noneHitTag_);
 	tagPrioritys_.emplace_back(TAG_PRIORITY::CAMERA_LINE);
 
-
 }
 
 void Camera::OnHit(const std::weak_ptr<Collider> _hitCol)
@@ -243,10 +246,12 @@ void Camera::SetDefault(void)
 	// ÉJÉÅÉâÇÃè„ï˚å¸
 	cameraUp_ = Utility3D::DIR_U;
 
-	angles_.x = UtilityCommon::Deg2RadF(30.0f);
+	angles_.x = UtilityCommon::Deg2RadF(DEFAULT_CAMERA_ANGLES_RAD_X);
 	angles_.y = 0.0f;
 	angles_.z = 0.0f;
 
+	startF2CPosZ_ = {};
+	goalF2CPosZ_ = {};
 	rot_ = Quaternion();
 
 }
@@ -775,7 +780,7 @@ void Camera::ChangeEndDirection(void)
 {
 	easingStartF2CPos_ = localF2CPos_;
 	startAngles_ = angles_;
-	goalAngles_ = { UtilityCommon::Deg2RadF(DEFAULT_CAMERA_ANGLES_RAD_X), 0.0f, 0.0f };
+	goalAngles_ = { UtilityCommon::Deg2RadF(-10.0f), 0.0f, 0.0f };
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	startFollowLocalCenterPos_ = followLocalCenterPos_;
 	goalFollowLocalCenterPos_ = Utility3D::VECTOR_ZERO;

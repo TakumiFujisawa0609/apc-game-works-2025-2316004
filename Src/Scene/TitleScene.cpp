@@ -24,7 +24,8 @@ TitleScene::TitleScene(void):
 TitleScene::~TitleScene(void)
 {
 	soundMng_.Stop(SoundManager::SRC::TITLE_BGM);
-	titleFont_ = DeleteFontToHandle(titleFont_);
+	//titleFont_ = DeleteFontToHandle(titleFont_);
+	InitFontToHandle();
 }
 
 void TitleScene::Load(void)
@@ -67,6 +68,11 @@ void TitleScene::Init(void)
 		{TITLE_BTN::SCREEN,L"SCREEN"},																							
 		{TITLE_BTN::EXIT,L"EXIT"}
 	};
+
+	fontSize_ = -1;
+	thick_ = -1;
+	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
+
 
 	yesNoStrTable_ = {
 		{YES_NO::YES,L"ÇÕÇ¢"},
@@ -127,6 +133,7 @@ void TitleScene::NormalUpdate(void)
 
 void TitleScene::NormalDraw(void)
 {
+
 	DrawBox(
 		0,
 		0,
@@ -154,7 +161,7 @@ void TitleScene::NormalDraw(void)
 	//É^ÉCÉgÉãÉçÉS
 	DrawExtendGraphF(logoPos_.x, logoPos_.y, logoPos_.x + LOGO_SIZE_X, logoPos_.y + LOGO_SIZE_Y, imgTitleLogo, true);
 
-
+	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
 	for (auto& btn : buttons_)
 	{
 		unsigned int btnCol = UtilityCommon::WHITE;
@@ -210,7 +217,7 @@ void TitleScene::NormalDraw(void)
 		}
 	}
 
-
+	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
 
 }
 

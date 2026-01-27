@@ -332,6 +332,5 @@ void Player::Action(void)
 	trans_.quaRot = charaRot_.playerRotY_;
 	//trans_.quaRot = Quaternion::LookRotation(charaRot_.dir_);
 	trans_.Update();
-
 }
 

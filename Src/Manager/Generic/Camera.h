@@ -34,7 +34,7 @@ public:
 	static constexpr VECTOR LOCAL_F2T_POS = { 0.0f, 0.0f, 200.0f };
 
 	// カメラのX回転上限度角
-	static constexpr float LIMIT_X_UP_RAD = 60.0f * (DX_PI_F / 180.0f);
+	static constexpr float LIMIT_X_UP_RAD = 15.0f * (DX_PI_F / 180.0f);
 	//static constexpr float LIMIT_X_DW_RAD = 5.0f * (DX_PI_F / 180.0f);
 	static constexpr float LIMIT_X_DW_RAD = -30.0f * (DX_PI_F / 180.0f);
 
@@ -194,6 +194,8 @@ private:
 
 	//敵咆哮演出時のカメラ振動範囲
 	static constexpr float ENEMY_ROAR_SHAKE_LIMIT = 5.0f;
+
+
 
 
 	//敵のみを移す演出時の追従位置からカメラまでの相対座標

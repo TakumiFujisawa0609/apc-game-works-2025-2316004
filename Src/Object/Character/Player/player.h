@@ -160,7 +160,7 @@ private:
 	//static constexpr float CAP_RADIUS = 25.0f;						//半径
 
 	//カード最大枚数
-	static constexpr int CARD_NUM_MAX = 15;
+	static constexpr int CARD_NUM_MAX = 7;
 
 	//手のフレーム番号
 	static constexpr int HAND_FRAME_NO = 36;
@@ -217,14 +217,14 @@ private:
 		{4,CARD_TYPE::ATTACK},
 		{5,CARD_TYPE::ATTACK},
 		{6,CARD_TYPE::ATTACK},
-		{7,CARD_TYPE::ATTACK},
-		{8,CARD_TYPE::ATTACK},
-		{9,CARD_TYPE::ATTACK},
-		{0,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{2,CARD_TYPE::ATTACK},
-		{3,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK}
+		//{7,CARD_TYPE::ATTACK},
+		//{8,CARD_TYPE::ATTACK},
+		//{9,CARD_TYPE::ATTACK},
+		//{0,CARD_TYPE::ATTACK},
+		//{1,CARD_TYPE::ATTACK},
+		//{2,CARD_TYPE::ATTACK},
+		//{3,CARD_TYPE::ATTACK},
+		//{4,CARD_TYPE::ATTACK}
 
 	};
 

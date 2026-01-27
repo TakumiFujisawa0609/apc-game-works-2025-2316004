@@ -97,12 +97,6 @@ public:
 		//{9,CARD_TYPE::ATTACK},
 		//{9,CARD_TYPE::ATTACK},
 		//{9,CARD_TYPE::ATTACK},
-
-
-
-
-
-
 	};
 
 

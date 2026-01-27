@@ -290,6 +290,10 @@ public:
 	/// @brief 遷移先の更新フェーズ設定
 	/// @param _phase どの更新フェーズにするか
 	void ChangeUpdatePhase(const UPDATE_PHASE _phase);
+
+	/// @brief 演出から通常時に移行する時に初期化するもの
+	/// @param  
+	void ChangeDirectToNormal(void);
 protected:
 
 	//移動量ラインオフセット

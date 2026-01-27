@@ -38,6 +38,7 @@ GameScene::GameScene(void)
 GameScene::~GameScene(void)
 {
 	//インスタンスの削除
+	InitFontToHandle();
 	CardSystem::GetInstance().Destroy();
 	CollisionManager::GetInstance().Destroy();
 	CharacterManager::GetInstance().Destroy();
@@ -48,6 +49,9 @@ void GameScene::Load(void)
 {
 	//フォントの登録
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+
+	//何回かフォントを使うと一定の大きさだけ大きくなる不具合が発生しているので別で作る
+	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
@@ -201,21 +205,16 @@ void GameScene::DirectionDraw(void)
 	const Vector2F leftTop = SKIP_BTN_POS - (SKIP_BTN_SIZE / 2.0f);
 	const Vector2F rightDown= SKIP_BTN_POS+ (SKIP_BTN_SIZE / 2.0f);
 	DrawExtendGraph(leftTop.x, leftTop.y, rightDown.x, rightDown.y, imgSkipButtom_,true);
+
+	//int 
+	//GetString
+
+	DrawStringFToHandle(leftTop.x+ SKIP_BTN_SIZE.x, leftTop.y+ SKIP_BTN_STR_OFFSET_Y, L"ボタン長押しでスキップ", 0x000000, fontHandle_);
 	if (CharacterManager::GetInstance().GetIsEnemyRoar())
 	{
 		//集中線描画
 		DrawGraph(0, 0, intensiveLineAnimImg_, true);
 	}
-
-
-	//SetDrawScreen(postEffectScreen_);
-
-	//intensiveMaterial_->SetTextureBuf(0, scnMng_.GetMainScreen());
-	//intensiveRenderer_->Draw();
-
-	//SetDrawScreen(scnMng_.GetMainScreen());
-
-	//DrawGraph(0, 0, postEffectScreen_, true);
 
 }
 
@@ -250,6 +249,7 @@ void GameScene::ChangeDirection(void)
 void GameScene::ChangeNormal(void)
 {
 	CharacterManager::GetInstance().ChangeCharacterNormalUpdate();
+	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 	updateFunc_ = [this]() {NormalUpdate(); };
 	drawFunc_ = [this]() {NormalDraw(); };
 }
@@ -290,10 +290,6 @@ void GameScene::DirectionUpdate(void)
 			return;
 		}
 	}
-
-
-
-
 
 	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
 	{

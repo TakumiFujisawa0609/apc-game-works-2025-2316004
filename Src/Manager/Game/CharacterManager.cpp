@@ -75,8 +75,8 @@ const bool CharacterManager::GetIsEnemyRoar(void) const
 }
 void CharacterManager::ChangeCharacterNormalUpdate(void)
 {
-	player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::NORMAL);
-	enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::NORMAL);
+	player_->ChangeDirectToNormal();
+	enemy_->ChangeDirectToNormal();
 }
 void CharacterManager::ChangeCharacterDirectionUpdate(void)
 {
