@@ -123,6 +123,9 @@ public:
 	/// @param _charaTag 自身のタグ
 	void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)override;
 
+	/// @brief ダメージ処理
+/// @param _dam ダメージ数
+	virtual void Damage(const int _dam = 0);
 
 
 private:

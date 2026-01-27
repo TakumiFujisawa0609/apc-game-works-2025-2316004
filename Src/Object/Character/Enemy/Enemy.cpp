@@ -57,14 +57,14 @@ void Enemy::Load(void)
 	cardUI_ = std::make_unique<EnemyCardUI>();
 	logic_ = std::make_unique<EnemyLogic>(trans_);
 	deck_ = std::make_shared<CardDeck>(cardCenterPos_, ENEMY_NUM);
-	hpUi_ = std::make_unique<EnemyHpUI>(hpPer_,preHpPer_);
+	//hpUi_ = std::make_unique<EnemyHpUI>(hpPer_,preHpPer);
 	cardUI_->Load();
 
 	AddAction();
 
 	action_->Load();
 
-	hpUi_->Load();
+	//hpUi_->Load();
 
 }
 
@@ -88,7 +88,7 @@ void Enemy::Init(void)
 
 	logic_->Init();
 
-	hpUi_->Init();
+	//hpUi_->Init();
 
 	tag_ = Collider::TAG::ENEMY1;
 	capRadius_ = CAP_RADIUS;
@@ -143,7 +143,7 @@ void Enemy::Draw2D(void)
 {
 	cardUI_->Draw();
 	//HPƒo[•`‰æ
-	hpUi_->Draw();
+	///hpUi_->Draw();
 
 #ifdef _DEBUG
 	DrawDebug();
@@ -266,7 +266,7 @@ void Enemy::UpdateNormal(void)
 	logic_->Update();
 	action_->Update();
 	cardUI_->Update();
-	hpUi_->Update();
+	//hpUi_->Update();
 
 	////Œ¨‚ÌÀ•W‚ğæ“¾
 	//leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);

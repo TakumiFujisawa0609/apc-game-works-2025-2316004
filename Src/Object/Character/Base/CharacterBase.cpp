@@ -1,6 +1,7 @@
 #include "../Manager/Generic/SceneManager.h"
-//スマートポインタをデストラクタで解放するためのインクルード
+#include "../Manager/Generic/UIManager.h"
 #include "../Object/Common/AnimationController.h"
+#include "../Manager/Generic/UIManager.h"
 #include "../Object/Character/Player/ActionController.h"
 #include "../Object/Character/Base/HpUIBase.h"
 #include "../Object/Character/Base/LogicBase.h"
@@ -28,6 +29,7 @@ CharacterBase::CharacterBase(void) :
 	preHpPer_(hpPer_),
 	isMoveable_(true),
 	updatePhase_(UPDATE_PHASE::NONE),
+	uiMng_(UIManager::GetInstance()),
 	hitStopFrame_(HIT_STOP_FRAME)
 {
 	changeUpdate_ = {
@@ -204,10 +206,15 @@ void CharacterBase::Damage(const int _dam)
 {
 	//ダメージを受ける前にUI補間するためのpreHpを計算
 	hpUi_->Shake();
-	preHpPer_ = hpPer_;
-
+	HP_DATA hp = {};
+	//減らす前のhpを入れる
+	hp.preHpPer = status_.hp;
+	//preHpPer_ = hpPer_;
 	//ダメージ分hpを減らす
 	status_.hp -= _dam;
+
+	//減らした後のHPを入れる
+	hp.hpPer = status_.hp;
 }
 
 const bool CharacterBase::GetIsDamage(void) const

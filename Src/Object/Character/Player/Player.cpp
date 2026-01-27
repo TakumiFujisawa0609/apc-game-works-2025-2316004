@@ -88,8 +88,8 @@ void Player::Load(void)
 	deck_->Load();
 	action_->Load();
 
-	hpUi_ = std::make_unique<PlayerHpUI>(hpPer_,preHpPer_);
-	hpUi_->Load();
+	//hpUi_ = std::make_unique<PlayerHpUI>(hpPer_,preHpPer);
+	//hpUi_->Load();
 
 	weapon_->Load();
 
@@ -116,7 +116,7 @@ void Player::Init(void)
 	
 	MakeColliderGeometry();
 
-	hpUi_->Init();
+	//hpUi_->Init();
 	weapon_->Init();
 
 	action_->Init();
@@ -170,7 +170,7 @@ void Player::UpdateNormal(void)
 	cardUI_->Update();
 	//‰ñ“]‚Ì“¯Šú
 
-	hpUi_->Update();
+	//hpUi_->Update();
 	weapon_->Update();
 }
 
@@ -188,7 +188,7 @@ void Player::Draw2D(void)
 
 	//Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
 
-	hpUi_->Draw();
+	//hpUi_->Draw();
 
 #ifdef _DEBUG
 	//action_->DrawDebug();
@@ -234,6 +234,12 @@ void Player::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG
 {
 	if (!weapon_->IsAliveCollider(_charaTag, _attackCol))return;
 	weapon_->DeleteWeaponCollider();
+}
+
+void Player::Damage(const int _dam)
+{
+	CharacterBase::Damage(_dam);
+
 }
 
 

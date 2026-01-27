@@ -1,6 +1,7 @@
 #pragma once
 #include "../Application.h"
 #include "../Common/Vector2F.h"
+#include "../UIData/CharacterUIData.h"
 #include "./UIBase2D.h"
 class Easing;
 class ResourceManager;
@@ -10,15 +11,37 @@ class PixelMaterial;
 class HpUIBase:public UIBase2D
 {
 public:
-	HpUIBase(float& _hpPer, float& _preHp);
+
+	/// @brief コンストラクタ
+	/// @param  
+	HpUIBase(void);
+
+	/// @brief デストラクタ
+	/// @param  
 	virtual ~HpUIBase(void);
+
+	/// @brief ロード
+	/// @param  
 	virtual void Load(void)override;
+
+	/// @brief 初期化
+	/// @param  
 	virtual void Init(void)override;
+
+	/// @brief 更新
+	/// @param  
 	virtual void Update(void)override;
+
+	/// @brief 描画
+	/// @param  
 	virtual void Draw(void)override;
 
 	//シェイク時間セット
 	void Shake(void);
+
+	/// @brief Hpの更新
+	/// @param  
+	void RefreshHp(const HP_DATA& _hpData);
 
 protected:
 	//シェーダ定数バッファ
@@ -46,15 +69,21 @@ protected:
 	int hpMask_;
 
 	// プレイヤーの体力の割合
-	float& hpPer_;
+	float hpPer_;
 
 	//差分を線形補間で減らす
-	float& preHp_;
+	float preHp_;
 
 	//バーカバー座標
 	Vector2F barCoverPos_;
 	//バー座標
 	Vector2F barPos_;
+	//HPUIデータ
+	HP_DATA hpData_;
+
+	//前フレームとのHpの差
+	float hpDis_;
+
 	//円形アウトライン
 	int arcOutLineImg_;
 	int lineOutLineImg_;

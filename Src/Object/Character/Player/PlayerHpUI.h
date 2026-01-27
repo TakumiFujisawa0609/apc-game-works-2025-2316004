@@ -4,6 +4,8 @@
 class PlayerHpUI:public HpUIBase
 {
 public:
+
+
 	PlayerHpUI(float& _hpPer, float& _preHp);
 	~PlayerHpUI(void)override;
 	void Load(void) override;

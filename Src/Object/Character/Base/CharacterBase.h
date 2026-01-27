@@ -5,10 +5,12 @@
 #include "../Base/CharacterOnHitBase.h"
 #include "../Player/ActionController.h"
 #include "../Base/CardActionBase.h"
+#include "../UIData/CharacterUIData.h"
 #include "../Base/ActionBase.h"
 #include "../Object/ObjectBase.h"
 
 class AnimationController;
+class UIManager;
 class ActionController;
 class CardDeck;
 class CardUIBase;
@@ -84,8 +86,6 @@ public:
 		float atk;			//攻撃力
 		float def;			//防御力
 	};
-
-
 
 	enum class ACTION_TYPE
 	{
@@ -179,7 +179,7 @@ public:
 
 	/// @brief ダメージ処理
 	/// @param _dam ダメージ数
-	void Damage(const int _dam = 0);
+	virtual void Damage(const int _dam = 0);
 
 	/// @brief ダメージを食らったか
 	/// @param  
@@ -343,7 +343,9 @@ protected:
 	std::map <UPDATE_PHASE, std::function<void(void)>>changeUpdate_;
 	//更新フェーズの更新
 	std::function<void(void)>phazeUpdate_;
-	
+	//UIマネージャ
+	UIManager& uiMng_;
+
 	//サウンドマネージャ
 	SoundManager& soundMng_;
 
@@ -368,6 +370,9 @@ protected:
 
 	//減る前の体力
 	float preHpPer_;
+
+	//Hpのデータ
+	HP_DATA hpData_;
 
 	//ヒットストップ用カウンタ(フレーム)
 	int hitStopFrame_;
