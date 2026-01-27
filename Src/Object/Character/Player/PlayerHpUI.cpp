@@ -5,8 +5,7 @@
 #include "../Renderer/PixelMaterial.h"
 #include "PlayerHpUI.h"
 
-PlayerHpUI::PlayerHpUI(float& _hpPer, float& _preHp):
-HpUIBase(_hpPer,_preHp)
+PlayerHpUI::PlayerHpUI(void)
 {
 	per_ = 1.0f;
 
@@ -36,7 +35,7 @@ void PlayerHpUI::Init(void)
 	material_->AddTextureBuf(hpMask_);
 	material_->AddConstBuf(BAR_LIGHT_GREEN);
 	material_->AddConstBuf(BAR_BLUE);
-	material_->AddConstBuf({ hpPer_,0.0f,0.0f,0.0f });
+	material_->AddConstBuf({ hpData_.hpPer,0.0f,0.0f,0.0f });
 	renderer_->MakeSquareVertex(barCoverPos_, BAR_SIZE);
 }
 
@@ -44,7 +43,7 @@ void PlayerHpUI::Update(void)
 {
 	HpUIBase::Update();
 	renderer_->SetPos(barPos_);
-	material_->SetConstBuf(2, { hpPer_,preHp_,0.0f,0.0f });
+	material_->SetConstBuf(2, { hpData_.hpPer,hpData_.preHpPer,0.0f,0.0f });
 }
 
 void PlayerHpUI::Draw(void)

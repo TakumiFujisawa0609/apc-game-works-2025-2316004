@@ -6,7 +6,7 @@ class PlayerHpUI:public HpUIBase
 public:
 
 
-	PlayerHpUI(float& _hpPer, float& _preHp);
+	PlayerHpUI(void);
 	~PlayerHpUI(void)override;
 	void Load(void) override;
 	void Init(void) override;

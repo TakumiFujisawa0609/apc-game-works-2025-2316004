@@ -25,8 +25,8 @@ CharacterBase::CharacterBase(void) :
 	moveDiff_(Utility3D::VECTOR_ZERO),
 	jumpPow_({Utility3D::VECTOR_ZERO}),
 	soundMng_(SoundManager::GetInstance()),
-	hpPer_(1.0f),
-	preHpPer_(hpPer_),
+	//hpPer_(1.0f),
+	//preHpPer_(hpPer_),
 	isMoveable_(true),
 	updatePhase_(UPDATE_PHASE::NONE),
 	uiMng_(UIManager::GetInstance()),
@@ -205,16 +205,19 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	//ダメージを受ける前にUI補間するためのpreHpを計算
-	hpUi_->Shake();
-	HP_DATA hp = {};
+	//hpUi_->Shake();
+	HP_DATA hpData = {};
 	//減らす前のhpを入れる
-	hp.preHpPer = status_.hp;
+	hpData.preHpPer = status_.hp / maxStatus_.hp;
 	//preHpPer_ = hpPer_;
 	//ダメージ分hpを減らす
 	status_.hp -= _dam;
 
 	//減らした後のHPを入れる
-	hp.hpPer = status_.hp;
+	hpData.hpPer = status_.hp / maxStatus_.hp;
+
+	//UIマネージャから更新
+	uiMng_.RefreshHpUI(characterType_, hpData);
 }
 
 const bool CharacterBase::GetIsDamage(void) const

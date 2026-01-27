@@ -179,7 +179,7 @@ public:
 
 	/// @brief ダメージ処理
 	/// @param _dam ダメージ数
-	virtual void Damage(const int _dam = 0);
+	virtual void Damage(const int _dam);
 
 	/// @brief ダメージを食らったか
 	/// @param  
@@ -365,14 +365,16 @@ protected:
 	//カプセル半径
 	float capRadius_;
 
-	//Hp割合計算
-	float hpPer_;
+	////Hp割合計算
+	//float hpPer_;
 
-	//減る前の体力
-	float preHpPer_;
+	////減る前の体力
+	//float preHpPer_;
 
 	//Hpのデータ
 	HP_DATA hpData_;
+	//キャラ種別
+	CHARACTER_TYPE characterType_;
 
 	//ヒットストップ用カウンタ(フレーム)
 	int hitStopFrame_;

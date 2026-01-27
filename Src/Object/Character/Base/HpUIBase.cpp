@@ -9,8 +9,9 @@
 #include "HpUIBase.h"
 
 HpUIBase::HpUIBase(void):
-	hpPer_(1.0f),
-	preHp_(1.0f),
+	//hpPer_(1.0f),
+	//preHp_(1.0f),
+	hpData_{1.0f,1.0f},
 	waitCnt_(WAIT_TIME),
 	resMng_(ResourceManager::GetInstance()),
 	barCoverPos_({}),
@@ -36,7 +37,6 @@ void HpUIBase::Init(void)
 
 void HpUIBase::Update(void)
 {
-	float dis = hpData_.preHpPer - hpData_.hpPer;
 	if (hpDis_ > 0.0f)
 	{
 		float lerpStart = hpData_.hpPer + hpDis_;
@@ -44,6 +44,7 @@ void HpUIBase::Update(void)
 		if (waitCnt_ < 0.0f)
 		{
 			hpData_.preHpPer = easing_->EaseFunc(lerpStart, hpData_.hpPer, (LERP_TIME - lerpCnt_) / LERP_TIME, Easing::EASING_TYPE::LERP);
+			hpDis_= hpData_.preHpPer - hpData_.hpPer;
 			lerpCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 		}
 		waitCnt_ -= SceneManager::GetInstance().GetDeltaTime();
@@ -75,6 +76,7 @@ void HpUIBase::RefreshHp(const HP_DATA& _hpData)
 {
 	hpData_.preHpPer = _hpData.preHpPer;
 	hpData_.hpPer = _hpData.hpPer;
+	hpDis_= hpData_.preHpPer - hpData_.hpPer;
 }
 
 void HpUIBase::Draw(void)

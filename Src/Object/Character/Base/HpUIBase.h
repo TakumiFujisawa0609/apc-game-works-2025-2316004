@@ -69,10 +69,10 @@ protected:
 	int hpMask_;
 
 	// プレイヤーの体力の割合
-	float hpPer_;
+	//float hpPer_;
 
 	//差分を線形補間で減らす
-	float preHp_;
+	//float preHp_;
 
 	//バーカバー座標
 	Vector2F barCoverPos_;

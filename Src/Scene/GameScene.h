@@ -120,6 +120,9 @@ private:
 	//集中線アニメーション更新
 	void UpdateIntensiveLineAnim(void);
 
+	//演出更新のスキップ
+	void CheckSkip(void);
+
 	//更新関数
 	void NoneUpdate(void);				//何もしない
 	void FadeUpdate(void);

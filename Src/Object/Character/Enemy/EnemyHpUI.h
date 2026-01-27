@@ -6,7 +6,7 @@
 class EnemyHpUI:public HpUIBase
 {
 public:
-	EnemyHpUI(float& _hpPer,float& _preHp);
+	EnemyHpUI(void);
 	~EnemyHpUI(void);
 	void Load(void);
 	void Init(void);

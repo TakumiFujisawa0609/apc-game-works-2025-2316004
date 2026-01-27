@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include "../Object/Character/UIData/CharacterUIData.h"
 #include "../Template/Singleton.h"
 
 class HpUIBase;
@@ -8,28 +9,35 @@ class UIManager :public Singleton<UIManager>
 	friend class Singleton<UIManager>;
 
 public:
-	enum class CHARA_TYPE
-	{
-		PLAYER,
-		ENEMY,
-		MAX
-	};
 
-	// UIの初期化
-	void Init();
-	// UIの更新
-	void Update();
-	// UIの描画
-	void Draw();
-	// UIの解放
-	void Release();
+	/// @brief ロード
+	/// @param  
+	void Load(void);
+
+
+	/// @brief 初期化
+	/// @param  
+	void Init(void);
+	
+	/// @brief 更新
+	/// @param 
+	void Update(void);
+	
+	/// @brief UIの描画
+	/// @param  
+	void Draw(void);
+	
+	/// @brief HPUIのHpを更新
+	/// @param _charaType 更新したいキャラクター
+	/// @param _hpData 更新するHp
+	void RefreshHpUI(const CHARACTER_TYPE _charaType,const HP_DATA _hpData);
 private:
 
 	//ボタン
 	int imgBtns_;
 
 	//キャラHPUI
-	std::unordered_map<CHARA_TYPE,std::unique_ptr<HpUIBase>>characterHpUI_;
+	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<HpUIBase>>characterHpUI_;
 
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする

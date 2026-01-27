@@ -49,6 +49,8 @@ Player::Player(void)
 	//パッド番号を設定
 	padNum_ = static_cast<InputManager::JOYPAD_NO>(playerNum_ + 1);
 
+	characterType_ = CHARACTER_TYPE::PLAYER;
+
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 
@@ -162,7 +164,7 @@ void Player::UpdateNormal(void)
 	animationController_->Update();
 
 	//HP割合を計算
-	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
+	//hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 
 	//プレイヤー状態更新
 	Action();

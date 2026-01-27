@@ -163,7 +163,6 @@ public:
 	/// @return true:™ôšKó‘Ô false:’Êíó‘Ô
 	const bool GetIsRoar(void)const { return isRoar_; }
 
-	void Damage()
 
 private:
 

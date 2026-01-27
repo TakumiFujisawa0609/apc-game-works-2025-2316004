@@ -37,6 +37,8 @@ Enemy::Enemy(void):
 
 	capRadius_ = CAP_RADIUS;
 
+	characterType_ = CHARACTER_TYPE::ENEMY;
+
 	isRoar_ = false;
 }
 
@@ -262,7 +264,7 @@ void Enemy::UpdateNormal(void)
 {
 	animationController_->Update();
 
-	hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
+	//hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 	logic_->Update();
 	action_->Update();
 	cardUI_->Update();

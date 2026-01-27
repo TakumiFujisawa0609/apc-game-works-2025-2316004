@@ -91,7 +91,7 @@ void SceneManager::Update(void)
 		SceneChangeFade();
 		//Fade();
 	}
-	
+	Fade();
 	// ƒJƒƒ‰XV
 	camera_->Update();
 
@@ -326,5 +326,4 @@ void SceneManager::SceneChangeFade(void)
 		DoChangeScene(waitSceneId_);
 		fader_->SetFade(Fader::STATE::NONE);
 	}
-	Fade();
 }

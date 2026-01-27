@@ -8,8 +8,7 @@
 #include "../Renderer/PixelMaterial.h"
 #include "EnemyHpUI.h"
 
-EnemyHpUI::EnemyHpUI(float& _hpPer, float& _preHp) :
-	HpUIBase(_hpPer, _preHp)
+EnemyHpUI::EnemyHpUI(void)
 {
 	initBarPos_ = BAR_POS;
 	initCoverPos_ = BAR_COVER_POS;
@@ -37,7 +36,7 @@ void EnemyHpUI::Init(void)
 	material_->AddTextureBuf(hpMask_);
 	material_->AddConstBuf(BAR_LIGHT_BLUE);	//バーの色(明るい青)
 	material_->AddConstBuf(BAR_PURPLE);	//バーの色(紫)
-	material_->AddConstBuf({ hpPer_,0.0f,0.0f,0.0f });
+	material_->AddConstBuf({ hpData_.hpPer,0.0f,0.0f,0.0f });
 	renderer_->MakeSquareVertex(barCoverPos_, BAR_SIZE);
 	//renderer_->SetPos(barCoverPos_);
 	//renderer_->SetSize(BAR_COVER_SIZE);
@@ -47,7 +46,7 @@ void EnemyHpUI::Update(void)
 {
 	HpUIBase::Update();
 	renderer_->SetPos(barPos_);
-	material_->SetConstBuf(PRE_HP_CONST_BUF, { hpPer_,preHp_,0.0f,0.0f });
+	material_->SetConstBuf(PRE_HP_CONST_BUF, { hpData_.hpPer,hpData_.preHpPer,0.0f,0.0f });
 }
 
 void EnemyHpUI::Draw(void)

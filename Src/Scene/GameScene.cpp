@@ -7,6 +7,7 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/UIManager.h"
 #include "../Manager/Game/CollisionManager.h"
 #include "../Manager/Game/CharacterManager.h"
 #include "../Manager/Game/GravityManager.h"
@@ -33,6 +34,7 @@ GameScene::GameScene(void)
 	CharacterManager::CreateInstance();
 	CollisionManager::CreateInstance();
 	CardSystem::CreateInstance();
+	UIManager::CreateInstance();
 }
 
 GameScene::~GameScene(void)
@@ -43,6 +45,7 @@ GameScene::~GameScene(void)
 	CollisionManager::GetInstance().Destroy();
 	CharacterManager::GetInstance().Destroy();
 	SoundManager::GetInstance().Release();
+	UIManager::GetInstance().Destroy();
 }
 
 void GameScene::Load(void)
@@ -56,6 +59,8 @@ void GameScene::Load(void)
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
 	pauseScene_->Load();
+
+	UIManager::GetInstance().Load();
 
 	//集中線画像のロード
 	intensiveLineImg_1 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
@@ -76,6 +81,8 @@ void GameScene::Load(void)
 	skyDome_->Load();
 
 	CharacterManager::GetInstance().Load();
+
+	UIManager::GetInstance().Load();
 }
 
 void GameScene::Init(void)
@@ -91,6 +98,8 @@ void GameScene::Init(void)
 	ChangeUpdatePhase(UPDATE_PHASE::DIRECTION);
 
 	CharacterManager::GetInstance().Init();
+	UIManager::GetInstance().Init();
+
 	//シェイク状態を初期化
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 	//カメラの当たり判定作成
@@ -118,6 +127,40 @@ void GameScene::UpdateIntensiveLineAnim(void)
 		intensiveLineAnimFrame_ = 0;
 	}
 	intensiveLineAnimImg_ = (intensiveLineAnimFrame_ % INTENSIVE_LINE_ANIM_SPEED / 2 == 0) ? intensiveLineImg_1 : intensiveLineImg_2;
+}
+
+void GameScene::CheckSkip(void)
+{
+
+
+	if (InputManager::GetInstance().IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_TOP))
+	{
+		if (skipKeepCnt_ > SKIP_BTN_TIME)
+		{
+			Skip();
+		}
+		skipKeepCnt_ += scnMng_.GetDeltaTime();
+	}
+	else
+	{
+		skipKeepCnt_ = 0.0f;
+	}
+
+	float per = skipKeepCnt_ / SKIP_BTN_TIME;
+	//割合、どこから始めるかをセット
+	skipArcGaugeMaterial_->SetConstBuf(1, { 0.0f,per,1.0f,0.0f });
+
+	if (isSkippingDirection_)
+	{
+		scnMng_.Fade();
+		if (scnMng_.GetIsEndFade())
+		{
+			ChangeUpdatePhase(UPDATE_PHASE::FADE);
+			return;
+		}
+	}
+
+
 }
 
 void GameScene::NoneUpdate(void)
@@ -160,6 +203,8 @@ void GameScene::NormalUpdate(void)
 	//カード勝敗状態の監視
 	CardSystem::GetInstance().CompareCards();
 
+	UIManager::GetInstance().Update();
+
 	//更新はアクション中のみ
 	CollisionManager::GetInstance().Update();
 
@@ -185,6 +230,8 @@ void GameScene::NormalDraw(void)
 
 	//UIなどの描画
 	CharacterManager::GetInstance().Draw2D();
+
+	UIManager::GetInstance().Draw();
 
 	//UI2DManager::GetInstance().Draw();
 #ifdef _DEBUG
@@ -263,33 +310,9 @@ void GameScene::ChangeSlow(void)
 void GameScene::DirectionUpdate(void)
 {
 
+	CheckSkip();
 
-	if (InputManager::GetInstance().IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_TOP))
-	{
-		if (skipKeepCnt_ > SKIP_BTN_TIME)
-		{
-			Skip();
-		}
-		skipKeepCnt_ += scnMng_.GetDeltaTime();
-	}
-	else
-	{
-		skipKeepCnt_ = 0.0f;
-	}
-
-	float per = skipKeepCnt_ / SKIP_BTN_TIME;
-	//割合、どこから始めるかをセット
-	skipArcGaugeMaterial_->SetConstBuf(1, { 0.0f,per,1.0f,0.0f });
-
-	if (isSkippingDirection_)
-	{
-		scnMng_.Fade();
-		if (scnMng_.GetIsEndFade())
-		{
-			ChangeUpdatePhase(UPDATE_PHASE::FADE);
-			return;
-		}
-	}
+	if (scnMng_.GetFader().GetState()==Fader::STATE::FADE_OUT)return;
 
 	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
 	{
