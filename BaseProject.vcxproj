@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Object\DirectionUI.cpp" />
     <ClCompile Include="Src\Object\Character\UIData\CharacterUIData.cpp" />
     <ClCompile Include="Src\Object\Character\Base\HpUIBase.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyHpUI.cpp" />
@@ -116,6 +117,7 @@
     <ClCompile Include="Src\Manager\Generic\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Object\DirectionUI.h" />
     <ClInclude Include="Src\Object\Character\UIData\CharacterUIData.h" />
     <ClInclude Include="Src\Object\Character\Base\HpUIBase.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyHpUI.h" />
