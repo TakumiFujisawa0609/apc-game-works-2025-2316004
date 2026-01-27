@@ -1,8 +1,9 @@
 #pragma once
 #include<vector>
 #include<memory>
-#include"../Object/ObjectBase.h"
+#include "../Object/ObjectBase.h"
 #include "../../Common/Vector2.h"
+#include "../Object/Character/UIData/CharacterUIData.h"
 #include "CardBase.h"
 
 class CardBase;
@@ -25,7 +26,7 @@ public:
 	static constexpr int CARD_NUM_MAX = 20;
 	static constexpr int CARD_POWS[20] = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9};
 	//static constexpr int CARD_POWS[20] = {0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9};
-	CardDeck(Vector2& _centerPos,int _playerNum);
+	CardDeck(CHARACTER_TYPE& _charaType,int _playerNum);
 	~CardDeck(void);
 
 	/// @brief ロード
@@ -64,9 +65,7 @@ public:
 	void Release(void);
 
 	
-	/// @brief 山札にカード追加
-	/// @param _status 追加したいカードの強さ
-	void AddDrawPile(const CardBase::CARD_STATUS& _status);
+
 
 	void AddDuelDeck(const CardBase::CARD_STATUS& _status);
 
@@ -151,6 +150,9 @@ private:
 	//カードを選択したときの制限
 	void CardMoveLimit(void);
 
+	/// @brief 山札にカード追加
+	/// @param _status 追加したいカードの強さ
+	void AddDrawPile(const CardBase::CARD_STATUS& _status);
 
 	//札関連
 	//初期札
@@ -177,8 +179,8 @@ private:
 	int playerNum_;
 	//敵デュエルデッキの現在選択中番号
 	int duelNo_;
-	//現在選択中のカード中心座標
-	Vector2& centerPos_;
+	//キャラクタータイプ
+	CHARACTER_TYPE& charaType_;
 
 
 };

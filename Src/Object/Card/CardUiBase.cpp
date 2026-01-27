@@ -175,6 +175,7 @@ void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 	
 }
 
+
 void CardUIBase::AddHandCurrent(void)
 {
 	handCurrent_++;

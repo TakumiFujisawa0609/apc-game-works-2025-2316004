@@ -2,6 +2,7 @@
 #include "../Utility/UtilityCommon.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/Generic/SceneManager.h"
+#include"../Manager/Generic/DataBank.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
 #include "../Card/CardSystem.h"
@@ -29,6 +30,8 @@ void EnemyCardUI::Load(void)
 
 void EnemyCardUI::Init(void)
 {
+
+	AddCardUIData();
 	//ÉJÅ[Éhèâä˙âª
 	InitCardUI();
 	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::CARD_BREAK, CARD_BREAK_SOUND_VOLUME);
@@ -97,6 +100,17 @@ void EnemyCardUI::DrawDebug(void)
 #endif // _DEBUG
 
 
+
+void EnemyCardUI::AddCardUIData(void)
+{
+	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::ENEMY);
+	int size = charaDeck.size();
+	for (int i = 0; i < size; i++)
+	{
+		AddCardUi(charaDeck[i]);
+	}
+
+}
 
 void EnemyCardUI::ChangeNone(void)
 {

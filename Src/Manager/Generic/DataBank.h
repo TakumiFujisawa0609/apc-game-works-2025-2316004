@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
+#include "../Object/Character/UIData/CharacterUIData.h"
 #include "../Object/Card/CardBase.h"
 #include "../../Template/Singleton.h"
 class DataBank :public Singleton<DataBank>
@@ -30,13 +32,23 @@ public:
 	//フルスクリーンの設定
 	void SetIsFullScreen(const bool _isFullScreen);
 
-	//プレイヤーのカードデータ保存
-	void AddPlayerCardData(const CardBase::CARD_STATUS _status);
+	/// @brief カードデータの破棄
+	/// @param  
+	void ReleaseCardData(void);
 
-	//エネミーのカードデータ保存
-	void AddEnemyCardData(const CardBase::CARD_STATUS _status);
+	////プレイヤーのカードデータ保存
+	//void AddPlayerCardData(const CardBase::CARD_STATUS _status);
 
+	////エネミーのカードデータ保存
+	//void AddEnemyCardData(const CardBase::CARD_STATUS _status);
 
+	//キャラクターのカードデータ保管
+	void AddCardData(const CHARACTER_TYPE _charaType, CardBase::CARD_STATUS _status);
+
+	/// @brief カードデータの取得
+	/// @param _charaType 取得したいキャラクター
+	/// @return 初期カードデッキ
+	std::vector<CardBase::CARD_STATUS> GetCardDatas(const CHARACTER_TYPE _charaType);
 
 private:
 
@@ -49,10 +61,13 @@ private:
 	//フルスクリーンの設定
 	bool isFullScreen_;
 
-	//プレイヤーのカードデッキ
-	std::vector<CardBase::CARD_STATUS> playerCardDatas_;
+	//キャラクターカードデッキデータ
+	std::unordered_map<CHARACTER_TYPE, std::vector<CardBase::CARD_STATUS>>characterCardDecks_;
 
-	//敵のカードデッキ
-	std::vector<CardBase::CARD_STATUS> enemyCardDatas_;
+	////プレイヤーのカードデッキ
+	//std::vector<CardBase::CARD_STATUS> playerCardDatas_;
+
+	////敵のカードデッキ
+	//std::vector<CardBase::CARD_STATUS> enemyCardDatas_;
 };
 

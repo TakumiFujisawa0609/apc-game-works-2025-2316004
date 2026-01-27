@@ -2,21 +2,19 @@
 #include"../../Application.h"
 #include "CardBase.h"
 #include"./CardSystem.h"
+#include "../Manager/Generic/DataBank.h"
 #include"../Utility/UtilityTemplates.h"
 
 #include "CardDeck.h"
 
-CardDeck::CardDeck(Vector2& _centerPos, int _playerNum):
+CardDeck::CardDeck(CHARACTER_TYPE& _charaType, int _playerNum):
 	drawPile_(),
 	currentNum_(0),
 	nextNum_(0),
 	prevNum_(0),
-	centerPos_(_centerPos),
+	charaType_(_charaType),
 	playerNum_(_playerNum)
 {
-	currentNum_ = 0;
-	nextNum_ = 0;
-	prevNum_ = 0;
 }
 
 CardDeck::~CardDeck(void)
@@ -35,6 +33,14 @@ void CardDeck::Load(void)
 
 void CardDeck::Init(void)
 {
+	std::vector<CardBase::CARD_STATUS>cardDeck = DataBank::GetInstance().GetCardDatas(charaType_);
+	int size = static_cast<int>(cardDeck.size());
+	for (int i = 0; i < size; i++)
+	{
+		AddDrawPile(cardDeck[i]);
+	}
+
+
 	//カードUIの選択番号が1番なので1に初期化する
 	currentNum_ = 0;
 }
@@ -98,23 +104,23 @@ void CardDeck::Update(void)
 
 void CardDeck::Draw(void)
 {
-	CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
+	//CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
 
 
-	const float DISTANCE_X = 40;
-	DrawFormatString(centerPos_.x, centerPos_.y, 0x000000,L"(%d)", currentCardPow);
+	//const float DISTANCE_X = 40;
+	//DrawFormatString(centerPos_.x, centerPos_.y, 0x000000,L"(%d)", currentCardPow);
 
 
-	//手札の表示
-	int handSize = static_cast<int>(usingCards_.size());
-	if (handSize > 0)
-	{
-		for (int i = 0; i < handSize; i++)
-		{
-			int handCardPow = usingCards_[i]->GetCardStatus().pow_;
-			DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0x000000, L"(%d)", handCardPow);
-		}
-	}
+	////手札の表示
+	//int handSize = static_cast<int>(usingCards_.size());
+	//if (handSize > 0)
+	//{
+	//	for (int i = 0; i < handSize; i++)
+	//	{
+	//		int handCardPow = usingCards_[i]->GetCardStatus().pow_;
+	//		DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0x000000, L"(%d)", handCardPow);
+	//	}
+	//}
 }
 
 void CardDeck::Release(void)

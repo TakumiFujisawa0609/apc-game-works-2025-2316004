@@ -2,6 +2,7 @@
 #include <cmath>
 #include <ranges>
 #include "../Utility/UtilityCommon.h"
+#include"../Manager/Generic/DataBank.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/Generic/SceneManager.h"
 #include "../Manager/Resource/ResourceManager.h"
@@ -76,6 +77,8 @@ void PlayerCardUI::Init(void)
 	cardGaugePSMaterial_->AddConstBuf({ cardNumPer_,cardNumPer_,0.0f,0.0f });
 	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, BAR_SIZE);
 
+
+	AddCardUIData();
 
 	InitCardUI();
 	ChangeSelectState(CARD_SELECT::NONE);
@@ -230,6 +233,16 @@ void PlayerCardUI::InitCardUI(void)
 	{
 		handCurrent_ = handCards_.begin();
 	}
+}
+void PlayerCardUI::AddCardUIData(void)
+{
+	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::PLAYER);
+	int size = charaDeck.size();
+	for (int i = 0; i < size; i++)
+	{
+		AddCardUi(charaDeck[i]);
+	}
+
 }
 // _DEBUG
 void PlayerCardUI::ChangeNone(void)

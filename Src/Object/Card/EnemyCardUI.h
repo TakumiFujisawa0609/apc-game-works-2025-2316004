@@ -36,6 +36,9 @@ private:
 	//カードブレイクサウンド音量
 	static constexpr int CARD_BREAK_SOUND_VOLUME = 60;
 
+    //カードUIに配列を挿入
+    void AddCardUIData(void)override;
+
     //カード状態遷移
     void ChangeNone(void) override;		//通常
     //void ChangeLeft(void) override;		//左に移動

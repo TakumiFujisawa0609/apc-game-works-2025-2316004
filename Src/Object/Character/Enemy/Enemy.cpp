@@ -16,6 +16,7 @@
 #include"../Manager/Generic/Camera.h"
 #include"../Manager/Generic/SceneManager.h"
 #include"../Manager/Generic/InputManager.h"
+#include"../Manager/Generic/DataBank.h" 
 #include"../../Card/CardDeck.h"
 #include"../Object/Card/EnemyCardUI.h"
 #include"../Player/ActionController.h"
@@ -56,11 +57,11 @@ void Enemy::Load(void)
 	//アニメーション
 	AddAnimation();
 
-	cardUI_ = std::make_unique<EnemyCardUI>();
+	//cardUI_ = std::make_unique<EnemyCardUI>();
 	logic_ = std::make_unique<EnemyLogic>(trans_);
-	deck_ = std::make_shared<CardDeck>(cardCenterPos_, ENEMY_NUM);
+	deck_ = std::make_shared<CardDeck>(characterType_, ENEMY_NUM);
 	//hpUi_ = std::make_unique<EnemyHpUI>(hpPer_,preHpPer);
-	cardUI_->Load();
+	//cardUI_->Load();
 
 	AddAction();
 
@@ -75,22 +76,19 @@ void Enemy::Init(void)
 	//カードデッキ
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 
-	deck_->Init();
+
+	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
-		deck_->AddDrawPile(CARD_POWS[i]);
-		cardUI_->AddCardUi(CARD_POWS[i]);
+		DataBank::GetInstance().AddCardData(characterType_, CARD_POWS[i]);
 	}
-	//デッキの先頭にリロードカード追加
-	deck_->AddDrawPile(RELOAD_CARD_STATUS);
-	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
-	cardUI_->Init();
+	DataBank::GetInstance().AddCardData(characterType_, RELOAD_CARD_STATUS);
+
+	deck_->Init();
 
 	action_->Init();
 
 	logic_->Init();
-
-	//hpUi_->Init();
 
 	tag_ = Collider::TAG::ENEMY1;
 	capRadius_ = CAP_RADIUS;
@@ -143,9 +141,6 @@ void Enemy::Draw(void)
 }
 void Enemy::Draw2D(void)
 {
-	cardUI_->Draw();
-	//HPバー描画
-	///hpUi_->Draw();
 
 #ifdef _DEBUG
 	DrawDebug();
@@ -264,11 +259,8 @@ void Enemy::UpdateNormal(void)
 {
 	animationController_->Update();
 
-	//hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 	logic_->Update();
 	action_->Update();
-	cardUI_->Update();
-	//hpUi_->Update();
 
 	////肩の座標を取得
 	//leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);

@@ -210,6 +210,9 @@ protected:
 	//カード買ったとき流すサウンド
 	SoundManager::SRC cardWinRes_;
 
+	//配列にカードデータを入れる
+	virtual void AddCardUIData(void) = 0;
+
 	//手札選択カードの計算
 	void AddHandCurrent(void);	//足し算
 	void SubHandCurrent(void);	//引き算

@@ -155,6 +155,9 @@ private:
 	//フォント
 	int fontHandle_;
 
+	//配列にカードを挿入する
+	void AddCardUIData(void)override;
+
 	//カード状態遷移
 	void ChangeNone(void)override;		//通常
 	void ChangeLeft(void)override;		//左に移動

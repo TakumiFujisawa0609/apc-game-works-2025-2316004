@@ -12,6 +12,7 @@
 #include "../Manager/Game/CharacterManager.h"
 #include "../Manager/Game/GravityManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Manager/Generic/DataBank.h"
 #include "../Renderer/PixelMaterial.h"
 #include "../Renderer/PixelRenderer.h"
 #include "../Object/Character/Player/Player.h"
@@ -35,6 +36,9 @@ GameScene::GameScene(void)
 	CollisionManager::CreateInstance();
 	CardSystem::CreateInstance();
 	UIManager::CreateInstance();
+
+	//カードデータの開放
+	DataBank::GetInstance().ReleaseCardData();
 }
 
 GameScene::~GameScene(void)
@@ -46,6 +50,9 @@ GameScene::~GameScene(void)
 	CharacterManager::GetInstance().Destroy();
 	SoundManager::GetInstance().Release();
 	UIManager::GetInstance().Destroy();
+
+
+
 }
 
 void GameScene::Load(void)

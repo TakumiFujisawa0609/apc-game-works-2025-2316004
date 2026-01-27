@@ -181,6 +181,7 @@ void SceneManager::PopScene()
 void SceneManager::Release(void)
 {
 	//全てのシーンで使うシングルトンクラスやリソースはここで解放する
+	DataBank::GetInstance().ReleaseCardData();
 	DataBank::Destroy();
 }
 

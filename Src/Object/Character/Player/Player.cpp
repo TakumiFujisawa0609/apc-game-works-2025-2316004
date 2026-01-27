@@ -5,6 +5,7 @@
 #include "../../../Manager/Resource/ResourceManager.h"
 #include "../../../Manager/Generic/SceneManager.h"
 #include "../../../Manager/Generic/Camera.h"
+#include "../../../Manager/Generic/DataBank.h"
 #include "../Manager/Game/GravityManager.h"
 #include "../Manager/Game/CharacterManager.h"
 #include"../../Common/Geometry/Capsule.h"
@@ -75,7 +76,7 @@ void Player::Load(void)
 	AddAnimation();
 
 	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
-	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
+	deck_ = std::make_shared<CardDeck>(characterType_, PLAYER_NUM);
 	AddAction();
 
 	//プレイヤー入力
@@ -84,8 +85,8 @@ void Player::Load(void)
 	//カードデッキ
 	cardCenterPos_ = { 140,140 };//カードの中心位置
 
-	cardUI_ = std::make_unique<PlayerCardUI>();
-	cardUI_->Load();
+	//cardUI_ = std::make_unique<PlayerCardUI>();
+	//cardUI_->Load();
 	
 	deck_->Load();
 	action_->Load();
@@ -122,19 +123,17 @@ void Player::Init(void)
 	weapon_->Init();
 
 	action_->Init();
-	deck_->Init();
+
 
 	//デッキに山札追加
 	for (int i = 0; i < CARD_NUM_MAX; i++)
 	{
-		deck_->AddDrawPile(CARD_POWS[i]);
-		cardUI_->AddCardUi(CARD_POWS[i]);
+		DataBank::GetInstance().AddCardData(characterType_,CARD_POWS[i]);
 	}
-	//デッキの末尾にリロードカード追加
-	deck_->AddDrawPile(RELOAD_CARD_STATUS);
-	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
-	cardUI_->Init();
-	//cardUI_->InitCardUI();
+
+	DataBank::GetInstance().AddCardData(characterType_, RELOAD_CARD_STATUS);
+
+	deck_->Init();
 
 	//更新
 	trans_.Update();
@@ -163,16 +162,10 @@ void Player::UpdateNormal(void)
 	//アニメーション
 	animationController_->Update();
 
-	//HP割合を計算
-	//hpPer_ = static_cast<float>(status_.hp) / static_cast<float>(maxStatus_.hp);
 
 	//プレイヤー状態更新
 	Action();
 
-	cardUI_->Update();
-	//回転の同期
-
-	//hpUi_->Update();
 	weapon_->Update();
 }
 
@@ -185,12 +178,6 @@ void Player::Draw(void)
 }
 void Player::Draw2D(void)
 {
-	//カードUI描画
-	cardUI_->Draw();
-
-	//Utility2D::DrawBarGraph(START_HPBAR_POS, HPBAR_SIZE, hpPer, 0x000000, 0x00ff00);
-
-	//hpUi_->Draw();
 
 #ifdef _DEBUG
 	//action_->DrawDebug();

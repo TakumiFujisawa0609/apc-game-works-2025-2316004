@@ -211,7 +211,7 @@ public:
 	/// @brief カードUI
 	/// @param  
 	/// @return 
-	inline CardUIBase& GetCardUI(void)const { return *cardUI_; }
+	CardUIBase& GetCardUI(void)const;
 
 	/// @brief カードアクションの取得
 	/// @param  

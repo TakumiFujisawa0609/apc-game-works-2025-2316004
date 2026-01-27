@@ -31,16 +31,31 @@ void DataBank::SetIsFullScreen(const bool _isFullScreen)
     ChangeWindowMode(!isFullScreen_);
 }
 
-void DataBank::AddPlayerCardData(const CardBase::CARD_STATUS _status)
+void DataBank::ReleaseCardData(void)
 {
-	playerCardDatas_.emplace_back(_status);
+	characterCardDecks_.clear();
 }
 
-void DataBank::AddEnemyCardData(const CardBase::CARD_STATUS _status)
-{
+//void DataBank::AddPlayerCardData(const CardBase::CARD_STATUS _status)
+//{
+//	playerCardDatas_.emplace_back(_status);
+//}
+//
+//void DataBank::AddEnemyCardData(const CardBase::CARD_STATUS _status)
+//{
+//	enemyCardDatas_.emplace_back(_status);
+//}
 
+
+void DataBank::AddCardData(const CHARACTER_TYPE _charaType, CardBase::CARD_STATUS _status)
+{
+	characterCardDecks_[_charaType].emplace_back(_status);
 }
 
+std::vector<CardBase::CARD_STATUS> DataBank::GetCardDatas(const CHARACTER_TYPE _charaType)
+{
+	return characterCardDecks_[_charaType];
+}
 
 DataBank::DataBank(void)
 {

@@ -167,7 +167,8 @@ void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 
 void CharacterBase::SetUsedCard(void)
 {
-	cardUI_->ChangeReactActionCard();
+	//cardUI_->ChangeReactActionCard();
+	uiMng_.GetCardUI(characterType_).ChangeReactActionCard();
 	deck_->EraseHandCard();
 }
 
@@ -240,6 +241,11 @@ void CharacterBase::SetFlinchCnt(const float _flichCnt)
 	action_->SetFlinchCnt(_flichCnt);
 }
 
+CardUIBase& CharacterBase::GetCardUI(void) const
+{
+	return uiMng_.GetCardUI(characterType_);
+}
+
 const CardActionBase::CARD_ACT_TYPE& CharacterBase::GetCardAction(void) const
 {
 	return action_->GetCardAction();
@@ -257,7 +263,8 @@ void CharacterBase::DeleteCard(void)
 	deck_->EraseHandCard();
 	//ŽèŽD‚ÉˆÚ“®
 	deck_->MoveUsingCardToDrawPile();
-	cardUI_->ChangeUsedActionCard();
+	//cardUI_->ChangeUsedActionCard();
+	uiMng_.GetCardUI(characterType_).ChangeUsedActionCard();
 	//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
 }
 
