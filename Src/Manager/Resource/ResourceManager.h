@@ -52,7 +52,6 @@ public:
 		TITLE_LOGO,		//タイトルロゴ
 		GAME_OVER_IMG,	//
 		GAME_CLEAR_IMG,
-		NUMBERS_IMG,	//カード番号
 		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード
 		ENEMY_ATK_CARD_IMG,//敵番号なしアタックカード
 		RELOAD_CARD_IMG,//リロードカード
@@ -73,9 +72,15 @@ public:
 		E_HP_COVER,		//敵体力ゲージカバー
 		SKIP_BUTTOM,		//スキップボタン画像
 		SKIP_BUTTOM_MASK,		//スキップボタン画像
+		CARD_REVOLVER_L_ARROW,	//カードリボルバー回転方向の左矢印
+		CARD_REVOLVER_R_ARROW,	//カードリボルバー回転方向の右矢印
 
 		INTENSIVE_LINE_1,	//集中線画像1(複数画像でアニメーション)
 		INTENSIVE_LINE_2,	//集中線画像2(複数画像でアニメーション)
+
+		//複数画像
+		NUMBERS_IMGS,	//カード番号
+		CONTROLLER_UI_IMGS,
 
 
 		//ピクセルシェーダ
@@ -115,6 +120,12 @@ private:
 	static constexpr int CARD_NO_Y = 2;	//縦の数
 	static constexpr int CARD_NO_SIZE_X = 180;
 	static constexpr int CARD_NO_SIZE_Y = 222;
+
+	//コントローラーUI画像
+	static constexpr int CONTROLLER_UI_NO_X = 10;
+	static constexpr int CONTROLLER_UI_NO_Y = 10;
+	static constexpr int CONTROLLER_UI_SIZE_X = 128;
+	static constexpr int CONTROLLER_UI_SIZE_Y = 128;
 
 	// リソース管理の対象
 	std::map<SRC, std::unique_ptr<ResourceData>> resourcesMap_;

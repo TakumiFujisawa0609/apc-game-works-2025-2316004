@@ -20,7 +20,7 @@ EnemyCardUI::~EnemyCardUI(void)
 void EnemyCardUI::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
+	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::ENEMY_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = -1;	//敵はリロードカードを使わないので読み込まない
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_BREAK);

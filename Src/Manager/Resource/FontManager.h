@@ -25,22 +25,22 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	FontManager();
+	FontManager(void);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~FontManager() = default;
+	~FontManager(void) = default;
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Init();
+	void Init(void);
 
 	/// <summary>
 	/// 解放処理
 	/// </summary>
-	void Destroy();
+	void Destroy(void);
 
 private:
 

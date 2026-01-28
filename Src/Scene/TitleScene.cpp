@@ -6,6 +6,7 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Generic/InputManagerS.h"
+#include "../Manager/Generic/ButtonUIManager.h"
 #include "../Manager/Generic/DataBank.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/FontManager.h"
@@ -45,6 +46,8 @@ void TitleScene::Load(void)
 	soundMng_.LoadResource(SoundManager::SRC::MOVE_BTN_SE);
 	soundMng_.LoadResource(SoundManager::SRC::DESIDE_BTN_SE);
 	soundMng_.LoadResource(SoundManager::SRC::GAME_START_SE);
+
+	ButtonUIManager::GetInstance().Load();
 
 
 	yesNoState_ = YES_NO::NO;
@@ -218,6 +221,16 @@ void TitleScene::NormalDraw(void)
 	}
 
 	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
+
+	//決定ボタン
+	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, DICITION_BTN_POS, DICITION_BTN_SIZE);
+	Vector2F strPos = { DICITION_BTN_POS.x + DICITION_BTN_SIZE,DICITION_BTN_POS.y-16.0f };
+	DrawStringToHandle(strPos.x, strPos.y, L"決定", UtilityCommon::WHITE, titleFont_);
+
+	//戻るボタン
+	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::A_BUTTON_COL_PUSH, BACK_BTN_POS, DICITION_BTN_SIZE);
+	strPos = { BACK_BTN_POS.x + DICITION_BTN_SIZE,BACK_BTN_POS.y - 16.0f };
+	DrawStringToHandle(strPos.x, strPos.y, L"戻る", UtilityCommon::WHITE, titleFont_);
 
 }
 

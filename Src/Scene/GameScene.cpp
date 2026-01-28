@@ -7,6 +7,7 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/ButtonUIManager.h"
 #include "../Manager/Generic/UIManager.h"
 #include "../Manager/Game/CollisionManager.h"
 #include "../Manager/Game/CharacterManager.h"
@@ -63,7 +64,7 @@ void GameScene::Load(void)
 	pauseScene_->Load();
 
 	UIManager::GetInstance().Load();
-
+	ButtonUIManager::GetInstance().Load();
 
 
 	stage_ = std::make_unique<Stage>();

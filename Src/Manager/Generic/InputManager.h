@@ -3,6 +3,7 @@
 #include <Dxlib.h>
 #include "../../Template/Singleton.h"
 #include "../../Common/Vector2.h"
+#include "../../Common/Vector2F.h"
 
 class InputManager : public Singleton<InputManager>
 {
@@ -180,6 +181,13 @@ public:
 	/// @param no コントローラー番号
 	/// @return 
 	XINPUT_STATE GetJPadXInputState(JOYPAD_NO no);
+
+#ifdef _DEBUG
+
+	/// @brief オブジェクトを動かす(デバッグ用)
+	/// @param _pos 
+	void MoveObject(Vector2F& _pos, const float _spd = 1);
+#endif // _DEBUG
 
 private:
 

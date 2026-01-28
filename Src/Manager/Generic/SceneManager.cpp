@@ -7,6 +7,7 @@
 #include "../../Scene/GameClearScene.h"
 #include "../../Scene/GameOverScene.h"
 #include "../Resource/ResourceManager.h"
+#include "../Generic/ButtonUIManager.h"
 #include "SceneManager.h"
 #include "Camera.h"
 
@@ -38,6 +39,9 @@ void SceneManager::Init(void)
 
 	//データバンクを生成
 	DataBank::CreateInstance();
+
+	//ボタンUIマネージャ生成
+	ButtonUIManager::CreateInstance();
 
 	// 3D用の設定
 	Init3D();
@@ -223,6 +227,9 @@ SceneManager::SceneManager(void)
 
 	sceneId_ = SCENE_ID::NONE;
 	waitSceneId_ = SCENE_ID::NONE;
+
+	//ボタンUIはシーン通して使う
+	ButtonUIManager::CreateInstance();
 
 	scenes_.clear();
 	fader_ = nullptr;

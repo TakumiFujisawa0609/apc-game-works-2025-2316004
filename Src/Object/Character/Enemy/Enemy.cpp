@@ -259,7 +259,7 @@ void Enemy::UpdateNormal(void)
 {
 	animationController_->Update();
 
-	logic_->Update();
+	//logic_->Update();
 	action_->Update();
 
 	////Œ¨‚ÌÀ•W‚ğæ“¾

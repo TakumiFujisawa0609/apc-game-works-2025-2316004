@@ -59,23 +59,10 @@ private:
 	//static constexpr float RADIUS_X = 170.0f;	//横半径
 	static constexpr float RADIUS_Y = 214.0f;	//横半径
 
-
-
-
-	//楕円中心
-	//static constexpr float CENTER_X = 80.0f;
-	//static constexpr float CENTER_Y = 640.0f;
-	///*static constexpr float CENTER_X = 0.0f;
-	//static constexpr float CENTER_X = 200.0f;
-	//static constexpr float CENTER_Y = 440.0f;
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
-	//カードセレクト時間
-	//static constexpr float SELECT_MOVE_CARD_TIME = 0.5f;
-	//カード決定UI時間
-	//static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
 
 	//先頭に追加するときの戻る枚数
 	static constexpr int PREV_CARD_COUNT = 2;
@@ -123,6 +110,29 @@ private:
 	//フォントの輪郭幅
 	static constexpr int FONT_EDGE_SIZE = 2;
 	static constexpr Vector2F FONT_POS = { BAR_POS.x,550.0f };
+	//カードリボルバー矢印座標
+	static constexpr Vector2F REVOLVER_ARROW_SIZE = { 79.9f,68.0f };
+	static constexpr float REVOLVER_ARROW_SCL = 0.8f;
+	//スケールを含めた矢印サイズ
+	static constexpr Vector2F REVOLVER_ARROW_SCL_SIZE = 
+	{ REVOLVER_ARROW_SIZE.x * REVOLVER_ARROW_SCL, REVOLVER_ARROW_SIZE.y * REVOLVER_ARROW_SCL, };
+	//矢印回転角度
+	static constexpr float REVOLVER_ARROW_L_ANGLE = 40.0f;
+	//矢印座標
+	static constexpr Vector2F REVOLVER_ARROW_L_POS = { 57.0f,331.0f };
+	static constexpr Vector2F REVOLVER_ARROW_R_POS = { 128.0f,331.0f };
+	//右矢印回転角度
+	static constexpr float REVOLVER_ARROW_R_ANGLE = 321.0f;
+
+	//ボタンサイズ
+	static constexpr float REVOLVER_BTN_SIZE = 30.0f;
+
+	
+
+
+
+
+
 	////初期カード
 	//std::vector<CARD_UI_INFO>uiInfos_;
 
@@ -154,6 +164,15 @@ private:
 	int cardNumBgImg_;
 	//フォント
 	int fontHandle_;
+	//矢印(左)
+	int imgRevolverArrowLeft_;
+	//矢印(右)
+	int imgRevolverArrowRight_;
+
+	//矢印画像の座標
+	Vector2F revolverLArrowPos_;
+	Vector2F revolverRArrowPos_;
+	float revolverArrowAngle_;
 
 	//配列にカードを挿入する
 	void AddCardUIData(void)override;
@@ -198,6 +217,8 @@ private:
 
 	//上下に見せカードを動かす
 	void MoveUpDownVisibleCards(void);
+	//矢印とボタン描画
+	void DrawArrowAndBotton(void);
 
 	//現在選択中のカードの配列を取得
 	std::list<std::shared_ptr<CardUIController>>::iterator GetVisibleCurrentIt(void);

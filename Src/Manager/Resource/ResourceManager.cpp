@@ -176,13 +176,26 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"YBottom.png");
 	resourcesMap_.emplace(SRC::SKIP_BUTTOM, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"XBottomMask.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"SkipBottomMask.png");
 	resourcesMap_.emplace(SRC::SKIP_BUTTOM_MASK, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardDirArrowLeft.png");
+	resourcesMap_.emplace(SRC::CARD_REVOLVER_L_ARROW, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardDirArrowRight.png");
+	resourcesMap_.emplace(SRC::CARD_REVOLVER_R_ARROW, std::move(res));
+
+
 
 
 	//複数画像
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png", CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
-	resourcesMap_.emplace(SRC::NUMBERS_IMG, std::move(res));
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",
+		CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
+	resourcesMap_.emplace(SRC::NUMBERS_IMGS, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"XboxControllerBotton128.png",
+		CONTROLLER_UI_NO_X, CONTROLLER_UI_NO_Y, CONTROLLER_UI_SIZE_X, CONTROLLER_UI_SIZE_Y);
+	resourcesMap_.emplace(SRC::CONTROLLER_UI_IMGS, std::move(res));
 
 	//エフェクト登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/Blast.efkefc");

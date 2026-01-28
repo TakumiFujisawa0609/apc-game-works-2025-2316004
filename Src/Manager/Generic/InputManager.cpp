@@ -217,6 +217,31 @@ XINPUT_STATE InputManager::GetJPadXInputState(JOYPAD_NO no)
 	return joyXInState_;
 }
 
+#ifdef _DEBUG
+void InputManager::MoveObject(Vector2F& _pos, const float _spd)
+{
+	if (IsNew(KEY_INPUT_UP))
+	{
+		_pos.y -= _spd;
+	}
+	if (IsNew(KEY_INPUT_DOWN))
+	{
+		_pos.y += _spd;
+	}
+	if (IsNew(KEY_INPUT_LEFT))
+	{
+		_pos.x -= _spd;
+	}
+	if (IsNew(KEY_INPUT_RIGHT))
+	{
+		_pos.x += _spd;
+	}
+
+}
+#endif // _DEBUG
+
+
+
 void InputManager::SetJPadInState(JOYPAD_NO jpNo)
 {
 

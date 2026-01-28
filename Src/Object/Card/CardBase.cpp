@@ -26,7 +26,7 @@ CardBase::~CardBase(void)
 void CardBase::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
+	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 }
 

@@ -5,6 +5,7 @@
 #include"../Manager/Generic/DataBank.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/Generic/SceneManager.h"
+#include "../Manager/Generic/ButtonUIManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/SoundManager.h"
 #include "../Manager/Resource/FontManager.h"
@@ -20,7 +21,10 @@ radius_({RADIUS_X,RADIUS_Y}),
 cardMoveCnt_(CardUIController::SELECT_MOVE_CARD_TIME),
 numPos_({0.0f,0.0f}),
 centerPos_({0,0}),
-isReloadEnd_(false)
+isReloadEnd_(false),
+revolverLArrowPos_(REVOLVER_ARROW_L_POS),
+revolverRArrowPos_({}),
+revolverArrowAngle_(0.0f)
 {
 	int i = -1;
 	//複数画像はコンストラクタで初期化必須
@@ -41,7 +45,7 @@ PlayerCardUI::~PlayerCardUI(void)
 void PlayerCardUI::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMG).handleIds_;
+	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
 	reloadGage_ = res.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
@@ -55,6 +59,8 @@ void PlayerCardUI::Load(void)
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
 	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
+	imgRevolverArrowLeft_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
+	imgRevolverArrowRight_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_R_ARROW).handleId_;
 
 }
 void PlayerCardUI::Init(void)
@@ -99,6 +105,7 @@ void PlayerCardUI::Update(void)
 
 	//弾かれるカードの大きさ補完
 	ReactMoveCard(REACT_GOAL_CARD_POS);
+
 }
 
 void PlayerCardUI::Draw(void)
@@ -152,6 +159,11 @@ void PlayerCardUI::Draw(void)
 
 	//カード描画(共通)
 	CardUIBase::Draw();
+	
+	//矢印とボタン描画
+	DrawArrowAndBotton();
+
+
 
 #ifdef _DEBUG
 	//DrawDebug();
@@ -679,6 +691,28 @@ void PlayerCardUI::MoveUpDownVisibleCards(void)
 			visible->MoveUpDown();
 		}
 	}
+}
+
+void PlayerCardUI::DrawArrowAndBotton(void)
+{
+
+	DrawRotaGraph(REVOLVER_ARROW_L_POS.x, REVOLVER_ARROW_L_POS.y
+		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_L_ANGLE), imgRevolverArrowLeft_, true);
+
+	DrawRotaGraph(REVOLVER_ARROW_R_POS.x, REVOLVER_ARROW_R_POS.y
+		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_R_ANGLE), imgRevolverArrowRight_, true);
+
+	Vector2F btnPos = REVOLVER_ARROW_L_POS;
+	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + 10.0f;
+
+	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::LBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
+	btnPos = REVOLVER_ARROW_R_POS;
+	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + 10.0f;
+	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::RBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
+
+	DrawFormatString(0, 0, UtilityCommon::WHITE, L"pos(%f,%f)\nangle(%f)"
+		, revolverLArrowPos_.x, revolverLArrowPos_.y, revolverArrowAngle_);
+
 }
 
 std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleCurrentIt(void)

@@ -95,15 +95,15 @@ void Camera::SetBeforeDraw(void)
 
 void Camera::Draw(void)
 {
-	float degX = UtilityCommon::Rad2DegF(angles_.x);
-	float degY = UtilityCommon::Rad2DegF(angles_.y);
-	float degZ = UtilityCommon::Rad2DegF(angles_.z);
-	DrawFormatString(0, 0, GetColor(255, 255, 255)
-		, L"F2CPos:(%.2f,%.2f,%.2f)\nF2TPos:(%.2f,%.2f,%.2f)\nangle:(%.2f,%.2f,%.2f)\nPos(%.2f,%.2f,%.2f)"
-		, localF2CPos_.x, localF2CPos_.y, localF2CPos_.z,
-		localF2TPos_.x, localF2TPos_.y, localF2TPos_.z ,
-		degX, degY, degZ,
-		pos_.x,pos_.y,pos_.z);
+	//float degX = UtilityCommon::Rad2DegF(angles_.x);
+	//float degY = UtilityCommon::Rad2DegF(angles_.y);
+	//float degZ = UtilityCommon::Rad2DegF(angles_.z);
+	//DrawFormatString(0, 0, GetColor(255, 255, 255)
+	//	, L"F2CPos:(%.2f,%.2f,%.2f)\nF2TPos:(%.2f,%.2f,%.2f)\nangle:(%.2f,%.2f,%.2f)\nPos(%.2f,%.2f,%.2f)"
+	//	, localF2CPos_.x, localF2CPos_.y, localF2CPos_.z,
+	//	localF2TPos_.x, localF2TPos_.y, localF2TPos_.z ,
+	//	degX, degY, degZ,
+	//	pos_.x,pos_.y,pos_.z);
 	////DrawFormatString(0, 32, GetColor(255, 255, 255), L"Frame Pos:(%.2f,%.2f,%.2f)", followFramePos_.x, followFramePos_.y, followFramePos_.z);
 
 
