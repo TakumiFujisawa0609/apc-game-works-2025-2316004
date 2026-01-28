@@ -53,8 +53,7 @@ void DirectionUI::Draw(void)
 
 	skipArcGaugeRenderer_->Draw();
 	const Vector2F leftTop = SKIP_BTN_POS - (SKIP_BTN_SIZE / 2.0f);
-	const Vector2F rightDown = SKIP_BTN_POS + (SKIP_BTN_SIZE / 2.0f);
-	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::Y_BUTTON_COL_PUSH, SKIP_BTN_POS, SKIP_BTN_SIZE.x/2.0f);
+	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::Y_BUTTON_COL_PUSH, SKIP_BTN_POS, SKIP_BTN_SIZE.x);
 	DrawStringFToHandle(leftTop.x + SKIP_BTN_SIZE.x, leftTop.y + SKIP_BTN_STR_OFFSET_Y, L"ボタン長押しでスキップ", 0x000000, fontHandle_);
 	if (CharacterManager::GetInstance().GetIsEnemyRoar())
 	{

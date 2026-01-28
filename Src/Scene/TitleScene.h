@@ -106,11 +106,12 @@ private:
 	static constexpr int YES_NO_DISTANCE_Y = 100;
 	
 	//決定ボタン座標
-	static constexpr float DICITION_BTN_SIZE = 32;
+	static constexpr float DICITION_BTN_SIZE = 64;
 	static constexpr Vector2F DICITION_BTN_POS = { Application::SCREEN_SIZE_X - 300.0f, Application::SCREEN_SIZE_Y - DICITION_BTN_SIZE-30 };
-
 	//戻るボタン座標
 	static constexpr Vector2F BACK_BTN_POS = { DICITION_BTN_POS.x+150.0f, Application::SCREEN_SIZE_Y - DICITION_BTN_SIZE - 30 };
+	//ボタンの説明文字列座標オフセット
+	static constexpr float BTN_STR_OFFSET_X = 16.0f;
 	//イージング
 	std::unique_ptr<Easing>easing_;
 

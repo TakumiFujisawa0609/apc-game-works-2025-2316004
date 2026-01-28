@@ -223,13 +223,13 @@ void TitleScene::NormalDraw(void)
 	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
 
 	//決定ボタン
-	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, DICITION_BTN_POS, DICITION_BTN_SIZE);
-	Vector2F strPos = { DICITION_BTN_POS.x + DICITION_BTN_SIZE,DICITION_BTN_POS.y-16.0f };
+	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, DICITION_BTN_POS, DICITION_BTN_SIZE);
+	Vector2F strPos = { DICITION_BTN_POS.x + DICITION_BTN_SIZE / 2.0f,DICITION_BTN_POS.y - BTN_STR_OFFSET_X };
 	DrawStringToHandle(strPos.x, strPos.y, L"決定", UtilityCommon::WHITE, titleFont_);
 
 	//戻るボタン
-	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::A_BUTTON_COL_PUSH, BACK_BTN_POS, DICITION_BTN_SIZE);
-	strPos = { BACK_BTN_POS.x + DICITION_BTN_SIZE,BACK_BTN_POS.y - 16.0f };
+	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::A_BUTTON_COL_PUSH, BACK_BTN_POS, DICITION_BTN_SIZE);
+	strPos = { BACK_BTN_POS.x + DICITION_BTN_SIZE / 2.0f,BACK_BTN_POS.y - BTN_STR_OFFSET_X };
 	DrawStringToHandle(strPos.x, strPos.y, L"戻る", UtilityCommon::WHITE, titleFont_);
 
 }

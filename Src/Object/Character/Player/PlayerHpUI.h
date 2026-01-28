@@ -5,6 +5,9 @@ class PlayerHpUI:public HpUIBase
 {
 public:
 
+	//バー座標
+	static constexpr Vector2F BAR_POS = { 26.0f, 23.0f };
+	static constexpr Vector2F BAR_COVER_POS = { 0.0f, 20.0f };
 
 	PlayerHpUI(void);
 	~PlayerHpUI(void)override;
@@ -24,9 +27,6 @@ private:
 	//線形のYサイズ
 	static constexpr int LINE_SIZE_Y = 34;
 
-	//バー座標
-	static constexpr Vector2F BAR_POS = { 26.0f, 23.0f };
-	static constexpr Vector2F BAR_COVER_POS = { 0.0f, 20.0f };
 
 	//バーの色(明るい緑)
 	static constexpr FLOAT4 BAR_LIGHT_GREEN = { 0.2f, 0.6f, 1.0f,0.0f };

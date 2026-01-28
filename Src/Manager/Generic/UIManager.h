@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "../Object/Character/UIData/CharacterUIData.h"
+#include "../Common/Vector2F.h"
 #include "../Template/Singleton.h"
 
 class HpUIBase;
@@ -52,6 +53,16 @@ public:
 	void SetSkipPer(const float _skipPer);
 private:
 
+	//フォントサイズ
+	static constexpr int FONT_SIZE = 20;
+
+	//ボタンX座標
+	static constexpr Vector2F INIT_BOTTON_POS = { 10.0f,60.0f };
+	//ボタンサイズ
+	static constexpr float BOTTON_SIZE = 50.0f;
+	//ボタン同士の間隔
+	static constexpr float BOTTON_DISTANCE = 10.0f;
+
 	//ボタン
 	int imgBtns_;
 
@@ -63,6 +74,9 @@ private:
 
 	//演出用UI
 	std::unique_ptr<DirectionUI>directionUI_;
+
+	//フォント
+	int fontHandle_;
 
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
@@ -76,6 +90,9 @@ private:
 
 	//カードUIの生成
 	void CreateCardUI(void);
+
+	//攻撃ボタンと回避ボタンの表示
+	void DrawAttackBottonAndDodgeBotton(void);
 
 
 };

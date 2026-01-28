@@ -705,10 +705,10 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 	Vector2F btnPos = REVOLVER_ARROW_L_POS;
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + 10.0f;
 
-	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::LBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
+	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::LBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 	btnPos = REVOLVER_ARROW_R_POS;
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + 10.0f;
-	ButtonUIManager::GetInstance().Draw(ButtonUIManager::BTN_UI_TYPE::RBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
+	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::RBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 
 	DrawFormatString(0, 0, UtilityCommon::WHITE, L"pos(%f,%f)\nangle(%f)"
 		, revolverLArrowPos_.x, revolverLArrowPos_.y, revolverArrowAngle_);

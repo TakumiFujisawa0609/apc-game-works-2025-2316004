@@ -130,7 +130,8 @@ public:
 	void Init(void);
 
 	//•`‰æ
-	void Draw(const BTN_UI_TYPE _btnType, const Vector2F _centerPos, const float _size = 64.0f);
+	void DrawFromCenter(const BTN_UI_TYPE _btnType, const Vector2F _centerPos, const float _size = 64.0f);
+	void DrawFromLeftTop(const BTN_UI_TYPE _btnType, const Vector2F _leftTopPos, const float _size = 64.0f);
 
 private:
 

@@ -1,4 +1,6 @@
 #include "../pch.h"
+#include "../Manager/Resource/FontManager.h"
+#include "../Generic/ButtonUIManager.h"
 #include "../Object/Character/Player/PlayerHpUI.h"
 #include "../Object/Character/Enemy/EnemyHpUI.h"
 #include "../Object/Card/PlayerCardUI.h"
@@ -37,6 +39,20 @@ void UIManager::CreateCardUI(void)
 	cardUI_[CHARACTER_TYPE::ENEMY] = std::move(cardUI);
 }
 
+void UIManager::DrawAttackBottonAndDodgeBotton(void)
+{
+	Vector2F btnPos = INIT_BOTTON_POS;
+	//btnPos.y += BOTTON_SIZE;
+	ButtonUIManager::GetInstance().DrawFromLeftTop(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, btnPos, BOTTON_SIZE);
+	Vector2F strPos = { btnPos.x + BOTTON_SIZE ,btnPos.y + FONT_SIZE / 2.0f };
+	DrawStringFToHandle(strPos.x , strPos.y, L"攻撃(カード使用)", 0x000000, fontHandle_);
+
+	btnPos.y += BOTTON_SIZE + BOTTON_DISTANCE;
+	strPos.y += BOTTON_SIZE + BOTTON_DISTANCE;
+	DrawStringFToHandle(strPos.x, strPos.y, L"回避", 0x000000, fontHandle_);
+	ButtonUIManager::GetInstance().DrawFromLeftTop(ButtonUIManager::BTN_UI_TYPE::X_BUTTON_COL_PUSH, btnPos, BOTTON_SIZE);
+}
+
 
 void UIManager::Load(void)
 {
@@ -51,6 +67,8 @@ void UIManager::Load(void)
 	}
 
 	directionUI_->Load();
+
+	fontHandle_= CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 }
 
 void UIManager::Init()
@@ -97,6 +115,8 @@ void UIManager::Draw()
 	{
 		cardUI.second->Draw();
 	}
+
+	DrawAttackBottonAndDodgeBotton();
 }
 
 void UIManager::DirectionDraw(void)

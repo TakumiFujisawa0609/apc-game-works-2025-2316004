@@ -125,7 +125,7 @@ private:
 	static constexpr float REVOLVER_ARROW_R_ANGLE = 321.0f;
 
 	//ボタンサイズ
-	static constexpr float REVOLVER_BTN_SIZE = 30.0f;
+	static constexpr float REVOLVER_BTN_SIZE = 60.0f;
 
 	
 
