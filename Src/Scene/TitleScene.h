@@ -16,6 +16,7 @@ public:
 		//TUTORIAL,
 		SCREEN,
 		EXIT_MENU,
+		SCREEN_MENU,
 		//その他
 		EASE_MENU,
 		MENU,
@@ -190,5 +191,15 @@ private:
 	//ゲーム終了確認メニュー
 	void UpdateExitMenu(void);
 
-	//
+	//スクリーンの大小確認メニュー
+	void UpdateScreenMenu(void);
+
+	//はいいいえの描画
+	void DrawYesNo(void);
+
+	//はいいいえ更新
+	void UpdateYesNo(void);
+
+	//スクリーンの大きさを変更
+	void ChangeScreenSize(void);
 };

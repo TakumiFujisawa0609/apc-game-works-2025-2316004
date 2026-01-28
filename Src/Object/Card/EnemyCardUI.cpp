@@ -42,6 +42,7 @@ void EnemyCardUI::Init(void)
 	{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } }
 	};
 	ChangeSelectState(CARD_SELECT::NONE);
+
 }
 
 void EnemyCardUI::Update(void)

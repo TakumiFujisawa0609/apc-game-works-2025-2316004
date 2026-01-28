@@ -62,6 +62,7 @@ void TitleScene::Init(void)
 		//{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
 		{TITLE_STATE::SCREEN,[this]() { UpdateScreen(); }},
 		{TITLE_STATE::EXIT_MENU,[this]() {UpdateExitMenu();}},
+		{TITLE_STATE::SCREEN_MENU,[this]() {UpdateScreenMenu();}},
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
 	};
 
@@ -181,7 +182,7 @@ void TitleScene::NormalDraw(void)
 		);
 	}
 
-	if (selectState_ == TITLE_STATE::EXIT_MENU)
+	if (selectState_ == TITLE_STATE::EXIT_MENU|| selectState_ == TITLE_STATE::SCREEN)
 	{
 		const Vector2 startPos = { Application::SCREEN_HALF_X - (CHECK_EXIT_MENU_SIZE_X / 2)
 									,Application::SCREEN_HALF_Y - (CHECK_EXIT_MENU_SIZE_Y / 2) };
@@ -196,28 +197,32 @@ void TitleScene::NormalDraw(void)
 			0x00ff00,true
 		);
 
+		std::wstring str = L"";
+		if (selectState_ == TITLE_STATE::EXIT_MENU)
+		{
+			str = L"本当にゲームを終了しますか？";
+		}
+		else if (selectState_ == TITLE_STATE::SCREEN)
+		{
+			bool isFull = DataBank::GetInstance().GetIsFullScreen();
+			if (isFull)
+			{
+				str = L"通常スクリーンにしますか？";
+			}
+			else
+			{
+				str = L"フルスクリーンにしますか？";
+			}
+		}
 		DrawFormatStringToHandle(
 			startPos.x + QUESTION_OFFSET,
 			startPos.y + QUESTION_OFFSET,
 			UtilityCommon::BLACK,
 			titleFont_,
-			L"本当にゲームを終了しますか？"
+			str.c_str()
 		);
 
-		int i = 0;
-		for (auto& str:yesNoStrTable_)
-		{
-			unsigned int btnCol = UtilityCommon::WHITE;
-			if(yesNoState_==str.first){ btnCol = UtilityCommon::RED; }
-			DrawFormatStringToHandle(
-				startPos.x + YES_NO_DISTANCE_X + i * YES_NO_DISTANCE_Y,
-				startPos.y + YES_NO_DISTANCE_Y,
-				btnCol,
-				titleFont_,
-				str.second.c_str()
-			);
-			i++;
-		}
+		DrawYesNo();
 	}
 
 	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
@@ -318,16 +323,18 @@ void TitleScene::UpdateMenu(void)
 
 void TitleScene::UpdateScreen(void)
 {
-	bool isFull = DataBank::GetInstance().GetIsFullScreen();
-	if (isFull)
+
+	UpdateYesNo();
+	InputManagerS& insS = InputManagerS::GetInstance();
+	if (insS.IsTrgDown(INPUT_EVENT::OK))
 	{
-		DataBank::GetInstance().SetIsFullScreen(false);
+		if (yesNoState_ == YES_NO::YES)
+		{
+			ChangeScreenSize();
+			ChangeState(static_cast<TITLE_STATE>(TITLE_STATE::MENU));
+		}
+		else { ChangeState(TITLE_STATE::MENU); }
 	}
-	else
-	{
-		DataBank::GetInstance().SetIsFullScreen(true);
-	}
-	ChangeState(static_cast<TITLE_STATE>(TITLE_STATE::MENU));
 }
 
 void TitleScene::UpdateTutorial(void)
@@ -349,26 +356,71 @@ void TitleScene::UpdateSelectGame(void)
 
 void TitleScene::UpdateExitMenu(void)
 {
+	UpdateYesNo();
 	InputManagerS& insS = InputManagerS::GetInstance();
-	InputManager& ins = InputManager::GetInstance();
-	if (insS.IsTrgDown(INPUT_EVENT::LEFT)||ins.IsTrgDown(KEY_INPUT_A))
-	{ 
-		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
-		yesNoState_ = YES_NO::YES; 
-	}
-	else if(insS.IsTrgDown(INPUT_EVENT::RIGHT)||ins.IsTrgDown(KEY_INPUT_D))
-	{ 
-		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
-		yesNoState_ = YES_NO::NO; 
-	}
-
 	if (insS.IsTrgDown(INPUT_EVENT::OK))
 	{
-		if (yesNoState_ == YES_NO::YES) 
-		{ 
-			Application::GetInstance().IsGameEnd(); 
+		if (yesNoState_ == YES_NO::YES)
+		{
+			Application::GetInstance().IsGameEnd();
 		}
-		else { ChangeState(TITLE_STATE::MENU);}
+		else { ChangeState(TITLE_STATE::MENU); }
+	}
+}
+
+void TitleScene::UpdateScreenMenu(void)
+{
+}
+
+void TitleScene::DrawYesNo(void)
+{
+	const Vector2 startPos = { Application::SCREEN_HALF_X - (CHECK_EXIT_MENU_SIZE_X / 2)
+							,Application::SCREEN_HALF_Y - (CHECK_EXIT_MENU_SIZE_Y / 2) };
+	const Vector2 endPos = { Application::SCREEN_HALF_X + (CHECK_EXIT_MENU_SIZE_X / 2),
+							Application::SCREEN_HALF_Y + (CHECK_EXIT_MENU_SIZE_Y / 2) };
+
+	int i = 0;
+	for (auto& str : yesNoStrTable_)
+	{
+		unsigned int btnCol = UtilityCommon::WHITE;
+		if (yesNoState_ == str.first) { btnCol = UtilityCommon::RED; }
+		DrawFormatStringToHandle(
+			startPos.x + YES_NO_DISTANCE_X + i * YES_NO_DISTANCE_Y,
+			startPos.y + YES_NO_DISTANCE_Y,
+			btnCol,
+			titleFont_,
+			str.second.c_str()
+		);
+		i++;
+	}
+}
+
+void TitleScene::UpdateYesNo(void)
+{
+	InputManagerS& insS = InputManagerS::GetInstance();
+	InputManager& ins = InputManager::GetInstance();
+	if (insS.IsTrgDown(INPUT_EVENT::LEFT) || ins.IsTrgDown(KEY_INPUT_A))
+	{
+		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
+		yesNoState_ = YES_NO::YES;
+	}
+	else if (insS.IsTrgDown(INPUT_EVENT::RIGHT) || ins.IsTrgDown(KEY_INPUT_D))
+	{
+		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
+		yesNoState_ = YES_NO::NO;
+	}
+}
+
+void TitleScene::ChangeScreenSize(void)
+{
+	bool isFull = DataBank::GetInstance().GetIsFullScreen();
+	if (isFull)
+	{
+		DataBank::GetInstance().SetIsFullScreen(false);
+	}
+	else
+	{
+		DataBank::GetInstance().SetIsFullScreen(true);
 	}
 }
 
