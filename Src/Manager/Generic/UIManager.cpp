@@ -3,6 +3,7 @@
 #include "../Object/Character/Enemy/EnemyHpUI.h"
 #include "../Object/Card/PlayerCardUI.h"
 #include "../Object/Card/EnemyCardUI.h"
+#include "../Object/DirectionUI.h"
 #include "UIManager.h"
 
 UIManager::UIManager(void)
@@ -10,6 +11,8 @@ UIManager::UIManager(void)
 
 	CreateHpUI();
 	CreateCardUI();
+
+	directionUI_ = std::make_unique<DirectionUI>();
 
 }
 
@@ -46,6 +49,8 @@ void UIManager::Load(void)
 	{
 		cardUI.second->Load();
 	}
+
+	directionUI_->Load();
 }
 
 void UIManager::Init()
@@ -59,6 +64,8 @@ void UIManager::Init()
 	{
 		cardUI.second->Init();
 	}
+
+	directionUI_->Init();
 }
 
 void UIManager::Update()
@@ -74,6 +81,11 @@ void UIManager::Update()
 	}
 }
 
+void UIManager::DirectionUpdate(void)
+{
+	directionUI_->Update();
+}
+
 void UIManager::Draw()
 {
 	for (auto& characterHpUI : characterHpUI_)
@@ -87,6 +99,11 @@ void UIManager::Draw()
 	}
 }
 
+void UIManager::DirectionDraw(void)
+{
+	directionUI_->Draw();
+}
+
 
 void UIManager::RefreshHpUI(const CHARACTER_TYPE _charaType, const HP_DATA _hpData)
 {
@@ -96,5 +113,10 @@ void UIManager::RefreshHpUI(const CHARACTER_TYPE _charaType, const HP_DATA _hpDa
 CardUIBase& UIManager::GetCardUI(const CHARACTER_TYPE _charaType)
 {
 	return *cardUI_[_charaType];
+}
+
+void UIManager::SetSkipPer(const float _skipPer)
+{
+	directionUI_->SetSkipGaugePer(_skipPer);
 }
 

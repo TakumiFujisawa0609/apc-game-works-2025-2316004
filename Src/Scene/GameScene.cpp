@@ -50,9 +50,6 @@ GameScene::~GameScene(void)
 	CharacterManager::GetInstance().Destroy();
 	SoundManager::GetInstance().Release();
 	UIManager::GetInstance().Destroy();
-
-
-
 }
 
 void GameScene::Load(void)
@@ -60,8 +57,6 @@ void GameScene::Load(void)
 	//フォントの登録
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
-	//何回かフォントを使うと一定の大きさだけ大きくなる不具合が発生しているので別で作る
-	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
@@ -69,18 +64,7 @@ void GameScene::Load(void)
 
 	UIManager::GetInstance().Load();
 
-	//集中線画像のロード
-	intensiveLineImg_1 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
-	intensiveLineImg_2 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_2).handleId_;
 
-	imgSkipButtom_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM).handleId_;
-	imgSkipButtomMask_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM_MASK).handleId_;
-	skipArcGaugeMaterial_ = std::make_unique<PixelMaterial>(L"ArcHpBarPS.cso", 2);
-	skipArcGaugeRenderer_ = std::make_unique<PixelRenderer>(*skipArcGaugeMaterial_);
-	skipArcGaugeMaterial_->AddTextureBuf(imgSkipButtomMask_);
-	skipArcGaugeMaterial_->AddConstBuf({ 1.0f,0.0f,0.0f,1.0f });
-	skipArcGaugeMaterial_->AddConstBuf({ 0.0f,0.0f,0.0f,0.0f });
-	skipArcGaugeRenderer_->MakeSquareVertexFromCenter(SKIP_BTN_POS, SKIP_BTN_SIZE);
 
 	stage_ = std::make_unique<Stage>();
 
@@ -121,24 +105,10 @@ void GameScene::Init(void)
 	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
 	SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, static_cast<int>(SoundManager::TYPE::BGM));
 
-
-}
-
-void GameScene::UpdateIntensiveLineAnim(void)
-{
-
-	if (!CharacterManager::GetInstance().GetIsEnemyRoar())return;
-	intensiveLineAnimFrame_++;
-	if (intensiveLineAnimFrame_ >= INTENSIVE_LINE_ANIM_SPEED)
-	{
-		intensiveLineAnimFrame_ = 0;
-	}
-	intensiveLineAnimImg_ = (intensiveLineAnimFrame_ % INTENSIVE_LINE_ANIM_SPEED / 2 == 0) ? intensiveLineImg_1 : intensiveLineImg_2;
 }
 
 void GameScene::CheckSkip(void)
 {
-
 
 	if (InputManager::GetInstance().IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_TOP))
 	{
@@ -153,9 +123,9 @@ void GameScene::CheckSkip(void)
 		skipKeepCnt_ = 0.0f;
 	}
 
+	//割合をスキップゲージにセットする
 	float per = skipKeepCnt_ / SKIP_BTN_TIME;
-	//割合、どこから始めるかをセット
-	skipArcGaugeMaterial_->SetConstBuf(1, { 0.0f,per,1.0f,0.0f });
+	UIManager::GetInstance().SetSkipPer(per);
 
 	if (isSkippingDirection_)
 	{
@@ -166,7 +136,6 @@ void GameScene::CheckSkip(void)
 			return;
 		}
 	}
-
 
 }
 
@@ -255,21 +224,7 @@ void GameScene::DirectionDraw(void)
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
-	skipArcGaugeRenderer_->Draw();
-	const Vector2F leftTop = SKIP_BTN_POS - (SKIP_BTN_SIZE / 2.0f);
-	const Vector2F rightDown= SKIP_BTN_POS+ (SKIP_BTN_SIZE / 2.0f);
-	DrawExtendGraph(leftTop.x, leftTop.y, rightDown.x, rightDown.y, imgSkipButtom_,true);
-
-	//int 
-	//GetString
-
-	DrawStringFToHandle(leftTop.x+ SKIP_BTN_SIZE.x, leftTop.y+ SKIP_BTN_STR_OFFSET_Y, L"ボタン長押しでスキップ", 0x000000, fontHandle_);
-	if (CharacterManager::GetInstance().GetIsEnemyRoar())
-	{
-		//集中線描画
-		DrawGraph(0, 0, intensiveLineAnimImg_, true);
-	}
-
+	UIManager::GetInstance().DirectionDraw();
 }
 
 
@@ -318,7 +273,7 @@ void GameScene::DirectionUpdate(void)
 {
 
 	CheckSkip();
-
+	UIManager::GetInstance().DirectionUpdate();
 	if (scnMng_.GetFader().GetState()==Fader::STATE::FADE_OUT)return;
 
 	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
@@ -328,7 +283,7 @@ void GameScene::DirectionUpdate(void)
 	}
 
 	CharacterManager::GetInstance().Update();
-	UpdateIntensiveLineAnim();
+	//UpdateIntensiveLineAnim();
 }
 
 void GameScene::SlowUpdate(void)

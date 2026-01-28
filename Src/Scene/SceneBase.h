@@ -16,7 +16,6 @@ public:
 	static constexpr float LOADING_TIME = 0.0f;
 
 	//フォントサイズ
-	//static constexpr int FONT_SIZE = 30;
 	static constexpr int FONT_SIZE = 30;
 
 	//ローディング

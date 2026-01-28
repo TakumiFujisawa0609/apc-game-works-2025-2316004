@@ -70,13 +70,13 @@ private:
 
 	int frame_;
 
-	//スキップボタン画像
-	int imgSkipButtom_;
-	int imgSkipButtomMask_;
+	//スローカウンタ(フレーム)
+	int slowFrame_;
 
 	//更新フェーズ
 	UPDATE_PHASE updatePhase_;
 	std::map<UPDATE_PHASE, std::function<void(void)>>changeUpdate_;
+
 
 	//スカイドーム
 	std::unique_ptr<SkyDome> skyDome_;
@@ -93,32 +93,12 @@ private:
 	//敵
 	std::unique_ptr<Enemy>enemy_;
 
-	//円形ゲージシェーダ
-	std::unique_ptr<PixelMaterial>skipArcGaugeMaterial_;
-	std::unique_ptr<PixelRenderer>skipArcGaugeRenderer_;
 
-	//スローカウンタ(フレーム)
-	int slowFrame_;
-
-	//フォント
-	int fontHandle_;
-
-	//集中線
-	int intensiveLineImg_1;
-	int intensiveLineImg_2;
-	//集中線アニメーション
-	int intensiveLineAnimImg_;
-
-	//集中線アニメーションフレーム
-	int intensiveLineAnimFrame_;
 
 	//スキップ中
 	bool isSkippingDirection_;
 	//長押しカウンタ
 	float skipKeepCnt_;
-
-	//集中線アニメーション更新
-	void UpdateIntensiveLineAnim(void);
 
 	//演出更新のスキップ
 	void CheckSkip(void);

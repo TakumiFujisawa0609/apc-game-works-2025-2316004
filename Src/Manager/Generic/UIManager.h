@@ -5,6 +5,8 @@
 
 class HpUIBase;
 class CardUIBase;
+class DirectionUI;
+
 class UIManager :public Singleton<UIManager>
 {
 	friend class Singleton<UIManager>;
@@ -24,10 +26,17 @@ public:
 	/// @param 
 	void Update(void);
 	
+	//演出時のUI更新
+	void DirectionUpdate(void);
+
 	/// @brief UIの描画
 	/// @param  
 	void Draw(void);
 	
+	/// @brief 演出時のUI描画
+	/// @param  
+	void DirectionDraw(void);
+
 	/// @brief HPUIのHpを更新
 	/// @param _charaType 更新したいキャラクター
 	/// @param _hpData 更新するHp
@@ -37,6 +46,10 @@ public:
 	/// @param _charaType 取得したいキャラクター
 	/// @return 
 	CardUIBase& GetCardUI(const CHARACTER_TYPE _charaType);
+
+	/// @brief スキップ割り
+	/// @param _skipPer 
+	void SetSkipPer(const float _skipPer);
 private:
 
 	//ボタン
@@ -47,6 +60,9 @@ private:
 
 	//カードUI
 	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<CardUIBase>>cardUI_;
+
+	//演出用UI
+	std::unique_ptr<DirectionUI>directionUI_;
 
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
@@ -60,5 +76,7 @@ private:
 
 	//カードUIの生成
 	void CreateCardUI(void);
+
+
 };
 
