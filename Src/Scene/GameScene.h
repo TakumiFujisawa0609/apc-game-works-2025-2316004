@@ -25,6 +25,8 @@ public:
 		FADE,
 		NORMAL,
 		DIRECTION,
+		CLEAR_DIRECTION,
+		OVER_DIRECTION,
 		SLOW
 
 	};
@@ -105,7 +107,9 @@ private:
 	void NoneUpdate(void);				//何もしない
 	void FadeUpdate(void);
 	void NormalUpdate(void) override;	//通常
-	void DirectionUpdate(void);			//演出時の更新
+	void DirectionUpdate(void);			//演出時
+	void ClearDirectionUpdate(void);	//クリア演出
+	void OverDirectionUpdate(void);		//ゲームオーバー
 	void SlowUpdate(void);				//スロー
 	//描画関数
 	void NormalDraw(void) override;		//通常
@@ -119,6 +123,8 @@ private:
 	void ChangeNone(void);
 	void ChangeFade(void);
 	void ChangeDirection(void);
+	void ChangeClearDirection(void);
+	void ChangeOverDirection(void);
 	void ChangeNormal(void);
 	void ChangeSlow(void);
 	//処理の変更

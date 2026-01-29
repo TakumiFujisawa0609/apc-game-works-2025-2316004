@@ -73,6 +73,14 @@ const bool CharacterManager::GetIsEnemyRoar(void) const
 {
 	return enemy_->GetIsRoar();
 }
+const bool CharacterManager::GetIsEndClearDirection(void) const
+{
+	return enemy_->GetIsEndDirect();
+}
+const bool CharacterManager::GetIsEndOverDirection(void) const
+{
+	return player_->GetIsEndDirect();
+}
 void CharacterManager::ChangeCharacterNormalUpdate(void)
 {
 	player_->ChangeDirectToNormal();
@@ -82,6 +90,16 @@ void CharacterManager::ChangeCharacterDirectionUpdate(void)
 {
 	player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::DIRECTION);
 	enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::DIRECTION);
+}
+void CharacterManager::ChangeCharacterClearDirection(void)
+{
+	player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::CLEAR_DIRECTION);
+	enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::CLEAR_DIRECTION);
+}
+void CharacterManager::ChangeCharacterOverDirection(void)
+{
+	player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::OVER_DIRECTION);
+	enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::OVER_DIRECTION);
 }
 CharacterManager::CharacterManager(void)
 {

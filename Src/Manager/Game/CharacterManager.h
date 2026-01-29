@@ -55,6 +55,15 @@ public:
 	/// @return 
 	const bool GetIsEnemyRoar(void)const;
 
+	/// @brief クリア演出の終了
+	/// @param  
+	/// @return 
+	const bool GetIsEndClearDirection(void)const;
+
+	/// @brief ゲームオーバー演出の終了
+	/// @param  
+	/// @return 
+	const bool GetIsEndOverDirection(void)const;
 
 	/// @brief 通常状態へ移行
 	/// @param  
@@ -62,6 +71,12 @@ public:
 
 	//演出状態へ
 	void ChangeCharacterDirectionUpdate(void);
+
+	//クリア演出へ
+	void ChangeCharacterClearDirection(void);
+
+	//ゲームオーバー演出へ
+	void ChangeCharacterOverDirection(void);
 
 private:
 	CharacterManager(void);

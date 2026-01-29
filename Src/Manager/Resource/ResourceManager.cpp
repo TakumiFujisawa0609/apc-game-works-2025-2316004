@@ -15,8 +15,6 @@ void ResourceManager::Init(void)
 	std::unique_ptr<ResourceData> res;
 
 	//モデル登録
-	//res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Player.mv1");
-	//resourcesMap_.emplace(SRC::PLAYER, std::move(res));
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Ninja.mv1");
 	resourcesMap_.emplace(SRC::PLAYER, std::move(res));
 	
@@ -35,6 +33,9 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"KeyBlade/KeyBlade1.mv1");
 	resourcesMap_.emplace(SRC::KEY_BLADE, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
+	resourcesMap_.emplace(SRC::STAGE, std::move(res));
+
 
 	//アニメーション登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerIdle.mv1");
@@ -52,9 +53,6 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack2.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_2 , std::move(res));
 
-	//res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack3.mv1");
-	//resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
-
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttackCombo.mv1");
 	resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
 	
@@ -69,6 +67,9 @@ void ResourceManager::Init(void)
 	
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerReact.mv1");
 	resourcesMap_.emplace(SRC::REACT, std::move(res));	
+	
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerDying.mv1");
+	resourcesMap_.emplace(SRC::P_DEATH, std::move(res));	
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Idle.mv1");
 	resourcesMap_.emplace(SRC::E_IDLE, std::move(res));
@@ -91,8 +92,10 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Rush.mv1");
 	resourcesMap_.emplace(SRC::E_ROLE_ATK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
-	resourcesMap_.emplace(SRC::STAGE, std::move(res));
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant Dying.mv1");
+	resourcesMap_.emplace(SRC::E_DEATH, std::move(res));
+
+
 
 
 	//ピクセルシェーダ登録
@@ -107,7 +110,7 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"TitleLogo.png");
 	resourcesMap_.emplace(SRC::TITLE_LOGO, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"GameClear.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"GameClear2.png");
 	resourcesMap_.emplace(SRC::GAME_CLEAR_IMG, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"GameOver.png");
@@ -187,7 +190,6 @@ void ResourceManager::Init(void)
 
 
 
-
 	//複数画像
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",
 		CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
@@ -196,6 +198,7 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"XboxControllerBotton128.png",
 		CONTROLLER_UI_NO_X, CONTROLLER_UI_NO_Y, CONTROLLER_UI_SIZE_X, CONTROLLER_UI_SIZE_Y);
 	resourcesMap_.emplace(SRC::CONTROLLER_UI_IMGS, std::move(res));
+
 
 	//エフェクト登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/Blast.efkefc");
@@ -206,6 +209,10 @@ void ResourceManager::Init(void)
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"ExpandStar/ExpandStar.efkefc");
 	resourcesMap_.emplace(SRC::KEY_BLADE_HIT_EFF, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"DeathEnemy/boss_death.efkproj");
+	resourcesMap_.emplace(SRC::E_DEATH_EFF, std::move(res));
+
 
 }
 

@@ -54,6 +54,7 @@ public:
 		IDLE,
 		RUN,
 		REACT,
+		DEATH,
 		ATTACK_1_MIDDLE,
 		ATTACK_1_SHORT,
 		ATTACK_2,
@@ -102,6 +103,8 @@ public:
 		NONE,
 		NORMAL,
 		DIRECTION,
+		CLEAR_DIRECTION,
+		OVER_DIRECTION,
 		HIT_STOP
 	};
 	/// @brief コンストラクタ
@@ -294,6 +297,13 @@ public:
 	/// @brief 演出から通常時に移行する時に初期化するもの
 	/// @param  
 	void ChangeDirectToNormal(void);
+
+	/// @brief クリア演出が終わったか
+	/// @param  
+	/// @return 
+	const bool GetIsEndDirect(void) { return isEndClearDirect_; }
+
+
 protected:
 
 	//移動量ラインオフセット
@@ -354,8 +364,12 @@ protected:
 
 	//ステータス
 	STATUS maxStatus_;
-	//カードUI(とりあえず)
-	std::unique_ptr<CardUIBase>cardUI_;
+
+	//エフェクト
+	std::unique_ptr<EffectController>effect_;
+
+
+
 	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
 	bool isDamage_;
 
@@ -365,6 +379,8 @@ protected:
 	//カプセル半径
 	float capRadius_;
 
+	//クリア演出が終わったか
+	bool isEndClearDirect_;
 	////Hp割合計算
 	//float hpPer_;
 
@@ -398,17 +414,21 @@ protected:
 	virtual void MakeColliderGeometry(void) = 0;;
 
 	//更新フェーズ	
-	void UpdateNone(void);						//何もしない
-	virtual void UpdateNormal(void) = 0;		//通常更新
-	virtual void UpdateDirection(void) = 0;		//演出時更新
-	void UpdateHitStop(void);		//ヒットストップ更新
+	void UpdateNone(void);							//何もしない
+	virtual void UpdateNormal(void) = 0;			//通常更新
+	virtual void UpdateDirection(void) = 0;			//演出時更新
+	virtual void UpdateClearDirection(void) = 0;	//クリア演出
+	virtual void UpdateOverDirection(void) = 0;	//オーバー演出
+	void UpdateHitStop(void);						//ヒットストップ更新
 
 
 	//遷移先の更新フェーズ
-	void ChangeUpdateNone(void);
-	void ChangeUpdateNormal(void);
-	void ChangeUpdateDirection(void);
-	void ChangeUpdateHitStop(void);
+	void ChangeUpdateNone(void);				//何もしない
+	void ChangeUpdateNormal(void);				//通常
+	void ChangeUpdateDirection(void);			//演出
+	virtual void ChangeUpdateClearDirection(void);	//クリア演出
+	virtual void ChangeUpdateOverDirection(void);	//ゲームオーバー演出
+	void ChangeUpdateHitStop(void);				//ヒットストップ
 private:
 
 };

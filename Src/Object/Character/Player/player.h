@@ -282,6 +282,11 @@ private:
 	//演出時の更新
 	void UpdateDirection(void) override;
 	void UpdateNormal(void)override;
+	void UpdateClearDirection(void)override;
+	void UpdateOverDirection(void)override;
+
+	//ゲームオーバーに遷移
+	void ChangeUpdateOverDirection(void)override;
 	
 	//アクション関係
 	void Action(void);

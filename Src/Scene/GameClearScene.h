@@ -1,5 +1,8 @@
 #pragma once
 #include "SceneBase.h"
+
+class Easing;
+
 class GameClearScene :
     public SceneBase
 {
@@ -18,8 +21,29 @@ public:
 	void Init(void) override;
 
 private:
+
+	//イージング時間
+	static constexpr int EASING_TIME = 1.0f;
+
+	//BGMの大きさ
+	static constexpr int BGM_VOL = 80;
+
+	//イージングY座標上限
+	static constexpr float BACK_TITLE_STRING_POS_EASE_LIMIT = 40;
+
 	//ゲームクリア画像
 	int imgGameClear_;
+	//サウンド
+	SoundManager& soundMng_;
+
+	//イージング
+	std::unique_ptr<Easing>easing_;
+
+	//イージングカウント
+	float easeCnt_;
+
+	//文字のY座標
+	float strYPos_;
 
 
 	//更新関数

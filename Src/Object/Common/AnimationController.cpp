@@ -115,7 +115,7 @@ void AnimationController::Play(int type, bool isLoop,
 
 }
 
-void AnimationController::Update(void)
+void AnimationController::Update(const float _spdScl)
 {
 
 	// 経過時間の取得
@@ -125,7 +125,7 @@ void AnimationController::Update(void)
 	{
 
 		// 再生
-		playAnim_.step += (deltaTime * playAnim_.speed * switchLoopReverse_);
+		playAnim_.step += (deltaTime * playAnim_.speed * switchLoopReverse_) * _spdScl;
 
 		// アニメーション終了判定
 		bool isEnd = false;

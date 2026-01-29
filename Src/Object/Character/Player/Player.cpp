@@ -162,11 +162,35 @@ void Player::UpdateNormal(void)
 	//アニメーション
 	animationController_->Update();
 
-
 	//プレイヤー状態更新
 	Action();
 
 	weapon_->Update();
+}
+
+void Player::UpdateClearDirection(void)
+{
+	//演出と同じ更新
+	UpdateDirection();
+
+	//プレイヤー状態更新
+	Action();
+
+}
+
+void Player::UpdateOverDirection(void)
+{
+	UpdateDirection();
+	if (animationController_->IsEnd())
+	{
+		isEndClearDirect_ = true;
+	}
+}
+
+void Player::ChangeUpdateOverDirection(void)
+{
+	animationController_->Play(static_cast<int>(ANIM_TYPE::DEATH),false);
+	CharacterBase::ChangeUpdateOverDirection();
 }
 
 void Player::Draw(void)
@@ -265,6 +289,7 @@ void Player::AddAnimation(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::DEATH), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DEATH));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::CARD_RELOAD), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RELOAD));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_MIDDLE), ATK_MID_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_MIDDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_SHORT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_SHORT));

@@ -1,36 +1,38 @@
 #include"../Utility/Utility2D.h"
 #include"../Utility/Utility3D.h"
 #include"../Utility/UtilityCommon.h"
-#include"../../../Application.h"
-#include"../Player/Player.h"
-#include"../Base/CharacterOnHitBase.h"
-#include"./EnemyOnHit.h"
-#include"./EnemyRock.h"
-#include"./EnemyHpUi.h"
-#include"../Object/Common/AnimationController.h"
-#include"../Enemy/EnemyLogic.h"
-#include"../../Common/Geometry/Capsule.h"
-#include"../../Common/Geometry/Sphere.h"
-#include"../../Common/Geometry/Line.h"
-#include"../Manager/Resource/ResourceManager.h"
-#include"../Manager/Generic/Camera.h"
-#include"../Manager/Generic/SceneManager.h"
-#include"../Manager/Generic/InputManager.h"
-#include"../Manager/Generic/DataBank.h" 
-#include"../../Card/CardDeck.h"
-#include"../Object/Card/EnemyCardUI.h"
-#include"../Player/ActionController.h"
-#include"../Base/ActionBase.h"
-#include"../Action/Idle.h"
-#include"../Action/Run.h"
-#include"../Action/Jump.h"
-#include"../Action/React.h"
-#include"../Action/EnemyCardAction.h"
+#include "../../../Application.h"
+#include "../Player/Player.h"
+#include "../Base/CharacterOnHitBase.h"
+#include "./EnemyOnHit.h"
+#include "./EnemyRock.h"
+#include "./EnemyHpUi.h"
+#include "../Object/Common/AnimationController.h"
+#include "../Enemy/EnemyLogic.h"
+#include "../../Common/Geometry/Capsule.h"
+#include "../../Common/Geometry/Sphere.h"
+#include "../../Common/Geometry/Line.h"
+#include "../Manager/Resource/ResourceManager.h"
+#include "../Manager/Generic/Camera.h"
+#include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/DataBank.h" 
+#include "../../Card/CardDeck.h"
+#include "../Object/Card/EnemyCardUI.h"
+#include "../Object/Common/EffectController.h"
+#include "../Player/ActionController.h"
+#include "../Base/ActionBase.h"
+#include "../Action/Idle.h"
+#include "../Action/Run.h"
+#include "../Action/Jump.h"
+#include "../Action/React.h"
+#include "../Action/EnemyCardAction.h"
 
 #include "Enemy.h"
 
 Enemy::Enemy(void):
-	cardCenterPos_({})
+	cardCenterPos_({}),
+	modelScl_(MODEL_SIZE_MULTIPLITER)
 {
 	//noneHitTag_.emplace({ Collider::TAG::PLAYER1,Collider::TAG::NML_ATK })
 	//各ステータスの設定
@@ -46,6 +48,7 @@ Enemy::Enemy(void):
 Enemy::~Enemy(void)
 {
 	collider_.clear();
+	effect_->AllStop();
 }
 void Enemy::Load(void)
 {
@@ -60,14 +63,14 @@ void Enemy::Load(void)
 	//cardUI_ = std::make_unique<EnemyCardUI>();
 	logic_ = std::make_unique<EnemyLogic>(trans_);
 	deck_ = std::make_shared<CardDeck>(characterType_, ENEMY_NUM);
-	//hpUi_ = std::make_unique<EnemyHpUI>(hpPer_,preHpPer);
-	//cardUI_->Load();
+
+	effect_ = std::make_unique<EffectController>();
+	effect_->Add(resMng_.Load(ResourceManager::SRC::E_DEATH_EFF).handleId_, EffectController::EFF_TYPE::E_DEATH);
 
 	AddAction();
 
 	action_->Load();
 
-	//hpUi_->Load();
 
 }
 
@@ -97,7 +100,8 @@ void Enemy::Init(void)
 
 	//Transformの設定
 	trans_.quaRot = Quaternion();
-	trans_.scl = MODEL_SCL;
+	//trans_.scl = MODEL_SCL;
+	trans_.scl = { modelScl_,modelScl_,modelScl_ };
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
@@ -119,10 +123,36 @@ void Enemy::UpdateDirection(void)
 	action_->Update();
 	UpdateRoarDirection();
 
-
 	//Transformの更新
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
+}
+
+void Enemy::UpdateClearDirection(void)
+{
+	animationController_->Update();
+	//action_->Update();
+	VECTOR effPos = MV1GetFramePosition(trans_.modelId, CHEST_FRAME_NO);
+	effect_->SetPos(EffectController::EFF_TYPE::E_DEATH, 0, effPos);
+	effect_->Update();
+	if (animationController_->GetAnimStep() >= DEATH_BLAST_ANIM_STEP)
+	{
+
+		if (modelScl_ <= 0.0f)
+		{
+			isEndClearDirect_ = true;
+			return;
+		}
+		modelScl_ -= 0.1f;
+		trans_.scl = { modelScl_,modelScl_,modelScl_ };
+	}
+	trans_.Update();
+}
+
+void Enemy::UpdateOverDirection(void)
+{
+	constexpr float ANIM_SPD_SCL = 0.2f;
+	animationController_->Update(ANIM_SPD_SCL);
 }
 
 void Enemy::Draw(void)
@@ -199,6 +229,18 @@ void Enemy::UpdateRoarDirection(void)
 	}
 }
 
+void Enemy::ChangeUpdateClearDirection(void)
+{
+	isRoar_ = false;
+	animationController_->Play(static_cast<int>(ANIM_TYPE::DEATH), false);
+	VECTOR effPos = MV1GetFramePosition(trans_.modelId, CHEST_FRAME_NO);
+	soundMng_.Stop(SoundManager::SRC::ENEMY_FOOT_SE);
+	soundMng_.Stop(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
+	soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
+	effect_->Play(EffectController::EFF_TYPE::E_DEATH, effPos, trans_.quaRot, DEATH_EFF_SCL_VEC);
+	CharacterBase::ChangeUpdateClearDirection();
+}
+
 
 void Enemy::MakeColliderGeometry(void)
 {
@@ -259,7 +301,7 @@ void Enemy::UpdateNormal(void)
 {
 	animationController_->Update();
 
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
 
 	////肩の座標を取得
@@ -301,6 +343,7 @@ void Enemy::AddAnimation(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ROAR_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::DEATH), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_DEATH));
 }
 
 #ifdef _DEBUG

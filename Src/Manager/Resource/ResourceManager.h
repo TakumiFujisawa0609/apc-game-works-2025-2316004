@@ -11,9 +11,7 @@ class ResourceManager : public Singleton<ResourceManager>
 
 public:
 
-	/// <summary>
-	/// リソース名
-	/// </summary>
+	//リソース
 	enum class SRC
 	{
 		NONE,
@@ -37,6 +35,7 @@ public:
 		P_JUMP,		//ジャンプ
 		P_DODGE,	//回避
 		P_RELOAD,	//リロード
+		P_DEATH,	//プレイヤー倒れ
 		//敵
 		E_IDLE,		//待機
 		E_RUN,		//走る
@@ -46,6 +45,7 @@ public:
 		E_ROLE_ATK,	//転がり攻撃
 		E_KNOCK_DOWN,	//大ダウン
 		REACT,
+		E_DEATH,			//敵倒れる
 
 		//画像
 		TITLE_BACK_IMG,	//タイトル背景
@@ -90,6 +90,7 @@ public:
 		BLAST,
 		KEY_BLADE_HIT_EFF,
 		E_JUMP_CHARGE_EFF,
+		E_DEATH_EFF,
 	};
 	
 	/// @brief 初期化

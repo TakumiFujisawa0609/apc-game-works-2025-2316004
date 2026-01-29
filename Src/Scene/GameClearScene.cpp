@@ -6,11 +6,16 @@
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Generic/InputManagerS.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Manager/Generic/Camera.h"
+#include "../Common/Easing.h"
 #include "GameClearScene.h"
 
-GameClearScene::GameClearScene(void)
+GameClearScene::GameClearScene(void):
+	soundMng_(SoundManager::GetInstance()),
+	easeCnt_(0.0f),
+	strYPos_(SceneBase::BACK_TITLE_STRING_POS.y)
 {
 	//更新関数のセット
 	updateFunc_ = std::bind(&GameClearScene::LoadingUpdate, this);
@@ -20,6 +25,7 @@ GameClearScene::GameClearScene(void)
 
 GameClearScene::~GameClearScene(void)
 {
+	soundMng_.Stop(SoundManager::SRC::GAME_CLEAR);
 }
 
 void GameClearScene::Load(void)
@@ -27,11 +33,20 @@ void GameClearScene::Load(void)
 	imgGameClear_ = ResourceManager::GetInstance().Load(ResourceManager::SRC::GAME_CLEAR_IMG).handleId_;
 	//フォントの登録
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+
+	//BGMロード
+	soundMng_.GetInstance().LoadResource(SoundManager::SRC::GAME_CLEAR);
+	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, static_cast<int>(SoundManager::TYPE::BGM));
 }
 
 void GameClearScene::Init(void)
 {
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
+	//BGM再生
+	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_CLEAR, SoundManager::PLAYTYPE::LOOP);
+
+	easing_ = std::make_unique<Easing>();
+
 }
 
 void GameClearScene::NormalUpdate(void)
@@ -47,6 +62,16 @@ void GameClearScene::NormalUpdate(void)
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
 	}
+
+
+	const int LIMIT = SceneBase::BACK_TITLE_STRING_POS.y - BACK_TITLE_STRING_POS_EASE_LIMIT;
+	strYPos_ = easing_->EaseFunc(SceneBase::BACK_TITLE_STRING_POS.y, LIMIT, easeCnt_ / EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
+	easeCnt_ += scnMng_.GetDeltaTime();
+	if (easeCnt_ > EASING_TIME)
+	{
+		easeCnt_ = 0.0f;
+	}
+
 }
 
 void GameClearScene::NormalDraw(void)
@@ -70,7 +95,7 @@ void GameClearScene::NormalDraw(void)
 
 	DrawFormatStringToHandle(
 		SceneBase::BACK_TITLE_STRING_POS.x,
-		SceneBase::BACK_TITLE_STRING_POS.y,
+		strYPos_,
 		UtilityCommon::WHITE,
 		buttonFontHandle_,
 		L"'Bボタンまたはスペースキー'でタイトルに戻る"

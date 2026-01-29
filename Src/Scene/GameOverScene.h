@@ -19,8 +19,14 @@ public:
 
 private:
 
+	//BGMの大きさ
+	static constexpr int BGM_VOL = 80;
+
 	//ゲームオーバー画面
 	int imgGameOver_;
+
+	//サウンド
+	SoundManager& soundMng_;
 
 	//更新関数
 	void NormalUpdate(void) override;

@@ -114,7 +114,7 @@ private:
 
 
     //ジャンプ攻撃力
-    static constexpr float JUMP_ATK_POWER = 10.0f;
+    static constexpr float JUMP_ATK_POWER = 40.0f;
 
 
     static constexpr float ROAR_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント

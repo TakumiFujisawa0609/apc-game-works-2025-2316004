@@ -2,12 +2,14 @@
 #include "../Utility/UtilityCommon.h"
 #include "../Manager/Generic/InputManagerS.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
 #include "GameOverScene.h"
 
-GameOverScene::GameOverScene(void)
+GameOverScene::GameOverScene(void):
+	soundMng_(SoundManager::GetInstance())
 {
 	//更新関数のセット
 	updateFunc_ = std::bind(&GameOverScene::LoadingUpdate, this);
@@ -17,6 +19,7 @@ GameOverScene::GameOverScene(void)
 
 GameOverScene::~GameOverScene(void)
 {
+	soundMng_.Stop(SoundManager::SRC::GAME_OVER);
 }
 
 void GameOverScene::Load(void)
@@ -24,11 +27,20 @@ void GameOverScene::Load(void)
 	//フォントの登録
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 	imgGameOver_ = resMng_.GetInstance().Load(ResourceManager::SRC::GAME_OVER_IMG).handleId_;
+
+	//BGMロード
+	soundMng_.GetInstance().LoadResource(SoundManager::SRC::GAME_OVER);
+
 }
 
 void GameOverScene::Init(void)
 {
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
+
+	//BGM再生
+	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_OVER, SoundManager::PLAYTYPE::LOOP);
+	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, static_cast<int>(SoundManager::TYPE::BGM));
+
 }
 
 void GameOverScene::NormalUpdate(void)

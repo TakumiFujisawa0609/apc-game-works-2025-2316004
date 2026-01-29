@@ -68,6 +68,13 @@ void SoundManager::Init(void)
 
     res.path = path_Bgm + L"GameSceneK.mp3";
     resourcesMap_.emplace(SRC::GAME_BGM, res);
+
+    res.path = path_Bgm + L"GameClear.mp3";
+    resourcesMap_.emplace(SRC::GAME_CLEAR, res);
+
+    res.path = path_Bgm + L"GameOver.mp3";
+    resourcesMap_.emplace(SRC::GAME_OVER, res);
+
 #pragma endregion
 
 #pragma region SE

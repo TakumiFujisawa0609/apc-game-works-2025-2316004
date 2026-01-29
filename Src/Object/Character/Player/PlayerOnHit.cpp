@@ -137,7 +137,7 @@ void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
 	auto& rock = dynamic_cast<EnemyRock&>(_hitCol.lock()->GetParent());
 	//ダメージを与えていた場合、処理を抜ける
 	if (rock.GetIsDamaged())return;
-	charaObj_.Damage(5);
+	charaObj_.Damage(STONE_DMG);
 	//のけぞり時間セット
 	rock.SetIsDamaged();
 	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);

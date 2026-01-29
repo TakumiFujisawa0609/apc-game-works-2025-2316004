@@ -83,6 +83,8 @@ void GameScene::Init(void)
 		{UPDATE_PHASE::NONE,[this]() {ChangeNone(); }},
 		{UPDATE_PHASE::FADE,[this]() {ChangeFade(); }},
 		{UPDATE_PHASE::DIRECTION,[this]() {ChangeDirection(); }},
+		{UPDATE_PHASE::CLEAR_DIRECTION,[this]() {ChangeClearDirection(); }},
+		{UPDATE_PHASE::OVER_DIRECTION,[this]() {ChangeOverDirection(); }},
 		{UPDATE_PHASE::NORMAL,[this]() {ChangeNormal(); }},
 		{UPDATE_PHASE::SLOW,[this]() {ChangeSlow(); }}
 	};
@@ -165,11 +167,14 @@ void GameScene::NormalUpdate(void)
 	//とりあえず敵が倒れたら
 	if (CharacterManager::GetInstance().IsSceneChageClearCondition())
 	{
-		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+		ChangeUpdatePhase(UPDATE_PHASE::CLEAR_DIRECTION);
+		return;
 	}
 	else if (CharacterManager::GetInstance().IsSceneChangeGameOverCondition())
 	{
-		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
+		//SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
+		ChangeUpdatePhase(UPDATE_PHASE::OVER_DIRECTION);
+		return;
 	}
 	//ステージ
 	stage_->Update();
@@ -225,7 +230,12 @@ void GameScene::DirectionDraw(void)
 	skyDome_->Draw();
 	stage_->Draw();
 	CharacterManager::GetInstance().Draw();
-	UIManager::GetInstance().DirectionDraw();
+
+	if (updatePhase_ == UPDATE_PHASE::DIRECTION)
+	{
+		UIManager::GetInstance().DirectionDraw();
+	}
+
 }
 
 
@@ -253,6 +263,22 @@ void GameScene::ChangeDirection(void)
 	isSkippingDirection_ = false;
 	CharacterManager::GetInstance().ChangeCharacterDirectionUpdate();
 	updateFunc_ = [this]() {DirectionUpdate(); };
+	drawFunc_ = [this]() {DirectionDraw(); };
+}
+
+void GameScene::ChangeClearDirection()
+{
+	CharacterManager::GetInstance().ChangeCharacterClearDirection();
+	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+	updateFunc_ = [this]() {ClearDirectionUpdate(); };
+	drawFunc_ = [this]() {DirectionDraw(); };
+}
+
+void GameScene::ChangeOverDirection(void)
+{
+	CharacterManager::GetInstance().ChangeCharacterOverDirection();
+	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+	updateFunc_ = [this]() {OverDirectionUpdate(); };
 	drawFunc_ = [this]() {DirectionDraw(); };
 }
 
@@ -285,6 +311,27 @@ void GameScene::DirectionUpdate(void)
 
 	CharacterManager::GetInstance().Update();
 	//UpdateIntensiveLineAnim();
+}
+
+void GameScene::ClearDirectionUpdate(void)
+{
+
+	//敵の演出が終わったらシーン遷移
+	if (CharacterManager::GetInstance().GetIsEndClearDirection())
+	{
+		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+	}
+	CharacterManager::GetInstance().Update();
+}
+
+void GameScene::OverDirectionUpdate(void)
+{
+	//敵の演出が終わったらシーン遷移
+	if (CharacterManager::GetInstance().GetIsEndOverDirection())
+	{
+		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
+	}
+	CharacterManager::GetInstance().Update();
 }
 
 void GameScene::SlowUpdate(void)

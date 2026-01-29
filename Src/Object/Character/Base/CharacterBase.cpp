@@ -6,6 +6,7 @@
 #include "../Object/Character/Base/HpUIBase.h"
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Object/Character/Base/CharacterOnHitBase.h"
+#include "../Object/Common/EffectController.h"
 #include "../Manager/Game/GravityManager.h"
 #include"../Object/Card/CardDeck.h"
 #include"../Object/Card/CardUIBase.h"
@@ -30,12 +31,15 @@ CharacterBase::CharacterBase(void) :
 	isMoveable_(true),
 	updatePhase_(UPDATE_PHASE::NONE),
 	uiMng_(UIManager::GetInstance()),
-	hitStopFrame_(HIT_STOP_FRAME)
+	hitStopFrame_(HIT_STOP_FRAME),
+	isEndClearDirect_(false)
 {
 	changeUpdate_ = {
 		{UPDATE_PHASE::NONE,[this]() {ChangeUpdateNone(); }},
 		{UPDATE_PHASE::NORMAL,[this]() {ChangeUpdateNormal(); }},
 		{UPDATE_PHASE::DIRECTION, [this]() {ChangeUpdateDirection(); }},
+		{UPDATE_PHASE::CLEAR_DIRECTION, [this]() {ChangeUpdateClearDirection(); }},
+		{UPDATE_PHASE::OVER_DIRECTION, [this]() {ChangeUpdateOverDirection(); }},
 		{UPDATE_PHASE::HIT_STOP,[this]() {ChangeUpdateHitStop(); } }
 	};
 
@@ -184,6 +188,16 @@ void CharacterBase::ChangeDirectToNormal(void)
 {
 	animationController_->Play(static_cast<int>(ANIM_TYPE::IDLE));
 	phazeUpdate_ = [this]() {UpdateNormal(); };
+}
+
+void CharacterBase::ChangeUpdateClearDirection(void)
+{
+	phazeUpdate_ = [this]() {UpdateClearDirection(); };
+}
+
+void CharacterBase::ChangeUpdateOverDirection(void)
+{
+	phazeUpdate_ = [this]() {UpdateOverDirection(); };
 }
 
 

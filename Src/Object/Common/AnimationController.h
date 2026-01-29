@@ -37,7 +37,8 @@ public :
 	void Play(int type, bool isLoop = true, 
 		float startStep = 0.0f, float endStep = -1.0f, bool isStop = false, bool isForce = false);
 
-	void Update(void);
+	//アニメーション更新 
+	void Update(const float _spdScl=1.0f);
 
 	// アニメーション終了後に繰り返すループステップ
 	void SetEndLoop(float startStep, float endStep, float speed);

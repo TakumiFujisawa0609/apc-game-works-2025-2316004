@@ -18,6 +18,8 @@ public:
 		PUNCH_HIT,	//パンチヒット
 		BLAST,		//爆発
 		E_JUMP_CHARGE,
+		E_DEATH,		//死んだエフェクト
+		E_DEATH_BLAST	//死んで爆発
 	};
 
 	//コンストラクタ

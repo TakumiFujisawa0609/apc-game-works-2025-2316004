@@ -26,8 +26,6 @@ public:
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
 
-
-
 	//敵の大きさの倍率
 	static constexpr float MODEL_SIZE_MULTIPLITER = 5.0f;
 	//static constexpr float MODEL_SIZE_MULTIPLITER = 1.0f;
@@ -169,6 +167,9 @@ private:
 	//定数
 	//プレイヤーの腰のフレーム番号
 	static constexpr int SPINE_FRAME_NO = 1;
+	//胸のフレーム
+	static constexpr int CHEST_FRAME_NO = 4;
+
 	//敵番号(デッキで判定する用)
 	static constexpr int ENEMY_NUM = 1;
 
@@ -180,6 +181,13 @@ private:
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,0.0f,0.0f };	//ダウン座標
 	static constexpr float CAP_RADIUS = 30.0f* MODEL_SIZE_MULTIPLITER;				//カプセル球の半径
 
+	//倒れるエフェクトのスケール
+	static constexpr float DEATH_EFF_SCL = 100.0f;
+	static constexpr VECTOR DEATH_EFF_SCL_VEC = { DEATH_EFF_SCL,DEATH_EFF_SCL,DEATH_EFF_SCL };
+
+	//爆発発生アニメステップ
+	static constexpr float DEATH_BLAST_ANIM_STEP = 93.0f;
+
 	//それぞれの当たり判定座標
 	VECTOR leftArmPos_;
 	VECTOR leftForeArmPos_;
@@ -189,6 +197,9 @@ private:
 	VECTOR rightHandPos_;
 
 	Vector2 cardCenterPos_; //カードの中心座標
+
+	//敵のスケール
+	float modelScl_;
 
 	//咆哮状態かどうか
 	bool isRoar_;
@@ -202,6 +213,16 @@ private:
 
 	//演出時の更新
 	void UpdateDirection(void)override;
+	//クリア時(敵が倒れる)
+	void UpdateClearDirection(void)override;
+
+	//ゲームオーバー
+	void UpdateOverDirection(void)override;
+
+
+	/// @brief クリア演出に変更
+	/// @param  
+	void ChangeUpdateClearDirection(void)override;
 
 	//アクションの追加
 	void AddAction(void)override;

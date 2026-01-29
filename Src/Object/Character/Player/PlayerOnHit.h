@@ -56,6 +56,9 @@ private:
 	//—Y‚½‚¯‚Ñd’¼ŠÔ
 	static constexpr float ROAR_FLICTION_TIME = 0.1f;
 
+	//Šâƒ_ƒ[ƒW
+	static constexpr int STONE_DMG = 15;
+
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;		//ƒLƒƒƒ‰“¯m
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//’ÊíUŒ‚
 	void CollRoarAttack(const std::weak_ptr<Collider>_hitCol);			//‚¨‚½‚¯‚ÑUŒ‚
