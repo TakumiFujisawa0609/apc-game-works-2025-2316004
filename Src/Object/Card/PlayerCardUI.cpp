@@ -710,9 +710,6 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + 10.0f;
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::RBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 
-	DrawFormatString(0, 0, UtilityCommon::WHITE, L"pos(%f,%f)\nangle(%f)"
-		, revolverLArrowPos_.x, revolverLArrowPos_.y, revolverArrowAngle_);
-
 }
 
 std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleCurrentIt(void)
