@@ -212,7 +212,7 @@ private:
 	void DesideGoalAngle(void);
 	//リロードアニメーション
 	void ReloadAnimation(void);
-	////使用済みのカードを消す
+	//リロード時に配列に追加
 	void ReloadCardArray(void);
 
 	//上下に見せカードを動かす

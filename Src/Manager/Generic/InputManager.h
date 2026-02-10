@@ -70,6 +70,9 @@ public:
 		bool IsNew[static_cast<int>(JOYPAD_BTN::MAX)];
 		bool IsTrgDown[static_cast<int>(JOYPAD_BTN::MAX)];
 		bool IsTrgUp[static_cast<int>(JOYPAD_BTN::MAX)];
+		bool IsBtnKeep[static_cast<int>(JOYPAD_BTN::MAX)];
+		float btnCnt[static_cast<int>(JOYPAD_BTN::MAX)];
+		bool IsKeeping[static_cast<int>(JOYPAD_BTN::MAX)];
 		int AKeyLX;
 		int AKeyLY;
 		int AKeyRX;
@@ -182,6 +185,18 @@ public:
 	/// @return 
 	XINPUT_STATE GetJPadXInputState(JOYPAD_NO no);
 
+	/// @brief 一定時間以上押したかどうか
+	/// @param _key キー
+	/// @param _time キー入力時間
+	/// @return 
+	const bool IsKeyKeepPressed(const int _key, const float _time);
+
+	/// @brief 一定時間以上押したかどうか
+	/// @param _key キー
+	/// @param _time キー入力時間
+	/// @return 
+	const bool IsBtnKeepPressed(JOYPAD_NO no, JOYPAD_BTN btn, const float _time);
+
 #ifdef _DEBUG
 
 	/// @brief オブジェクトを動かす(デバッグ用)
@@ -194,11 +209,15 @@ private:
 	// キー情報
 	struct Info
 	{
-		int key;			// キーID
-		bool keyOld;		// 1フレーム前の押下状態
-		bool keyNew;		// 現フレームの押下状態
-		bool keyTrgDown;	// 現フレームでボタンが押されたか
-		bool keyTrgUp;		// 現フレームでボタンが離されたか
+		int key;					// キーID
+		bool keyOld;				// 1フレーム前の押下状態
+		bool keyNew;				// 現フレームの押下状態
+		float keyCnt;				// 何秒間キーが押されたか
+		float keyTime;				// キー長押し時間格納
+		bool keyTrgDown;			// 現フレームでボタンが押されたか
+		bool keyTrgUp;				// 現フレームでボタンが離されたか
+		bool keyKeeping;			// キー長押し中か(キー長押し時間指定)
+		void UpdateKeepTime(void);	//一定時間キー長押し判定
 	};
 
 	// マウス
@@ -242,6 +261,7 @@ private:
 	// 配列の中からキー情報を取得する
 	const InputManager::Info& Find(int key) const;
 
+
 	// 配列の中からマウス情報を取得する
 	const InputManager::MouseInfo& FindMouse(int key) const;
 
@@ -250,5 +270,7 @@ private:
 
 	// コントローラの入力情報を更新する
 	void SetJPadInState(JOYPAD_NO jpNo);
+
+	void UpdateKeepBtnTime(const int no,const int i);
 
 };

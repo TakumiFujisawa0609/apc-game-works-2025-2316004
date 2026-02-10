@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "../Manager/Generic/SceneManager.h"
 #include "InputManager.h"
 
 void InputManager::Init(void)
@@ -79,6 +80,7 @@ void InputManager::Update(void)
 		p.second.keyNew = CheckHitKey(p.second.key);
 		p.second.keyTrgDown = p.second.keyNew && !p.second.keyOld;
 		p.second.keyTrgUp = !p.second.keyNew && p.second.keyOld;
+		p.second.UpdateKeepTime();
 	}
 
 	// マウス検知
@@ -115,6 +117,8 @@ void InputManager::Add(int key)
 	info.keyOld = false;
 	info.keyNew = false;
 	info.keyTrgDown = false;
+	info.keyCnt = 0.0f;
+	info.keyKeeping = false;
 	info.keyTrgUp = false;
 	keyInfos_.emplace(key, info);
 }
@@ -217,6 +221,28 @@ XINPUT_STATE InputManager::GetJPadXInputState(JOYPAD_NO no)
 	return joyXInState_;
 }
 
+const bool InputManager::IsKeyKeepPressed(const int _key, const float _time)
+{
+	auto it = keyInfos_.find(_key);
+	if (it == keyInfos_.end())return infoEmpty_.keyKeeping;
+	if (it->second.keyTrgDown)
+	{
+		it->second.keyCnt = _time;
+		return false;
+	}
+	return it->second.keyKeeping;
+}
+
+const bool InputManager::IsBtnKeepPressed(JOYPAD_NO no, JOYPAD_BTN btn, const float _time)
+{
+	if (padInfos_[static_cast<int>(no)].IsTrgDown[static_cast<int>(btn)])
+	{
+		padInfos_[static_cast<int>(no)].btnCnt[static_cast<int>(btn)] = _time;
+		return false;
+	}
+	return padInfos_[static_cast<int>(no)].IsKeeping[static_cast<int>(btn)];
+}
+
 #ifdef _DEBUG
 void InputManager::MoveObject(Vector2F& _pos, const float _spd)
 {
@@ -263,6 +289,13 @@ void InputManager::SetJPadInState(JOYPAD_NO jpNo)
 		stateNow.IsTrgDown[i] = stateNow.IsNew[i] && !stateNow.IsOld[i];
 		stateNow.IsTrgUp[i] = !stateNow.IsNew[i] && stateNow.IsOld[i];
 
+		if (stateNow.IsTrgDown[i])
+		{
+			int i = 0;
+		}
+
+		//一定時間長押し情報更新
+		UpdateKeepBtnTime(no, i);
 
 		stateNow.AKeyLX = stateNew.AKeyLX;
 		stateNow.AKeyLY = stateNew.AKeyLY;
@@ -421,3 +454,45 @@ bool InputManager::IsPadBtnTrgUp(JOYPAD_NO no, JOYPAD_BTN btn) const
 {
 	return padInfos_[static_cast<int>(no)].IsTrgUp[static_cast<int>(btn)];
 }
+
+void InputManager::Info::UpdateKeepTime(void)
+{
+	if (!keyNew)
+	{
+		keyCnt = 0.0f;
+		keyKeeping = false;
+		return;
+	}
+	if (keyCnt > 0.0f)
+	{
+		keyKeeping = false;
+		keyCnt -= SceneManager::GetInstance().GetDeltaTime();
+	}
+	else
+	{
+		keyKeeping = true;
+		keyCnt = 0.0f;
+	}
+}
+
+void InputManager::UpdateKeepBtnTime(const int no, const int i)
+{
+	auto& stateNow = padInfos_[no];
+	if (!stateNow.IsNew[i])
+	{
+		stateNow.btnCnt[i] = 0.0f;
+		stateNow.IsKeeping[i] = false;
+		return;
+	}
+	if (stateNow.btnCnt[i] > 0.0f)
+	{
+		stateNow.IsKeeping[i] = false;
+		stateNow.btnCnt[i] -= SceneManager::GetInstance().GetDeltaTime();
+	}
+	else
+	{
+		stateNow.IsKeeping[i] = true;
+		stateNow.btnCnt[i] = 0.0f;
+	}
+}
+

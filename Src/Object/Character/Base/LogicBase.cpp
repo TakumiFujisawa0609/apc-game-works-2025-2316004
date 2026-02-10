@@ -1,5 +1,6 @@
 #include "./CharacterBase.h"
 #include "../Base/CardActionBase.h"
+#include"../Utility/Utility3D.h"
 #include "LogicBase.h"
 
 LogicBase::LogicBase(Transform& _myTrans):
@@ -8,7 +9,8 @@ LogicBase::LogicBase(Transform& _myTrans):
 	moveDeg_(-1.0f),
 	moveDir_({}),
 	//targetChara_(nullptr),
-	isActioning_(false)
+	isActioning_(false),
+	prevMoveDir_(Utility3D::DIR_F)
 {
 }
 

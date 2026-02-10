@@ -252,7 +252,6 @@ void Player::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG
 void Player::Damage(const int _dam)
 {
 	CharacterBase::Damage(_dam);
-
 }
 
 
@@ -276,6 +275,8 @@ void Player::DrawDebug(void)
 	//// 手の位置とグローバルマトリクスを取得
 	VECTOR atkPos = Utility3D::AddPosRotate(trans_.pos, trans_.quaRot, { 0.0f,100.0f,40.0f });
 	DrawSphere3D(atkPos, 10, 10, 0xffffff, 0xffffff, false);
+
+	action_->DrawDebug();
 
 }
 
@@ -305,7 +306,6 @@ void Player::AddAction(void)
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
-	//action_->AddMainAction<Jump>(ACTION_TYPE::JUMP, *action_, *this, jumpPow_);
 	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, trans_, status_.speed);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);

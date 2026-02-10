@@ -104,11 +104,11 @@ void CardDeck::Update(void)
 
 void CardDeck::Draw(void)
 {
-	//CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
+	CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
 
 
 	//const float DISTANCE_X = 40;
-	//DrawFormatString(centerPos_.x, centerPos_.y, 0x000000,L"(%d)", currentCardPow);
+	DrawFormatString(0, 300, 0x000000,L"(%d)", currentCardPow.pow_);
 
 
 	////ŽèŽD‚Ì•\Ž¦

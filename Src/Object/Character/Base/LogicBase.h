@@ -167,6 +167,8 @@ protected:
     //アクション入力がされたかどうか
     ACT_FLAG isAct_;
 
+    bool isFlag_;
+
     //アクション中
 	bool isActioning_;
 

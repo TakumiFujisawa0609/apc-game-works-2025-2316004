@@ -10,7 +10,9 @@ PlayerLogic::PlayerLogic(Transform& _myTrans,bool& _isCanMoveAble , InputManager
 	isCanMoveable_(_isCanMoveAble),
 	padNum_(_padNum),
 	cntl_(_cntl),
-	camera_(SceneManager::GetInstance().GetCamera())
+	camera_(SceneManager::GetInstance().GetCamera()),
+	input_(InputManager::GetInstance()),
+	inputS_(InputManagerS::GetInstance())
 {
 	actCntl_ = ACT_CNTL::NONE;
 	leftStickX_ = -1;
@@ -44,50 +46,48 @@ void PlayerLogic::Update(void)
 
 void PlayerLogic::InputKeyBoard(void)
 {
-	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
 	//actCntl_ = ACT_CNTL::NONE;
 
 #ifdef _DEBUG
-	//if (ins.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
+	//if (input_.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
 	//{
 	//	ChangeInput(InputManager::TYPE::PAD);
 	//}
 #endif // _DEBUG
 	
 	//移動角度を決める
-	if (ins.IsNew(MOVE_FRONT_KEY))
+	if (input_.IsNew(MOVE_FRONT_KEY))
 	{ 
 		moveDeg_ = FLONT_DEG;
 		moveDir_ = Utility3D::DIR_F;
 
 	}
-	else if (ins.IsNew(MOVE_LEFT_KEY))
+	else if (input_.IsNew(MOVE_LEFT_KEY))
 	{ 
 		moveDeg_ = LEFT_DEG; 
 		moveDir_ = Utility3D::DIR_L;
 	} 
-	else if (ins.IsNew(MOVE_BACK_KEY))
+	else if (input_.IsNew(MOVE_BACK_KEY))
 	{ 
 		moveDeg_ = BACK_DEG; 
 		moveDir_ = Utility3D::DIR_B;
 	}
-	else if (ins.IsNew(MOVE_RIGHT_KEY))
+	else if (input_.IsNew(MOVE_RIGHT_KEY))
 	{
 		moveDeg_ = RIGHT_DEG; 
 		moveDir_ = Utility3D::DIR_R;
 	}
 
 	//カード使用
-	if (ins.IsTrgDown(CARD_CHARGE_KEY)) { actCntl_ = ACT_CNTL::CARD_CHARGE; }
+	if (input_.IsTrgDown(CARD_CHARGE_KEY)) { actCntl_ = ACT_CNTL::CARD_CHARGE; }
 
 	//ジャンプキー
-	if (ins.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::CARD_USE; }
+	if (input_.IsTrgDown(CARD_USE_KEY)) { actCntl_ = ACT_CNTL::CARD_USE; }
 }
 
 void PlayerLogic::InputAll(void)
 {
-	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
 	isAct_ = {};
 	float deg = 0.0f;
@@ -96,28 +96,28 @@ void PlayerLogic::InputAll(void)
 	//移動角度を決める
 	if (isCanMoveable_)
 	{
-		if (ins.IsNew(MOVE_FRONT_KEY))
+		if (input_.IsNew(MOVE_FRONT_KEY))
 		{
 			isAct_.isRun = true;
 			deg = FLONT_DEG;
 			dir = Utility3D::DIR_F;
 			prevMoveDir_ = moveDir_;
 		}
-		else if (ins.IsNew(MOVE_LEFT_KEY))
+		else if (input_.IsNew(MOVE_LEFT_KEY))
 		{
 			isAct_.isRun = true;
 			deg = LEFT_DEG;
 			dir = Utility3D::DIR_L;
 			prevMoveDir_ = moveDir_;
 		}
-		else if (ins.IsNew(MOVE_BACK_KEY))
+		else if (input_.IsNew(MOVE_BACK_KEY))
 		{
 			isAct_.isRun = true;
 			deg = BACK_DEG;
 			dir = Utility3D::DIR_B;
 			prevMoveDir_ = moveDir_;
 		}
-		else if (ins.IsNew(MOVE_RIGHT_KEY))
+		else if (input_.IsNew(MOVE_RIGHT_KEY))
 		{
 			isAct_.isRun = true;
 			deg = RIGHT_DEG;
@@ -125,17 +125,17 @@ void PlayerLogic::InputAll(void)
 			prevMoveDir_ = moveDir_;
 		}
 
-		auto& inputS = InputManagerS::GetInstance();
+		//auto& inputS = InputManagerS::Getinput_tance();
 
 		//スティックの倒れ値が200以上だったら
-		if (inputS.IsPressed(INPUT_EVENT::UP) || inputS.IsPressed(INPUT_EVENT::DOWN)
-			|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
+		if (inputS_.IsPressed(INPUT_EVENT::UP) || inputS_.IsPressed(INPUT_EVENT::DOWN)
+			|| inputS_.IsPressed(INPUT_EVENT::RIGHT) || inputS_.IsPressed(INPUT_EVENT::LEFT))
 		{
 			//スティックサイズの取得
-			LStickAngleSize_ = inputS.GetKnockLStickSize(padNum_);
+			LStickAngleSize_ = inputS_.GetKnockLStickSize(padNum_);
 
 			//スティックの角度を求める
-			stickDeg_ = inputS.GetLStickDeg(padNum_);
+			stickDeg_ = inputS_.GetLStickDeg(padNum_);
 
 			//スティックの角度によって移動方向を決める
 			deg = stickDeg_;
@@ -161,46 +161,42 @@ void PlayerLogic::InputAll(void)
 
 
 	//カードチャージ
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_CHARGE_BTN) || ins.IsTrgDown(CARD_CHARGE_KEY)) { isAct_.isCardCharge = true; }
+	if (input_.IsPadBtnTrgDown(padNum_, CARD_CHARGE_BTN) || input_.IsTrgDown(CARD_CHARGE_KEY)) { isAct_.isCardCharge = true; }
 	//カード使用
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_USE_BTN) || ins.IsTrgDown(CARD_USE_KEY)) { isAct_.isCardUse = true; }
+	if (input_.IsPadBtnTrgDown(padNum_, CARD_USE_BTN) || input_.IsTrgDown(CARD_USE_KEY)) { isAct_.isCardUse = true; }
 	//カード移動
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || ins.IsTrgDown(CARD_MOVE_LEFT_KEY)) {
+	if (IsCardLeft()) {
 		isAct_.isCardMoveLeft = true; }
-	if (ins.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN)|| ins.IsTrgDown(CARD_MOVE_RIGHT_KEY)) {
+	if (IsCardRight()) {
 		isAct_.isCardMoveRight = true; 
 	}
 	//カード使用キー長押し(リロード用)
-	if (ins.IsPadBtnNew(padNum_, CARD_USE_BTN)|| ins.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
-	//ジャンプキー
-	//if (ins.IsPadBtnTrgDown(padNum_, JUMP_BTN) || ins.IsTrgDown(JUMP_KEY)) { isAct_.isJump = true; }
+	if (input_.IsPadBtnNew(padNum_, CARD_USE_BTN)|| input_.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
 	//回避
-	if (ins.IsPadBtnTrgDown(padNum_, DODGE_BTN) || ins.IsTrgDown(DODGE_KEY)) { isAct_.isDodge = true;}
+	if (input_.IsPadBtnTrgDown(padNum_, DODGE_BTN) || input_.IsTrgDown(DODGE_KEY)) { isAct_.isDodge = true;}
 }
 
 void PlayerLogic::InputPad(void)
 {
-	auto& ins = InputManager::GetInstance();
 	using ATK_ACT = Player::ATK_ACT;
 	actCntl_ = ACT_CNTL::NONE;
 
 #ifdef _DEBUG
-	//if (ins.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
+	//if (input_.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
 	//{
 	//	ChangeInput(InputManager::TYPE::ALL);
 	//}
 #endif // _DEBUG
 
-	auto& inputS = InputManagerS::GetInstance();
 
 	//スティックの倒れ値が200以上だったら
-	if (inputS.IsPressed(INPUT_EVENT::UP) || inputS.IsPressed(INPUT_EVENT::DOWN)
-		|| inputS.IsPressed(INPUT_EVENT::RIGHT) || inputS.IsPressed(INPUT_EVENT::LEFT))
+	if (inputS_.IsPressed(INPUT_EVENT::UP) || inputS_.IsPressed(INPUT_EVENT::DOWN)
+		|| inputS_.IsPressed(INPUT_EVENT::RIGHT) || inputS_.IsPressed(INPUT_EVENT::LEFT))
 	{ 
 		actCntl_ = ACT_CNTL::MOVE;
 
 		//スティックの角度を求める
-		stickDeg_ = inputS.GetLStickDeg(padNum_);
+		stickDeg_ = inputS_.GetLStickDeg(padNum_);
 	}
 
 	//スティックの角度によって移動方向を決める
@@ -216,4 +212,33 @@ void PlayerLogic::KeyBoard(void)
 
 void PlayerLogic::Pad(void)
 {
+}
+
+bool PlayerLogic::IsCardRight(void)
+{
+	if (input_.IsKeyKeepPressed(CARD_MOVE_RIGHT_KEY, PUSH_KEEP_TIME)
+		|| input_.IsBtnKeepPressed(padNum_, CARD_MOVE_RIGHT_BTN, PUSH_KEEP_TIME))
+	{
+		return true;
+	}
+	else if (input_.IsPadBtnTrgDown(padNum_, CARD_MOVE_RIGHT_BTN) || input_.IsTrgDown(CARD_MOVE_RIGHT_KEY))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool PlayerLogic::IsCardLeft(void)
+{
+	if (input_.IsKeyKeepPressed(CARD_MOVE_LEFT_KEY, PUSH_KEEP_TIME)
+		|| input_.IsBtnKeepPressed(padNum_, CARD_MOVE_LEFT_BTN, PUSH_KEEP_TIME))
+	{
+		return true;
+	}
+	else if (input_.IsPadBtnTrgDown(padNum_, CARD_MOVE_LEFT_BTN) || input_.IsTrgDown(CARD_MOVE_LEFT_KEY))
+	{
+		return true;
+	}
+	return false;
+;
 }

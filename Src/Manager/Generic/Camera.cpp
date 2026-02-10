@@ -316,7 +316,7 @@ void Camera::SyncTargetFollow(void)
 	// 注視点(通常重力でいうところのY値を追従対象と同じにする)
 	localPos = rotOutX_.PosAxis(LOCAL_F2T_POS);
 	//targetPos_ = VAdd(followPos, localPos);
-	//targetPos_ = VAdd(targetPos, localPos);
+	targetPos_ = VAdd(targetPos, localPos);
 
 	// カメラ位置
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
@@ -501,10 +501,10 @@ void Camera::SetBeforeDrawFollow(void)
 	Collision();
 
 	pos_ = easing_->EaseFunc(prePos, pos_, 0.1f, Easing::EASING_TYPE::LERP);
-	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
-	//{
-	//	ChangeMode(MODE::TARGET_POINT);
-	//}
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
+	{
+		ChangeMode(MODE::TARGET_POINT);
+	}
 }
 
 void Camera::SetBeforeDrawSelfShot(void)
