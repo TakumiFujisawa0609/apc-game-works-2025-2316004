@@ -74,7 +74,7 @@ void GameScene::Load(void)
 
 	CharacterManager::GetInstance().Load();
 
-	UIManager::GetInstance().Load();
+	//UIManager::GetInstance().Load();
 }
 
 void GameScene::Init(void)

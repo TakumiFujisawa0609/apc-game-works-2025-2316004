@@ -88,7 +88,8 @@ void EnemyCardAction::Init(void)
 		//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);		//ジャンプチャージ中はデュエルフェーズへ
 		//	return;
 		//}
-		PutCard();
+		//PutCard();
+		cardPresent_.PutCard();
 		DesideCardAction();
 	}
 	else if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD)

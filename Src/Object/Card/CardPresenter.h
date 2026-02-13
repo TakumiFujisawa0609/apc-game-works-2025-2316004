@@ -2,11 +2,14 @@
 #include <memory>
 #include "../Character/UIData/CharacterUIData.h"
 #include "../Card/CardUiBase.h"
-class CardDeck;
+
+class UIManager;
+class CardDeck; 
+
 class CardPresenter
 {
 public:
-	CardPresenter(CHARACTER_TYPE _type,CardDeck& _deck);
+	CardPresenter(CHARACTER_TYPE& _type,CardDeck& _deck);
 	~CardPresenter(void);
 
 	//カード使用済み
@@ -52,15 +55,15 @@ public:
 	/// @param  
 	const bool IsCardFailure(void)const;
 	
-protected:
+private:
 	//カードデッキ
 	CardDeck& deck_;
 
 	//カードUI
-	CardUIBase& cardUI_;
+	UIManager& uiMng_;
 
 	//キャラクター
-	CHARACTER_TYPE type_;
+	CHARACTER_TYPE& type_;
 	
 };
 

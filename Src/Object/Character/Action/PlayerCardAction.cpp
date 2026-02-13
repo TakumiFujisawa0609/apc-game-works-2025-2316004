@@ -64,7 +64,8 @@ void PlayerCardAction::Init(void)
 	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//手札に移動
-		PutCard();
+		//PutCard();
+		cardPresent_.PutCard();
 		DesideAttackOne();
 	}
 	else if (cardPresent_.GetCardType()==CardBase::CARD_TYPE::RELOAD)
@@ -133,7 +134,8 @@ void PlayerCardAction::DesideAttackOne(void)
 void PlayerCardAction::ChangeActionCardInit(void)
 {
 	attackStageNum_++;
-	charaObj_.ChangeCard();
+	//charaObj_.ChangeCard();
+	cardPresent_.ChangeCard();
 	cardFuncs_.pop();
 }
 
@@ -211,8 +213,7 @@ void PlayerCardAction::UpdateAttackThree(void)
 		const float ATK_END_CNT = 0.5f;
 		if (atkThreeEndCnt_ > ATK_END_CNT)
 		{
-			charaObj_.GetCardUI().ChangeUsedActionCard();
-
+			//charaObj_.GetCardUI().ChangeUsedActionCard();
 
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 			return;
@@ -322,8 +323,6 @@ void PlayerCardAction::ChangeMiddleAttackOne(void)
 	isTurnable_ = true;
 
 	cardFuncs_.push([this]() {UpdateMiddleAttack(); });
-
-
 }
 
 void PlayerCardAction::ChangeAttackTwo(void)
@@ -352,7 +351,7 @@ void PlayerCardAction::ChangeReload(void)
 		cardFuncs_.pop();
 	}
 	//現在使っているカードを捨てる
-	//cardPresent_.EraseHandCard();
+	cardPresent_.FinishCard();
 	float per = pushReloadCnt_ / RELOAD_TIME;
 	charaObj_.GetCardUI().SetReloadCount(per);
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
@@ -390,14 +389,14 @@ void PlayerCardAction::ChangeComboAction(void)
 		{
 			if (attackStageNum_ == ATTACK_ONE)
 			{
-				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+				//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 
 
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
 			}
 			else if (attackStageNum_ == ATTACK_TWO)
 			{
-				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+				//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 
 
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);

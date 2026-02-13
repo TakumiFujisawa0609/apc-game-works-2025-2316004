@@ -73,7 +73,7 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 	{
 		//UŒ‚”»’è–³Œø
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackTag);
-		charaObj_.GetCardUI().ChangeUsedActionCard();
+		//charaObj_.GetCardUI().ChangeUsedActionCard();
 		//Ÿ‚ÌUŒ‚‚É‚Â‚È‚°‚é
 		ChangeComboAction();
 	}

@@ -1,4 +1,5 @@
 #include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Generic/UIManager.h"
 #include"../Manager/Generic/Camera.h"
 #include "../Object/Character/Base/CharacterBase.h"
 #include "../Object/Character/Player/Player.h"
@@ -8,11 +9,13 @@
 
 void CharacterManager::Load(void)
 {
+
 	player_ = std::make_shared<Player>();
 	player_->Load();
+
+
 	enemy_ = std::make_shared<Enemy>();
 	enemy_->Load();
-
 
 	SceneManager::GetInstance().GetCamera().lock()->SetTarget(&enemy_->GetTransform());
 }

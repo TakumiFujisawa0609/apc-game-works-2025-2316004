@@ -412,7 +412,7 @@ void PlayerCardUI::ChangeReload(void)
 }
 void PlayerCardUI::UpdateNone(void)
 {
-
+	int i = 0;
 }
 
 void PlayerCardUI::UpdateLeft(void)

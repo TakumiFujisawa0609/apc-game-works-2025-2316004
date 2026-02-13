@@ -162,7 +162,11 @@ void CardUIBase::UpdateUsedCard(void)
 	}
 
 	//消去アニメーションが終わったカードはアクション配列から削除
-	std::erase_if(actions_, [](auto& act) {return act->GetSclCnt() < 0.0f; });
+	std::erase_if(actions_, [](auto& act) 
+		{
+			float cnt = act->GetSclCnt();
+			return cnt < 0.0f;
+		});
 }
 
 void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)

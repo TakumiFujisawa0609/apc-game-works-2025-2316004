@@ -1,13 +1,13 @@
 #include "../pch.h"
-#include "CardPresenter.h"
 #include "../Card/CardUiBase.h"
 #include "../Card/CardDeck.h"
 #include "../../Manager/Generic/UIManager.h"
+#include "CardPresenter.h"
 
-CardPresenter::CardPresenter(CHARACTER_TYPE _type, CardDeck& _deck):
+CardPresenter::CardPresenter(CHARACTER_TYPE& _type, CardDeck& _deck):
 	deck_(_deck),
 	type_(_type),
-	cardUI_(UIManager::GetInstance().GetCardUI(type_))
+	uiMng_(UIManager::GetInstance())
 {
 }
 
@@ -18,29 +18,29 @@ CardPresenter::~CardPresenter(void)
 void CardPresenter::FinishCard(void)
 {
 	//使用済みへ移行
-	cardUI_.ChangeUsedActionCard();
+	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 	deck_.EraseHandCard();
-	cardUI_.ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
+	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 }
 
 void CardPresenter::FailureCard(void)
 {
 	//弾き状態へ移行
-	cardUI_.ChangeReactActionCard();
+	uiMng_.GetCardUI(type_).ChangeReactActionCard();
 	deck_.EraseHandCard();
 }
 
 void CardPresenter::PutCard(void)
 {
 	deck_.MoveUsingCardToDrawPile();
-	cardUI_.ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 
 
 void CardPresenter::RoleRevolver(const CardUIBase::CARD_SELECT _moveLR)
 {
 	//UIのカードリボルバー回転
-	cardUI_.ChangeSelectState(_moveLR);
+	uiMng_.GetCardUI(type_).ChangeSelectState(_moveLR);
 
 	//内部のカードを動かす
 	_moveLR == CardUIBase::CARD_SELECT::LEFT ? deck_.CardMoveLeft() : deck_.CardMoveRight();
@@ -59,25 +59,33 @@ const std::vector<CardBase::CARD_TYPE> CardPresenter::GetHandCardType(void) cons
 void CardPresenter::DeckReload(void)
 {
 	deck_.Reload();
+	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD);
 }
 
 void CardPresenter::ChangeCard(void)
 {
+	//現在使っているカードを捨てる
+	deck_.EraseHandCard();
+	//手札に移動
+	deck_.MoveUsingCardToDrawPile();
+	//cardUI_->ChangeUsedActionCard();
+	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 
+	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 
 void CardPresenter::EnemyCardReload(void)
 {
 	deck_.Reload();
-	cardUI_.ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
+	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 }
 
 void CardPresenter::ChangeAction(void)
 {
 	//使用済みへ移行
-	cardUI_.ChangeUsedActionCard();
+	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 	deck_.EraseHandCard();
-	cardUI_.ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
+	//uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 }
 
 const bool CardPresenter::IsCardFailure(void)const
