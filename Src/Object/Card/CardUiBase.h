@@ -7,7 +7,7 @@
 #include <list>
 #include "../Manager/Resource/SoundManager.h"
 #include "../ObjectBase.h"
-#include "CardUiBase.h"
+#include "CardUIBase.h"
 #include "./CardBase.h"
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"

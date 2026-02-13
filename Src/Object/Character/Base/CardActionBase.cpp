@@ -14,10 +14,10 @@
 
 #include "CardActionBase.h"
 
-CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
+CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck):
 	ActionBase(_actCntl),
 	charaObj_(_charaObj),
-	deck_(_deck),
+	cardPresent_(_deck),
 	atkPos_({}),
 	velocity_({})
 {
@@ -82,15 +82,15 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 {
 	//カードの勝敗判定
-	//deck_.CardUseUpdate();
+	//cardPresent_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
-	if (deck_.IsCardFailure())
+	if (cardPresent_.IsCardFailure())
 	{
 		//攻撃判定無効
 		FinishFailureAttack(_attackTag);
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-		actionCntl_.GetInput().IsActioningSet();
-		charaObj_.GetCardUI().ChangeReactActionCard();
+
+
+
 		return true;
 	}
 	return false;
@@ -99,9 +99,11 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 void CardActionBase::FinishAttack(const Collider::TAG _attackCol)
 {
 	//攻撃判定無効
-	deck_.EraseHandCard();
+	//cardPresent_.EraseHandCard();
+	//charaObj_.GetCardUI().ChangeUsedActionCard();
+	cardPresent_.FinishCard();
+
 	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackCol);
-	charaObj_.GetCardUI().ChangeUsedActionCard();
 	actType_ = CARD_ACT_TYPE::NONE;
 	cardFuncs_.pop();
 }
@@ -109,17 +111,25 @@ void CardActionBase::FinishAttack(const Collider::TAG _attackCol)
 void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)
 {
 	//攻撃判定無効
-	deck_.EraseHandCard(true);
+	//cardPresent_.EraseHandCard(true);
+	//charaObj_.GetCardUI().ChangeReactActionCard();
+	cardPresent_.FailureCard();
+
+
 	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), _attackCol);
-	charaObj_.GetCardUI().ChangeReactActionCard();
 	actType_ = CARD_ACT_TYPE::NONE;
 	cardFuncs_.pop();
+
+
+
+	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+	actionCntl_.GetInput().IsActioningSet();
 }
 
 void CardActionBase::PutCard(void)
 {
-	deck_.MoveUsingCardToDrawPile();
-	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+	//cardPresent_.MoveUsingCardToDrawPile();
+	//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 
 void CardActionBase::SetAtk(const ATK_STATUS& _atkStatus)

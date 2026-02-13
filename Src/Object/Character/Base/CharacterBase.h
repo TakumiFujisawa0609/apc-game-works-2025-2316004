@@ -2,6 +2,7 @@
 #include<map>
 #include "../Manager/Resource/SoundManager.h"
 #include "../../Card/CardBase.h"
+#include "../../Card/CardPresenter.h"
 #include "../Base/CharacterOnHitBase.h"
 #include "../Player/ActionController.h"
 #include "../Base/CardActionBase.h"
@@ -14,6 +15,7 @@ class UIManager;
 class ActionController;
 class CardDeck;
 class CardUIBase;
+class CardPresenter;
 class InputBase;
 class Capsule;
 class HpUIBase;
@@ -228,7 +230,7 @@ public:
 	
 	/// @brief　使用済みカードについての処理
 	/// @param  
-	void DeleteCard(void);
+	void ChangeCard(void);
 
 	/// @brief 移動後座標の取得
 	/// @param  
@@ -355,6 +357,9 @@ protected:
 	std::function<void(void)>phazeUpdate_;
 	//UIマネージャ
 	UIManager& uiMng_;
+
+	//カードUIと内部のデッキクラスの結びつけクラス
+	std::unique_ptr<CardPresenter>cardPresent_;
 
 	//サウンドマネージャ
 	SoundManager& soundMng_;

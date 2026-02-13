@@ -93,7 +93,7 @@ public:
 	/// @brief カード失敗フラグ
 	/// @param  
 	/// @return true:負け
-	bool IsCardFailure(void);
+	const bool IsCardFailure(void)const;
 
 	/// @brief 何もカードが出ていない状態
 	/// @param  

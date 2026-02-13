@@ -78,21 +78,21 @@ void CharacterBase::DeleteAttackCol(const Collider::TAG& _charaTag, const Collid
 //
 //void CharacterBase::CardInit(void)
 //{
-//	deck_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
+//	cardPresent_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
 //
 //	cardUI_ = std::make_unique<PlayerCardUI>();
 //	cardUI_->Load();
 //
 //	//デッキの先頭にリロードカード追加
-//	deck_->AddDrawPile(RELOAD_CARD_STATUS);
+//	cardPresent_->AddDrawPile(RELOAD_CARD_STATUS);
 //	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
 //	//デッキに山札追加
 //	for (int i = 0; i < CARD_NUM_MAX; i++)
 //	{
-//		deck_->AddDrawPile(CARD_POWS[i]);
+//		cardPresent_->AddDrawPile(CARD_POWS[i]);
 //		cardUI_->AddCardUi(CARD_POWS[i]);
 //	}
-//	deck_->Load();
+//	cardPresent_->Load();
 //}
 
 void CharacterBase::UpdatePost(void)
@@ -271,7 +271,7 @@ const ActionBase& CharacterBase::GetMainAction(void) const
 	return action_->GetMainAction();
 }
 
-void CharacterBase::DeleteCard(void)
+void CharacterBase::ChangeCard(void)
 {
 	//現在使っているカードを捨てる
 	deck_->EraseHandCard();

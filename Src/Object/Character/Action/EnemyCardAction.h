@@ -37,7 +37,7 @@ public:
     /// @param _actCntl アクションコントローラ
 	/// @param _charaObj キャラクターオブジェクト
     /// @param _deck デッキ
-    EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
+    EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck);
 
     /// @brief デストラクタ
     /// @param  

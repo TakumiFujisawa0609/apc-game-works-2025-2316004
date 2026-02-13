@@ -15,7 +15,7 @@
 #include "../../Card/CardSystem.h"
 #include "EnemyCardAction.h"
 
-EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
+EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck):
 CardActionBase(_actCntl, _charaObj, _deck),
 atkCnt_(0.0f),
 roleAtkCnt_(0.0f),
@@ -67,7 +67,7 @@ void EnemyCardAction::Load(void)
 void EnemyCardAction::Init(void)
 {
 	actType_ = CARD_ACT_TYPE::NONE;
-	//deck_.MoveUsingCardToDrawPile();
+	//cardPresent_.MoveUsingCardToDrawPile();
 	easing_ = std::make_unique<Easing>();
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::STOMP_ATK, STOMP_ATK},
@@ -81,7 +81,7 @@ void EnemyCardAction::Init(void)
 	jampCardNum_ = 0;
 	atk_ = {};
 	atk_.isDamage = false;
-	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
+	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//if (actionCntl_.GetInput().GetAttackType() == LogicBase::ENEMY_ATTACK_TYPE::JUMP)
 		//{
@@ -91,7 +91,7 @@ void EnemyCardAction::Init(void)
 		PutCard();
 		DesideCardAction();
 	}
-	else if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD)
+	else if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
@@ -119,9 +119,10 @@ void EnemyCardAction::Release(void)
 	}
 
 	//現在使っているカードを捨てる
-	deck_.EraseHandCard();
+	//cardPresent_.EraseHandCard();
 	//charaObj_.GetCardUI().ChangeUsedActionCard();
-	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
+	//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
+	cardPresent_.FinishCard();
 
 	//硬直時間セット
 	actionCntl_.GetInput().SetFreezeCntByAttackType();
@@ -182,8 +183,7 @@ void EnemyCardAction::ChangeReload(void)
 		cardFuncs_.pop();
 	}
 	//現在使っているカードを捨てる
-	deck_.EraseHandCard();
-	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
+	cardPresent_.EnemyCardReload();
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
 	cardFuncs_.push([this]() {UpdateReload(); });
 }
@@ -193,7 +193,7 @@ void EnemyCardAction::ChangeDuel(void)
 	isDuelWait_ = true;
 
 	//ランダムにデュエルデッキを決める
-	deck_.DicideDuelDeck();
+	//cardPresent_.DicideDuelDeck();
 
 	//デュエルdeckから1枚ドロー
 	PutCardToDuelDeck();
@@ -259,8 +259,9 @@ void EnemyCardAction::UpdateStomp(void)
 			charaObj_.SetIsAliveEnemyRock(false);
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
-			charaObj_.GetCardUI().ChangeUsedActionCard();
-			deck_.EraseHandCard();
+			//charaObj_.GetCardUI().ChangeUsedActionCard();
+			//cardPresent_.EraseHandCard();
+			cardPresent_.FinishCard();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
 	}
@@ -302,8 +303,12 @@ void EnemyCardAction::UpdateJumpAtk(void)
 
 			const int JUMP_CHARGE_EFF_ARRAY = 1;
 			effect_->Stop(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
-			charaObj_.GetCardUI().ChangeUsedActionCard();
-			deck_.EraseHandCard();
+
+
+
+			//charaObj_.GetCardUI().ChangeUsedActionCard();
+			//cardPresent_.EraseHandCard();
+			cardPresent_.FinishCard();
 		}
 	}
 
@@ -396,8 +401,7 @@ void EnemyCardAction::UpdateRoleAtk(void)
 
 void EnemyCardAction::UpdateReload(void)
 {
-	deck_.Reload();
-	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
+	cardPresent_.EnemyCardReload();
 	actType_ = CARD_ACT_TYPE::NONE;
 	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 }
@@ -410,9 +414,10 @@ void EnemyCardAction::UpdateDuel(void)
 		{
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+
 			charaObj_.GetCardUI().ChangeUsedActionCard();
-			deck_.EraseHandCard();
-			deck_.ClearDuelDeck();
+			//cardPresent_.EraseHandCard();
+			//cardPresent_.ClearDuelDeck();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 			return;
 		}
@@ -433,7 +438,7 @@ void EnemyCardAction::UpdateDuel(void)
 bool EnemyCardAction::IsCardFailureJumpCharge(void)
 {
 	//カードの勝敗判定
-	//deck_.CardUseUpdate();
+	//cardPresent_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
 	if (jampCardNum_ >= JAMP_CHARGE_CARD_NUM_MAX)
 	{
@@ -442,17 +447,17 @@ bool EnemyCardAction::IsCardFailureJumpCharge(void)
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 		return true;
 	}
-	if (deck_.IsCardFailure())
-	{
-		charaObj_.GetCardUI().ChangeReactActionCard();
-		//攻撃判定無効
-		deck_.EraseHandCard(true);
-	}
-	else if (deck_.IsNone())
-	{
-		PutCard();
-		jampCardNum_++;
-	}
+	//if (cardPresent_.IsCardFailure())
+	//{
+	//	charaObj_.GetCardUI().ChangeReactActionCard();
+	//	//攻撃判定無効
+	//	cardPresent_.EraseHandCard(true);
+	//}
+	//else if (cardPresent_.IsNone())
+	//{
+	//	PutCard();
+	//	jampCardNum_++;
+	//}
 	return false;
 }
 
@@ -480,7 +485,7 @@ void EnemyCardAction::DesideCardAction(void)
 
 void EnemyCardAction::PutCardToDuelDeck(void)
 {
-	deck_.MoveUsingCardToDuelDeck();
+	//cardPresent_.MoveUsingCardToDuelDeck();
 	//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 

@@ -19,6 +19,7 @@
 #include "../Manager/Generic/DataBank.h" 
 #include "../../Card/CardDeck.h"
 #include "../Object/Card/EnemyCardUI.h"
+#include "../Object/Card/CardPresenter.h"
 #include "../Object/Common/EffectController.h"
 #include "../Player/ActionController.h"
 #include "../Base/ActionBase.h"
@@ -63,7 +64,7 @@ void Enemy::Load(void)
 	//cardUI_ = std::make_unique<EnemyCardUI>();
 	logic_ = std::make_unique<EnemyLogic>(trans_);
 	deck_ = std::make_shared<CardDeck>(characterType_, ENEMY_NUM);
-
+	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
 	effect_ = std::make_unique<EffectController>();
 	effect_->Add(resMng_.Load(ResourceManager::SRC::E_DEATH_EFF).handleId_, EffectController::EFF_TYPE::E_DEATH);
 
@@ -301,7 +302,7 @@ void Enemy::UpdateNormal(void)
 {
 	animationController_->Update();
 
-	logic_->Update();
+	//logic_->Update();
 	action_->Update();
 
 	////å®ÇÃç¿ïWÇéÊìæ
@@ -324,13 +325,13 @@ void Enemy::UpdateNormal(void)
 }
 void Enemy::AddAction(void)
 {
-	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_, InputManager::JOYPAD_NO::PAD1);
+	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *cardPresent_, *animationController_, InputManager::JOYPAD_NO::PAD1);
 	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed, footSE_, FOOT_SE_DIS);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
+	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
 
 }
 void Enemy::AddAnimation(void)

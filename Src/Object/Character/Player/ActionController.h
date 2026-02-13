@@ -15,7 +15,7 @@ class PlayerInput;
 class AnimationController;
 class SceneManager;
 class CardDeck;
-class CardBase;
+class CardPresenter;
 class ActionBase;
 class LogicBase;
 class Idle;
@@ -59,7 +59,7 @@ public:
 		SLIME,	//スライム
 	};
 
-	ActionController(CharacterBase& _charaObj,LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
+	ActionController(CharacterBase& _charaObj,LogicBase& _input, Transform& _trans, CardPresenter& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
 	~ActionController(void);
 	
 	/// @brief 初期化
@@ -180,7 +180,7 @@ private:
 	std::function<void(void)>actionUpdate_;
 
 	//カードデッキ
-	CardDeck& deck_;
+	CardPresenter& deck_;
 	//オブジェクト(当たり判定用)
 	CharacterBase& charaObj_;
 	//状態
@@ -214,9 +214,6 @@ private:
 	std::map<ACTION_TYPE, std::unique_ptr<ActionBase>>mainAction_;
 	//サブアクション(カードセレクトなど同時並行となるもの)
 	std::map<ACTION_TYPE, std::unique_ptr<ActionBase>>subAction_;
-
-	//山札(デッキクラスに格納用)
-	std::vector<std::shared_ptr<CardBase>>drawPile_;
 
 
 	//カード選択

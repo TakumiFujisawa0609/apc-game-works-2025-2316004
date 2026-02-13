@@ -24,7 +24,7 @@
 
 #include "ActionController.h"
 
-ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, Transform& _trans, CardDeck& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum) :
+ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, Transform& _trans, CardPresenter& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum) :
 	charaObj_(_charaObj)
 	, logic_(_input)
 	, trans_(_trans)
@@ -96,7 +96,7 @@ void ActionController::DrawDebug(void)
 {
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
 	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)logic_.GetAct(), dashSeCnt);
-	deck_.Draw();
+	//deck_.Draw();
 	DrawFormatString(0, 320, 0x000000, L"pos(%f,%f,%f)", trans_.pos.x, trans_.pos.y, trans_.pos.z);
 
 }
@@ -123,7 +123,7 @@ void ActionController::CardChargeUpdate(void)
 {
 	if (logic_.GetIsAct().isCardCharge)
 	{
-		deck_.CardCharge();
+		//deck_.CardCharge();
 	}
 }
 
@@ -135,14 +135,16 @@ void ActionController::CardMove(void)
 		||cardUI.GetSelectState()== CardUIBase::CARD_SELECT::RIGHT)return;
 	if (IsCardLeftMoveable())
 	{
-		deck_.CardMoveLeft();
-		cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::LEFT);
+		//deck_.CardMoveLeft();
+		//cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::LEFT);
+		deck_.RoleRevolver(CardUIBase::CARD_SELECT::LEFT);
 
 	}
 	else if (IsCardRightMoveable())
 	{
-		deck_.CardMoveRight();
-		cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::RIGHT);
+		//deck_.CardMoveRight();
+		//cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::RIGHT);
+		deck_.RoleRevolver(CardUIBase::CARD_SELECT::RIGHT);
 	}
 }
 
@@ -194,8 +196,6 @@ void ActionController::DirAndMovePowUpdate(void)
 	float speed = mainAction_[act_]->GetSpeed();
 	//ˆÚ“®—Ê‚ÌXV
 	movePow_ = VScale(moveDir_, speed);
-
-	//jumpPow_ = VScale(charaObj_.GetTransform().GetUp(), mainAction_[act_]->GetJumpPow().y);
 }
 const bool ActionController::IsCardLeftMoveable(void)
 {

@@ -3,7 +3,7 @@
 #include<map>
 #include "ActionBase.h"
 
-class CardDeck;
+class CardPresenter;
 class CharacterBase;
 class EffectController;
 class CardActionBase :
@@ -22,7 +22,7 @@ public:
    //     bool isDamage=false;
    // };
 
-    CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck);
+    CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck);
     ~CardActionBase(void)override;
     void Init(void) override;
     void Update() override;
@@ -42,7 +42,7 @@ protected:
     static constexpr int JAMP_CHARGE_CARD_NUM_MAX = 3;
 
     //カードデッキ
-    CardDeck& deck_;
+    CardPresenter& cardPresent_;
     //オブジェクト
     CharacterBase& charaObj_;
     //カードアクション関数ポインタ

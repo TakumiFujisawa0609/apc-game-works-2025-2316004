@@ -12,6 +12,7 @@
 #include"../../Common/Geometry/Sphere.h"
 #include"../../Common/Geometry/Line.h"
 #include"../Object/Card/CardDeck.h"
+#include "../../Card/CardPresenter.h"
 #include"../Object/Card/PlayerCardUI.h"
 #include"../Base/HpUIBase.h"
 #include"./PlayerHpUI.h"
@@ -77,6 +78,7 @@ void Player::Load(void)
 
 	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 	deck_ = std::make_shared<CardDeck>(characterType_, PLAYER_NUM);
+	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
 	AddAction();
 
 	//プレイヤー入力
@@ -88,7 +90,6 @@ void Player::Load(void)
 	//cardUI_ = std::make_unique<PlayerCardUI>();
 	//cardUI_->Load();
 	
-	deck_->Load();
 	action_->Load();
 
 	//hpUi_ = std::make_unique<PlayerHpUI>(hpPer_,preHpPer);
@@ -301,14 +302,14 @@ void Player::AddAnimation(void)
 void Player::AddAction(void)
 {
 	//アクション
-	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *deck_, *animationController_, padNum_);
+	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *cardPresent_, *animationController_, padNum_);
 	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
 	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
 	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
 	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, trans_, status_.speed);
 	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *deck_);
+	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
 }
 
 void Player::MakeColliderGeometry(void)

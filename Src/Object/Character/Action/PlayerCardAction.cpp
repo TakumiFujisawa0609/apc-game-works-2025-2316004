@@ -12,7 +12,7 @@
 #include "../Base/LogicBase.h"
 #include "PlayerCardAction.h"
 
-PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardDeck& _deck):
+PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck):
 	CardActionBase(_actCntl, _charaObj, _deck),
 	pushReloadCnt_(),
 	soundMng_(SoundManager::GetInstance())
@@ -55,21 +55,19 @@ void PlayerCardAction::Load(void)
 
 void PlayerCardAction::Init(void)
 {
-	//カードの属性を受け取ってアニメーションを再生
-	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
 	attackStageNum_ = 0;
 	atk_.isDamage = false;
 	speed_ = 0.0f;
 	//キーによる移動はしない
 	charaObj_.SetIsCanMoveable(false);
 
-	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::ATTACK)
+	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//手札に移動
 		PutCard();
 		DesideAttackOne();
 	}
-	else if (deck_.GetDrawCardType()==CardBase::CARD_TYPE::RELOAD)
+	else if (cardPresent_.GetCardType()==CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 	}
@@ -83,7 +81,7 @@ void PlayerCardAction::Update()
 void PlayerCardAction::Release(void)
 {
 	//現在使っているカードを捨てる
-	deck_.EraseHandCard();
+	cardPresent_.ChangeAction();
 	//当たり判定削除
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	charaObj_.SetIsCanMoveable(true);
@@ -104,8 +102,8 @@ void PlayerCardAction::Release(void)
 
 bool PlayerCardAction::IsAttackable(void)
 {
-	std::vector<CardBase::CARD_TYPE>cardTypes = deck_.GetHandCardType();
-	int handCardTypeSize = static_cast<int>(deck_.GetHandCardType().size());
+	std::vector<CardBase::CARD_TYPE>cardTypes = cardPresent_.GetHandCardType();
+	int handCardTypeSize = static_cast<int>(cardPresent_.GetHandCardType().size());
 	return handCardTypeSize == 1 && cardTypes[0] == CardBase::CARD_TYPE::ATTACK;
 }
 
@@ -135,7 +133,7 @@ void PlayerCardAction::DesideAttackOne(void)
 void PlayerCardAction::ChangeActionCardInit(void)
 {
 	attackStageNum_++;
-	charaObj_.DeleteCard();
+	charaObj_.ChangeCard();
 	cardFuncs_.pop();
 }
 
@@ -168,7 +166,8 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 		//攻撃判定無効
 		speed_ = 0.0f;
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK);
-		charaObj_.GetCardUI().ChangeUsedActionCard();
+
+		//charaObj_.GetCardUI().ChangeUsedActionCard();
 
 		if (midAtkOverCnt_ < 0.0f)
 		{
@@ -213,6 +212,8 @@ void PlayerCardAction::UpdateAttackThree(void)
 		if (atkThreeEndCnt_ > ATK_END_CNT)
 		{
 			charaObj_.GetCardUI().ChangeUsedActionCard();
+
+
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 			return;
 		}
@@ -247,11 +248,13 @@ void PlayerCardAction::UpdateReload(void)
 		//カードリロード音停止
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
 		actType_ = CARD_ACT_TYPE::NONE;
+
+
 		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 	}
 	if (pushReloadCnt_ >= RELOAD_TIME)
 	{
-		deck_.Reload();
+		cardPresent_.DeckReload();
 		cardFuncs_.pop();
 		actType_ = CARD_ACT_TYPE::NONE;
 		pushReloadCnt_ = 0.0f;
@@ -268,33 +271,33 @@ void PlayerCardAction::UpdateSonicRave(void)
 
 void PlayerCardAction::UpdateDuel(void)
 {
-	//カードの勝敗による処理
-	bool w = deck_.IsCardWin();
-	bool f = deck_.IsCardFailure();
-	if (w)
-	{
-		//チャージカードに移動
-		deck_.MoveChargeToUsingCard();
-	}
-	else if(f)
-	{
-		//負けたらカードを削除
-		deck_.EraseHandCard();
-		charaObj_.DeleteCard();
+	////カードの勝敗による処理
+	//bool w = cardPresent_.IsCardWin();
+	//bool f = cardPresent_.IsCardFailure();
+	//if (w)
+	//{
+	//	//チャージカードに移動
+	//	cardPresent_.MoveChargeToUsingCard();
+	//	//カードUIもストックのカードに移動
+	//}
+	//else if(f)
+	//{
+	//	//負けたらカードを削除
+	//	charaObj_.ChangeCard();
 
-	}
+	//}
 
-	//カードをドローする
-	LogicBase& logic = actionCntl_.GetInput();
-	if (logic.GetIsAct().isCardUse && logic.GetJumpCardNum()< JAMP_CHARGE_CARD_NUM_MAX)
-	{
-		deck_.MoveUsingCardToDrawPile();
-	}
-	else if (logic.GetJumpCardNum() >= JAMP_CHARGE_CARD_NUM_MAX)
-	{
-		//一定回数カードに勝ったら大技を出す(未実装)
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-	}
+	////カードをドローする
+	//LogicBase& logic = actionCntl_.GetInput();
+	//if (logic.GetIsAct().isCardUse && logic.GetJumpCardNum()< JAMP_CHARGE_CARD_NUM_MAX)
+	//{
+	//	cardPresent_.MoveUsingCardToDrawPile();
+	//}
+	//else if (logic.GetJumpCardNum() >= JAMP_CHARGE_CARD_NUM_MAX)
+	//{
+	//	//一定回数カードに勝ったら大技を出す(未実装)
+	//	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
+	//}
 }
 
 
@@ -349,14 +352,15 @@ void PlayerCardAction::ChangeReload(void)
 		cardFuncs_.pop();
 	}
 	//現在使っているカードを捨てる
-	deck_.EraseHandCard();
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
-	//リロード音再生
-	soundMng_.Play(SoundManager::SRC::CARD_RELOAD, SoundManager::PLAYTYPE::LOOP);
+	//cardPresent_.EraseHandCard();
 	float per = pushReloadCnt_ / RELOAD_TIME;
 	charaObj_.GetCardUI().SetReloadCount(per);
 	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
-	
+
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
+	//リロード音再生
+	soundMng_.Play(SoundManager::SRC::CARD_RELOAD, SoundManager::PLAYTYPE::LOOP);
+
 	cardFuncs_.push([this]() {UpdateReload(); });
 }
 
@@ -372,7 +376,7 @@ void PlayerCardAction::ChangeDuel(void)
 
 void PlayerCardAction::ChangeComboAction(void)
 {
-	if (deck_.GetDrawCardType() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
+	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
 		if (charaObj_.GetCardUI().GetSelectState() == CardUIBase::CARD_SELECT::NONE)
 		{
@@ -387,11 +391,15 @@ void PlayerCardAction::ChangeComboAction(void)
 			if (attackStageNum_ == ATTACK_ONE)
 			{
 				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+
+
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
 			}
 			else if (attackStageNum_ == ATTACK_TWO)
 			{
 				charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
+
+
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
 			}
 		}
