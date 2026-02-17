@@ -67,6 +67,8 @@ Player::Player(void)
 	deck_ = std::make_shared<CardDeck>(characterType_, PLAYER_NUM);
 	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
 
+	weapon_ = std::make_unique<Weapon>(*this);
+	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 }
 
 Player::~Player(void)
@@ -81,23 +83,13 @@ void Player::Load(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
-	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
 	trans_.pos = { 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
-	trans_.localPos = { 0.0f,Player::CAP_RADIUS,-0.0f };
-	//武器の生成(自分を親として渡す)
-	weapon_ = std::make_unique<Weapon>(*this);
-	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
+	trans_.localPos = { 0.0f,Player::CAP_RADIUS,0.0f };
+
 	AddAnimation();
 	AddAction();
-
-	//cardUI_ = std::make_unique<PlayerCardUI>();
-	//cardUI_->Load();
 	
 	action_->Load();
-
-	//hpUi_ = std::make_unique<PlayerHpUI>(hpPer_,preHpPer);
-	//hpUi_->Load();
-
 	weapon_->Load();
 
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::ENEMY_HIT_SE);
@@ -118,7 +110,7 @@ void Player::Init(void)
 
 	MakeColliderGeometry();
 
-	//hpUi_->Init();
+	action_->Init();
 	weapon_->Init();
 
 
@@ -135,11 +127,6 @@ void Player::Init(void)
 	//更新
 	trans_.Update();
 }
-
-//void Player::Update(void)
-//{
-//
-//}
 
 void Player::UpdateDirection(void)
 {
@@ -302,17 +289,8 @@ void Player::AddAction(void)
 {
 	//アクション
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *cardPresent_, *animationController_, padNum_);
-	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
 	using ACTION_TYPE = ActionController::ACTION_TYPE;
-	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
-	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, status_.speed);
-	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
-	 
-	 
-	//action_->AddAction({ ActionController::ACTION_TYPE::IDLE, ActionController::ACTION_TYPE::MOVE,
-	//	ActionController::ACTION_TYPE::REACT,  ActionController::ACTION_TYPE::CARD_ACTION,ActionController::ACTION_TYPE::DODGE });
+	action_->AddAction({ ACTION_TYPE::IDLE, ACTION_TYPE::MOVE,ACTION_TYPE::REACT,  ACTION_TYPE::CARD_ACTION,ACTION_TYPE::DODGE });
 }
 
 void Player::MakeColliderGeometry(void)
