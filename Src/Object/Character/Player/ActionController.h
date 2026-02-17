@@ -23,6 +23,7 @@ class Run;
 class Jump;
 class React;
 class PlayerCardAction;
+class EnemyCardAction;
 
 class ActionController
 {
@@ -45,6 +46,8 @@ public:
 		REACT,	//パンチされた状態
 		JUMP,		//ジャンプ
 		CARD_ACTION,	//カードアクション
+		PLAYER_CARD_ACTION,	//プレイヤーのカードアクション
+		ENEMY_CARD_ACTION,	//敵のカードアクション
 		DODGE,
 	};
 
@@ -59,7 +62,8 @@ public:
 		SLIME,	//スライム
 	};
 
-	ActionController(CharacterBase& _charaObj,LogicBase& _input, Transform& _trans, CardPresenter& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
+	ActionController(CharacterBase& _charaObj,LogicBase& _input, Transform& _trans,
+		CardPresenter& _deck, AnimationController& _anim, InputManager::JOYPAD_NO _padNum);
 	~ActionController(void);
 	
 	/// @brief 初期化
@@ -140,13 +144,16 @@ public:
 	/// @param _flinchTime のけぞらせたい時間
 	void SetFlinchCnt(const float _flinchTime);
 
-	/// @brief メインアクションの追加
-	/// @param _action 
-	template <typename T, typename... Args>
-	void AddMainAction(const ACTION_TYPE _type, Args && ...args)
-	{
-		mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
-	}
+	///// @brief メインアクションの追加
+	///// @param _action 
+	//template <typename T, typename... Args>
+	//void AddMainAction(const ACTION_TYPE _type, Args && ...args)
+	//{
+	//	mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
+	//}
+
+	void AddAction(std::vector<ACTION_TYPE> _types);
+
 
 	/// @brief メインアクションの取得
 	/// @param  
@@ -179,8 +186,11 @@ private:
 	//状態更新
 	std::function<void(void)>actionUpdate_;
 
+	//アクション関数ポインタ
+	std::unordered_map<ACTION_TYPE, std::function<void(void)>>actionTable_;
+
 	//カードデッキ
-	CardPresenter& deck_;
+	CardPresenter& cardPresent_;
 	//オブジェクト(当たり判定用)
 	CharacterBase& charaObj_;
 	//状態

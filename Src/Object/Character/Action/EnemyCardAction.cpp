@@ -219,9 +219,6 @@ void EnemyCardAction::UpdateStomp(void)
 
 		//攻撃中
 		atk_.pos = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, { 0.0f,0.0f,0.0f });
-		////攻撃判定有効
-		//isAliveAtkCol_ = true;
-		//charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
 
 		//カメラシェイク制限値
 		constexpr float CAMERA_SHAKE_LIMIT = 30.0f;
@@ -294,7 +291,6 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		scnMng_.GetCamera().lock()->SetShakeStatus(jumpChargeCnt_ / JUMP_CHARGE_TIME, 10.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
-	
 
 		if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
 		{
@@ -355,7 +351,6 @@ void EnemyCardAction::UpdateJumpAtk(void)
 			effect_->Delete(EffectController::EFF_TYPE::BLAST,static_cast<int>(EFF_TYPE::BLAST));
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
-
 	}
 }
 
@@ -416,7 +411,8 @@ void EnemyCardAction::UpdateDuel(void)
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 
-			charaObj_.GetCardUI().ChangeUsedActionCard();
+			//charaObj_.GetCardUI().ChangeUsedActionCard();
+			cardPresent_.FinishCard();
 			//cardPresent_.EraseHandCard();
 			//cardPresent_.ClearDuelDeck();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
@@ -441,13 +437,15 @@ bool EnemyCardAction::IsCardFailureJumpCharge(void)
 	//カードの勝敗判定
 	//cardPresent_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
-	if (jampCardNum_ >= JAMP_CHARGE_CARD_NUM_MAX)
-	{
-		actionCntl_.GetInput().IsActioningSet();
-		charaObj_.GetCardUI().ChangeReactActionCard();
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-		return true;
-	}
+	//if (jampCardNum_ >= JAMP_CHARGE_CARD_NUM_MAX)
+	//{
+	//	actionCntl_.GetInput().IsActioningSet();
+	//	charaObj_.GetCardUI().ChangeReactActionCard();
+	//	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+
+
+	//	return true;
+	//}
 	//if (cardPresent_.IsCardFailure())
 	//{
 	//	charaObj_.GetCardUI().ChangeReactActionCard();

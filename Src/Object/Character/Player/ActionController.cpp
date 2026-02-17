@@ -20,7 +20,9 @@
 #include"../Action/Run.h"
 #include"../Action/Jump.h"
 #include"../Action/React.h"
+#include"../Action/Dodge.h"
 #include"../Action/PlayerCardAction.h"
+#include"../Action/EnemyCardAction.h"
 
 #include "ActionController.h"
 
@@ -28,7 +30,7 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 	charaObj_(_charaObj)
 	, logic_(_input)
 	, trans_(_trans)
-	, deck_(_deck)
+	, cardPresent_(_deck)
 	, anim_(_anim)
 	, padNum_(_padNum)
 	, scnMng_(SceneManager::GetInstance())
@@ -61,6 +63,22 @@ void ActionController::Init(void)
 	//初期化の前に追加したアクションの初期化
 	mainAction_[act_]->Init();
 
+	SoundManager::SRC footSE = charaObj_.GetFootSE();
+	float footSEDisCount = charaObj_.GetFootSEDisCount();
+	float& speed = charaObj_.GetStatus().speed;
+	actionTable_={
+		{ACTION_TYPE::IDLE, [this]() {mainAction_.emplace(ACTION_TYPE::IDLE,std::make_unique<Idle>(*this)); }},
+		{ACTION_TYPE::MOVE, [this,speed,footSE,footSEDisCount]() {mainAction_.emplace(ACTION_TYPE::MOVE,std::make_unique<Run>(*this,speed,footSE,footSEDisCount)); }},
+		{ACTION_TYPE::DODGE,[this]() {mainAction_.emplace(ACTION_TYPE::DODGE,std::make_unique<Dodge>(*this),charaObj_.GetStatus().speed); }},
+		{ACTION_TYPE::REACT,[this]() {mainAction_.emplace(ACTION_TYPE::REACT,std::make_unique<React>(*this)); }},
+		{ACTION_TYPE::PLAYER_CARD_ACTION,[this]() {
+			mainAction_.emplace(ACTION_TYPE::PLAYER_CARD_ACTION,std::make_unique<PlayerCardAction>(*this,charaObj_,cardPresent_)); 
+		}},
+		{ACTION_TYPE::ENEMY_CARD_ACTION,[this]() {
+			mainAction_.emplace(ACTION_TYPE::ENEMY_CARD_ACTION,std::make_unique<EnemyCardAction>(*this,charaObj_,cardPresent_));
+		}}
+	};
+
 	isCardAct_ = false;
 	cardActTime_ = 0.0f;
 }
@@ -86,6 +104,14 @@ void ActionController::Update(void)
 }
 
 
+void ActionController::AddAction(std::vector<ACTION_TYPE> _types)
+{
+	for (auto& type : _types)
+	{
+		actionTable_[type]();
+	}
+}
+
 ActionBase& ActionController::GetMainAction(void)
 {
 	return *mainAction_.at(act_);
@@ -96,7 +122,7 @@ void ActionController::DrawDebug(void)
 {
 	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
 	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)logic_.GetAct(), dashSeCnt);
-	//deck_.Draw();
+	//cardPresent_.Draw();
 	DrawFormatString(0, 320, 0x000000, L"pos(%f,%f,%f)", trans_.pos.x, trans_.pos.y, trans_.pos.z);
 
 }
@@ -123,28 +149,24 @@ void ActionController::CardChargeUpdate(void)
 {
 	if (logic_.GetIsAct().isCardCharge)
 	{
-		//deck_.CardCharge();
+		//cardPresent_.CardCharge();
 	}
 }
 
 void ActionController::CardMove(void)
 {
-	CardUIBase& cardUI = charaObj_.GetCardUI();
-	if (cardUI.GetSelectState() == CardUIBase::CARD_SELECT::DISITION
-		||cardUI.GetSelectState()== CardUIBase::CARD_SELECT::LEFT
-		||cardUI.GetSelectState()== CardUIBase::CARD_SELECT::RIGHT)return;
+	//CardUIBase& cardUI = charaObj_.GetCardUI();
+	CardUIBase::CARD_SELECT uiState = cardPresent_.GetCardUIState();
+	if (uiState == CardUIBase::CARD_SELECT::DISITION
+		|| uiState == CardUIBase::CARD_SELECT::LEFT
+		|| uiState == CardUIBase::CARD_SELECT::RIGHT)return;
 	if (IsCardLeftMoveable())
 	{
-		//deck_.CardMoveLeft();
-		//cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::LEFT);
-		deck_.RoleRevolver(CardUIBase::CARD_SELECT::LEFT);
-
+		cardPresent_.RoleRevolver(CardUIBase::CARD_SELECT::LEFT);
 	}
 	else if (IsCardRightMoveable())
 	{
-		//deck_.CardMoveRight();
-		//cardUI.ChangeSelectState(CardUIBase::CARD_SELECT::RIGHT);
-		deck_.RoleRevolver(CardUIBase::CARD_SELECT::RIGHT);
+		cardPresent_.RoleRevolver(CardUIBase::CARD_SELECT::RIGHT);
 	}
 }
 
@@ -165,8 +187,7 @@ void ActionController::StopResource(void)
 
 const bool ActionController::IsCardDisitionControll(void)
 {
-	CardUIBase& cardUI = charaObj_.GetCardUI();
-	const CardUIBase::CARD_SELECT selectState = cardUI.GetSelectState();
+	const CardUIBase::CARD_SELECT selectState = cardPresent_.GetCardUIState();
 	//return selectState !=CardUI::CARD_SELECT::LEFT&& selectState != CardUI::CARD_SELECT::RIGHT;
 	return selectState == CardUIBase::CARD_SELECT::NONE;
 }
@@ -203,7 +224,7 @@ const bool ActionController::IsCardLeftMoveable(void)
 	const ActionBase::CARD_ACT_TYPE cardAct = mainAction_.at(act_)->GetCardAction();
 
 	//カードUIの選択状態
-	const CardUIBase::CARD_SELECT selectState = charaObj_.GetCardUI().GetSelectState();
+	const CardUIBase::CARD_SELECT selectState = cardPresent_.GetCardUIState();
 
 	return logic_.GetIsAct().isCardMoveLeft 
 		&& cardAct != ActionBase::CARD_ACT_TYPE::RELOAD
@@ -215,7 +236,7 @@ const bool ActionController::IsCardRightMoveable(void)
 	const ActionBase::CARD_ACT_TYPE cardAct = mainAction_.at(act_)->GetCardAction();
 
 	//カードUIの選択状態
-	CardUIBase::CARD_SELECT selectState = charaObj_.GetCardUI().GetSelectState();
+	CardUIBase::CARD_SELECT selectState = cardPresent_.GetCardUIState();
 
 	return logic_.GetIsAct().isCardMoveRight 
 		&& cardAct != ActionBase::CARD_ACT_TYPE::RELOAD

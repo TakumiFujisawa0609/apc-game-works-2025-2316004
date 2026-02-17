@@ -145,7 +145,8 @@ private:
     //攻撃状態遷移時のカード初期化
     void ChangeActionCardInit(void);
 
-
+    //リロードカウントのセット
+	void SetUIReloadCnt(void);
 
     //更新系
 	void UpdateAttack(void);            //攻撃アクション

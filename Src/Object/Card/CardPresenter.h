@@ -54,6 +54,19 @@ public:
 	/// @brief カード負けしたかどうか
 	/// @param  
 	const bool IsCardFailure(void)const;
+
+	/// @brief リロードカウント割合セット
+	/// @param _per 割合
+	void SetUIReloadCount(const float _per);
+
+	/// @brief カードUIの状態変更
+	/// @param _select 
+	void ChangeUIState(const CardUIBase::CARD_SELECT _select);
+
+	/// @brief カードUIの状態の取得
+	/// @param  
+	/// @return 
+	const CardUIBase::CARD_SELECT GetCardUIState(void)const;
 	
 private:
 	//カードデッキ

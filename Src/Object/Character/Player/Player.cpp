@@ -61,6 +61,9 @@ Player::Player(void)
 	weapon_ = std::make_unique<Weapon>(*this);
 	capRadius_ = CAP_RADIUS;
 
+	footSEDisCount_ = FOOT_SE_DIS;
+	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
+
 }
 
 Player::~Player(void)
@@ -304,13 +307,15 @@ void Player::AddAction(void)
 {
 	//ƒAƒNƒVƒ‡ƒ“
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *cardPresent_, *animationController_, padNum_);
-	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
-	using ACTION_TYPE = ActionController::ACTION_TYPE;
-	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
-	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, trans_, status_.speed);
-	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
+	//footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
+	//using ACTION_TYPE = ActionController::ACTION_TYPE;
+	//action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
+	//action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
+	//action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, trans_, status_.speed);
+	//action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
+	//action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
+	action_->AddAction({ ActionController::ACTION_TYPE::IDLE, ActionController::ACTION_TYPE::MOVE, ActionController::ACTION_TYPE::DASHMOVE,
+		ActionController::ACTION_TYPE::REACT,  ActionController::ACTION_TYPE::PLAYER_CARD_ACTION,ActionController::ACTION_TYPE::DODGE });
 }
 
 void Player::MakeColliderGeometry(void)

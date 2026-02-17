@@ -88,12 +88,6 @@ void PlayerCardAction::Release(void)
 	charaObj_.SetIsCanMoveable(true);
 	SoundManager::GetInstance().Stop(SoundManager::SRC::CARD_RELOAD);
 
-	//リロード処理中ならカードUI状態をNoneにする
-	if(actType_==CARD_ACT_TYPE::RELOAD)
-	{
-		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
-	}
-
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
@@ -110,7 +104,7 @@ bool PlayerCardAction::IsAttackable(void)
 
 bool PlayerCardAction::IsCanComboAttack(void)
 {
-	return charaObj_.GetCardUI().GetSelectState() != CardUIBase::CARD_SELECT::DISITION
+	return cardPresent_.GetCardUIState()!= CardUIBase::CARD_SELECT::DISITION
 		&& actionCntl_.IsCardDisitionControll();
 }
 
@@ -137,6 +131,12 @@ void PlayerCardAction::ChangeActionCardInit(void)
 	//charaObj_.ChangeCard();
 	cardPresent_.ChangeCard();
 	cardFuncs_.pop();
+}
+
+void PlayerCardAction::SetUIReloadCnt(void)
+{
+	float per = pushReloadCnt_ / RELOAD_TIME;
+	cardPresent_.SetUIReloadCount(per);
 }
 
 
@@ -168,8 +168,6 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 		//攻撃判定無効
 		speed_ = 0.0f;
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK);
-
-		//charaObj_.GetCardUI().ChangeUsedActionCard();
 
 		if (midAtkOverCnt_ < 0.0f)
 		{
@@ -213,8 +211,6 @@ void PlayerCardAction::UpdateAttackThree(void)
 		const float ATK_END_CNT = 0.5f;
 		if (atkThreeEndCnt_ > ATK_END_CNT)
 		{
-			//charaObj_.GetCardUI().ChangeUsedActionCard();
-
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 			return;
 		}
@@ -235,8 +231,7 @@ void PlayerCardAction::UpdateReload(void)
 	if (actionCntl_.GetInput().GetIsAct().isCardPushKeep)
 	{
 		pushReloadCnt_ += scnMng_.GetDeltaTime();
-		float per = pushReloadCnt_ / RELOAD_TIME;
-		charaObj_.GetCardUI().SetReloadCount(per);
+		SetUIReloadCnt();
 
 		//アニメーションループ
 		constexpr float LOOP_SPD = 10.0f;
@@ -250,15 +245,17 @@ void PlayerCardAction::UpdateReload(void)
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
 		actType_ = CARD_ACT_TYPE::NONE;
 
-
-		charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
+		cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::NONE);
 	}
 	if (pushReloadCnt_ >= RELOAD_TIME)
 	{
 		cardPresent_.DeckReload();
 		cardFuncs_.pop();
 		actType_ = CARD_ACT_TYPE::NONE;
+		//カードUIのリロードカウントをの初期化
 		pushReloadCnt_ = 0.0f;
+		SetUIReloadCnt();
+
 		//カードリロード音停止、完了音再生
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
 		soundMng_.Play(SoundManager::SRC::CARD_RELOAD_FINISH,SoundManager::PLAYTYPE::BACK);
@@ -352,9 +349,10 @@ void PlayerCardAction::ChangeReload(void)
 	}
 	//現在使っているカードを捨てる
 	cardPresent_.FinishCard();
-	float per = pushReloadCnt_ / RELOAD_TIME;
-	charaObj_.GetCardUI().SetReloadCount(per);
-	charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
+
+	//float per = pushReloadCnt_ / RELOAD_TIME;
+	//cardPresent_.SetUIReloadCount(per);
+	cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
 	//リロード音再生
@@ -377,7 +375,7 @@ void PlayerCardAction::ChangeComboAction(void)
 {
 	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
-		if (charaObj_.GetCardUI().GetSelectState() == CardUIBase::CARD_SELECT::NONE)
+		if (cardPresent_.GetCardUIState() == CardUIBase::CARD_SELECT::NONE)
 		{
 			ChangeCardAction(CARD_ACT_TYPE::RELOAD);
 		}
@@ -389,16 +387,10 @@ void PlayerCardAction::ChangeComboAction(void)
 		{
 			if (attackStageNum_ == ATTACK_ONE)
 			{
-				//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-
-
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
 			}
 			else if (attackStageNum_ == ATTACK_TWO)
 			{
-				//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-
-
 				ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
 			}
 		}

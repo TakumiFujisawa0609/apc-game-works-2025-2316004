@@ -44,6 +44,9 @@ Enemy::Enemy(void):
 	characterType_ = CHARACTER_TYPE::ENEMY;
 
 	isRoar_ = false;
+
+	footSEDisCount_ = FOOT_SE_DIS;
+	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
 }
 
 Enemy::~Enemy(void)
@@ -326,12 +329,12 @@ void Enemy::UpdateNormal(void)
 void Enemy::AddAction(void)
 {
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *cardPresent_, *animationController_, InputManager::JOYPAD_NO::PAD1);
-	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
-	using ACTION_TYPE = ActionController::ACTION_TYPE;
-	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed, footSE_, FOOT_SE_DIS);
-	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
+	//footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
+	//using ACTION_TYPE = ActionController::ACTION_TYPE;
+	//action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
+	//action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed, footSE_, FOOT_SE_DIS);
+	//action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
+	//action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
 
 }
 void Enemy::AddAnimation(void)

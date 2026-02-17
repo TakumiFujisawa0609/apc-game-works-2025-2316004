@@ -32,7 +32,8 @@ CharacterBase::CharacterBase(void) :
 	updatePhase_(UPDATE_PHASE::NONE),
 	uiMng_(UIManager::GetInstance()),
 	hitStopFrame_(HIT_STOP_FRAME),
-	isEndClearDirect_(false)
+	isEndClearDirect_(false),
+	footSEDisCount_(0.0f)
 {
 	changeUpdate_ = {
 		{UPDATE_PHASE::NONE,[this]() {ChangeUpdateNone(); }},
@@ -253,11 +254,6 @@ void CharacterBase::SetIsDamage(void)
 void CharacterBase::SetFlinchCnt(const float _flichCnt)
 {
 	action_->SetFlinchCnt(_flichCnt);
-}
-
-CardUIBase& CharacterBase::GetCardUI(void) const
-{
-	return uiMng_.GetCardUI(characterType_);
 }
 
 const CardActionBase::CARD_ACT_TYPE& CharacterBase::GetCardAction(void) const

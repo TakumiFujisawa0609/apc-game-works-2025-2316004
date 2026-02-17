@@ -68,7 +68,7 @@ void CardPresenter::ChangeCard(void)
 	deck_.EraseHandCard();
 	//手札に移動
 	deck_.MoveUsingCardToDrawPile();
-	//cardUI_->ChangeUsedActionCard();
+
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 
 	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
@@ -91,4 +91,19 @@ void CardPresenter::ChangeAction(void)
 const bool CardPresenter::IsCardFailure(void)const
 {
 	return deck_.IsCardFailure();
+}
+
+void CardPresenter::SetUIReloadCount(const float _per)
+{
+	uiMng_.GetCardUI(type_).SetReloadCount(_per);
+}
+
+void CardPresenter::ChangeUIState(const CardUIBase::CARD_SELECT _select)
+{
+	uiMng_.GetCardUI(type_).ChangeSelectState(_select);
+}
+
+const CardUIBase::CARD_SELECT CardPresenter::GetCardUIState(void) const
+{
+	return uiMng_.GetCardUI(type_).GetSelectState();
 }

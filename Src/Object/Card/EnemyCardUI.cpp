@@ -49,11 +49,7 @@ void EnemyCardUI::Update(void)
 {
 
 	CardUIBase::Update();
-	////カード状態
-	//cardUpdate_();
-	////使用済みカードの大きさ補完
-	//UpdateUsedCard();
-	//弾かれるカードの大きさ補完
+
 	ReactMoveCard(REACT_GOAL_CARD_POS);
 }
 
