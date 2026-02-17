@@ -42,12 +42,9 @@ public:
 	{
 		IDLE,		//何もしてない
 		MOVE,		//移動
-		DASHMOVE,	//ダッシュ
 		REACT,	//パンチされた状態
 		JUMP,		//ジャンプ
 		CARD_ACTION,	//カードアクション
-		PLAYER_CARD_ACTION,	//プレイヤーのカードアクション
-		ENEMY_CARD_ACTION,	//敵のカードアクション
 		DODGE,
 	};
 

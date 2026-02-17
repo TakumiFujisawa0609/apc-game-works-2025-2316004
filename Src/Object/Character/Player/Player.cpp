@@ -59,10 +59,14 @@ Player::Player(void)
 
 	//武器の生成(自分を親として渡す)
 	weapon_ = std::make_unique<Weapon>(*this);
-	capRadius_ = CAP_RADIUS;
 
 	footSEDisCount_ = FOOT_SE_DIS;
 	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
+
+	capRadius_ = CAP_RADIUS;
+
+	deck_ = std::make_shared<CardDeck>(characterType_, PLAYER_NUM);
+	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
 
 }
 
@@ -74,22 +78,17 @@ Player::~Player(void)
 void Player::Load(void)
 {
 	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::PLAYER));
-	trans_.quaRot = Quaternion();
+	trans_.scl = MODEL_SCL;
 	trans_.quaRotLocal =
-		Quaternion::Euler({ 0.0f, 0.0f, 0.0f });
+		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
-	AddAnimation();
+	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
+	trans_.pos = { 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
+	trans_.localPos = { 0.0f,Player::CAP_RADIUS,-0.0f };
 
 	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
-	deck_ = std::make_shared<CardDeck>(characterType_, PLAYER_NUM);
-	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
+	AddAnimation();
 	AddAction();
-
-	//プレイヤー入力
-	logic_->Init();
-
-	//カードデッキ
-	cardCenterPos_ = { 140,140 };//カードの中心位置
 
 	//cardUI_ = std::make_unique<PlayerCardUI>();
 	//cardUI_->Load();
@@ -103,31 +102,24 @@ void Player::Load(void)
 
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::ENEMY_HIT_SE);
 	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::ENEMY_HIT_SE, 80);
-
 }
 
 void Player::Init(void)
 {
 	//Transformの設定
-	trans_.quaRot = Quaternion();
-	trans_.scl = MODEL_SCL;
-	trans_.quaRotLocal = 
-		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
 
-	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
-	trans_.pos={ 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
-	trans_.localPos = { 0.0f,Player::CAP_RADIUS,-0.0f };
 	//武器の追従対象をセット
 	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
 
 	tag_ = Collider::TAG::PLAYER1;
 	
+	//プレイヤー入力
+	logic_->Init();
+
 	MakeColliderGeometry();
 
 	//hpUi_->Init();
 	weapon_->Init();
-
-	action_->Init();
 
 
 	//デッキに山札追加
@@ -204,6 +196,8 @@ void Player::Draw(void)
 	MV1DrawModel(trans_.modelId);
 
 	weapon_->Draw();
+
+	DrawFormatString(0, 300, 0x000000, L"pos(%d,%f,%f)", trans_.modelId, trans_.pos.y, trans_.pos.z);
 }
 void Player::Draw2D(void)
 {
@@ -314,8 +308,8 @@ void Player::AddAction(void)
 	//action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, trans_, status_.speed);
 	//action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	//action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
-	action_->AddAction({ ActionController::ACTION_TYPE::IDLE, ActionController::ACTION_TYPE::MOVE, ActionController::ACTION_TYPE::DASHMOVE,
-		ActionController::ACTION_TYPE::REACT,  ActionController::ACTION_TYPE::PLAYER_CARD_ACTION,ActionController::ACTION_TYPE::DODGE });
+	action_->AddAction({ ActionController::ACTION_TYPE::IDLE, ActionController::ACTION_TYPE::MOVE,
+		ActionController::ACTION_TYPE::REACT,  ActionController::ACTION_TYPE::CARD_ACTION,ActionController::ACTION_TYPE::DODGE });
 }
 
 void Player::MakeColliderGeometry(void)

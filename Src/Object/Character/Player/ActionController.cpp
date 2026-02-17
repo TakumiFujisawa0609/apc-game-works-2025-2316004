@@ -45,6 +45,26 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
+
+	SoundManager::SRC footSE = charaObj_.GetFootSE();
+	float footSEDisCount = charaObj_.GetFootSEDisCount();
+	float speed = charaObj_.GetStatus().speed;
+	actionTable_ = {
+		{ACTION_TYPE::IDLE, [this]() {mainAction_.emplace(ACTION_TYPE::IDLE,std::make_unique<Idle>(*this)); }},
+		{ACTION_TYPE::MOVE, [this,speed,footSE,footSEDisCount]() {mainAction_.emplace(ACTION_TYPE::MOVE,std::make_unique<Run>(*this,speed,footSE,footSEDisCount)); }},
+		{ACTION_TYPE::DODGE,[this]() {mainAction_.emplace(ACTION_TYPE::DODGE,std::make_unique<Dodge>(*this,charaObj_.GetStatus().speed)); }},
+		{ACTION_TYPE::REACT,[this]() {mainAction_.emplace(ACTION_TYPE::REACT,std::make_unique<React>(*this)); }},
+		{ACTION_TYPE::CARD_ACTION,[this]() {
+			if (charaObj_.GetCharaType() == CHARACTER_TYPE::PLAYER)
+			{
+				mainAction_.emplace(ACTION_TYPE::CARD_ACTION,std::make_unique<PlayerCardAction>(*this,charaObj_,cardPresent_));
+			}
+			else
+			{
+				mainAction_.emplace(ACTION_TYPE::CARD_ACTION,std::make_unique<EnemyCardAction>(*this,charaObj_,cardPresent_));
+			}
+		}},
+	};
 }
 
 ActionController::~ActionController(void)
@@ -62,22 +82,6 @@ void ActionController::Init(void)
 
 	//初期化の前に追加したアクションの初期化
 	mainAction_[act_]->Init();
-
-	SoundManager::SRC footSE = charaObj_.GetFootSE();
-	float footSEDisCount = charaObj_.GetFootSEDisCount();
-	float& speed = charaObj_.GetStatus().speed;
-	actionTable_={
-		{ACTION_TYPE::IDLE, [this]() {mainAction_.emplace(ACTION_TYPE::IDLE,std::make_unique<Idle>(*this)); }},
-		{ACTION_TYPE::MOVE, [this,speed,footSE,footSEDisCount]() {mainAction_.emplace(ACTION_TYPE::MOVE,std::make_unique<Run>(*this,speed,footSE,footSEDisCount)); }},
-		{ACTION_TYPE::DODGE,[this]() {mainAction_.emplace(ACTION_TYPE::DODGE,std::make_unique<Dodge>(*this),charaObj_.GetStatus().speed); }},
-		{ACTION_TYPE::REACT,[this]() {mainAction_.emplace(ACTION_TYPE::REACT,std::make_unique<React>(*this)); }},
-		{ACTION_TYPE::PLAYER_CARD_ACTION,[this]() {
-			mainAction_.emplace(ACTION_TYPE::PLAYER_CARD_ACTION,std::make_unique<PlayerCardAction>(*this,charaObj_,cardPresent_)); 
-		}},
-		{ACTION_TYPE::ENEMY_CARD_ACTION,[this]() {
-			mainAction_.emplace(ACTION_TYPE::ENEMY_CARD_ACTION,std::make_unique<EnemyCardAction>(*this,charaObj_,cardPresent_));
-		}}
-	};
 
 	isCardAct_ = false;
 	cardActTime_ = 0.0f;

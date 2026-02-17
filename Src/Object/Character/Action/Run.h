@@ -5,7 +5,7 @@ class Run :
     public ActionBase
 {
 public:
-    Run(ActionController& _actCntl,float& _speed,SoundManager::SRC _src,const float _footSeDis);
+    Run(ActionController& _actCntl,const float _speed,SoundManager::SRC _src,const float _footSeDis);
     ~Run(void)override;
 
 	/// @brief ƒ[ƒh
@@ -21,7 +21,7 @@ public:
     void Update(void) override;
 public:
     //ˆÚ“®‘¬“x
-    float& moveSpd_;
+    const float moveSpd_;
 
     //‘«‰¹ŠÔŠu
 	float footSECnt_;

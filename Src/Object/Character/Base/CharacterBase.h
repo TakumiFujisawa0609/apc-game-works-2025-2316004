@@ -161,6 +161,11 @@ public:
 	/// @return 
 	const Collider::TAG& GetCharaTag(void)const { return tag_; }
 	
+	/// @brief キャラタイプの取得
+	/// @param  
+	/// @return 
+	const CHARACTER_TYPE& GetCharaType(void)const { return characterType_; }
+
 	/// @brief 入力方向に応じて方向を決める
 	/// @param  
 	virtual void MoveDirFromInput(void);

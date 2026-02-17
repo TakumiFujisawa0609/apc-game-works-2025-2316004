@@ -47,6 +47,12 @@ Enemy::Enemy(void):
 
 	footSEDisCount_ = FOOT_SE_DIS;
 	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
+
+	logic_ = std::make_unique<EnemyLogic>(trans_);
+	deck_ = std::make_shared<CardDeck>(characterType_, ENEMY_NUM);
+	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
+	effect_ = std::make_unique<EffectController>();
+
 }
 
 Enemy::~Enemy(void)
@@ -65,11 +71,9 @@ void Enemy::Load(void)
 	AddAnimation();
 
 	//cardUI_ = std::make_unique<EnemyCardUI>();
-	logic_ = std::make_unique<EnemyLogic>(trans_);
-	deck_ = std::make_shared<CardDeck>(characterType_, ENEMY_NUM);
-	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
-	effect_ = std::make_unique<EffectController>();
+
 	effect_->Add(resMng_.Load(ResourceManager::SRC::E_DEATH_EFF).handleId_, EffectController::EFF_TYPE::E_DEATH);
+
 
 	AddAction();
 
@@ -335,6 +339,8 @@ void Enemy::AddAction(void)
 	//action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed, footSE_, FOOT_SE_DIS);
 	//action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
 	//action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
+	action_->AddAction({ ActionController::ACTION_TYPE::IDLE,ActionController::ACTION_TYPE::MOVE
+		,ActionController::ACTION_TYPE::REACT,ActionController::ACTION_TYPE::CARD_ACTION });
 
 }
 void Enemy::AddAnimation(void)

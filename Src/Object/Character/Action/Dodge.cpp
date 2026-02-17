@@ -6,9 +6,8 @@
 #include"../Base/LogicBase.h"
 #include "Dodge.h"
 
-Dodge::Dodge(ActionController& _actCntl,Transform& _trans ,float& _spd):
+Dodge::Dodge(ActionController& _actCntl ,float _spd):
 	ActionBase(_actCntl),
-	trans_(_trans),
 	dodgeSpd_(_spd)
 {
 	speed_ = dodgeSpd_+ ADD_DODGE_SPEED;
