@@ -57,8 +57,7 @@ Player::Player(void)
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 
-	//武器の生成(自分を親として渡す)
-	weapon_ = std::make_unique<Weapon>(*this);
+
 
 	footSEDisCount_ = FOOT_SE_DIS;
 	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
@@ -85,7 +84,8 @@ void Player::Load(void)
 	float posX = PLAYER_ONE_POS_X + DISTANCE_POS * playerNum_;
 	trans_.pos = { 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
 	trans_.localPos = { 0.0f,Player::CAP_RADIUS,-0.0f };
-
+	//武器の生成(自分を親として渡す)
+	weapon_ = std::make_unique<Weapon>(*this);
 	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 	AddAnimation();
 	AddAction();
@@ -152,6 +152,7 @@ void Player::UpdateDirection(void)
 	//Transformの更新
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
+
 }
 
 void Player::UpdateNormal(void)
@@ -197,7 +198,7 @@ void Player::Draw(void)
 
 	weapon_->Draw();
 
-	DrawFormatString(0, 300, 0x000000, L"pos(%d,%f,%f)", trans_.modelId, trans_.pos.y, trans_.pos.z);
+	//DrawFormatString(0, 300, 0x000000, L"pos(%d,%f,%f)", trans_.modelId, trans_.pos.y, trans_.pos.z);
 }
 void Player::Draw2D(void)
 {
@@ -301,15 +302,17 @@ void Player::AddAction(void)
 {
 	//アクション
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *cardPresent_, *animationController_, padNum_);
-	//footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
-	//using ACTION_TYPE = ActionController::ACTION_TYPE;
-	//action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	//action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
-	//action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, trans_, status_.speed);
-	//action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	//action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
-	action_->AddAction({ ActionController::ACTION_TYPE::IDLE, ActionController::ACTION_TYPE::MOVE,
-		ActionController::ACTION_TYPE::REACT,  ActionController::ACTION_TYPE::CARD_ACTION,ActionController::ACTION_TYPE::DODGE });
+	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
+	using ACTION_TYPE = ActionController::ACTION_TYPE;
+	action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
+	action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed,footSE_,FOOT_SE_DIS);
+	action_->AddMainAction<Dodge>(ACTION_TYPE::DODGE, *action_, status_.speed);
+	action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
+	action_->AddMainAction<PlayerCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
+	 
+	 
+	//action_->AddAction({ ActionController::ACTION_TYPE::IDLE, ActionController::ACTION_TYPE::MOVE,
+	//	ActionController::ACTION_TYPE::REACT,  ActionController::ACTION_TYPE::CARD_ACTION,ActionController::ACTION_TYPE::DODGE });
 }
 
 void Player::MakeColliderGeometry(void)

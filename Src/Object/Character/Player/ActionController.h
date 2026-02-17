@@ -141,13 +141,13 @@ public:
 	/// @param _flinchTime のけぞらせたい時間
 	void SetFlinchCnt(const float _flinchTime);
 
-	///// @brief メインアクションの追加
-	///// @param _action 
-	//template <typename T, typename... Args>
-	//void AddMainAction(const ACTION_TYPE _type, Args && ...args)
-	//{
-	//	mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
-	//}
+	/// @brief メインアクションの追加
+	/// @param _action 
+	template <typename T, typename... Args>
+	void AddMainAction(const ACTION_TYPE _type, Args && ...args)
+	{
+		mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
+	}
 
 	void AddAction(std::vector<ACTION_TYPE> _types);
 
