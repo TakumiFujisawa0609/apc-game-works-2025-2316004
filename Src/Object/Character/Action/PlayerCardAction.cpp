@@ -78,7 +78,8 @@ void PlayerCardAction::Init(void)
 void PlayerCardAction::Update()
 {
 	cardFuncs_.front()();
-	if (actionCntl_.GetInput().GetIsAct().isDodge)
+	if (actionCntl_.GetInput().GetIsAct().isDodge
+		&&cardPresent_.GetCardUIState()!= CardUIBase::CARD_SELECT::DISITION)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::DODGE);
 	}
