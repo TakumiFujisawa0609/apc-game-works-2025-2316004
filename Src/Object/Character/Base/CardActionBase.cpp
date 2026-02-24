@@ -19,7 +19,8 @@ CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _chara
 	charaObj_(_charaObj),
 	cardPresent_(_deck),
 	atkPos_({}),
-	velocity_({})
+	velocity_({}),
+	isCombo_(false)
 {
 }
 
@@ -52,6 +53,11 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 {
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure(_attackTag))return;
+	//コンボ入力受付
+	if (anim_.GetAnimStep() >= _status.colEndCnt - _status.bufferFrame)
+	{
+		ComboInput();
+	}
 
 	//攻撃判定処理
 	if (anim_.GetAnimStep() >= _status.colStartCnt&&
@@ -73,7 +79,7 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 	{
 		//攻撃判定無効
 		charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackTag);
-		//charaObj_.GetCardUI().ChangeUsedActionCard();
+
 		//次の攻撃につなげる
 		ChangeComboAction();
 	}
@@ -88,9 +94,6 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 	{
 		//攻撃判定無効
 		FinishFailureAttack(_attackTag);
-
-
-
 		return true;
 	}
 	return false;
@@ -138,4 +141,12 @@ void CardActionBase::SetAtk(const ATK_STATUS& _atkStatus)
 
 	//ダメージの初期化
 	atk_.isDamage = false;
+}
+
+void CardActionBase::ComboInput(void)
+{
+	if (actionCntl_.GetInput().GetIsAct().isCardUse)
+	{
+		isCombo_ = true;
+	}
 }

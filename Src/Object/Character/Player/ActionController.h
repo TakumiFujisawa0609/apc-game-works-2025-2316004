@@ -96,7 +96,7 @@ public:
 	/// @brief 状態の取得
 	/// @param  
 	/// @return 状態
-	const ACTION_TYPE& GetAct(void)const { return act_; }
+	const ACTION_TYPE& GetActionType(void)const { return act_; }
 
 	/// @brief カードアクションの取得
 	/// @param  

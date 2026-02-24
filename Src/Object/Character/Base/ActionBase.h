@@ -70,6 +70,7 @@ public:
 	{
 		float colStartCnt=0.0f;
 		float colEndCnt=0.0f;
+		float bufferFrame = 0.0f;
 		float atkRadius=0.0f;
 		float atkPoint = 0.0f;		//UŒ‚—Í
 		VECTOR pos = {};

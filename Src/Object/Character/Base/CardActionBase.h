@@ -12,16 +12,6 @@ class CardActionBase :
 
 public:
 
-
-   // //攻撃のステータス
-   //struct ATK_STATUS
-   // {
-   //     float colStartCnt;
-   //     float colEndCnt;
-   //     float atkRadius;
-   //     bool isDamage=false;
-   // };
-
     CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck);
     ~CardActionBase(void)override;
     void Init(void) override;
@@ -56,6 +46,9 @@ protected:
 
     //エフェクトコントローラ
     std::unique_ptr<EffectController>effect_;
+
+    //コンボフラグ
+    bool isCombo_;
 
     //デュエルモードでの待機中フラグ　true:待機中
     bool isDuelWait_;
@@ -92,6 +85,9 @@ protected:
 
     //コンボアクション遷移(あれば実装する)
     virtual void ChangeComboAction(void) {};
+
+	//コンボ入力受付
+	void ComboInput(void);
 private:
 
 };

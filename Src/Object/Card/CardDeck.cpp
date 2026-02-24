@@ -10,8 +10,6 @@
 CardDeck::CardDeck(CHARACTER_TYPE& _charaType, int _playerNum):
 	drawPile_(),
 	currentNum_(0),
-	nextNum_(0),
-	prevNum_(0),
 	charaType_(_charaType),
 	playerNum_(_playerNum)
 {
@@ -82,8 +80,6 @@ void CardDeck::CardMoveRight(void)
 {
 	//指令はプレイヤーやエネミーから出す
 	currentNum_--;
-	nextNum_ = currentNum_ + 1;
-	prevNum_ = currentNum_ - 1;
 	//カード制限
 	CardMoveLimit();
 }
@@ -92,8 +88,6 @@ void CardDeck::CardMoveLeft(void)
 {
 	//指令はプレイヤーやエネミーから出す
 	currentNum_++;
-	nextNum_ = currentNum_ + 1;
-	prevNum_ = currentNum_ - 1;
 	//カード制限
 	CardMoveLimit();
 }

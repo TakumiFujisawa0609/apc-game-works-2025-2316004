@@ -58,6 +58,7 @@ void PlayerCardAction::Init(void)
 	attackStageNum_ = 0;
 	atk_.isDamage = false;
 	speed_ = 0.0f;
+	isCombo_ = false;
 	//キーによる移動はしない
 	charaObj_.SetIsCanMoveable(false);
 
@@ -66,7 +67,7 @@ void PlayerCardAction::Init(void)
 		//手札に移動
 		//PutCard();
 		cardPresent_.PutCard();
-		DesideAttackOne();
+		DecideAttackOne();
 	}
 	else if (cardPresent_.GetCardType()==CardBase::CARD_TYPE::RELOAD)
 	{
@@ -77,6 +78,10 @@ void PlayerCardAction::Init(void)
 void PlayerCardAction::Update()
 {
 	cardFuncs_.front()();
+	if (actionCntl_.GetInput().GetIsAct().isDodge)
+	{
+		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::DODGE);
+	}
 }
 
 void PlayerCardAction::Release(void)
@@ -87,7 +92,7 @@ void PlayerCardAction::Release(void)
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	charaObj_.SetIsCanMoveable(true);
 	SoundManager::GetInstance().Stop(SoundManager::SRC::CARD_RELOAD);
-
+	isCombo_ = false;
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
@@ -108,7 +113,7 @@ bool PlayerCardAction::IsCanComboAttack(void)
 		&& actionCntl_.IsCardDisitionControll();
 }
 
-void PlayerCardAction::DesideAttackOne(void)
+void PlayerCardAction::DecideAttackOne(void)
 {
 	//相手との距離を取得
 	const float dis = actionCntl_.GetInput().GetTargetDis();
@@ -128,7 +133,6 @@ void PlayerCardAction::DesideAttackOne(void)
 void PlayerCardAction::ChangeActionCardInit(void)
 {
 	attackStageNum_++;
-	//charaObj_.ChangeCard();
 	cardPresent_.ChangeCard();
 	cardFuncs_.pop();
 }
@@ -150,6 +154,8 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure(Collider::TAG::NML_ATK))return;
 
+	ComboInput();
+
 	//キャラ同士で当たったか
 	const bool isHitTarget = charaObj_.GetIsHitTarget();
 	const float delta = scnMng_.GetDeltaTime();
@@ -158,7 +164,10 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 
 	if (midAtkCnt_ > 0.0f && !atk_.isDamage)
 	{
-		speed_ = easing_->EaseFunc(ATTACK_ONE_MID_SPD, 0.0f, (ATTACK_ONE_MID_TIME - midAtkCnt_) / ATTACK_ONE_MID_TIME, Easing::EASING_TYPE::QUAD_OUT);
+		//スピード減速
+		speed_ = easing_->EaseFunc(ATTACK_ONE_MID_SPD, 0.0f
+			, (ATTACK_ONE_MID_TIME - midAtkCnt_) / ATTACK_ONE_MID_TIME
+			, Easing::EASING_TYPE::QUAD_OUT);
 
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, {}, 0.0f);
 	}
@@ -373,26 +382,23 @@ void PlayerCardAction::ChangeDuel(void)
 
 void PlayerCardAction::ChangeComboAction(void)
 {
-	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD && actionCntl_.GetInput().GetIsAct().isCardUse)
+	//コンボ入力されていない、もしくはリロードカードならコンボに移行しない
+	if (!isCombo_|| cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD)return;
+
+	//コンボフラグをリセット
+	isCombo_ = false;
+
+	//攻撃可能かつコンボ攻撃可能なら攻撃段階を上げる
+	if (IsAttackable() && IsCanComboAttack())
 	{
-		if (cardPresent_.GetCardUIState() == CardUIBase::CARD_SELECT::NONE)
+		if (attackStageNum_ == ATTACK_ONE)
 		{
-			ChangeCardAction(CARD_ACT_TYPE::RELOAD);
+			ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
+		}
+		else if (attackStageNum_ == ATTACK_TWO)
+		{
+			ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
 		}
 	}
 
-	if (actionCntl_.GetInput().GetIsAct().isCardUse)
-	{
-		if (IsAttackable() && IsCanComboAttack())
-		{
-			if (attackStageNum_ == ATTACK_ONE)
-			{
-				ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);
-			}
-			else if (attackStageNum_ == ATTACK_TWO)
-			{
-				ChangeCardAction(CARD_ACT_TYPE::ATTACK_THREE);
-			}
-		}
-	}
 }

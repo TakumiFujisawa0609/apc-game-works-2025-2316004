@@ -120,9 +120,6 @@ void EnemyCardAction::Release(void)
 	}
 
 	//現在使っているカードを捨てる
-	//cardPresent_.EraseHandCard();
-	//charaObj_.GetCardUI().ChangeUsedActionCard();
-	//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 	cardPresent_.FinishCard();
 
 	//硬直時間セット
@@ -300,11 +297,6 @@ void EnemyCardAction::UpdateJumpAtk(void)
 
 			const int JUMP_CHARGE_EFF_ARRAY = 1;
 			effect_->Stop(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
-
-
-
-			//charaObj_.GetCardUI().ChangeUsedActionCard();
-			//cardPresent_.EraseHandCard();
 			cardPresent_.FinishCard();
 		}
 	}

@@ -17,7 +17,7 @@ CardPresenter::~CardPresenter(void)
 
 void CardPresenter::FinishCard(void)
 {
-	//ä½¿ç”¨æ¸ˆã¿ã¸ç§»è¡Œ
+	//g—pÏ‚İ‚ÖˆÚs
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 	deck_.EraseHandCard();
 	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
@@ -25,7 +25,7 @@ void CardPresenter::FinishCard(void)
 
 void CardPresenter::FailureCard(void)
 {
-	//å¼¾ãçŠ¶æ…‹ã¸ç§»è¡Œ
+	//’e‚«ó‘Ô‚ÖˆÚs
 	uiMng_.GetCardUI(type_).ChangeReactActionCard();
 	deck_.EraseHandCard();
 }
@@ -39,10 +39,13 @@ void CardPresenter::PutCard(void)
 
 void CardPresenter::RoleRevolver(const CardUIBase::CARD_SELECT _moveLR)
 {
-	//UIã®ã‚«ãƒ¼ãƒ‰ãƒªãƒœãƒ«ãƒãƒ¼å›è»¢
+	//¶‰EˆÈŠO‚Ì‚Æ‚«‚Íˆ—‚µ‚È‚¢
+	if (_moveLR != CardUIBase::CARD_SELECT::LEFT && _moveLR != CardUIBase::CARD_SELECT::RIGHT)return;
+
+	//UI‚ÌƒJ[ƒhƒŠƒ{ƒ‹ƒo[‰ñ“]
 	uiMng_.GetCardUI(type_).ChangeSelectState(_moveLR);
 
-	//å†…éƒ¨ã®ã‚«ãƒ¼ãƒ‰ã‚’å‹•ã‹ã™
+	//“à•”‚ÌƒJ[ƒh‚ğ“®‚©‚·
 	_moveLR == CardUIBase::CARD_SELECT::LEFT ? deck_.CardMoveLeft() : deck_.CardMoveRight();
 }
 
@@ -64,9 +67,9 @@ void CardPresenter::DeckReload(void)
 
 void CardPresenter::ChangeCard(void)
 {
-	//ç¾åœ¨ä½¿ã£ã¦ã„ã‚‹ã‚«ãƒ¼ãƒ‰ã‚’æ¨ã¦ã‚‹
+	//Œ»İg‚Á‚Ä‚¢‚éƒJ[ƒh‚ğÌ‚Ä‚é
 	deck_.EraseHandCard();
-	//æ‰‹æœ­ã«ç§»å‹•
+	//èD‚ÉˆÚ“®
 	deck_.MoveUsingCardToDrawPile();
 
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
@@ -82,7 +85,7 @@ void CardPresenter::EnemyCardReload(void)
 
 void CardPresenter::ChangeAction(void)
 {
-	//ä½¿ç”¨æ¸ˆã¿ã¸ç§»è¡Œ
+	//g—pÏ‚İ‚ÖˆÚs
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 	deck_.EraseHandCard();
 	//uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::NONE);

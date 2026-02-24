@@ -12,70 +12,70 @@ public:
 	CardPresenter(CHARACTER_TYPE& _type,CardDeck& _deck);
 	~CardPresenter(void);
 
-	//ã‚«ãƒ¼ãƒ‰ä½¿ç”¨æ¸ˆã¿
+	//ƒJ[ƒhg—pÏ‚İ
 	void FinishCard(void);
 
-	//ã‚«ãƒ¼ãƒ‰è² ã‘
+	//ƒJ[ƒh•‰‚¯
 	void FailureCard(void);
 
-	//ã‚«ãƒ¼ãƒ‰ã‚’å¼•ã
+	//ƒJ[ƒh‚ğˆø‚­
 	void PutCard(void);
 
-	/// @brief ãƒªãƒœãƒ«ãƒãƒ¼ã®å›è»¢
-	/// @param _moveLR å‹•ã‹ã™æ–¹å‘
+	/// @brief ƒŠƒ{ƒ‹ƒo[‚Ì‰ñ“]
+	/// @param _moveLR “®‚©‚·•ûŒü
 	void RoleRevolver(const CardUIBase::CARD_SELECT _moveLR);
 
-	/// @brief ã‚«ãƒ¼ãƒ‰ã®ç¨®é¡ã‚’å–å¾—
+	/// @brief ƒJ[ƒh‚Ìí—Ş‚ğæ“¾
 	/// @param  
-	/// @return ã‚«ãƒ¼ãƒ‰ã®ç¨®é¡
+	/// @return ƒJ[ƒh‚Ìí—Ş
 	const CardBase::CARD_TYPE GetCardType(void)const;
 
-	/// @brief æ‰‹æœ­ã®å–å¾—
+	/// @brief èD‚Ìæ“¾
 	/// @param  
 	/// @return 
 	const std::vector<CardBase::CARD_TYPE> GetHandCardType(void)const;
 
-	/// @brief ãƒ‡ãƒƒã‚­ã‚¯ãƒ©ã‚¹ã§ã®ãƒªãƒ­ãƒ¼ãƒ‰å‡¦ç†
+	/// @brief ƒfƒbƒLƒNƒ‰ƒX‚Å‚ÌƒŠƒ[ƒhˆ—
 	/// @param  
 	void DeckReload(void);
 	
-	/// @brief ã‚«ãƒ¼ãƒ‰å¤‰æ›´
+	/// @brief ƒJ[ƒh•ÏX
 	/// @param  
 	void ChangeCard(void);
 
-	/// @brief æ•µã®ãƒªãƒ­ãƒ¼ãƒ‰
+	/// @brief “G‚ÌƒŠƒ[ƒh
 	/// @param  
 	void EnemyCardReload(void);
 
-	/// @brief ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é·ç§»æ™‚ã«ã‚«ãƒ¼ãƒ‰ã‚’ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä¸­ã®ã‚«ãƒ¼ãƒ‰ã‚’é–‹æ”¾
+	/// @brief ƒAƒNƒVƒ‡ƒ“‘JˆÚ‚ÉƒJ[ƒh‚ğƒAƒNƒVƒ‡ƒ“’†‚ÌƒJ[ƒh‚ğŠJ•ú
 	/// @param  
 	void ChangeAction(void);
 
-	/// @brief ã‚«ãƒ¼ãƒ‰è² ã‘ã—ãŸã‹ã©ã†ã‹
+	/// @brief ƒJ[ƒh•‰‚¯‚µ‚½‚©‚Ç‚¤‚©
 	/// @param  
 	const bool IsCardFailure(void)const;
 
-	/// @brief ãƒªãƒ­ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆå‰²åˆã‚»ãƒƒãƒˆ
-	/// @param _per å‰²åˆ
+	/// @brief ƒŠƒ[ƒhƒJƒEƒ“ƒgŠ„‡ƒZƒbƒg
+	/// @param _per Š„‡
 	void SetUIReloadCount(const float _per);
 
-	/// @brief ã‚«ãƒ¼ãƒ‰UIã®çŠ¶æ…‹å¤‰æ›´
+	/// @brief ƒJ[ƒhUI‚Ìó‘Ô•ÏX
 	/// @param _select 
 	void ChangeUIState(const CardUIBase::CARD_SELECT _select);
 
-	/// @brief ã‚«ãƒ¼ãƒ‰UIã®çŠ¶æ…‹ã®å–å¾—
+	/// @brief ƒJ[ƒhUI‚Ìó‘Ô‚Ìæ“¾
 	/// @param  
 	/// @return 
 	const CardUIBase::CARD_SELECT GetCardUIState(void)const;
 	
 private:
-	//ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒƒã‚­
+	//ƒJ[ƒhƒfƒbƒL
 	CardDeck& deck_;
 
-	//ã‚«ãƒ¼ãƒ‰UI
+	//ƒJ[ƒhUI
 	UIManager& uiMng_;
 
-	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
+	//ƒLƒƒƒ‰ƒNƒ^[
 	CHARACTER_TYPE& type_;
 	
 };

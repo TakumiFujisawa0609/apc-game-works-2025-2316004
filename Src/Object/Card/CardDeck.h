@@ -171,10 +171,6 @@ private:
 
 	//現在選択中のカード
 	int currentNum_;
-	//一つ先のカード番号
-	int nextNum_;
-	//ひとつ前
-	int prevNum_;
 	//カード使用者のプレイヤー番号
 	int playerNum_;
 	//敵デュエルデッキの現在選択中番号

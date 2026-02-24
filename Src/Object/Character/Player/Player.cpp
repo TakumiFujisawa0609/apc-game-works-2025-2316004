@@ -256,7 +256,7 @@ void Player::DrawDebug(void)
 	}
 	
 	VECTOR pos = trans_.pos;
-	//DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetAct()),isDamage_);
+	//DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetActionType()),isDamage_);
 	DrawFormatString(0, 300, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
 
 	//// 手の位置とグローバルマトリクスを取得

@@ -209,7 +209,7 @@ private:
 	//手札の消去
 	void EraseHandCard(void);
 	//カード使用時のカード角度の更新
-	void DesideGoalAngle(void);
+	void DecideGoalAngle(void);
 	//リロードアニメーション
 	void ReloadAnimation(void);
 	//リロード時に配列に追加

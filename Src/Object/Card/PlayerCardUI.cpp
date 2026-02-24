@@ -271,7 +271,6 @@ void PlayerCardUI::ChangeNone(void)
 
 void PlayerCardUI::ChangeLeft(void)
 {
-
 	// 時計回りにカードを回す
 	// 対象は、手札UIの全てのカード
 	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
@@ -339,7 +338,6 @@ void PlayerCardUI::ChangeRight(void)
 		it--;
 	}
 	
-	//it->currentAngle_ = -ARROUND_PER_RAD * PREV_CARD_COUNT;
 	(*it)->SetCurrentAngle(-ARROUND_PER_RAD * PREV_CARD_COUNT);
 	visibleCards_.emplace_front(*it);
 	//手札選択カードを更新
@@ -361,14 +359,11 @@ void PlayerCardUI::ChangeRight(void)
 void PlayerCardUI::ChangeDecision(void)
 {
 	// カードを使う処理
-
 	if (selectState_ == CARD_SELECT::NONE&&(*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeSelectState(CARD_SELECT::RELOAD_WAIT);
 		return;
 	}
-
-
 	actions_.emplace_back(*handCurrent_);
 
 	//決定カウントをセット
@@ -384,7 +379,7 @@ void PlayerCardUI::ChangeDecision(void)
 	//手札から使用するカードを消去
 	EraseHandCard();
 	//カードの範囲変数を更新する
-	DesideGoalAngle();
+	DecideGoalAngle();
 
 	cardUpdate_ = [this]() {UpdateDecision(); };
 }
@@ -402,7 +397,6 @@ void PlayerCardUI::ChangeReload(void)
 	isReloadEnd_ = false;
 
 	//一番最後の配列を見る
-	//reloadAnimCurr_ = std::prev(handCards_.end());
 	reloadAnimCurr_ = std::prev(initialCards_.end());
 
 	//リロードアニメーション中はカレントを終端にする
@@ -411,7 +405,7 @@ void PlayerCardUI::ChangeReload(void)
 }
 void PlayerCardUI::UpdateNone(void)
 {
-	int i = 0;
+
 }
 
 void PlayerCardUI::UpdateLeft(void)
@@ -542,23 +536,20 @@ void PlayerCardUI::UpdateVisibleCard(void)
 	if (size > VISIBLE_CARD_MAX)
 	{
 		//先頭に追加
-		auto endit = handCurrent_;
-		//auto visibleIt = visibleCurrent_;
+		auto endIt = handCurrent_;
 		auto visibleIt = GetVisibleCurrentIt();
 
 		//表示カードの次の配列になるまで手札のイテレータを回す
 		for (; visibleIt != visibleCards_.end(); visibleIt++)
 		{
-			endit++;
-			if (endit == handCards_.end())
+			endIt++;
+			if (endIt == handCards_.end())
 			{
-				endit = handCards_.begin();
+				endIt = handCards_.begin();
 			}
 		}
-		
-		//(*endit)->currentAngle_ = ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD;
-		(*endit)->SetCurrentAngle(ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD);
-		visibleCards_.emplace_back(*endit);
+		(*endIt)->SetCurrentAngle(ARROUND_PER_QUAD_RAD + ARROUND_PER_RAD);
+		visibleCards_.emplace_back(*endIt);
 	}
 }
 
@@ -590,10 +581,9 @@ void PlayerCardUI::EraseHandCard(void)
 
 }
 
-void PlayerCardUI::DesideGoalAngle(void)
+void PlayerCardUI::DecideGoalAngle(void)
 {
 	//カードの範囲変数を更新する
-	//auto visibleIt = std::next(visibleCurrent_);
 	auto visibleIt = std::next(GetVisibleCurrentIt());
 	for (; visibleIt != visibleCards_.end(); visibleIt++)
 	{
