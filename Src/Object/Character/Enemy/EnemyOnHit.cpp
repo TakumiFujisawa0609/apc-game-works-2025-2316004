@@ -73,7 +73,6 @@ void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	int damage = atkPoint + addDam;
 	charaObj_.Damage(damage);
 
-	//charaObj_.ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::HIT_STOP);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 

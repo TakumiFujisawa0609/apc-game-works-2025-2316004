@@ -120,11 +120,6 @@ private:
     void KeyBoard(void);
     void Pad(void);
 
-    /// @brief 一定の大きさ以上スティックが動いているか
-    /// @param  
-    /// @return 
-    bool IsStickMoved(void);
-
     bool IsCardRight(void);
     bool IsCardLeft(void);
 
