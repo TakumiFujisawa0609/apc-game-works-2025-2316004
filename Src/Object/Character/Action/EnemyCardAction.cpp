@@ -43,8 +43,6 @@ soundMng_(SoundManager::GetInstance())
 
 	charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM,atk_.pos);
 
-	effect_ = std::make_unique<EffectController>();
-
 }
 
 EnemyCardAction::~EnemyCardAction(void)

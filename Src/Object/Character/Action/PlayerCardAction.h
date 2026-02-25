@@ -116,6 +116,8 @@ private:
     //カードリロード中の音量
     static constexpr int CARD_RELOAD_VOL = 60;
 
+
+
     //攻撃の当たり判定始まりカウント
     float attackStartAnimcnt_;
     //攻撃の当たり判定終わりカウント

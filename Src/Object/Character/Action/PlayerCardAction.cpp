@@ -2,6 +2,8 @@
 #include "../Common/Easing.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/Camera.h"
+#include "../Manager/Resource/ResourceManager.h"
+#include "../Object/Common/EffectController.h"
 #include "../Player/ActionController.h"
 #include "../../Common/AnimationController.h"
 #include "../../Card/CardDeck.h"
@@ -33,7 +35,6 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
 		{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
 	};
-
 	atk_ = {};
 	easing_ = std::make_unique<Easing>();
 }
@@ -51,6 +52,7 @@ void PlayerCardAction::Load(void)
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
 	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, CARD_RELOAD_VOL);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
+	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD).handleId_, EffectController::EFF_TYPE::RELOAD);
 }
 
 void PlayerCardAction::Init(void)
@@ -254,6 +256,7 @@ void PlayerCardAction::UpdateReload(void)
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		//カードリロード音停止
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
+		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);	
 		actType_ = CARD_ACT_TYPE::NONE;
 
 		cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::NONE);
@@ -266,7 +269,7 @@ void PlayerCardAction::UpdateReload(void)
 		//カードUIのリロードカウントをの初期化
 		pushReloadCnt_ = 0.0f;
 		SetUIReloadCnt();
-
+		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
 		//カードリロード音停止、完了音再生
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
 		soundMng_.Play(SoundManager::SRC::CARD_RELOAD_FINISH,SoundManager::PLAYTYPE::BACK);
@@ -359,6 +362,7 @@ void PlayerCardAction::ChangeReload(void)
 	{
 		cardFuncs_.pop();
 	}
+
 	//現在使っているカードを捨てる
 	cardPresent_.FinishCard();
 	cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
@@ -366,6 +370,10 @@ void PlayerCardAction::ChangeReload(void)
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
 	//リロード音再生
 	soundMng_.Play(SoundManager::SRC::CARD_RELOAD, SoundManager::PLAYTYPE::LOOP);
+
+	constexpr float EFF_SCL = 100.0f;
+	const Transform& trans = charaObj_.GetTransform();
+	effect_->Play(EffectController::EFF_TYPE::RELOAD, trans.pos, trans.quaRot, { EFF_SCL,EFF_SCL,EFF_SCL }, true);
 
 	cardFuncs_.push([this]() {UpdateReload(); });
 }

@@ -22,6 +22,7 @@ CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _chara
 	velocity_({}),
 	isCombo_(false)
 {
+	effect_ = std::make_unique<EffectController>();
 }
 
 CardActionBase::~CardActionBase(void)
