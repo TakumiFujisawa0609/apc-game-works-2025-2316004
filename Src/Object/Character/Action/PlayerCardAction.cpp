@@ -256,7 +256,8 @@ void PlayerCardAction::UpdateReload(void)
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		//カードリロード音停止
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
-		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);	
+		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
+		effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
 		actType_ = CARD_ACT_TYPE::NONE;
 
 		cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::NONE);
@@ -270,6 +271,7 @@ void PlayerCardAction::UpdateReload(void)
 		pushReloadCnt_ = 0.0f;
 		SetUIReloadCnt();
 		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
+		effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
 		//カードリロード音停止、完了音再生
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
 		soundMng_.Play(SoundManager::SRC::CARD_RELOAD_FINISH,SoundManager::PLAYTYPE::BACK);
