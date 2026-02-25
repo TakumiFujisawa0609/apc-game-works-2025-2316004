@@ -49,10 +49,11 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 	SoundManager::SRC footSE = charaObj_.GetFootSE();
 	float footSEDisCount = charaObj_.GetFootSEDisCount();
 	float speed = charaObj_.GetStatus().speed;
+	VECTOR dir = trans_.GetForward();
 	actionTable_ = {
 		{ACTION_TYPE::IDLE, [this]() {mainAction_.emplace(ACTION_TYPE::IDLE,std::make_unique<Idle>(*this)); }},
 		{ACTION_TYPE::MOVE, [this,speed,footSE,footSEDisCount]() {mainAction_.emplace(ACTION_TYPE::MOVE,std::make_unique<Run>(*this,speed,footSE,footSEDisCount)); }},
-		{ACTION_TYPE::DODGE,[this]() {mainAction_.emplace(ACTION_TYPE::DODGE,std::make_unique<Dodge>(*this,charaObj_.GetStatus().speed)); }},
+		{ACTION_TYPE::DODGE,[this]() {mainAction_.emplace(ACTION_TYPE::DODGE,std::make_unique<Dodge>(*this,trans_,charaObj_.GetStatus().speed)); }},
 		{ACTION_TYPE::REACT,[this]() {mainAction_.emplace(ACTION_TYPE::REACT,std::make_unique<React>(*this)); }},
 		{ACTION_TYPE::CARD_ACTION,[this]() {
 			if (charaObj_.GetCharaType() == CHARACTER_TYPE::PLAYER)

@@ -52,7 +52,7 @@ void EnemyLogic::Update(void)
 		//‹——£‚ª‰“‚¢‚Æ‚«‚Í‹ß‚Ã‚­
 		isAct_.isRun = true;
 		moveDir_ = targetVec;
-		moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
+		//moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
 		return;
 	}
 

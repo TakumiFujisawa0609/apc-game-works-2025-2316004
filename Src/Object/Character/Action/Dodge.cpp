@@ -6,9 +6,11 @@
 #include"../Base/LogicBase.h"
 #include "Dodge.h"
 
-Dodge::Dodge(ActionController& _actCntl ,float _spd):
+Dodge::Dodge(ActionController& _actCntl, Transform& _trans, float _spd):
 	ActionBase(_actCntl),
-	dodgeSpd_(_spd)
+	dodgeSpd_(_spd),
+	trans_(_trans),
+	dodgeDir_({})
 {
 	speed_ = dodgeSpd_+ ADD_DODGE_SPEED;
 }
@@ -24,15 +26,35 @@ void Dodge::Load(void)
 void Dodge::Init(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::DODGE),false);
+
+	LogicBase& input = actionCntl_.GetInput();
+	if (input.GetIsEnteredDir())
+	{
+		dodgeDir_ = input.GetInputDir();
+	}
+	else
+	{
+		dodgeDir_ = trans_.GetForward();
+	}
+
 }
 
 void Dodge::Update()
 {
+
+
+	//回避時間が終わったら
 	if (anim_.GetAnimStep()> END_DODGE_ANIM_STEP)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
+
+	//if (input.GetIsEnteredDir())
+	//{
+	//	actionCntl_.GetInput().SetMoveDir(dodgeDir_);
+	//}
+
 	//回避中はInputクラスへプレイヤーの前情報をセットする
-	actionCntl_.GetInput().SetMoveDirTransformFront();
+	actionCntl_.GetInput().SetMoveDir(dodgeDir_);
 }

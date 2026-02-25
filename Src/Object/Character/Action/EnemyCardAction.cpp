@@ -379,7 +379,7 @@ void EnemyCardAction::UpdateRoleAtk(void)
 		speed_ = ROLE_SPEED;
 		//ìñÇΩÇËîªíËÇÃçÏê¨
 		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, atk_.pos, ROLE_ATK_RADIUS);
-		actionCntl_.GetInput().SetDegAndDir(roleMoveDeg_, roleMoveDir_);
+		actionCntl_.GetInput().SetDir(roleMoveDir_);
 		if (roleAtkCnt_ < 0.0f)
 		{
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);

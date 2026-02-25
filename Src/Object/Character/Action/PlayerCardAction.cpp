@@ -155,6 +155,7 @@ void PlayerCardAction::UpdateMiddleAttack(void)
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure(Collider::TAG::NML_ATK))return;
 
+	//コンボ先行受付
 	ComboInput();
 
 	//キャラ同士で当たったか
@@ -209,8 +210,8 @@ void PlayerCardAction::UpdateAttackThree(void)
 	{
 		atkAnimLerpCnt_ += scnMng_.GetDeltaTime();
 		//アニメーション速度補完
-		anim_.SetAnimSpeed(CharacterBase::ANIM_SPEED, true, ATTACK_THREE_ANIM_SPD, atkAnimLerpCnt_ / ATTACK_THREE_ANIM_LERP_TIME,Easing::EASING_TYPE::QUAD_IN);
-		////攻撃当たり判定の座標生成
+		anim_.SetAnimSpeed(CharacterBase::ANIM_SPEED, true
+			, ATTACK_THREE_ANIM_SPD, atkAnimLerpCnt_ / ATTACK_THREE_ANIM_LERP_TIME,Easing::EASING_TYPE::QUAD_IN);
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, {}, 0.0f);
@@ -324,6 +325,7 @@ void PlayerCardAction::ChangeMiddleAttackOne(void)
 		, ATTACK_ONE_MID_ANIM_START, ATTACK_ONE_MID_ANIM_END,false);
 	atk_ = NORMAL_ATK_ONE_MIDDLE;
 	midAtkOverCnt_ = ATTACK_ONE_MID_COMBO_TIME;
+
 	//突き攻撃の速度は要調整
 	actionCntl_.GetInput().GetLookAtTargetDir();
 	//dir.y = 0.0f;
@@ -359,9 +361,6 @@ void PlayerCardAction::ChangeReload(void)
 	}
 	//現在使っているカードを捨てる
 	cardPresent_.FinishCard();
-
-	//float per = pushReloadCnt_ / RELOAD_TIME;
-	//cardPresent_.SetUIReloadCount(per);
 	cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);

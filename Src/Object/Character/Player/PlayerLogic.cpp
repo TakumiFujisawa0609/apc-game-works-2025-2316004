@@ -10,16 +10,14 @@ PlayerLogic::PlayerLogic(Transform& _myTrans,bool& _isCanMoveAble , InputManager
 	isCanMoveable_(_isCanMoveAble),
 	padNum_(_padNum),
 	cntl_(_cntl),
+	leftStickX_(-1),
+	leftStickY_(-1),
 	camera_(SceneManager::GetInstance().GetCamera()),
 	input_(InputManager::GetInstance()),
 	inputS_(InputManagerS::GetInstance())
 {
 	actCntl_ = ACT_CNTL::NONE;
-	leftStickX_ = -1;
-	leftStickY_ = -1;
 	stickDeg_ = -1;
-	moveDeg_ = 0.0f;
-	moveDir_ = Utility3D::VECTOR_ZERO;
 
 	inputUpdates_[InputManager::CONTROLL_TYPE::ALL] = [this]() {InputAll(); };
 	inputUpdates_[InputManager::CONTROLL_TYPE::CONTROLLER] = [this]() {InputPad(); };
@@ -32,11 +30,8 @@ PlayerLogic::~PlayerLogic(void)
 void PlayerLogic::Init(void)
 {
 	actCntl_ = ACT_CNTL::NONE;
-	leftStickX_ = -1;
-	leftStickY_ = -1;
 	stickDeg_ = -1;
-	moveDeg_ = 0.0f;
-	moveDir_ = Utility3D::VECTOR_ZERO;
+	moveDir_ = myTrans_.GetDir(Utility3D::DIR_F);
 }
 
 void PlayerLogic::Update(void)
@@ -59,23 +54,19 @@ void PlayerLogic::InputKeyBoard(void)
 	//移動角度を決める
 	if (input_.IsNew(MOVE_FRONT_KEY))
 	{ 
-		moveDeg_ = FLONT_DEG;
 		moveDir_ = Utility3D::DIR_F;
 
 	}
 	else if (input_.IsNew(MOVE_LEFT_KEY))
-	{ 
-		moveDeg_ = LEFT_DEG; 
+	{  
 		moveDir_ = Utility3D::DIR_L;
 	} 
 	else if (input_.IsNew(MOVE_BACK_KEY))
 	{ 
-		moveDeg_ = BACK_DEG; 
 		moveDir_ = Utility3D::DIR_B;
 	}
 	else if (input_.IsNew(MOVE_RIGHT_KEY))
 	{
-		moveDeg_ = RIGHT_DEG; 
 		moveDir_ = Utility3D::DIR_R;
 	}
 
@@ -90,71 +81,54 @@ void PlayerLogic::InputAll(void)
 {
 	using ATK_ACT = Player::ATK_ACT;
 	isAct_ = {};
-	float deg = 0.0f;
-	VECTOR dir = {};
-	//moveDir_ = Utility3D::VECTOR_ZERO;
+	inputDir_ = {};
+
 	//移動角度を決める
-	if (isCanMoveable_)
+	if (input_.IsNew(MOVE_FRONT_KEY))
 	{
-		if (input_.IsNew(MOVE_FRONT_KEY))
-		{
-			isAct_.isRun = true;
-			deg = FLONT_DEG;
-			dir = Utility3D::DIR_F;
-			prevMoveDir_ = moveDir_;
-		}
-		else if (input_.IsNew(MOVE_LEFT_KEY))
-		{
-			isAct_.isRun = true;
-			deg = LEFT_DEG;
-			dir = Utility3D::DIR_L;
-			prevMoveDir_ = moveDir_;
-		}
-		else if (input_.IsNew(MOVE_BACK_KEY))
-		{
-			isAct_.isRun = true;
-			deg = BACK_DEG;
-			dir = Utility3D::DIR_B;
-			prevMoveDir_ = moveDir_;
-		}
-		else if (input_.IsNew(MOVE_RIGHT_KEY))
-		{
-			isAct_.isRun = true;
-			deg = RIGHT_DEG;
-			dir = Utility3D::DIR_R;
-			prevMoveDir_ = moveDir_;
-		}
-
-		//スティックが傾いたら
-		if (inputS_.IsPressed(INPUT_EVENT::UP) || inputS_.IsPressed(INPUT_EVENT::DOWN)
-			|| inputS_.IsPressed(INPUT_EVENT::RIGHT) || inputS_.IsPressed(INPUT_EVENT::LEFT))
-		{
-			//スティックサイズの取得
-			LStickAngleSize_ = inputS_.GetKnockLStickSize(padNum_);
-
-			//スティックの角度を求める
-			stickDeg_ = inputS_.GetLStickDeg(padNum_);
-
-			//スティックの角度によって移動方向を決める
-			deg = stickDeg_;
-
-			//ベクトルの計算
-			VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
-			dir = VNorm(stickDir);
-			prevMoveDir_ = moveDir_;
-			isAct_.isRun = true;
-		}
+		isAct_.isRun = true;
+		inputDir_ = Utility3D::DIR_F;
+	}
+	else if (input_.IsNew(MOVE_LEFT_KEY))
+	{
+		isAct_.isRun = true;
+		inputDir_ = Utility3D::DIR_L;
+	}
+	else if (input_.IsNew(MOVE_BACK_KEY))
+	{
+		isAct_.isRun = true;
+		inputDir_ = Utility3D::DIR_B;
+	}
+	else if (input_.IsNew(MOVE_RIGHT_KEY))
+	{
+		isAct_.isRun = true;
+		inputDir_ = Utility3D::DIR_R;
 	}
 
+	//スティックが傾いたら
+	if (inputS_.IsPressed(INPUT_EVENT::UP) || inputS_.IsPressed(INPUT_EVENT::DOWN)
+		|| inputS_.IsPressed(INPUT_EVENT::RIGHT) || inputS_.IsPressed(INPUT_EVENT::LEFT))
+	{
+		//スティックサイズの取得
+		LStickAngleSize_ = inputS_.GetKnockLStickSize(padNum_);
+
+		//スティックの角度を求める
+		stickDeg_ = inputS_.GetLStickDeg(padNum_);
+
+
+		//ベクトルの計算
+		VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
+		inputDir_ = VNorm(stickDir);
+		isAct_.isRun = true;
+	}
 
 	//移動操作の時はカメラの角度を参照する
-	if (isAct_.isRun)
+	if (isAct_.isRun && isCanMoveable_)
 	{
 		//カメラの角度を取得
 		VECTOR cameraRot = camera_.lock()->GetAngles();
 		Quaternion cameraQuaRot = camera_.lock()->GetQuaRotOutX();
-		moveDeg_ = static_cast<double>(cameraRot.y) + UtilityCommon::Deg2RadD(deg);
-		moveDir_= cameraQuaRot.PosAxis(dir);
+		moveDir_ = cameraQuaRot.PosAxis(inputDir_);
 	}
 
 
@@ -163,15 +137,12 @@ void PlayerLogic::InputAll(void)
 	//カード使用
 	if (input_.IsPadBtnTrgDown(padNum_, CARD_USE_BTN) || input_.IsTrgDown(CARD_USE_KEY)) { isAct_.isCardUse = true; }
 	//カード移動
-	if (IsCardLeft()) {
-		isAct_.isCardMoveLeft = true; }
-	if (IsCardRight()) {
-		isAct_.isCardMoveRight = true; 
-	}
+	if (IsCardLeft()) {isAct_.isCardMoveLeft = true;}
+	if (IsCardRight()) {isAct_.isCardMoveRight = true;}
 	//カード使用キー長押し(リロード用)
-	if (input_.IsPadBtnNew(padNum_, CARD_USE_BTN)|| input_.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
+	if (input_.IsPadBtnNew(padNum_, CARD_USE_BTN) || input_.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
 	//回避
-	if (input_.IsPadBtnTrgDown(padNum_, DODGE_BTN) || input_.IsTrgDown(DODGE_KEY)) { isAct_.isDodge = true;}
+	if (input_.IsPadBtnTrgDown(padNum_, DODGE_BTN) || input_.IsTrgDown(DODGE_KEY)) { isAct_.isDodge = true; }
 }
 
 void PlayerLogic::InputPad(void)
@@ -197,8 +168,6 @@ void PlayerLogic::InputPad(void)
 		stickDeg_ = inputS_.GetLStickDeg(padNum_);
 	}
 
-	//スティックの角度によって移動方向を決める
-	moveDeg_ = stickDeg_;
 	VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
 	//moveDir_ = { leftStickX_ ,0.0f,leftStickX_ };
 	moveDir_ = VNorm(stickDir);

@@ -57,8 +57,6 @@ Player::Player(void)
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 
-
-
 	footSEDisCount_ = FOOT_SE_DIS;
 	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
 

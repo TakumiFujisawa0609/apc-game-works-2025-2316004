@@ -6,7 +6,6 @@
 LogicBase::LogicBase(Transform& _myTrans):
 	myTrans_(_myTrans),
 	actCntl_(ACT_CNTL::NONE),
-	moveDeg_(-1.0f),
 	moveDir_({}),
 	//targetChara_(nullptr),
 	isActioning_(false),
@@ -36,11 +35,6 @@ void LogicBase::GetLookAtTargetDir(void)
 	moveDir_ = targetVec;
 }
 
-void LogicBase::GetLookAtTargetDeg(void)
-{
-	float deg = static_cast<float>(Utility3D::AngleDeg(targetChara_.lock()->GetTransform().pos, myTrans_.pos));
-	moveDeg_ += deg;
-}
 
 const bool LogicBase::HitTarget(void) const
 {
@@ -55,6 +49,11 @@ const Transform LogicBase::GetTargetTransform(void)
 const int LogicBase::GetJumpCardNum(void) const
 {
 	return targetChara_.lock()->GetMainAction().GetJumpCardNum();
+}
+
+const bool LogicBase::GetIsEnteredDir(void)
+{
+	return !Utility3D::EqualsVZero(inputDir_);
 }
 
 const float LogicBase::GetTargetDis(void) const

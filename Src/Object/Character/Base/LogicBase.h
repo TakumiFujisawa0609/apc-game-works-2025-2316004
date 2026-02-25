@@ -70,15 +70,15 @@ public:
     /// @return 
     const bool CheckAct(const ACT_CNTL& _actCntl)const { return actCntl_ == _actCntl ? true : false; }
     
+    /// @brief 入力方向の取得
+    /// @param  
+    /// @return 
+    const VECTOR& GetInputDir(void)const { return inputDir_; }
+
     /// @brief 移動方向の取得
     /// @param  
     /// @return 方向
-    const VECTOR& GetDir(void)const { return moveDir_; }
-	
-    /// @brief 移動角度の取得
-    /// @param  
-    /// @return 移動角度
-    const float& GetMoveDeg(void)const { return moveDeg_; }
+    const VECTOR& GetDir(void)const { return moveDir_;}
     
     /// @brief アクション入力の取得
     /// @param  
@@ -101,11 +101,10 @@ public:
 
 	/// @brief 方向をモデルの前方向にセット
 	/// @param _trans モデル情報 
-    void SetMoveDirTransformFront(void) { moveDir_ = prevMoveDir_;}
+    void SetMoveDir(const VECTOR _dir) { moveDir_ = _dir;}
 
 	/// @brief ターゲットの方向を見る
     void GetLookAtTargetDir(void);
-    void GetLookAtTargetDeg(void);
 
     //ターゲットと当たった
     const bool HitTarget(void)const;
@@ -121,11 +120,12 @@ public:
     /// @brief 方向を決める
     /// @param _deg デグリー角度
     /// @param _dir ベクトル
-    void SetDegAndDir(const float _deg, const VECTOR _dir)
-    {
-        moveDeg_ = _deg;
-        moveDir_ = _dir;
-	}
+    void SetDir(const VECTOR _dir){moveDir_ = _dir;}
+
+    /// @brief 方向入力がされているか
+    /// @param  
+    /// @return true:されている　false:されていない
+    const bool GetIsEnteredDir(void);
 
 	/// @brief アクション中フラグセット
 	/// @param  
@@ -154,8 +154,9 @@ protected:
 	//操作管理用
 	ACT_CNTL actCntl_;
     //移動関連
-	float moveDeg_;             //移動角度
-	VECTOR moveDir_;            //移動方向ベクトル
+	VECTOR moveDir_;            //移動方向ベクトル(これをもとにキャラクターが動く)
+    //入力方向
+    VECTOR inputDir_;           //入力方向(入力していないときは{0,0,0})
 
 	VECTOR prevMoveDir_;        //前回の移動方向ベクトル
     //攻撃種類
