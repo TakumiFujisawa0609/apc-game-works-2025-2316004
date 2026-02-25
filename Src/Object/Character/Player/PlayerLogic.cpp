@@ -125,9 +125,7 @@ void PlayerLogic::InputAll(void)
 			prevMoveDir_ = moveDir_;
 		}
 
-		//auto& inputS = InputManagerS::Getinput_tance();
-
-		//スティックの倒れ値が200以上だったら
+		//スティックが傾いたら
 		if (inputS_.IsPressed(INPUT_EVENT::UP) || inputS_.IsPressed(INPUT_EVENT::DOWN)
 			|| inputS_.IsPressed(INPUT_EVENT::RIGHT) || inputS_.IsPressed(INPUT_EVENT::LEFT))
 		{
