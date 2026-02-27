@@ -70,9 +70,6 @@ protected:
 	//負けて攻撃が終了
 	void FinishFailureAttack(const Collider::TAG _attackCol);
 
-    //カードを場に出す
-    void PutCard(void);
-
     //攻撃情報をセット
     void SetAtk(const ATK_STATUS& _actType);
 

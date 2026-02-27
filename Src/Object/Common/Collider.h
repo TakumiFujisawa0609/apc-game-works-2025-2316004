@@ -23,48 +23,63 @@ public :
 		CAMERA,			//カメラ
 	};
 
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	/// <param name="_tags">自身の衝突用タグ</param>
-	/// <param name="_geometry">当たり判定の形状</param>
-	/// <param name="_notHitTags">衝突させないタグ</param>
+	/// @brief コンストラクタ
+	/// @param _parent 親
+	/// @param _tags 自身の衝突用タグ
+	/// @param _geometry 当たり判定の形状
+	/// @param _notHitTags 衝突させないタグ
 	Collider(ObjectBase& _parent, const std::set<TAG> _tags, std::unique_ptr<Geometry>_geometry, const std::set<TAG> _notHitTags);
 
 	// デストラクタ
 	~Collider(void);
 
-	//衝突用タグの取得
+	/// @brief 衝突用タグの取得
+	/// @param  
+	/// @return 
 	inline const std::set<TAG>& GetTags(void)const { return tags_; }
 
-	//当たり判定の形状を取得
+
+	/// @brief 当たり判定の形状を取得
+	/// @param  
+	/// @return 
 	Geometry& GetGeometry(void)const;
 
-	//衝突させないタグの取得
+	/// @brief 衝突させないタグの取得
+	/// @param  
+	/// @return 
 	inline const std::set<TAG>& GetNotHitTags(void)const { return notHitTags_; }
 
-	//親を取得
+	/// @brief 親を取得
+	/// @param  
+	/// @return 
 	ObjectBase& GetParent(void)const { return parent_; }
 
-	//子クラスがキャラクターである場合、キャラクターベースを取得する
+	/// @brief 子クラスがキャラクターである場合、キャラクターベースを取得する
+	/// @param  
+	/// @return 
 	CharacterBase& GetParentCharacter(void);
 
-	//当たったかの判定の取得
+	/// @brief 当たったかの判定の取得
+	/// @param  
+	/// @return 
 	inline const bool& IsHit(void)const { return isHit_; }
 
-	//当たっていない
+	/// @brief 当たっていない
+	/// @param  
 	inline void NotHit(void) { isHit_ = false; }
 
-	//終了判定の取得
+	/// @brief 終了判定の取得
+	/// @param  
+	/// @return 
 	inline const bool& IsDead(void)const { return isDead_; }
 
-	//終了処理(所持者の解放時に置く)
+	/// @brief 終了処理(所持者の解放時に置く)
+	/// @param  
 	inline void Kill(void) { isDead_ = true; }
 
-	/// <summary>
-	/// 当たった時の処理
-	/// </summary>
-	/// <param name="_collider">相手のコライダ</param>
+
+	/// @brief 当たった時の処理
+	/// @param _collider 相手のコライダ
 	void OnHit(const std::weak_ptr<Collider> _collider);
 
 private:

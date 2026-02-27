@@ -80,7 +80,6 @@ void Player::Load(void)
 	trans_.scl = MODEL_SCL;
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
-
 	trans_.pos = { 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
 	trans_.localPos = { 0.0f,Player::CAP_RADIUS,0.0f };
 
@@ -128,7 +127,7 @@ void Player::Init(void)
 
 void Player::UpdateDirection(void)
 {
-	//アニメーション
+	//アニメーションノ更新
 	animationController_->Update();
 
 	//武器の更新
@@ -148,6 +147,7 @@ void Player::UpdateNormal(void)
 	//プレイヤー状態更新
 	Action();
 
+	//武器
 	weapon_->Update();
 }
 
@@ -182,8 +182,6 @@ void Player::Draw(void)
 	MV1DrawModel(trans_.modelId);
 
 	weapon_->Draw();
-
-	//DrawFormatString(0, 300, 0x000000, L"pos(%d,%f,%f)", trans_.modelId, trans_.pos.y, trans_.pos.z);
 }
 void Player::Draw2D(void)
 {
@@ -249,12 +247,10 @@ void Player::DrawDebug(void)
 	//DrawSphere3D(trans_.cardPos, RADIUS_X, 4, 0xff0000, 0xff0000, true);
 	for (auto& col : collider_)
 	{
-		//colParam.geometry_->Draw();
 		col.second->GetGeometry().Draw();
 	}
 	
 	VECTOR pos = trans_.pos;
-	//DrawFormatString(0, 300, 0x000000, L"action(%d)\n\nisDamage(%d)", static_cast<int>(action_->GetActionType()),isDamage_);
 	DrawFormatString(0, 300, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
 
 	//// 手の位置とグローバルマトリクスを取得
@@ -316,21 +312,15 @@ void Player::MakeColliderGeometry(void)
 
 void Player::Action(void)
 {
-	if (!onHit_->GetHitPoint().isOverHead)
-	{
-		static VECTOR dirDown = trans_.GetDown();
-		//重力(各アクションに重力を反映させたいので先に重力を先に書く)
-		//GravityManager::GetInstance().CalcGravity(dirDown, jumpPow_, 100.0f);
-	}
-	//アクション関係の更新
+	//ロジック
 	logic_->Update();
-
+	//アクション関係の更新
 	action_->Update();
 
+	//当たり判定の更新
 	UpdatePost();
 
 	trans_.quaRot = charaRot_.playerRotY_;
-	//trans_.quaRot = Quaternion::LookRotation(charaRot_.dir_);
 	trans_.Update();
 }
 

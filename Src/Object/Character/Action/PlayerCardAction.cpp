@@ -114,7 +114,7 @@ bool PlayerCardAction::IsAttackable(void)
 bool PlayerCardAction::IsCanComboAttack(void)
 {
 	return cardPresent_.GetCardUIState()!= CardUIBase::CARD_SELECT::DISITION
-		&& actionCntl_.IsCardDisitionControll();
+		&& actionCntl_.IsCardDecisionControl();
 }
 
 void PlayerCardAction::DecideAttackOne(void)
@@ -334,12 +334,13 @@ void PlayerCardAction::ChangeMiddleAttackOne(void)
 	//アニメーションと攻撃判定を調整する
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1_MIDDLE), false
 		, ATTACK_ONE_MID_ANIM_START, ATTACK_ONE_MID_ANIM_END,false);
+
+	//攻撃ステータス
 	atk_ = NORMAL_ATK_ONE_MIDDLE;
 	midAtkOverCnt_ = ATTACK_ONE_MID_COMBO_TIME;
 
-	//突き攻撃の速度は要調整
+	//突き攻撃の方向に向く
 	actionCntl_.GetInput().GetLookAtTargetDir();
-	//dir.y = 0.0f;
 	isTurnable_ = true;
 
 	cardFuncs_.push([this]() {UpdateMiddleAttack(); });

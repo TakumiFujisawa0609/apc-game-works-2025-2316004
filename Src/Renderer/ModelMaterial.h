@@ -24,44 +24,89 @@ public:
 	};
 
 	// コンストラクタ
+	
+	/// @brief コンストラクタ
+	/// @param shaderFileNameVS 頂点シェーダファイル名
+	/// @param constBufFloat4SizeVS 頂点シェーダ定数バッファサイズ
+	/// @param shaderFileNamePS ピクセルシェーダファイル名
+	/// @param constBufFloat4SizePS ピクセルシェーダ定数バッファサイズ
 	ModelMaterial(
 		std::wstring shaderFileNameVS, int constBufFloat4SizeVS,
 		std::wstring shaderFileNamePS, int constBufFloat4SizePS
 	);
 
-	// デストラクタ
+	/// @brief // デストラクタ
+	/// @param  
 	~ModelMaterial(void);
 
-	// 定数バッファを追加
-	void AddConstBufVS(const FLOAT4& contBuf);
-	void AddConstBufPS(const FLOAT4& contBuf);
 
-	// 定数バッファを更新
+	/// @brief 頂点シェーダ定数バッファを追加
+	/// @param contBuf 追加したい定数バッファ
+	void AddConstBufVS(const FLOAT4& contBuf);
+
+	/// @brief ピクセルシェーダ定数バッファを追加
+	/// @param contBuf 追加したい定数バッファ
+	void AddConstBufPS(const FLOAT4& contBuf);
+	
+	/// @brief 頂点シェーダ定数バッファを更新
+	/// @param idx 配列番号
+	/// @param contBuf 定数バッファ
 	void SetConstBufVS(int idx, const FLOAT4& contBuf);
+
+	/// @brief ピクセルシェーダ定数バッファを更新
+	/// @param idx 配列番号
+	/// @param contBuf 定数バッファ
 	void SetConstBufPS(int idx, const FLOAT4& contBuf);
 
-	// テクスチャを更新
+	/// @brief テクスチャを更新
+	/// @param slot スロット番号
+	/// @param texDiffuse テクスチャバッファ
 	void SetTextureBuf(int slot, int texDiffuse);
-
-	// シェーダ
+	
+	/// @brief 頂点シェーダの取得
+	/// @param  
+	/// @return 頂点シェーダ
 	int GetShaderVS(void) const;
+
+	/// @brief ピクセルシェーダの取得
+	/// @param  
+	/// @return ピクセルシェーダ
 	int GetShaderPS(void) const;
 
-	// 定数バッファハンドル
+	/// @brief 頂点シェーダ定数バッファハンドルの取得
+	/// @param  
+	/// @return 頂点シェーダ定数バッファハンドル
 	int GetConstBufVS(void) const;
+
+	/// @brief ピクセルシェーダ定数バッファハンドルの取得
+	/// @param  
+	/// @return ピクセルシェーダ定数バッファハンドル
 	int GetConstBufPS(void) const;
 
-	// 定数バッファ
+	/// @brief 頂点シェーダ定数バッファの取得
+	/// @param  
+	/// @return 頂点シェーダ定数バッファ
 	const std::vector<FLOAT4>& GetConstBufsVS(void) const;
+
+	/// @brief ピクセルシェーダ定数バッファの取得
+	/// @param  
+	/// @return ピクセルシェーダ定数バッファ
 	const std::vector<FLOAT4>& GetConstBufsPS(void) const;
 
-	// 画像
+	/// @brief テクスチャの取得
+	/// @param  
+	/// @return テクスチャ
 	const std::map<int, int>& GetTextures(void) const;
 
-	// テクスチャアドレスを取得
+	/// @brief テクスチャアドレスを取得
+	/// @param  
+	/// @return テクスチャアドレス
 	TEXADDRESS GetTextureAddress(void) const;
 
 	// テクスチャアドレスを設定
+	
+	/// @brief テクスチャアドレスを設定
+	/// @param texA テクスチャアドレス
 	void SetTextureAddress(TEXADDRESS texA);
 
 private:

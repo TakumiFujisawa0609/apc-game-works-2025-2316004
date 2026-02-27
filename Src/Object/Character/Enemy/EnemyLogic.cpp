@@ -31,7 +31,6 @@ void EnemyLogic::Update(void)
 	VECTOR playerPos = targetChara_.lock()->GetTransform().pos;
 	VECTOR targetVec = Utility3D::GetMoveVec(myTrans_.pos,playerPos);
 
-
 	if(freezeCnt_ > 0.0f)
 	{
 		freezeCnt_ -= scnMng_.GetDeltaTime();
@@ -52,13 +51,11 @@ void EnemyLogic::Update(void)
 		//距離が遠いときは近づく
 		isAct_.isRun = true;
 		moveDir_ = targetVec;
-		//moveDeg_ = static_cast<float>(Utility3D::AngleDeg(playerPos, myTrans_.pos));
 		return;
 	}
 
 	//硬直がなかったらカード使用可能
 	if (freezeCnt_ <= 0.0f)
-	//if (InputManager::GetInstance().IsPadBtnTrgDown(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_RIGHT))
 	{
 		DesideAction();
 		isAct_.isCardUse = true;

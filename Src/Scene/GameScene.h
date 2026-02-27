@@ -31,16 +31,20 @@ public:
 
 	};
 
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	GameScene(void);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~GameScene(void);
 
-	//読み込み処理
+	/// @brief 読み込み
+	/// @param  
 	void Load(void) override;
 
-	//初期化処理
+	/// @brief 初期化
+	/// @param  
 	void Init(void) override;
 
 private:

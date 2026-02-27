@@ -22,44 +22,63 @@ public:
 		MAX
 	};
 
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	/// <param name="shaderFileName">シェーダーファイル名</param>
-	/// <param name="constBufFloat4Size">定数バッファの確保サイズ(FLOAT4をいくつ作るか)</param>
+	/// @brief コンストラクタ
+	/// @param shaderFileName シェーダーファイル名
+	/// @param constBufFloat4Size 定数バッファの確保サイズ(FLOAT4をいくつ作るか)
 	PixelMaterial(std::wstring shaderFileName, int constBufFloat4Size);
 
-	// デストラクタ6
+	/// @brief デストラクタ
+	/// @param  
 	~PixelMaterial(void);
 
-	// 定数バッファを追加
+	/// @brief 定数バッファを追加
+	/// @param contBuf 定数バッファ
 	void AddConstBuf(const FLOAT4& contBuf);
 
-	// 定数バッファを更新
+	/// @brief 定数バッファを更新
+	/// @param idx 更新する配列番号
+	/// @param contBuf 更新後の定数バッファ
 	void SetConstBuf(int idx, const FLOAT4& contBuf);
 
-	// テクスチャバッファを追加
+	/// @brief テクスチャバッファを追加
+	/// @param texDiffuse テクスチャ
 	void AddTextureBuf(int texDiffuse);
 
-	// テクスチャを更新
+	/// @brief テクスチャを更新
+	/// @param idx 配列番号
+	/// @param texDiffuse テクスチャ
 	void SetTextureBuf(int idx, int texDiffuse);
 
-	// シェーダ
+	/// @brief シェーダの取得
+	/// @param  
+	/// @return シェーダ
 	int GetShader(void) const;
 
-	// 定数バッファハンドル
+	/// @brief 定数バッファハンドル
+	/// @param  
+	/// @return 定数バッファ
 	int GetConstBuf(void) const;
 
-	// 定数バッファ
+	
+	/// @brief 定数バッファ配列の取得
+	/// @param  
+	/// @return 定数バッファ配列
 	const std::vector<FLOAT4>& GetConstBufs(void) const;
 
-	// 画像
+	/// @brief テクスチャの取得
+	/// @param  
+	/// @return テクスチャ
 	const std::vector<int>& GetTextures(void) const;
 
 	// テクスチャアドレスを取得
+	
+	/// @brief テクスチャアドレスを取得
+	/// @param  
+	/// @return テクスチャアドレス
 	TEXADDRESS GetTextureAddress(void) const;
-
-	// テクスチャアドレスを設定
+	
+	/// @brief テクスチャアドレスを設定
+	/// @param texA テクスチャアドレス
 	void SetTextureAddress(TEXADDRESS texA);
 
 private:

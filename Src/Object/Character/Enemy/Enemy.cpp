@@ -70,10 +70,7 @@ void Enemy::Load(void)
 	//アニメーション
 	AddAnimation();
 
-	//cardUI_ = std::make_unique<EnemyCardUI>();
-
 	effect_->Add(resMng_.Load(ResourceManager::SRC::E_DEATH_EFF).handleId_, EffectController::EFF_TYPE::E_DEATH);
-
 
 	AddAction();
 
@@ -103,8 +100,6 @@ void Enemy::Init(void)
 
 	tag_ = Collider::TAG::ENEMY1;
 	capRadius_ = CAP_RADIUS;
-
-
 
 	//Transformの設定
 	trans_.quaRot = Quaternion();
@@ -262,37 +257,6 @@ void Enemy::MakeColliderGeometry(void)
 	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
 
-	////左手第一関節
-	//geo = std::make_unique<Sphere>(leftArmPos_, 100.0f);
-	//MakeCollider(TAG_PRIORITY::LEFT_ONE, { tag_ }, std::move(geo));
-	//tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_ONE);
-	////左手第二関節
-	//geo = std::make_unique<Sphere>(leftForeArmPos_, 100.0f);
-	//MakeCollider(TAG_PRIORITY::LEFT_TWO, { tag_ }, std::move(geo));
-	//tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_TWO);
-
-	//geo = std::make_unique<Sphere>(leftHandPos_, 100.0f);
-	//MakeCollider(TAG_PRIORITY::LEFT_THREE, { tag_ }, std::move(geo));
-	//tagPrioritys_.emplace_back(TAG_PRIORITY::LEFT_THREE);
-
-
-	//rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
-	//rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
-	//rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
-
-	////右手第一関節
-	//geo = std::make_unique<Sphere>(rightArmPos_, 100.0f);
-	//MakeCollider(TAG_PRIORITY::RIGHT_ONE, { tag_ }, std::move(geo));
-	//tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_ONE);
-	////右手第二関節
-	//geo = std::make_unique<Sphere>(rightForeArmPos_, 100.0f);
-	//MakeCollider(TAG_PRIORITY::RIGHT_TWO, { tag_ }, std::move(geo));
-	//tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_TWO);
-
-	//geo = std::make_unique<Sphere>(rightHandPos_, 100.0f);
-	//MakeCollider(TAG_PRIORITY::RIGHT_THREE, { tag_ }, std::move(geo));
-	//tagPrioritys_.emplace_back(TAG_PRIORITY::RIGHT_THREE);
-
 
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
@@ -309,18 +273,8 @@ void Enemy::UpdateNormal(void)
 {
 	animationController_->Update();
 
-	//logic_->Update();
+	logic_->Update();
 	action_->Update();
-
-	////肩の座標を取得
-	//leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);
-	//leftForeArmPos_ = MV1GetFramePosition(trans_.modelId, 10);
-	//leftHandPos_ = MV1GetFramePosition(trans_.modelId, 11);
-
-	//rightArmPos_ = MV1GetFramePosition(trans_.modelId, 13);
-	//rightForeArmPos_ = MV1GetFramePosition(trans_.modelId, 14);
-	//rightHandPos_ = MV1GetFramePosition(trans_.modelId, 15);
-
 
 	//回転の同期
 	UpdatePost();
@@ -333,15 +287,10 @@ void Enemy::UpdateNormal(void)
 void Enemy::AddAction(void)
 {
 	action_ = std::make_unique<ActionController>(*this, *logic_, trans_, *cardPresent_, *animationController_, InputManager::JOYPAD_NO::PAD1);
-	//footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
-	//using ACTION_TYPE = ActionController::ACTION_TYPE;
-	//action_->AddMainAction<Idle>(ACTION_TYPE::IDLE, *action_);
-	//action_->AddMainAction<Run>(ACTION_TYPE::MOVE, *action_, status_.speed, footSE_, FOOT_SE_DIS);
-	//action_->AddMainAction<React>(ACTION_TYPE::REACT, *action_);
-	//action_->AddMainAction<EnemyCardAction>(ACTION_TYPE::CARD_ACTION, *action_, *this, *cardPresent_);
-	action_->AddAction({ ActionController::ACTION_TYPE::IDLE,ActionController::ACTION_TYPE::MOVE
-		,ActionController::ACTION_TYPE::REACT,ActionController::ACTION_TYPE::CARD_ACTION });
-
+	using ACTION_TYPE = ActionController::ACTION_TYPE;
+	//使用するアクションを追加
+	action_->AddAction({ ACTION_TYPE::IDLE,ACTION_TYPE::MOVE
+		,ACTION_TYPE::REACT,ACTION_TYPE::CARD_ACTION });
 }
 void Enemy::AddAnimation(void)
 {
@@ -359,9 +308,6 @@ void Enemy::AddAnimation(void)
 #ifdef _DEBUG
 void Enemy::DrawDebug(void)
 {
-	////DrawSphere3D(trans_.pos, RADIUS, 4, 0xff0000, 0xff0000, true);
-	//VECTOR euler = trans_.quaRot.ToEuler();
-	//DrawFormatString(100, 100, 0xffffff, L"(%f,%f,%f)", euler.x, logic_->GetMoveDeg(), euler.z);
 	for (auto& col : collider_)
 	{
 		col.second->GetGeometry().Draw();
@@ -375,11 +321,5 @@ void Enemy::DrawDebug(void)
 	VECTOR localPosArm = VSub(leftArm, trans_.pos);
 	VECTOR localPosForeArm = VSub(leftForeArm, trans_.pos);
 	VECTOR localPosHand = VSub(trans_.pos, leftHand);
-
-	//DrawSphere3D(leftArm, 200.0f, 5, 0xff0000, 0xff0000, false);
-
-	//DrawFormatString(600, 300, 0x000000, L"Dir(%f,%f,%f)\nDeg(%f)", logic_->GetDir().x, logic_->GetDir().y, logic_->GetDir().z,logic_->GetMoveDeg());
-
-	//logic_->DebugDraw();
 }
 #endif // _DEBUG

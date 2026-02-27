@@ -37,7 +37,7 @@ public:
 	virtual void Draw(void)override;
 
 	//シェイク時間セット
-	void Shake(void);
+	void SetShakeTime(void);
 
 	/// @brief Hpの更新
 	/// @param  

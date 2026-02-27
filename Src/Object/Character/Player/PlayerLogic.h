@@ -120,7 +120,9 @@ private:
     void KeyBoard(void);
     void Pad(void);
 
+    //カードリボルバーの右方向の入力フラグを取得
     bool IsCardRight(void);
+    //カードリボルバーの左方向の入力フラグを取得
     bool IsCardLeft(void);
 
     //スティック

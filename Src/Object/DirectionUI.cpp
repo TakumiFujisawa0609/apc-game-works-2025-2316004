@@ -26,6 +26,7 @@ void DirectionUI::Load(void)
 	intensiveLineImg_1 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
 	intensiveLineImg_2 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_2).handleId_;
 
+	//スキップボタン
 	imgSkipButtom_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM).handleId_;
 	imgSkipButtomMask_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM_MASK).handleId_;
 
@@ -50,17 +51,23 @@ void DirectionUI::Update(void)
 
 void DirectionUI::Draw(void)
 {
-
+	//円形ゲージ
 	skipArcGaugeRenderer_->Draw();
+
+	//スキップボタン描画
 	const Vector2F leftTop = SKIP_BTN_POS - (SKIP_BTN_SIZE / 2.0f);
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::Y_BUTTON_COL_PUSH, SKIP_BTN_POS, SKIP_BTN_SIZE.x);
-	DrawStringFToHandle(leftTop.x + SKIP_BTN_SIZE.x, leftTop.y + SKIP_BTN_STR_OFFSET_Y, L"ボタン長押しでスキップ", 0x000000, fontHandle_);
+
+	//文字列描画
+	DrawStringFToHandle(leftTop.x + SKIP_BTN_SIZE.x, leftTop.y + SKIP_BTN_STR_OFFSET_Y
+		, L"ボタン長押しでスキップ", 0x000000, fontHandle_);
+
+	//方向アニメーション時に集中線描画
 	if (CharacterManager::GetInstance().GetIsEnemyRoar())
 	{
 		//集中線描画
 		DrawGraph(0, 0, intensiveLineAnimImg_, true);
 	}
-
 }
 
 void DirectionUI::SetSkipGaugePer(const float _skipPer)

@@ -59,16 +59,20 @@ public:
 	//次のボタンのイージングまでの間隔時間
 	static constexpr float EASING_DIS_TIME = 0.1f;
 
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	TitleScene(void);
-
-	// デストラクタ
+	
+	/// @brief デストラクタ
+	/// @param  
 	~TitleScene(void);
 
-	//読み込み処理
+	/// @brief 読み込み処理
+	/// @param  
 	void Load(void) override;
-
-	//初期化処理
+	
+	/// @brief 初期化処理
+	/// @param  
 	void Init(void) override;
 
 private:

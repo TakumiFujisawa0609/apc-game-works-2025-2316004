@@ -21,7 +21,6 @@ CardUIDraw::~CardUIDraw(void)
 }
 void CardUIDraw::Load(void)
 {
-	//trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::CARD_MDL));
 }
 
 void CardUIDraw::Init(void)
@@ -44,6 +43,7 @@ void CardUIDraw::Init(void)
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,0.0f,0.0f });
 
+	//通常カードシェーダ
 	normalCardPSMaterial_ = std::make_unique<PixelMaterial>(L"CardNormalPS.cso", CONST_BUF_SLOT_NUM);
 	normalCardPSMaterial_->AddTextureBuf(typeImg_);
 	normalCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
@@ -51,6 +51,7 @@ void CardUIDraw::Init(void)
 	normalCardPSRenderer_ = std::make_unique<PixelRenderer>(*normalCardPSMaterial_);
 	normalCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
 
+	//リロードカード
 	reloadCardPSMaterial_= std::make_unique<PixelMaterial>(L"CardReloadPS.cso", CONST_BUF_SLOT_NUM);
 	reloadCardPSMaterial_->AddTextureBuf(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_GAGE).handleId_);
 	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色

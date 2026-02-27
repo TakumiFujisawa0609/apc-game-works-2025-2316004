@@ -105,11 +105,6 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 			hitPoint_.isOverHead = true;
 
 			charaObj_.JumpPowZero();
-			//if (action_.GetJumpDecel() > 0.0f)
-			//{
-			//	//オブジェクトの下に当たったら跳ね返るようにする
-			//	action_.SetJumpDecel(DOWN_BOUNCE_DECELERATION);
-			//}
 		}
 	}
 	//移動後座標を一回格納し、移動前をとる

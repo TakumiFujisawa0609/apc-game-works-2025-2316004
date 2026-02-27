@@ -47,33 +47,47 @@ public:
 	// コライダ
 	std::shared_ptr<Collider> collider;
 
-	/// <summary>
-	/// モデル制御の基本情報更新
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief モデル制御の基本情報更新
+	/// @param  
 	void Update(void);
 
+	/// @brief モデルセット
+	/// @param modelHId 
 	void SetModel(int modelHId);
-
-	// 前方方向を取得
+	
+	/// @brief 
+	/// @param  前方方向を取得
+	/// @return 
 	VECTOR GetForward(void) const;
 
-	// 後方方向を取得
+	/// @brief 後方方向を取得
+	/// @param  
+	/// @return 
 	VECTOR GetBack(void) const;
 
-	// 右方向を取得
+	/// @brief 右方向を取得
+	/// @param  
+	/// @return 
 	VECTOR GetRight(void) const;
 
-	// 左方向を取得
+	/// @brief 左方向を取得
+	/// @param  
+	/// @return 
 	VECTOR GetLeft(void) const;
 
-	// 上方向を取得
+	/// @brief 上方向を取得
+	/// @param  
+	/// @return 
 	VECTOR GetUp(void) const;
 
-	// 下方向を取得
+	/// @brief 下方向を取得
+	/// @param  
+	/// @return 
 	VECTOR GetDown(void) const;
 
-	// 対象方向を取得
+	/// @brief 対象方向を取得
+	/// @param vec 
+	/// @return 
 	VECTOR GetDir(const VECTOR& vec) const;
 
 };

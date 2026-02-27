@@ -71,9 +71,9 @@ void CardPresenter::ChangeCard(void)
 	deck_.EraseHandCard();
 	//手札に移動
 	deck_.MoveUsingCardToDrawPile();
-
+	//UIを使用済み状態へ移行
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
-
+	//決定状態へ移行
 	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 
@@ -88,7 +88,6 @@ void CardPresenter::ChangeAction(void)
 	//使用済みへ移行
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 	deck_.EraseHandCard();
-	//uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::NONE);
 }
 
 const bool CardPresenter::IsCardFailure(void)const

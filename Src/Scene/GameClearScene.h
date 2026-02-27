@@ -8,16 +8,20 @@ class GameClearScene :
 {
 public:
 
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	GameClearScene(void);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~GameClearScene(void);
 
-	//読み込み処理
+	/// @brief 読み込み
+	/// @param  
 	void Load(void) override;
 
-	//初期化処理
+	/// @brief 初期化処理
+	/// @param  
 	void Init(void) override;
 
 private:

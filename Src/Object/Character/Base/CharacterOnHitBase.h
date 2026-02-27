@@ -39,11 +39,6 @@ public:
 	/// @param  
 	void InitHit(void);
 
-	/// @brief ダメージ計算
-	/// @param  
-	/// @return 
-	const float DamageCulc(void);
-
 	/// @brief ターゲットと当たったかどうかの取得
 	/// @param  
 	/// @return ターゲットと当たったかどうか

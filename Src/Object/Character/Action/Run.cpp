@@ -43,7 +43,7 @@ void Run::Update(void)
 	}
 
 	//カードを場に出す処理
-	if (actionCntl_.IsCardDisitionControll() && actionCntl_.GetInput().GetIsAct().isCardUse)
+	if (actionCntl_.IsCardDecisionControl() && actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::CARD_ACTION);
 		return;

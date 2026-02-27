@@ -73,7 +73,7 @@ public:
     /// @brief “ü—Í•ûŒü‚ÌŽæ“¾
     /// @param  
     /// @return 
-    const VECTOR& GetInputDir(void)const { return inputDir_; }
+    const VECTOR& GetInputDir(void)const;
 
     /// @brief ˆÚ“®•ûŒü‚ÌŽæ“¾
     /// @param  

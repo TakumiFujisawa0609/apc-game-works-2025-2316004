@@ -52,23 +52,23 @@ public:
 	// アニメーション種別
 	enum class ANIM_TYPE
 	{
-		NONE,
-		IDLE,
-		RUN,
-		REACT,
-		DEATH,
-		ATTACK_1_MIDDLE,
-		ATTACK_1_SHORT,
-		ATTACK_2,
-		ATTACK_3,
-		JUMP,
-		DODGE,
-		CARD_RELOAD,
+		NONE,				//何もしない
+		IDLE,				//アイドル
+		RUN,				//走る
+		REACT,				//ダメージリアクション
+		DEATH,				//死亡
+		ATTACK_1_MIDDLE,	//中距離攻撃
+		ATTACK_1_SHORT,		//近距離攻撃
+		ATTACK_2,			//攻撃2段目
+		ATTACK_3,			//攻撃3段目
+		JUMP,				//ジャンプ
+		DODGE,				//回避
+		CARD_RELOAD,		//カードリロード
 		//敵
-		SWIP_ATK,
-		ROAR_ATK,
-		JUMP_ATK,
-		RUSH_ATK
+		SWIP_ATK,			//ひっかき
+		ROAR_ATK,			//咆哮
+		JUMP_ATK,			//ジャンプ攻撃
+		RUSH_ATK			//突進
 
 	};
 
@@ -238,9 +238,6 @@ public:
 	/// @return 
 	const ActionBase& GetMainAction(void)const;
 	
-	/// @brief　使用済みカードについての処理
-	/// @param  
-	void ChangeCard(void);
 
 	/// @brief 移動後座標の取得
 	/// @param  

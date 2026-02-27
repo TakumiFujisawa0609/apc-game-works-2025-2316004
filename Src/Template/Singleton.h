@@ -9,9 +9,11 @@ class Singleton
 public:
 
     /// <summary>
-    /// インスタンスの生成
+    /// 
     /// </summary>
-    static void CreateInstance()
+    
+    /// @brief インスタンスの生成
+    static void CreateInstance(void)
     {
         if (!instance_)
         {
@@ -19,21 +21,18 @@ public:
         }
     }
 
-    /// <summary>
-    /// インスタンスへのアクセス
-    /// </summary>
-    /// <returns>インスタンス</returns>
-    static T& GetInstance()
+    /// @brief インスタンスへのアクセス
+    /// @param  
+    /// @return インスタンス
+    static T& GetInstance(void)
     {
         assert(instance_ != nullptr && "シングルトンクラスが生成されていない");
         return *instance_;
     }
-
-
-	/// <summary>
-	/// 解放処理
-	/// </summary>
-	static void Destroy()
+	
+    /// @brief 解放処理
+    /// @param  
+    static void Destroy(void)
 	{
 		if (instance_)
 		{
@@ -41,31 +40,24 @@ public:
 			instance_ = nullptr;
 		}
 	}   
-
-    /// <summary>
-    /// コピーコンストラクタを削除
-    /// </summary>
-    /// <param name=""></param>
+    /// @brief コピーコンストラクタを削除
+    /// @param  
     Singleton(const Singleton&) = delete;
-
-    /// <summary>
-    /// コピー代入演算子を削除
-    /// </summary>
-    /// <param name=""></param>
-    /// <returns></returns>
+    
+    /// @brief 
+    /// @param  コピー代入演算子を削除
+    /// @return 
     Singleton& operator=(const Singleton&) = delete;
 
 protected:
 
-    /// <summary>
-    /// デフォルトコンストラクタは protected にして外部生成を防止
-    /// </summary>
+    /// @brief デフォルトコンストラクタは protected にして外部生成を防止
+    /// @param  
     Singleton(void) = default;
 
-    /// <summary>
-    /// デストラクタも protected
-    /// </summary>
-    virtual ~Singleton() = default;
+    /// @brief デストラクタも protected
+    /// @param  
+    virtual ~Singleton(void) = default;
 
 private:
 

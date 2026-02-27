@@ -102,9 +102,12 @@ void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax
 	float time = (moveTimeMax - _cnt) / moveTimeMax;
 	float startRad = startAngle_;
 	float goalRad = goalAngle_;
+
+	//アングルをイージングで補完
 	currentAngle_ = easing_->EaseFuncRad(startRad
 		, goalRad, time,Easing::EASING_TYPE::LERP);
 
+	//カード座標を角度によって回す
 	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
 	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
 }

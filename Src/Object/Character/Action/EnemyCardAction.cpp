@@ -40,6 +40,12 @@ soundMng_(SoundManager::GetInstance())
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
 		{CARD_ACT_TYPE::RUSH_ATK, RUSH_ATK }
 	};
+	changeCardAction_ = {
+		{LogicBase::ENEMY_ATTACK_TYPE::STOMP,[this]() {ChangeCardAction(CARD_ACT_TYPE::STOMP_ATK); }},
+		{LogicBase::ENEMY_ATTACK_TYPE::JUMP,[this]() {ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK); }},
+		{LogicBase::ENEMY_ATTACK_TYPE::ROAR,[this]() {ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK); }},
+		{LogicBase::ENEMY_ATTACK_TYPE::ROLE,[this]() {ChangeCardAction(CARD_ACT_TYPE::RUSH_ATK); }}
+	};
 
 	charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM,atk_.pos);
 
@@ -79,16 +85,13 @@ void EnemyCardAction::Init(void)
 	jampCardNum_ = 0;
 	atk_ = {};
 	atk_.isDamage = false;
+
+	//カード種類を判断して遷移するカードアクションを決める
 	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
-		//if (actionCntl_.GetInput().GetAttackType() == LogicBase::ENEMY_ATTACK_TYPE::JUMP)
-		//{
-		//	ChangeCardAction(CARD_ACT_TYPE::DUEL_FAZE);		//ジャンプチャージ中はデュエルフェーズへ
-		//	return;
-		//}
-		//PutCard();
 		cardPresent_.PutCard();
-		DesideCardAction();
+		LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+		changeCardAction_[attackType]();
 	}
 	else if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD)
 	{

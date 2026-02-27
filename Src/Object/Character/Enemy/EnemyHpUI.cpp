@@ -38,8 +38,6 @@ void EnemyHpUI::Init(void)
 	material_->AddConstBuf(BAR_PURPLE);	//ƒo[‚ÌF(Ž‡)
 	material_->AddConstBuf({ hpData_.hpPer,0.0f,0.0f,0.0f });
 	renderer_->MakeSquareVertex(barCoverPos_, BAR_SIZE);
-	//renderer_->SetPos(barCoverPos_);
-	//renderer_->SetSize(BAR_COVER_SIZE);
 }
 
 void EnemyHpUI::Update(void)

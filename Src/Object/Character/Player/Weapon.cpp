@@ -66,10 +66,6 @@ void Weapon::Update(void)
 void Weapon::Draw(void)
 {
 	MV1DrawModel(trans_.modelId);
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), L"localRot(%f,%f,%f)",localRot_.x, localRot_.y, localRot_.z);
-
-	//if (collider_.size()==0)return;
-	//collider_[TAG_PRIORITY::ATK_SPHERE]->GetGeometry().Draw();
 }
 
 void Weapon::SetTargetAndFrameNo(Transform* _targetTrans, int _frameNo)
@@ -111,9 +107,15 @@ void Weapon::OnHit(const std::weak_ptr<Collider> _hitCol)
 	if (character_.GetIsDamage())return;
 	//エフェクト再生
 	character_.SetIsDamage();
+
+	//ヒットストップで一瞬だけ処理を止める
 	character_.ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::HIT_STOP);
+
+	//カメラシェイク
 	scnMng_.GetInstance().GetCamera().lock()->SetShakeStatus(-1.0f, 100.0f, Easing::EASING_TYPE::ELASTIC_BACK, 0.5f);
 	scnMng_.GetInstance().GetCamera().lock()->ChangeSub(Camera::SUB_MODE::ONE_SHAKE);
+
+	//ヒットエフェクトを再生
 	VECTOR bladeFramePos = MV1GetFramePosition(trans_.modelId, EFFECT_PLAY_FRAME_NO);
 	effect_->Play(EffectController::EFF_TYPE::KEY_BLADE_HIT, bladeFramePos, {}, { EFFECT_PLAY_SCL,EFFECT_PLAY_SCL,EFFECT_PLAY_SCL });
 	SoundManager::GetInstance().Play(SoundManager::SRC::PLAYER_HIT_SE, SoundManager::PLAYTYPE::BACK);

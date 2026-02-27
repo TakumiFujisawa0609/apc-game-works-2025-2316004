@@ -190,10 +190,9 @@ void ActionController::StopResource(void)
 
 }
 
-const bool ActionController::IsCardDisitionControll(void)
+const bool ActionController::IsCardDecisionControl(void)
 {
 	const CardUIBase::CARD_SELECT selectState = cardPresent_.GetCardUIState();
-	//return selectState !=CardUI::CARD_SELECT::LEFT&& selectState != CardUI::CARD_SELECT::RIGHT;
 	return selectState == CardUIBase::CARD_SELECT::NONE;
 }
 
@@ -211,8 +210,6 @@ void ActionController::MoveDirFromInput(void)
 		//•âŠ®Šp“x‚Ìİ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
 		charaObj_.SetGoalRotate();
 	}
-	////•âŠ®Šp“x‚Ìİ’è(“ü—ÍŠp“x‚Ü‚Å•ûŒü“]Š·‚·‚é)
-	//SetGoalRotate(deg);
 }
 
 void ActionController::DirAndMovePowUpdate(void)

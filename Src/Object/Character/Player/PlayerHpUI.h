@@ -27,7 +27,6 @@ private:
 	//線形のYサイズ
 	static constexpr int LINE_SIZE_Y = 34;
 
-
 	//バーの色(明るい緑)
 	static constexpr FLOAT4 BAR_LIGHT_GREEN = { 0.2f, 0.6f, 1.0f,0.0f };
 	//バーの色(青)

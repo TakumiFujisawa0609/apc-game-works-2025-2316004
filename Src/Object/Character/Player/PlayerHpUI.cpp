@@ -32,6 +32,7 @@ void PlayerHpUI::Load(void)
 void PlayerHpUI::Init(void)
 {
 	HpUIBase::Init();
+
 	material_->AddTextureBuf(hpMask_);
 	material_->AddConstBuf(BAR_LIGHT_GREEN);
 	material_->AddConstBuf(BAR_BLUE);
@@ -42,6 +43,7 @@ void PlayerHpUI::Init(void)
 void PlayerHpUI::Update(void)
 {
 	HpUIBase::Update();
+	//シェーダの更新
 	renderer_->SetPos(barPos_);
 	material_->SetConstBuf(2, { hpData_.hpPer,hpData_.preHpPer,0.0f,0.0f });
 }

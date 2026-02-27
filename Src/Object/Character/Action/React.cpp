@@ -35,6 +35,7 @@ void React::Init(void)
 
 void React::Update(void)
 {
+	//ダウン時間中は一定のアニメーションフレームでループ
 	if (flinchCnt_ == 0)
 	{
 		if (anim_.IsEnd())

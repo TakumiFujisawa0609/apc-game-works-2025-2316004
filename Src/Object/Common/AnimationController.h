@@ -66,16 +66,35 @@ public :
 	// 再生終了
 	bool IsEnd(void) const;
 
-	//フレームの行列ローカル座標のセット
+	/// @brief フレームの行列ローカル座標のセット
+	/// @param _modelId モデルID
+	/// @param frameIdx フレーム番号
+	/// @param pos フレーム座標
 	void SetFrameLocalMatrixPos(const int _modelId, const int frameIdx, VECTOR& pos);
 
-
+	/// @brief アニメーションのフレーム位置をセット
+	/// @param modelId モデルID
+	/// @param attachNo アタッチ番号
+	/// @param frameIdx フレーム番号
+	/// @param pos 座標
 	void SetFrameAnimAttachLocalMatrixPos(int modelId, int attachNo, int frameIdx, VECTOR& pos);
 
-
+	/// @brief フレーム行列情報の取得
+	/// @param _modelId モデルID
+	/// @param _frameIdx フレーム番号
+	/// @param _scl スケール
+	/// @param _matRot 行列角度
+	/// @param _pos 座標
 	void GetFrameLocalMatrix(const int _modelId, int _frameIdx, VECTOR& _scl, MATRIX& _matRot, VECTOR& _pos);
 
-
+	/// @brief // 指定アニメーションのフレーム(ボーン)のローカル行列を取得し、
+			   // 拡大縮小・回転・移動成分に分解して出力する
+	/// @param modelId モデルID
+	/// @param attachNo アタッチ番号
+	/// @param frameIdx フレーム番号
+	/// @param scl スケール
+	/// @param matRot 行列角度
+	/// @param pos 座標
 	void GetFrameAnimAttachLocalMatrix(int modelId, int attachNo, int frameIdx, VECTOR& scl, MATRIX& matRot, VECTOR& pos);
 
 private :

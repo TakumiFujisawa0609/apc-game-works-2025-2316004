@@ -88,8 +88,6 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 
 bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 {
-	//カードの勝敗判定
-	//cardPresent_.CardUseUpdate();
 	//相手のカードに負けたらノックバックする
 	if (cardPresent_.IsCardFailure())
 	{
@@ -102,42 +100,33 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 
 void CardActionBase::FinishAttack(const Collider::TAG _attackCol)
 {
-	//攻撃判定無効
-	//cardPresent_.EraseHandCard();
-	//charaObj_.GetCardUI().ChangeUsedActionCard();
+	//カードの終了処理
 	cardPresent_.FinishCard();
 
+	//当たり判定消去
 	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackCol);
 	actType_ = CARD_ACT_TYPE::NONE;
 	cardFuncs_.pop();
 }
 
 void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)
-{
-	//攻撃判定無効
-	//cardPresent_.EraseHandCard(true);
-	//charaObj_.GetCardUI().ChangeReactActionCard();
+{	
+	//カード負け処理
 	cardPresent_.FailureCard();
 
-
+	//攻撃判定無効
 	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(), _attackCol);
 	actType_ = CARD_ACT_TYPE::NONE;
 	cardFuncs_.pop();
 
-
-
+	//ダメージリアクション状態に移行
 	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	actionCntl_.GetInput().IsActioningSet();
 }
 
-void CardActionBase::PutCard(void)
-{
-	//cardPresent_.MoveUsingCardToDrawPile();
-	//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-}
-
 void CardActionBase::SetAtk(const ATK_STATUS& _atkStatus)
 {
+	//攻撃ステータスセット
 	atk_ = _atkStatus;
 
 	//ダメージの初期化

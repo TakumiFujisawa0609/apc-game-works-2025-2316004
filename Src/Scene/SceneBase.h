@@ -27,23 +27,28 @@ public:
 	//タイトル戻る文字列の座標
 	static constexpr Vector2 BACK_TITLE_STRING_POS = { 200,500 };
 
-
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	SceneBase(void);
 
-	// デストラクタ
+	/// @brief デストラクタ 
+	/// @param  
 	virtual ~SceneBase(void);
 
-	// 読み込み処理
+	/// @brief 読み込み処理
+	/// @param  
 	virtual void Load(void);
-
-	// 初期化処理
+	
+	/// @brief 初期化処理
+	/// @param  
 	virtual void Init(void);
 
-	// 更新ステップ
+	/// @brief 更新
+	/// @param  
 	virtual void Update(void);
 
-	// 描画処理
+	/// @brief 描画処理
+	/// @param  
 	virtual void Draw(void);
 
 protected:

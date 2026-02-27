@@ -13,13 +13,17 @@ public:
 	// ピクセルシェーダ用オリジナル定数バッファの使用開始スロット
 	static constexpr int CONSTANT_BUF_SLOT_BEGIN_PS = 4;
 
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param modelId_ モデルID
+	/// @param modelMaterial モデルマテリアル参照
 	ModelRenderer(int modelId_, ModelMaterial& modelMaterial);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~ModelRenderer(void);
 
-	// 描画
+	/// @brief 描画
+	/// @param  
 	void Draw(void);
 
 private:

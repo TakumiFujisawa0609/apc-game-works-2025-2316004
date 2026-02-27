@@ -1,5 +1,7 @@
 #include "./CharacterBase.h"
 #include "../Base/CardActionBase.h"
+#include "../Manager/Generic/SceneManager.h"
+#include "../../../Manager/Generic/Camera.h"
 #include"../Utility/Utility3D.h"
 #include "LogicBase.h"
 
@@ -15,6 +17,15 @@ LogicBase::LogicBase(Transform& _myTrans):
 
 LogicBase::~LogicBase(void)
 {
+}
+
+const VECTOR& LogicBase::GetInputDir(void) const
+{
+	//カメラの角度を取得
+	auto camera = SceneManager::GetInstance().GetCamera();
+	VECTOR cameraRot = camera.lock()->GetAngles();
+	Quaternion cameraQuaRot = camera.lock()->GetQuaRotOutX();
+	return cameraQuaRot.PosAxis(inputDir_);
 }
 
 const bool LogicBase::GetIsEnemyJumpCharge(void)const

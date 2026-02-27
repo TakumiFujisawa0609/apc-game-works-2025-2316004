@@ -17,22 +17,30 @@ public:
 	//リスト
 	static constexpr int LIST_MAX = static_cast<int>(LIST::MAX);
 
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	PauseScene(void);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~PauseScene(void) override;
 
-	//読み込み処理
+	/// @brief 読み込み
+	/// @param  
 	void Load(void)override;
 
-	//初期化処理
+	/// @brief 初期化
+	/// @param  
 	void Init(void)override;
 
-	//更新関数
+	//
+	
+	/// @brief 更新
+	/// @param  
 	void NormalUpdate(void)override;
-
-	//描画関数
+	
+	/// @brief 描画
+	/// @param  
 	void NormalDraw(void)override;
 
 private:

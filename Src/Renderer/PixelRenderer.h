@@ -27,22 +27,37 @@ public:
 	~PixelRenderer(void);
 
 	// 描画矩形の生成
-	void MakeSquareVertex(Vector2F pos, Vector2F size);
+	
+	/// @brief 描画矩形の生成
+	/// @param pos 描画座標
+	/// @param size サイズ
+	void MakeSquareVertex(Vector2F pos, Vector2F size); 
 	void MakeSquareVertex(void);
-	//中心から作る矩形
+	//
+	
+	/// @brief 中心から作る矩形
+	/// @param centerPos 中心座標
+	/// @param size サイズ
 	void MakeSquareVertexFromCenter(Vector2F centerPos, Vector2F size);
 	void MakeSquareVertexFromCenter(void);
-	//頂点の作成
+
+	/// @brief 頂点の作成
+	/// @param sX 始端X座標
+	/// @param sY 始端Y座標
+	/// @param eX 終端X座標
+	/// @param eY 終端Y座標
 	void MakeVertex(float sX, float sY, float eX, float eY);
 
 	/// @brief スクリーンサイズに合わせた頂点作成
 	/// @param  
 	void MakeScreenVertex(void);
 
-	// 座標設定
+	/// @brief 座標設定
+	/// @param pos 座標
 	void SetPos(Vector2F pos);
 
-	// 画像サイズ設定
+	/// @brief 画像サイズ設定
+	/// @param size サイズ
 	void SetSize(Vector2F size);
 
 	// 描画

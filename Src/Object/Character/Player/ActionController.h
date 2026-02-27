@@ -135,7 +135,7 @@ public:
 	/// @brief カード選択条件
 	/// @param  
 	/// @return true:カード選択できる
-	const bool IsCardDisitionControll(void);
+	const bool IsCardDecisionControl(void);
 
 	/// @brief のけぞりカウントのセット
 	/// @param _flinchTime のけぞらせたい時間

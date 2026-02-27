@@ -164,6 +164,9 @@ private:
     //イージング
     std::unique_ptr<Easing>easing_;
 
+    //状態遷移
+    std::unordered_map<LogicBase::ENEMY_ATTACK_TYPE, std::function<void(void)>>changeCardAction_;
+
     //遷移
     void ChangeStomp(void);
     void ChangeRoar(void);

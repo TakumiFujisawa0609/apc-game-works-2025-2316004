@@ -138,15 +138,12 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 
 void CardUIBase::DecisionMoveCardAll(void)
 {
-	//disitionCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 	//選択したカードの情報を取得
 	for (auto& card : actions_)
 	{
 		if (card->GetState() == CardUIController::CARD_STATE::REACT)continue;
-		//card->ChangeUsing();
 
 		card->DecisionMove();
-		//DecisionMoveSpecificCard(card);
 	}
 
 }

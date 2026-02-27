@@ -37,6 +37,8 @@ void HpUIBase::Init(void)
 
 void HpUIBase::Update(void)
 {
+
+	//HPの減らし幅ゲージの補完
 	if (hpDis_ > 0.0f)
 	{
 		float lerpStart = hpData_.hpPer + hpDis_;
@@ -55,6 +57,7 @@ void HpUIBase::Update(void)
 		waitCnt_ = WAIT_TIME;
 	}
 
+	//HPバーのシェイク
 	if (shakeCnt_ > 0.0f)
 	{
 		barCoverPos_.y = easing_->EaseFunc(initCoverPos_.y, initCoverPos_.y+COVER_SHAKE_POW_Y,
@@ -67,7 +70,7 @@ void HpUIBase::Update(void)
 	}
 }
 
-void HpUIBase::Shake(void)
+void HpUIBase::SetShakeTime(void)
 {
 	shakeCnt_ = SHAKE_CNT;
 }

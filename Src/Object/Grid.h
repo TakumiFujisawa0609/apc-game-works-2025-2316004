@@ -5,37 +5,28 @@ class Grid
 
 public:
 
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief コンストラクタ
+	/// @param  
 	Grid(void);
 
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief コンストラクタ
+	/// @param  
 	~Grid(void);
 
-	/// <summary>
-	/// 初期化処理
-	/// </summary>
-	/// <param name=""></param>
+	/// @brief 初期化処理
+	/// @param  
 	void Init(void);
-	/// <summary>
-	/// 更新処理
-	/// </summary>
-	/// <param name=""></param>
+
+	/// @brief 更新処理
+	/// @param  
 	void Update(void);
-	/// <summary>
-	/// 描画処理
-	/// </summary>
-	/// <param name=""></param>
+	
+	/// @brief 描画処理
+	/// @param  
 	void Draw(void);
-	/// <summary>
-	/// 解放処理
-	/// </summary>
-	/// <param name=""></param>
+
+	/// @brief 解放処理
+	/// @param  
 	void Release(void);
 
 };

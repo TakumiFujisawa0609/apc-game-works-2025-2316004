@@ -76,25 +76,6 @@ void CharacterBase::DeleteAttackCol(const Collider::TAG& _charaTag, const Collid
 	if (!IsAliveCollider(_charaTag, _attackCol))return;
 	DeleteCollider(TAG_PRIORITY::ATK_SPHERE);
 }
-//
-//void CharacterBase::CardInit(void)
-//{
-//	cardPresent_ = std::make_shared<CardDeck>(cardCenterPos_, PLAYER_NUM);
-//
-//	cardUI_ = std::make_unique<PlayerCardUI>();
-//	cardUI_->Load();
-//
-//	//デッキの先頭にリロードカード追加
-//	cardPresent_->AddDrawPile(RELOAD_CARD_STATUS);
-//	cardUI_->AddCardUi(RELOAD_CARD_STATUS);
-//	//デッキに山札追加
-//	for (int i = 0; i < CARD_NUM_MAX; i++)
-//	{
-//		cardPresent_->AddDrawPile(CARD_POWS[i]);
-//		cardUI_->AddCardUi(CARD_POWS[i]);
-//	}
-//	cardPresent_->Load();
-//}
 
 void CharacterBase::UpdatePost(void)
 {
@@ -116,11 +97,6 @@ void CharacterBase::UpdatePost(void)
 
 	//移動制限
 	MoveLimit(Stage::STAGE_POS, { Stage::STAGE_SIZE,0.0f, Stage::STAGE_SIZE });
-	////地面接地ライン
-	//if (movedPos_.y < 0.0f)
-	//{
-	//	movedPos_.y = 0.0f;
-	//}
 
 	//移動前の座標を格納する
 	moveDiff_ = trans_.pos;
@@ -215,13 +191,12 @@ void CharacterBase::Rotate(void)
 	// 回転の球面補間
 	charaRot_.playerRotY_ = Quaternion::Slerp(
 		charaRot_.playerRotY_, charaRot_.goalQuaRot_, (TIME_ROT - charaRot_.stepRotTime_) / TIME_ROT);
-	//charaRot_.playerRotY_ = charaRot_.goalQuaRot_;
 }
 
 void CharacterBase::Damage(const int _dam)
 {
 	//ダメージを受ける前にUI補間するためのpreHpを計算
-	//hpUi_->Shake();
+	//hpUi_->SetShakeTime();
 	HP_DATA hpData = {};
 	//減らす前のhpを入れる
 	hpData.preHpPer = status_.hp / maxStatus_.hp;
@@ -267,16 +242,6 @@ const ActionBase& CharacterBase::GetMainAction(void) const
 	return action_->GetMainAction();
 }
 
-void CharacterBase::ChangeCard(void)
-{
-	//現在使っているカードを捨てる
-	deck_->EraseHandCard();
-	//手札に移動
-	deck_->MoveUsingCardToDrawPile();
-	//cardUI_->ChangeUsedActionCard();
-	uiMng_.GetCardUI(characterType_).ChangeUsedActionCard();
-	//charaObj_.GetCardUI().ChangeSelectState(CardUI::CARD_SELECT::DISITION);
-}
 
 const CharacterOnHitBase::HIT_POINT& CharacterBase::GetHitPoint(void) const
 {
@@ -336,7 +301,6 @@ void CharacterBase::SetIsAliveEnemyRock(const bool _isAlive)
 		{
 			rock->Init();
 		}
-
 	}
 }
 
@@ -365,14 +329,6 @@ void CharacterBase::UpdateNone(void)
 {
 	//何もしない
 }
-
-//void CharacterBase::UpdateNormal(void)
-//{
-//}
-//
-//void CharacterBase::UpdateDirection(void)
-//{
-//}
 
 void CharacterBase::UpdateHitStop(void)
 {

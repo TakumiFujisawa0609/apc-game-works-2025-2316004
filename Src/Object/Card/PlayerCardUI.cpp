@@ -461,7 +461,7 @@ void PlayerCardUI::UpdateReloadWait(void)
 	{
 		//ˆêunoneó‘Ô‚É‚·‚é
 		ChangeSelectState(CARD_SELECT::NONE);
-		//InitCardUI();
+		
 		ChangeSelectState(CARD_SELECT::RELOAD);
 
 		reloadPer_ = 0.0f;
@@ -498,7 +498,6 @@ void PlayerCardUI::MoveCardAll(const float& _moveTImeMax)
 {
 	for (auto& card : visibleCards_)
 	{
-		//MoveSpecificCard(card);
 		card->MoveOnRevolver(cardMoveCnt_, _moveTImeMax);
 	}
 }
@@ -508,7 +507,6 @@ void PlayerCardUI::UpdateDrawCardUI(void)
 	//Œ©‚¦‚Ä‚¢‚é•”•ª‚¾‚¯XV
 	for (auto& card : visibleCards_)
 	{
-		//DrawCard(card);
 		card->Update();
 	}
 }

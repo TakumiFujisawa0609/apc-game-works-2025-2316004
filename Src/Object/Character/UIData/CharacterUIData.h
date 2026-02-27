@@ -10,8 +10,3 @@ struct HP_DATA
 	float preHpPer;
 };
 
-struct PlayerUIData
-{
-
-};
-

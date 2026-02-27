@@ -5,16 +5,21 @@ class GameOverScene :
     public SceneBase
 {
 public:
-	// コンストラクタ
+
+	/// @brief コンストラクタ
+	/// @param  
 	GameOverScene(void);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~GameOverScene(void);
 
-	//読み込み処理
+	/// @brief 読み込み
+	/// @param  
 	void Load(void) override;
-
-	//初期化処理
+	
+	/// @brief 初期化処理
+	/// @param  
 	void Init(void) override;
 
 private:

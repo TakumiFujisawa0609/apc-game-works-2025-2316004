@@ -45,9 +45,6 @@ const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Coll
 			}
 		}
 	}
-
-
-
 	return false;
 }
 

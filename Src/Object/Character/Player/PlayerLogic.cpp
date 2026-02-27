@@ -150,13 +150,6 @@ void PlayerLogic::InputPad(void)
 	using ATK_ACT = Player::ATK_ACT;
 	actCntl_ = ACT_CNTL::NONE;
 
-#ifdef _DEBUG
-	//if (input_.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
-	//{
-	//	ChangeInput(InputManager::TYPE::ALL);
-	//}
-#endif // _DEBUG
-
 
 	//スティックの倒れ値が200以上だったら
 	if (inputS_.IsPressed(INPUT_EVENT::UP) || inputS_.IsPressed(INPUT_EVENT::DOWN)
