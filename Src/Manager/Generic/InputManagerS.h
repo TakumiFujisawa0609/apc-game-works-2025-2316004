@@ -1,16 +1,14 @@
 #pragma once
 #include <DxLib.h>
-#include <map>				//対応表のため
-#include <unordered_map>	//対応表のため
-#include <string>			//対応キーのため
-#include <vector>			//デバイスを追加するため
+#include <map>				
+#include <unordered_map>	
+#include <string>			
+#include <vector>			
 #include <functional>
 #include"InputManager.h"
 #include "../../Template/Singleton.h"
 
-/// <summary>
 /// 入力イベント
-/// </summary>
 enum class INPUT_EVENT
 {
 	OK,		//決定
@@ -28,9 +26,7 @@ static constexpr int INPUT_EVENT_MAX = static_cast<int>(INPUT_EVENT::MAX);
 //入力サイズ
 static constexpr int INPUTABLE_STICK_SIZE = 50000;
 
-/// <summary>
 /// 主変機器種別
-/// </summary>
 enum class PEIPHERAL_TYPE
 {
 	KEYBOARD,	//キーボード
@@ -40,9 +36,7 @@ enum class PEIPHERAL_TYPE
 	MAX
 };
 
-/// <summary>
 /// アナログ入力種類
-/// </summary>
 enum class ANALOG_INPUT_TYPE
 {
 	NONE,
@@ -100,8 +94,9 @@ public:
 	/// @return 
 	float GetRStickDeg(InputManager::JOYPAD_NO no) const;
 
-
-	//上を0.0度として角度を渡す
+	/// @brief 上を0.0度として角度を渡す
+	/// @param no コントローラー番号
+	/// @return 
 	Vector2 GetKnockLStickSize(InputManager::JOYPAD_NO no) const;
 	Vector2 GetKnockRStickSize(InputManager::JOYPAD_NO no) const;
 private:

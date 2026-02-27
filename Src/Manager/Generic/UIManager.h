@@ -18,7 +18,6 @@ public:
 	/// @param  
 	void Load(void);
 
-
 	/// @brief ‰Šú‰»
 	/// @param  
 	void Init(void);

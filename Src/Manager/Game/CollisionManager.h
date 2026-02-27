@@ -4,12 +4,14 @@
 #include<memory>
 #include<map>
 #include<functional>
+#include"../Template/Singleton.h"
 #include"../Object/Common/Collider.h"
 
 class Geometry;
 
-class CollisionManager
+class CollisionManager :public Singleton<CollisionManager>
 {
+	friend class Singleton<CollisionManager>;
 public:
 
 	//当たり判定をする範囲
@@ -21,43 +23,30 @@ public:
 
 	//更新用
 	static constexpr int COL_UPDATE_FRAME = 0;		//更新フレーム
-	
-	//インスタンス生成
-	static void CreateInstance(void);
 
-	//インスタンスの取得
-	static CollisionManager& GetInstance(void) { return *instance_; }
-
-	//コライダの追加
+	/// @brief コライダの追加
+	/// @param _collider 追加したいコライダ
 	void AddCollider(const std::shared_ptr<Collider> _collider);
 
-	//必要なくなったコライダの削除(更新の最後に置く)
+	/// @brief 必要なくなったコライダの削除(更新の最後に置く)
+	/// @param  
 	void Sweep(void);
 
-	//更新
+	/// @brief 更新
+	/// @param  
 	void Update(void);
-
-	//削除
-	void Destroy(void);
-
-	/// <summary>
-	/// そのタグがプレイヤーかどうか調べる
-	/// </summary>
-	/// <param name="_tag">調べるタグ</param>
-	/// <returns>true:プレイヤーだった</returns>
+	
+	/// @brief そのタグがプレイヤーかどうか調べる
+	/// @param _tag 調べるタグ
+	/// @return true:プレイヤーだった
 	const bool IsPlayer(const Collider::TAG _tag)const;
 
-	/// <summary>
-	/// そのタグがアイテムかどうか調べる
-	/// </summary>
-	/// <param name="_tag">調べるタグ</param>
-	/// <returns>true:アイテムだった</returns>
+	/// @brief そのタグがアイテムかどうか調べる
+	/// @param _tag 調べるタグ
+	/// @return アイテムだった
 	const bool IsItem(const Collider::TAG _tag)const;
 
 private:
-
-	//静的インスタンス
-	static CollisionManager* instance_;
 
 	//当たり判定格納
 	std::vector<std::shared_ptr<Collider>>colliders3D_;
@@ -81,38 +70,31 @@ private:
 	//デストラクタ
 	~CollisionManager(void);
 
-	/// <summary>
-	/// 当たり判定距離内にいるか
-	/// </summary>
-	/// <param name="_col1">1つ目のコライダ</param>
-	/// <param name="_col2">2つ目のコライダ</param>
-	/// <returns>true:範囲内</returns>
+	/// @brief 当たり判定距離内にいるか
+	/// @param _col1 1つ目のコライダ
+	/// @param _col2 2つ目のコライダ
+	/// @return true:範囲内
 	const bool IsWithInHitRange(const std::weak_ptr<Collider> _col1, const std::weak_ptr<Collider> _col2)const;
 
-	/// <summary>
-	/// 当たり判定をするか(全部当てはまったらtrue)
-	/// </summary>
-	/// <param name="_col1">1つ目のコライダ番号</param>
-	/// <param name="_col2">2つ目のコライダ番号</param>
-	/// <returns>true:当たり判定をする</returns>
+	/// @brief 当たり判定をするか(全部当てはまったらtrue)
+	/// @param _col1Num 1つ目のコライダ番号
+	/// @param _col2Num 2つ目のコライダ番号
+	/// @return 当たり判定
 	const bool JudgeIsCollision(const int _col1Num, const int _col2Num)const;
 
-	/// <summary>
-	/// タグごとでの当たり判定するかどうか
-	/// </summary>
-	/// <param name="_tag1">1つ目のタグ</param>
-	/// <param name="_tag2">2つ目のタグ</param>
-	/// <returns>true:当たり判定をする</returns>
+	/// @brief タグごとでの当たり判定するかどうか
+	/// @param _tag1 1つ目のタグ
+	/// @param _tag2 2つ目のタグ
+	/// @return 当たり判定
 	const bool JudgeIsColTag(const Collider::TAG _tag1, const Collider::TAG _tag2)const;
-
-	/// <summary>
-	/// 当たり判定
-	/// </summary>
-	/// <param name="_col1">1つ目のコライダ</param>
-	/// <param name="_col2">2つ目のコライダ</param>
-	/// <returns>true:当たった</returns>
+	
+	/// @brief 当たり判定
+	/// @param _col1 1つ目のコライダ
+	/// @param _col2 2つ目のコライダ
+	/// @return 
 	bool IsCollision(const std::weak_ptr<Collider> _col1, const std::weak_ptr<Collider> _col2);
 
+	/// @brief 当たったときの処理
 	Collider::TAG GetTopTags(const std::weak_ptr<Collider> _col);
 
 };

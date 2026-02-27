@@ -54,10 +54,8 @@ public:
 	/// @param _isWin 
 	inline void SetIsWin(const bool& _isWin) { isWin_ = _isWin; }
 
-	/// <summary>
-	/// カード使用済みのセット
-	/// </summary>
-	/// <param name="_isUsed">true:使用済み　false:未使用</param>
+	/// @brief カード使用済みのセット
+	/// @param _isUsed true:使用済み　false:未使用
 	inline void SetIsUsed(const bool& _isUsed) { isUsed_ = _isUsed; }
 
 protected:

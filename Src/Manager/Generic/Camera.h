@@ -97,45 +97,83 @@ public:
 		ONE_SHAKE,	//一回のみシェイク
 	};
 
+	/// @brief コンストラクタ
+	/// @param  
 	Camera(void);
+
+	/// @brief デストラクタ
+	/// @param  
 	~Camera(void);
 
-	//当たり判定配列の格納
+	/// @brief 当たり判定配列の格納
+	/// @param  
 	void MakeColliderGeometry(void);
 
+	/// @brief 初期化
+	/// @param  
 	void Init(void)override;
+
+	/// @brief 更新
+	/// @param  
 	void Update(void)override;
+
+	/// @brief カメラの設定
+	/// @param  
 	void SetBeforeDraw(void);
+
+	/// @brief 描画
+	/// @param  
 	void Draw(void)override;
 
-	// カメラ位置
-	VECTOR GetPos(void) const;
-	// カメラの操作角度
-	VECTOR GetAngles(void) const;
-	// カメラの注視点
-	VECTOR GetTargetPos(void) const;
+	/// @brief カメラ位置の取得
+	/// @param  
+	/// @return カメラ位置
+	const VECTOR GetPos(void) const { return pos_; }
 
-	// カメラ角度
-	Quaternion GetQuaRot(void) const;
-	// X回転を抜いたカメラ角度
-	Quaternion GetQuaRotOutX(void) const;
-	// カメラの前方方向
+	/// @brief カメラの操作角度
+	/// @param  
+	/// @return カメラ角度
+	const VECTOR GetAngles(void) const { return angles_; }
+
+	/// @brief カメラの注視点の角度
+	/// @param  
+	/// @return カメラの注視点
+	const VECTOR GetTargetPos(void) const {return pos_;}
+
+	/// @brief カメラ角度の取得
+	/// @param  
+	/// @return カメラ角度
+	const Quaternion GetQuaRot(void) const {return rot_;}
+
+	/// @brief X回転を抜いたカメラ角度の取得
+	/// @param  
+	/// @return X回転を抜いたカメラ角度
+	const Quaternion GetQuaRotOutX(void) const { return rotOutX_; }
+
+	/// @brief カメラの前方方向の取得
+	/// @param  
+	/// @return カメラの前方方向
 	VECTOR GetForward(void) const;
 
-	// カメラモードの変更
+	/// @brief カメラモードの変更
+	/// @param mode 変更後のカメラモード
 	void ChangeMode(const MODE mode);
 	
 	/// @brief サブ処理の変更
 	/// @param _submode サブ処理(イージングなど)
 	void ChangeSub(const SUB_MODE _submode);
 
-	// 追従対象の設定
+	/// @brief 追従対象の設定
+	/// @param _follow 追従したい対象のTransform
+	/// @param _localCenterPos 対象の中心位置からのローカル座標
 	void SetFollow(const Transform* _follow,const VECTOR _localCenterPos);
 
-	//ターゲットとする対象の設定
+	/// @brief ターゲットとする対象の設定
+	/// @param _target ターゲット
 	void SetTarget(const Transform* _target);
 
-	//ターゲットの座標セット
+	/// @brief ターゲットの座標セット
+	/// @param _targetPos ターゲットの座標
 	void SetTargetPos(const VECTOR _targetPos);
 	
 	/// @brief シェイク時にセットするカウント(割合)
@@ -146,16 +184,24 @@ public:
 	void SetShakeStatus(const float t, const float limit = 0.0f
 		, const Easing::EASING_TYPE _easeType = Easing::EASING_TYPE::COS_BACK, const float shakeTime=0.0f);
 
+	/// @brief カメラとステージの当たり判定のためのステージのTransformのセット
+	/// @param _stageTrans ステージのTransform
 	void SetStageTransform(const Transform* _stageTrans)
 	{
 		stageTransform_ = _stageTrans;
 	}
 
+	/// @brief 演出カメラの終了判定の取得
+	/// @param  
+	/// @return 演出カメラの終了判定
 	const bool IsEndDirectionMode(void)
 	{
 		return mode_ == MODE::FOLLOW;
 	}
 
+	/// @brief 演出カメラのモードの取得
+	/// @param  
+	/// @return 演出カメラのモード
 	const DIRECTION_MODE GetDirectionMode(void) const
 	{
 		return directionMode_;

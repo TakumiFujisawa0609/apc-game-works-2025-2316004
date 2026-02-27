@@ -11,18 +11,38 @@ class CardUIDraw :public ObjectBase
 
 public:
 
+	/// @brief コンストラクタ
+	/// @param _typeImg カード画像
+	/// @param _centerPos 中心座標
+	/// @param _scl 大きさ
 	CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl);
+
+	/// @brief デストラクタ
+	/// @param  
 	~CardUIDraw(void);
+
+	/// @brief ロード
+	/// @param  
 	void Load(void)override;
+
+	/// @brief 初期化
+	/// @param  
 	void Init(void)override;
+
+	/// @brief 更新
+	/// @param  
 	void Update(void)override;
+
+	/// @brief 描画
+	/// @param  
 	void Draw(void)override;
 
 	/// @brief 選択カード枠描画
 	/// @param  
 	void DrawSelectedFrame(void);
 
-	//選択カード描画
+	/// @brief 選択カード描画
+	/// @param  
 	void DrawSelectCard(void);
 
 	/// @brief リロードゲージ描画

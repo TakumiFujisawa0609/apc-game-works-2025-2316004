@@ -62,20 +62,23 @@ public:
 
 	/// @brief ゲームオーバー演出の終了
 	/// @param  
-	/// @return 
+	/// @return true:終了　false:終了してない
 	const bool GetIsEndOverDirection(void)const;
 
 	/// @brief 通常状態へ移行
 	/// @param  
 	void ChangeCharacterNormalUpdate(void);
 
-	//演出状態へ
+	/// @brief 演出状態へ
+	/// @param  
 	void ChangeCharacterDirectionUpdate(void);
 
-	//クリア演出へ
+	/// @brief クリア演出へ
+	/// @param  
 	void ChangeCharacterClearDirection(void);
 
-	//ゲームオーバー演出へ
+	/// @brief ゲームオーバー演出へ
+	/// @param  
 	void ChangeCharacterOverDirection(void);
 
 private:

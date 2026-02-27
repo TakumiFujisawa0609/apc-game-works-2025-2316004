@@ -8,20 +8,30 @@ class FpsControl
 {
 public:
 
-	FpsControl();	// コンストラクタ
-	~FpsControl();	// デストラクタ
+	/// @brief コンストラクタ
+	/// @param  
+	FpsControl(void);
 
-	//初期化
-	void Init();
+	/// @brief デストラクタ
+	/// @param  
+	~FpsControl(void);
+	
+	/// @brief 初期化
+	/// @param  
+	void Init(void);
 
-	//フレームレート更新
-	bool UpdateFrameRate();
+	/// @brief フレームレート更新
+	/// @param  
+	/// @return 
+	bool UpdateFrameRate(void);
 
-	//フレームレート計算
-	void CalcFrameRate();
-
-	//フレームレート表示(デバッグ表示)
-	void DrawFrameRate();
+	/// @brief フレームレート計算
+	/// @param  
+	void CalcFrameRate(void);
+	
+	/// @brief フレームレート表示(デバッグ表示)
+	/// @param  
+	void DrawFrameRate(void);
 
 private:
 

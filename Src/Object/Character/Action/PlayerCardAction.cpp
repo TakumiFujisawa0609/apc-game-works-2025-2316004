@@ -380,9 +380,9 @@ void PlayerCardAction::ChangeReload(void)
 	//ƒŠƒ[ƒh‰¹Ä¶
 	soundMng_.Play(SoundManager::SRC::CARD_RELOAD, SoundManager::PLAYTYPE::LOOP);
 
-	constexpr float EFF_SCL = 100.0f;
+
 	const Transform& trans = charaObj_.GetTransform();
-	effect_->Play(EffectController::EFF_TYPE::RELOAD, trans.pos, trans.quaRot, { EFF_SCL,EFF_SCL,EFF_SCL }, true);
+	effect_->Play(EffectController::EFF_TYPE::RELOAD, trans.pos, trans.quaRot, { RELOD_EFF_SCL,RELOD_EFF_SCL,RELOD_EFF_SCL }, true);
 
 	cardFuncs_.push([this]() {UpdateReload(); });
 }

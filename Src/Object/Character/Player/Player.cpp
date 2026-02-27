@@ -7,7 +7,6 @@
 #include "../../../Manager/Generic/Camera.h"
 #include "../../../Manager/Generic/DataBank.h"
 #include "../../../Manager/Generic/UIManager.h"
-#include "../Manager/Game/GravityManager.h"
 #include "../Manager/Game/CharacterManager.h"
 #include"../../Common/Geometry/Capsule.h"
 #include"../../Common/Geometry/Sphere.h"

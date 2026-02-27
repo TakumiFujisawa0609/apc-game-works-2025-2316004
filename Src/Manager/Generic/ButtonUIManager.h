@@ -123,14 +123,24 @@ public:
 		BACK_BUTTON_ICON_PUSH
 	};
 
-	//ロード
+	/// @brief ロード
+	/// @param  
 	void Load(void);
 
-	//初期化
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
 
-	//描画
+	/// @brief 描画
+	/// @param _btnType ボタンの種類
+	/// @param _centerPos 中心座標
+	/// @param _size サイズ
 	void DrawFromCenter(const BTN_UI_TYPE _btnType, const Vector2F _centerPos, const float _size = 64.0f);
+
+	/// @brief 描画
+	/// @param _btnType ボタンの種類
+	/// @param _centerPos 左上座標
+	/// @param _size サイズ
 	void DrawFromLeftTop(const BTN_UI_TYPE _btnType, const Vector2F _leftTopPos, const float _size = 64.0f);
 
 private:

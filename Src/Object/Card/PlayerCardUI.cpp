@@ -390,6 +390,7 @@ void PlayerCardUI::ChangeReloadWait(void)
 }
 void PlayerCardUI::ChangeReload(void)
 {
+	//配列の初期化
 	handCards_.clear();
 	visibleCards_.clear();
 
@@ -485,7 +486,6 @@ void PlayerCardUI::UpdateReload(void)
 			if (!handCards_.empty())
 			{
 				handCurrent_ = handCards_.begin();
-				//handCurrent_++;
 			}
 			SetBasePosVisibleCards();
 			ChangeSelectState(CARD_SELECT::NONE);
@@ -682,18 +682,19 @@ void PlayerCardUI::MoveUpDownVisibleCards(void)
 void PlayerCardUI::DrawArrowAndBotton(void)
 {
 
+	//リボルバー回転方向の左方向矢印の描画
 	DrawRotaGraph(REVOLVER_ARROW_L_POS.x, REVOLVER_ARROW_L_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_L_ANGLE), imgRevolverArrowLeft_, true);
-
+	//リボルバー回転方向の右方向矢印の描画
 	DrawRotaGraph(REVOLVER_ARROW_R_POS.x, REVOLVER_ARROW_R_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_R_ANGLE), imgRevolverArrowRight_, true);
 
 	Vector2F btnPos = REVOLVER_ARROW_L_POS;
-	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + 10.0f;
+	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + REVOLVER_BTN_ARROW_OFFSET;
 
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::LBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 	btnPos = REVOLVER_ARROW_R_POS;
-	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + 10.0f;
+	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + REVOLVER_BTN_ARROW_OFFSET;
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::RBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 
 }

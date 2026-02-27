@@ -56,12 +56,6 @@ public:
 	/// @return true:場に出せる false:場に出せない
 	const bool GetCanPut(void) const { return canPut_; }
 
-	/// <summary>
-	/// 勝敗結果の取得
-	/// </summary>
-	/// <param name="_cardPlayerNo"></param>
-	/// <returns>カード勝負プレイヤーの番号</returns>
-	
 	/// @brief 勝敗結果の取得
 	/// @param _cardPlayerNo カード勝負プレイヤーの番号
 	/// @return 勝敗結果

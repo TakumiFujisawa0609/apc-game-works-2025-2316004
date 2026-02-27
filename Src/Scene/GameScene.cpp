@@ -11,7 +11,6 @@
 #include "../Manager/Generic/UIManager.h"
 #include "../Manager/Game/CollisionManager.h"
 #include "../Manager/Game/CharacterManager.h"
-#include "../Manager/Game/GravityManager.h"
 #include "../Manager/Resource/SoundManager.h"
 #include "../Manager/Generic/DataBank.h"
 #include "../Renderer/PixelMaterial.h"
@@ -98,9 +97,6 @@ void GameScene::Init(void)
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 	//カメラの当たり判定作成
 	scnMng_.GetCamera().lock()->MakeColliderGeometry();
-
-	//重力管理クラスを生成
-	GravityManager::CreateInstance();
 
 	stage_->Init();
 	skyDome_->Init();

@@ -26,23 +26,22 @@ public:
 	/// @return プレイヤー人数
 	int GetPlayerNum(void);
 
-	//フルスクリーンフラグ
+	/// @brief フルスクリーンフラグの取得
+	/// @param  
+	/// @return フルスクリーンフラグ
 	const bool GetIsFullScreen(void) { return isFullScreen_; }
 
-	//フルスクリーンの設定
+	/// @brief フルスクリーンの設定
+	/// @param _isFullScreen フルスクリーンフラグ(true:フルスクリーン　false:ウィンドウ)
 	void SetIsFullScreen(const bool _isFullScreen);
 
 	/// @brief カードデータの破棄
 	/// @param  
 	void ReleaseCardData(void);
 
-	////プレイヤーのカードデータ保存
-	//void AddPlayerCardData(const CardBase::CARD_STATUS _status);
-
-	////エネミーのカードデータ保存
-	//void AddEnemyCardData(const CardBase::CARD_STATUS _status);
-
-	//キャラクターのカードデータ保管
+	/// @brief キャラクターのカードデータ保管
+	/// @param _charaType キャラクター種類
+	/// @param _status カードのステータス
 	void AddCardData(const CHARACTER_TYPE _charaType, CardBase::CARD_STATUS _status);
 
 	/// @brief カードデータの取得
@@ -63,11 +62,5 @@ private:
 
 	//キャラクターカードデッキデータ
 	std::unordered_map<CHARACTER_TYPE, std::vector<CardBase::CARD_STATUS>>characterCardDecks_;
-
-	////プレイヤーのカードデッキ
-	//std::vector<CardBase::CARD_STATUS> playerCardDatas_;
-
-	////敵のカードデッキ
-	//std::vector<CardBase::CARD_STATUS> enemyCardDatas_;
 };
 

@@ -77,8 +77,8 @@ private:
     //攻撃3段階目アニメスピード補完時間
     static constexpr float ATTACK_THREE_ANIM_LERP_TIME = 0.4f; 
 
-    //
-    
+    //リロードエフェクトスケール
+    static constexpr float RELOD_EFF_SCL = 100.0f;
     //リロードアニメーション始め
     static constexpr float RELOAD_START_STEP = 17.0f;       //アニメーション始まりステップ
     static constexpr float RELOAD_END_STEP = 33.0f;         //アニメーション終わり

@@ -6,16 +6,26 @@ struct Vector2
 	int x;
 	int y;
 
-	//³‹K‰»‚·‚é
+	/// @brief ³‹K‰»
+	/// @param  
+	/// @return 
 	Vector2 Normalize(void) const;
 
-	//’·‚³‚ğ‹‚ß‚é
+	/// @brief ’·‚³‚ğ‹‚ß‚é
+	/// @param  
+	/// @return 
 	float Length(void) const;
 
-	//Vector2“¯m‚Ì”äŠr
+	/// @brief Vector2“¯m‚Ì”äŠr
+	/// @param value1 ƒxƒNƒgƒ‹1
+	/// @param value2 ƒxƒNƒgƒ‹2
+	/// @return 
 	static bool IsVector2(const Vector2 value1, const Vector2 value2);
-
-	//Vector2“¯m‚Ì’l‚ª“™‚µ‚¢‚©”äŠr
+	
+	/// @brief Vector2“¯m‚Ì’l‚ª“™‚µ‚¢‚©”äŠr
+	/// @param value1 ƒxƒNƒgƒ‹1
+	/// @param value2 ƒxƒNƒgƒ‹2
+	/// @return 
 	static bool IsSameVector2(const Vector2 value1, const Vector2 value2);
 
 	//Vector2“¯m‚Ì‰‰Z

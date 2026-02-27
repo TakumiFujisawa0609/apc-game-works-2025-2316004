@@ -21,14 +21,15 @@ public:
 		PIXEL_SHADER,
 	};
 
-	// コンストラクタ
+
+	/// @brief コンストラクタ
+	/// @param  
 	ResourceData(void);
-	// コンストラクタ
 	ResourceData(TYPE type, const std::wstring& path);
-	// コンストラクタ(IMGS用)
 	ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~ResourceData(void);
 
 	/// @brief 読み込み

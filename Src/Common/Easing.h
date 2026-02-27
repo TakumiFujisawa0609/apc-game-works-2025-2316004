@@ -128,9 +128,30 @@ public:
 
 
 private:
+
+	//イージングの最大値
+	static constexpr float EASING_MAX = 1.0f;
+
+	//イージング中央値
+	static constexpr float EASING_HALF = 0.5f;
+
+	//角度の最大値(デグリー)
+	static constexpr double DEG_MAX = 360.0;
+
+	//半円の最大値(デグリー)
+	static constexpr double HALF_DEG_MAX = 180.0;
+
+	//角度の最大値(ラジアン)
+	static constexpr float RAD_MAX = DX_TWO_PI_F;
+
+	//半円の最大値(ラジアン)
+	static constexpr float HALF_RAD_MAX = DX_PI_F;
+
 	//イージングの更新を格納
 	std::function<float(const float)>easingUpdate_;
 
+	//イージング関数テーブル
+	std::unordered_map<EASING_TYPE, std::function<void(float)>>easingFuncTable_;
 
 	/// @brief 線形補完
 	/// @param t 時間

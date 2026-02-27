@@ -21,25 +21,20 @@ public:
 	static const std::wstring FONT_BOKUTATI;
 	static const std::wstring FONT_APRIL_GOTHIC;
 	
-
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
+	/// @brief コンストラクタ
+	/// @param  
 	FontManager(void);
 
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
+	/// @brief デストラクタ
+	/// @param  
 	~FontManager(void) = default;
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
 
-	/// <summary>
-	/// 解放処理
-	/// </summary>
+	/// @brief 解放処理
+	/// @param  
 	void Destroy(void);
 
 private:

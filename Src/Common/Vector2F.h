@@ -7,22 +7,19 @@ struct Vector2F
 	float x;
 	float y;
 
-	////ベクトル線を作る
-	//Vector2F CreateVectorLine(Vector2 value1, Vector2 value2);
-
-	////Vector2へ変換する関数
-	//Vector2 ToVector2(void)
-	//{
-	//	Vector2 ret;
-
-	//	ret.x = static_cast<int>(roundf(x));
-	//	ret.y = static_cast<int>(roundf(y));
-
-	//	return ret;
-	//}
-
 	//Vector2F同士の比較
+	
+	/// @brief Vector2F同士の比較
+	/// @param value1 ベクトル1
+	/// @param value2 ベクトル2
+	/// @return 
 	static bool IsVector2F(const Vector2F value1, const Vector2F value2);
+
+	/// @brief Vector2F同士の値が同じか比較
+	/// @param value1 ベクトル1
+	/// @param value2 ベクトル2
+	/// @return 
+	static bool IsSameVector2F(const Vector2F value1, const Vector2F value2);
 
 	//Vector2F同士の演算
 	const Vector2F operator+(const Vector2F _value)const;
@@ -81,67 +78,5 @@ struct Vector2F
 		y /= _value;
 	}
 
-	//Vector2F同士の値が同じか比較
-	static bool IsSameVector2F(const Vector2F value1, const Vector2F value2);
 
-	////Vector2F同士の加算
-	//static Vector2F AddVector2F(Vector2F value1, Vector2F value2);
-
-	////Vector2F同士の減算
-	//static Vector2F SubVector2F(Vector2F value1, Vector2F value2);
-
-	////Vector2F同士の乗算
-	//static Vector2F MulVector2F(Vector2F value1, Vector2F value2);
-
-	////Vector2F同士の除算
-	//static Vector2F DivVector2F(Vector2F value1, Vector2F value2);
 };
-
-
-//class Vector2;
-//
-//class Vector2F
-//{
-//public:
-//
-//	//デフォルトコンストラクタ
-//	Vector2F(void);
-//
-//	//コンストラクタ
-//	Vector2F(float ix, float iy);
-//
-//	//デストラクタ
-//	~Vector2F(void);
-//
-//	//各座標
-//	float x;
-//	float y;
-//
-//	//Vector2へ変換する関数
-//	Vector2 ToVector2(void);
-//
-//	//ベクトル線を作る
-//	Vector2F CreateVectorLine(Vector2 value1, Vector2 value2);
-//
-//	//Vector2F同士の比較
-//	static bool IsVector2F(const Vector2F value1, const Vector2F value2);
-//
-//	//Vector2F同士の値が同じか比較
-//	static bool IsSameVector2F(const Vector2F value1, const Vector2F value2);
-//
-//	//Vector2F同士の加算
-//	static Vector2F AddVector2F(Vector2F value1, Vector2F value2);
-//
-//	//Vector2F同士の減算
-//	static Vector2F SubVector2F(Vector2F value1, Vector2F value2);
-//
-//	//Vector2F同士の乗算
-//	static Vector2F MulVector2F(Vector2F value1, Vector2F value2);
-//
-//	//Vector2F同士の除算
-//	static Vector2F DivVector2F(Vector2F value1, Vector2F value2);
-//
-//
-//
-//private:
-//};

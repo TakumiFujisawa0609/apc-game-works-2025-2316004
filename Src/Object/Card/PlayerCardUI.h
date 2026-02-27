@@ -127,6 +127,8 @@ private:
 	//ボタンサイズ
 	static constexpr float REVOLVER_BTN_SIZE = 60.0f;
 
+	//ボタン座標と矢印の間隔
+	static constexpr float REVOLVER_BTN_ARROW_OFFSET = 10.0f;
 	
 
 

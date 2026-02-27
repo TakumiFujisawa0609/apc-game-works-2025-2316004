@@ -6,9 +6,7 @@ class SoundManager
 {
 public:
 
-	/// <summary>
 	/// リソース種類
-	/// </summary>
 	enum class SRC
 	{
 		NONE,						//なし
@@ -46,9 +44,7 @@ public:
 
 	};
 
-	/// <summary>
 	/// 音源種類
-	/// </summary>
 	enum class TYPE
 	{
 		BGM,						//BGM
@@ -56,9 +52,7 @@ public:
 		MAX
 	};
 
-	/// <summary>
 	/// 再生種類
-	/// </summary>
 	enum class PLAYTYPE
 	{
 		NORMAL,	//ノーマル再生
