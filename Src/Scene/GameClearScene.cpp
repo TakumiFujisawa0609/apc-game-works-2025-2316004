@@ -64,8 +64,8 @@ void GameClearScene::NormalUpdate(void)
 	}
 
 
-	const int LIMIT = SceneBase::BACK_TITLE_STRING_POS.y - BACK_TITLE_STRING_POS_EASE_LIMIT;
-	strYPos_ = easing_->EaseFunc(SceneBase::BACK_TITLE_STRING_POS.y, LIMIT, easeCnt_ / EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
+	const float LIMIT = static_cast<float>(SceneBase::BACK_TITLE_STRING_POS.y) - BACK_TITLE_STRING_POS_EASE_LIMIT;
+	strYPos_ = easing_->EaseFunc(static_cast<float>(SceneBase::BACK_TITLE_STRING_POS.y), LIMIT, easeCnt_ / EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
 	easeCnt_ += scnMng_.GetDeltaTime();
 	if (easeCnt_ > EASING_TIME)
 	{
@@ -95,7 +95,7 @@ void GameClearScene::NormalDraw(void)
 
 	DrawFormatStringToHandle(
 		SceneBase::BACK_TITLE_STRING_POS.x,
-		strYPos_,
+		static_cast<int>(strYPos_),
 		UtilityCommon::WHITE,
 		buttonFontHandle_,
 		L"'Bボタンまたはスペースキー'でタイトルに戻る"

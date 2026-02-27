@@ -17,17 +17,26 @@ public:
 	};
 
 	// 状態の取得
-	STATE GetState(void) const;
+	const STATE GetState(void) const{ return state_; }
 
 	// フェード処理が終了しているか
-	bool IsEnd(void) const;
-
-	// 指定フェードを開始する
-	void SetFade(STATE state);
-
+	const bool IsEnd(void) const { return isEnd_; };
+	
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
+
+	/// @brief 更新
+	/// @param  
 	void Update(void);
+
+	/// @brief 描画
+	/// @param  
 	void Draw(void);
+
+	/// @brief 指定フェードを開始する
+	/// @param state 
+	void SetFade(STATE state);
 
 private:
 

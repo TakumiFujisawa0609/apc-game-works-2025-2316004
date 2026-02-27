@@ -27,7 +27,7 @@ public:
 private:
 
 	//イージング時間
-	static constexpr int EASING_TIME = 1.0f;
+	static constexpr float EASING_TIME = 1.0f;
 
 	//BGMの大きさ
 	static constexpr int BGM_VOL = 80;

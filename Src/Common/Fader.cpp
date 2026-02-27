@@ -2,25 +2,7 @@
 #include "../Application.h"
 #include "Fader.h"
 
-Fader::STATE Fader::GetState(void) const
-{
-	return state_;
-}
 
-bool Fader::IsEnd(void) const
-{
-	return isEnd_;
-}
-
-void Fader::SetFade(STATE state)
-{
-	state_ = state;
-	if (state_ != STATE::NONE)
-	{
- 		isPreEnd_ = false;
-		isEnd_ = false;
-	}
-}
 
 void Fader::Init(void)
 {
@@ -99,4 +81,14 @@ void Fader::Draw(void)
 		break;
 	}
 
+}
+
+void Fader::SetFade(STATE state)
+{
+	state_ = state;
+	if (state_ != STATE::NONE)
+	{
+		isPreEnd_ = false;
+		isEnd_ = false;
+	}
 }

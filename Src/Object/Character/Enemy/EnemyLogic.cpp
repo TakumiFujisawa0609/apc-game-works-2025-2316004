@@ -57,7 +57,7 @@ void EnemyLogic::Update(void)
 	//硬直がなかったらカード使用可能
 	if (freezeCnt_ <= 0.0f)
 	{
-		DesideAction();
+		DecideAction();
 		isAct_.isCardUse = true;
 		cardCoolCnt_ = CARD_COOL_TIME;
 	}
@@ -104,7 +104,7 @@ void EnemyLogic::DebugDraw(void)
 
 
 
-void EnemyLogic::DesideAction(void)
+void EnemyLogic::DecideAction(void)
 {
 
 	const float distance = GetTargetDis();

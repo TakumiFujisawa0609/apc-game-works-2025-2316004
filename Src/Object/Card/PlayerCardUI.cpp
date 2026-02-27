@@ -456,7 +456,7 @@ void PlayerCardUI::UpdateDecision(void)
 
 void PlayerCardUI::UpdateReloadWait(void)
 {
-	if(reloadPer_>= UtilityCommon::PERCENT_MAX)
+	if(reloadPer_>= UtilityCommon::PERCENT_MAX_F)
 	{
 		//ˆêunoneó‘Ô‚É‚·‚é
 		ChangeSelectState(CARD_SELECT::NONE);

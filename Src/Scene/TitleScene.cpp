@@ -174,8 +174,8 @@ void TitleScene::NormalDraw(void)
 			btnCol = UtilityCommon::RED;
 		}
 		DrawFormatStringToHandle(
-			btn.curPos.x,
-			btn.curPos.y,
+			static_cast<int>(btn.curPos.x),
+			static_cast<int>(btn.curPos.y),
 			btnCol,
 			titleFont_,
 			btn.btnStr.c_str()
@@ -230,12 +230,20 @@ void TitleScene::NormalDraw(void)
 	//決定ボタン
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, DICITION_BTN_POS, DICITION_BTN_SIZE);
 	Vector2F strPos = { DICITION_BTN_POS.x + DICITION_BTN_SIZE / 2.0f,DICITION_BTN_POS.y - BTN_STR_OFFSET_X };
-	DrawStringToHandle(strPos.x, strPos.y, L"決定", UtilityCommon::WHITE, titleFont_);
+	DrawStringToHandle(
+		static_cast<int>(strPos.x),
+		static_cast<int>(strPos.y),
+		L"決定", 
+		UtilityCommon::WHITE, titleFont_);
 
 	//戻るボタン
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::A_BUTTON_COL_PUSH, BACK_BTN_POS, DICITION_BTN_SIZE);
 	strPos = { BACK_BTN_POS.x + DICITION_BTN_SIZE / 2.0f,BACK_BTN_POS.y - BTN_STR_OFFSET_X };
-	DrawStringToHandle(strPos.x, strPos.y, L"戻る", UtilityCommon::WHITE, titleFont_);
+	DrawStringToHandle(
+		static_cast<int>(strPos.x), 
+		static_cast<int>(strPos.y), 
+		L"戻る", 
+		UtilityCommon::WHITE, titleFont_);
 
 }
 
