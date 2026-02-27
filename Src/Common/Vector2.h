@@ -6,17 +6,6 @@ struct Vector2
 	int x;
 	int y;
 
-
-	//Vector2F ToVector2F(void)
-	//{
-	//	Vector2F ret;
-
-	//	ret.x = static_cast<float>(round(x));
-	//	ret.y = static_cast<float>(round(y));
-
-	//	return ret;
-	//}
-
 	//ê≥ãKâªÇ∑ÇÈ
 	Vector2 Normalize(void) const;
 

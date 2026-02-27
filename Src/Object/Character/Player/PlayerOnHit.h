@@ -55,7 +55,8 @@ private:
 	static constexpr int UP_AND_DOWN_LINE_COL_NO = 2;
 	//雄たけび硬直時間
 	static constexpr float ROAR_FLICTION_TIME = 0.1f;
-
+	//固定ダメージ
+	static constexpr int FIX_DAMAGE = 20;
 	//岩ダメージ
 	static constexpr int STONE_DMG = 15;
 

@@ -25,20 +25,12 @@
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
 #include"../Action/Run.h"
-#include"../Action/Jump.h"
 #include"../Action/React.h"
 #include"../Action/Dodge.h"
 #include"../Action/PlayerCardAction.h"
 #include "./PlayerLogic.h"
-
-
 #include "Player.h"
 
-
-namespace
-{
-	
-}
 Player::Player(void)
 	:playerNum_(),
 	cntl_(),

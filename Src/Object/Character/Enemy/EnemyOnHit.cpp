@@ -67,7 +67,7 @@ void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	const int cardDif= CardSystem::GetInstance().GetCardDif();
 
 	int addDam = 0;
-	//カードシステムからカードの強さの差を取得し、０でなければダメージを追加する
+	//カードシステムからカードの強さの差を取得。
 	cardDif == 0 ? addDam = 0 : addDam = MAX_ADD_DAMAGE - cardDif;
 
 	//ダメージ計算
