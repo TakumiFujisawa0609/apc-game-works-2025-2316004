@@ -91,7 +91,8 @@ public:
 		KEY_BLADE_HIT_EFF,
 		E_JUMP_CHARGE_EFF,
 		E_DEATH_EFF,
-		RELOAD,
+		RELOAD_EFF,
+		RELOAD_END_EFF,
 	};
 	
 	/// @brief èâä˙âª

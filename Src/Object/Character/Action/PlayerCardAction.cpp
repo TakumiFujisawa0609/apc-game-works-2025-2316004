@@ -52,7 +52,8 @@ void PlayerCardAction::Load(void)
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
 	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, CARD_RELOAD_VOL);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
-	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD).handleId_, EffectController::EFF_TYPE::RELOAD);
+	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_EFF).handleId_, EffectController::EFF_TYPE::RELOAD);
+	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_END_EFF).handleId_, EffectController::EFF_TYPE::RELOAD_END);
 }
 
 void PlayerCardAction::Init(void)
@@ -269,12 +270,17 @@ void PlayerCardAction::UpdateReload(void)
 		actType_ = CARD_ACT_TYPE::NONE;
 		//カードUIのリロードカウントをの初期化
 		pushReloadCnt_ = 0.0f;
+		const float EFF_SCL = 100.0f;
 		SetUIReloadCnt();
 		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
 		effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
+		const Transform& trans = charaObj_.GetTransform();
+		effect_->Play(EffectController::EFF_TYPE::RELOAD_END, trans.pos, trans.quaRot, { EFF_SCL ,EFF_SCL ,EFF_SCL });
+
 		//カードリロード音停止、完了音再生
 		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
 		soundMng_.Play(SoundManager::SRC::CARD_RELOAD_FINISH,SoundManager::PLAYTYPE::BACK);
+
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
 }

@@ -79,7 +79,6 @@ void SoundManager::Init(void)
 
 #pragma region SE
 	res.type = TYPE::SE;
-//    res.path = path_Se + L"CardSound.mp3";
     res.path = path_Se + L"CardSelect2.mp3";
     resourcesMap_.emplace(SRC::CARD_MOVE, res);
 

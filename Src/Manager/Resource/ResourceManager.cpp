@@ -214,7 +214,10 @@ void ResourceManager::Init(void)
 	resourcesMap_.emplace(SRC::E_DEATH_EFF, std::move(res));
 
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Reload/PowerUp.efkproj");
-	resourcesMap_.emplace(SRC::RELOAD, std::move(res));
+	resourcesMap_.emplace(SRC::RELOAD_EFF, std::move(res));
+
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"ReloadEnd/MagicHeal1.efkproj");
+	resourcesMap_.emplace(SRC::RELOAD_END_EFF, std::move(res));
 }
 
 void ResourceManager::SceneChangeRelease(void)
