@@ -104,7 +104,6 @@ void Application::Run(void)
 		fps_->DrawFrameRate();
 #endif // _DEBUG
 
-
 		ScreenFlip();
 	}
 

@@ -129,14 +129,6 @@ private:
 
 	//ボタン座標と矢印の間隔
 	static constexpr float REVOLVER_BTN_ARROW_OFFSET = 10.0f;
-	
-
-
-
-
-
-	////初期カード
-	//std::vector<CARD_UI_INFO>uiInfos_;
 
 	Vector2F radius_;
 

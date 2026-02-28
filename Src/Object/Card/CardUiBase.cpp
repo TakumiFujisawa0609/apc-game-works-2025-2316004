@@ -68,7 +68,8 @@ void CardUIBase::PlayCardSound(void)
 {
 	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(0);
 	SoundManager::SRC winRes = SoundManager::SRC::NONE;
-	if (result == CardSystem::BATTLE_RESULT::BE_DRAW || result == CardSystem::BATTLE_RESULT::GIVE_DRAW || result == CardSystem::BATTLE_RESULT::NONE)
+	if (result == CardSystem::BATTLE_RESULT::BE_DRAW || result == CardSystem::BATTLE_RESULT::GIVE_DRAW 
+		|| result == CardSystem::BATTLE_RESULT::NONE || result == CardSystem::BATTLE_RESULT::FAILURE_USE_BE_REFLECTED)
 	{
 		winRes = SoundManager::SRC::CARD_BE_REFLECTED;
 	}
