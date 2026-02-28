@@ -1,6 +1,6 @@
 #include "InputManagerS.h"
 
-void InputManagerS::Init()
+void InputManagerS::Init(void)
 {
 	//入力イベントの初期化
 	ResetTable();
@@ -54,7 +54,7 @@ void InputManagerS::Init()
 	lastInput_ = currentInput_;
 }
 
-void InputManagerS::Update()
+void InputManagerS::Update(void)
 {
 	//押したか押してないか記録する
 	lastInput_ = currentInput_;	//前のプッシュ情報を記録する
@@ -105,7 +105,7 @@ void InputManagerS::Update()
 	}
 }
 
-void InputManagerS::Release()
+void InputManagerS::Release(void)
 {
 }
 
@@ -123,7 +123,7 @@ bool InputManagerS::IsPressed(INPUT_EVENT inputEvent) const
 	return currentInput_.at(inputEvent);
 }
 
-void InputManagerS::ResetTable()
+void InputManagerS::ResetTable(void)
 {
 	inputTable_ = 
 	{

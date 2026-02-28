@@ -144,7 +144,7 @@ void PlayerCardUI::Draw(void)
 	//DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumMaskImg_, true);
 	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumFrameImg_, true);
 
-	int handCardSize = handCards_.size();
+	int handCardSize = static_cast<int>(handCards_.size());
 
 	//カードの残り枚数の描画
 	DrawFormatStringFToHandle(
@@ -248,7 +248,7 @@ void PlayerCardUI::InitCardUI(void)
 void PlayerCardUI::AddCardUIData(void)
 {
 	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::PLAYER);
-	int size = charaDeck.size();
+	int size = static_cast<int>(charaDeck.size());
 	for (int i = 0; i < size; i++)
 	{
 		AddCardUi(charaDeck[i]);
@@ -683,10 +683,10 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 {
 
 	//リボルバー回転方向の左方向矢印の描画
-	DrawRotaGraph(REVOLVER_ARROW_L_POS.x, REVOLVER_ARROW_L_POS.y
+	DrawRotaGraphF(REVOLVER_ARROW_L_POS.x, REVOLVER_ARROW_L_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_L_ANGLE), imgRevolverArrowLeft_, true);
 	//リボルバー回転方向の右方向矢印の描画
-	DrawRotaGraph(REVOLVER_ARROW_R_POS.x, REVOLVER_ARROW_R_POS.y
+	DrawRotaGraphF(REVOLVER_ARROW_R_POS.x, REVOLVER_ARROW_R_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_R_ANGLE), imgRevolverArrowRight_, true);
 
 	Vector2F btnPos = REVOLVER_ARROW_L_POS;

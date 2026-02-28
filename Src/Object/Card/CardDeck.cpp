@@ -117,11 +117,6 @@ void CardDeck::Draw(void)
 	//}
 }
 
-void CardDeck::Release(void)
-{
-
-}
-
 void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
 {
 	std::unique_ptr<CardBase>card = std::make_unique<CardBase>(_status);

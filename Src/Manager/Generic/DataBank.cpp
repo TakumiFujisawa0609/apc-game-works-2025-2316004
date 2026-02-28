@@ -36,17 +36,6 @@ void DataBank::ReleaseCardData(void)
 	characterCardDecks_.clear();
 }
 
-//void DataBank::AddPlayerCardData(const CardBase::CARD_STATUS _status)
-//{
-//	playerCardDatas_.emplace_back(_status);
-//}
-//
-//void DataBank::AddEnemyCardData(const CardBase::CARD_STATUS _status)
-//{
-//	enemyCardDatas_.emplace_back(_status);
-//}
-
-
 void DataBank::AddCardData(const CHARACTER_TYPE _charaType, CardBase::CARD_STATUS _status)
 {
 	characterCardDecks_[_charaType].emplace_back(_status);

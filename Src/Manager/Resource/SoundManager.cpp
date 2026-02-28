@@ -3,7 +3,7 @@
 #include <cassert>
 #include "../../Application.h"
 
-SoundManager* SoundManager::instance_ = nullptr;
+//SoundManager* SoundManager::instance_ = nullptr;
 
 SoundManager::SoundManager(void)
 {  
@@ -16,32 +16,6 @@ SoundManager::SoundManager(void)
 
 SoundManager::~SoundManager(void)
 {
-}
-
-void SoundManager::CreateInstance(void)
-{
-    if (instance_ == nullptr)
-    {
-        instance_ = new SoundManager();
-    }
-    // ‰Šú‰»ˆ—‚ðŒÄ‚Ño‚·
-    instance_->Init();
-}
-
-SoundManager& SoundManager::GetInstance(void)
-{
-    return *instance_;
-}
-
-void SoundManager::Destroy(void)
-{
-    Release();
-	resourcesMap_.clear();
-    if (instance_ != nullptr)
-    {
-        delete instance_;
-        instance_ = nullptr;
-    }
 }
 
 void SoundManager::Release(void)

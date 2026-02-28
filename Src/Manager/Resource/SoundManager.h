@@ -1,9 +1,13 @@
 #pragma once
 #include <unordered_map>
 #include <string>
+#include "../Template/Singleton.h"
 
-class SoundManager
+
+
+class SoundManager : public Singleton<SoundManager>
 {
+	friend class Singleton<SoundManager>;
 public:
 
 	/// リソース種類
@@ -66,89 +70,56 @@ public:
 	//音源種類最大数
 	static constexpr int TYPE_MAX = static_cast<int>(TYPE::MAX);
 
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
+	/// @brief デストラクタ
+	/// @param  
 	~SoundManager(void);
 
-	/// <summary>
-	/// 明示的にインスタンス生成する
-	/// </summary>
-	/// <param name=""></param>
-	static void CreateInstance(void);
-
-	/// <summary>
-	/// 静的インスタンスの取得
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns></returns>インスタンス
-	static SoundManager& GetInstance(void);
-
-	/// <summary>
-	/// 解放
-	/// </summary>
-	void Destroy(void);
-
-	/// <summary>
-	/// リソースの解放
-	/// </summary>
+	/// @brief リソースの解放
+	/// @param  
 	void Release(void);
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
+	/// @brief 初期化
+	/// @param  
 	void Init(void);
 
-	/// <summary>
-	/// リソースの読み込み
-	/// </summary>
-	/// <param name="_src">リソース種類</param>
-	/// <returns>trueの場合読み込み成功,falseの場合失敗</returns>
+	/// @brief リソースの読み込み
+	/// @param _src リソース種類
+	/// @param _pitch ピッチ調整値(0.0fで通常のピッチ、正の値で高く、負の値で低くなる)
+	/// @return true:読み込み成功　false:場合失敗
 	const bool LoadResource(const SRC _src, const float _pitch = 0.0f);
 
-	/// <summary>
-	/// 音源の再生
-	/// </summary>
-	/// <param name="_src">リソース種類</param>
-	/// <param name="_playType">再生種類</param>
+	/// @brief 音源の再生
+	/// @param _src リソース種類
+	/// @param _playType 再生種類
 	void Play(const SRC _src, const PLAYTYPE _playType);
-
-	/// <summary>
-	/// 音源の停止
-	/// </summary>
-	/// <param name="_src">リソース種類</param>
+	
+	/// @brief 音源の停止
+	/// @param _src リソース種類
 	void Stop(const SRC _src);
 
-	/// <summary>
-	/// 再生中かを返す
-	/// </summary>
-	/// <param name="_src">リソース種類</param>
-	/// <returns>trueの場合再生中,falseの場合再生していない</returns>
+	/// @brief 再生中かを返す
+	/// @param _src リソース種類
+	/// @return trueの:再生中　false;場合再生していない
 	bool IsPlay(const SRC _src) const;
 
-	/// <summary>
-	/// 読み込んだ音量を設定する
-	/// </summary>
-	/// <returns></returns>
+	/// @brief 読み込んだ音量を設定する
+	/// @param  
+	/// @return 
 	const void SetLoadedSoundsVolume(void) { for (int i = 0; i < TYPE_MAX; i++) { SetSystemVolume(volume_[i], i); } };
 
-	/// @brief 一つの素材の音量設定
-	/// @param _src どの音か
-	/// @param _volumePercent 設定したい音量
+	/// @brief 
+	/// @param _src 
+	/// @param _volumePercent 
 	void SetSoundVolumeSRC(const SRC _src, const int _volumePercent);
 
-	/// <summary>
-	/// 音量の設定
-	/// </summary>
-	/// <param name="_volumePercent">音量パーセント</param>
-	/// <param name="_type">サウンド種類</param>
+	/// @brief 音量の設定
+	/// @param _volumePercent 音量パーセント
+	/// @param _type サウンド種類
 	void SetSystemVolume(const int _volumePercent, const int _type);
 
-	/// <summary>
-	/// 音量を返す
-	/// </summary>
-	/// <param name="_type">サウンド種類</param>
-	/// <returns>指定したサウンド種類の音量を返す</returns>
+	/// @brief 音量を返す
+	/// @param _type サウンド種類
+	/// @return 指定したサウンド種類の音量を返す
 	const int GetSoundTypeVolume(const int _type) const { return volume_[_type]; }
 
 private:

@@ -9,16 +9,26 @@ class CardDeck;
 class CardPresenter
 {
 public:
-	CardPresenter(CHARACTER_TYPE& _type,CardDeck& _deck);
-	~CardPresenter(void);
 
-	//カード使用済み
+	/// @brief コンストラクタ
+	/// @param _type 種類
+	/// @param _deck デッキ
+	CardPresenter(CHARACTER_TYPE& _type,CardDeck& _deck);
+
+	/// @brief デストラクタ
+	/// @param  
+	~CardPresenter(void);
+	
+	/// @brief カード使用済み
+	/// @param  
 	void FinishCard(void);
 
-	//カード負け
+	/// @brief カード負け
+	/// @param  
 	void FailureCard(void);
 
-	//カードを引く
+	/// @brief カードを引く
+	/// @param  
 	void PutCard(void);
 
 	/// @brief リボルバーの回転

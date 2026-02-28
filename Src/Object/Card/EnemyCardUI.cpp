@@ -101,7 +101,7 @@ void EnemyCardUI::DrawDebug(void)
 void EnemyCardUI::AddCardUIData(void)
 {
 	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::ENEMY);
-	int size = charaDeck.size();
+	int size = static_cast<int>(charaDeck.size());
 	for (int i = 0; i < size; i++)
 	{
 		AddCardUi(charaDeck[i]);

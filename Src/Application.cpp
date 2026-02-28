@@ -22,7 +22,7 @@ const std::wstring Application::PATH_JSON = L"Data/JSON/";
 const std::wstring Application::PATH_CSV = L"Data/CSV/";
 const std::wstring Application::PATH_SHADER = L"Data/Shader/";
 
-bool Application::Init()
+bool Application::Init(void)
 {
 
 	// アプリケーションの初期設定
@@ -75,7 +75,7 @@ bool Application::Init()
 	return true;
 }
 
-void Application::Run()
+void Application::Run(void)
 {
 	LONGLONG time = GetNowHiPerformanceCount();
 
@@ -110,7 +110,7 @@ void Application::Run()
 
 }
 
-bool Application::Release()
+bool Application::Release(void)
 {
 	//各クラスのリソースの破棄
 	InputManager::GetInstance().Release();
@@ -139,13 +139,15 @@ bool Application::Release()
 	return true;
 }
 
-Application::Application()
+Application::Application(void):
+	isGameEnd_(false),
+	fps_(nullptr),
+	fontMng_(nullptr)
 {
-	fps_ = nullptr;
-	fontMng_ = nullptr;
+
 }
 
-void Application::InitEffekseer()
+void Application::InitEffekseer(void)
 {
 	if (Effekseer_Init(8000) == -1)
 	{

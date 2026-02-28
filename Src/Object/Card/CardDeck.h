@@ -62,11 +62,9 @@ public:
 	/// @brief 描画
 	/// @param  
 	void Draw(void);
-	void Release(void);
-
 	
-
-
+	/// @brief デュエルデッキにカード追加
+	/// @param _status 追加したいカードの強さ
 	void AddDuelDeck(const CardBase::CARD_STATUS& _status);
 
 	/// @brief カードを使用札に移動
@@ -81,10 +79,6 @@ public:
 	/// @brief デュエルデッキの解放
 	/// @param  
 	void ClearDuelDeck(void);
-
-
-	//手札のカード取得
-	//std::vector<std::weak_ptr<CardBase>> GetHand(void);
 
 	/// @brief デッキからカードを引く
 	/// @param  
@@ -108,7 +102,6 @@ public:
 	/// @return カードの種類
 	std::vector<CardBase::CARD_TYPE> GetHandCardType(void);
 
-	
 	/// @brief 現在選択中のカードがリロードカードかを返す
 	/// @param  
 	/// @return 現在選択中のカード
@@ -121,8 +114,9 @@ public:
 	/// @brief 使用中カードからチャージカードへ移動
 	/// @param  
 	void MoveChargeToUsingCard(void);
-
-	//デュエルデッキをランダムにけっていする
+	
+	/// @brief デュエルデッキをランダムに決定する
+	/// @param  
 	void DicideDuelDeck(void);
 
 private:

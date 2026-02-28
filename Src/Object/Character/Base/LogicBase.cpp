@@ -21,7 +21,7 @@ LogicBase::~LogicBase(void)
 
 const VECTOR& LogicBase::GetInputDir(void) const
 {
-	//ã‚«ãƒ¡ãƒ©ã®è§’åº¦ã‚’å–å¾—
+	//ƒJƒƒ‰‚ÌŠp“x‚ðŽæ“¾
 	auto camera = SceneManager::GetInstance().GetCamera();
 	VECTOR cameraRot = camera.lock()->GetAngles();
 	Quaternion cameraQuaRot = camera.lock()->GetQuaRotOutX();

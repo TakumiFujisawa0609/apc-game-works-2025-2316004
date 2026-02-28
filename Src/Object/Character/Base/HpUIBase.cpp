@@ -38,7 +38,7 @@ void HpUIBase::Init(void)
 void HpUIBase::Update(void)
 {
 
-	//HPã®æ¸›ã‚‰ã—å¹…ã‚²ãƒ¼ã‚¸ã®è£œå®Œ
+	//HP‚ÌŒ¸‚ç‚µ•ƒQ[ƒW‚Ì•âŠ®
 	if (hpDis_ > 0.0f)
 	{
 		float lerpStart = hpData_.hpPer + hpDis_;
@@ -57,7 +57,7 @@ void HpUIBase::Update(void)
 		waitCnt_ = WAIT_TIME;
 	}
 
-	//HPãƒãƒ¼ã®ã‚·ã‚§ã‚¤ã‚¯
+	//HPƒo[‚ÌƒVƒFƒCƒN
 	if (shakeCnt_ > 0.0f)
 	{
 		barCoverPos_.y = easing_->EaseFunc(initCoverPos_.y, initCoverPos_.y+COVER_SHAKE_POW_Y,

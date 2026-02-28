@@ -74,10 +74,13 @@ public:
 		float reactCnt_;													//はじかれるカウント
 		CARD_STATE state_ = CARD_STATE::DRAW_PILE;							//カードの状態
 	};
-	// コンストラクタ
+
+	/// @brief コンストラクタ
+	/// @param  
 	CardUIBase(void);
 
-	// デストラクタ
+	/// @brief  デストラクタ
+	/// @param  
 	virtual ~CardUIBase(void);
 
 	/// @brief ロード

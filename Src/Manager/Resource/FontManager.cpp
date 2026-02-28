@@ -7,7 +7,7 @@ const std::wstring FontManager::FONT_BOKUTATI = L"ぼくたちのゴシック";
 const std::wstring FontManager::FONT_APRIL_GOTHIC = L"April Gothic one Regular";
 
 
-FontManager::FontManager()
+FontManager::FontManager(void)
 {
 	//初期化
 	for (int i = 0; i < static_cast<int>(FONT_TYPE::MAX); i++)
@@ -16,7 +16,7 @@ FontManager::FontManager()
 	}
 }
 
-void FontManager::Init()
+void FontManager::Init(void)
 {
 	//フォント登録を行う
 	// フォントパス初期化
@@ -38,7 +38,7 @@ void FontManager::Init()
 	}
 }
 
-void FontManager::Destroy()
+void FontManager::Destroy(void)
 {
 	// フォント登録解除
 	for (int i = 0; i < FONT_TYPES; i++)

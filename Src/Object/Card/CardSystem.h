@@ -81,7 +81,8 @@ public:
 	//カード２枚のカード強さの取得
 	const int GetCardDif(void)const { return cardDif_; }
 
-	//カードの強さの初期化
+	/// @brief カードの強さの初期化
+	/// @param  
 	void InitCardDif(void) { cardDif_ = 0; }
 
 #ifdef _DEBUG
