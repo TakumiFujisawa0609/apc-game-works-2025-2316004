@@ -5,6 +5,7 @@
 
 class SoundManager;
 class Easing;
+class MenuController;
 class TitleScene : public SceneBase
 {
 
@@ -127,6 +128,8 @@ private:
 	std::unordered_map<TITLE_BTN, std::wstring>buttonStrTable_;
 	//YES,NO‚Ì•¶Žš—ñ
 	std::unordered_map<YES_NO, std::wstring>yesNoStrTable_;
+
+	std::unique_ptr<MenuController>menuController_;
 
 	//ƒTƒEƒ“ƒh
 	SoundManager& soundMng_;

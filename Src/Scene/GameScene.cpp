@@ -44,7 +44,6 @@ GameScene::GameScene(void)
 GameScene::~GameScene(void)
 {
 	//インスタンスの削除
-	InitFontToHandle();
 	CardSystem::GetInstance().Destroy();
 	CollisionManager::GetInstance().Destroy();
 	CharacterManager::GetInstance().Destroy();

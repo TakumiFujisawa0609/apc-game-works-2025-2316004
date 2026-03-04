@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Manager\Generic\MenuController.cpp" />
     <ClCompile Include="Src\Object\Card\CardPresenter.cpp" />
     <ClCompile Include="Src\Manager\Generic\ButtonUIManager.cpp" />
     <ClCompile Include="Src\Object\DirectionUI.cpp" />
@@ -117,6 +118,7 @@
     <ClCompile Include="Src\Manager\Generic\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Manager\Generic\MenuController.h" />
     <ClInclude Include="Src\Object\Card\CardPresenter.h" />
     <ClInclude Include="Src\Manager\Generic\ButtonUIManager.h" />
     <ClInclude Include="Src\Object\DirectionUI.h" />

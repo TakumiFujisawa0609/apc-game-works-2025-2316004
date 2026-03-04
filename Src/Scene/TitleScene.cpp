@@ -8,6 +8,7 @@
 #include "../Manager/Generic/InputManagerS.h"
 #include "../Manager/Generic/ButtonUIManager.h"
 #include "../Manager/Generic/DataBank.h"
+#include "../Manager/Generic/MenuController.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Common/Easing.h"
@@ -20,13 +21,13 @@ TitleScene::TitleScene(void):
 	updateFunc_ = std::bind(&TitleScene::LoadingUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&TitleScene::LoadingDraw, this);
+
+	menuController_ = std::make_unique<MenuController>();
 }
 
 TitleScene::~TitleScene(void)
 {
 	soundMng_.Stop(SoundManager::SRC::TITLE_BGM);
-	//titleFont_ = DeleteFontToHandle(titleFont_);
-	InitFontToHandle();
 }
 
 void TitleScene::Load(void)
@@ -41,6 +42,7 @@ void TitleScene::Load(void)
 
 	//タイトル用フォントの登録
 	titleFont_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+	menuController_->LoadFont(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE);
 
 	soundMng_.LoadResource(SoundManager::SRC::TITLE_BGM);
 	soundMng_.LoadResource(SoundManager::SRC::MOVE_BTN_SE);
@@ -73,10 +75,6 @@ void TitleScene::Init(void)
 		{TITLE_BTN::EXIT,L"EXIT"}
 	};
 
-	fontSize_ = -1;
-	thick_ = -1;
-	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
-
 
 	yesNoStrTable_ = {
 		{YES_NO::YES,L"はい"},
@@ -100,6 +98,17 @@ void TitleScene::Init(void)
 	easeDistanceCnt_ = 0.0f;
 	logoPos_ = { -LOGO_SIZE_X,-LOGO_SIZE_Y };
 	logoEaseCnt_ = BUTTON_EASING_TIME;
+
+
+
+	int i = 0;
+	for (auto& button : buttonStrTable_)
+	{
+		//イージング演出をするために初期位置は画面外にする
+		Vector2 pos = { Application::SCREEN_SIZE_X,static_cast<int>(BUTTON_START_POS_Y)+ BUTTON_DISTANCE*i };
+		menuController_->AddMenu(static_cast<int>(button.first), button.second, pos);
+		i++;
+	}
 
 	SoundManager::GetInstance().Play(SoundManager::SRC::TITLE_BGM,SoundManager::PLAYTYPE::LOOP);
 }
@@ -164,23 +173,7 @@ void TitleScene::NormalDraw(void)
 	
 	//タイトルロゴ
 	DrawExtendGraphF(logoPos_.x, logoPos_.y, logoPos_.x + LOGO_SIZE_X, logoPos_.y + LOGO_SIZE_Y, imgTitleLogo, true);
-
-	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
-	for (auto& btn : buttons_)
-	{
-		unsigned int btnCol = UtilityCommon::WHITE;
-		if (selectNum_ == static_cast<int>(btn.btnType))
-		{
-			btnCol = UtilityCommon::RED;
-		}
-		DrawFormatStringToHandle(
-			static_cast<int>(btn.curPos.x),
-			static_cast<int>(btn.curPos.y),
-			btnCol,
-			titleFont_,
-			btn.btnStr.c_str()
-		);
-	}
+	menuController_->Draw();
 
 	if (selectState_ == TITLE_STATE::EXIT_MENU|| selectState_ == TITLE_STATE::SCREEN)
 	{
@@ -218,14 +211,13 @@ void TitleScene::NormalDraw(void)
 			startPos.x + QUESTION_OFFSET,
 			startPos.y + QUESTION_OFFSET,
 			UtilityCommon::BLACK,
-			titleFont_,
+			buttonFontHandle_,
 			str.c_str()
 		);
 
 		DrawYesNo();
 	}
 
-	GetFontStateToHandle(NULL, &fontSize_, &thick_, titleFont_);
 
 	//決定ボタン
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, DICITION_BTN_POS, DICITION_BTN_SIZE);
@@ -234,7 +226,7 @@ void TitleScene::NormalDraw(void)
 		static_cast<int>(strPos.x),
 		static_cast<int>(strPos.y),
 		L"決定", 
-		UtilityCommon::WHITE, titleFont_);
+		UtilityCommon::WHITE, buttonFontHandle_);
 
 	//戻るボタン
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::A_BUTTON_COL_PUSH, BACK_BTN_POS, DICITION_BTN_SIZE);
@@ -243,7 +235,7 @@ void TitleScene::NormalDraw(void)
 		static_cast<int>(strPos.x), 
 		static_cast<int>(strPos.y), 
 		L"戻る", 
-		UtilityCommon::WHITE, titleFont_);
+		UtilityCommon::WHITE, buttonFontHandle_);
 
 }
 
@@ -256,35 +248,11 @@ void TitleScene::OnSceneEnter(void)
 
 void TitleScene::UpdateEase(void)
 {
-
-	easeDistanceCnt_ += SceneManager::GetInstance().GetDeltaTime();
 	logoEaseCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 
 	logoPos_ = easing_->EaseFunc(START_POS, GOAL_POS, (LOGO_EASING_TIME - logoEaseCnt_) / LOGO_EASING_TIME, Easing::EASING_TYPE::ELASTIC_OUT);
 
-	for (auto& btn:buttons_)
-	{
-		if (btn.isEase)continue;
-		if (easeDistanceCnt_ > EASING_DIS_TIME)
-		{
-			easeDistanceCnt_ = 0.0f;
-			btn.isEase = true;
-		}
-	}
-	int i = 0;
-	for (auto& btn:buttons_)
-	{
-		if (!btn.isEase)continue;
-		Vector2F goalPos = { BUTTON_START_POS_X,BUTTON_START_POS_Y + BUTTON_DISTANCE * i };
-		Easing::EASING_TYPE easeType = DecideEase(btn.btnType);
-		
-		i++;
-		btn.curPos = easing_->EaseFunc(btn.startPos, goalPos, (BUTTON_EASING_TIME - btn.easeCnt) / BUTTON_EASING_TIME, easeType);
-		btn.easeCnt -= SceneManager::GetInstance().GetDeltaTime();
-	}
-
-	auto itr = std::find_if(buttons_.begin(), buttons_.end(), [this](auto& btn) {return btn.easeCnt > 0.0f; });
-	if (itr == buttons_.end() && logoEaseCnt_ < 0.0f)
+	if (menuController_->DirectionMenu(EASING_DIS_TIME, BUTTON_EASING_TIME, BUTTON_START_POS_X))
 	{
 		//イージングが終わったらメニュー更新へ
 		ChangeState(TITLE_STATE::MENU);
@@ -298,33 +266,25 @@ void TitleScene::UpdateMenu(void)
 	InputManager& ins = InputManager::GetInstance();
 	InputManagerS& insS = InputManagerS::GetInstance();
 
-	//selectNum_ = static_cast<int>(selectState_);
-
 	if (insS.IsTrgDown(INPUT_EVENT::UP)||ins.IsTrgDown(KEY_INPUT_W))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
-		selectNum_--;
+		menuController_->SubSelectMenuNum();
 	}
 	else if (insS.IsTrgDown(INPUT_EVENT::DOWN) || ins.IsTrgDown(KEY_INPUT_S))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
-		selectNum_++;
+		menuController_->AddSelectMenuNum();
 	}
-	//０以下にならないように
-	if (selectNum_ < 0) { selectNum_ = static_cast<int>(TITLE_BTN::EXIT); }
+	selectNum_ = menuController_->GetSelectMenuNum();
 
-	selectNum_ %= static_cast<int>(TITLE_BTN::MAX);
-	//selectState_ = static_cast<TITLE_STATE>(selectNum_);
+	//OKボタンが押されたら
 	if (insS.IsTrgDown(INPUT_EVENT::OK))
 	{
-		if (selectNum_ != static_cast<int>(TITLE_BTN::START_GAME))
-		{
-			soundMng_.Play(SoundManager::SRC::DESIDE_BTN_SE, SoundManager::PLAYTYPE::BACK);
-		}
-		else
-		{
-			soundMng_.Play(SoundManager::SRC::GAME_START_SE, SoundManager::PLAYTYPE::BACK);
-		}
+		SoundManager::SRC se;
+		//ゲームスタート以外のボタンなら決定音、ゲームスタートならゲームスタート音を鳴らす
+		selectNum_ != static_cast<int>(TITLE_BTN::START_GAME) ? se = SoundManager::SRC::DESIDE_BTN_SE : se = SoundManager::SRC::GAME_START_SE;
+		soundMng_.Play(se, SoundManager::PLAYTYPE::BACK);
 		ChangeState(static_cast<TITLE_STATE>(selectNum_));
 	}
 }

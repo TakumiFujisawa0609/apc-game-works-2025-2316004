@@ -3,7 +3,8 @@
 
 int UtilityCommon::Round(float v)
 {
-    return static_cast<int>(roundf(v));
+    //return static_cast<int>(roundf(v));
+    return static_cast<int>(v);
 }
 
 std::vector<std::string> UtilityCommon::Split(std::string& line, char delimiter)
