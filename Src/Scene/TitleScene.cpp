@@ -252,16 +252,18 @@ void TitleScene::UpdateEase(void)
 
 	logoPos_ = easing_->EaseFunc(START_POS, GOAL_POS, (LOGO_EASING_TIME - logoEaseCnt_) / LOGO_EASING_TIME, Easing::EASING_TYPE::ELASTIC_OUT);
 
-	if (menuController_->DirectionMenu(EASING_DIS_TIME, BUTTON_EASING_TIME, BUTTON_START_POS_X))
+	menuController_->UpdateDirection(EASING_DIS_TIME, BUTTON_EASING_TIME, BUTTON_START_POS_X);
+	if (menuController_->IsAllDirectEaseEnd())
 	{
-		//イージングが終わったらメニュー更新へ
 		ChangeState(TITLE_STATE::MENU);
 	}
-
 }
 
 void TitleScene::UpdateMenu(void)
 {
+	//選択中のボタンをイージングで動かす
+	menuController_->NormalUpdate(SELECT_EASE_DISTANCE, SELECT_EASE_TIME,Easing::EASING_TYPE::COS_BACK);
+
 	// シーン遷移
 	InputManager& ins = InputManager::GetInstance();
 	InputManagerS& insS = InputManagerS::GetInstance();

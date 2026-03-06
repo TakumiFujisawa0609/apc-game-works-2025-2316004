@@ -82,9 +82,10 @@ private:
 	//メニュー座標の間隔
 	static constexpr float BUTTON_DISTANCE = 100;
 
-	//////ゲーム終了確認メニューの始め座標
-	//static constexpr int CHECK_EXIT_MENU_START_X = 100;
-	//static constexpr int CHECK_EXIT_MENU_START_Y = 100;
+	//選択中ボタンのイージングで動かせる距離
+	static constexpr Vector2 SELECT_EASE_DISTANCE = {20,0};
+	//選択中ボタンのイージング時間
+	static constexpr float SELECT_EASE_TIME = 0.5f;
 
 	//ロゴサイズ
 	static constexpr float LOGO_SCALE = 0.5f;

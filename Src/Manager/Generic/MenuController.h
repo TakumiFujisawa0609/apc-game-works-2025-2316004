@@ -7,13 +7,19 @@ class MenuController
 {
 public:
 
+	enum class MENU_STATE
+	{
+		DIRECTION,		//メニューが出てくる演出
+		NORMAL,			//通常
+	};
+
 	struct BTN_INFO
 	{
 		std::wstring btnStr;				//ボタンの文字
 		//TITLE_BTN btnType;				//何のボタンか
 		Vector2 startPos;					//イージング前の座標
 		Vector2 curPos = startPos;			//現在座標
-		float easeCnt=0.0f;					//イージング時間
+		float directionEaseCnt=0.0f;					//イージング時間
 		bool isEase = false;				//イージング中か
 		bool isEndDirectEase = false;		//演出イージングが終わったか
 	};
@@ -47,15 +53,23 @@ public:
 	/// @return サイズ変更後のフォントハンドル
 	const int GetSizeEasingFontHandle(const int _arrayNum,const int _startSize, const int _goalSize, const float _easeTime,Easing::EASING_TYPE _easeType);
 
-	/// @brief メニュー演出の更新
-	/// @param _disSpawn 出てくる間隔時間
 	
 	/// @brief メニュー演出の更新
 	/// @param _disSpawn 出てくる間隔時間
 	/// @param _easeTime イージング時間
 	/// @param _goalPosX 最終的なX座標
 	/// @return true:演出終了	false:演出中
-	const bool DirectionMenu(const float _disSpawn,const float _easeTime,const int _goalPosX);
+	void UpdateDirection(const float _disSpawn,const float _easeTime,const int _goalPosX);
+
+	/// @brief 通常更新
+	/// @param  
+	void NormalUpdate(const Vector2 _localPos,const float _easeTime,const Easing::EASING_TYPE _easeType);
+
+	/// @brief すべてのメニューの演出イージングが終わっているかの取得
+	/// @param  
+	/// @return 
+	const bool IsAllDirectEaseEnd(void) { return isAllDirectEaseEnd_; }
+
 
 	/// @brief メニューの描画
 	/// @param  
@@ -75,6 +89,9 @@ public:
 
 private:
 
+	//通常メニューのイージング時間
+	static constexpr float SELECT_EASING_TIME = 0.5f;
+
 	//デフォルトのフォントサイズ
 	int defaultFontSize_;
 
@@ -87,13 +104,38 @@ private:
 	//メニューのフォントハンドル
 	int fontHandle_;
 
+	//サイズイージングの時間カウント
+	float sizeEaseCnt_;
+
 	//演出でメニューが出てくるときの間隔カウント
 	float disSpawnCnt_;
+
+	//状態遷移
+	std::unordered_map<MENU_STATE, std::function<void(void)>>changeState_;
+
+	//現在の状態
+	MENU_STATE currentState_;
+
+	//更新関数
+	std::function<void(void)>updateFunc_;
 
 	//メニュー表
 	std::unordered_map<int, BTN_INFO> menuList_;
 
+	//サイズイージングのフォントハンドルのテーブル
+	std::unordered_map<int, int> sizeEasingFontHandleTable_;
+
+	//全体の演出が終わったか
+	bool isAllDirectEaseEnd_;
+
 	//選択中のメニュー
 	int selectMenuNum_;
+
+	//中央座標で描画
+	void DrawFromCenter(const int _arrayNum, const unsigned int _color, const int _fontHandle);
+
+
+
+
 };
 
