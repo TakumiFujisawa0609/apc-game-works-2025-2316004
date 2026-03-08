@@ -272,8 +272,10 @@ void PlayerCardAction::UpdateReload(void)
 		pushReloadCnt_ = 0.0f;
 		const float EFF_SCL = 100.0f;
 		SetUIReloadCnt();
+
 		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
 		effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
+
 		const Transform& trans = charaObj_.GetTransform();
 		effect_->Play(EffectController::EFF_TYPE::RELOAD_END, trans.pos, trans.quaRot, { EFF_SCL ,EFF_SCL ,EFF_SCL });
 

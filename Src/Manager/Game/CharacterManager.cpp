@@ -43,10 +43,7 @@ void CharacterManager::Update(void)
 
 void CharacterManager::DirectionUpdate(void)
 {
-	//if()
 
-	//enemy_->UpdateDirection();
-	//player_->UpdateDirection();
 }
 
 void CharacterManager::Draw(void)

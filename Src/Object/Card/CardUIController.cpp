@@ -201,15 +201,19 @@ int CardUIController::MakeCardUIImg(void)
 
 	//描画先を作成したスクリーンに変更
 	SetDrawScreen(img);
+
 	//作成したスクリーンで描画
 	DrawGraph(0, 0, typeImg_, true);
+
 	//中央座標取得
 	Vector2F centerPos;
 	GetGraphSizeF(typeImg_, &centerPos.x, &centerPos.y);
 	centerPos /= 2.0f;
+
 	//番号サイズ取得
 	Vector2F size = { 0.0f,0.0f };
 	GetGraphSizeF(cardNoImg_, &size.x, &size.y);
+
 	//縮小倍率をかける
 	size *= NUM_SCL;
 

@@ -2,6 +2,7 @@
 #include "../Utility/UtilityCommon.h"
 #include "../Manager/Generic/InputManagerS.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include "../Utility/UtilityDraw.h"
 #include "../Manager/Resource/SoundManager.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Manager/Generic/SceneManager.h"
@@ -55,12 +56,13 @@ void GameOverScene::NormalDraw(void)
 {
 	DrawExtendGraph(0, 0, Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, imgGameOver_, true);
 
-	DrawFormatStringToHandle(
-		BACK_TITLE_STRING_POS.x,
+
+	UtilityDraw::DrawStringCenter(
+		Application::SCREEN_HALF_X,
 		BACK_TITLE_STRING_POS.y,
+		L"'B'ボタンまたは'スペースキー'でタイトルに戻る",
 		UtilityCommon::WHITE,
-		buttonFontHandle_,
-		L"'Bボタンまたはスペースキー'でタイトルに戻る"
+		buttonFontHandle_
 	);
 }
 

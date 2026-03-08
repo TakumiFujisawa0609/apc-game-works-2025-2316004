@@ -41,19 +41,12 @@ void Dodge::Init(void)
 
 void Dodge::Update()
 {
-
-
 	//回避時間が終わったら
 	if (anim_.GetAnimStep()> END_DODGE_ANIM_STEP)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		return;
 	}
-
-	//if (input.GetIsEnteredDir())
-	//{
-	//	actionCntl_.GetInput().SetMoveDir(dodgeDir_);
-	//}
 
 	//回避中はInputクラスへプレイヤーの前情報をセットする
 	actionCntl_.GetInput().SetMoveDir(dodgeDir_);

@@ -1,14 +1,17 @@
 #include "../pch.h"
 #include "../Utility/UtilityCommon.h"
 #include "../Manager/Generic/SceneManager.h"
+#include "../Application.h"
 #include "../Common/Easing.h"
 #include "MenuController.h"
 
-MenuController::MenuController(void):
+MenuController::MenuController(void) :
 	selectMenuNum_(0),
 	disSpawnCnt_(0.0f),
 	sizeEaseCnt_(0.0f),
-	isAllDirectEaseEnd_(false)
+	isAllDirectEaseEnd_(false),
+	yesNoStrTable_{ L"ÇÕÇ¢",L"Ç¢Ç¢Ç¶" },
+	yesNoState_(YES_NO::NO)
 {
 	easing_ = std::make_unique<Easing>();
 }
@@ -27,16 +30,9 @@ void MenuController::LoadFont(const std::wstring _fontType, const int _size)
 	}
 	else
 	{
-		//for (int i = 0; i < 8; i++)
-		//{
-		//	fontHandle_ = CreateFontToHandle(_fontType.c_str(), _size+i, 0);
-		//	sizeEasingFontHandleTable_[_size + i] = fontHandle_;
-		//}
 		fontHandle_ = CreateFontToHandle(_fontType.c_str(), _size, 0);
 		sizeEasingFontHandleTable_[_size] = fontHandle_;
 	}
-
-
 }
 
 void MenuController::AddMenu(const int _arrayNum, const std::wstring _menu,const Vector2 _pos)
@@ -148,6 +144,12 @@ void MenuController::NormalUpdate(const Vector2 _localPos, const float _easeTime
 	}
 }
 
+void MenuController::SetYesNoUpdate(const bool _isYes)
+{	
+	_isYes ? yesNoState_ = YES_NO::YES : yesNoState_ = YES_NO::NO;
+}
+
+
 void MenuController::Draw(void)
 { 
 	unsigned int color = UtilityCommon::WHITE;
@@ -165,6 +167,48 @@ void MenuController::Draw(void)
 		DrawFormatStringToHandle(
 			menu.second.curPos.x, menu.second.curPos.y, color, fontHandle_, menu.second.btnStr.c_str());
 	}
+}
+
+void MenuController::YesNoDraw(const std::wstring _questionStr)
+{
+	const Vector2 startPos = { Application::SCREEN_HALF_X - (CHECK_EXIT_MENU_SIZE_X / 2)
+						,Application::SCREEN_HALF_Y - (CHECK_EXIT_MENU_SIZE_Y / 2) };
+	const Vector2 endPos = { Application::SCREEN_HALF_X + (CHECK_EXIT_MENU_SIZE_X / 2),
+							Application::SCREEN_HALF_Y + (CHECK_EXIT_MENU_SIZE_Y / 2) };
+
+	//ÉÅÉjÉÖîwåi
+	DrawBox(startPos.x,
+		startPos.y,
+		endPos.x,
+		endPos.y,
+		0x00ff00,
+		true
+	);
+
+	//éøñ‚ÇÃï∂éöóÒï`âÊ
+	DrawFormatStringToHandle(
+		startPos.x + QUESTION_OFFSET,
+		startPos.y + QUESTION_OFFSET,
+		UtilityCommon::BLACK,
+		fontHandle_,
+		_questionStr.c_str()
+	);
+
+	int size = static_cast<int>(yesNoStrTable_->size());
+	for (int i = 0; i < size; i++)
+	{
+		unsigned int btnCol = UtilityCommon::WHITE;
+		//ëIëíÜÇÃï∂éöÇÕê‘êFÇ≈ï`âÊ
+		yesNoState_ == static_cast<YES_NO>(i) ? btnCol = UtilityCommon::RED : btnCol = UtilityCommon::WHITE;
+
+		DrawFormatStringToHandle(
+			startPos.x + YES_NO_DISTANCE_X + i * YES_NO_DISTANCE_Y,
+			startPos.y + YES_NO_DISTANCE_Y,
+			btnCol,
+			fontHandle_,
+			yesNoStrTable_[i].c_str()
+		);
+	};
 }
 
 void MenuController::AddSelectMenuNum(void)
@@ -194,11 +238,11 @@ void MenuController::DrawFromCenter(const int _arrayNum, const unsigned int _col
 		&h,
 		NULL,
 		menuList_[_arrayNum].btnStr.c_str()
-		,wcslen(menuList_[_arrayNum].btnStr.c_str())
+		,static_cast<int>(wcslen(menuList_[_arrayNum].btnStr.c_str()))
 		,_fontHandle );
 
-	strPos.x += w * 0.5f;
-	strPos.y += h * 0.5f;
+	strPos.x += static_cast<int>(w * 0.5f);
+	strPos.y += static_cast<int>(h * 0.5f);
 
 	// íÜêSäÓèÄï`âÊ
 	DrawRotaStringFToHandle(

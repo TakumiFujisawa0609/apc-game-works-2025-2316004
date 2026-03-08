@@ -47,8 +47,6 @@ soundMng_(SoundManager::GetInstance())
 		{LogicBase::ENEMY_ATTACK_TYPE::ROLE,[this]() {ChangeCardAction(CARD_ACT_TYPE::RUSH_ATK); }}
 	};
 
-	charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM,atk_.pos);
-
 }
 
 EnemyCardAction::~EnemyCardAction(void)
@@ -160,7 +158,7 @@ void EnemyCardAction::ChangeJumpAtk(void)
 	//ジャンプ攻撃処理
 
 	SetAtk(JUMP_ATK);
-	//effect_->Play(EffectController::EFF_TYPE::E_JUMP_CHARGE, charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, { JUMP_CHARGE_EFF_SCL,JUMP_CHARGE_EFF_SCL ,JUMP_CHARGE_EFF_SCL });
+	effect_->Play(EffectController::EFF_TYPE::E_JUMP_CHARGE, charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, { JUMP_CHARGE_EFF_SCL,JUMP_CHARGE_EFF_SCL ,JUMP_CHARGE_EFF_SCL });
 
 	cardFuncs_.push([this]() {UpdateJumpAtk(); });
 }
@@ -255,6 +253,9 @@ void EnemyCardAction::UpdateStomp(void)
 			charaObj_.SetIsAliveEnemyRock(false);
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
+			effect_->Stop(EffectController::EFF_TYPE::JUMP, 0);
+			effect_->Delete(EffectController::EFF_TYPE::JUMP, 0);
+
 			//charaObj_.GetCardUI().ChangeUsedActionCard();
 			//cardPresent_.EraseHandCard();
 			cardPresent_.FinishCard();
@@ -399,18 +400,18 @@ void EnemyCardAction::UpdateDuel(void)
 {
 	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
 	{
-		if (IsCardFailureJumpCharge())
-		{
-			//アニメーションループ終了
-			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+		//if (IsCardFailureJumpCharge())
+		//{
+		//	//アニメーションループ終了
+		//	anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 
-			//charaObj_.GetCardUI().ChangeUsedActionCard();
-			cardPresent_.FinishCard();
-			//cardPresent_.EraseHandCard();
-			//cardPresent_.ClearDuelDeck();
-			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-			return;
-		}
+		//	//charaObj_.GetCardUI().ChangeUsedActionCard();
+		//	cardPresent_.FinishCard();
+		//	//cardPresent_.EraseHandCard();
+		//	//cardPresent_.ClearDuelDeck();
+		//	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
+		//	return;
+		//}
 
 		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
 		//アニメーションループ
@@ -425,39 +426,12 @@ void EnemyCardAction::UpdateDuel(void)
 	}
 }
 
-bool EnemyCardAction::IsCardFailureJumpCharge(void)
-{
-	//カードの勝敗判定
-	//cardPresent_.CardUseUpdate();
-	//相手のカードに負けたらノックバックする
-	//if (jampCardNum_ >= JAMP_CHARGE_CARD_NUM_MAX)
-	//{
-	//	actionCntl_.GetInput().IsActioningSet();
-	//	charaObj_.GetCardUI().ChangeReactActionCard();
-	//	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-
-
-	//	return true;
-	//}
-	//if (cardPresent_.IsCardFailure())
-	//{
-	//	charaObj_.GetCardUI().ChangeReactActionCard();
-	//	//攻撃判定無効
-	//	cardPresent_.EraseHandCard(true);
-	//}
-	//else if (cardPresent_.IsNone())
-	//{
-	//	PutCard();
-	//	jampCardNum_++;
-	//}
-	return false;
-}
 
 void EnemyCardAction::DesideCardAction(void)
 {
 	//ロジックから攻撃タイプを取得
 	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	//LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
+	attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
 	switch (attackType)
 	{
 	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:

@@ -5,17 +5,6 @@
 #include"../Utility/Utility3D.h"
 #include "CollisionManager.h"
 
-//CollisionManager* CollisionManager::instance_ = nullptr;
-//
-//void CollisionManager::CreateInstance(void)
-//{
-//	//インスタンスの初期生成
-//	if (instance_ == nullptr)
-//	{
-//		instance_ = new CollisionManager();
-//	}
-//}
-
 void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 {
 	//コライダの追加
@@ -81,8 +70,6 @@ void CollisionManager::Update(void)
 				continue;
 			}
 
-
-
 			//当たり判定
 			if(IsCollision(colliders3D_[i],colliders3D_[j]))
 			{
@@ -101,18 +88,6 @@ void CollisionManager::Update(void)
 	//カウンタの初期化
 	updateFrame_ = 0;
 }
-//
-//void CollisionManager::Destroy(void)
-//{
-//	//コライダの全削除
-//	colliders3D_.clear();
-//
-//	hitRange_.clear();
-//
-//	//自身のインスタンス削除
-//	delete instance_;
-//	instance_ = nullptr;
-//}
 
 const bool CollisionManager::IsPlayer(const Collider::TAG _tag)const
 {

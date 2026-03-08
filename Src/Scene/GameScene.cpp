@@ -56,7 +56,6 @@ void GameScene::Load(void)
 	//フォントの登録
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
-
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
 	pauseScene_->Load();
@@ -64,15 +63,12 @@ void GameScene::Load(void)
 	UIManager::GetInstance().Load();
 	ButtonUIManager::GetInstance().Load();
 
-
 	stage_ = std::make_unique<Stage>();
 
 	skyDome_ = std::make_unique<SkyDome>();
 	skyDome_->Load();
 
 	CharacterManager::GetInstance().Load();
-
-	//UIManager::GetInstance().Load();
 }
 
 void GameScene::Init(void)
@@ -354,7 +350,7 @@ void GameScene::DebagUpdate(void)
 	InputManager& ins = InputManager::GetInstance();
 	if (ins.IsTrgDown(KEY_INPUT_SPACE))
 	{
-		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
 	}
 	frame_++;
 }

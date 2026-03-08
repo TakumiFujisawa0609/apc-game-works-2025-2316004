@@ -2,40 +2,6 @@
 #include "Vector2.h"
 #include "Vector2F.h"
 
-//// コンストラクタ
-//Vector2::Vector2(void)
-//{
-//	x = 0;
-//	y = 0;
-//}
-//
-//// コンストラクタ
-//Vector2::Vector2(int vX, int vY)
-//{
-//	x = vX;
-//	y = vY;
-//}
-
-//Vector2::~Vector2(void)
-//{
-//}
-//
-//Vector2F ToVector2F(void)
-//{
-//	Vector2F ret;
-//
-//	ret.x = static_cast<float>(round(x));
-//	ret.y = static_cast<float>(round(y));
-//
-//	return ret;
-//}
-
-//void Vector2::ToVector2F(void)
-//{
-//	x = static_cast<int>(roundf(x));
-//	y = static_cast<int>(roundf(y));
-//}
-
 Vector2 Vector2::Normalize(void) const
 {
 	float len = Length();

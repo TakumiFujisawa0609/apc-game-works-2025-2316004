@@ -62,9 +62,8 @@ void TitleScene::Init(void)
 		{TITLE_STATE::MENU,[this]() {UpdateMenu();}},
 		{TITLE_STATE::START_GAME,[this]() {UpdateSelectGame();}},
 		//{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
-		{TITLE_STATE::SCREEN,[this]() { UpdateScreen(); }},
 		{TITLE_STATE::EXIT_MENU,[this]() {UpdateExitMenu();}},
-		{TITLE_STATE::SCREEN_MENU,[this]() {UpdateScreenMenu();}},
+		{TITLE_STATE::SCREEN,[this]() {UpdateScreen();}},
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
 	};
 
@@ -99,13 +98,11 @@ void TitleScene::Init(void)
 	logoPos_ = { -LOGO_SIZE_X,-LOGO_SIZE_Y };
 	logoEaseCnt_ = BUTTON_EASING_TIME;
 
-
-
 	int i = 0;
 	for (auto& button : buttonStrTable_)
 	{
 		//イージング演出をするために初期位置は画面外にする
-		Vector2 pos = { Application::SCREEN_SIZE_X,static_cast<int>(BUTTON_START_POS_Y)+ BUTTON_DISTANCE*i };
+		Vector2 pos = { Application::SCREEN_SIZE_X,static_cast<int>(BUTTON_START_POS_Y+ BUTTON_DISTANCE*i) };
 		menuController_->AddMenu(static_cast<int>(button.first), button.second, pos);
 		i++;
 	}
@@ -113,30 +110,11 @@ void TitleScene::Init(void)
 	SoundManager::GetInstance().Play(SoundManager::SRC::TITLE_BGM,SoundManager::PLAYTYPE::LOOP);
 }
 
-Easing::EASING_TYPE TitleScene::DecideEase(TITLE_BTN _btn)
-{
-	switch (_btn)
-	{
-	case TitleScene::TITLE_BTN::START_GAME:
-		return Easing::EASING_TYPE::ELASTIC_OUT;
-		break;
-	case TitleScene::TITLE_BTN::SCREEN:
-		return Easing::EASING_TYPE::BOUNCE;
-		break;
-	case TitleScene::TITLE_BTN::EXIT:
-		return Easing::EASING_TYPE::QUAD_IN_OUT;
-		break;
-	default:
-		return Easing::EASING_TYPE::CUBIC_OUT;
-		break;
-	}
-}
-
 void TitleScene::ChangeState(const TITLE_STATE& _state)
 {
 	if (selectState_ == _state)return;
 	selectState_ = _state;
-	yesNoState_ = YES_NO::NO;
+	menuController_->SetYesNoUpdate(false);
 }
 
 void TitleScene::NormalUpdate(void)
@@ -146,22 +124,6 @@ void TitleScene::NormalUpdate(void)
 
 void TitleScene::NormalDraw(void)
 {
-
-	DrawBox(
-		0,
-		0,
-		Application::SCREEN_SIZE_X,
-		Application::SCREEN_SIZE_Y,
-		0x0000ff,
-		true
-	);
-
-	DrawFormatString(
-		0, 0,
-		0x000000,
-		L"TitleScene"
-	);
-
 	DrawExtendGraph(
 		0,
 		0,
@@ -177,19 +139,6 @@ void TitleScene::NormalDraw(void)
 
 	if (selectState_ == TITLE_STATE::EXIT_MENU|| selectState_ == TITLE_STATE::SCREEN)
 	{
-		const Vector2 startPos = { Application::SCREEN_HALF_X - (CHECK_EXIT_MENU_SIZE_X / 2)
-									,Application::SCREEN_HALF_Y - (CHECK_EXIT_MENU_SIZE_Y / 2) };
-		const Vector2 endPos = { Application::SCREEN_HALF_X + (CHECK_EXIT_MENU_SIZE_X / 2),
-								Application::SCREEN_HALF_Y + (CHECK_EXIT_MENU_SIZE_Y / 2) };
-
-		//メニュ背景
-		DrawBox(startPos.x,
-			startPos.y,
-			endPos.x,
-			endPos.y,
-			0x00ff00,true
-		);
-
 		std::wstring str = L"";
 		if (selectState_ == TITLE_STATE::EXIT_MENU)
 		{
@@ -207,15 +156,7 @@ void TitleScene::NormalDraw(void)
 				str = L"フルスクリーンにしますか？";
 			}
 		}
-		DrawFormatStringToHandle(
-			startPos.x + QUESTION_OFFSET,
-			startPos.y + QUESTION_OFFSET,
-			UtilityCommon::BLACK,
-			buttonFontHandle_,
-			str.c_str()
-		);
-
-		DrawYesNo();
+		menuController_->YesNoDraw(str);
 	}
 
 
@@ -298,7 +239,7 @@ void TitleScene::UpdateScreen(void)
 	InputManagerS& insS = InputManagerS::GetInstance();
 	if (insS.IsTrgDown(INPUT_EVENT::OK))
 	{
-		if (yesNoState_ == YES_NO::YES)
+		if (menuController_->GetIsYes())
 		{
 			ChangeScreenSize();
 			ChangeState(static_cast<TITLE_STATE>(TITLE_STATE::MENU));
@@ -330,41 +271,13 @@ void TitleScene::UpdateExitMenu(void)
 	InputManagerS& insS = InputManagerS::GetInstance();
 	if (insS.IsTrgDown(INPUT_EVENT::OK))
 	{
-		if (yesNoState_ == YES_NO::YES)
+		if (menuController_->GetIsYes())
 		{
 			Application::GetInstance().IsGameEnd();
 		}
 		else { ChangeState(TITLE_STATE::MENU); }
 	}
 }
-
-void TitleScene::UpdateScreenMenu(void)
-{
-}
-
-void TitleScene::DrawYesNo(void)
-{
-	const Vector2 startPos = { Application::SCREEN_HALF_X - (CHECK_EXIT_MENU_SIZE_X / 2)
-							,Application::SCREEN_HALF_Y - (CHECK_EXIT_MENU_SIZE_Y / 2) };
-	const Vector2 endPos = { Application::SCREEN_HALF_X + (CHECK_EXIT_MENU_SIZE_X / 2),
-							Application::SCREEN_HALF_Y + (CHECK_EXIT_MENU_SIZE_Y / 2) };
-
-	int i = 0;
-	for (auto& str : yesNoStrTable_)
-	{
-		unsigned int btnCol = UtilityCommon::WHITE;
-		if (yesNoState_ == str.first) { btnCol = UtilityCommon::RED; }
-		DrawFormatStringToHandle(
-			startPos.x + YES_NO_DISTANCE_X + i * YES_NO_DISTANCE_Y,
-			startPos.y + YES_NO_DISTANCE_Y,
-			btnCol,
-			titleFont_,
-			str.second.c_str()
-		);
-		i++;
-	}
-}
-
 void TitleScene::UpdateYesNo(void)
 {
 	InputManagerS& insS = InputManagerS::GetInstance();
@@ -372,12 +285,12 @@ void TitleScene::UpdateYesNo(void)
 	if (insS.IsTrgDown(INPUT_EVENT::LEFT) || ins.IsTrgDown(KEY_INPUT_A))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
-		yesNoState_ = YES_NO::YES;
+		menuController_->SetYesNoUpdate(true);
 	}
 	else if (insS.IsTrgDown(INPUT_EVENT::RIGHT) || ins.IsTrgDown(KEY_INPUT_D))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
-		yesNoState_ = YES_NO::NO;
+		menuController_->SetYesNoUpdate(false);
 	}
 }
 

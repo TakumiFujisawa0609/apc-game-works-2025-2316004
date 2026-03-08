@@ -2,6 +2,7 @@
 #include <DxLib.h>
 #include "../Application.h"
 #include "../Utility/UtilityCommon.h"
+#include "../Utility/UtilityDraw.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Generic/InputManagerS.h"
@@ -93,13 +94,21 @@ void GameClearScene::NormalDraw(void)
 
 	DrawExtendGraph(0, 0, Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, imgGameClear_, true);
 
-	DrawFormatStringToHandle(
-		SceneBase::BACK_TITLE_STRING_POS.x,
+	UtilityDraw::DrawStringCenter(
+		Application::SCREEN_HALF_X,
 		static_cast<int>(strYPos_),
+		L"'B'ボタンまたは'スペースキー'でタイトルに戻る",
 		UtilityCommon::WHITE,
-		buttonFontHandle_,
-		L"'Bボタンまたはスペースキー'でタイトルに戻る"
+		buttonFontHandle_
 	);
+
+	//DrawFormatStringToHandle(
+	//	SceneBase::BACK_TITLE_STRING_POS.x,
+	//	static_cast<int>(strYPos_),
+	//	UtilityCommon::WHITE,
+	//	buttonFontHandle_,
+	//	L""
+	//);
 
 }
 

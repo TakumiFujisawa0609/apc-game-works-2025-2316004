@@ -64,3 +64,18 @@ void UtilityDraw::DrawPointLine3D(const VECTOR sPos, const VECTOR ePos, int colo
         }
     }
 }
+
+void UtilityDraw::DrawStringCenter(const int _centerX, const int _centerY, const std::wstring _str, unsigned int color, const int fontHandle)
+{
+    int w, h;
+    GetDrawStringSizeToHandle(
+        &w,
+        &h,
+        NULL,
+        _str.c_str(),
+		static_cast<int>(wcslen(_str.c_str())),
+        fontHandle);
+    int x = _centerX - (w / 2);
+    int y = _centerY - (h / 2);
+	DrawStringToHandle(x, y, _str.c_str(), color, fontHandle);
+}

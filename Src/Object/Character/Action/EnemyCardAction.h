@@ -182,9 +182,6 @@ private:
     void UpdateReload(void);
     void UpdateDuel(void)override;
 
-    //ジャンプチャージ中、カード負けしても何枚かカードを出す
-    bool IsCardFailureJumpCharge(void);
-
 	//アクションによって処理を分岐
 	void DesideCardAction(void);
 

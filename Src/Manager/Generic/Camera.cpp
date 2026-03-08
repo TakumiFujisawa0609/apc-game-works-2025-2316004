@@ -155,30 +155,6 @@ void Camera::SetShakeStatus(const float t, const float limit
 	easeType_ = _easeType;
 }
 
-
-//VECTOR Camera::GetPos(void) const
-//
-//
-//VECTOR Camera::GetAngles(void) const
-//{
-//	return angles_;
-//}
-//
-//VECTOR Camera::GetTargetPos(void) const
-//{
-//	return targetPos_;
-//}
-//
-//Quaternion Camera::GetQuaRot(void) const
-//{
-//	return rot_;
-//}
-//
-//Quaternion Camera::GetQuaRotOutX(void) const
-//{
-//	return rotOutX_;
-//}
-
 VECTOR Camera::GetForward(void) const
 {
 	return VNorm(VSub(targetPos_, pos_));
