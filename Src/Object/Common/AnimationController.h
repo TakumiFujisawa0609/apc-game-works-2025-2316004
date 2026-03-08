@@ -63,7 +63,9 @@ public :
 	/// @param _easeType 使用したいイージングタイプ
 	void SetAnimSpeed(const float _spd, const bool _isEase = false, const float _startSpd=0.0f, const float _t = 1.0f, Easing::EASING_TYPE _easeType = Easing::EASING_TYPE::LERP);
 
-	// 再生終了
+	/// @brief // 再生終了
+	/// @param  
+	/// @return 
 	bool IsEnd(void) const;
 
 	/// @brief フレームの行列ローカル座標のセット

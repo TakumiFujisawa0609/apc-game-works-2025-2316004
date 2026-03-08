@@ -172,21 +172,20 @@ private:
 	void AddCardUIData(void)override;
 
 	//カード状態遷移
-	void ChangeNone(void)override;		//通常
-	void ChangeLeft(void)override;		//左に移動
-	void ChangeRight(void)override;		//右に移動
-	void ChangeDecision(void)override;	//決定
-	void ChangeReloadWait(void)override;
-	void ChangeReload(void);
+	void ChangeNone(void)override;			//通常
+	void ChangeLeft(void)override;			//左に移動
+	void ChangeRight(void)override;			//右に移動
+	void ChangeDecision(void)override;		//決定
+	void ChangeReloadWait(void)override;	//リロード待機(リロードゲージのチャージ)
+	void ChangeReload(void);				//リロード
 
-	void UpdateNone(void)override;
-	void UpdateLeft(void)override;
-	void UpdateRight(void)override;
-	void UpdateDecision(void)override;
-	void UpdateReloadWait(void)override;
-	void UpdateReload(void);
+	void UpdateNone(void)override;			//通常
+	void UpdateLeft(void)override;			//左に移動
+	void UpdateRight(void)override;			//右に移動
+	void UpdateDecision(void)override;		//決定
+	void UpdateReloadWait(void)override;	//リロード待機(リロードゲージのチャージ)
+	void UpdateReload(void);				//リロード
 
-	
 	//すべてのカードの移動
 	void MoveCardAll(const float& _moveTImeMax);
 	//カードUI描画オブジェクト更新
@@ -200,12 +199,16 @@ private:
 	
 	//見せるカードの更新
 	void UpdateVisibleCard(void);
+
 	//手札の消去
 	void EraseHandCard(void);
+
 	//カード使用時のカード角度の更新
 	void DecideGoalAngle(void);
+
 	//リロードアニメーション
 	void ReloadAnimation(void);
+
 	//リロード時に配列に追加
 	void ReloadCardArray(void);
 

@@ -17,7 +17,8 @@
 CardUIBase::CardUIBase(void):
 selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
-reloadCardImg_(-1)
+reloadCardImg_(-1),
+soundMng_(SoundManager::GetInstance())
 {
 	//material_ = std::make_unique<PixelMaterial>(L"CardUI",0);
 	//renderer_ = std::make_unique<PixelRenderer>(*material_);

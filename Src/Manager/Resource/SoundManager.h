@@ -33,8 +33,8 @@ public:
 		PLAYER_DODGE_SE,			//プレイヤー回避音
 		PLAYER_HIT_SE,				//プレイヤーヒット音
 
-
 		//カード関連
+		CARD_PUT,					//カードを引く(アクション開始時)
 		CARD_MOVE,					//カード移動
 		CARD_BE_REFLECTED,			//カード弾かれ音
 		CARD_BREAK,					//カード弾き音(カードに勝った)

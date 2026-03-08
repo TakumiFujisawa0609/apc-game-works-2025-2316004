@@ -350,7 +350,7 @@ void GameScene::DebagUpdate(void)
 	InputManager& ins = InputManager::GetInstance();
 	if (ins.IsTrgDown(KEY_INPUT_SPACE))
 	{
-		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
+		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
 	}
 	frame_++;
 }

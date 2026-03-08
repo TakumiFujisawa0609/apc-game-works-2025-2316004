@@ -131,10 +131,6 @@ public:
 	/// @param  
 	void Update(void)override;
 
-	///// @brief ‰‰o‚ÌXV
-	///// @param  
-	//virtual void UpdateDirection(void) = 0;
-
 	/// @brief •`‰æ
 	/// @param  
 	virtual void Draw(void)override = 0;

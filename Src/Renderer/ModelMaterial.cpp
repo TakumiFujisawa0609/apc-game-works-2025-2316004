@@ -16,8 +16,6 @@ ModelMaterial::ModelMaterial(
 	// 頂点シェーダー用の定数バッファを作成
 	constBufVS_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4SizeVS);
 
-
-
 	// ピクセルシェーダのロード
 	shaderPS_ = LoadPixelShader(
 		(Application::PATH_SHADER + shaderFileNamePS).c_str());

@@ -131,7 +131,6 @@ void PlayerLogic::InputAll(void)
 		moveDir_ = cameraQuaRot.PosAxis(inputDir_);
 	}
 
-
 	//カードチャージ
 	if (input_.IsPadBtnTrgDown(padNum_, CARD_CHARGE_BTN) || input_.IsTrgDown(CARD_CHARGE_KEY)) { isAct_.isCardCharge = true; }
 	//カード使用

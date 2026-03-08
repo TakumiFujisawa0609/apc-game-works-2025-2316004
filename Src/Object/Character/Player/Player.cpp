@@ -228,7 +228,6 @@ void Player::Damage(const int _dam)
 	CharacterBase::Damage(_dam);
 }
 
-
 #ifdef _DEBUG
 void Player::DrawDebug(void)
 {

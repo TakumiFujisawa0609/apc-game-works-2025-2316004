@@ -12,16 +12,12 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	scnMng_(SceneManager::GetInstance()),
 	actionCntl_(_actCntl),
 	anim_(_actCntl.GetAnimation()),
+	soundMng_(SoundManager::GetInstance()),
 	isTurnable_(true),
 	isAliveAtkCol_(false),
-	isJump_(false),
-	jumpDeceralation_(0.0f),
-	//jumpPow_({}),
-	stepJump_(0.0f),
 	speed_(0.0f),
 	flinchCnt_(0.0f),
 	actType_(CARD_ACT_TYPE::NONE)
-	//movePow_({})
 {
 
 

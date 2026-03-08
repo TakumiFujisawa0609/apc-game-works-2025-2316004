@@ -139,7 +139,7 @@ private:
 
     //エフェクトサイズ
 	static constexpr float BLAST_EFF_SCL = 1.4f;            //爆発
-	static constexpr float JUMP_CHARGE_EFF_SCL = 1000.0f;      //ジャンプチャージ
+	static constexpr float JUMP_CHARGE_EFF_SCL = 500.0f;      //ジャンプチャージ
 
     //ひっかき攻撃のステータス
     static constexpr ATK_STATUS STOMP_ATK = 
@@ -168,22 +168,19 @@ private:
     std::unordered_map<LogicBase::ENEMY_ATTACK_TYPE, std::function<void(void)>>changeCardAction_;
 
     //遷移
-    void ChangeStomp(void);
-    void ChangeRoar(void);
-    void ChangeJumpAtk(void);
-	void ChangeRoleAtk(void);
-    void ChangeReload(void);
-    void ChangeDuel(void)override;
+    void ChangeStomp(void);             //踏みつけ
+    void ChangeRoar(void);              //咆哮攻撃
+    void ChangeJumpAtk(void);           //ジャンプ攻撃
+	void ChangeRoleAtk(void);           //転がり
+    void ChangeReload(void);            //リロード
+    void ChangeDuel(void)override;      //デュエル
     //更新
-    void UpdateStomp(void);
-    void UpdateRoar(void);
-    void UpdateJumpAtk(void);
-	void UpdateRoleAtk(void);
-    void UpdateReload(void);
-    void UpdateDuel(void)override;
-
-	//アクションによって処理を分岐
-	void DesideCardAction(void);
+    void UpdateStomp(void);             //踏みつけ      
+    void UpdateRoar(void);              //咆哮攻撃  
+    void UpdateJumpAtk(void);           //ジャンプ攻撃
+	void UpdateRoleAtk(void);             //転がり
+    void UpdateReload(void);            //リロード
+    void UpdateDuel(void)override;      //デュエル
 
     //デュエルデッキからカードを出す
     void PutCardToDuelDeck(void);
@@ -193,9 +190,6 @@ private:
 
     //岩生成フラグ
     bool isGenerateRock_;
-
-    //サウンド
-	SoundManager& soundMng_;
 
     //転がる攻撃関連
     float preRoleAtkCnt_;//前隙カウント

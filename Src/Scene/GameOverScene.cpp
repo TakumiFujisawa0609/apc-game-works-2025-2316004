@@ -16,6 +16,8 @@ GameOverScene::GameOverScene(void):
 	updateFunc_ = std::bind(&GameOverScene::LoadingUpdate, this);
 	//ï`âÊä÷êîÇÃÉZÉbÉg
 	drawFunc_ = std::bind(&GameOverScene::LoadingDraw, this);
+
+	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
 }
 
 GameOverScene::~GameOverScene(void)
@@ -36,7 +38,6 @@ void GameOverScene::Load(void)
 
 void GameOverScene::Init(void)
 {
-	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
 
 	//BGMçƒê∂
 	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_OVER, SoundManager::PLAYTYPE::LOOP);

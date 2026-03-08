@@ -62,15 +62,16 @@ private:
 	//選択カード枠移動量
 	static constexpr float SELECT_CARD_FRAME_MOVE_AMOUNT = 10.0f;
 
-
 	//フレーム固定座標
 	static constexpr Vector2F LEFT_UP_FRAME_POS = { 19.5f,343.0f };
 	static constexpr Vector2F RIGHT_DOWN_FRAME_POS = { 140.0f,509.0f };
 
 	//シェーダの定数バッファスロット
 	static constexpr int CONST_BUF_SLOT_NUM = 3;
+
 	//選択カードの定数バッファスロット
 	static constexpr int CARD_NUM_CONST_BUF_SIZE = 3;
+
 	//選択カードアウトラインサイズ
 	static constexpr float SELECT_CARD_OUTLINE_SIZE = 100.0f;	
 

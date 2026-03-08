@@ -22,6 +22,8 @@ GameClearScene::GameClearScene(void):
 	updateFunc_ = std::bind(&GameClearScene::LoadingUpdate, this);
 	//ï`âÊä÷êîÇÃÉZÉbÉg
 	drawFunc_ = std::bind(&GameClearScene::LoadingDraw, this);
+
+	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
 }
 
 GameClearScene::~GameClearScene(void)
@@ -42,7 +44,7 @@ void GameClearScene::Load(void)
 
 void GameClearScene::Init(void)
 {
-	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
+
 	//BGMçƒê∂
 	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_CLEAR, SoundManager::PLAYTYPE::LOOP);
 
@@ -86,9 +88,10 @@ void GameClearScene::NormalDraw(void)
 		true
 	);
 
+
 	DrawFormatString(
 		0, 0,
-		0x000000,
+		0xffffff,
 		L"GameClearScene"
 	);
 
@@ -101,14 +104,6 @@ void GameClearScene::NormalDraw(void)
 		UtilityCommon::WHITE,
 		buttonFontHandle_
 	);
-
-	//DrawFormatStringToHandle(
-	//	SceneBase::BACK_TITLE_STRING_POS.x,
-	//	static_cast<int>(strYPos_),
-	//	UtilityCommon::WHITE,
-	//	buttonFontHandle_,
-	//	L""
-	//);
 
 }
 

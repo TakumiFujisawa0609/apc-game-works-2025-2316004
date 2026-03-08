@@ -261,6 +261,7 @@ void Enemy::MakeColliderGeometry(void)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
 	MakeCollider(TAG_PRIORITY::MOVE_LINE, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::MOVE_LINE);
+
 	//è„â∫ÉâÉCÉì
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN);
 	MakeCollider(TAG_PRIORITY::UPDOWN_LINE, { tag_ }, std::move(geo));

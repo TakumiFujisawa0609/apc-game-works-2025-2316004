@@ -12,10 +12,23 @@ class CardActionBase :
 
 public:
 
+    /// @brief コンストラクタ
+    /// @param _actCntl アクションコントローラ
+    /// @param _charaObj キャラクター
+    /// @param _deck デッキ
     CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck);
+
+    /// @brief デストラクタ
+    /// @param  
     ~CardActionBase(void)override;
-    void Init(void) override;
-    void Update() override;
+
+    /// @brief 初期化
+    /// @param  
+    virtual void Init(void) override=0;
+
+    /// @brief 更新
+    /// @param  
+    virtual void Update(void) override = 0;
 
     /// @brief ジャンプチャージ攻撃中
     /// @param  
@@ -33,14 +46,19 @@ protected:
 
     //カードデッキ
     CardPresenter& cardPresent_;
+
     //オブジェクト
     CharacterBase& charaObj_;
+
     //カードアクション関数ポインタ
     std::function<void(void)> cardActFunc_;
+
     //カードアクション遷移
     std::map<CARD_ACT_TYPE, std::function<void(void)>>changeAction_;
+
     //攻撃ステータステーブル
     std::map<CARD_ACT_TYPE, ATK_STATUS>atkStatusTable_;
+
     //アタックのQueue配列
     std::queue<std::function<void(void)>>cardFuncs_;
 

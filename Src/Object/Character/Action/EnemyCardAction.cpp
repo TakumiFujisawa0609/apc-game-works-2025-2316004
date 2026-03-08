@@ -21,8 +21,8 @@ atkCnt_(0.0f),
 roleAtkCnt_(0.0f),
 preRoleAtkCnt_(0.0f),
 preRolePos_(Utility3D::VECTOR_ZERO),
-roleDeg_(0.0f),
-soundMng_(SoundManager::GetInstance())
+roleDeg_(0.0f)
+//soundMng_(SoundManager::GetInstance())
 {
 	isTurnable_ = false;
 	changeAction_ = {
@@ -46,6 +46,9 @@ soundMng_(SoundManager::GetInstance())
 		{LogicBase::ENEMY_ATTACK_TYPE::ROAR,[this]() {ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK); }},
 		{LogicBase::ENEMY_ATTACK_TYPE::ROLE,[this]() {ChangeCardAction(CARD_ACT_TYPE::RUSH_ATK); }}
 	};
+
+	//岩の生成
+	charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM, atk_.pos);
 
 }
 
@@ -158,7 +161,12 @@ void EnemyCardAction::ChangeJumpAtk(void)
 	//ジャンプ攻撃処理
 
 	SetAtk(JUMP_ATK);
-	effect_->Play(EffectController::EFF_TYPE::E_JUMP_CHARGE, charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, { JUMP_CHARGE_EFF_SCL,JUMP_CHARGE_EFF_SCL ,JUMP_CHARGE_EFF_SCL });
+	effect_->Play(EffectController::EFF_TYPE::E_JUMP_CHARGE,
+		charaObj_.GetTransform().pos,
+		charaObj_.GetTransform().quaRot,
+		{ JUMP_CHARGE_EFF_SCL,
+		JUMP_CHARGE_EFF_SCL ,
+		JUMP_CHARGE_EFF_SCL });
 
 	cardFuncs_.push([this]() {UpdateJumpAtk(); });
 }
@@ -188,9 +196,6 @@ void EnemyCardAction::ChangeReload(void)
 void EnemyCardAction::ChangeDuel(void)
 {
 	isDuelWait_ = true;
-
-	//ランダムにデュエルデッキを決める
-	//cardPresent_.DicideDuelDeck();
 
 	//デュエルdeckから1枚ドロー
 	PutCardToDuelDeck();
@@ -251,13 +256,13 @@ void EnemyCardAction::UpdateStomp(void)
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.SetIsAliveEnemyRock(false);
+
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
+
 			effect_->Stop(EffectController::EFF_TYPE::JUMP, 0);
 			effect_->Delete(EffectController::EFF_TYPE::JUMP, 0);
 
-			//charaObj_.GetCardUI().ChangeUsedActionCard();
-			//cardPresent_.EraseHandCard();
 			cardPresent_.FinishCard();
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
@@ -275,7 +280,12 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	if (IsCardFailure(Collider::TAG::NML_ATK))
 	{
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+
 		soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
+
+		const int JUMP_CHARGE_EFF_ARRAY = 0;
+		effect_->Stop(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
+		effect_->Delete(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
 		return;
 	}
 
@@ -297,8 +307,9 @@ void EnemyCardAction::UpdateJumpAtk(void)
 			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
 			soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
 
-			const int JUMP_CHARGE_EFF_ARRAY = 1;
+			const int JUMP_CHARGE_EFF_ARRAY = 0;
 			effect_->Stop(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
+			effect_->Delete(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
 			cardPresent_.FinishCard();
 		}
 	}
@@ -358,9 +369,6 @@ void EnemyCardAction::UpdateRoleAtk(void)
 	{
 		//前隙中
 		preRoleAtkCnt_ -= deltaTIme;
-		////前に進む
-		//roleMoveDeg_ = actionCntl_.GetInput().GetLookAtTargetDeg();
-		//roleMoveDir_ = actionCntl_.GetInput().GetLookAtTargetDir();
 		roleMoveDir_.y = 0.0f;
 		isTurnable_ = true;
 		return;
@@ -427,27 +435,6 @@ void EnemyCardAction::UpdateDuel(void)
 }
 
 
-void EnemyCardAction::DesideCardAction(void)
-{
-	//ロジックから攻撃タイプを取得
-	LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-	attackType = LogicBase::ENEMY_ATTACK_TYPE::JUMP;
-	switch (attackType)
-	{
-	case LogicBase::ENEMY_ATTACK_TYPE::STOMP:
-		ChangeCardAction(CARD_ACT_TYPE::STOMP_ATK);
-		break;
-	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:
-		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);		//ジャンプチャージ中はデュエルフェーズへ
-		break;
-	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
-		ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK);
-		break;
-	case LogicBase::ENEMY_ATTACK_TYPE::ROLE:
-		ChangeCardAction(CARD_ACT_TYPE::RUSH_ATK);
-		break;
-	}
-}
 
 void EnemyCardAction::PutCardToDuelDeck(void)
 {

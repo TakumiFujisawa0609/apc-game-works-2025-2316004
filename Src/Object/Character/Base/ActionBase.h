@@ -1,7 +1,9 @@
 #pragma once
 #include <DxLib.h>
 #include"../Common/Quaternion.h"
+
 class SceneManager;
+class SoundManager;
 class ActionController;
 class AnimationController;
 class PlayerLogic;
@@ -82,13 +84,11 @@ public:
 	/// @return 1方向に動く移動量
 	const float& GetSpeed(void) { return speed_; }
 
-	
 	/// @brief 方向転換可能かどうかの取得
 	/// @param  
 	/// @return 方向転換可能かどうか
 	const bool& GetIsTurnable(void) { return isTurnable_; }
 	
-
 	/// @brief 攻撃当たり判定中かの取得
 	/// @param  
 	/// @return 
@@ -132,26 +132,29 @@ protected:
 	//------------------------
 	float speed_;			// 移動スピード
 
-	//ジャンプ
-	//-----------------------
-	bool isJump_;			// ジャンプ判定
-	float stepJump_;		// ジャンプの入力受付時間
-	//VECTOR jumpPow_;		// ジャンプ量
-	float jumpDeceralation_;	//ジャンプ減衰量
 	//怯み時間
 	float flinchCnt_;
-	//シングルトンクラス
+
+	//シーンマネージャ
 	SceneManager& scnMng_;
+	//サウンドマネージャ
+	SoundManager& soundMng_;
+
 	//アクションコントローラー
 	ActionController& actionCntl_;
+
 	//アニメーション
 	AnimationController& anim_;
+
 	//方向転換可能かどうか
 	bool isTurnable_;
+
 	//敵への方向転換
 	bool isTargetTurn_;
+
 	//攻撃の当たり判定中か
 	bool isAliveAtkCol_;
+
 	//状態
 	CARD_ACT_TYPE actType_;
 

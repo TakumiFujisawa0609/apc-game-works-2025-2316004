@@ -45,18 +45,24 @@ private:
 	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 24.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 36.0f;     //攻撃当たり判定終了アニメーションカウント
     static constexpr float ATTACK_ONE_BUFFER_FRAME = 20.0f;          //先行入力受付フレーム
+
     //攻撃1段目判定(中距離)
 	static constexpr float ATTACK_ONE_MID_COL_START_ANIM_CNT = 16.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_ONE_MID_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
+
     //アニメーションスタート位置
     static constexpr float ATTACK_ONE_MID_ANIM_START = 13.0f;
     static constexpr float ATTACK_ONE_MID_ANIM_END = 37.0f;
+
     //コンボ受付時間
     static constexpr float ATTACK_ONE_MID_COMBO_TIME = 0.2f;
+
     //中距離移動時間
     static constexpr float ATTACK_ONE_MID_TIME = 1.0f;
+
     //中距離初期速度
     static constexpr float ATTACK_ONE_MID_SPD = 30.0f;
+
     //攻撃2段目判定
 	static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
@@ -64,7 +70,6 @@ private:
     //攻撃3段目判定
 	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 73.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 83.0f;     //攻撃当たり判定終了アニメーションカウント
-
 
 
     static constexpr float ATK_SPHERE_RADIUS = 0.0f;				//カプセル球の半径
@@ -98,12 +103,15 @@ private:
     //1段目攻撃のステータス(近距離)
     static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE_SHORT = 
     { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS,ATTACK_ONE_POINT,{},false };
+
     //1段目攻撃のステータス(中距離)
     static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE_MIDDLE = 
     { ATTACK_ONE_MID_COL_START_ANIM_CNT,ATTACK_ONE_MID_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS,ATTACK_ONE_POINT,{},false };
+
     //2段目攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_TWO = 
     { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS,ATTACK_TWO_POINT,{},false };
+
     //3段目攻撃のステータス
     static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_THREE = 
     { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS ,ATTACK_THREE_POINT,{},false };

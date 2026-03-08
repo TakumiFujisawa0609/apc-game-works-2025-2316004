@@ -28,6 +28,7 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 		{ CARD_ACT_TYPE::DUEL_FAZE, [this]() {ChangeDuel(); }},
 	};
+
 	ATK_STATUS initStatus={};
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::ATTACK_ONE_SHORT,NORMAL_ATK_ONE_SHORT},
@@ -35,13 +36,16 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
 		{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
 	};
+
 	atk_ = {};
+
 	easing_ = std::make_unique<Easing>();
 }
 
 PlayerCardAction::~PlayerCardAction(void)
 {
 	changeAction_.clear();
+
 	//カード機能配列の解放
 	std::queue<std::function<void(void)>> empty;
 	std::swap(cardFuncs_, empty);
@@ -52,6 +56,8 @@ void PlayerCardAction::Load(void)
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
 	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, CARD_RELOAD_VOL);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
+	soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
+
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_EFF).handleId_, EffectController::EFF_TYPE::RELOAD);
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_END_EFF).handleId_, EffectController::EFF_TYPE::RELOAD_END);
 }
@@ -69,6 +75,7 @@ void PlayerCardAction::Init(void)
 	{
 		//手札に移動
 		//PutCard();
+		soundMng_.Play(SoundManager::SRC::CARD_PUT, SoundManager::PLAYTYPE::BACK);
 		cardPresent_.PutCard();
 		DecideAttackOne();
 	}
@@ -92,11 +99,15 @@ void PlayerCardAction::Release(void)
 {
 	//現在使っているカードを捨てる
 	cardPresent_.ChangeAction();
+
 	//当たり判定削除
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	charaObj_.SetIsCanMoveable(true);
+
 	SoundManager::GetInstance().Stop(SoundManager::SRC::CARD_RELOAD);
+
 	isCombo_ = false;
+
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
@@ -410,6 +421,7 @@ void PlayerCardAction::ChangeComboAction(void)
 	//攻撃可能かつコンボ攻撃可能なら攻撃段階を上げる
 	if (IsAttackable() && IsCanComboAttack())
 	{
+		soundMng_.Play(SoundManager::SRC::CARD_PUT, SoundManager::PLAYTYPE::BACK);
 		if (attackStageNum_ == ATTACK_ONE)
 		{
 			ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);

@@ -210,6 +210,9 @@ protected:
 	//状態
 	CARD_SELECT selectState_;
 
+	//サウンドマネージャ
+	SoundManager& soundMng_;
+
 	//カード買ったとき流すサウンド
 	SoundManager::SRC cardWinRes_;
 

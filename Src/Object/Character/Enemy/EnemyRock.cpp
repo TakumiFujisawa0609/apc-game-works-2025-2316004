@@ -48,8 +48,6 @@ void EnemyRock::Init(void)
 
 	trans_.pos = startPos_;
 
-	
-
 }
 
 void EnemyRock::Update(void)

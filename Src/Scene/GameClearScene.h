@@ -37,6 +37,7 @@ private:
 
 	//ゲームクリア画像
 	int imgGameClear_;
+
 	//サウンド
 	SoundManager& soundMng_;
 

@@ -56,8 +56,9 @@ void PlayerCardUI::Load(void)
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
 	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	cardNumBgImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
+	soundMng_.LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
+	soundMng_.LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
+	soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
 	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
 	imgRevolverArrowLeft_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
 	imgRevolverArrowRight_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_R_ARROW).handleId_;
@@ -308,7 +309,7 @@ void PlayerCardUI::ChangeLeft(void)
 		card->SetStartAndGoalAngle(currentAngle - ARROUND_PER_RAD);
 	}
 	//サウンドを再生
-	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+	soundMng_.Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
 
 	cardUpdate_ = [this]() {UpdateLeft(); };
 }
@@ -350,7 +351,7 @@ void PlayerCardUI::ChangeRight(void)
 		card->SetStartAndGoalAngle(currentAngle + ARROUND_PER_RAD);
 	}
 	//サウンドを再生
-	SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+	soundMng_.Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
 	
 	cardUpdate_ = [this]() {UpdateRight(); };
 }
@@ -605,7 +606,7 @@ void PlayerCardUI::ReloadAnimation(void)
 	if (cardMoveCnt_ < 0.0f)
 	{
 		//サウンドを再生
-		SoundManager::GetInstance().Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
 
 		ReloadCardArray();
 

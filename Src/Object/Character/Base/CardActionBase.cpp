@@ -30,15 +30,6 @@ CardActionBase::~CardActionBase(void)
 	atkStatusTable_.clear();
 }
 
-void CardActionBase::Init(void)
-{
-
-}
-
-void CardActionBase::Update()
-{
-}
-
 void CardActionBase::ChangeCardAction(const CARD_ACT_TYPE& _type)
 {
 	//“¯‚¶ó‘Ô‚ª“ü‚Á‚Ä‚«‚½‚ç”²‚¯‚é

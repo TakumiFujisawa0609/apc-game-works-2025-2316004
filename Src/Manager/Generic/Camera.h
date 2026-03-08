@@ -233,18 +233,15 @@ private:
 
 	//プレイヤーのみを移す演出時の追従位置からカメラまでのイージング初期の相対座標
 	static constexpr VECTOR PLAYER_ONLY_LOCAL_F2C_START_POS = { 500.0f, 100.0f, -800.0f };
+
 	//プレイヤーのみを移す演出時の追従位置からカメラまでのイージング終端の相対座標
 	static constexpr VECTOR PLAYER_ONLY_LOCAL_F2C_GOAL_POS = { 0.0f,-150.0f,-170.0f };
+
 	//プレイヤーのみを移す演出時のカメラY角度
 	static constexpr float PLAYER_ONLY_CAMERA_ANGLE_Y = -145.0f;
 
 	//敵咆哮演出時のカメラ振動範囲
 	static constexpr float ENEMY_ROAR_SHAKE_LIMIT = 5.0f;
-
-
-
-
-	//敵のみを移す演出時の追従位置からカメラまでの相対座標
 
 	// カメラが追従対象とするTransform
 	const Transform* followTransform_;
@@ -264,10 +261,13 @@ private:
 
 	// カメラモード
 	MODE mode_;
+
 	//サブモード
 	SUB_MODE subMode_;
+
 	//カメラ更新
 	std::function<void(void)>modeUpdate_;
+
 	//イージングなど、、同時に動かしたい更新
 	std::function<void(void)>subUpdate_;
 
@@ -283,13 +283,15 @@ private:
 	float goalF2CPosZ_;
 	//イージングカウント
 	float directionEaseCnt_;
+
 	//カメラ演出モード
 	DIRECTION_MODE directionMode_;
+
 	//カメラ演出更新
 	std::function<void(void)>directionUpdate_;
+
 	//カメラ演出遷移
 	std::map<DIRECTION_MODE, std::function<void(void)>>changeDirectionMode_;
-
 
 	// カメラの位置
 	VECTOR pos_;
@@ -345,12 +347,12 @@ private:
 	VECTOR easingStartF2TPos_;
 	//イージングゴールF2C位置
 	VECTOR easingGoalF2TPos_;
+	//演出用ローカル中心座標
 	VECTOR startFollowLocalCenterPos_;
 	VECTOR goalFollowLocalCenterPos_;
+	//イージング角度
 	VECTOR startAngles_;
 	VECTOR goalAngles_;
-
-
 
 	/// @brief 当たったときの処理
 	/// @param _hitCol ヒットしたコライダ
