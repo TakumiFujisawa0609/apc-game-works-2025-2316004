@@ -112,6 +112,9 @@ public:
 	VECTOR EaseFunc(const VECTOR& start, const VECTOR& end, const float t, const EASING_TYPE type);
 	COLOR_F EaseFunc(const COLOR_F& start, const COLOR_F& end, const float t, const EASING_TYPE type);
 
+	//template<typename T>
+	//T EaseFunc(const T& start,const T& end, const float t, const EASING_TYPE type);
+
 
 	/// @brief 角度の最終計算(360度などの制限があるため、別で処理する)
 	/// @param start 初期位置

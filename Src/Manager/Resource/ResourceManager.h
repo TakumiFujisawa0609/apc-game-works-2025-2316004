@@ -18,6 +18,7 @@ public:
 		TEST,
 		//モデル
 		STAGE,		//ステージ
+		STAGE_WALL,		//ステージ
 		PLAYER,		//プレイヤー
 		ENEMY_1,	//敵1
 		CARD_MDL,		//カード

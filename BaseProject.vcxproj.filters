@@ -775,5 +775,6 @@
     <FxCompile Include="Src\Shader\Model\ArcHpBarPS.hlsl" />
     <FxCompile Include="Src\Shader\Model\SelectCardPS.hlsl" />
     <FxCompile Include="Src\Shader\Model\IntensivePS.hlsl" />
+    <FxCompile Include="Src\Shader\Model\SkyDomePS.hlsl" />
   </ItemGroup>
 </Project>

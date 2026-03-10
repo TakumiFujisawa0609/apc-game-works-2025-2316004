@@ -25,10 +25,17 @@ void Stage::Init(void)
 	trans_.pos = Utility3D::VECTOR_ZERO;
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,0.0f, 0.0f });
-
 	trans_.scl = { STAGE_SCL ,STAGE_SCL_Y ,STAGE_SCL };
 
-	scnMng_.GetCamera().lock()->SetStageTransform(&trans_);
+	wallTrans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::STAGE_WALL));
+	wallTrans_.pos = Utility3D::VECTOR_ZERO;
+	wallTrans_.quaRotLocal=
+		Quaternion::Euler({ 0.0f,0.0f, 0.0f });
+	constexpr float WALL_SCL = 60.0f;
+	constexpr float WALL_SCL_Y = 40.0f;
+	wallTrans_.scl= { WALL_SCL ,WALL_SCL ,WALL_SCL };
+
+	scnMng_.GetCamera().lock()->SetStageTransform(&wallTrans_);
 
 	//ƒJƒvƒZƒ‹
 	tag_ = Collider::TAG::STAGE;
@@ -41,10 +48,13 @@ void Stage::Init(void)
 		L"StageVS.cso", STAGE_VS_CONST_BUF,
 		L"StagePS.cso", 0
 	);
+	//material_->AddConstBufVS({ STAGE_UV_SCL,0.0f,0.0f,0.0f });
 	material_->AddConstBufVS({ STAGE_UV_SCL,0.0f,0.0f,0.0f });
 	renderer_ = std::make_unique<ModelRenderer>(trans_.modelId,*material_);
 
 	trans_.Update();
+
+	wallTrans_.Update();
 }
 
 void Stage::Update(void)
@@ -55,6 +65,7 @@ void Stage::Update(void)
 void Stage::Draw(void)
 {
 	//MV1DrawModel(trans_.modelId);
+	MV1DrawModel(wallTrans_.modelId);
 	renderer_->Draw();
 
 }

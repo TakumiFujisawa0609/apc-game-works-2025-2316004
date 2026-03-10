@@ -44,6 +44,8 @@ public:
     void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 private:
 
+    //壁の情報
+    Transform wallTrans_;
 
     //シェーダー関連
     std::unique_ptr<ModelMaterial> material_;

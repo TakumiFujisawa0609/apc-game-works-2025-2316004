@@ -5,6 +5,10 @@
 #include "../../Object/Common/Transform.h"
 #include "../ObjectBase.h"
 
+class Easing;
+class ModelMaterial;
+class ModelRenderer;
+
 class SkyDome : public ObjectBase
 {
 
@@ -18,11 +22,18 @@ public:
 	static constexpr VECTOR SCALES = { SCALE, SCALE, SCALE };
 
 	// 状態
-	enum class STATE
+	enum class FOLLOW_STATE
 	{
 		NONE,
 		STAY,
 		FOLLOW
+	};
+
+	enum class PHASE
+	{
+		NONE,
+		BATTLE,
+		CLEAR
 	};
 
 	/// <summary>
@@ -66,18 +77,58 @@ public:
 	/// <param name="_hitColTag">相手側の当たり判定</param>
 	void OnHit(const std::weak_ptr<Collider> _hitCol)override {};
 
+	/// @brief フェーズ遷移
+	/// @param _phase 遷移したいフェーズ
+	void ChangePhase(const PHASE _phase);
+
 private:	
 
-	// 状態
-	STATE state_;
+	//頂点シェーダの定数バッファ
+	static constexpr int CONST_BUF_SIZE = 1;
 
-	// モデル制御の基本情報
-	Transform transform_;
+	//スカイドームのサイズスケール
+	static constexpr float SIZE_SCL = 1.0f;
 
-	// 状態管理(状態遷移時初期処理)
-	std::map<STATE, std::function<void(void)>> stateChanges_;
+	//バトル中のカラースケール
+	static constexpr float COLOR_SCL_BATTLE_R = 1.7f;
+	static constexpr float COLOR_SCL_BATTLE_G = 0.2f;
+	static constexpr float COLOR_SCL_BATTLE_B = 0.5f;
+	static constexpr VECTOR COLOR_SCL_BATTLE = { COLOR_SCL_BATTLE_R ,COLOR_SCL_BATTLE_G ,COLOR_SCL_BATTLE_B };
 
-	// 状態管理(更新ステップ)
-	std::function<void(void)> stateUpdate_;
+	//通常時のカラースケール
+	static constexpr float COLOR_SCL_DEFAULT_R = 1.0f;
+	static constexpr float COLOR_SCL_DEFAULT_G = 1.0f;
+	static constexpr float COLOR_SCL_DEFAULT_B = 1.0f;
+	static constexpr VECTOR COLOR_SCL_DEFAULT = { COLOR_SCL_DEFAULT_R ,COLOR_SCL_DEFAULT_G ,COLOR_SCL_DEFAULT_B };
+
+	//カラー補完時間
+	static constexpr float COLOR_EASE_TIME = 7.0f;
+
+
+
+	//追従状態
+	FOLLOW_STATE followState_;
+
+	//シェーダー関連
+	std::unique_ptr<ModelMaterial> material_;
+	std::unique_ptr<ModelRenderer> renderer_;
+
+	//状態
+	PHASE phase_;
+
+	//状態遷移更新
+	std::function<void(void)>updatePhase_;
+
+	//状態管理(状態遷移時初期処理)
+	std::map<PHASE, std::function<void(void)>> phaseChanges_;
+
+	//イージング
+	std::unique_ptr<Easing>easing_;
+	//イージング時間
+	float colEasingCnt_;
+
+	//更新系
+	void UpdateNone(void);			 //何もしない
+	void UpdateClear(void);			 //クリア
 };
 

@@ -97,6 +97,14 @@ VECTOR Easing::EaseFunc(const VECTOR& start, const VECTOR& end, const float t, c
     return VAdd(start, power);
 }
 
+//template<typename T>
+//T Easing::EaseFunc(const T& start, const T& end, const float t, const EASING_TYPE type)
+//{
+//    SetEasing(t, type);
+//    T dis = end - start;
+//    return start + dis * easingUpdate_(t);
+//}
+
 COLOR_F Easing::EaseFunc(const COLOR_F& start, const COLOR_F& end, const float t, const EASING_TYPE type)
 {
     // ê¸å`ï‚ä‘

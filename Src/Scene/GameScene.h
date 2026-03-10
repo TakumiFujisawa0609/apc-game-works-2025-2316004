@@ -97,8 +97,6 @@ private:
 	//敵
 	std::unique_ptr<Enemy>enemy_;
 
-
-
 	//スキップ中
 	bool isSkippingDirection_;
 	//長押しカウンタ

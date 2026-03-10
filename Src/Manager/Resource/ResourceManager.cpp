@@ -36,6 +36,9 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
 	resourcesMap_.emplace(SRC::STAGE, std::move(res));
 
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Wall.mv1");
+	resourcesMap_.emplace(SRC::STAGE_WALL, std::move(res));
+
 
 	//アニメーション登録
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerIdle.mv1");

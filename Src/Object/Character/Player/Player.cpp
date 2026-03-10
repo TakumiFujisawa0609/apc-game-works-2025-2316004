@@ -241,13 +241,13 @@ void Player::DrawDebug(void)
 	}
 	
 	VECTOR pos = trans_.pos;
-	DrawFormatString(0, 300, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
+	DrawFormatString(0, 200, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
 
-	//// 手の位置とグローバルマトリクスを取得
-	VECTOR atkPos = Utility3D::AddPosRotate(trans_.pos, trans_.quaRot, { 0.0f,100.0f,40.0f });
-	DrawSphere3D(atkPos, 10, 10, 0xffffff, 0xffffff, false);
+	////// 手の位置とグローバルマトリクスを取得
+	//VECTOR atkPos = Utility3D::AddPosRotate(trans_.pos, trans_.quaRot, { 0.0f,100.0f,40.0f });
+	//DrawSphere3D(atkPos, 10, 10, 0xffffff, 0xffffff, false);
 
-	action_->DrawDebug();
+	//action_->DrawDebug();
 
 }
 

@@ -261,6 +261,7 @@ void GameScene::ChangeClearDirection()
 {
 	CharacterManager::GetInstance().ChangeCharacterClearDirection();
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+	skyDome_->ChangePhase(SkyDome::PHASE::CLEAR);
 	updateFunc_ = [this]() {ClearDirectionUpdate(); };
 	drawFunc_ = [this]() {DirectionDraw(); };
 }
@@ -313,6 +314,9 @@ void GameScene::ClearDirectionUpdate(void)
 		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
 	}
 	CharacterManager::GetInstance().Update();
+
+	//ƒXƒJƒCƒh[ƒ€
+	skyDome_->Update();
 }
 
 void GameScene::OverDirectionUpdate(void)
@@ -350,7 +354,8 @@ void GameScene::DebagUpdate(void)
 	InputManager& ins = InputManager::GetInstance();
 	if (ins.IsTrgDown(KEY_INPUT_SPACE))
 	{
-		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+		//scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
+		ChangeUpdatePhase(UPDATE_PHASE::CLEAR_DIRECTION);
 	}
 	frame_++;
 }
@@ -375,7 +380,7 @@ void GameScene::DebagDraw(void)
 	//constexpr float r = 40.0f;
 	//float angle = DX_PI_F * 2.0f * static_cast<float>(frame_ % 360) / 60.0f;
 
-	CardSystem::GetInstance().DrawDebug();
+	//CardSystem::GetInstance().DrawDebug();
 
 	////‰~‰^“®‚ð•`‰æ
 	//DrawCircleAA(

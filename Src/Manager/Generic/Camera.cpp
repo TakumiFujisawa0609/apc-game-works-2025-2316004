@@ -474,7 +474,7 @@ void Camera::SetBeforeDrawFollow(void)
 
 	Collision();
 
-	pos_ = easing_->EaseFunc(prePos, pos_, 0.1f, Easing::EASING_TYPE::LERP);
+	//pos_ = easing_->EaseFunc(prePos, pos_, 0.1f, Easing::EASING_TYPE::LERP);
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
 	{
 		ChangeMode(MODE::TARGET_POINT);
