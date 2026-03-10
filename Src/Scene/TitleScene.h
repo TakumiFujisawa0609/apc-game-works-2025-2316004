@@ -149,8 +149,6 @@ private:
 	int imgTitleBack;
 	//タイトルロゴ
 	int imgTitleLogo;
-	//フォント
-	int titleFont_;
 	//現在選んでいるボタン
 	int selectNum_;
 

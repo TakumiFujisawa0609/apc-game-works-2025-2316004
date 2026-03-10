@@ -2,6 +2,7 @@
 #include <cmath>
 #include <ranges>
 #include "../Utility/UtilityCommon.h"
+#include "../Utility/UtilityDraw.h"
 #include"../Manager/Generic/DataBank.h"
 #include"../Manager/Generic/InputManager.h"
 #include"../Manager/Generic/SceneManager.h"
@@ -54,6 +55,7 @@ void PlayerCardUI::Load(void)
 	cardNumFrameImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
 	cardNumMaskImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
+	reloadFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), RELOAD_FONT_SIZE,0);
 	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	cardNumBgImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
 	soundMng_.LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
@@ -122,6 +124,8 @@ void PlayerCardUI::Draw(void)
 		if (card->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 		{
 			card->DrawReloadGauge(reloadCardFrameImg_,reloadPer_);
+			Vector2F pos = card->GetCenterPos();
+			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
 		}
 	}
 
@@ -132,6 +136,8 @@ void PlayerCardUI::Draw(void)
 		if ((*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
 		{
 			(*handCurrent_)->DrawReloadGauge(reloadCardFrameImg_, reloadPer_);
+			Vector2F pos = (*handCurrent_)->GetCenterPos();
+			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
 		}
 		//‘I‘ðƒJ[ƒh˜g•`‰æ
 		(*handCurrent_)->SelectCardDrawFrame();

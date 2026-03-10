@@ -1,6 +1,7 @@
 #include "../pch.h"
 #include "../Utility/UtilityCommon.h"
 #include "../Manager/Generic/SceneManager.h"
+#include "../Manager/Resource/FontManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Renderer/PixelMaterial.h"
 #include "../Renderer/PixelRenderer.h"
@@ -12,7 +13,6 @@ CardUIDraw::CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl):
 	centerPos_(_centerPos),
 	scl_(_scl)
 {
-
 }
 
 CardUIDraw::~CardUIDraw(void)
@@ -21,6 +21,7 @@ CardUIDraw::~CardUIDraw(void)
 }
 void CardUIDraw::Load(void)
 {
+
 }
 
 void CardUIDraw::Init(void)
@@ -124,7 +125,6 @@ void CardUIDraw::DrawReloadGauge(const int& _reloadFrameImg,const float& _reload
 {
 	//画像サイズ取得
 	GetGraphSizeF(typeImg_, &size_.x, &size_.y);
-
 	halfSize_ = size_ / 2.0f;
 	//左上の座標
 	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;

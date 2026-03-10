@@ -104,8 +104,6 @@ private:
 	//ƒJƒ‰[•âŠ®ŠÔ
 	static constexpr float COLOR_EASE_TIME = 7.0f;
 
-
-
 	//’Ç]ó‘Ô
 	FOLLOW_STATE followState_;
 
