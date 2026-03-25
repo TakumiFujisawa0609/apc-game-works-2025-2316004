@@ -246,8 +246,8 @@ void MenuController::DrawFromCenter(const int _arrayNum, const unsigned int _col
 
 	// ’†SŠî€•`‰æ
 	DrawRotaStringFToHandle(
-		strPos.x,
-		strPos.y,
+		static_cast<float>(strPos.x),
+		static_cast<float>(strPos.y),
 		1.0,
 		1.0,
 		w * 0.5,   // RotCenterX

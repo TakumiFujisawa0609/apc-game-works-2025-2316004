@@ -16,7 +16,7 @@
 GameClearScene::GameClearScene(void):
 	soundMng_(SoundManager::GetInstance()),
 	easeCnt_(0.0f),
-	strYPos_(SceneBase::BACK_TITLE_STRING_POS.y)
+	strYPos_(SceneBase::BACK_TITLE_STRING_POS_Y)
 {
 	//更新関数のセット
 	updateFunc_ = std::bind(&GameClearScene::LoadingUpdate, this);
@@ -67,8 +67,8 @@ void GameClearScene::NormalUpdate(void)
 	}
 
 
-	const float LIMIT = static_cast<float>(SceneBase::BACK_TITLE_STRING_POS.y) - BACK_TITLE_STRING_POS_EASE_LIMIT;
-	strYPos_ = easing_->EaseFunc(static_cast<float>(SceneBase::BACK_TITLE_STRING_POS.y), LIMIT, easeCnt_ / EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
+	const float LIMIT = SceneBase::BACK_TITLE_STRING_POS_Y - BACK_TITLE_STRING_POS_EASE_LIMIT;
+	strYPos_ = easing_->EaseFunc(SceneBase::BACK_TITLE_STRING_POS_Y, LIMIT, easeCnt_ / EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
 	easeCnt_ += scnMng_.GetDeltaTime();
 	if (easeCnt_ > EASING_TIME)
 	{

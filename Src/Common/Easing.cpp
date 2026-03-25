@@ -218,7 +218,7 @@ float Easing::LerpBack(const float t)
 float Easing::OutBack(const float t)
 {
 	if (t > EASING_MAX)return EASING_MAX;
-    const float c1 = 1.70158;
+    const float c1 = 1.70158f;
     const float c3 = c1 + 1.0f;
 
     return 1.0f + c3 * pow(t - 1.0f, 3.0f) + c1 * pow(t - 1.0f, 2.0f);

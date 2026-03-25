@@ -21,7 +21,7 @@ public:
 		//その他
 		EASE_MENU,
 		MENU,
-	
+
 		EXIT,
 		MAX
 	};
@@ -46,7 +46,7 @@ public:
 		std::wstring btnStr;
 		TITLE_BTN btnType;		//何のボタンか
 		Vector2F startPos;		//イージング前の座標
-		Vector2F curPos=startPos;//現在座標
+		Vector2F curPos = startPos;//現在座標
 		float easeCnt;			//イージング時間
 		bool isEase = false;	//イージング中か
 	};
@@ -63,7 +63,7 @@ public:
 	/// @brief コンストラクタ
 	/// @param  
 	TitleScene(void);
-	
+
 	/// @brief デストラクタ
 	/// @param  
 	~TitleScene(void);
@@ -71,7 +71,7 @@ public:
 	/// @brief 読み込み処理
 	/// @param  
 	void Load(void) override;
-	
+
 	/// @brief 初期化処理
 	/// @param  
 	void Init(void) override;
@@ -83,7 +83,7 @@ private:
 	static constexpr float BUTTON_DISTANCE = 100;
 
 	//選択中ボタンのイージングで動かせる距離
-	static constexpr Vector2 SELECT_EASE_DISTANCE = {20,0};
+	static constexpr Vector2 SELECT_EASE_DISTANCE = { 20,0 };
 	//選択中ボタンのイージング時間
 	static constexpr float SELECT_EASE_TIME = 0.5f;
 
@@ -107,16 +107,16 @@ private:
 
 	//終了するかの文字の確認メニューとの間隔
 	static constexpr int QUESTION_OFFSET = 30;
-	
+
 	//はい、いいえの文字間隔
 	static constexpr int YES_NO_DISTANCE_X = 70;
 	static constexpr int YES_NO_DISTANCE_Y = 100;
-	
+
 	//決定ボタン座標
 	static constexpr float DICITION_BTN_SIZE = 64;
-	static constexpr Vector2F DICITION_BTN_POS = { Application::SCREEN_SIZE_X - 300.0f, Application::SCREEN_SIZE_Y - DICITION_BTN_SIZE-30 };
+	static constexpr Vector2F DICITION_BTN_POS = { Application::SCREEN_SIZE_X - 300.0f, Application::SCREEN_SIZE_Y - DICITION_BTN_SIZE - 30 };
 	//戻るボタン座標
-	static constexpr Vector2F BACK_BTN_POS = { DICITION_BTN_POS.x+150.0f, Application::SCREEN_SIZE_Y - DICITION_BTN_SIZE - 30 };
+	static constexpr Vector2F BACK_BTN_POS = { DICITION_BTN_POS.x + 150.0f, Application::SCREEN_SIZE_Y - DICITION_BTN_SIZE - 30 };
 	//ボタンの説明文字列座標オフセット
 	static constexpr float BTN_STR_OFFSET_X = 16.0f;
 	//イージング
@@ -196,12 +196,6 @@ private:
 
 	//ゲーム終了確認メニュー
 	void UpdateExitMenu(void);
-
-	//スクリーンの大小確認メニュー
-	void UpdateScreenMenu(void);
-
-	//はいいいえの描画
-	void DrawYesNo(void);
 
 	//はいいいえ更新
 	void UpdateYesNo(void);

@@ -190,7 +190,7 @@ void TitleScene::UpdateEase(void)
 
 	logoPos_ = easing_->EaseFunc(START_POS, GOAL_POS, (LOGO_EASING_TIME - logoEaseCnt_) / LOGO_EASING_TIME, Easing::EASING_TYPE::ELASTIC_OUT);
 
-	menuController_->UpdateDirection(EASING_DIS_TIME, BUTTON_EASING_TIME, BUTTON_START_POS_X);
+	menuController_->UpdateDirection(EASING_DIS_TIME, BUTTON_EASING_TIME, static_cast<int>(BUTTON_START_POS_X));
 	if (menuController_->IsAllDirectEaseEnd())
 	{
 		ChangeState(TITLE_STATE::MENU);
@@ -247,7 +247,6 @@ void TitleScene::UpdateScreen(void)
 
 void TitleScene::UpdateTutorial(void)
 {
-	//‚Ü‚¾–¢ŽÀ‘•
 	ChangeState(TITLE_STATE::MENU);
 }
 

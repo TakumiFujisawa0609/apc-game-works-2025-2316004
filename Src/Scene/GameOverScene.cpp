@@ -60,7 +60,7 @@ void GameOverScene::NormalDraw(void)
 
 	UtilityDraw::DrawStringCenter(
 		Application::SCREEN_HALF_X,
-		BACK_TITLE_STRING_POS.y,
+		static_cast<int>(BACK_TITLE_STRING_POS_Y),
 		L"'B'ボタンまたは'スペースキー'でタイトルに戻る",
 		UtilityCommon::WHITE,
 		buttonFontHandle_

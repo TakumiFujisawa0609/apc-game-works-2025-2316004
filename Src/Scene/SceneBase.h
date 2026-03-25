@@ -25,7 +25,8 @@ public:
 	static constexpr int LOADING_STRING_POS_Y = Application::SCREEN_SIZE_Y - 40;	//「now loading......」の座標Y
 
 	//タイトル戻る文字列の座標
-	static constexpr Vector2 BACK_TITLE_STRING_POS = { 200,500 };
+	//static constexpr Vector2 BACK_TITLE_STRING_POS_Y = { 200,500 };
+	static constexpr float BACK_TITLE_STRING_POS_Y = 500.0f;
 
 	/// @brief コンストラクタ
 	/// @param  
