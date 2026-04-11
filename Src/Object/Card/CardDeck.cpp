@@ -11,7 +11,8 @@ CardDeck::CardDeck(CHARACTER_TYPE& _charaType, int _playerNum):
 	drawPile_(),
 	currentNum_(0),
 	charaType_(_charaType),
-	playerNum_(_playerNum)
+	playerNum_(_playerNum),
+	duelNo_()
 {
 }
 

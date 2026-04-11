@@ -233,7 +233,7 @@ const VECTOR Utility3D::GetRotAxisToTarget(const VECTOR _pos, const VECTOR _targ
     return ret;
 }
 
-const VECTOR Utility3D::AddPosRotate(const VECTOR _followPos, const Quaternion _followRot, const VECTOR _localPos)
+const VECTOR Utility3D::AddPosRotate(const VECTOR& _followPos, const Quaternion& _followRot, const VECTOR& _localPos)
 {
     //ç¿ïWâÒì]
     VECTOR addPos = _followRot.PosAxis(_localPos);

@@ -29,6 +29,5 @@ void ButtonUIManager::DrawFromLeftTop(const BTN_UI_TYPE _btnType, const Vector2F
 
 ButtonUIManager::ButtonUIManager(void)
 {
-	int i = -1;
-	buttonUI_ = &i;
+	buttonUI_ = nullptr;
 }

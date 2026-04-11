@@ -31,7 +31,7 @@ enum class PEIPHERAL_TYPE
 {
 	KEYBOARD,	//キーボード
 	GAMEPAD,	//ゲームパッド
-	//MOUSE,		//マウス
+	MOUSE,		//マウス
 	X_ANALOG,	//XBOXアナログスティック
 	MAX
 };
@@ -140,9 +140,10 @@ private:
 
 	//コンストラクタ
 	InputManagerS(); 
-
+	InputManagerS(const InputManager& _copy) = delete;
+	InputManagerS& operator=(const InputManager& _copy) = delete;
 	//デストラクタ
-	~InputManagerS() = default;
+	~InputManagerS()override = default;
 
 };
 

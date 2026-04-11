@@ -13,6 +13,7 @@ public :
 	// 衝突用タグ
 	enum class TAG
 	{
+		NONE,			//タグなし
 		PLAYER1,		//プレイヤー1
 		ENEMY1,			//敵1
 		NML_ATK,		//剣

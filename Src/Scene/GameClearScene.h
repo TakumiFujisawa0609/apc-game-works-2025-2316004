@@ -14,7 +14,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~GameClearScene(void);
+	~GameClearScene(void)override;
 
 	/// @brief 読み込み
 	/// @param  

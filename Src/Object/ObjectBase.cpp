@@ -5,7 +5,8 @@
 
 ObjectBase::ObjectBase(void)
 	: resMng_(ResourceManager::GetInstance()),
-	scnMng_(SceneManager::GetInstance())
+	scnMng_(SceneManager::GetInstance()),
+	tag_(Collider::TAG::NONE)
 {
 }
 

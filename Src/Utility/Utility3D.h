@@ -118,7 +118,7 @@ public:
 	/// @param _followRot 追従対象の角度
 	/// @param _localPos 相対座標
 	/// @return ローカルを足した後の座標
-	static const VECTOR AddPosRotate(const VECTOR _followPos, const Quaternion _followRot, const VECTOR _localPos);
+	static const VECTOR AddPosRotate(const VECTOR& _followPos, const Quaternion& _followRot, const VECTOR& _localPos);
 	
 	/// @brief 目的の座標を超えたか
 	/// @param _startPos 初期座標

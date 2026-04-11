@@ -24,10 +24,6 @@ public:
 	/// @param  
 	void Update(void);
 
-	/// @brief ‰‰o‚ÌXV
-	/// @param  
-	void DirectionUpdate(void);
-
 	/// @brief •`‰æ
 	/// @param  
 	void Draw(void);

@@ -2,6 +2,14 @@
 #include "../Manager/Generic/SceneManager.h"
 #include "InputManager.h"
 
+InputManager::InputManager(void):
+	mouseInput_(-1),
+	infoEmpty_(),
+	mousePos_(),
+	padInfos_()
+{
+}
+
 void InputManager::Init(void)
 {
 
@@ -173,10 +181,7 @@ bool InputManager::IsTrgMouseRight(void) const
 	return FindMouse(MOUSE_INPUT_RIGHT).keyTrgDown;
 }
 
-InputManager::InputManager(void)
-{
-	mouseInput_ = -1;
-}
+
 
 const InputManager::Info& InputManager::Find(int key) const
 {
@@ -288,11 +293,6 @@ void InputManager::SetJPadInState(JOYPAD_NO jpNo)
 
 		stateNow.IsTrgDown[i] = stateNow.IsNew[i] && !stateNow.IsOld[i];
 		stateNow.IsTrgUp[i] = !stateNow.IsNew[i] && stateNow.IsOld[i];
-
-		if (stateNow.IsTrgDown[i])
-		{
-			int i = 0;
-		}
 
 		//ˆê’èŠÔ’·‰Ÿ‚µî•ñXV
 		UpdateKeepBtnTime(no, i);

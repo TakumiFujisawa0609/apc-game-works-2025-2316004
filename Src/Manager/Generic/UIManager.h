@@ -80,9 +80,13 @@ private:
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
 	UIManager(void);
-
+	UIManager(const UIManager& _copy) = delete;
+	UIManager& operator=(const UIManager& _copy) = delete;
 	// デストラクタも同様
-	~UIManager(void) = default;
+	~UIManager(void)override = default;
+
+
+
 
 	//HpUIの生成
 	void CreateHpUI(void);

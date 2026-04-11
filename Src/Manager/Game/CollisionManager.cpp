@@ -9,7 +9,6 @@ void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 {
 	//コライダの追加
 	colliders3D_.push_back(_collider);
-	std::vector<Collider::TAG> priority = { Collider::TAG::PLAYER1,Collider::TAG::ENEMY1 };
 
 	std::sort(colliders3D_.begin(), colliders3D_.end(), [this](std::weak_ptr<Collider> a, std::weak_ptr<Collider> b) {
 		return static_cast<int>(GetTopTags(a)) < static_cast<int>(GetTopTags(b));
@@ -32,7 +31,7 @@ void CollisionManager::Sweep(void)
 void CollisionManager::Update(void)
 {
 	//コライダが一つもないなら処理を飛ばす
-	if (colliders3D_.size() <= 0)return;
+	if (colliders3D_.empty())return;
 
 	//当たり判定フレーム
 	if (updateFrame_ < COL_UPDATE_FRAME)
@@ -191,8 +190,8 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 	}
 
 	//双方のタグ
-	auto& tags1 = colliders3D_[_col1Num]->GetTags();
-	auto& tags2 = colliders3D_[_col2Num]->GetTags();
+	const auto& tags1 = colliders3D_[_col1Num]->GetTags();
+	const auto& tags2 = colliders3D_[_col2Num]->GetTags();
 
 
 
@@ -223,8 +222,8 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 
 	//双方の当たり判定しないタグか
 	//双方の当たり判定しないタグ
-	auto& notHitTags1 = colliders3D_[_col1Num]->GetNotHitTags();
-	auto& notHitTags2 = colliders3D_[_col2Num]->GetNotHitTags();
+	const auto& notHitTags1 = colliders3D_[_col1Num]->GetNotHitTags();
+	const auto& notHitTags2 = colliders3D_[_col2Num]->GetNotHitTags();
 
 	//1人目のタグ
 	for (auto tag1 : colliders3D_[_col1Num]->GetTags())

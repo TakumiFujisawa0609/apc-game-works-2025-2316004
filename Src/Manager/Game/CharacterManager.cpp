@@ -41,11 +41,6 @@ void CharacterManager::Update(void)
 	enemy_->Update();
 }
 
-void CharacterManager::DirectionUpdate(void)
-{
-
-}
-
 void CharacterManager::Draw(void)
 {
 	enemy_->Draw();

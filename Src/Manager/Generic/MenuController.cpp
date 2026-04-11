@@ -11,7 +11,10 @@ MenuController::MenuController(void) :
 	sizeEaseCnt_(0.0f),
 	isAllDirectEaseEnd_(false),
 	yesNoStrTable_{ L"‚Í‚¢",L"‚¢‚¢‚¦" },
-	yesNoState_(YES_NO::NO)
+	yesNoState_(YES_NO::NO),
+	defaultFontSize_(),
+	defaultFontHandle_(L""),
+	fontHandle_(),
 {
 	easing_ = std::make_unique<Easing>();
 }

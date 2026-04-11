@@ -68,7 +68,7 @@ private:
 	Application();
 
 	//デストラクタ
-	~Application() = default;
+	~Application()override = default;
 
 	// Effekseerの初期化
 	void InitEffekseer();

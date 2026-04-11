@@ -88,6 +88,10 @@ void InputManagerS::Update(void)
 			{
 				pressed = padState & input.code;
 			}
+			else if (input.type == PEIPHERAL_TYPE::MOUSE)
+			{
+				pressed = mouseState & input.code;
+			}
 			else if (input.type == PEIPHERAL_TYPE::X_ANALOG)
 			{
 				auto analogType = static_cast<ANALOG_INPUT_TYPE>(input.code);

@@ -160,6 +160,10 @@ private:
 	// デストラクタも同様
 	~SceneManager(void) = default;
 
+	//コピーの禁止
+	SceneManager(const SceneManager& _copy) = delete;
+	SceneManager& operator= (const SceneManager& _copy) = delete;
+
 	// デルタタイムをリセットする
 	void ResetDeltaTime(void);
 

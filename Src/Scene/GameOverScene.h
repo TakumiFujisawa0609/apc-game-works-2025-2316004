@@ -12,7 +12,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~GameOverScene(void);
+	~GameOverScene(void)override;
 
 	/// @brief 読み込み
 	/// @param  

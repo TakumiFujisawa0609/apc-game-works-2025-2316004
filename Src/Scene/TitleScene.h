@@ -66,7 +66,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~TitleScene(void);
+	~TitleScene(void)override;
 
 	/// @brief 読み込み処理
 	/// @param  

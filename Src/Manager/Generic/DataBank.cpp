@@ -46,10 +46,11 @@ std::vector<CardBase::CARD_STATUS> DataBank::GetCardDatas(const CHARACTER_TYPE _
 	return characterCardDecks_[_charaType];
 }
 
-DataBank::DataBank(void)
+DataBank::DataBank(void):
+	maxPlayerNum_(),
+	playerNum_()
 {
-	maxPlayerNum_ = 0;
-	playerNum_ = 0;
+
 }
 
 DataBank::~DataBank(void)

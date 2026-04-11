@@ -15,17 +15,18 @@
 #include"../../Manager/Generic/SceneManager.h"
 #include "Camera.h"
 
-Camera::Camera(void)
+Camera::Camera(void):
+	angles_(),
+	cameraUp_(),
+	mode_(MODE::NONE),
+	pos_(),
+	targetPos_(),
+	followTransform_(nullptr),
+	isChangingCamera_(false),
+	changeTargetLerpCnt_(CHANGE_TARGET_LERP_TIME),
+	shekePerCnt_()
 {
-	angles_ = VECTOR();
-	cameraUp_ = VECTOR();
-	mode_ = MODE::NONE;
-	pos_ = Utility3D::VECTOR_ZERO;
-	targetPos_ = Utility3D::VECTOR_ZERO;
-	followTransform_ = nullptr;
-	isChangingCamera_ = false;
-	changeTargetLerpCnt_ = CHANGE_TARGET_LERP_TIME;
-	shekePerCnt_ = 0.0f;
+
 }
 
 Camera::~Camera(void)
@@ -259,10 +260,6 @@ void Camera::SyncFollow(const Transform* _followTransform)
 
 }
 
-VECTOR Camera::GetSyncFollowPos(const Transform* _followTransform)
-{
-	return VECTOR();
-}
 
 void Camera::SyncTargetFollow(void)
 {
@@ -303,9 +300,6 @@ void Camera::SyncTargetFollow(void)
 
 void Camera::ProcessRot(void)
 {
-	//int x_t, y_t;
-	Vector2 mPos;
-	mPos = InputManager::GetInstance().GetMousePos();
 
 	// マウスを表示状態にする
 	SetMouseDispFlag(FALSE);
@@ -394,7 +388,6 @@ void Camera::Collision(void)
 		, -1, pos_, followFramePos_);
 
 	//追従点に最も近いポリゴンを探す
-	bool isCol = false;
 	MV1_COLL_RESULT_POLY hitPoly;
 	float minDist = FLT_MAX;
 
@@ -402,7 +395,6 @@ void Camera::Collision(void)
 	{
 		auto hit = hits.Dim[i];
 
-		isCol = true;
 		//距離判定
 		float dis = static_cast<float>(Utility3D::Distance(followFramePos_, hit.HitPosition));
 		if (dis < minDist)

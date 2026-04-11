@@ -7,7 +7,10 @@ CardSystem::CardSystem(void):
 	putCardPow_{-1,-1},
 	canPut_(true),
 	isFirstAtk_{ false,false },
-	playerResult_{BATTLE_RESULT::NONE,BATTLE_RESULT::NONE }
+	playerResult_{BATTLE_RESULT::NONE,BATTLE_RESULT::NONE },
+	preResult_{ BATTLE_RESULT::NONE,BATTLE_RESULT::NONE },
+	cardDif_()
+
 {
 	
 }

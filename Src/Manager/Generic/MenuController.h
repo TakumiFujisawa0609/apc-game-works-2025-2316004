@@ -152,9 +152,6 @@ private:
 	//‚Í‚¢/‚¢‚¢‚¦‚Ì•¶š—ñ
 	std::wstring yesNoStrTable_[YES_NO_NUM];
 
-	//Œ»İ‚Ìó‘Ô
-	MENU_STATE currentState_;
-
 	//XVŠÖ”
 	std::function<void(void)>updateFunc_;
 

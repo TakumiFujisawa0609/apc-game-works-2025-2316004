@@ -9,7 +9,14 @@
 
 DirectionUI::DirectionUI(void):
 	resMng_(ResourceManager::GetInstance()),
-	skipGaugePer_(0.0f)
+	skipGaugePer_(0.0f),
+	imgSkipButtomMask_(-1),
+	imgSkipButtom_(-1),
+	fontHandle_(-1),
+	intensiveLineImg_1(-1),
+	intensiveLineImg_2(-1),
+	intensiveLineAnimImg_(-1),
+	intensiveLineAnimFrame_(-1)
 {
 }
 

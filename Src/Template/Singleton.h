@@ -59,6 +59,10 @@ protected:
     /// @param  
     virtual ~Singleton(void) = default;
 
+    //コピーの禁止
+    Singleton(const Singleton& _copy) = delete;
+    Singleton& operator= (const Singleton& _copy) = delete;
+
 private:
 
     //静的メンバ初期化

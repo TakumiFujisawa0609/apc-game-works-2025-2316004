@@ -72,7 +72,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~SoundManager(void);
+	~SoundManager(void)override;
 
 	/// @brief リソースの解放
 	/// @param  

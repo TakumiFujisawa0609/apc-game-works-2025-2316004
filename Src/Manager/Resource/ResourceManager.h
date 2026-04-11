@@ -142,7 +142,11 @@ private:
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
 	ResourceManager(void);
-	~ResourceManager(void);
+	ResourceManager(const ResourceManager& _copy) = delete;
+
+	// コピー代入演算子は使用不可
+	ResourceManager& operator=(const ResourceManager _copy) = delete;
+	~ResourceManager(void)override;
 
 	// 内部ロード
 	ResourceData& _Load(SRC src);

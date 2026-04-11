@@ -1,8 +1,19 @@
 #include <DxLib.h>
 #include "../Application.h"
+#include "../Utility/UtilityCommon.h"
 #include "Fader.h"
 
+Fader::Fader(void):
+	state_(STATE::NONE),
+	alpha_(UtilityCommon::ALPHA_MAX),
+	isPreEnd_(true),
+	isEnd_(true)
+{
+}
 
+Fader::~Fader(void)
+{
+}
 
 void Fader::Init(void)
 {

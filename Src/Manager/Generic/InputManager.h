@@ -256,7 +256,10 @@ private:
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
 	InputManager(void);
-	~InputManager(void) = default;
+	InputManager(const InputManager& _copy) = delete;
+	InputManager& operator=(InputManager& _copy) = delete;
+
+	~InputManager(void)override = default;
 
 	// 配列の中からキー情報を取得する
 	const InputManager::Info& Find(int key) const;

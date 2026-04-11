@@ -103,7 +103,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~Camera(void);
+	~Camera(void)override;
 
 	/// @brief 当たり判定配列の格納
 	/// @param  
@@ -370,7 +370,6 @@ private:
 
 	// 追従対象との位置同期を取る
 	void SyncFollow(const Transform* _followTransform);
-	VECTOR GetSyncFollowPos(const Transform* _followTransform);
 
 	//ターゲットカメラの追従
 	//void SyncTargetFollow(void);

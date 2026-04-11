@@ -4,45 +4,42 @@
 #include <cassert>
 #include "Resource.h"
 
-ResourceData::ResourceData(void)
+ResourceData::ResourceData(void):
+	type_(TYPE::NONE),
+	path_(L""),
+	numX_(-1),
+	numY_(-1),
+	sizeX_(-1),
+	sizeY_(-1),
+	handleId_(-1),
+	handleIds_(nullptr)
 {
-	type_ = TYPE::NONE;
-	path_ = L"";
 
-	numX_ = -1;
-	numY_ = -1;
-	sizeX_ = -1;
-	sizeY_ = -1;
-
-	handleId_ = -1;
-	handleIds_ = nullptr;
 }
 
-ResourceData::ResourceData(TYPE type, const std::wstring& path)
+ResourceData::ResourceData(TYPE type, const std::wstring& path):
+	type_(type),
+	path_(path),
+	numX_(-1),
+	numY_(-1),
+	sizeX_(-1),
+	sizeY_(-1),
+	handleId_(-1),
+	handleIds_(nullptr)
 {
-	type_ = type;
-	path_ = path;
-
-	numX_ = -1;
-	numY_ = -1;
-	sizeX_ = -1;
-	sizeY_ = -1;
-
-	handleId_ = -1;
-	handleIds_ = nullptr;
 }
 
-ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY)
+ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY):
+	type_(type),
+	path_(path),
+	numX_(numX),
+	numY_(numY),
+	sizeX_(sizeX),
+	sizeY_(sizeY),
+	handleId_(-1),
+	handleIds_(nullptr)
 {
-	type_ = type;
-	path_ = path;
-	numX_ = numX;
-	numY_ = numY;
-	sizeX_ = sizeX;
-	sizeY_ = sizeY;
 
-	handleId_ = -1;
-	handleIds_ = nullptr;
 }
 
 ResourceData::~ResourceData(void)

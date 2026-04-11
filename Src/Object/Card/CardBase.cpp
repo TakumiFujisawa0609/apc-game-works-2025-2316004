@@ -9,11 +9,10 @@ CardBase::CardBase(const CARD_STATUS _status) :
 	atkCardImg_(-1),
 	cardPos_({ 100,100 }),
 	cardScl_(1.4),
-	numPos_({0.0f,0.0f})
+	numPos_({0.0f,0.0f}),
+	cardNoImg_(nullptr)
 {
-	//複数画像はコンストラクタで初期化必須
-	int i = -1;
-	cardNoImg_ = &i;
+
 	////とりあえず攻撃カードを生成
 	//type_ = CARD_TYPE::ATTACK;
 }

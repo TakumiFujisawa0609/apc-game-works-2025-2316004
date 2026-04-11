@@ -68,7 +68,7 @@ private:
 	CollisionManager& operator= (const CollisionManager& _copy) = delete;
 
 	//デストラクタ
-	~CollisionManager(void);
+	~CollisionManager(void)override;
 
 	/// @brief 当たり判定距離内にいるか
 	/// @param _col1 1つ目のコライダ

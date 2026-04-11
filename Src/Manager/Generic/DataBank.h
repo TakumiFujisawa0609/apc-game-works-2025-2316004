@@ -52,8 +52,10 @@ public:
 private:
 
 	DataBank(void);
-	DataBank(const DataBank& instance_) = default;
-	~DataBank(void);
+	DataBank(const DataBank& instance_) = delete;
+	DataBank& operator=(const DataBank& _copy) = delete;
+
+	~DataBank(void)override;
 	int playerNum_;		//プレイヤーの人数
 	int maxPlayerNum_;	//コントローラー数よりプレイヤー人数が多くならないようにする
 

@@ -37,7 +37,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~GameScene(void);
+	~GameScene(void)override;
 
 	/// @brief 読み込み
 	/// @param  

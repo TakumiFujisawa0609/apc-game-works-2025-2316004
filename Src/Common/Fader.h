@@ -16,6 +16,14 @@ public:
 		FADE_IN		// 徐々に明転
 	};
 
+	/// @brief コンストラクタ
+	/// @param  
+	Fader(void);
+
+	/// @brief デストラクタ
+	/// @param  
+	~Fader(void);
+
 	// 状態の取得
 	const STATE GetState(void) const{ return state_; }
 

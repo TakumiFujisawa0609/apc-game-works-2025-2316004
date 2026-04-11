@@ -150,7 +150,7 @@ private:
 	ButtonUIManager(void);
 
 	// デストラクタも同様
-	~ButtonUIManager(void) = default;
+	~ButtonUIManager(void)override = default;
 
 	//ボタン
 	int* buttonUI_;
