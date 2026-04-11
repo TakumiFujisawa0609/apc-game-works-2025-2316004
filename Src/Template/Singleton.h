@@ -59,9 +59,6 @@ protected:
     /// @param  
     virtual ~Singleton(void) = default;
 
-    //ÉRÉsÅ[ÇÃã÷é~
-    Singleton(const Singleton& _copy) = delete;
-    Singleton& operator= (const Singleton& _copy) = delete;
 
 private:
 

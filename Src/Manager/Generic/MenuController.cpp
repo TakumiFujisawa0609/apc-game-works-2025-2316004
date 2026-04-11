@@ -14,7 +14,7 @@ MenuController::MenuController(void) :
 	yesNoState_(YES_NO::NO),
 	defaultFontSize_(),
 	defaultFontHandle_(L""),
-	fontHandle_(),
+	fontHandle_()
 {
 	easing_ = std::make_unique<Easing>();
 }
