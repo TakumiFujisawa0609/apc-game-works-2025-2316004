@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="15485810016819619048">
+<analyzerinfo hash="8816130473724965118">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/ResourceManager.h" line="2" column="2"/>
         </error>
@@ -104,11 +104,11 @@
             <symbol>_notHitTags</symbol>
         </error>
         <error id="passedByValue" severity="performance" msg="Function parameter &apos;_tag&apos; should be passed by const reference." verbose="Parameter &apos;_tag&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" line="22" column="94" info="Function parameter &apos;_tag&apos; should be passed by const reference."/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" line="23" column="94" info="Function parameter &apos;_tag&apos; should be passed by const reference."/>
             <symbol>_tag</symbol>
         </error>
         <error id="passedByValue" severity="performance" msg="Function parameter &apos;_notHitTags&apos; should be passed by const reference." verbose="Parameter &apos;_notHitTags&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" line="22" column="167" info="Function parameter &apos;_notHitTags&apos; should be passed by const reference."/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" line="23" column="167" info="Function parameter &apos;_notHitTags&apos; should be passed by const reference."/>
             <symbol>_notHitTags</symbol>
         </error>
   <FileInfo check="Class">
@@ -153,10 +153,10 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="IsDead" lineNumber="75" column="21"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="Kill" lineNumber="79" column="14"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" functionName="GetTransform" lineNumber="52" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="MakeCollider" lineNumber="22" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="IsAliveCollider" lineNumber="31" column="24"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="DeleteCollider" lineNumber="53" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="DeleteAllCollider" lineNumber="64" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="MakeCollider" lineNumber="23" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="IsAliveCollider" lineNumber="32" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="DeleteCollider" lineNumber="54" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.cpp" functionName="DeleteAllCollider" lineNumber="65" column="18"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>

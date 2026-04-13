@@ -48,8 +48,6 @@ private:
 	//画面のアルファ値
 	static constexpr int PAUSE_ALPHA = 128; 
 
-	//フォントサイズ
-	static constexpr int FONT_SIZE = 32;
 	static constexpr int FONT_THICK = 3; // フォントの太さ
 
 	int imgTest_;

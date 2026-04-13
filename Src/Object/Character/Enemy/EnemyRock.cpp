@@ -1,6 +1,7 @@
 #include "EnemyRock.h"
 #include "../pch.h"
 #include "../Utility/Utility3D.h"
+#include "../Utility/UtilityCommon.h"
 #include "../Object/Common/Collider.h"
 #include "../Object/Common/Geometry/Sphere.h"
 #include "../Manager/Resource/ResourceManager.h"
@@ -11,7 +12,8 @@ EnemyRock::EnemyRock(int& _num, VECTOR& _startPos):
 	startPos_(_startPos),
 	distance_(0.0f),
 	isAlive_(false),
-	isDamaged_(false)
+	isDamaged_(false),
+	modelId_(UtilityCommon::INITIAL_HANDLE)
 {
 
 }

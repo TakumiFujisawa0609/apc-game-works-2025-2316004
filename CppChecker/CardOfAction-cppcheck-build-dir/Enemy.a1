@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="16874381542346273964">
+<analyzerinfo hash="13453713208073056436">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility2D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility2D.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp" line="1" column="2"/>
         </error>
@@ -219,27 +219,6 @@
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" line="2" column="2"/>
         </error>
-        <error id="duplInheritedMember" severity="warning" msg="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_COVER_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." verbose="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_COVER_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="20" column="28" info="Derived variable &apos;EnemyHpUI::BAR_COVER_SIZE&apos;"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="61" column="28" info="Parent variable &apos;HpUIBase::BAR_COVER_SIZE&apos;"/>
-            <symbol>EnemyHpUI</symbol>
-            <symbol>BAR_COVER_SIZE</symbol>
-            <symbol>HpUIBase</symbol>
-        </error>
-        <error id="duplInheritedMember" severity="warning" msg="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." verbose="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="21" column="28" info="Derived variable &apos;EnemyHpUI::BAR_SIZE&apos;"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="62" column="28" info="Parent variable &apos;HpUIBase::BAR_SIZE&apos;"/>
-            <symbol>EnemyHpUI</symbol>
-            <symbol>BAR_SIZE</symbol>
-            <symbol>HpUIBase</symbol>
-        </error>
-        <error id="duplInheritedMember" severity="warning" msg="The class &apos;Enemy&apos; defines member variable with name &apos;ANIM_SPEED&apos; also defined in its parent class &apos;CharacterBase&apos;." verbose="The class &apos;Enemy&apos; defines member variable with name &apos;ANIM_SPEED&apos; also defined in its parent class &apos;CharacterBase&apos;." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" line="44" column="25" info="Derived variable &apos;Enemy::ANIM_SPEED&apos;"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" line="37" column="25" info="Parent variable &apos;CharacterBase::ANIM_SPEED&apos;"/>
-            <symbol>Enemy</symbol>
-            <symbol>ANIM_SPEED</symbol>
-            <symbol>CharacterBase</symbol>
-        </error>
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" line="25" column="2"/>
             <symbol>CardBase</symbol>
@@ -253,7 +232,7 @@
             <symbol>Transform</symbol>
         </error>
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" line="10" column="2"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" line="18" column="2"/>
             <symbol>EnemyLogic</symbol>
         </error>
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;Idle&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Idle&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
@@ -300,27 +279,27 @@
             <symbol>~HpUIBase</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The destructor &apos;~EnemyHpUI&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~EnemyHpUI&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="10" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="16" column="3" info="Destructor in derived class"/>
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="21" column="11" info="Virtual destructor in base class"/>
             <symbol>~EnemyHpUI</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="11" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="20" column="7" info="Function in derived class"/>
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="25" column="15" info="Virtual function in base class"/>
             <symbol>Load</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Init&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Init&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="12" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="24" column="7" info="Function in derived class"/>
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="29" column="15" info="Virtual function in base class"/>
             <symbol>Init</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="13" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="28" column="7" info="Function in derived class"/>
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="33" column="15" info="Virtual function in base class"/>
             <symbol>Update</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="14" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUi.h" line="32" column="7" info="Function in derived class"/>
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="37" column="15" info="Virtual function in base class"/>
             <symbol>Draw</symbol>
         </error>
@@ -375,7 +354,7 @@
 <class name="CharacterBase::ROTATION" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="" line="75" col="2" hash="18415481554161507055"/>
 <class name="CharacterBase::STATUS" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="" line="85" col="2" hash="8041305565987413062"/>
 <class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="" line="35" col="5" hash="16168219573089488594"/>
-<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="13" col="2" hash="2263838531848007897"/>
+<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="11" col="2" hash="2263838531848007897"/>
 <class name="Enemy" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" configuration="" line="20" col="1" hash="9038933006590906948"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
@@ -454,8 +433,8 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/EnemyCardAction.h" functionName="GetJumpCardNum" lineNumber="70" column="23"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="104" column="34"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="162" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="81" column="34"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="131" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp" functionName="MoveDirFromInput" lineNumber="185" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp" functionName="UpdateRoarDirection" lineNumber="208" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp" functionName="ChangeUpdateClearDirection" lineNumber="234" column="13"/>
@@ -501,6 +480,7 @@
     <functioncall functionName="E_STOMP_ATK"/>
     <functioncall functionName="Enemy"/>
     <functioncall functionName="EnemyCardAction"/>
+    <functioncall functionName="EnemyLogic"/>
     <functioncall functionName="Euler"/>
     <functioncall functionName="GetAnimStep"/>
     <functioncall functionName="GetCamera"/>
@@ -585,7 +565,7 @@
 <class name="CharacterBase::ROTATION" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="_DEBUG=_DEBUG" line="75" col="2" hash="18415481554161507055"/>
 <class name="CharacterBase::STATUS" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="_DEBUG=_DEBUG" line="85" col="2" hash="8041305565987413062"/>
 <class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="_DEBUG=_DEBUG" line="35" col="5" hash="16168219573089488594"/>
-<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="13" col="2" hash="2263838531848007897"/>
+<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="11" col="2" hash="2263838531848007897"/>
 <class name="Enemy" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" configuration="_DEBUG=_DEBUG" line="20" col="1" hash="7239499694084950270"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
@@ -664,8 +644,8 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/EnemyCardAction.h" functionName="GetJumpCardNum" lineNumber="70" column="23"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="104" column="34"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="162" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="81" column="34"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="131" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp" functionName="MoveDirFromInput" lineNumber="185" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp" functionName="UpdateRoarDirection" lineNumber="208" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.cpp" functionName="ChangeUpdateClearDirection" lineNumber="234" column="13"/>
@@ -713,6 +693,7 @@
     <functioncall functionName="E_STOMP_ATK"/>
     <functioncall functionName="Enemy"/>
     <functioncall functionName="EnemyCardAction"/>
+    <functioncall functionName="EnemyLogic"/>
     <functioncall functionName="Euler"/>
     <functioncall functionName="GetAnimStep"/>
     <functioncall functionName="GetCamera"/>

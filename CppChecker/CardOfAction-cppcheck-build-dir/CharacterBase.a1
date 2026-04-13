@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="844635892164156781">
+<analyzerinfo hash="17480360304289649387">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="1" column="2"/>
         </error>
@@ -157,7 +157,7 @@
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" line="11" column="2"/>
         </error>
         <error id="functionStatic" severity="style" msg="The member function &apos;CharacterBase::UpdateNone&apos; can be static." verbose="The member function &apos;CharacterBase::UpdateNone&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="326" column="21"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="324" column="21"/>
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" line="422" column="7"/>
             <symbol>CharacterBase::UpdateNone</symbol>
         </error>
@@ -235,11 +235,11 @@
 <class name="CharacterBase::STATUS" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="" line="85" col="2" hash="8041305565987413062"/>
   </FileInfo>
   <FileInfo check="Uninitialized variables">
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="1" my-argname="_spd" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="17" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="2" my-argname="_hp" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="22" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="3" my-argname="_atk" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="26" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="4" my-argname="_def" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="31" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:412:7" my-argnr="2" my-argname="_stageSize" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="117" col="24" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="1" my-argname="_spd" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="2" my-argname="_hp" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="22" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="3" my-argname="_atk" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="26" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="4" my-argname="_def" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="31" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:412:7" my-argnr="2" my-argname="_stageSize" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="115" col="24" value="0"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
@@ -303,37 +303,37 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetFootSE" lineNumber="225" column="34"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetMovedPos" lineNumber="241" column="16"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetIsEndDirect" lineNumber="309" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateAttackCol" lineNumber="65" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdatePost" lineNumber="78" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetStatus" lineNumber="106" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MoveLimit" lineNumber="115" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetUsedCard" lineNumber="147" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdatePhase" lineNumber="155" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeDirectToNormal" lineNumber="162" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="Rotate" lineNumber="185" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsDamage" lineNumber="212" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCharaCenterPos" lineNumber="217" column="30"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsDamage" lineNumber="222" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetFlinchCnt" lineNumber="227" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCardAction" lineNumber="232" column="53"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetMainAction" lineNumber="238" column="34"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetHitPoint" lineNumber="244" column="53"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MovedPosMove" lineNumber="249" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LariatMove" lineNumber="254" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetLogicTargetCharacter" lineNumber="260" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="AddEnemyRock" lineNumber="265" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LoadEnemyRock" lineNumber="274" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="DeleteEnemyRockCol" lineNumber="283" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsAliveEnemyRock" lineNumber="292" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="EnemyRockUpdate" lineNumber="305" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ClearEnemyRock" lineNumber="314" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsHitTarget" lineNumber="319" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateNone" lineNumber="326" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateHitStop" lineNumber="331" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNone" lineNumber="338" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNormal" lineNumber="343" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateDirection" lineNumber="348" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateHitStop" lineNumber="353" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateAttackCol" lineNumber="63" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdatePost" lineNumber="76" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetStatus" lineNumber="104" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MoveLimit" lineNumber="113" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetUsedCard" lineNumber="145" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdatePhase" lineNumber="153" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeDirectToNormal" lineNumber="160" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="Rotate" lineNumber="183" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsDamage" lineNumber="210" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCharaCenterPos" lineNumber="215" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsDamage" lineNumber="220" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetFlinchCnt" lineNumber="225" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCardAction" lineNumber="230" column="53"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetMainAction" lineNumber="236" column="34"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetHitPoint" lineNumber="242" column="53"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MovedPosMove" lineNumber="247" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LariatMove" lineNumber="252" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetLogicTargetCharacter" lineNumber="258" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="AddEnemyRock" lineNumber="263" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LoadEnemyRock" lineNumber="272" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="DeleteEnemyRockCol" lineNumber="281" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsAliveEnemyRock" lineNumber="290" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="EnemyRockUpdate" lineNumber="303" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ClearEnemyRock" lineNumber="312" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsHitTarget" lineNumber="317" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateNone" lineNumber="324" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateHitStop" lineNumber="329" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNone" lineNumber="336" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNormal" lineNumber="341" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateDirection" lineNumber="346" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateHitStop" lineNumber="351" column="21"/>
     <functioncall functionName="ATK_SPHERE"/>
     <functioncall functionName="ActionController"/>
     <functioncall functionName="AngleAxis"/>
@@ -440,11 +440,11 @@
 <class name="CharacterBase::STATUS" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="_DEBUG=_DEBUG" line="85" col="2" hash="8041305565987413062"/>
   </FileInfo>
   <FileInfo check="Uninitialized variables">
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="1" my-argname="_spd" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="17" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="2" my-argname="_hp" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="22" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="3" my-argname="_atk" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="26" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="4" my-argname="_def" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="109" col="31" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:412:7" my-argnr="2" my-argname="_stageSize" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="117" col="24" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="1" my-argname="_spd" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="2" my-argname="_hp" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="22" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="3" my-argname="_atk" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="26" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:409:7" my-argnr="4" my-argname="_def" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="107" col="31" value="0"/>
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h:412:7" my-argnr="2" my-argname="_stageSize" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" line="115" col="24" value="0"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
@@ -508,37 +508,37 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetFootSE" lineNumber="225" column="34"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetMovedPos" lineNumber="241" column="16"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetIsEndDirect" lineNumber="309" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateAttackCol" lineNumber="65" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdatePost" lineNumber="78" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetStatus" lineNumber="106" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MoveLimit" lineNumber="115" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetUsedCard" lineNumber="147" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdatePhase" lineNumber="155" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeDirectToNormal" lineNumber="162" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="Rotate" lineNumber="185" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsDamage" lineNumber="212" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCharaCenterPos" lineNumber="217" column="30"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsDamage" lineNumber="222" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetFlinchCnt" lineNumber="227" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCardAction" lineNumber="232" column="53"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetMainAction" lineNumber="238" column="34"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetHitPoint" lineNumber="244" column="53"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MovedPosMove" lineNumber="249" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LariatMove" lineNumber="254" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetLogicTargetCharacter" lineNumber="260" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="AddEnemyRock" lineNumber="265" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LoadEnemyRock" lineNumber="274" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="DeleteEnemyRockCol" lineNumber="283" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsAliveEnemyRock" lineNumber="292" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="EnemyRockUpdate" lineNumber="305" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ClearEnemyRock" lineNumber="314" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsHitTarget" lineNumber="319" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateNone" lineNumber="326" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateHitStop" lineNumber="331" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNone" lineNumber="338" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNormal" lineNumber="343" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateDirection" lineNumber="348" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateHitStop" lineNumber="353" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateAttackCol" lineNumber="63" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdatePost" lineNumber="76" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetStatus" lineNumber="104" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MoveLimit" lineNumber="113" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetUsedCard" lineNumber="145" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdatePhase" lineNumber="153" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeDirectToNormal" lineNumber="160" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="Rotate" lineNumber="183" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsDamage" lineNumber="210" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCharaCenterPos" lineNumber="215" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsDamage" lineNumber="220" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetFlinchCnt" lineNumber="225" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetCardAction" lineNumber="230" column="53"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetMainAction" lineNumber="236" column="34"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetHitPoint" lineNumber="242" column="53"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="MovedPosMove" lineNumber="247" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LariatMove" lineNumber="252" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetLogicTargetCharacter" lineNumber="258" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="AddEnemyRock" lineNumber="263" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="LoadEnemyRock" lineNumber="272" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="DeleteEnemyRockCol" lineNumber="281" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="SetIsAliveEnemyRock" lineNumber="290" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="EnemyRockUpdate" lineNumber="303" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ClearEnemyRock" lineNumber="312" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="GetIsHitTarget" lineNumber="317" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateNone" lineNumber="324" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="UpdateHitStop" lineNumber="329" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNone" lineNumber="336" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateNormal" lineNumber="341" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateDirection" lineNumber="346" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.cpp" functionName="ChangeUpdateHitStop" lineNumber="351" column="21"/>
     <functioncall functionName="ATK_SPHERE"/>
     <functioncall functionName="ActionController"/>
     <functioncall functionName="AngleAxis"/>

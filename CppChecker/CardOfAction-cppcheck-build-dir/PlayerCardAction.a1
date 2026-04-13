@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="15404971519935136253">
+<analyzerinfo hash="6016422734802299690">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility3D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility3D.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/PlayerCardAction.cpp" line="1" column="2"/>
         </error>
@@ -303,7 +303,7 @@
 <class name="CharacterBase::ROTATION" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="" line="75" col="2" hash="18415481554161507055"/>
 <class name="CharacterBase::STATUS" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="" line="85" col="2" hash="8041305565987413062"/>
 <class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="" line="35" col="5" hash="16168219573089488594"/>
-<class name="PlayerCardAction" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/PlayerCardAction.h" configuration="" line="11" col="1" hash="14806689467336875941"/>
+<class name="PlayerCardAction" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/PlayerCardAction.h" configuration="" line="11" col="1" hash="11007470569200931483"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/ActionBase.h" functionName="GetSpeed" lineNumber="85" column="15"/>
@@ -540,7 +540,7 @@
 <class name="CharacterBase::ROTATION" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="_DEBUG=_DEBUG" line="75" col="2" hash="18415481554161507055"/>
 <class name="CharacterBase::STATUS" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" configuration="_DEBUG=_DEBUG" line="85" col="2" hash="8041305565987413062"/>
 <class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="_DEBUG=_DEBUG" line="35" col="5" hash="16168219573089488594"/>
-<class name="PlayerCardAction" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/PlayerCardAction.h" configuration="_DEBUG=_DEBUG" line="11" col="1" hash="14806689467336875941"/>
+<class name="PlayerCardAction" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/PlayerCardAction.h" configuration="_DEBUG=_DEBUG" line="11" col="1" hash="11007470569200931483"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/ActionBase.h" functionName="GetSpeed" lineNumber="85" column="15"/>

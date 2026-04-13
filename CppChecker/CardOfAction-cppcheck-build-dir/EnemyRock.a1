@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="13047980174827619153">
+<analyzerinfo hash="15594685829005389058">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.h" line="2" column="2"/>
         </error>
@@ -22,16 +22,8 @@
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp" line="9" column="12"/>
             <symbol>EnemyRock::modelId_</symbol>
         </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyRock::isAlive_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyRock::isAlive_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp" line="9" column="12"/>
-            <symbol>EnemyRock::isAlive_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyRock::isDamaged_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyRock::isDamaged_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp" line="9" column="12"/>
-            <symbol>EnemyRock::isDamaged_</symbol>
-        </error>
         <error id="unreadVariable" severity="style" msg="Variable &apos;i&apos; is assigned a value that is never used." verbose="Variable &apos;i&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp" line="19" column="8"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp" line="21" column="8"/>
             <symbol>i</symbol>
         </error>
   <FileInfo check="Class">
@@ -41,7 +33,7 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.h" functionName="GetIsDamaged" lineNumber="35" column="16"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.h" functionName="SetIsAlive" lineNumber="39" column="7"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.h" functionName="SetIsDamaged" lineNumber="43" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp" functionName="DeleteRockCollider" lineNumber="80" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyRock.cpp" functionName="DeleteRockCollider" lineNumber="82" column="17"/>
     <functioncall functionName="CAMERA"/>
     <functioncall functionName="Collider"/>
     <functioncall functionName="DeleteCollider"/>

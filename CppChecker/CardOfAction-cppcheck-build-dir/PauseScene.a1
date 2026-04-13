@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="6200892805312055818">
+<analyzerinfo hash="15659774007584114794">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.h" line="2" column="2"/>
         </error>
@@ -83,7 +83,7 @@
             <symbol>_copy</symbol>
         </error>
   <FileInfo check="Class">
-<class name="PauseScene" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.h" configuration="" line="6" col="1" hash="7518464080639076355"/>
+<class name="PauseScene" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.h" configuration="" line="6" col="1" hash="5057715723451883356"/>
 <class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="65" col="2" hash="10215088381399476255"/>
 <class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="224" col="2" hash="9437638551516248859"/>
   </FileInfo>
@@ -98,10 +98,10 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Load" lineNumber="41" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Init" lineNumber="47" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalUpdate" lineNumber="52" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalDraw" lineNumber="75" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Load" lineNumber="42" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Init" lineNumber="48" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalUpdate" lineNumber="53" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalDraw" lineNumber="76" column="18"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
@@ -160,7 +160,7 @@
     <functioncall functionName="weak_ptr"/>
   </FileInfo>
   <FileInfo check="Class">
-<class name="PauseScene" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.h" configuration="_DEBUG=_DEBUG" line="6" col="1" hash="7518464080639076355"/>
+<class name="PauseScene" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.h" configuration="_DEBUG=_DEBUG" line="6" col="1" hash="5057715723451883356"/>
 <class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="65" col="2" hash="10215088381399476255"/>
 <class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="224" col="2" hash="9437638551516248859"/>
   </FileInfo>
@@ -175,10 +175,10 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Load" lineNumber="41" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Init" lineNumber="47" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalUpdate" lineNumber="52" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalDraw" lineNumber="75" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Load" lineNumber="42" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="Init" lineNumber="48" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalUpdate" lineNumber="53" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/PauseScene.cpp" functionName="NormalDraw" lineNumber="76" column="18"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>

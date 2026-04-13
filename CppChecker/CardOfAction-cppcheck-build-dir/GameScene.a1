@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="6953559760105497813">
+<analyzerinfo hash="14993206121749185910">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/GameScene.h" line="2" column="2"/>
         </error>
@@ -304,13 +304,6 @@
             <symbol>FONT_SIZE</symbol>
             <symbol>SceneBase</symbol>
         </error>
-        <error id="duplInheritedMember" severity="warning" msg="The class &apos;Enemy&apos; defines member variable with name &apos;ANIM_SPEED&apos; also defined in its parent class &apos;CharacterBase&apos;." verbose="The class &apos;Enemy&apos; defines member variable with name &apos;ANIM_SPEED&apos; also defined in its parent class &apos;CharacterBase&apos;." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/GameScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" line="44" column="25" info="Derived variable &apos;Enemy::ANIM_SPEED&apos;"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" line="37" column="25" info="Parent variable &apos;CharacterBase::ANIM_SPEED&apos;"/>
-            <symbol>Enemy</symbol>
-            <symbol>ANIM_SPEED</symbol>
-            <symbol>CharacterBase</symbol>
-        </error>
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/GameScene.cpp">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="20" column="2"/>
             <symbol>Quaternion</symbol>
@@ -506,8 +499,8 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetIsEndDirect" lineNumber="309" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Player.h" functionName="GetHand" lineNumber="101" column="33"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/SkyDome/SkyDome.h" functionName="OnHit" lineNumber="78" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="104" column="34"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="162" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="81" column="34"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="131" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardSystem.h" functionName="GetCanPut" lineNumber="57" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardSystem.h" functionName="GetCardDif" lineNumber="82" column="12"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardSystem.h" functionName="InitCardDif" lineNumber="86" column="7"/>
@@ -809,8 +802,8 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" functionName="GetIsEndDirect" lineNumber="309" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Player.h" functionName="GetHand" lineNumber="101" column="33"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/SkyDome/SkyDome.h" functionName="OnHit" lineNumber="78" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="104" column="34"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="162" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetHand" lineNumber="81" column="34"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/Enemy.h" functionName="GetIsRoar" lineNumber="131" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardSystem.h" functionName="GetCanPut" lineNumber="57" column="13"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardSystem.h" functionName="GetCardDif" lineNumber="82" column="12"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardSystem.h" functionName="InitCardDif" lineNumber="86" column="7"/>

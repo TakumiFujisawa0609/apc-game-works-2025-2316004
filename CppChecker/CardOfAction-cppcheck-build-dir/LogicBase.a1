@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="2856405662075287753">
+<analyzerinfo hash="8065736732564506792">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterBase.h" line="2" column="2"/>
         </error>
@@ -140,14 +140,6 @@
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Transform.h&quot; not found." verbose="Include file: &quot;../Object/Common/Transform.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" line="3" column="2"/>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;LogicBase::attackType_&apos; is not initialized in the constructor." verbose="Member variable &apos;LogicBase::attackType_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.cpp" line="8" column="12"/>
-            <symbol>LogicBase::attackType_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;LogicBase::isFlag_&apos; is not initialized in the constructor." verbose="Member variable &apos;LogicBase::isFlag_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.cpp" line="8" column="12"/>
-            <symbol>LogicBase::isFlag_</symbol>
         </error>
         <error id="functionStatic" severity="style" msg="The member function &apos;LogicBase::HitTarget&apos; can be static." verbose="The member function &apos;LogicBase::HitTarget&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.cpp">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.cpp" line="50" column="23"/>

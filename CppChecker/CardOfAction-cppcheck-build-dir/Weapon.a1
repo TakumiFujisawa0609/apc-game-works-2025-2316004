@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="12627057169951821006">
+<analyzerinfo hash="12892644601005226317">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="1" column="2"/>
         </error>
@@ -42,20 +42,8 @@
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" line="2" column="2"/>
         </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Weapon::targetTrans_&apos; is not initialized in the constructor." verbose="Member variable &apos;Weapon::targetTrans_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="16" column="9"/>
-            <symbol>Weapon::targetTrans_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Weapon::followFrameNo_&apos; is not initialized in the constructor." verbose="Member variable &apos;Weapon::followFrameNo_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="16" column="9"/>
-            <symbol>Weapon::followFrameNo_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Weapon::isDamage_&apos; is not initialized in the constructor." verbose="Member variable &apos;Weapon::isDamage_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="16" column="9"/>
-            <symbol>Weapon::isDamage_</symbol>
-        </error>
         <error id="useInitializationList" severity="performance" msg="Variable &apos;effect_&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;effect_&apos; a value by passing the value to the constructor in the initialization list." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="19" column="2"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="24" column="2"/>
             <symbol>effect_</symbol>
         </error>
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;Weapon&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Weapon&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp">
@@ -68,9 +56,9 @@
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" functionName="GetIsDamage" lineNumber="45" column="14"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" functionName="SetIsDamage" lineNumber="48" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="SetTargetAndFrameNo" lineNumber="71" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="MakeWeaponCollider" lineNumber="77" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="DeleteWeaponCollider" lineNumber="100" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="SetTargetAndFrameNo" lineNumber="76" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="MakeWeaponCollider" lineNumber="82" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="DeleteWeaponCollider" lineNumber="105" column="14"/>
     <functioncall functionName="ATK_SPHERE"/>
     <functioncall functionName="Add"/>
     <functioncall functionName="BACK"/>

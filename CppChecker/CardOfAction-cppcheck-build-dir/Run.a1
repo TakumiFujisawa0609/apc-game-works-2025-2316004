@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="15741562680783020628">
+<analyzerinfo hash="12840750771070567997">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Action/Run.cpp" line="1" column="2"/>
         </error>

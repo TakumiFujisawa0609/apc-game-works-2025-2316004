@@ -8,9 +8,9 @@
     <max-ctu-depth>2</max-ctu-depth>
     <max-template-recursion>100</max-template-recursion>
     <paths>
-        <dir name="../Manager"/>
-        <dir name="../Object"/>
-        <dir name="../Scene"/>
+        <dir name="../Src/Manager"/>
+        <dir name="../Src/Object"/>
+        <dir name="../Src/Scene"/>
     </paths>
     <exclude>
         <path name="../Lib/"/>

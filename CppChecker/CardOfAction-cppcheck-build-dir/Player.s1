@@ -122,7 +122,7 @@ GetFootSE
 GetMovedPos
 GetIsEndDirect
 GetHand
-Player call:[SetStatus,Transform]
+Player call:[SetStatus]
 Player call:[clear] noreturn:[clear]
 Load call:[AddAction,AddAnimation,Deg2RadF,Euler,GetInstance,Load,LoadModelDuplicate,LoadResource,SetModel,SetSoundVolumeSRC] noreturn:[SetSoundVolumeSRC]
 Init call:[AddCardData,GetInstance,Init,MakeColliderGeometry,SetTargetAndFrameNo,Update] noreturn:[AddCardData,Update]

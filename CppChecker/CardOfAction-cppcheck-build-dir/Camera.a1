@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="220235421674610502">
+<analyzerinfo hash="1426240048412707115">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="1" column="2"/>
         </error>

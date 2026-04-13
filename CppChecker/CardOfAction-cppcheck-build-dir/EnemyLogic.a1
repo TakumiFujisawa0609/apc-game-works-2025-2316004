@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="10625127421448170590">
+<analyzerinfo hash="6172118401201470655">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="1" column="2"/>
         </error>
@@ -21,34 +21,14 @@
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Transform.h&quot; not found." verbose="Include file: &quot;../Object/Common/Transform.h&quot; not found.">
             <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" line="3" column="2"/>
         </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyLogic::cardCoolCnt_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyLogic::cardCoolCnt_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="7" column="13"/>
-            <symbol>EnemyLogic::cardCoolCnt_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyLogic::moveCnt_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyLogic::moveCnt_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="7" column="13"/>
-            <symbol>EnemyLogic::moveCnt_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyLogic::freezeCnt_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyLogic::freezeCnt_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="7" column="13"/>
-            <symbol>EnemyLogic::freezeCnt_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyLogic::atkRange_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyLogic::atkRange_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="7" column="13"/>
-            <symbol>EnemyLogic::atkRange_</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyLogic::prevAttackType_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyLogic::prevAttackType_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="7" column="13"/>
-            <symbol>EnemyLogic::prevAttackType_</symbol>
-        </error>
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" line="10" column="2"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" line="18" column="2"/>
             <symbol>EnemyLogic</symbol>
         </error>
   <FileInfo check="Class">
 <class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="" line="35" col="5" hash="16168219573089488594"/>
-<class name="EnemyLogic" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="6" col="1" hash="15425773765078775604"/>
-<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="13" col="2" hash="2263838531848007897"/>
+<class name="EnemyLogic" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="6" col="1" hash="14343129382002385014"/>
+<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="11" col="2" hash="2263838531848007897"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="CheckAct" lineNumber="71" column="16"/>
@@ -59,8 +39,8 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="123" column="10"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="107" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="162" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="112" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="167" column="18"/>
     <functioncall functionName="DecideAction"/>
     <functioncall functionName="EnemyLogic"/>
     <functioncall functionName="GetDeltaTime"/>
@@ -85,8 +65,8 @@
   </FileInfo>
   <FileInfo check="Class">
 <class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="_DEBUG=_DEBUG" line="35" col="5" hash="16168219573089488594"/>
-<class name="EnemyLogic" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="6" col="1" hash="17347595675971289734"/>
-<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="13" col="2" hash="2263838531848007897"/>
+<class name="EnemyLogic" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="6" col="1" hash="16426213271361091068"/>
+<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="11" col="2" hash="2263838531848007897"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="CheckAct" lineNumber="71" column="16"/>
@@ -97,10 +77,10 @@
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="123" column="10"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
     <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugUpdate" lineNumber="73" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugDraw" lineNumber="97" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="107" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="162" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugUpdate" lineNumber="78" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugDraw" lineNumber="102" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="112" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="167" column="18"/>
     <functioncall functionName="DIR_B"/>
     <functioncall functionName="DIR_F"/>
     <functioncall functionName="DIR_L"/>
