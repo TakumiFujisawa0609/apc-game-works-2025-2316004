@@ -18,8 +18,8 @@ CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _chara
 	ActionBase(_actCntl),
 	charaObj_(_charaObj),
 	cardPresent_(_deck),
-	atkPos_(),
-	velocity_(),
+	atkPos_(Utility3D::VECTOR_ZERO),
+	velocity_(Utility3D::VECTOR_ZERO),
 	isCombo_(false),
 	isDuelWait_(false)
 {

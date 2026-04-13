@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="14607747444715161617">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="6" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Renderer/PixelRenderer.h&quot; not found." verbose="Include file: &quot;../Renderer/PixelRenderer.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="7" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Renderer/PixelMaterial.h&quot; not found." verbose="Include file: &quot;../Renderer/PixelMaterial.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" line="8" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="3" column="2"/>
+        </error>
+        <error id="duplInheritedMember" severity="warning" msg="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_COVER_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." verbose="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_COVER_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="20" column="28" info="Derived variable &apos;EnemyHpUI::BAR_COVER_SIZE&apos;"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="61" column="28" info="Parent variable &apos;HpUIBase::BAR_COVER_SIZE&apos;"/>
+            <symbol>EnemyHpUI</symbol>
+            <symbol>BAR_COVER_SIZE</symbol>
+            <symbol>HpUIBase</symbol>
+        </error>
+        <error id="duplInheritedMember" severity="warning" msg="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." verbose="The class &apos;EnemyHpUI&apos; defines member variable with name &apos;BAR_SIZE&apos; also defined in its parent class &apos;HpUIBase&apos;." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="21" column="28" info="Derived variable &apos;EnemyHpUI::BAR_SIZE&apos;"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="62" column="28" info="Parent variable &apos;HpUIBase::BAR_SIZE&apos;"/>
+            <symbol>EnemyHpUI</symbol>
+            <symbol>BAR_SIZE</symbol>
+            <symbol>HpUIBase</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~HpUIBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~HpUIBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="21" column="11" info="Destructor in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="10" column="11" info="Virtual destructor in base class"/>
+            <symbol>~HpUIBase</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~EnemyHpUI&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~EnemyHpUI&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="10" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="21" column="11" info="Virtual destructor in base class"/>
+            <symbol>~EnemyHpUI</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="11" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="25" column="15" info="Virtual function in base class"/>
+            <symbol>Load</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Init&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Init&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="12" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="29" column="15" info="Virtual function in base class"/>
+            <symbol>Init</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="13" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="33" column="15" info="Virtual function in base class"/>
+            <symbol>Update</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" line="14" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="37" column="15" info="Virtual function in base class"/>
+            <symbol>Draw</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="HP_DATA" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="12908037895484562304"/>
+<class name="EnemyHpUI" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.h" configuration="" line="6" col="1" hash="17779544732740353354"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" functionName="Load" lineNumber="25" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" functionName="Init" lineNumber="33" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" functionName="Update" lineNumber="43" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyHpUI.cpp" functionName="Draw" lineNumber="50" column="17"/>
+    <functioncall functionName="AddConstBuf"/>
+    <functioncall functionName="AddTextureBuf"/>
+    <functioncall functionName="Draw"/>
+    <functioncall functionName="DrawExtendGraphF"/>
+    <functioncall functionName="E_HP_BAR_FRAME"/>
+    <functioncall functionName="E_HP_BAR_MASK"/>
+    <functioncall functionName="E_HP_COVER"/>
+    <functioncall functionName="EnemyHpUI"/>
+    <functioncall functionName="Init"/>
+    <functioncall functionName="Load"/>
+    <functioncall functionName="MakeSquareVertex"/>
+    <functioncall functionName="SetConstBuf"/>
+    <functioncall functionName="SetPos"/>
+    <functioncall functionName="Update"/>
+    <functioncall functionName="handleId_"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+  </FileInfo>
+</analyzerinfo>

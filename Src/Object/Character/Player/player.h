@@ -253,15 +253,9 @@ private:
 	//--------------------------------------------
 	//プレイヤー単体が持っているもの
 	int playerNum_;			//プレイヤー番号
-	//計測用
-	float time_;
-	//ゴール時間格納
-	float goalTime_;
 
 	//状態更新
 	std::function<void(void)>stateUpdate_;
-	//カードの位置
-	Vector2 cardCenterPos_;
 	//武器オブジェクト
 	std::unique_ptr<Weapon>weapon_;
 

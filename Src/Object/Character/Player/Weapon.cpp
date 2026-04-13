@@ -14,7 +14,12 @@
 #include "Weapon.h"
 
 Weapon::Weapon(CharacterBase& _chara):
-character_(_chara)
+character_(_chara),
+targetTrans_(nullptr),
+followFrameNo_(0),
+localPos_(Utility3D::VECTOR_ZERO),
+localRot_(Utility3D::VECTOR_ZERO),
+isDamage_(false)
 {
 	effect_ = std::make_unique<EffectController>();
 }

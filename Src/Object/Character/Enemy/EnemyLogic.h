@@ -7,8 +7,6 @@ class EnemyLogic :
     public LogicBase
 {
 public:
-	EnemyLogic(Transform& _myTrans);
-	~EnemyLogic(void) override;
 
 	struct AttackWeight {
 		int normal = 60;
@@ -16,6 +14,10 @@ public:
 		int Roar = 20;
 		int role = 10;
 	};
+
+	EnemyLogic(Transform& _myTrans);
+	~EnemyLogic(void) override;
+
 
 
 	/// @brief ‰Šú‰»

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="7497551985352204781">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/UIManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/UIManager.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/Camera.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/Camera.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found." verbose="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Player/Player.h&quot; not found." verbose="Include file: &quot;../Object/Character/Player/Player.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Enemy/Enemy.h&quot; not found." verbose="Include file: &quot;../Object/Character/Enemy/Enemy.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" line="6" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="3" column="2"/>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;CharacterManager::Release&apos; can be static." verbose="The member function &apos;CharacterManager::Release&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" line="56" column="24"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.h" line="37" column="7"/>
+            <symbol>CharacterManager::Release</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="CharacterManager" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.h" configuration="" line="8" col="1" hash="14840017657331871413"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="Load" lineNumber="10" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="Init" lineNumber="23" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="Update" lineNumber="36" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="Draw" lineNumber="44" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="Draw2D" lineNumber="50" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="Release" lineNumber="56" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="IsSceneChageClearCondition" lineNumber="59" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="IsSceneChangeGameOverCondition" lineNumber="63" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="GetIsEnemyRoar" lineNumber="67" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="GetIsEndClearDirection" lineNumber="71" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="GetIsEndOverDirection" lineNumber="75" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="ChangeCharacterNormalUpdate" lineNumber="79" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="ChangeCharacterDirectionUpdate" lineNumber="84" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="ChangeCharacterClearDirection" lineNumber="89" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Game/CharacterManager.cpp" functionName="ChangeCharacterOverDirection" lineNumber="94" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="CLEAR_DIRECTION"/>
+    <functioncall functionName="ChangeDirectToNormal"/>
+    <functioncall functionName="ChangeMode"/>
+    <functioncall functionName="ChangeUpdatePhase"/>
+    <functioncall functionName="CharacterManager"/>
+    <functioncall functionName="DIRECTION"/>
+    <functioncall functionName="Draw"/>
+    <functioncall functionName="Draw2D"/>
+    <functioncall functionName="GetCamera"/>
+    <functioncall functionName="GetInstance"/>
+    <functioncall functionName="GetIsEndDirect"/>
+    <functioncall functionName="GetIsRoar"/>
+    <functioncall functionName="GetStatus"/>
+    <functioncall functionName="GetTransform"/>
+    <functioncall functionName="Init"/>
+    <functioncall functionName="Load"/>
+    <functioncall functionName="OVER_DIRECTION"/>
+    <functioncall functionName="START_DIRECTION"/>
+    <functioncall functionName="SetFollow"/>
+    <functioncall functionName="SetLogicTargetCharacter"/>
+    <functioncall functionName="SetTarget"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="Update"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="lock"/>
+    <functioncall functionName="make_shared"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="y"/>
+  </FileInfo>
+</analyzerinfo>

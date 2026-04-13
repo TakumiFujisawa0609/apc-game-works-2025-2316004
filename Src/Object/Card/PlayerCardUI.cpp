@@ -31,9 +31,9 @@ cardNumMaskImg_(UtilityCommon::INITIAL_HANDLE),
 cardNumBgImg_(UtilityCommon::INITIAL_HANDLE),
 fontHandle_(UtilityCommon::INITIAL_HANDLE),
 reloadFontHandle_(UtilityCommon::INITIAL_HANDLE),
-imgRevolverArrow_(UtilityCommon::INITIAL_HANDLE)
+imgRevolverArrow_(UtilityCommon::INITIAL_HANDLE),
+cardNumPer_(UtilityCommon::RATIO_MAX)
 {
-
 }
 
 PlayerCardUI::~PlayerCardUI(void)
@@ -466,7 +466,7 @@ void PlayerCardUI::UpdateDecision(void)
 
 void PlayerCardUI::UpdateReloadWait(void)
 {
-	if(reloadPer_>= UtilityCommon::PERCENT_MAX_F)
+	if(reloadPer_>= UtilityCommon::RATIO_MAX)
 	{
 		//ˆêunoneó‘Ô‚É‚·‚é
 		ChangeSelectState(CARD_SELECT::NONE);

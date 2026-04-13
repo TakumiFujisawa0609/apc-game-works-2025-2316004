@@ -33,7 +33,8 @@ public:
 	//固定デルタタイム
 	static constexpr float FIXED_DELTA_TIME = 1.0f / 60.0f;
 	//パーセント
-	static constexpr float PERCENT_MAX_F = 1.0f;
+	static constexpr float RATIO_MAX = 1.0f;
+	static constexpr float RATIO_MIN = 0.0f;
 	static constexpr int PERCENT_MAX = 100;
 
 	//アルファ値

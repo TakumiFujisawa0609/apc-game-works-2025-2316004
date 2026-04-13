@@ -223,7 +223,7 @@ void PlayerCardAction::UpdateAttackThree(void)
 	{
 		atkAnimLerpCnt_ += scnMng_.GetDeltaTime();
 		//アニメーション速度補完
-		anim_.SetAnimSpeed(CharacterBase::ANIM_SPEED, true
+		anim_.SetAnimSpeed(CharacterBase::DEFAULT_ANIM_SPEED, true
 			, ATTACK_THREE_ANIM_SPD, atkAnimLerpCnt_ / ATTACK_THREE_ANIM_LERP_TIME,Easing::EASING_TYPE::QUAD_IN);
 		//攻撃判定有効
 		isAliveAtkCol_ = true;

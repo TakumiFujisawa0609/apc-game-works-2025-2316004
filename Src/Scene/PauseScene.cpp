@@ -7,16 +7,17 @@
 #include "../Manager/Generic/InputManager.h"
 #include "../Utility/UtilityCommon.h"
 
-PauseScene::PauseScene(void)
+PauseScene::PauseScene(void):
+	imgTest_(-1),
+	pauseFont_(-1),
+	selectIndex_()
 {
 	//更新関数のセット
 	updateFunc_ = std::bind(&PauseScene::NormalUpdate, this);
 	//描画関数のセット
 	drawFunc_ = std::bind(&PauseScene::NormalDraw, this);
 
-	imgTest_ = -1;
-	pauseFont_ = -1;
-	selectIndex_ = 0;
+
 	
 	//リストごとに処理を分ける
 	listFuncTable_ =

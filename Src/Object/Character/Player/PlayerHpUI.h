@@ -37,13 +37,5 @@ private:
 	std::unique_ptr<PixelRenderer>lineRenderer_;
 	//マテリアル
 	std::unique_ptr<PixelMaterial>lineMaterial_;
-	//円形ゲージのマスク
-	int radiusHpBarMaskImg_;
-	//直線
-	int lineHpBarMaskImg_;
-	int lineHpFrameImg_;
-
-	//デバッグ用
-	float per_;
 };
 

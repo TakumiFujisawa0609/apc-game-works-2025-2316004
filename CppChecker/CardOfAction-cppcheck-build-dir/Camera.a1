@@ -1,0 +1,659 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="220235421674610502">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;EffekseerForDXLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;EffekseerForDXLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/Utility3D.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="6" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="8" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Transform.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Transform.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;set&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;set&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="6" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="7" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Template/Singleton.h&quot; not found." verbose="Include file: &quot;../Template/Singleton.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="7" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="8" column="2"/>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Camera::SetBeforeDrawFixedPoint&apos; can be static." verbose="The member function &apos;Camera::SetBeforeDrawFixedPoint&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="460" column="14"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="393" column="7"/>
+            <symbol>Camera::SetBeforeDrawFixedPoint</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Camera::SetBeforeDrawSelfShot&apos; can be static." verbose="The member function &apos;Camera::SetBeforeDrawSelfShot&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="491" column="14"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="395" column="7"/>
+            <symbol>Camera::SetBeforeDrawSelfShot</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Camera::UpdateNone&apos; can be static." verbose="The member function &apos;Camera::UpdateNone&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="557" column="14"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="409" column="7"/>
+            <symbol>Camera::UpdateNone</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Camera::DirectionNone&apos; can be static." verbose="The member function &apos;Camera::DirectionNone&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="629" column="14"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="420" column="7"/>
+            <symbol>Camera::DirectionNone</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="20" column="2"/>
+            <symbol>Quaternion</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Transform&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Transform&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Transform.h" line="20" column="2"/>
+            <symbol>Transform</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="161" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
+            <symbol>~SceneManager</symbol>
+        </error>
+        <error id="uselessOverride" severity="style" msg="The function &apos;Draw&apos; overrides a function in a base class but is identical to the overridden function" verbose="The function &apos;Draw&apos; overrides a function in a base class but is identical to the overridden function" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="126" column="7" info="Function in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" line="47" column="15" info="Virtual function in base class"/>
+            <symbol>Draw</symbol>
+        </error>
+        <error id="returnByReference" severity="performance" msg="Function &apos;GetQuaRot()&apos; should return member &apos;rot_&apos; by const reference." verbose="Function &apos;GetQuaRot()&apos; should return member &apos;rot_&apos; by const reference." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="146" column="19"/>
+        </error>
+        <error id="returnByReference" severity="performance" msg="Function &apos;GetQuaRotOutX()&apos; should return member &apos;rotOutX_&apos; by const reference." verbose="Function &apos;GetQuaRotOutX()&apos; should return member &apos;rotOutX_&apos; by const reference." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" line="151" column="19"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_tags&apos; should be passed by const reference." verbose="Parameter &apos;_tags&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" line="32" column="52" info="Function parameter &apos;_tags&apos; should be passed by const reference."/>
+            <symbol>_tags</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_notHitTags&apos; should be passed by const reference." verbose="Parameter &apos;_notHitTags&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" line="32" column="115" info="Function parameter &apos;_notHitTags&apos; should be passed by const reference."/>
+            <symbol>_notHitTags</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_tag&apos; should be passed by const reference." verbose="Parameter &apos;_tag&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" line="90" column="82" info="Function parameter &apos;_tag&apos; should be passed by const reference."/>
+            <symbol>_tag</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_notHitTags&apos; should be passed by const reference." verbose="Parameter &apos;_notHitTags&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" line="90" column="155" info="Function parameter &apos;_notHitTags&apos; should be passed by const reference."/>
+            <symbol>_notHitTags</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;sphereHit&apos; is assigned a value that is never used." verbose="Variable &apos;sphereHit&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="438" column="18"/>
+            <symbol>sphereHit</symbol>
+        </error>
+  <FileInfo check="ctu">
+<function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="82" col="11" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="566" col="12" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="588" col="12" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="671" col="12" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/>  </FileInfo>
+  <FileInfo check="Class">
+<class name="Geometry::OBB" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" configuration="" line="17" col="2" hash="2816693727323549992"/>
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="224" col="2" hash="9437638551516248859"/>
+<class name="Camera" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" configuration="" line="11" col="1" hash="17505233310831508922"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:372:7" my-argnr="1" my-argname="_followTransform" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="252" col="26" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="GetTags" lineNumber="40" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="GetNotHitTags" lineNumber="51" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="GetParent" lineNumber="56" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="IsHit" lineNumber="66" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="NotHit" lineNumber="70" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="IsDead" lineNumber="75" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="Kill" lineNumber="79" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" functionName="GetTransform" lineNumber="52" column="26"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetPos" lineNumber="131" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetAngles" lineNumber="136" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetTargetPos" lineNumber="141" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetQuaRot" lineNumber="146" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetQuaRotOutX" lineNumber="151" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="SetStageTransform" lineNumber="189" column="7"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="IsEndDirectionMode" lineNumber="197" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetDirectionMode" lineNumber="205" column="23"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDraw" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="Draw" lineNumber="112" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeSub" lineNumber="141" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetFollow" lineNumber="149" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetTarget" lineNumber="155" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetTargetPos" lineNumber="160" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetShakeStatus" lineNumber="165" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="GetForward" lineNumber="174" column="16"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeMode" lineNumber="179" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="MakeColliderGeometry" lineNumber="191" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="OnHit" lineNumber="210" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateCameraColliderLine" lineNumber="215" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetDefault" lineNumber="227" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SyncFollow" lineNumber="249" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SyncTargetFollow" lineNumber="279" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ProcessRot" lineNumber="316" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SmoothChangeCamera" lineNumber="337" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="Collision" lineNumber="399" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionMode" lineNumber="451" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawFixedPoint" lineNumber="460" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawFollow" lineNumber="465" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawSelfShot" lineNumber="491" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawLerpCamera" lineNumber="495" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawTargetPoint" lineNumber="500" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawStartDirection" lineNumber="516" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeFixedPoint" lineNumber="521" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeFollow" lineNumber="527" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeSelfShot" lineNumber="535" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeTargetLerp" lineNumber="541" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeTargetCamera" lineNumber="546" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeStartDirection" lineNumber="551" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateNone" lineNumber="557" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateShake" lineNumber="561" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateShakeOne" lineNumber="583" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeNone" lineNumber="608" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeShake" lineNumber="615" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeShakeOne" lineNumber="622" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionNone" lineNumber="629" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionPlayerAndTarget" lineNumber="635" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionEnemyOnly" lineNumber="647" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionEnemyRoar" lineNumber="667" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionPlayerOnly" lineNumber="682" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="EndDirection" lineNumber="701" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionNone" lineNumber="717" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionLegLow" lineNumber="722" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionEnemyOnly" lineNumber="731" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionEnemyRoar" lineNumber="742" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionPlayerOnly" lineNumber="747" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeEndDirection" lineNumber="760" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="AngleAxis"/>
+    <functioncall functionName="CAMERA_LINE"/>
+    <functioncall functionName="COS_BACK"/>
+    <functioncall functionName="Camera"/>
+    <functioncall functionName="ChangeDirectionEnemyOnly"/>
+    <functioncall functionName="ChangeDirectionEnemyRoar"/>
+    <functioncall functionName="ChangeDirectionLegLow"/>
+    <functioncall functionName="ChangeDirectionMode"/>
+    <functioncall functionName="ChangeDirectionNone"/>
+    <functioncall functionName="ChangeDirectionPlayerOnly"/>
+    <functioncall functionName="ChangeEndDirection"/>
+    <functioncall functionName="ChangeFixedPoint"/>
+    <functioncall functionName="ChangeFollow"/>
+    <functioncall functionName="ChangeMode"/>
+    <functioncall functionName="ChangeNone"/>
+    <functioncall functionName="ChangeSelfShot"/>
+    <functioncall functionName="ChangeShake"/>
+    <functioncall functionName="ChangeShakeOne"/>
+    <functioncall functionName="ChangeStartDirection"/>
+    <functioncall functionName="ChangeSub"/>
+    <functioncall functionName="ChangeTargetCamera"/>
+    <functioncall functionName="ChangeTargetLerp"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="Collision"/>
+    <functioncall functionName="DX_PI_F"/>
+    <functioncall functionName="Deg2RadF"/>
+    <functioncall functionName="DirectionEnemyOnly"/>
+    <functioncall functionName="DirectionEnemyRoar"/>
+    <functioncall functionName="DirectionNone"/>
+    <functioncall functionName="DirectionPlayerAndTarget"/>
+    <functioncall functionName="DirectionPlayerOnly"/>
+    <functioncall functionName="Distance"/>
+    <functioncall functionName="EaseFunc"/>
+    <functioncall functionName="Effekseer_Sync3DSetting"/>
+    <functioncall functionName="EndDirection"/>
+    <functioncall functionName="Euler"/>
+    <functioncall functionName="FALSE"/>
+    <functioncall functionName="FLT_MAX"/>
+    <functioncall functionName="Fader"/>
+    <functioncall functionName="GetDeltaTime"/>
+    <functioncall functionName="GetGeometry"/>
+    <functioncall functionName="GetInstance"/>
+    <functioncall functionName="GetKnockRStickSize"/>
+    <functioncall functionName="GetMoveVec"/>
+    <functioncall functionName="GetRotAxisToTarget"/>
+    <functioncall functionName="GetRotPos"/>
+    <functioncall functionName="GetUp"/>
+    <functioncall functionName="HitCheck_Sphere_Triangle"/>
+    <functioncall functionName="InputManager"/>
+    <functioncall functionName="InputManagerS"/>
+    <functioncall functionName="IntVector3"/>
+    <functioncall functionName="IsTrgDown"/>
+    <functioncall functionName="KEY_INPUT_T"/>
+    <functioncall functionName="LERP"/>
+    <functioncall functionName="Line"/>
+    <functioncall functionName="MAX"/>
+    <functioncall functionName="MV1CollCheck_LineDim"/>
+    <functioncall functionName="MV1CollResultPolyDimTerminate"/>
+    <functioncall functionName="MV1GetFramePosition"/>
+    <functioncall functionName="MakeCollider"/>
+    <functioncall functionName="Mult"/>
+    <functioncall functionName="NONE"/>
+    <functioncall functionName="OUT_BACK"/>
+    <functioncall functionName="ObjectBase"/>
+    <functioncall functionName="PosAxis"/>
+    <functioncall functionName="ProcessRot"/>
+    <functioncall functionName="QUAD_OUT"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="SceneManager"/>
+    <functioncall functionName="SetBeforeDrawFixedPoint"/>
+    <functioncall functionName="SetBeforeDrawFollow"/>
+    <functioncall functionName="SetBeforeDrawLerpCamera"/>
+    <functioncall functionName="SetBeforeDrawSelfShot"/>
+    <functioncall functionName="SetBeforeDrawStartDirection"/>
+    <functioncall functionName="SetBeforeDrawTargetPoint"/>
+    <functioncall functionName="SetCameraNearFar"/>
+    <functioncall functionName="SetCameraPositionAndTargetAndUpVec"/>
+    <functioncall functionName="SetDefault"/>
+    <functioncall functionName="SetLocalPosPoint1"/>
+    <functioncall functionName="SetLocalPosPoint2"/>
+    <functioncall functionName="SetMouseDispFlag"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="Slerp"/>
+    <functioncall functionName="SmoothChangeCamera"/>
+    <functioncall functionName="Sphere"/>
+    <functioncall functionName="Stage"/>
+    <functioncall functionName="SyncFollow"/>
+    <functioncall functionName="SyncTargetFollow"/>
+    <functioncall functionName="Transform"/>
+    <functioncall functionName="UpdateCameraColliderLine"/>
+    <functioncall functionName="UpdateNone"/>
+    <functioncall functionName="UpdateShake"/>
+    <functioncall functionName="UpdateShakeOne"/>
+    <functioncall functionName="VAdd"/>
+    <functioncall functionName="VNorm"/>
+    <functioncall functionName="VScale"/>
+    <functioncall functionName="VSub"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="emplace"/>
+    <functioncall functionName="emplace_back"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="move"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="set"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="swap"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="weak_ptr"/>
+  </FileInfo>
+  <FileInfo check="ctu">
+<function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="82" col="11" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="566" col="12" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="588" col="12" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:164:7" call-funcname="ChangeSub" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="671" col="12" call-argexpr="SUB_MODE::NONE" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/>  </FileInfo>
+  <FileInfo check="Class">
+<class name="Geometry::OBB" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" configuration="_DEBUG=_DEBUG" line="17" col="2" hash="2816693727323549992"/>
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="224" col="2" hash="9437638551516248859"/>
+<class name="Camera" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" configuration="_DEBUG=_DEBUG" line="11" col="1" hash="17505233310831508922"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h:372:7" my-argnr="1" my-argname="_followTransform" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" line="252" col="26" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="GetTags" lineNumber="40" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="GetNotHitTags" lineNumber="51" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="GetParent" lineNumber="56" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="IsHit" lineNumber="66" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="NotHit" lineNumber="70" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="IsDead" lineNumber="75" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Collider.h" functionName="Kill" lineNumber="79" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/ObjectBase.h" functionName="GetTransform" lineNumber="52" column="26"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetPos" lineNumber="131" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetAngles" lineNumber="136" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetTargetPos" lineNumber="141" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetQuaRot" lineNumber="146" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetQuaRotOutX" lineNumber="151" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="SetStageTransform" lineNumber="189" column="7"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="IsEndDirectionMode" lineNumber="197" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.h" functionName="GetDirectionMode" lineNumber="205" column="23"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDraw" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="Draw" lineNumber="112" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeSub" lineNumber="141" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetFollow" lineNumber="149" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetTarget" lineNumber="155" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetTargetPos" lineNumber="160" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetShakeStatus" lineNumber="165" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="GetForward" lineNumber="174" column="16"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeMode" lineNumber="179" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="MakeColliderGeometry" lineNumber="191" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="OnHit" lineNumber="210" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateCameraColliderLine" lineNumber="215" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetDefault" lineNumber="227" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SyncFollow" lineNumber="249" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SyncTargetFollow" lineNumber="279" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ProcessRot" lineNumber="316" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SmoothChangeCamera" lineNumber="337" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="Collision" lineNumber="399" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionMode" lineNumber="451" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawFixedPoint" lineNumber="460" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawFollow" lineNumber="465" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawSelfShot" lineNumber="491" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawLerpCamera" lineNumber="495" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawTargetPoint" lineNumber="500" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="SetBeforeDrawStartDirection" lineNumber="516" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeFixedPoint" lineNumber="521" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeFollow" lineNumber="527" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeSelfShot" lineNumber="535" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeTargetLerp" lineNumber="541" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeTargetCamera" lineNumber="546" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeStartDirection" lineNumber="551" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateNone" lineNumber="557" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateShake" lineNumber="561" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="UpdateShakeOne" lineNumber="583" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeNone" lineNumber="608" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeShake" lineNumber="615" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeShakeOne" lineNumber="622" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionNone" lineNumber="629" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionPlayerAndTarget" lineNumber="635" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionEnemyOnly" lineNumber="647" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionEnemyRoar" lineNumber="667" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="DirectionPlayerOnly" lineNumber="682" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="EndDirection" lineNumber="701" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionNone" lineNumber="717" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionLegLow" lineNumber="722" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionEnemyOnly" lineNumber="731" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionEnemyRoar" lineNumber="742" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeDirectionPlayerOnly" lineNumber="747" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/Camera.cpp" functionName="ChangeEndDirection" lineNumber="760" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="AngleAxis"/>
+    <functioncall functionName="CAMERA_LINE"/>
+    <functioncall functionName="COS_BACK"/>
+    <functioncall functionName="Camera"/>
+    <functioncall functionName="ChangeDirectionEnemyOnly"/>
+    <functioncall functionName="ChangeDirectionEnemyRoar"/>
+    <functioncall functionName="ChangeDirectionLegLow"/>
+    <functioncall functionName="ChangeDirectionMode"/>
+    <functioncall functionName="ChangeDirectionNone"/>
+    <functioncall functionName="ChangeDirectionPlayerOnly"/>
+    <functioncall functionName="ChangeEndDirection"/>
+    <functioncall functionName="ChangeFixedPoint"/>
+    <functioncall functionName="ChangeFollow"/>
+    <functioncall functionName="ChangeMode"/>
+    <functioncall functionName="ChangeNone"/>
+    <functioncall functionName="ChangeSelfShot"/>
+    <functioncall functionName="ChangeShake"/>
+    <functioncall functionName="ChangeShakeOne"/>
+    <functioncall functionName="ChangeStartDirection"/>
+    <functioncall functionName="ChangeSub"/>
+    <functioncall functionName="ChangeTargetCamera"/>
+    <functioncall functionName="ChangeTargetLerp"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="Collision"/>
+    <functioncall functionName="DX_PI_F"/>
+    <functioncall functionName="Deg2RadF"/>
+    <functioncall functionName="DirectionEnemyOnly"/>
+    <functioncall functionName="DirectionEnemyRoar"/>
+    <functioncall functionName="DirectionNone"/>
+    <functioncall functionName="DirectionPlayerAndTarget"/>
+    <functioncall functionName="DirectionPlayerOnly"/>
+    <functioncall functionName="Distance"/>
+    <functioncall functionName="EaseFunc"/>
+    <functioncall functionName="Effekseer_Sync3DSetting"/>
+    <functioncall functionName="EndDirection"/>
+    <functioncall functionName="Euler"/>
+    <functioncall functionName="FALSE"/>
+    <functioncall functionName="FLT_MAX"/>
+    <functioncall functionName="Fader"/>
+    <functioncall functionName="GetDeltaTime"/>
+    <functioncall functionName="GetGeometry"/>
+    <functioncall functionName="GetInstance"/>
+    <functioncall functionName="GetKnockRStickSize"/>
+    <functioncall functionName="GetMoveVec"/>
+    <functioncall functionName="GetRotAxisToTarget"/>
+    <functioncall functionName="GetRotPos"/>
+    <functioncall functionName="GetUp"/>
+    <functioncall functionName="HitCheck_Sphere_Triangle"/>
+    <functioncall functionName="InputManager"/>
+    <functioncall functionName="InputManagerS"/>
+    <functioncall functionName="IntVector3"/>
+    <functioncall functionName="IsTrgDown"/>
+    <functioncall functionName="KEY_INPUT_T"/>
+    <functioncall functionName="LERP"/>
+    <functioncall functionName="Line"/>
+    <functioncall functionName="MAX"/>
+    <functioncall functionName="MV1CollCheck_LineDim"/>
+    <functioncall functionName="MV1CollResultPolyDimTerminate"/>
+    <functioncall functionName="MV1GetFramePosition"/>
+    <functioncall functionName="MakeCollider"/>
+    <functioncall functionName="Mult"/>
+    <functioncall functionName="NONE"/>
+    <functioncall functionName="OUT_BACK"/>
+    <functioncall functionName="ObjectBase"/>
+    <functioncall functionName="PosAxis"/>
+    <functioncall functionName="ProcessRot"/>
+    <functioncall functionName="QUAD_OUT"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="SceneManager"/>
+    <functioncall functionName="SetBeforeDrawFixedPoint"/>
+    <functioncall functionName="SetBeforeDrawFollow"/>
+    <functioncall functionName="SetBeforeDrawLerpCamera"/>
+    <functioncall functionName="SetBeforeDrawSelfShot"/>
+    <functioncall functionName="SetBeforeDrawStartDirection"/>
+    <functioncall functionName="SetBeforeDrawTargetPoint"/>
+    <functioncall functionName="SetCameraNearFar"/>
+    <functioncall functionName="SetCameraPositionAndTargetAndUpVec"/>
+    <functioncall functionName="SetDefault"/>
+    <functioncall functionName="SetLocalPosPoint1"/>
+    <functioncall functionName="SetLocalPosPoint2"/>
+    <functioncall functionName="SetMouseDispFlag"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="Slerp"/>
+    <functioncall functionName="SmoothChangeCamera"/>
+    <functioncall functionName="Sphere"/>
+    <functioncall functionName="Stage"/>
+    <functioncall functionName="SyncFollow"/>
+    <functioncall functionName="SyncTargetFollow"/>
+    <functioncall functionName="Transform"/>
+    <functioncall functionName="UpdateCameraColliderLine"/>
+    <functioncall functionName="UpdateNone"/>
+    <functioncall functionName="UpdateShake"/>
+    <functioncall functionName="UpdateShakeOne"/>
+    <functioncall functionName="VAdd"/>
+    <functioncall functionName="VNorm"/>
+    <functioncall functionName="VScale"/>
+    <functioncall functionName="VSub"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="emplace"/>
+    <functioncall functionName="emplace_back"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="move"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="set"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="swap"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="weak_ptr"/>
+  </FileInfo>
+</analyzerinfo>

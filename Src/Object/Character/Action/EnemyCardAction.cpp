@@ -253,7 +253,7 @@ void EnemyCardAction::UpdateStomp(void)
 			atkCnt_ = 0.0f;
 			atk_.atkRadius = JUMP_ATK_RADIUS;
 			//アニメーションループ終了
-			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.SetIsAliveEnemyRock(false);
 
@@ -304,7 +304,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
 		{
 			//アニメーションループ終了
-			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 			soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
 
 			const int JUMP_CHARGE_EFF_ARRAY = 0;
@@ -351,7 +351,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 			atkCnt_ = 0.0f;
 			atk_.atkRadius = JUMP_ATK_RADIUS;
 			//アニメーションループ終了
-			anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 			effect_->Delete(EffectController::EFF_TYPE::BLAST,static_cast<int>(EFF_TYPE::BLAST));
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
@@ -411,7 +411,7 @@ void EnemyCardAction::UpdateDuel(void)
 		//if (IsCardFailureJumpCharge())
 		//{
 		//	//アニメーションループ終了
-		//	anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+		//	anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 
 		//	//charaObj_.GetCardUI().ChangeUsedActionCard();
 		//	cardPresent_.FinishCard();
@@ -429,7 +429,7 @@ void EnemyCardAction::UpdateDuel(void)
 	else if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
 	{
 		//アニメーションループ終了
-		anim_.SetEndMidLoop(CharacterBase::ANIM_SPEED);
+		anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);
 	}
 }

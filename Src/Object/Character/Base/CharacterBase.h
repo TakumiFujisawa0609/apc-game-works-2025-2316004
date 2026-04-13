@@ -34,7 +34,7 @@ public:
 	static constexpr int HIT_STOP_FRAME = 5;
 
 	//アニメーション速度
-	static constexpr float ANIM_SPEED = 40.0f;
+	static constexpr float DEFAULT_ANIM_SPEED = 40.0f;
 
 	// 回転完了までの時間
 	static constexpr float TIME_ROT = 0.1f;

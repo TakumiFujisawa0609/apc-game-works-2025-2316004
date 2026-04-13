@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="13831058139237563061">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;wingdi.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;wingdi.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;EffekseerForDXLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;EffekseerForDXLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.h" line="3" column="2"/>
+        </error>
+  <FileInfo check="Class">
+<class name="ResourceData" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.h" configuration="" line="5" col="1" hash="16706131887123409245"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.cpp" functionName="Load" lineNumber="50" column="20"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.cpp" functionName="Release" lineNumber="107" column="20"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.cpp" functionName="CopyHandle" lineNumber="161" column="20"/>
+    <functioncall functionName="AddFontResourceEx"/>
+    <functioncall functionName="DeleteEffekseerEffect"/>
+    <functioncall functionName="DeleteGraph"/>
+    <functioncall functionName="DeleteShader"/>
+    <functioncall functionName="DeleteSoundMem"/>
+    <functioncall functionName="FR_PRIVATE"/>
+    <functioncall functionName="LoadDivGraph"/>
+    <functioncall functionName="LoadEffekseerEffect"/>
+    <functioncall functionName="LoadGraph"/>
+    <functioncall functionName="LoadPixelShader"/>
+    <functioncall functionName="LoadSoundMem"/>
+    <functioncall functionName="LoadVertexShader"/>
+    <functioncall functionName="MV1DeleteModel"/>
+    <functioncall functionName="MV1LoadModel"/>
+    <functioncall functionName="NONE"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="RemoveFontResourceEx"/>
+    <functioncall functionName="ResourceData"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="c_str"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="vector"/>
+  </FileInfo>
+</analyzerinfo>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="18295325715823211215">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;EffekseerForDXLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;EffekseerForDXLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Effekseer.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;Effekseer.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.h" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Quaternion.h&quot; not found." verbose="Include file: &quot;../Common/Quaternion.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.h" line="5" column="2"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="161" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
+            <symbol>~SceneManager</symbol>
+        </error>
+        <error id="constVariableReference" severity="style" msg="Variable &apos;effect&apos; can be declared as reference to const" verbose="Variable &apos;effect&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" line="195" column="13" info="Variable &apos;effect&apos; can be declared as reference to const"/>
+            <symbol>effect</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="EffectController" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.h" configuration="" line="7" col="1" hash="17483153642134277953"/>
+<class name="EffectController::PlayData" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.h" configuration="" line="114" col="2" hash="17467356461747316101"/>
+<class name="EffectController::EffectData" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.h" configuration="" line="125" col="2" hash="10578682632304804388"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="Update" lineNumber="17" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="Add" lineNumber="43" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="Play" lineNumber="65" column="29"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="SetPos" lineNumber="114" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="SetQuaRot" lineNumber="128" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="SetScale" lineNumber="142" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="SetSpeed" lineNumber="156" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="Stop" lineNumber="171" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="Delete" lineNumber="184" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="AllStop" lineNumber="192" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="AllDelete" lineNumber="204" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="IsEnd" lineNumber="213" column="30"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="GetPlayNum" lineNumber="233" column="29"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/EffectController.cpp" functionName="RePlay" lineNumber="245" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="AllDelete"/>
+    <functioncall functionName="AllStop"/>
+    <functioncall functionName="Delete"/>
+    <functioncall functionName="EffectController"/>
+    <functioncall functionName="Fader"/>
+    <functioncall functionName="IsEffekseer3DEffectPlaying"/>
+    <functioncall functionName="NORMAL_MULTI"/>
+    <functioncall functionName="PlayEffekseer3DEffect"/>
+    <functioncall functionName="RePlay"/>
+    <functioncall functionName="SceneManager"/>
+    <functioncall functionName="SetPosPlayingEffekseer3DEffect"/>
+    <functioncall functionName="SetRotationPlayingEffekseer3DEffect"/>
+    <functioncall functionName="SetScalePlayingEffekseer3DEffect"/>
+    <functioncall functionName="SetSpeedPlayingEffekseer3DEffect"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="Stop"/>
+    <functioncall functionName="StopEffekseer3DEffect"/>
+    <functioncall functionName="ToEuler"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="count"/>
+    <functioncall functionName="emplace"/>
+    <functioncall functionName="erase"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="isLoop"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="playId"/>
+    <functioncall functionName="playNum"/>
+    <functioncall functionName="pos"/>
+    <functioncall functionName="resId"/>
+    <functioncall functionName="scl"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="speedMulti"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="weak_ptr"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+    <functioncall functionName="z"/>
+  </FileInfo>
+</analyzerinfo>

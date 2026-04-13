@@ -9,7 +9,9 @@
 EnemyRock::EnemyRock(int& _num, VECTOR& _startPos):
 	num_(_num),
 	startPos_(_startPos),
-	distance_(0.0f)
+	distance_(0.0f),
+	isAlive_(false),
+	isDamaged_(false)
 {
 
 }

@@ -12,7 +12,9 @@ AnimationController::AnimationController(const int _modelId, const int _hipNum) 
 	switchLoopReverse_(0.0f),
 	endLoopSpeed_(0.0f),
 	stepEndLoopStart_(0.0f),
-	stepEndLoopEnd_(0.0f)
+	stepEndLoopEnd_(0.0f),
+	isMidLoop_(false),
+	isEase_(false)
 {
 	easing_ = std::make_unique<Easing>();
 }

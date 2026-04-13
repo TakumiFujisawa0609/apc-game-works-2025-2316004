@@ -72,29 +72,6 @@ public:
 		{7,CARD_TYPE::ATTACK},
 		{3,CARD_TYPE::ATTACK},
 		{8,CARD_TYPE::ATTACK}
-
-
-
-
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
 	};
 
 
@@ -118,14 +95,6 @@ public:
 	/// @brief 初期化
 	/// @param  
 	void Init(void) override;
-
-	///// @brief 更新
-	///// @param  
-	//void Update(void) override;
-
-	///// @brief 演出時の更新
-	///// @param  
-	//void UpdateDirection(void) override;
 
 	/// @brief 描画
 	/// @param  
@@ -204,7 +173,6 @@ private:
 	//咆哮状態かどうか
 	bool isRoar_;
 
-
 	//コライダ作成
 	void MakeColliderGeometry(void)override;
 
@@ -232,10 +200,5 @@ private:
 	void DrawDebug(void);
 #endif // _DEBUG
 
-	//メンバ関数
-	
-
-
-	//デバッグ用で
 };
 

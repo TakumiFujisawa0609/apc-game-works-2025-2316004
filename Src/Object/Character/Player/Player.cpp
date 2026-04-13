@@ -32,14 +32,11 @@
 
 Player::Player(void)
 	:playerNum_(),
-	cntl_(),
+	cntl_(InputManager::CONTROLL_TYPE::ALL),
 	padNum_(),
 	stateUpdate_()
 {
-	trans_ = Transform();
-	playerNum_ = 0;
-	cntl_ = InputManager::CONTROLL_TYPE::ALL;
-	//初めのJOYPADがkey_padなのでパッドの番号に合わせる
+	////初めのJOYPADがkey_padなのでパッドの番号に合わせる
 	//パッド番号を設定
 	padNum_ = static_cast<InputManager::JOYPAD_NO>(playerNum_ + 1);
 
@@ -256,17 +253,17 @@ void Player::DrawDebug(void)
 void Player::AddAnimation(void)
 {
 	animationController_ = std::make_unique<AnimationController>(trans_.modelId, SPINE_FRAME_NO);
-	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED , resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), DEFAULT_ANIM_SPEED , resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::DEATH), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DEATH));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::DEATH), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DEATH));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::CARD_RELOAD), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RELOAD));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_MIDDLE), ATK_MID_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_MIDDLE));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_SHORT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_SHORT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_1_SHORT), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_1_SHORT));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_2), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_2));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::ATTACK_3), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_ATTACK_3));
 }
 
 void Player::AddAction(void)

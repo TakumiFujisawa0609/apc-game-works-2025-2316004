@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="14290608787625913452">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/ResourceManager.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/ResourceManager.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Card/CardSystem.h&quot; not found." verbose="Include file: &quot;../Object/Card/CardSystem.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="8" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found." verbose="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="9" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/Utility3D.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Player/ActionController.h&quot; not found." verbose="Include file: &quot;../Object/Character/Player/ActionController.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="11" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Player/Weapon.h&quot; not found." verbose="Include file: &quot;../Object/Character/Player/Weapon.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="12" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Base/LogicBase.h&quot; not found." verbose="Include file: &quot;../Object/Character/Base/LogicBase.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="13" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterOnHitBase.h" line="2" column="2"/>
+        </error>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;EnemyOnHit::CollDuelSpecialAttack&apos;" verbose="Unused private function: &apos;EnemyOnHit::CollDuelSpecialAttack&apos;" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="80" column="18"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.h" line="41" column="7"/>
+            <symbol>EnemyOnHit::CollDuelSpecialAttack</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;EnemyOnHit::CollDuelSpecialAttack&apos; can be static." verbose="The member function &apos;EnemyOnHit::CollDuelSpecialAttack&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" line="80" column="18"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.h" line="41" column="7"/>
+            <symbol>EnemyOnHit::CollDuelSpecialAttack</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="20" column="2"/>
+            <symbol>Quaternion</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="161" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
+            <symbol>~SceneManager</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_copy&apos; should be passed by const reference." verbose="Parameter &apos;_copy&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp">
+            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/ResourceManager.h" line="147" column="51" info="Function parameter &apos;_copy&apos; should be passed by const reference."/>
+            <symbol>_copy</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="Geometry::OBB" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" configuration="" line="17" col="2" hash="2816693727323549992"/>
+<class name="CharacterOnHitBase::HIT_POINT" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterOnHitBase.h" configuration="" line="10" col="2" hash="17985927915658145947"/>
+<class name="EnemyOnHit" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.h" configuration="" line="3" col="1" hash="15479549033550698145"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetHitPoint" lineNumber="36" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetIsHitTarget" lineNumber="45" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" functionName="CollNormalAttack" lineNumber="55" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" functionName="CollDuelSpecialAttack" lineNumber="80" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="Capsule"/>
+    <functioncall functionName="ChangeAction"/>
+    <functioncall functionName="CharacterOnHitBase"/>
+    <functioncall functionName="CollChara"/>
+    <functioncall functionName="CollNormalAttack"/>
+    <functioncall functionName="CollStage"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="Damage"/>
+    <functioncall functionName="EnemyOnHit"/>
+    <functioncall functionName="Fader"/>
+    <functioncall functionName="GetAtkStatus"/>
+    <functioncall functionName="GetCardAction"/>
+    <functioncall functionName="GetCardDif"/>
+    <functioncall functionName="GetInput"/>
+    <functioncall functionName="GetInstance"/>
+    <functioncall functionName="GetIsDamage"/>
+    <functioncall functionName="GetMainAction"/>
+    <functioncall functionName="GetParent"/>
+    <functioncall functionName="GetRotPos"/>
+    <functioncall functionName="GetTargetCharacter"/>
+    <functioncall functionName="Line"/>
+    <functioncall functionName="Model"/>
+    <functioncall functionName="NML_ATK"/>
+    <functioncall functionName="PLAYER1"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="REACT"/>
+    <functioncall functionName="ResourceData"/>
+    <functioncall functionName="ResourceManager"/>
+    <functioncall functionName="STAGE"/>
+    <functioncall functionName="SceneManager"/>
+    <functioncall functionName="SetIsDamage"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="Sphere"/>
+    <functioncall functionName="TAG"/>
+    <functioncall functionName="TAG_PRIORITY"/>
+    <functioncall functionName="Weapon"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="atkPoint"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="lock"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="swap"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="weak_ptr"/>
+  </FileInfo>
+  <FileInfo check="Class">
+<class name="Geometry::OBB" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" configuration="_DEBUG=_DEBUG" line="17" col="2" hash="2816693727323549992"/>
+<class name="CharacterOnHitBase::HIT_POINT" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterOnHitBase.h" configuration="_DEBUG=_DEBUG" line="10" col="2" hash="17985927915658145947"/>
+<class name="EnemyOnHit" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.h" configuration="_DEBUG=_DEBUG" line="3" col="1" hash="7208849158774031621"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetHitPoint" lineNumber="36" column="19"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetIsHitTarget" lineNumber="45" column="13"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" functionName="CollNormalAttack" lineNumber="55" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyOnHit.cpp" functionName="CollDuelSpecialAttack" lineNumber="80" column="18"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="Capsule"/>
+    <functioncall functionName="ChangeAction"/>
+    <functioncall functionName="CharacterOnHitBase"/>
+    <functioncall functionName="CollChara"/>
+    <functioncall functionName="CollNormalAttack"/>
+    <functioncall functionName="CollStage"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="Damage"/>
+    <functioncall functionName="EnemyOnHit"/>
+    <functioncall functionName="Fader"/>
+    <functioncall functionName="GetAtkStatus"/>
+    <functioncall functionName="GetCardAction"/>
+    <functioncall functionName="GetCardDif"/>
+    <functioncall functionName="GetInput"/>
+    <functioncall functionName="GetInstance"/>
+    <functioncall functionName="GetIsDamage"/>
+    <functioncall functionName="GetMainAction"/>
+    <functioncall functionName="GetParent"/>
+    <functioncall functionName="GetRotPos"/>
+    <functioncall functionName="GetTargetCharacter"/>
+    <functioncall functionName="Line"/>
+    <functioncall functionName="Model"/>
+    <functioncall functionName="NML_ATK"/>
+    <functioncall functionName="PLAYER1"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="REACT"/>
+    <functioncall functionName="ResourceData"/>
+    <functioncall functionName="ResourceManager"/>
+    <functioncall functionName="STAGE"/>
+    <functioncall functionName="SceneManager"/>
+    <functioncall functionName="SetIsDamage"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="Sphere"/>
+    <functioncall functionName="TAG"/>
+    <functioncall functionName="TAG_PRIORITY"/>
+    <functioncall functionName="Weapon"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="atkPoint"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="lock"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="swap"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="weak_ptr"/>
+  </FileInfo>
+</analyzerinfo>

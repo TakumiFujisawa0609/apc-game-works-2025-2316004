@@ -1,4 +1,5 @@
 #include "../pch.h"
+#include "../Utility/UtilityCommon.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Generic/InputManager.h"
 #include "../Renderer/PixelRenderer.h"
@@ -7,8 +8,6 @@
 
 PlayerHpUI::PlayerHpUI(void)
 {
-	per_ = 1.0f;
-
 	initBarPos_ = BAR_POS;
 	initCoverPos_ =  BAR_COVER_POS;
 	barPos_ = initBarPos_;

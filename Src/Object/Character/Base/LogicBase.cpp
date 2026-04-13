@@ -9,9 +9,9 @@ LogicBase::LogicBase(Transform& _myTrans):
 	myTrans_(_myTrans),
 	actCntl_(ACT_CNTL::NONE),
 	moveDir_({}),
-	//targetChara_(nullptr),
 	isActioning_(false),
-	prevMoveDir_(Utility3D::DIR_F)
+	prevMoveDir_(Utility3D::DIR_F),
+	attackType_(ENEMY_ATTACK_TYPE::NONE)
 {
 }
 

@@ -6,7 +6,12 @@
 
 EnemyLogic::EnemyLogic(Transform& _myTrans):
 	LogicBase(_myTrans),
-	scnMng_(SceneManager::GetInstance())
+	scnMng_(SceneManager::GetInstance()),
+	cardCoolCnt_(0.0f),
+	moveCnt_(0.0f),
+	freezeCnt_(0.0f),
+	atkRange_(0.0f),
+	prevAttackType_(ENEMY_ATTACK_TYPE::NONE)
 {
 }
 
