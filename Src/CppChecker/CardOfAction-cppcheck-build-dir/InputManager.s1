@@ -1,0 +1,48 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+InputManager
+Init call:[Add,GetInstance,MouseInfo,emplace] noreturn:[emplace]
+Update call:[CheckHitKey,GetMouseInput,GetMousePoint,SetJPadInState,UpdateKeepTime] noreturn:[SetJPadInState,UpdateKeepTime]
+Release call:[clear] noreturn:[clear]
+Add call:[Info,emplace] noreturn:[emplace]
+Clear call:[clear] noreturn:[clear]
+IsNew call:[Find]
+IsTrgDown call:[Find]
+IsTrgUp call:[Find]
+GetMousePos
+GetMouse
+IsClickMouseLeft
+IsClickMouseRight
+IsTrgMouseLeft call:[FindMouse]
+IsTrgMouseRight call:[FindMouse]
+Find call:[end,find]
+FindMouse call:[end,find]
+GetJPadType call:[GetJoypadType]
+GetJPadDInputState call:[GetJoypadDirectInputState]
+GetJPadXInputState call:[GetJoypadXInputState]
+IsKeyKeepPressed call:[end,find]
+IsBtnKeepPressed
+SetJPadInState call:[GetJPadInputState,UpdateKeepBtnTime]
+GetJPadInputState call:[GetJPadDInputState,GetJPadType,GetJPadXInputState,JOYPAD_IN_STATE]
+IsPadBtnNew
+IsPadBtnTrgDown
+IsPadBtnTrgUp
+UpdateKeepTime call:[GetDeltaTime,GetInstance] noreturn:[GetDeltaTime]
+UpdateKeepBtnTime call:[GetDeltaTime,GetInstance] noreturn:[GetDeltaTime]
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy

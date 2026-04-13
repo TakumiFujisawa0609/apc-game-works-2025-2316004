@@ -1,0 +1,80 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+Stage
+Stage
+Load
+Init call:[AddConstBufVS,Euler,GetCamera,LoadModelDuplicate,MakeCollider,SetModel,SetStageTransform,Update,lock,move] noreturn:[Update]
+Update call:[Update] noreturn:[Update]
+Draw call:[Draw,MV1DrawModel] noreturn:[Draw]
+OnHit
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Camera] noreturn:[Camera]
+GetInstance call:[assert]
+Destroy

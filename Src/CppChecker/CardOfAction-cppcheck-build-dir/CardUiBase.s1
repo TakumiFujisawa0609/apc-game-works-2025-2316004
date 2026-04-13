@@ -1,0 +1,100 @@
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetCanPut
+GetCardDif
+InitCardDif
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetCenterPos
+GetScl
+GetCurrentAngle
+GetSclCnt
+GetDecisionCnt
+GetStatus
+SetCurrentAngle
+SetDecisionCount
+SetStatus
+SetTypeImg
+SetBaseCardPos
+GetState
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+CardUIBase
+CardUIBase
+ChangeSelectState
+CardDecision
+ChangeUsedActionCard call:[ChangeUsedCard] noreturn:[ChangeUsedCard]
+ChangeReactActionCard call:[ChangeReactCard,PlayCardSound] noreturn:[ChangeReactCard]
+ChangeUsingActionCard call:[ChangeUsing] noreturn:[ChangeUsing]
+PlayCardSound call:[GetInstance,GetResult,IsPlay,Play] noreturn:[Play]
+Load
+Init
+Update call:[UpdateDrawCardUI,UpdateUsedCard,cardUpdate_] noreturn:[UpdateUsedCard]
+Draw call:[Draw,empty] noreturn:[Draw]
+AddCardUi call:[GetTypeImg,Init,Load,SetStatus,SetTypeImg,emplace_back] noreturn:[emplace_back]
+DecisionMoveCardAll call:[DecisionMove,GetState] noreturn:[DecisionMove]
+UpdateUsedCard call:[EraseUsedCard,GetSclCnt,empty,erase_if] noreturn:[EraseUsedCard,erase_if]
+ReactMoveCard call:[ReactUpdate] noreturn:[ReactUpdate]
+AddHandCurrent call:[begin,end] noreturn:[begin]
+SubHandCurrent call:[begin,end] noreturn:[end]
+GetTypeImg
+SetBasePosActionCards call:[SetBaseCardPos] noreturn:[SetBaseCardPos]
+CreateInstance call:[CardSystem] noreturn:[CardSystem]
+GetInstance call:[assert]
+Destroy

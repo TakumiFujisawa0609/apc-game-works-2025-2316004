@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="5022061683396992357">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found." verbose="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Card/CardBase.h&quot; not found." verbose="Include file: &quot;../Object/Card/CardBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="6" column="2"/>
+        </error>
+  <FileInfo check="Class">
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::MouseInfo" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="" line="224" col="2" hash="9437638551516248859"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" functionName="GetIsFullScreen" lineNumber="32" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="Init" lineNumber="5" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="SetPlayerNum" lineNumber="12" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="GetPlayerNum" lineNumber="23" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="SetIsFullScreen" lineNumber="28" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="ReleaseCardData" lineNumber="34" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="AddCardData" lineNumber="39" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="GetCardDatas" lineNumber="44" column="46"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="CARD_STATUS"/>
+    <functioncall functionName="CHARACTER_TYPE"/>
+    <functioncall functionName="ChangeWindowMode"/>
+    <functioncall functionName="DataBank"/>
+    <functioncall functionName="GetJoypadNum"/>
+    <functioncall functionName="InputManager"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="emplace_back"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="vector"/>
+  </FileInfo>
+  <FileInfo check="Class">
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::MouseInfo" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="224" col="2" hash="9437638551516248859"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" functionName="GetIsFullScreen" lineNumber="32" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="Init" lineNumber="5" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="SetPlayerNum" lineNumber="12" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="GetPlayerNum" lineNumber="23" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="SetIsFullScreen" lineNumber="28" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="ReleaseCardData" lineNumber="34" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="AddCardData" lineNumber="39" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.cpp" functionName="GetCardDatas" lineNumber="44" column="46"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="CARD_STATUS"/>
+    <functioncall functionName="CHARACTER_TYPE"/>
+    <functioncall functionName="ChangeWindowMode"/>
+    <functioncall functionName="DataBank"/>
+    <functioncall functionName="GetJoypadNum"/>
+    <functioncall functionName="InputManager"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="emplace_back"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="vector"/>
+  </FileInfo>
+</analyzerinfo>

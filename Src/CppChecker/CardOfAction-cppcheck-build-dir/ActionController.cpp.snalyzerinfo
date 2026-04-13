@@ -1,0 +1,154 @@
+GetSpeed
+GetIsTurnable
+GetIsAliveAtkCol
+SetFlinchCnt
+GetAtkStatus
+IsJumpAtkCharge
+GetJumpCardNum
+GetIsDamage
+SetIsDamage
+GetMovePow
+GetJumpPow
+JumpPowZero
+GetActionType
+GetInput
+GetAnimation
+AddMainAction
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+GetHitPoint
+GetIsHitTarget
+IsJumpAtkCharge
+GetJumpCardNum
+ChangeComboAction
+GetCharaTag
+GetCharaType
+GetRotation
+JumpPowZero
+GetStatus
+GetFootSEDisCount
+GetFootSE
+GetMovedPos
+GetIsEndDirect
+GetHand
+CheckAct
+GetDir
+GetIsAct
+GetAttackType
+SetMoveDir
+SetDir
+IsActioningSet
+SetFreezeCntByAttackType
+GetTargetCharacter
+DebugDraw
+GetAct
+GetStickDeg
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetJumpCardNum
+ActionController call:[GetCharaType,GetFootSE,GetFootSEDisCount,GetForward,GetStatus,emplace] noreturn:[emplace]
+ActionController call:[StopResource,clear] noreturn:[clear]
+Init call:[Init]
+Load call:[Load] noreturn:[Load]
+Update call:[CardChargeUpdate,CardMove,DirAndMovePowUpdate,MoveDirFromInput,Rotate,Update] noreturn:[CardMove]
+AddAction
+GetMainAction call:[at] noreturn:[at]
+DrawDebug call:[DrawFormatString] noreturn:[DrawFormatString]
+GetSpd call:[GetSpeed,at] noreturn:[GetSpeed]
+ChangeAction call:[Init,Release] noreturn:[Init]
+CardChargeUpdate call:[GetIsAct]
+CardMove call:[GetCardUIState,IsCardLeftMoveable,IsCardRightMoveable,RoleRevolver] noreturn:[RoleRevolver]
+GetIsAtkColAlive call:[GetIsAliveAtkCol] noreturn:[GetIsAliveAtkCol]
+GetPlayerRotY
+StopResource
+IsCardDecisionControl call:[GetCardUIState]
+SetFlinchCnt call:[SetFlinchCnt] noreturn:[SetFlinchCnt]
+MoveDirFromInput call:[GetIsTurnable,MoveDirFromInput,SetGoalRotate] noreturn:[SetGoalRotate]
+DirAndMovePowUpdate call:[GetRotation,GetSpeed,VScale] noreturn:[VScale]
+IsCardLeftMoveable call:[GetCardAction,GetCardUIState,GetIsAct,at]
+IsCardRightMoveable call:[GetCardAction,GetCardUIState,GetIsAct,at]
+GetCardAction call:[GetCardAction,at] noreturn:[GetCardAction]
+CreateInstance call:[Camera] noreturn:[Camera]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy

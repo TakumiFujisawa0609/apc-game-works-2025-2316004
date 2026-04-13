@@ -188,11 +188,6 @@ void ResourceManager::Init(void)
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardDirArrowLeft.png");
 	resourcesMap_.emplace(SRC::CARD_REVOLVER_L_ARROW, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardDirArrowRight.png");
-	resourcesMap_.emplace(SRC::CARD_REVOLVER_R_ARROW, std::move(res));
-
-
-
 	//ï°êîâÊëú
 	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",
 		CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);

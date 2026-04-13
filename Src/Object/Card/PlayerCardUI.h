@@ -155,13 +155,6 @@ private:
 	//リロードフレーム
 	int reloadCardFrameImg_;
 
-	//円形UIの中心座標
-	Vector2 centerPos_;
-
-	//カードナンバー座標
-	Vector2F numPos_;
-	//カードセレクトの動き時間
-	float cardMoveCnt_;
 	//リロード終了
 	bool isReloadEnd_;
 
@@ -181,10 +174,8 @@ private:
 	int fontHandle_;
 	int reloadFontHandle_;
 
-	//矢印(左)
-	int imgRevolverArrowLeft_;
-	//矢印(右)
-	int imgRevolverArrowRight_;
+	//矢印
+	int imgRevolverArrow_;
 
 	//矢印画像の座標
 	Vector2F revolverLArrowPos_;

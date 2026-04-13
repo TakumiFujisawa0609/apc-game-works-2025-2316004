@@ -1,0 +1,106 @@
+GetIsFullScreen
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+QuadFunc call:[powf,return]
+CubicFunc call:[powf,return]
+SinFunc call:[sin] noreturn:[sin]
+CosFunc call:[cos]
+IsGameEnd
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+Init call:[CreateInstance,DoChangeScene,Init,Init3D,MakeScreen,SetAlwaysRunFlag,now] noreturn:[DoChangeScene]
+Init3D call:[ChangeLightTypeDir,SetBackgroundColor,SetFogColor,SetFogEnable,SetFogStartEnd,SetUseBackCulling,SetUseLighting,SetUseZBuffer3D,SetWriteZBuffer3D] noreturn:[SetFogStartEnd]
+Update call:[Fade,SceneChangeFade,Update,back,count,now] noreturn:[SceneChangeFade,Update]
+Draw call:[ClearDrawScreen,Draw,DrawEffekseer3D,DrawGraph,SetBeforeDraw,SetDrawScreen,UpdateEffekseer3D] noreturn:[Draw,DrawGraph]
+CreateScene call:[Load,empty,front,push_back] noreturn:[Load,push_back]
+ChangeAllScene
+PushScene call:[Init,push_back] noreturn:[push_back]
+PopScene call:[pop_back,size] noreturn:[pop_back]
+Release call:[Destroy,GetInstance,ReleaseCardData] noreturn:[Destroy]
+ChangeScene call:[SetFade]
+StartFadeIn call:[SetFade] noreturn:[SetFade]
+StartFadeOut call:[SetFade] noreturn:[SetFade]
+SceneManager call:[CreateInstance,clear]
+ResetDeltaTime call:[now] noreturn:[now]
+DoChangeScene call:[CreateScene,GetInstance,ResetDeltaTime,SceneChangeRelease,back,empty,pop_back,reset] noreturn:[pop_back]
+GetFader
+Fade call:[GetState,IsEnd,SetFade]
+SceneChangeFade call:[DoChangeScene,SetFade] noreturn:[SetFade]
+CreateInstance call:[DataBank] noreturn:[DataBank]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ButtonUIManager] noreturn:[ButtonUIManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Camera] noreturn:[Camera]
+GetInstance call:[assert]
+Destroy

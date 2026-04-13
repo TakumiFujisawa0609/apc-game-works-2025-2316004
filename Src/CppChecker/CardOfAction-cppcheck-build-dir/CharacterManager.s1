@@ -1,0 +1,20 @@
+Load call:[GetCamera,GetInstance,GetTransform,Load,SetTarget,lock] noreturn:[SetTarget]
+Init call:[ChangeMode,GetCamera,GetInstance,GetTransform,Init,SetFollow,SetLogicTargetCharacter,lock] noreturn:[Init]
+Update call:[Update] noreturn:[Update]
+Draw call:[Draw] noreturn:[Draw]
+Draw2D call:[Draw2D] noreturn:[Draw2D]
+Release
+IsSceneChageClearCondition call:[GetStatus]
+IsSceneChangeGameOverCondition call:[GetStatus]
+GetIsEnemyRoar call:[GetIsRoar] noreturn:[GetIsRoar]
+GetIsEndClearDirection call:[GetIsEndDirect] noreturn:[GetIsEndDirect]
+GetIsEndOverDirection call:[GetIsEndDirect] noreturn:[GetIsEndDirect]
+ChangeCharacterNormalUpdate call:[ChangeDirectToNormal] noreturn:[ChangeDirectToNormal]
+ChangeCharacterDirectionUpdate call:[ChangeUpdatePhase] noreturn:[ChangeUpdatePhase]
+ChangeCharacterClearDirection call:[ChangeUpdatePhase] noreturn:[ChangeUpdatePhase]
+ChangeCharacterOverDirection call:[ChangeUpdatePhase] noreturn:[ChangeUpdatePhase]
+CharacterManager
+CharacterManager
+CreateInstance call:[CharacterManager] noreturn:[CharacterManager]
+GetInstance call:[assert]
+Destroy

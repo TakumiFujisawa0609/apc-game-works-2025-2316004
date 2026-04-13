@@ -1,0 +1,11 @@
+Load call:[GetInstance,Load]
+Init
+DrawFromCenter call:[DrawExtendGraphF] noreturn:[DrawExtendGraphF]
+DrawFromLeftTop call:[DrawExtendGraphF] noreturn:[DrawExtendGraphF]
+ButtonUIManager
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ButtonUIManager] noreturn:[ButtonUIManager]
+GetInstance call:[assert]
+Destroy

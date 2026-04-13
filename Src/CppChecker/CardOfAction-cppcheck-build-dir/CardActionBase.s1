@@ -1,0 +1,116 @@
+GetSpeed
+GetIsTurnable
+GetIsAliveAtkCol
+SetFlinchCnt
+GetAtkStatus
+IsJumpAtkCharge
+GetJumpCardNum
+GetIsDamage
+SetIsDamage
+GetMovePow
+GetJumpPow
+JumpPowZero
+GetActionType
+GetInput
+GetAnimation
+AddMainAction
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+GetCanPut
+GetCardDif
+InitCardDif
+GetHitPoint
+GetIsHitTarget
+IsJumpAtkCharge
+GetJumpCardNum
+ChangeComboAction
+GetCharaTag
+GetCharaType
+GetRotation
+JumpPowZero
+GetStatus
+GetFootSEDisCount
+GetFootSE
+GetMovedPos
+GetIsEndDirect
+CheckAct
+GetDir
+GetIsAct
+GetAttackType
+SetMoveDir
+SetDir
+IsActioningSet
+SetFreezeCntByAttackType
+GetTargetCharacter
+CardActionBase
+CardActionBase call:[clear] noreturn:[clear]
+ChangeCardAction
+AttackMotion call:[AddPosRotate,ChangeAction,ChangeComboAction,ComboInput,DeleteAttackCol,GetAnimStep,GetCharaTag,GetTransform,IsCardFailure,IsEnd,MakeAttackCol] noreturn:[ChangeComboAction,ComboInput,MakeAttackCol]
+IsCardFailure call:[FinishFailureAttack,IsCardFailure]
+FinishAttack call:[DeleteAttackCol,FinishCard,GetCharaTag,pop] noreturn:[pop]
+FinishFailureAttack call:[ChangeAction,DeleteAttackCol,FailureCard,GetCharaTag,GetInput,IsActioningSet,pop] noreturn:[IsActioningSet]
+SetAtk
+ComboInput call:[GetInput,GetIsAct]
+CreateInstance call:[CardSystem] noreturn:[CardSystem]
+GetInstance call:[assert]
+Destroy

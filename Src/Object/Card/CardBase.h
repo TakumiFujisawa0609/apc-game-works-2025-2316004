@@ -60,7 +60,10 @@ public:
 
 protected:
 
+	//カードのナンバーローカル座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
+	//カードのスケール
+	static constexpr float CARD_SCALE = 1.4f;
 
 	////カードの種類
 	CARD_STATUS status_;

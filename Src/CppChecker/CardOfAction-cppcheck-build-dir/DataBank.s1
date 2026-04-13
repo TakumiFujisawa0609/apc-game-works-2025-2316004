@@ -1,0 +1,32 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetIsFullScreen
+Init call:[GetJoypadNum]
+SetPlayerNum
+GetPlayerNum
+SetIsFullScreen call:[ChangeWindowMode] noreturn:[ChangeWindowMode]
+ReleaseCardData call:[clear] noreturn:[clear]
+AddCardData call:[emplace_back] noreturn:[emplace_back]
+GetCardDatas
+DataBank
+DataBank
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[DataBank] noreturn:[DataBank]
+GetInstance call:[assert]
+Destroy

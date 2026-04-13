@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="13047980174827619153">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility3D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility3D.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Collider.h&quot; not found." verbose="Include file: &quot;../Object/Common/Collider.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Geometry/Sphere.h&quot; not found." verbose="Include file: &quot;../Object/Common/Geometry/Sphere.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="6" column="2"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyRock::modelId_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyRock::modelId_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="9" column="12"/>
+            <symbol>EnemyRock::modelId_</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyRock::isAlive_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyRock::isAlive_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="9" column="12"/>
+            <symbol>EnemyRock::isAlive_</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;EnemyRock::isDamaged_&apos; is not initialized in the constructor." verbose="Member variable &apos;EnemyRock::isDamaged_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="9" column="12"/>
+            <symbol>EnemyRock::isDamaged_</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;i&apos; is assigned a value that is never used." verbose="Variable &apos;i&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" line="19" column="8"/>
+            <symbol>i</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="EnemyRock" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.h" configuration="" line="3" col="1" hash="2018917948487320989"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.h" functionName="GetIsDamaged" lineNumber="35" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.h" functionName="SetIsAlive" lineNumber="39" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.h" functionName="SetIsDamaged" lineNumber="43" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyRock.cpp" functionName="DeleteRockCollider" lineNumber="80" column="17"/>
+    <functioncall functionName="CAMERA"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="DeleteCollider"/>
+    <functioncall functionName="ENEMY1"/>
+    <functioncall functionName="EnemyRock"/>
+    <functioncall functionName="Geometry"/>
+    <functioncall functionName="GetInstance"/>
+    <functioncall functionName="LoadModelDuplicate"/>
+    <functioncall functionName="MV1DrawModel"/>
+    <functioncall functionName="MakeCollider"/>
+    <functioncall functionName="NML_ATK"/>
+    <functioncall functionName="ROCK"/>
+    <functioncall functionName="ROCK_SPHERE"/>
+    <functioncall functionName="SPHERE_ROCK"/>
+    <functioncall functionName="STAGE"/>
+    <functioncall functionName="Sphere"/>
+    <functioncall functionName="Update"/>
+    <functioncall functionName="VAdd"/>
+    <functioncall functionName="VNorm"/>
+    <functioncall functionName="VScale"/>
+    <functioncall functionName="VSub"/>
+    <functioncall functionName="cos"/>
+    <functioncall functionName="emplace"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="modelId"/>
+    <functioncall functionName="move"/>
+    <functioncall functionName="noneHitTag_"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="pos"/>
+    <functioncall functionName="sin"/>
+    <functioncall functionName="sqrtf"/>
+    <functioncall functionName="tag_"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+  </FileInfo>
+</analyzerinfo>

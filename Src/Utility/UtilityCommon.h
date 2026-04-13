@@ -40,6 +40,10 @@ public:
 	static constexpr int ALPHA_MAX = 255;
 	static constexpr int ALPHA_MIN = 0;
 
+	//画像ハンドルの初期化値
+	static constexpr int INITIAL_HANDLE = -1;
+
+
 	/// @brief 四捨五入
 	/// @param v ベクトル
 	/// @return 

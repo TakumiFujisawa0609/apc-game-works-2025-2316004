@@ -1,0 +1,11 @@
+GetIsDamaged
+SetIsAlive
+SetIsDamaged
+EnemyRock
+EnemyRock
+Load call:[GetInstance,LoadModelDuplicate] noreturn:[LoadModelDuplicate]
+Init call:[MakeCollider,cos,emplace,move,sin,sqrtf]
+Update call:[Update,VAdd,VNorm,VScale,VSub] noreturn:[Update]
+Draw call:[MV1DrawModel] noreturn:[MV1DrawModel]
+OnHit
+DeleteRockCollider call:[DeleteCollider] noreturn:[DeleteCollider]

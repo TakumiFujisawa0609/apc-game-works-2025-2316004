@@ -18,7 +18,14 @@ CardUIController::CardUIController(int& _cardNumImgs) :
 	currentAngle_(0.0f),
 	goalAngle_(currentAngle_),
 	cardScl_(1.0),
-	sclCnt_(SCL_LERP_TIME)
+	sclCnt_(SCL_LERP_TIME),
+	upDownMovePow_(),
+	baseCardPos_(),
+	numPos_(),
+	startAngle_(),
+	centerPos_(),
+	halfSize_(),
+	cardImg_()
 {
 }
 

@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="7345966084042811252">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/UtilityCommon.h&quot; not found." verbose="Include file: &quot;../Utility/UtilityCommon.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" line="6" column="2"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="25" column="2"/>
+            <symbol>CardBase</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CardUIController&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CardUIController&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" line="45" column="2"/>
+            <symbol>CardUIController</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;centerPos&apos; is assigned a value that is never used." verbose="Variable &apos;centerPos&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="218" column="12"/>
+            <symbol>centerPos</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;centerPos&apos; is assigned a value that is never used." verbose="Variable &apos;centerPos&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="228" column="12"/>
+            <symbol>centerPos</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="CardBase::CARD_STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" configuration="" line="18" col="2" hash="1598540432162395422"/>
+<class name="CardUIController" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" configuration="" line="11" col="1" hash="1285652214814616283"/>
+<class name="CardUIController::CARD_STATUS_DRAW" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" configuration="" line="23" col="2" hash="2703289539917854248"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:67:7" my-argnr="1" my-argname="_reloadCardFrameImg" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="62" col="29" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:67:7" my-argnr="2" my-argname="_reloadPer" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="62" col="49" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:127:7" my-argnr="1" my-argname="_cnt" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="109" col="30" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:127:7" my-argnr="2" my-argname="moveTimeMax" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="109" col="16" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:109:7" my-argnr="1" my-argname="_num" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="174" col="55" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="GetCardStatus" lineNumber="48" column="28"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsWin" lineNumber="55" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsUsed" lineNumber="59" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetCenterPos" lineNumber="92" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetScl" lineNumber="97" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetCurrentAngle" lineNumber="102" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetSclCnt" lineNumber="140" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetDecisionCnt" lineNumber="145" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetStatus" lineNumber="150" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetCurrentAngle" lineNumber="166" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetDecisionCount" lineNumber="170" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetStatus" lineNumber="174" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetTypeImg" lineNumber="178" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetBaseCardPos" lineNumber="182" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetState" lineNumber="191" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Load" lineNumber="36" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Init" lineNumber="42" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Update" lineNumber="48" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Draw" lineNumber="52" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="DrawReloadGauge" lineNumber="60" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SelectCardDrawFrame" lineNumber="65" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="DrawSelectCard" lineNumber="70" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="DecisionMove" lineNumber="75" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ReactMove" lineNumber="82" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ReactUpdate" lineNumber="89" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="MoveOnRevolver" lineNumber="107" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="MoveUpDown" lineNumber="122" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeDicisionEnemyCardMove" lineNumber="128" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SyncCardAngleAndPos" lineNumber="135" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SetStartAndGoalAngle" lineNumber="143" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SetStartAngle" lineNumber="149" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ResetCount" lineNumber="154" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="EraseUsedCard" lineNumber="164" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="InitCard" lineNumber="172" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeUsedCard" lineNumber="180" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeReactCard" lineNumber="186" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeUsing" lineNumber="193" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="MakeCardUIImg" lineNumber="199" column="23"/>
+    <functioncall functionName="CUBIC_OUT"/>
+    <functioncall functionName="CardBase"/>
+    <functioncall functionName="CardUIController"/>
+    <functioncall functionName="DRAW_PILE"/>
+    <functioncall functionName="DX_SCREEN_BACK"/>
+    <functioncall functionName="DecisionMove"/>
+    <functioncall functionName="Draw"/>
+    <functioncall functionName="DrawExtendGraphF"/>
+    <functioncall functionName="DrawGraph"/>
+    <functioncall functionName="DrawReloadGauge"/>
+    <functioncall functionName="DrawSelectCard"/>
+    <functioncall functionName="DrawSelectedFrame"/>
+    <functioncall functionName="EaseFunc"/>
+    <functioncall functionName="EaseFuncRad"/>
+    <functioncall functionName="FIXED_DELTA_TIME"/>
+    <functioncall functionName="GetGraphSizeF"/>
+    <functioncall functionName="Init"/>
+    <functioncall functionName="LERP"/>
+    <functioncall functionName="Load"/>
+    <functioncall functionName="MakeCardUIImg"/>
+    <functioncall functionName="MakeScreen"/>
+    <functioncall functionName="ReactMove"/>
+    <functioncall functionName="SCREEN_HALF_X"/>
+    <functioncall functionName="SetDrawScreen"/>
+    <functioncall functionName="Update"/>
+    <functioncall functionName="cos"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="sin"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+  </FileInfo>
+  <FileInfo check="Class">
+<class name="CardBase::CARD_STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" configuration="_DEBUG=_DEBUG" line="18" col="2" hash="1598540432162395422"/>
+<class name="CardUIController" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" configuration="_DEBUG=_DEBUG" line="11" col="1" hash="11220824782103249314"/>
+<class name="CardUIController::CARD_STATUS_DRAW" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" configuration="_DEBUG=_DEBUG" line="23" col="2" hash="2703289539917854248"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:67:7" my-argnr="1" my-argname="_reloadCardFrameImg" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="62" col="29" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:67:7" my-argnr="2" my-argname="_reloadPer" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="62" col="49" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:127:7" my-argnr="1" my-argname="_cnt" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="109" col="30" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:127:7" my-argnr="2" my-argname="moveTimeMax" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="109" col="16" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h:109:7" my-argnr="1" my-argname="_num" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" line="174" col="55" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="GetCardStatus" lineNumber="48" column="28"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsWin" lineNumber="55" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsUsed" lineNumber="59" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetCenterPos" lineNumber="92" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetScl" lineNumber="97" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetCurrentAngle" lineNumber="102" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetSclCnt" lineNumber="140" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetDecisionCnt" lineNumber="145" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetStatus" lineNumber="150" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetCurrentAngle" lineNumber="166" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetDecisionCount" lineNumber="170" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetStatus" lineNumber="174" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetTypeImg" lineNumber="178" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="SetBaseCardPos" lineNumber="182" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetState" lineNumber="191" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.h" functionName="GetReactCount" lineNumber="195" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Load" lineNumber="36" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Init" lineNumber="42" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Update" lineNumber="48" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="Draw" lineNumber="52" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="DrawReloadGauge" lineNumber="60" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SelectCardDrawFrame" lineNumber="65" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="DrawSelectCard" lineNumber="70" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="DecisionMove" lineNumber="75" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ReactMove" lineNumber="82" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ReactUpdate" lineNumber="89" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="MoveOnRevolver" lineNumber="107" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="MoveUpDown" lineNumber="122" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeDicisionEnemyCardMove" lineNumber="128" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SyncCardAngleAndPos" lineNumber="135" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SetStartAndGoalAngle" lineNumber="143" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="SetStartAngle" lineNumber="149" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ResetCount" lineNumber="154" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="EraseUsedCard" lineNumber="164" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="InitCard" lineNumber="172" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeUsedCard" lineNumber="180" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeReactCard" lineNumber="186" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="ChangeUsing" lineNumber="193" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIController.cpp" functionName="MakeCardUIImg" lineNumber="199" column="23"/>
+    <functioncall functionName="CUBIC_OUT"/>
+    <functioncall functionName="CardBase"/>
+    <functioncall functionName="CardUIController"/>
+    <functioncall functionName="DRAW_PILE"/>
+    <functioncall functionName="DX_SCREEN_BACK"/>
+    <functioncall functionName="DecisionMove"/>
+    <functioncall functionName="Draw"/>
+    <functioncall functionName="DrawExtendGraphF"/>
+    <functioncall functionName="DrawGraph"/>
+    <functioncall functionName="DrawReloadGauge"/>
+    <functioncall functionName="DrawSelectCard"/>
+    <functioncall functionName="DrawSelectedFrame"/>
+    <functioncall functionName="EaseFunc"/>
+    <functioncall functionName="EaseFuncRad"/>
+    <functioncall functionName="FIXED_DELTA_TIME"/>
+    <functioncall functionName="GetGraphSizeF"/>
+    <functioncall functionName="Init"/>
+    <functioncall functionName="LERP"/>
+    <functioncall functionName="Load"/>
+    <functioncall functionName="MakeCardUIImg"/>
+    <functioncall functionName="MakeScreen"/>
+    <functioncall functionName="ReactMove"/>
+    <functioncall functionName="SCREEN_HALF_X"/>
+    <functioncall functionName="SetDrawScreen"/>
+    <functioncall functionName="Update"/>
+    <functioncall functionName="cos"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="sin"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+  </FileInfo>
+</analyzerinfo>

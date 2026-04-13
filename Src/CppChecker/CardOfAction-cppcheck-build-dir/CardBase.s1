@@ -1,0 +1,9 @@
+GetCardStatus
+SetIsWin
+SetIsUsed
+CardBase
+CardBase
+Load call:[GetInstance,Load]
+Init
+Update
+Draw call:[DrawRotaGraphF] noreturn:[DrawRotaGraphF]

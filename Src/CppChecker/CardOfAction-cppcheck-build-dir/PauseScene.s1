@@ -1,0 +1,44 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+IsGameEnd
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+PauseScene call:[ChangeScene,PopScene,bind] noreturn:[ChangeScene,PopScene]
+PauseScene
+Load call:[CreateFontToHandle,Load,c_str] noreturn:[CreateFontToHandle]
+Init
+NormalUpdate call:[IsTrgDown,PopScene]
+NormalDraw call:[DrawBox,DrawFormatStringToHandle,DrawRotaGraph,SetDrawBlendMode,c_str,length] noreturn:[DrawFormatStringToHandle]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy

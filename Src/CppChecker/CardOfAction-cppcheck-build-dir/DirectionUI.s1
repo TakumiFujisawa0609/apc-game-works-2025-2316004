@@ -1,0 +1,33 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+DirectionUI
+DirectionUI
+Load call:[CreateFontToHandle,Load,c_str]
+Init call:[AddConstBuf,AddTextureBuf,MakeSquareVertexFromCenter] noreturn:[MakeSquareVertexFromCenter]
+Update call:[SetConstBuf,UpdateIntensiveLineAnim] noreturn:[UpdateIntensiveLineAnim]
+Draw call:[Draw,DrawFromCenter,DrawGraph,DrawStringFToHandle,GetInstance,GetIsEnemyRoar] noreturn:[DrawGraph]
+SetSkipGaugePer
+UpdateIntensiveLineAnim call:[GetInstance,GetIsEnemyRoar]
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[CharacterManager] noreturn:[CharacterManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ButtonUIManager] noreturn:[ButtonUIManager]
+GetInstance call:[assert]
+Destroy

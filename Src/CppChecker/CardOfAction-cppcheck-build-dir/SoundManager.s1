@@ -1,0 +1,21 @@
+SetLoadedSoundsVolume call:[SetSystemVolume] noreturn:[SetSystemVolume]
+GetSoundTypeVolume
+IsGameEnd
+SoundManager
+SoundManager
+Release call:[DeleteSoundMem,clear,empty] noreturn:[DeleteSoundMem,clear]
+Init call:[emplace] noreturn:[emplace]
+LoadResource call:[_Load] noreturn:[_Load]
+Play call:[CheckSoundMem,GetPlayType,PlaySoundMem,Stop,assert] noreturn:[PlaySoundMem,Stop]
+Stop call:[StopSoundMem] noreturn:[StopSoundMem]
+IsPlay call:[CheckSoundMem,end,find]
+SetSoundVolumeSRC call:[ChangeVolumeSoundMem,end,find] noreturn:[ChangeVolumeSoundMem]
+SetSystemVolume call:[ChangeVolumeSoundMem] noreturn:[ChangeVolumeSoundMem]
+_Load call:[LoadSoundMem,SetCreateSoundPitchRate,c_str,emplace,end,find] noreturn:[SetCreateSoundPitchRate]
+GetPlayType
+CreateInstance call:[SoundManager] noreturn:[SoundManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

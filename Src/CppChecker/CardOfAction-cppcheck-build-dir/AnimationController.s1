@@ -1,0 +1,28 @@
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+AnimationController
+AnimationController call:[MV1DeleteModel] noreturn:[MV1DeleteModel]
+Add call:[count,emplace] noreturn:[emplace]
+Play call:[MV1AttachAnim,MV1DetachAnim,MV1GetAnimNum,MV1GetAttachAnimTotalTime] noreturn:[MV1DetachAnim,MV1GetAttachAnimTotalTime]
+Update call:[GetDeltaTime,GetInstance,MV1GetAttachAnimFrameLocalPosition,MV1SetAttachAnimTime,SetFrameAnimAttachLocalMatrixPos,VSub] noreturn:[SetFrameAnimAttachLocalMatrixPos]
+SetEndLoop
+SetMidLoop
+SetEndMidLoop
+GetPlayType
+GetAnimStep
+SetAnimSpeed call:[EaseFunc]
+IsEnd
+SetFrameLocalMatrixPos call:[GetFrameLocalMatrix,MGetIdent,MGetScale,MGetTranslate,MMult,MV1SetFrameUserLocalMatrix] noreturn:[MV1SetFrameUserLocalMatrix]
+SetFrameAnimAttachLocalMatrixPos call:[GetFrameAnimAttachLocalMatrix,MGetIdent,MGetScale,MGetTranslate,MMult,MV1SetFrameUserLocalMatrix] noreturn:[MV1SetFrameUserLocalMatrix]
+GetFrameLocalMatrix call:[MGetRotElem,MGetScale,MGetSize,MGetTranslateElem,MMult,MV1GetFrameLocalMatrix,VGet] noreturn:[MGetTranslateElem]
+GetFrameAnimAttachLocalMatrix call:[MGetRotElem,MGetScale,MGetSize,MGetTranslateElem,MMult,MV1GetAttachAnimFrameLocalMatrix,VGet] noreturn:[MGetTranslateElem]
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy

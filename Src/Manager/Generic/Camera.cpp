@@ -24,6 +24,21 @@ Camera::Camera(void):
 	followTransform_(nullptr),
 	isChangingCamera_(false),
 	changeTargetLerpCnt_(CHANGE_TARGET_LERP_TIME),
+	targetTransform_(nullptr),
+	stageTransform_(nullptr),
+	subMode_(SUB_MODE::NONE),
+	directionCnt_(),
+	startF2CPosZ_(),
+	goalF2CPosZ_(),
+	directionEaseCnt_(),
+	directionMode_(),
+	initLimit_(),
+	limit_(),
+	easePer_(),
+	initPosY_(),
+	oneShakeTime_(),
+	nextDirectionMode_(DIRECTION_MODE::NONE),
+	directionEasingTime_(),
 	shekePerCnt_()
 {
 

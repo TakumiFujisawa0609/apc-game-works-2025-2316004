@@ -1,4 +1,5 @@
 #include<DxLib.h>
+#include "../Utility/UtilityCommon.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "CardBase.h"
 
@@ -6,10 +7,10 @@ CardBase::CardBase(const CARD_STATUS _status) :
 	status_(_status),
 	isWin_(false),
 	isUsed_(false),
-	atkCardImg_(-1),
-	cardPos_({ 100,100 }),
-	cardScl_(1.4),
-	numPos_({0.0f,0.0f}),
+	atkCardImg_(UtilityCommon::INITIAL_HANDLE),
+	cardPos_(),
+	cardScl_(CARD_SCALE),
+	numPos_(),
 	cardNoImg_(nullptr)
 {
 
@@ -19,7 +20,6 @@ CardBase::CardBase(const CARD_STATUS _status) :
 
 CardBase::~CardBase(void)
 {
-	int i = 0;
 }
 
 void CardBase::Load(void)

@@ -1,0 +1,28 @@
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+EffectController
+EffectController call:[AllDelete] noreturn:[AllDelete]
+Update call:[Delete,IsEffekseer3DEffectPlaying,RePlay] noreturn:[Delete,RePlay]
+Add call:[count,emplace] noreturn:[emplace]
+Play call:[PlayEffekseer3DEffect,SetPosPlayingEffekseer3DEffect,SetRotationPlayingEffekseer3DEffect,SetScalePlayingEffekseer3DEffect,SetSpeedPlayingEffekseer3DEffect,ToEuler,count,emplace]
+SetPos call:[SetPosPlayingEffekseer3DEffect,count]
+SetQuaRot call:[SetRotationPlayingEffekseer3DEffect,ToEuler,count]
+SetScale call:[SetScalePlayingEffekseer3DEffect,count]
+SetSpeed call:[SetSpeedPlayingEffekseer3DEffect,count]
+Stop call:[StopEffekseer3DEffect,count] noreturn:[StopEffekseer3DEffect]
+Delete call:[Stop,erase]
+AllStop call:[Stop] noreturn:[Stop]
+AllDelete call:[AllStop,clear] noreturn:[clear]
+IsEnd call:[IsEffekseer3DEffectPlaying,count]
+GetPlayNum call:[count]
+RePlay call:[Delete,PlayEffekseer3DEffect,SetPosPlayingEffekseer3DEffect,SetRotationPlayingEffekseer3DEffect,SetScalePlayingEffekseer3DEffect,SetSpeedPlayingEffekseer3DEffect,ToEuler] noreturn:[SetSpeedPlayingEffekseer3DEffect]
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy

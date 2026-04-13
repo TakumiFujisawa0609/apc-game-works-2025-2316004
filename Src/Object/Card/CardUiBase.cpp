@@ -18,11 +18,17 @@ CardUIBase::CardUIBase(void):
 selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
 reloadCardImg_(-1),
-soundMng_(SoundManager::GetInstance())
+soundMng_(SoundManager::GetInstance()),
+handCurrent_(),
+centerPos_(),
+cardNoImg_(nullptr),
+reloadFrame_(),
+reloadGauge_(),
+numPos_(),
+cardMoveCnt_(),
+disitionCnt_(),
+reloadPer_()
 {
-	//material_ = std::make_unique<PixelMaterial>(L"CardUI",0);
-	//renderer_ = std::make_unique<PixelRenderer>(*material_);
-	//renderer_->MakeSquareVertex(Vector2{},GetGraphSize(ResourceManager::GetInstance().Load(ResourceManager::SRC::))
 }
 
 CardUIBase::~CardUIBase(void)

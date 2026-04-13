@@ -1,0 +1,62 @@
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetHitPoint
+GetIsHitTarget
+EnemyOnHit call:[CollChara,CollNormalAttack,CollStage] noreturn:[CollChara,CollNormalAttack,CollStage]
+EnemyOnHit
+Init
+Load
+DrawDebug
+CollNormalAttack call:[ChangeAction,Damage,GetAtkStatus,GetCardAction,GetCardDif,GetInput,GetInstance,GetIsDamage,GetMainAction,GetParent,GetTargetCharacter,SetIsDamage,lock] noreturn:[ChangeAction]
+CollDuelSpecialAttack
+CollChara
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy

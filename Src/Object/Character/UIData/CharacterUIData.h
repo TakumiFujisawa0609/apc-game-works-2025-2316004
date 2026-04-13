@@ -6,7 +6,7 @@ enum class CHARACTER_TYPE
 };
 struct HP_DATA
 {
-	float hpPer;
-	float preHpPer;
+	float hpPer = 1.0f;
+	float preHpPer = 1.0f;
 };
 

@@ -1,0 +1,132 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+GetHitPoint
+GetIsHitTarget
+GetSpeed
+GetIsTurnable
+GetIsAliveAtkCol
+SetFlinchCnt
+GetAtkStatus
+IsJumpAtkCharge
+GetJumpCardNum
+GetIsDamage
+SetIsDamage
+GetMovePow
+GetJumpPow
+JumpPowZero
+GetActionType
+GetInput
+GetAnimation
+AddMainAction
+IsJumpAtkCharge
+GetJumpCardNum
+ChangeComboAction
+GetCharaTag
+GetCharaType
+GetRotation
+JumpPowZero
+GetStatus
+GetFootSEDisCount
+GetFootSE
+GetMovedPos
+GetIsEndDirect
+CharacterBase call:[ChangeUpdateClearDirection,ChangeUpdateDirection,ChangeUpdateHitStop,ChangeUpdateNone,ChangeUpdateNormal,ChangeUpdateOverDirection] noreturn:[ChangeUpdateClearDirection,ChangeUpdateDirection,ChangeUpdateHitStop,ChangeUpdateNone,ChangeUpdateNormal,ChangeUpdateOverDirection]
+CharacterBase
+Update call:[phazeUpdate_] noreturn:[phazeUpdate_]
+MakeAttackCol call:[IsAliveCollider,MakeCollider,move] noreturn:[MakeCollider]
+UpdateAttackCol call:[GetGeometry,SetRadius] noreturn:[SetRadius]
+DeleteAttackCol call:[DeleteCollider,IsAliveCollider] noreturn:[DeleteCollider]
+UpdatePost call:[GetGeometry,GetMovePow,InitHit,MoveLimit,SetLocalPosPoint1,SetLocalPosPoint2,VAdd,VSub] noreturn:[SetLocalPosPoint2]
+SetStatus
+MoveLimit call:[GetMoveVec,GetSpd,VAdd,VScale]
+SetUsedCard call:[ChangeReactActionCard,EraseHandCard,GetCardUI] noreturn:[EraseHandCard]
+ChangeUpdatePhase
+ChangeDirectToNormal call:[Play,UpdateNormal] noreturn:[UpdateNormal]
+ChangeUpdateClearDirection call:[UpdateClearDirection] noreturn:[UpdateClearDirection]
+ChangeUpdateOverDirection call:[UpdateOverDirection] noreturn:[UpdateOverDirection]
+MoveDirFromInput
+Rotate call:[GetDeltaTime,Slerp] noreturn:[Slerp]
+Damage call:[RefreshHpUI] noreturn:[RefreshHpUI]
+GetIsDamage call:[GetIsDamage,GetMainAction] noreturn:[GetIsDamage]
+GetCharaCenterPos call:[GetCenter,GetGeometry,at] noreturn:[GetCenter]
+SetIsDamage call:[GetMainAction,SetIsDamage] noreturn:[SetIsDamage]
+SetFlinchCnt call:[SetFlinchCnt] noreturn:[SetFlinchCnt]
+GetCardAction call:[GetCardAction] noreturn:[GetCardAction]
+GetMainAction call:[GetMainAction] noreturn:[GetMainAction]
+GetHitPoint call:[GetHitPoint] noreturn:[GetHitPoint]
+MovedPosMove call:[VAdd,VScale] noreturn:[VAdd]
+LariatMove call:[AngleAxis,Deg2RadF] noreturn:[AngleAxis]
+SetLogicTargetCharacter call:[SetTargetCharacter] noreturn:[SetTargetCharacter]
+AddEnemyRock call:[emplace_back,move] noreturn:[emplace_back]
+LoadEnemyRock call:[Load,empty] noreturn:[Load]
+DeleteEnemyRockCol call:[DeleteRockCollider,empty] noreturn:[DeleteRockCollider]
+SetIsAliveEnemyRock call:[Init,SetIsAlive,empty] noreturn:[Init]
+EnemyRockUpdate call:[Update,empty] noreturn:[Update]
+ClearEnemyRock call:[clear] noreturn:[clear]
+GetIsHitTarget call:[GetIsHitTarget] noreturn:[GetIsHitTarget]
+UpdateNone
+UpdateHitStop call:[ChangeUpdatePhase] noreturn:[ChangeUpdatePhase]
+ChangeUpdateNone call:[UpdateNone] noreturn:[UpdateNone]
+ChangeUpdateNormal call:[UpdateNormal] noreturn:[UpdateNormal]
+ChangeUpdateDirection call:[UpdateDirection] noreturn:[UpdateDirection]
+ChangeUpdateHitStop call:[UpdateHitStop] noreturn:[UpdateHitStop]

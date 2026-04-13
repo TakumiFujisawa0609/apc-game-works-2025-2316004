@@ -197,7 +197,7 @@ protected:
 	//リロードカード画像
 	int reloadCardImg_;
 	int reloadFrame_;	//リロードフレーム
-	int reloadGage_;		//リロードゲージ
+	int reloadGauge_;		//リロードゲージ
 	//カードナンバー座標
 	Vector2F numPos_;
 	//カードセレクトの動き時間

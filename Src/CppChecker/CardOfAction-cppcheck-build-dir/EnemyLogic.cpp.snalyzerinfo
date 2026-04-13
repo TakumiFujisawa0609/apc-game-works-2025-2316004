@@ -1,0 +1,18 @@
+CheckAct
+GetDir
+GetIsAct
+GetAttackType
+SetMoveDir
+SetDir
+IsActioningSet
+SetFreezeCntByAttackType
+GetTargetCharacter
+DebugDraw
+EnemyLogic
+EnemyLogic
+Init
+Update call:[DecideAction,GetDeltaTime,GetMoveVec,GetTargetDis,GetTransform,lock]
+DebugUpdate call:[GetInstance,IsNew]
+DebugDraw call:[DrawFormatString,GetTargetDis] noreturn:[DrawFormatString]
+DecideAction call:[GetRand,GetTargetDis]
+SetFreezeCntByAttackType

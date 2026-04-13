@@ -12,7 +12,8 @@ Run::Run(ActionController& _actCntl, const float _speed, SoundManager::SRC _src,
 	ActionBase(_actCntl),
 	moveSpd_(_speed),
 	footSESrc_(_src),
-	footSeDis_(_footSeDis)
+	footSeDis_(_footSeDis),
+	footSECnt_()
 {
 	speed_ = moveSpd_;
 }

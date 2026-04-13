@@ -1,0 +1,13 @@
+UIManager call:[CreateCardUI,CreateHpUI]
+CreateHpUI call:[move] noreturn:[move]
+CreateCardUI call:[move] noreturn:[move]
+DrawAttackBottonAndDodgeBotton call:[DrawFromLeftTop,DrawStringFToHandle,GetInstance] noreturn:[DrawFromLeftTop]
+Load call:[CreateFontToHandle,Load,c_str] noreturn:[CreateFontToHandle,Load]
+Init call:[Init] noreturn:[Init]
+Update call:[Update] noreturn:[Update]
+DirectionUpdate call:[Update] noreturn:[Update]
+Draw call:[Draw,DrawAttackBottonAndDodgeBotton] noreturn:[Draw,DrawAttackBottonAndDodgeBotton]
+DirectionDraw call:[Draw] noreturn:[Draw]
+RefreshHpUI call:[RefreshHp] noreturn:[RefreshHp]
+GetCardUI
+SetSkipPer call:[SetSkipGaugePer] noreturn:[SetSkipGaugePer]

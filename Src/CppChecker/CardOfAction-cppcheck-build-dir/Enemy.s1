@@ -1,0 +1,130 @@
+IsGameEnd
+GetSpeed
+GetIsTurnable
+GetIsAliveAtkCol
+SetFlinchCnt
+GetAtkStatus
+IsJumpAtkCharge
+GetJumpCardNum
+GetIsDamage
+SetIsDamage
+GetMovePow
+GetJumpPow
+JumpPowZero
+GetActionType
+GetInput
+GetAnimation
+AddMainAction
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+GetHitPoint
+GetIsHitTarget
+IsJumpAtkCharge
+GetJumpCardNum
+ChangeComboAction
+GetCharaTag
+GetCharaType
+GetRotation
+JumpPowZero
+GetStatus
+GetFootSEDisCount
+GetFootSE
+GetMovedPos
+GetIsEndDirect
+GetHand
+GetIsDamaged
+SetIsAlive
+SetIsDamaged
+CheckAct
+GetDir
+GetIsAct
+GetAttackType
+SetMoveDir
+SetDir
+IsActioningSet
+SetFreezeCntByAttackType
+GetTargetCharacter
+GetJumpCardNum
+GetHand
+GetIsRoar
+Enemy call:[SetStatus]
+Enemy call:[AllStop,clear] noreturn:[AllStop]
+Load call:[Add,AddAction,AddAnimation,Deg2RadF,Euler,Load,LoadModelDuplicate,Quaternion,SetModel] noreturn:[Load]
+Init call:[AddCardData,Deg2RadF,Euler,GetInstance,Init,MakeColliderGeometry,Quaternion,Update] noreturn:[AddCardData,MakeColliderGeometry]
+UpdateDirection call:[Update,UpdateRoarDirection] noreturn:[Update]
+UpdateClearDirection call:[GetAnimStep,MV1GetFramePosition,SetPos,Update] noreturn:[Update]
+UpdateOverDirection call:[Update] noreturn:[Update]
+Draw call:[Draw,MV1DrawModel,empty] noreturn:[Draw]
+Draw2D
+OnHit call:[OnHitUpdate] noreturn:[OnHitUpdate]
+MoveDirFromInput call:[GetDir]
+SetGoalRotate call:[Angle,Euler,GetRotAxisToTarget,GetTargetTransform]
+UpdateRoarDirection call:[ChangeSub,GetAnimStep,GetCamera,GetDirectionMode,Play,SetShakeStatus,lock] noreturn:[Play]
+ChangeUpdateClearDirection call:[ChangeUpdateClearDirection,MV1GetFramePosition,Play,Stop] noreturn:[ChangeUpdateClearDirection]
+MakeColliderGeometry call:[MV1GetFramePosition,MakeCollider,emplace_back,move]
+UpdateNormal call:[Update,UpdatePost] noreturn:[Update]
+AddAction call:[AddAction] noreturn:[AddAction]
+AddAnimation call:[Add,LoadModelDuplicate] noreturn:[Add]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

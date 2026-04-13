@@ -1,0 +1,49 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetAxis
+Capsule call:[memset,sizeof] noreturn:[memset]
+Capsule call:[memset,sizeof] noreturn:[memset]
+Capsule
+Draw call:[DrawLine3D,DrawSphere3D,GetCenter,GetPosPoint1,GetPosPoint2,PosAxis,VAdd,VScale] noreturn:[DrawSphere3D]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[GetPosPoint1,GetPosPoint2,GetRadius,VAdd,VDot,VScale,VSize,VSub,clamp] noreturn:[clamp]
+IsHit call:[GetPosPoint1,GetPosPoint2,GetRadius,VAdd,VDot,VScale,VSub,clamp,sqrt] noreturn:[GetRadius,clamp]
+HitAfter call:[MV1CollResultPolyDimTerminate,memset,sizeof] noreturn:[memset]

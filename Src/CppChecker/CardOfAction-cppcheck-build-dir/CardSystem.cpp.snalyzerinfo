@@ -1,0 +1,34 @@
+GetCardStatus
+SetIsWin
+SetIsUsed
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetCanPut
+GetCardDif
+InitCardDif
+CardSystem
+GetResult
+InitPutCardPow
+LoseInitPutCardPow
+JudgeIsFirstAtk
+IsNoneCard
+DrawDebug call:[DrawFormatString,c_str] noreturn:[DrawFormatString]
+CompareCards
+PutCard
+CreateInstance call:[CardSystem] noreturn:[CardSystem]
+GetInstance call:[assert]
+Destroy

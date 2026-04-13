@@ -1,0 +1,129 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+Camera
+Camera
+Init call:[ChangeDirectionEnemyOnly,ChangeDirectionEnemyRoar,ChangeDirectionLegLow,ChangeDirectionNone,ChangeDirectionPlayerOnly,ChangeEndDirection,ChangeFixedPoint,ChangeFollow,ChangeMode,ChangeNone,ChangeSelfShot,ChangeShake,ChangeShakeOne,ChangeStartDirection,ChangeSub,ChangeTargetCamera,ChangeTargetLerp] noreturn:[ChangeDirectionEnemyOnly,ChangeDirectionEnemyRoar,ChangeDirectionLegLow,ChangeDirectionNone,ChangeDirectionPlayerOnly,ChangeEndDirection,ChangeFixedPoint,ChangeFollow,ChangeMode,ChangeNone,ChangeSelfShot,ChangeShake,ChangeShakeOne,ChangeStartDirection,ChangeTargetCamera,ChangeTargetLerp]
+Update call:[modeUpdate_,subUpdate_] noreturn:[subUpdate_]
+SetBeforeDraw call:[Effekseer_Sync3DSetting,SetCameraNearFar,SetCameraPositionAndTargetAndUpVec] noreturn:[Effekseer_Sync3DSetting]
+Draw
+ChangeSub
+SetFollow
+SetTarget
+SetTargetPos
+SetShakeStatus
+GetForward call:[VNorm,VSub] noreturn:[VNorm]
+ChangeMode
+MakeColliderGeometry call:[MakeCollider,emplace,emplace_back,move] noreturn:[emplace_back]
+OnHit
+UpdateCameraColliderLine call:[GetGeometry,MV1GetFramePosition,SetLocalPosPoint1,SetLocalPosPoint2,VAdd,VSub] noreturn:[SetLocalPosPoint2]
+SetDefault call:[Deg2RadF,Quaternion] noreturn:[Quaternion]
+SyncFollow call:[AngleAxis,Euler,GetUp,Mult,PosAxis,VAdd] noreturn:[GetUp]
+SyncTargetFollow call:[AngleAxis,Euler,GetMoveVec,GetRotAxisToTarget,GetUp,Mult,PosAxis,VAdd] noreturn:[GetUp]
+ProcessRot call:[Deg2RadF,GetInstance,GetKnockRStickSize,SetMouseDispFlag]
+SmoothChangeCamera call:[AngleAxis,ChangeMode,EaseFunc,Euler,GetDeltaTime,GetInstance,GetMoveVec,GetRotAxisToTarget,GetUp,Mult,PosAxis,Slerp,VAdd] noreturn:[ChangeMode,EaseFunc,Slerp]
+Collision call:[Distance,GetMoveVec,HitCheck_Sphere_Triangle,MV1CollCheck_LineDim,MV1CollResultPolyDimTerminate,VAdd,VScale]
+ChangeDirectionMode
+SetBeforeDrawFixedPoint
+SetBeforeDrawFollow call:[ChangeMode,Collision,GetInstance,IsTrgDown,ProcessRot,SyncFollow,UpdateCameraColliderLine] noreturn:[ChangeMode]
+SetBeforeDrawSelfShot
+SetBeforeDrawLerpCamera call:[SmoothChangeCamera] noreturn:[SmoothChangeCamera]
+SetBeforeDrawTargetPoint call:[ChangeMode,GetInstance,IsTrgDown,ProcessRot,SyncTargetFollow] noreturn:[ChangeMode]
+SetBeforeDrawStartDirection call:[directionUpdate_] noreturn:[directionUpdate_]
+ChangeFixedPoint call:[SetBeforeDrawFixedPoint,SetDefault] noreturn:[SetBeforeDrawFixedPoint]
+ChangeFollow call:[SetBeforeDrawFollow] noreturn:[SetBeforeDrawFollow]
+ChangeSelfShot call:[SetBeforeDrawSelfShot,SetDefault] noreturn:[SetBeforeDrawSelfShot]
+ChangeTargetLerp call:[SetBeforeDrawLerpCamera] noreturn:[SetBeforeDrawLerpCamera]
+ChangeTargetCamera call:[SetBeforeDrawTargetPoint,SetDefault] noreturn:[SetBeforeDrawTargetPoint]
+ChangeStartDirection call:[ChangeDirectionMode,SetBeforeDrawStartDirection] noreturn:[SetBeforeDrawStartDirection]
+UpdateNone
+UpdateShake call:[ChangeSub,EaseFunc,GetDeltaTime,GetInstance] noreturn:[GetDeltaTime]
+UpdateShakeOne call:[ChangeSub,EaseFunc,GetDeltaTime,GetInstance] noreturn:[EaseFunc,GetDeltaTime]
+ChangeNone call:[UpdateNone] noreturn:[UpdateNone]
+ChangeShake call:[UpdateShake] noreturn:[UpdateShake]
+ChangeShakeOne call:[UpdateShakeOne] noreturn:[UpdateShakeOne]
+DirectionNone
+DirectionPlayerAndTarget call:[ChangeDirectionMode,Deg2RadF,GetDeltaTime,GetInstance,SyncFollow] noreturn:[Deg2RadF]
+DirectionEnemyOnly call:[ChangeDirectionMode,EaseFunc,GetDeltaTime,GetInstance,SyncFollow] noreturn:[GetDeltaTime]
+DirectionEnemyRoar call:[ChangeDirectionMode,ChangeSub,GetDeltaTime,GetInstance,SyncFollow] noreturn:[GetDeltaTime]
+DirectionPlayerOnly call:[ChangeDirectionMode,EaseFunc,GetDeltaTime,GetInstance,SyncFollow] noreturn:[ChangeDirectionMode,EaseFunc,GetDeltaTime]
+EndDirection call:[ChangeMode,EaseFunc,GetDeltaTime,GetInstance,SyncFollow] noreturn:[GetDeltaTime]
+ChangeDirectionNone call:[DirectionNone] noreturn:[DirectionNone]
+ChangeDirectionLegLow call:[DirectionPlayerAndTarget] noreturn:[DirectionPlayerAndTarget]
+ChangeDirectionEnemyOnly call:[DirectionEnemyOnly] noreturn:[DirectionEnemyOnly]
+ChangeDirectionEnemyRoar call:[DirectionEnemyRoar] noreturn:[DirectionEnemyRoar]
+ChangeDirectionPlayerOnly call:[Deg2RadF,DirectionPlayerOnly] noreturn:[DirectionPlayerOnly]
+ChangeEndDirection call:[Deg2RadF,EndDirection] noreturn:[EndDirection]
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManagerS] noreturn:[InputManagerS]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Camera] noreturn:[Camera]
+GetInstance call:[assert]
+Destroy

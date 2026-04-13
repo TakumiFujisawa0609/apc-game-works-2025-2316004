@@ -1,0 +1,3 @@
+GetAxisX call:[cosf,sinf]
+GetAxisY call:[cosf,sinf]
+GetColPos

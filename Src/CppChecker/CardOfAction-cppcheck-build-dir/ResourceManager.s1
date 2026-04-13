@@ -1,0 +1,15 @@
+IsGameEnd
+Init call:[emplace,move] noreturn:[emplace]
+SceneChangeRelease call:[Release,clear] noreturn:[Release,clear]
+Release call:[SceneChangeRelease,clear] noreturn:[clear]
+Load call:[_Load]
+LoadModelDuplicate call:[MV1DuplicateModel,_Load,push_back]
+ResourceManager
+ResourceManager call:[clear] noreturn:[clear]
+_Load call:[Load,emplace,end,find]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy

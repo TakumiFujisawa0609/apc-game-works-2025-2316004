@@ -1,0 +1,160 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+GetIsFullScreen
+GetCardStatus
+SetIsWin
+SetIsUsed
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+GetSpeed
+GetIsTurnable
+GetIsAliveAtkCol
+SetFlinchCnt
+GetAtkStatus
+IsJumpAtkCharge
+GetJumpCardNum
+GetIsDamage
+SetIsDamage
+GetMovePow
+GetJumpPow
+JumpPowZero
+GetActionType
+GetInput
+GetAnimation
+AddMainAction
+GetHitPoint
+GetIsHitTarget
+GetIsDamage
+SetIsDamage
+IsJumpAtkCharge
+GetJumpCardNum
+ChangeComboAction
+CheckAct
+GetDir
+GetIsAct
+GetAttackType
+SetMoveDir
+SetDir
+IsActioningSet
+SetFreezeCntByAttackType
+GetTargetCharacter
+GetAct
+GetStickDeg
+GetCharaTag
+GetCharaType
+GetRotation
+JumpPowZero
+GetStatus
+GetFootSEDisCount
+GetFootSE
+GetMovedPos
+GetIsEndDirect
+GetHand
+Player call:[SetStatus,Transform]
+Player call:[clear] noreturn:[clear]
+Load call:[AddAction,AddAnimation,Deg2RadF,Euler,GetInstance,Load,LoadModelDuplicate,LoadResource,SetModel,SetSoundVolumeSRC] noreturn:[SetSoundVolumeSRC]
+Init call:[AddCardData,GetInstance,Init,MakeColliderGeometry,SetTargetAndFrameNo,Update] noreturn:[AddCardData,Update]
+UpdateDirection call:[Update] noreturn:[Update]
+UpdateNormal call:[Action,Update] noreturn:[Update]
+UpdateClearDirection call:[Action,UpdateDirection] noreturn:[Action]
+UpdateOverDirection call:[IsEnd,UpdateDirection]
+ChangeUpdateOverDirection call:[ChangeUpdateOverDirection,Play] noreturn:[ChangeUpdateOverDirection]
+Draw call:[Draw,MV1DrawModel] noreturn:[Draw]
+Draw2D
+OnHit call:[OnHitUpdate] noreturn:[OnHitUpdate]
+MoveDirFromInput call:[GetDir,VNorm] noreturn:[VNorm]
+SetGoalRotate call:[Angle,GetDir,LookRotation]
+MakeAttackCol call:[IsAliveCollider,MakeWeaponCollider] noreturn:[MakeWeaponCollider]
+DeleteAttackCol call:[DeleteWeaponCollider,IsAliveCollider] noreturn:[DeleteWeaponCollider]
+Damage call:[Damage] noreturn:[Damage]
+AddAnimation call:[Add,LoadModelDuplicate] noreturn:[Add]
+AddAction call:[AddAction] noreturn:[AddAction]
+MakeColliderGeometry call:[Init,Load,MakeCollider,emplace_back,move] noreturn:[Load]
+Action call:[Update,UpdatePost] noreturn:[Update]
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Camera] noreturn:[Camera]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[DataBank] noreturn:[DataBank]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[UIManager] noreturn:[UIManager]
+GetInstance call:[assert]
+Destroy

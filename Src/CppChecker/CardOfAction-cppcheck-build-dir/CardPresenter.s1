@@ -1,0 +1,78 @@
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetCardStatus
+SetIsWin
+SetIsUsed
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+CardPresenter
+CardPresenter
+FinishCard call:[ChangeSelectState,ChangeUsedActionCard,EraseHandCard,GetCardUI] noreturn:[ChangeSelectState]
+FailureCard call:[ChangeReactActionCard,EraseHandCard,GetCardUI] noreturn:[EraseHandCard]
+PutCard call:[ChangeSelectState,GetCardUI,MoveUsingCardToDrawPile] noreturn:[ChangeSelectState]
+RoleRevolver call:[CardMoveLeft,CardMoveRight,ChangeSelectState,GetCardUI] noreturn:[CardMoveRight]
+GetCardType call:[GetDrawCardType] noreturn:[GetDrawCardType]
+GetHandCardType call:[GetHandCardType] noreturn:[GetHandCardType]
+DeckReload call:[ChangeSelectState,GetCardUI,Reload] noreturn:[ChangeSelectState]
+ChangeCard call:[ChangeSelectState,ChangeUsedActionCard,EraseHandCard,GetCardUI,MoveUsingCardToDrawPile] noreturn:[ChangeSelectState]
+EnemyCardReload call:[ChangeSelectState,GetCardUI,Reload] noreturn:[ChangeSelectState]
+ChangeAction call:[ChangeUsedActionCard,EraseHandCard,GetCardUI] noreturn:[EraseHandCard]
+IsCardFailure call:[IsCardFailure] noreturn:[IsCardFailure]
+SetUIReloadCount call:[GetCardUI,SetReloadCount] noreturn:[SetReloadCount]
+ChangeUIState call:[ChangeSelectState,GetCardUI] noreturn:[ChangeSelectState]
+GetCardUIState call:[GetCardUI,GetSelectState] noreturn:[GetSelectState]

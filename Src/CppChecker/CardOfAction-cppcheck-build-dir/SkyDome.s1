@@ -1,0 +1,56 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+OnHit
+SkyDome call:[UpdateClear,UpdateNone] noreturn:[UpdateClear,UpdateNone]
+Load call:[GetInstance,LoadModelDuplicate,SetModel] noreturn:[SetModel]
+Init call:[AddConstBufPS,AddConstBufVS,ChangePhase,Deg2RadF,Euler,MV1SetUseZBuffer,MV1SetWriteZBuffer,Quaternion,Update] noreturn:[MV1SetWriteZBuffer]
+Update call:[AngleAxis,Deg2RadF,Mult,Update,updatePhase_] noreturn:[Update]
+Draw call:[Draw] noreturn:[Draw]
+ChangePhase
+UpdateNone
+UpdateClear call:[EaseFunc,GetDeltaTime,SetConstBufPS] noreturn:[SetConstBufPS]

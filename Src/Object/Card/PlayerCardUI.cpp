@@ -19,17 +19,20 @@
 
 PlayerCardUI::PlayerCardUI(void):
 radius_({RADIUS_X,RADIUS_Y}),
-cardMoveCnt_(CardUIController::SELECT_MOVE_CARD_TIME),
-numPos_({0.0f,0.0f}),
-centerPos_({0,0}),
 isReloadEnd_(false),
 revolverLArrowPos_(REVOLVER_ARROW_L_POS),
-revolverRArrowPos_({}),
-revolverArrowAngle_(0.0f)
+revolverRArrowPos_(),
+revolverArrowAngle_(),
+reloadAnimCurr_(),
+selectFrameImg_(UtilityCommon::INITIAL_HANDLE),
+reloadCardFrameImg_(UtilityCommon::INITIAL_HANDLE),
+cardNumFrameImg_(UtilityCommon::INITIAL_HANDLE),
+cardNumMaskImg_(UtilityCommon::INITIAL_HANDLE),
+cardNumBgImg_(UtilityCommon::INITIAL_HANDLE),
+fontHandle_(UtilityCommon::INITIAL_HANDLE),
+reloadFontHandle_(UtilityCommon::INITIAL_HANDLE),
+imgRevolverArrow_(UtilityCommon::INITIAL_HANDLE)
 {
-	int i = -1;
-	//複数画像はコンストラクタで初期化必須
-	cardNoImg_ = &i;
 
 }
 
@@ -49,7 +52,7 @@ void PlayerCardUI::Load(void)
 	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
 	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
-	reloadGage_ = res.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
+	reloadGauge_ = res.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
 	reloadFrame_ = res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
 	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
 	cardNumFrameImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
@@ -62,8 +65,7 @@ void PlayerCardUI::Load(void)
 	soundMng_.LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
 	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
-	imgRevolverArrowLeft_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
-	imgRevolverArrowRight_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_R_ARROW).handleId_;
+	imgRevolverArrow_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
 
 }
 void PlayerCardUI::Init(void)
@@ -691,10 +693,10 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 
 	//リボルバー回転方向の左方向矢印の描画
 	DrawRotaGraphF(REVOLVER_ARROW_L_POS.x, REVOLVER_ARROW_L_POS.y
-		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_L_ANGLE), imgRevolverArrowLeft_, true);
+		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_L_ANGLE), imgRevolverArrow_, true);
 	//リボルバー回転方向の右方向矢印の描画
 	DrawRotaGraphF(REVOLVER_ARROW_R_POS.x, REVOLVER_ARROW_R_POS.y
-		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_R_ANGLE), imgRevolverArrowRight_, true);
+		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(-REVOLVER_ARROW_L_ANGLE), imgRevolverArrow_, true,true,false);
 
 	Vector2F btnPos = REVOLVER_ARROW_L_POS;
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + REVOLVER_BTN_ARROW_OFFSET;

@@ -1,0 +1,76 @@
+IsGameEnd
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+SetLoadedSoundsVolume call:[SetSystemVolume] noreturn:[SetSystemVolume]
+GetSoundTypeVolume
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetIsFullScreen
+IsAllDirectEaseEnd
+GetIsYes
+GetSelectMenuNum
+QuadFunc call:[powf,return]
+CubicFunc call:[powf,return]
+SinFunc call:[sin] noreturn:[sin]
+CosFunc call:[cos]
+TitleScene call:[bind]
+TitleScene call:[Stop] noreturn:[Stop]
+Load call:[CreateFontToHandle,GetInstance,Load,LoadFont,LoadResource,c_str]
+Init call:[AddMenu,ChangeState,GetInstance,IsGameEnd,Play,UpdateEase,UpdateExitMenu,UpdateMenu,UpdateScreen,UpdateSelectGame,emplace_back] noreturn:[IsGameEnd,Play,UpdateEase,UpdateExitMenu,UpdateMenu,UpdateScreen,UpdateSelectGame,emplace_back]
+ChangeState call:[SetYesNoUpdate] noreturn:[SetYesNoUpdate]
+NormalUpdate
+NormalDraw call:[Draw,DrawExtendGraph,DrawExtendGraphF,DrawFromCenter,DrawStringToHandle,GetInstance,GetIsFullScreen,YesNoDraw] noreturn:[DrawStringToHandle,YesNoDraw]
+OnSceneEnter call:[bind] noreturn:[bind]
+UpdateEase call:[ChangeState,EaseFunc,GetDeltaTime,GetInstance,IsAllDirectEaseEnd,UpdateDirection] noreturn:[ChangeState]
+UpdateMenu call:[AddSelectMenuNum,ChangeState,GetInstance,GetSelectMenuNum,IsTrgDown,NormalUpdate,Play,SubSelectMenuNum] noreturn:[AddSelectMenuNum,ChangeState,SubSelectMenuNum]
+UpdateScreen call:[ChangeScreenSize,ChangeState,GetInstance,GetIsYes,IsTrgDown,UpdateYesNo] noreturn:[ChangeState]
+UpdateTutorial call:[ChangeState] noreturn:[ChangeState]
+UpdateSelectGame call:[ChangeScene,GetInstance,IsPlay,Play] noreturn:[ChangeScene,Play]
+UpdateExitMenu call:[ChangeState,GetInstance,GetIsYes,IsGameEnd,IsTrgDown,UpdateYesNo] noreturn:[ChangeState,IsGameEnd]
+UpdateYesNo call:[GetInstance,IsTrgDown,Play,SetYesNoUpdate] noreturn:[SetYesNoUpdate]
+ChangeScreenSize call:[GetInstance,GetIsFullScreen,SetIsFullScreen] noreturn:[SetIsFullScreen]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SoundManager] noreturn:[SoundManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManagerS] noreturn:[InputManagerS]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ButtonUIManager] noreturn:[ButtonUIManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[DataBank] noreturn:[DataBank]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy

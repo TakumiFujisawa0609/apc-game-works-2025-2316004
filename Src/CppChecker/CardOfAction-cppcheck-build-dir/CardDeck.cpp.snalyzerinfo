@@ -1,0 +1,55 @@
+IsGameEnd
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetCanPut
+GetCardDif
+InitCardDif
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+CardDeck
+CardDeck call:[clear] noreturn:[clear]
+Load
+Init call:[AddDrawPile,GetCardDatas,GetInstance,size] noreturn:[AddDrawPile]
+CardUseUpdate call:[CompareCards,GetInstance] noreturn:[CompareCards]
+CardCharge
+EraseHandCard call:[EraseVectorArray,GetInstance,LoseInitPutCardPow,clear] noreturn:[LoseInitPutCardPow]
+CardMoveRight call:[CardMoveLimit] noreturn:[CardMoveLimit]
+CardMoveLeft call:[CardMoveLimit] noreturn:[CardMoveLimit]
+Update
+Draw
+AddDrawPile call:[emplace_back,move] noreturn:[emplace_back]
+AddDuelDeck call:[emplace_back,move] noreturn:[emplace_back]
+MoveUsingCardToDrawPile call:[DrawCardFromDeck,EraseVectorArray,emplace_back,move,size] noreturn:[DrawCardFromDeck]
+MoveUsingCardToDuelDeck call:[DrawCardFromDeck,EraseVectorArray,emplace_back,move,size] noreturn:[DrawCardFromDeck]
+ClearDuelDeck call:[clear] noreturn:[clear]
+DrawCardFromDeck call:[GetCardStatus,GetInstance,JudgeIsFirstAtk,PutCard] noreturn:[PutCard]
+GetHandCardType call:[GetCardStatus,emplace_back] noreturn:[emplace_back]
+GetDrawCardType call:[GetCardStatus]
+Reload call:[CardBase,clear,deckPtr,emplace_back,move] noreturn:[emplace_back]
+MoveChargeToUsingCard call:[GetInstance,LoseInitPutCardPow,clear,emplace_back,move,size] noreturn:[LoseInitPutCardPow]
+DicideDuelDeck call:[AddDuelDeck,GetRand] noreturn:[AddDuelDeck]
+CardMoveLimit call:[size]
+IsCardFailure call:[GetInstance,GetResult]
+IsNone call:[GetInstance,GetResult]
+IsCardWin call:[GetInstance,GetResult]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[CardSystem] noreturn:[CardSystem]
+GetInstance call:[assert]
+Destroy

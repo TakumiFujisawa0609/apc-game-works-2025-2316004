@@ -48,7 +48,8 @@ std::vector<CardBase::CARD_STATUS> DataBank::GetCardDatas(const CHARACTER_TYPE _
 
 DataBank::DataBank(void):
 	maxPlayerNum_(),
-	playerNum_()
+	playerNum_(),
+	isFullScreen_(false)
 {
 
 }

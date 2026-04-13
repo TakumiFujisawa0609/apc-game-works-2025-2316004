@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="13541074979233657471">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/UtilityCommon.h&quot; not found." verbose="Include file: &quot;../Utility/UtilityCommon.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2.h&quot; not found." verbose="Include file: &quot;../Common/Vector2.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="3" column="2"/>
+        </error>
+        <error id="normalCheckLevelMaxBranches" severity="information" msg="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." verbose="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="0" column="0"/>
+        </error>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;MenuController::DrawFromCenter&apos;" verbose="Unused private function: &apos;MenuController::DrawFromCenter&apos;" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="235" column="22"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="175" column="7"/>
+            <symbol>MenuController::DrawFromCenter</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;easing_&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;easing_&apos; a value by passing the value to the constructor in the initialization list." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="19" column="2"/>
+            <symbol>easing_</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;MenuController::AddMenu&apos; can be static." verbose="The member function &apos;MenuController::AddMenu&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="41" column="22"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="49" column="7"/>
+            <symbol>MenuController::AddMenu</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;MenuController::Update&apos; can be static." verbose="The member function &apos;MenuController::Update&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="52" column="22"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="53" column="7"/>
+            <symbol>MenuController::Update</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;MenuController::DrawFromCenter&apos; can be static." verbose="The member function &apos;MenuController::DrawFromCenter&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="235" column="22"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="175" column="7"/>
+            <symbol>MenuController::DrawFromCenter</symbol>
+        </error>
+        <error id="redundantInitialization" severity="style" msg="Redundant initialization for &apos;btnCol&apos;. The initialized value is overwritten before it is read." verbose="Redundant initialization for &apos;btnCol&apos;. The initialized value is overwritten before it is read." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="205" column="50" info="btnCol is overwritten"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="203" column="23" info="btnCol is initialized"/>
+            <symbol>btnCol</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_fontType&apos; should be passed by const reference." verbose="Parameter &apos;_fontType&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="26" column="50" info="Function parameter &apos;_fontType&apos; should be passed by const reference."/>
+            <symbol>_fontType</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_menu&apos; should be passed by const reference." verbose="Parameter &apos;_menu&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="41" column="70" info="Function parameter &apos;_menu&apos; should be passed by const reference."/>
+            <symbol>_menu</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_questionStr&apos; should be passed by const reference." verbose="Parameter &apos;_questionStr&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="175" column="51" info="Function parameter &apos;_questionStr&apos; should be passed by const reference."/>
+            <symbol>_questionStr</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;color&apos; is assigned a value that is never used." verbose="Variable &apos;color&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" line="158" column="21"/>
+            <symbol>color</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="MenuController" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" configuration="" line="6" col="1" hash="15947590991629700778"/>
+<class name="MenuController::BTN_INFO" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" configuration="" line="24" col="2" hash="4509762181322601358"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="IsAllDirectEaseEnd" lineNumber="85" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="GetIsYes" lineNumber="90" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="GetSelectMenuNum" lineNumber="110" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="LoadFont" lineNumber="26" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="AddMenu" lineNumber="41" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="Update" lineNumber="52" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="GetSizeEasingFontHandle" lineNumber="56" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="UpdateDirection" lineNumber="83" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="NormalUpdate" lineNumber="129" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="SetYesNoUpdate" lineNumber="150" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="Draw" lineNumber="156" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="YesNoDraw" lineNumber="175" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="AddSelectMenuNum" lineNumber="217" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="SubSelectMenuNum" lineNumber="226" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.cpp" functionName="DrawFromCenter" lineNumber="235" column="22"/>
+    <functioncall functionName="BLACK"/>
+    <functioncall functionName="CreateFontToHandle"/>
+    <functioncall functionName="DX_DEFAULT_FONT_HANDLE"/>
+    <functioncall functionName="DrawBox"/>
+    <functioncall functionName="DrawFormatStringToHandle"/>
+    <functioncall functionName="DrawRotaStringFToHandle"/>
+    <functioncall functionName="EaseFunc"/>
+    <functioncall functionName="FALSE"/>
+    <functioncall functionName="GetDeltaTime"/>
+    <functioncall functionName="GetDrawStringSizeToHandle"/>
+    <functioncall functionName="GetInstance"/>
+    <functioncall functionName="MenuController"/>
+    <functioncall functionName="NO"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="OUT_BACK"/>
+    <functioncall functionName="RED"/>
+    <functioncall functionName="WHITE"/>
+    <functioncall functionName="all_of"/>
+    <functioncall functionName="begin"/>
+    <functioncall functionName="c_str"/>
+    <functioncall functionName="curPos"/>
+    <functioncall functionName="emplace"/>
+    <functioncall functionName="empty"/>
+    <functioncall functionName="end"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="find"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="menuList_"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="wcslen"/>
+  </FileInfo>
+</analyzerinfo>

@@ -1,0 +1,7 @@
+ResourceData
+ResourceData
+ResourceData
+ResourceData call:[clear] noreturn:[clear]
+Load call:[AddFontResourceEx,LoadDivGraph,LoadEffekseerEffect,LoadGraph,LoadPixelShader,LoadSoundMem,LoadVertexShader,MV1LoadModel,assert,c_str] noreturn:[assert]
+Release call:[DeleteEffekseerEffect,DeleteGraph,DeleteShader,DeleteSoundMem,MV1DeleteModel,RemoveFontResourceEx,c_str] noreturn:[DeleteGraph,MV1DeleteModel]
+CopyHandle

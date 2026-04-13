@@ -1,0 +1,117 @@
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetSpeed
+GetIsTurnable
+GetIsAliveAtkCol
+SetFlinchCnt
+GetAtkStatus
+IsJumpAtkCharge
+GetJumpCardNum
+GetIsDamage
+SetIsDamage
+GetMovePow
+GetJumpPow
+JumpPowZero
+GetActionType
+GetInput
+GetAnimation
+AddMainAction
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+GetHitPoint
+GetIsHitTarget
+IsJumpAtkCharge
+GetJumpCardNum
+ChangeComboAction
+GetCharaTag
+GetCharaType
+GetRotation
+JumpPowZero
+GetStatus
+GetFootSEDisCount
+GetFootSE
+GetMovedPos
+GetIsEndDirect
+GetHand
+PlayerOnHit call:[CollChara,CollNormalAttack,CollRoarAttack,CollRock,CollStage] noreturn:[CollChara,CollNormalAttack,CollRoarAttack,CollRock,CollStage]
+PlayerOnHit call:[clear] noreturn:[clear]
+Load
+Init
+CollChara call:[Distance,GetCardAction,GetGeometry,GetMoveVec,GetParentCharacter,GetRadius,GetTags,GetTransform,VAdd,VScale,abs,any_of,lock] noreturn:[VAdd]
+CollNormalAttack call:[ChangeAction,Damage,GetAtkStatus,GetCharaTag,GetInstance,GetIsDamage,GetMainAction,GetParentCharacter,Play,SetIsDamage,SetUsedCard,lock] noreturn:[ChangeAction]
+CollRoarAttack call:[ChangeAction,Damage,GetCharaTag,GetIsDamage,GetParentCharacter,SetFlinchCnt,SetIsDamage,lock] noreturn:[ChangeAction]
+CollRock call:[ChangeAction,Damage,GetInstance,GetIsDamaged,GetParent,Play,SetIsDamaged,lock] noreturn:[ChangeAction]
+DrawDebug
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy

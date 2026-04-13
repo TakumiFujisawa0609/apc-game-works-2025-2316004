@@ -1,0 +1,182 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+IsGameEnd
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+SetLoadedSoundsVolume call:[SetSystemVolume] noreturn:[SetSystemVolume]
+GetSoundTypeVolume
+GetIsFullScreen
+GetSpeed
+GetIsTurnable
+GetIsAliveAtkCol
+SetFlinchCnt
+GetAtkStatus
+IsJumpAtkCharge
+GetJumpCardNum
+GetIsDamage
+SetIsDamage
+GetMovePow
+GetJumpPow
+JumpPowZero
+GetActionType
+GetInput
+GetAnimation
+AddMainAction
+GetCardStatus
+SetIsWin
+SetIsUsed
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+GetHitPoint
+GetIsHitTarget
+IsJumpAtkCharge
+GetJumpCardNum
+ChangeComboAction
+GetCharaTag
+GetCharaType
+GetRotation
+JumpPowZero
+GetStatus
+GetFootSEDisCount
+GetFootSE
+GetMovedPos
+GetIsEndDirect
+GetHand
+OnHit
+GetHand
+GetIsRoar
+GetCanPut
+GetCardDif
+InitCardDif
+GameScene call:[CreateInstance,GetInstance,MakeScreen,ReleaseCardData,bind] noreturn:[ReleaseCardData]
+GameScene call:[Destroy,GetInstance,Release] noreturn:[Destroy]
+Load call:[CreateFontToHandle,GetInstance,Load,c_str] noreturn:[Load]
+Init call:[ChangeClearDirection,ChangeDirection,ChangeFade,ChangeNone,ChangeNormal,ChangeOverDirection,ChangeSlow,ChangeSub,ChangeUpdatePhase,GetCamera,GetInstance,Init,LoadResource,MakeColliderGeometry,Play,SetSystemVolume,lock] noreturn:[ChangeClearDirection,ChangeDirection,ChangeFade,ChangeNone,ChangeNormal,ChangeOverDirection,ChangeSlow,SetSystemVolume]
+CheckSkip call:[ChangeUpdatePhase,Fade,GetDeltaTime,GetInstance,GetIsEndFade,IsPadBtnNew,SetSkipPer,Skip] noreturn:[GetDeltaTime,Skip]
+NoneUpdate
+FadeUpdate call:[ChangeUpdatePhase,Fade,GetIsEndFade] noreturn:[ChangeUpdatePhase]
+NormalUpdate call:[ChangeUpdatePhase,CompareCards,DebagUpdate,GetInstance,IsSceneChageClearCondition,IsSceneChangeGameOverCondition,IsTrgDown,PushScene,Sweep,Update] noreturn:[DebagUpdate]
+NormalDraw call:[DebagDraw,Draw,Draw2D,GetInstance] noreturn:[DebagDraw]
+DirectionDraw call:[DirectionDraw,Draw,GetInstance] noreturn:[DirectionDraw]
+ChangeUpdatePhase
+ChangeNone
+ChangeFade call:[ChangeMode,FadeUpdate,GetCamera,StartFadeIn,lock] noreturn:[FadeUpdate]
+ChangeDirection call:[ChangeCharacterDirectionUpdate,DirectionDraw,DirectionUpdate,GetInstance] noreturn:[DirectionDraw,DirectionUpdate]
+ChangeClearDirection call:[ChangeCharacterClearDirection,ChangePhase,ChangeSub,ClearDirectionUpdate,DirectionDraw,GetCamera,GetInstance,lock] noreturn:[ClearDirectionUpdate,DirectionDraw]
+ChangeOverDirection call:[ChangeCharacterOverDirection,ChangeSub,DirectionDraw,GetCamera,GetInstance,OverDirectionUpdate,lock] noreturn:[DirectionDraw,OverDirectionUpdate]
+ChangeNormal call:[ChangeCharacterNormalUpdate,ChangeSub,GetCamera,GetInstance,NormalDraw,NormalUpdate,lock] noreturn:[NormalDraw,NormalUpdate]
+ChangeSlow call:[ChangeCharacterNormalUpdate,GetInstance,SlowUpdate] noreturn:[SlowUpdate]
+DirectionUpdate call:[ChangeUpdatePhase,CheckSkip,DirectionUpdate,GetCamera,GetFader,GetInstance,GetState,IsEndDirectionMode,Update,lock] noreturn:[Update]
+ClearDirectionUpdate call:[ChangeScene,GetInstance,GetIsEndClearDirection,Update] noreturn:[ChangeScene,Update]
+OverDirectionUpdate call:[ChangeScene,GetInstance,GetIsEndOverDirection,Update] noreturn:[ChangeScene,Update]
+SlowUpdate call:[NormalUpdate] noreturn:[NormalUpdate]
+OnSceneEnter call:[ChangeDirection] noreturn:[ChangeDirection]
+Skip call:[StartFadeOut]
+DebagUpdate call:[ChangeUpdatePhase,GetInstance,IsTrgDown] noreturn:[ChangeUpdatePhase]
+DebagDraw
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Camera] noreturn:[Camera]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ButtonUIManager] noreturn:[ButtonUIManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[UIManager] noreturn:[UIManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[CollisionManager] noreturn:[CollisionManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[CharacterManager] noreturn:[CharacterManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SoundManager] noreturn:[SoundManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[DataBank] noreturn:[DataBank]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[CardSystem] noreturn:[CardSystem]
+GetInstance call:[assert]
+Destroy

@@ -1,0 +1,50 @@
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+IsGameEnd
+SceneBase
+SceneBase call:[DeleteFontToHandle] noreturn:[DeleteFontToHandle]
+Load
+Init
+Update call:[updateFunc_]
+Draw call:[drawFunc_]
+LoadingUpdate call:[GetASyncLoadNum,Init,IsTimeOver,OnSceneEnter,SetIsSceneChange,SetUseASyncLoadFlag,StartFadeIn] noreturn:[OnSceneEnter]
+NormalUpdate
+LoadingDraw call:[DrawNowLoading] noreturn:[DrawNowLoading]
+NormalDraw
+OnSceneEnter
+DrawNowLoading call:[DrawStringToHandle,GetTotalTime,c_str] noreturn:[DrawStringToHandle]
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

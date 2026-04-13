@@ -1,0 +1,56 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Transform call:[MGetIdent,Quaternion]
+Transform call:[MGetIdent,Quaternion]
+Transform
+Update call:[MGetIdent,MGetScale,MGetTranslate,MMult,MV1RefreshCollInfo,MV1SetMatrix,Mult,ToEuler,ToMatrix,VAdd] noreturn:[MV1RefreshCollInfo,MV1SetMatrix]
+SetModel
+GetForward call:[GetDir] noreturn:[GetDir]
+GetBack call:[GetDir] noreturn:[GetDir]
+GetRight call:[GetDir] noreturn:[GetDir]
+GetLeft call:[GetDir] noreturn:[GetDir]
+GetUp call:[GetDir] noreturn:[GetDir]
+GetDown call:[GetDir] noreturn:[GetDir]
+GetDir call:[PosAxis] noreturn:[PosAxis]

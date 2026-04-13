@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="18164523302923764863">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Transform.h&quot; not found." verbose="Include file: &quot;../Object/Common/Transform.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Geometry/Geometry.h&quot; not found." verbose="Include file: &quot;../Object/Common/Geometry/Geometry.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Collider.h&quot; not found." verbose="Include file: &quot;../Object/Common/Collider.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility3D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility3D.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.h" line="6" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Template/Singleton.h&quot; not found." verbose="Include file: &quot;../Template/Singleton.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.h" line="7" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Collider.h&quot; not found." verbose="Include file: &quot;../Object/Common/Collider.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.h" line="8" column="2"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;ret&apos; can be reduced." verbose="The scope of the variable &apos;ret&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="131" column="7"/>
+            <symbol>ret</symbol>
+        </error>
+        <error id="useStlAlgorithm" severity="style" msg="Consider using std::all_of or std::none_of algorithm instead of a raw loop." verbose="Consider using std::all_of or std::none_of algorithm instead of a raw loop." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="200" column="2"/>
+        </error>
+        <error id="useStlAlgorithm" severity="style" msg="Consider using std::all_of or std::none_of algorithm instead of a raw loop." verbose="Consider using std::all_of or std::none_of algorithm instead of a raw loop." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="203" column="3"/>
+        </error>
+        <error id="useStlAlgorithm" severity="style" msg="Consider using std::all_of or std::none_of algorithm instead of a raw loop." verbose="Consider using std::all_of or std::none_of algorithm instead of a raw loop." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="232" column="3"/>
+        </error>
+        <error id="useStlAlgorithm" severity="style" msg="Consider using std::all_of or std::none_of algorithm instead of a raw loop." verbose="Consider using std::all_of or std::none_of algorithm instead of a raw loop." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="246" column="3"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;ret&apos; is assigned a value that is never used." verbose="Variable &apos;ret&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="131" column="11"/>
+            <symbol>ret</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;notHitTags1&apos; is assigned a value that is never used." verbose="Variable &apos;notHitTags1&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="225" column="26"/>
+            <symbol>notHitTags1</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;notHitTags2&apos; is assigned a value that is never used." verbose="Variable &apos;notHitTags2&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" line="226" column="26"/>
+            <symbol>notHitTags2</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="AddCollider" lineNumber="8" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="Sweep" lineNumber="18" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="Update" lineNumber="31" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="IsPlayer" lineNumber="91" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="IsItem" lineNumber="96" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="IsWithInHitRange" lineNumber="128" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="JudgeIsCollision" lineNumber="183" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="JudgeIsColTag" lineNumber="260" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="IsCollision" lineNumber="277" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Game/CollisionManager.cpp" functionName="GetTopTags" lineNumber="300" column="33"/>
+    <functioncall functionName="CAMERA"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="CollisionManager"/>
+    <functioncall functionName="ENEMY1"/>
+    <functioncall functionName="GetColPos"/>
+    <functioncall functionName="GetGeometry"/>
+    <functioncall functionName="GetNotHitTags"/>
+    <functioncall functionName="GetTags"/>
+    <functioncall functionName="GetTopTags"/>
+    <functioncall functionName="HitAfter"/>
+    <functioncall functionName="IsCollision"/>
+    <functioncall functionName="IsDead"/>
+    <functioncall functionName="IsHit"/>
+    <functioncall functionName="IsItem"/>
+    <functioncall functionName="IsPlayer"/>
+    <functioncall functionName="IsWithInHitRange"/>
+    <functioncall functionName="JUMP_ATK"/>
+    <functioncall functionName="JudgeIsCollision"/>
+    <functioncall functionName="NML_ATK"/>
+    <functioncall functionName="NotHit"/>
+    <functioncall functionName="OnHit"/>
+    <functioncall functionName="PLAYER1"/>
+    <functioncall functionName="ROAR_ATK"/>
+    <functioncall functionName="ROCK"/>
+    <functioncall functionName="STAGE"/>
+    <functioncall functionName="SqrMagnitude"/>
+    <functioncall functionName="TAG"/>
+    <functioncall functionName="at"/>
+    <functioncall functionName="begin"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="empty"/>
+    <functioncall functionName="end"/>
+    <functioncall functionName="erase"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="lock"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="remove_if"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="sort"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="weak_ptr"/>
+  </FileInfo>
+</analyzerinfo>

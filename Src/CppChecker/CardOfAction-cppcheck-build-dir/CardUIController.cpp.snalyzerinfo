@@ -1,0 +1,57 @@
+GetCardStatus
+SetIsWin
+SetIsUsed
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetCenterPos
+GetScl
+GetCurrentAngle
+GetSclCnt
+GetDecisionCnt
+GetStatus
+SetCurrentAngle
+SetDecisionCount
+SetStatus
+SetTypeImg
+SetBaseCardPos
+GetState
+GetReactCount
+CardUIController
+CardUIController
+Load call:[Load] noreturn:[Load]
+Init call:[Init,MakeCardUIImg] noreturn:[Init]
+Update call:[Update] noreturn:[Update]
+Draw call:[Draw] noreturn:[Draw]
+DrawReloadGauge call:[DrawReloadGauge] noreturn:[DrawReloadGauge]
+SelectCardDrawFrame call:[DrawSelectedFrame] noreturn:[DrawSelectedFrame]
+DrawSelectCard call:[DrawSelectCard] noreturn:[DrawSelectCard]
+DecisionMove call:[EaseFunc]
+ReactMove call:[EaseFunc]
+ReactUpdate call:[DecisionMove,ReactMove]
+MoveOnRevolver call:[EaseFuncRad,cos,sin]
+MoveUpDown call:[sin]
+ChangeDicisionEnemyCardMove
+SyncCardAngleAndPos call:[cos,sin]
+SetStartAndGoalAngle
+SetStartAngle
+ResetCount
+EraseUsedCard call:[EaseFunc]
+InitCard call:[cos,sin]
+ChangeUsedCard
+ChangeReactCard
+ChangeUsing
+MakeCardUIImg call:[DrawExtendGraphF,DrawGraph,GetGraphSizeF,MakeScreen,SetDrawScreen]

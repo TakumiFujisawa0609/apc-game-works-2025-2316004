@@ -1,0 +1,33 @@
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetAxis
+Model call:[memset,sizeof] noreturn:[memset]
+Model call:[memset,sizeof] noreturn:[memset]
+Model call:[HitAfter] noreturn:[HitAfter]
+Draw
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit
+IsHit
+IsHit call:[GetColPos,GetParentModel,GetRadius,MV1CollCheck_Sphere,SetHitInfo] noreturn:[SetHitInfo]
+IsHit call:[GetParentModel,GetPosPoint1,GetPosPoint2,GetRadius,MV1CollCheck_Capsule,SetHitInfo] noreturn:[SetHitInfo]
+IsHit call:[GetParentModel,GetPosPoint1,GetPosPoint2,MV1CollCheck_Line,MV1CollCheck_LineDim,SetHitInfo,SetHitLineInfo] noreturn:[SetHitInfo]
+HitAfter call:[MV1CollResultPolyDimTerminate,memset,sizeof] noreturn:[memset]

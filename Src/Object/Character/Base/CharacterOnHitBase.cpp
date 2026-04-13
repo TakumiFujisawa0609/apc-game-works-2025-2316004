@@ -24,7 +24,9 @@ CharacterOnHitBase::CharacterOnHitBase(CharacterBase& _chara, VECTOR& _movedPos,
 	colParam_(_colParam),
 	action_(_action),
 	trans_(_trans),
-	hitPoint_({})
+	hitPoint_(),
+	isHitTarget_(false),
+	bodyRadius_()
 {
 }
 

@@ -1,0 +1,33 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+Init global:[INPUTABLE_STICK_SIZE] call:[ResetTable]
+Update call:[GetHitKeyStateAll,GetJoypadInputState,GetJoypadXInputState,GetMouseInput,at,contains]
+Release
+IsTrgDown call:[at,contains] noreturn:[at]
+IsPressed call:[at] noreturn:[at]
+ResetTable
+GetLStickDeg call:[GetKnockLStickSize,atan2]
+GetRStickDeg call:[GetKnockRStickSize,atan2]
+GetKnockLStickSize call:[GetInstance,GetJPadInputState,Vector2] noreturn:[Vector2]
+GetKnockRStickSize call:[GetInstance,GetJPadInputState,Vector2] noreturn:[Vector2]
+InputManagerS
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManagerS] noreturn:[InputManagerS]
+GetInstance call:[assert]
+Destroy

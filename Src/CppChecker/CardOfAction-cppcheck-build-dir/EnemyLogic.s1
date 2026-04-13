@@ -1,0 +1,15 @@
+CheckAct
+GetDir
+GetIsAct
+GetAttackType
+SetMoveDir
+SetDir
+IsActioningSet
+SetFreezeCntByAttackType
+GetTargetCharacter
+EnemyLogic
+EnemyLogic
+Init
+Update call:[DecideAction,GetDeltaTime,GetMoveVec,GetTargetDis,GetTransform,lock]
+DecideAction call:[GetRand,GetTargetDis]
+SetFreezeCntByAttackType

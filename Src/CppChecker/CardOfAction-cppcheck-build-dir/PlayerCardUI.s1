@@ -1,0 +1,113 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetCardStatus
+SetIsWin
+SetIsUsed
+GetCenterPos
+GetScl
+GetCurrentAngle
+GetSclCnt
+GetDecisionCnt
+GetStatus
+SetCurrentAngle
+SetDecisionCount
+SetStatus
+SetTypeImg
+SetBaseCardPos
+GetState
+GetCanPut
+GetCardDif
+InitCardDif
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+SetReloadCount
+GetSelectState
+ChangeNone
+ChangeLeft
+ChangeRight
+ChangeDecision
+ChangeReloadWait
+UpdateNone
+UpdateLeft
+UpdateRight
+UpdateDecision
+UpdateReloadWait
+PlayerCardUI
+PlayerCardUI call:[clear] noreturn:[clear]
+Load call:[CreateFontToHandle,GetInstance,Load,LoadResource,c_str]
+Init call:[AddCardUIData,AddConstBuf,AddTextureBuf,ChangeDecision,ChangeLeft,ChangeNone,ChangeReload,ChangeReloadWait,ChangeRight,ChangeSelectState,InitCardUI,MakeSquareVertex,SetBasePosVisibleCards] noreturn:[ChangeDecision,ChangeLeft,ChangeNone,ChangeReload,ChangeReloadWait,ChangeRight,SetBasePosVisibleCards]
+Update call:[MoveUpDownVisibleCards,ReactMoveCard,SetConstBuf,Update,size] noreturn:[ReactMoveCard]
+Draw call:[Draw,DrawArrowAndBotton,DrawExtendGraphF,DrawFormatStringFToHandle,DrawReloadGauge,DrawSelectCard,DrawStringCenter,GetCenterPos,GetSearchHandIt,GetStatus,SelectCardDrawFrame,end,size] noreturn:[DrawArrowAndBotton,DrawStringCenter,SelectCardDrawFrame]
+InitCardUI call:[GetScl,Init,InitCard,Load,advance,begin,clear,emplace_back,empty,end,prev] noreturn:[begin,emplace_back]
+AddCardUIData call:[AddCardUi,GetCardDatas,GetInstance,size] noreturn:[AddCardUi]
+ChangeNone call:[SetStartAndGoalAngle,UpdateNone] noreturn:[SetStartAndGoalAngle,UpdateNone]
+ChangeLeft call:[AddHandCurrent,ChangeSelectState,GetCurrentAngle,Play,SetCurrentAngle,SetStartAndGoalAngle,UpdateLeft,begin,emplace_back,end,size] noreturn:[SetStartAndGoalAngle,UpdateLeft,begin]
+ChangeRight call:[ChangeSelectState,GetCurrentAngle,Play,SetCurrentAngle,SetStartAndGoalAngle,SubHandCurrent,UpdateRight,begin,emplace_front,end,size] noreturn:[SetStartAndGoalAngle,UpdateRight,end]
+ChangeDecision call:[ChangeSelectState,ChangeUsing,DecideGoalAngle,EraseHandCard,GetState,GetStatus,SetDecisionCount,UpdateDecision,UpdateVisibleCard,emplace_back] noreturn:[SetDecisionCount,UpdateDecision]
+ChangeReloadWait call:[UpdateReloadWait] noreturn:[UpdateReloadWait]
+ChangeReload call:[UpdateReload,clear,end,prev] noreturn:[UpdateReload]
+UpdateNone
+UpdateLeft call:[ChangeSelectState,MoveCardAll,SetBasePosVisibleCards,pop_front] noreturn:[MoveCardAll]
+UpdateRight call:[ChangeSelectState,MoveCardAll,SetBasePosVisibleCards,pop_back] noreturn:[MoveCardAll]
+UpdateDecision call:[ChangeSelectState,DecisionMoveCardAll,GetDecisionCnt,GetVisibleCurrentIt,MoveOnRevolver,SetBasePosActionCards,SetBasePosVisibleCards,begin,end,find_if] noreturn:[ChangeSelectState,MoveOnRevolver]
+UpdateReloadWait call:[ChangeSelectState]
+UpdateReload call:[ChangeSelectState,MoveCardAll,ReloadAnimation,SetBasePosVisibleCards,begin,empty] noreturn:[ChangeSelectState,MoveCardAll,begin]
+MoveCardAll call:[MoveOnRevolver] noreturn:[MoveOnRevolver]
+UpdateDrawCardUI call:[Update] noreturn:[Update]
+SetBasePosVisibleCards call:[SetBaseCardPos,SetStartAngle] noreturn:[SetStartAngle]
+DrawCardNum
+UpdateVisibleCard call:[GetVisibleCurrentIt,SetCurrentAngle,begin,emplace_back,end,size] noreturn:[begin,emplace_back]
+EraseHandCard call:[GetSearchHandIt,GetVisibleCurrentIt,end,erase,next] noreturn:[erase]
+DecideGoalAngle call:[GetCurrentAngle,GetVisibleCurrentIt,SetStartAndGoalAngle,end,next] noreturn:[SetStartAndGoalAngle]
+ReloadAnimation call:[MoveOnRevolver,Play,ReloadCardArray,ResetCount,SetCurrentAngle,SetStartAndGoalAngle,begin,emplace_front,end,pop_back,prev,size] noreturn:[pop_back,prev]
+ReloadCardArray call:[ResetCount,SetCurrentAngle,begin,emplace_front,end,find] noreturn:[emplace_front]
+MoveUpDownVisibleCards call:[MoveUpDown] noreturn:[MoveUpDown]
+DrawArrowAndBotton call:[Deg2RadF,DrawFromCenter,DrawRotaGraphF,GetInstance] noreturn:[DrawFromCenter]
+GetVisibleCurrentIt call:[begin,end] noreturn:[end]
+GetSearchHandIt call:[begin,end] noreturn:[end]
+CreateInstance call:[CardSystem] noreturn:[CardSystem]
+GetInstance call:[assert]
+Destroy

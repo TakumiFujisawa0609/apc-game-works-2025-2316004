@@ -1,0 +1,6 @@
+EnemyHpUI
+EnemyHpUI
+Load call:[Load]
+Init call:[AddConstBuf,AddTextureBuf,Init,MakeSquareVertex] noreturn:[MakeSquareVertex]
+Update call:[SetConstBuf,SetPos,Update] noreturn:[SetConstBuf]
+Draw call:[Draw,DrawExtendGraphF] noreturn:[DrawExtendGraphF]

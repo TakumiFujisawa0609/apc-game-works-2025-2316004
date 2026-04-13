@@ -1,0 +1,12 @@
+AddCollider call:[GetTopTags,begin,end,push_back,sort] noreturn:[sort]
+Sweep call:[IsDead,begin,end,erase,remove_if] noreturn:[IsDead,erase]
+Update call:[GetGeometry,GetTopTags,HitAfter,IsCollision,JudgeIsCollision,OnHit,empty,size] noreturn:[HitAfter]
+IsPlayer
+IsItem call:[IsPlayer] noreturn:[IsPlayer]
+CollisionManager
+CollisionManager call:[clear] noreturn:[clear]
+IsWithInHitRange call:[GetColPos,GetGeometry,GetTags,SqrMagnitude,at,lock]
+JudgeIsCollision call:[GetNotHitTags,GetTags,IsWithInHitRange]
+JudgeIsColTag call:[IsItem]
+IsCollision call:[GetGeometry,IsHit,NotHit,lock] noreturn:[NotHit]
+GetTopTags call:[GetTags,begin,lock] noreturn:[begin]

@@ -1,0 +1,95 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+SetLoadedSoundsVolume call:[SetSystemVolume] noreturn:[SetSystemVolume]
+GetSoundTypeVolume
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+IsGameEnd
+GameOverScene call:[ChangeMode,GetCamera,GetInstance,bind,lock] noreturn:[ChangeMode]
+GameOverScene call:[Stop] noreturn:[Stop]
+Load call:[CreateFontToHandle,GetInstance,Load,LoadResource,c_str] noreturn:[LoadResource]
+Init call:[GetInstance,Play,SetSystemVolume] noreturn:[SetSystemVolume]
+NormalUpdate call:[ChangeScene,GetInstance,IsTrgDown] noreturn:[ChangeScene]
+NormalDraw call:[DrawExtendGraph,DrawStringCenter] noreturn:[DrawStringCenter]
+OnSceneEnter call:[bind] noreturn:[bind]
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManagerS] noreturn:[InputManagerS]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SoundManager] noreturn:[SoundManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Camera] noreturn:[Camera]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

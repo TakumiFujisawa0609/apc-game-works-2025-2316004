@@ -1,0 +1,17 @@
+IsAllDirectEaseEnd
+GetIsYes
+GetSelectMenuNum
+MenuController
+MenuController
+LoadFont call:[CreateFontToHandle,c_str,empty]
+AddMenu call:[emplace] noreturn:[emplace]
+Update
+GetSizeEasingFontHandle call:[CreateFontToHandle,EaseFunc,GetDeltaTime,GetInstance,c_str,end,find]
+UpdateDirection call:[EaseFunc,GetDeltaTime,GetInstance,all_of,begin,end] noreturn:[GetDeltaTime]
+NormalUpdate call:[EaseFunc,GetDeltaTime,GetInstance] noreturn:[EaseFunc]
+SetYesNoUpdate
+Draw call:[DrawFormatStringToHandle,c_str] noreturn:[DrawFormatStringToHandle]
+YesNoDraw call:[DrawBox,DrawFormatStringToHandle,c_str,size] noreturn:[DrawFormatStringToHandle]
+AddSelectMenuNum call:[size]
+SubSelectMenuNum call:[size]
+DrawFromCenter call:[DrawRotaStringFToHandle,GetDrawStringSizeToHandle,c_str,wcslen] noreturn:[DrawRotaStringFToHandle]

@@ -1,4 +1,5 @@
 #include "../pch.h"
+#include "../Utility/UtilityCommon.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Application.h"
 #include "../Manager/Generic/InputManager.h"
@@ -9,16 +10,22 @@
 #include "HpUIBase.h"
 
 HpUIBase::HpUIBase(void):
-	//hpPer_(1.0f),
-	//preHp_(1.0f),
-	hpData_{1.0f,1.0f},
+	hpData_(),
 	waitCnt_(WAIT_TIME),
 	resMng_(ResourceManager::GetInstance()),
-	barCoverPos_({}),
-	barPos_({}),
+	barCoverPos_(),
+	barPos_(),
 	initBarPos_(barPos_),
 	initCoverPos_(barCoverPos_),
-	hpDis_()
+	hpDis_(),
+	barCoverHandle_(UtilityCommon::INITIAL_HANDLE),
+	barFrame_(),
+	hpMask_(UtilityCommon::INITIAL_HANDLE),
+	arcOutLineImg_(UtilityCommon::INITIAL_HANDLE),
+	lineOutLineImg_(UtilityCommon::INITIAL_HANDLE),
+	lerpCnt_(),
+	shakeCnt_()
+
 {
 }
 

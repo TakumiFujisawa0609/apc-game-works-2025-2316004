@@ -1,0 +1,8 @@
+HpUIBase
+HpUIBase
+Load
+Init
+Update call:[EaseFunc,GetDeltaTime,GetInstance] noreturn:[GetDeltaTime]
+SetShakeTime
+RefreshHp
+Draw

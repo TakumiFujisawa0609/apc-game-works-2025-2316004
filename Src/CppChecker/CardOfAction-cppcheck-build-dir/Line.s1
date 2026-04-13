@@ -1,0 +1,32 @@
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetAxis
+Line
+Line
+Line
+Draw call:[DrawLine3D,GetRotPos] noreturn:[DrawLine3D]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[IsHit] noreturn:[IsHit]
+IsHit call:[GetPosPoint1,GetPosPoint2,VAdd,VDot,VScale,VSub,clamp,sqrt] noreturn:[clamp]

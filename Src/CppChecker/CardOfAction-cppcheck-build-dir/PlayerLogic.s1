@@ -1,0 +1,61 @@
+GetColPos
+GetColRot
+GetLocalPosPoint1
+GetLocalPosPoint2
+GetPosPoint1 call:[GetRotPos] noreturn:[GetRotPos]
+GetPosPoint2 call:[GetRotPos] noreturn:[GetRotPos]
+SetLocalPosPoint1
+SetLocalPosPoint2
+GetRadius
+SetRadius
+GetHitLineInfo
+GetHitInfo
+GetParentModel
+SetHitLineInfo
+SetHitInfo call:[swap] noreturn:[swap]
+GetObb
+GetVecMin
+GetVecMax
+SetObb
+SetVecMin
+SetVecMax
+GetTags
+GetNotHitTags
+GetParent
+IsHit
+NotHit
+IsDead
+Kill
+Load
+Draw
+GetTransform
+GetPos
+GetAngles
+GetTargetPos
+GetQuaRot
+GetQuaRotOutX
+SetStageTransform
+IsEndDirectionMode
+GetDirectionMode
+CheckAct
+GetDir
+GetIsAct
+GetAttackType
+SetMoveDir
+SetDir
+IsActioningSet
+SetFreezeCntByAttackType
+GetTargetCharacter
+GetAct
+GetStickDeg
+PlayerLogic call:[InputAll,InputPad] noreturn:[InputAll,InputPad]
+PlayerLogic
+Init call:[GetDir] noreturn:[GetDir]
+Update
+InputKeyBoard call:[IsNew,IsTrgDown]
+InputAll call:[GetAngles,GetKnockLStickSize,GetLStickDeg,GetQuaRotOutX,IsCardLeft,IsCardRight,IsNew,IsPadBtnNew,IsPadBtnTrgDown,IsPressed,IsTrgDown,PosAxis,VNorm,lock] noreturn:[PosAxis]
+InputPad call:[GetLStickDeg,IsPressed,VNorm] noreturn:[GetLStickDeg,VNorm]
+KeyBoard
+Pad
+IsCardRight call:[IsBtnKeepPressed,IsKeyKeepPressed,IsPadBtnTrgDown,IsTrgDown]
+IsCardLeft call:[IsBtnKeepPressed,IsKeyKeepPressed,IsPadBtnTrgDown,IsTrgDown]

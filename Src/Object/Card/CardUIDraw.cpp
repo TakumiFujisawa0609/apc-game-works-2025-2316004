@@ -11,7 +11,8 @@
 CardUIDraw::CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl):
 	typeImg_(_typeImg),
 	centerPos_(_centerPos),
-	scl_(_scl)
+	scl_(_scl),
+	selectEaseCnt_()
 {
 }
 

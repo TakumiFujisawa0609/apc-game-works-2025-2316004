@@ -17,7 +17,8 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	isAliveAtkCol_(false),
 	speed_(0.0f),
 	flinchCnt_(0.0f),
-	actType_(CARD_ACT_TYPE::NONE)
+	actType_(CARD_ACT_TYPE::NONE),
+	isTargetTurn_(false)
 {
 
 

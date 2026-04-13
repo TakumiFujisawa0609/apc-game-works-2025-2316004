@@ -16,8 +16,7 @@
 
 PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck):
 	CardActionBase(_actCntl, _charaObj, _deck),
-	pushReloadCnt_(),
-	soundMng_(SoundManager::GetInstance())
+	pushReloadCnt_()
 {
 	isTurnable_ = false;
 	changeAction_={

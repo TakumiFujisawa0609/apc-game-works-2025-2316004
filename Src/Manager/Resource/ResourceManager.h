@@ -74,7 +74,6 @@ public:
 		SKIP_BUTTOM,		//スキップボタン画像
 		SKIP_BUTTOM_MASK,		//スキップボタン画像
 		CARD_REVOLVER_L_ARROW,	//カードリボルバー回転方向の左矢印
-		CARD_REVOLVER_R_ARROW,	//カードリボルバー回転方向の右矢印
 
 		INTENSIVE_LINE_1,	//集中線画像1(複数画像でアニメーション)
 		INTENSIVE_LINE_2,	//集中線画像2(複数画像でアニメーション)

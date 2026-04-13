@@ -6,7 +6,9 @@ InputManager::InputManager(void):
 	mouseInput_(-1),
 	infoEmpty_(),
 	mousePos_(),
-	padInfos_()
+	padInfos_(),
+	mouseInfos_(),
+	mouseInfoEmpty_()
 {
 }
 

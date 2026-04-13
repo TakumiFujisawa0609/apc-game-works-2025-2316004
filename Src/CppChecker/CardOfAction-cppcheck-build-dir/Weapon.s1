@@ -1,0 +1,12 @@
+GetIsDamage
+SetIsDamage
+Weapon
+Weapon
+Load call:[Add,GetInstance,Load,LoadModelDuplicate,LoadResource,SetModel] noreturn:[LoadResource]
+Init call:[Deg2RadF]
+Update call:[GetRotation,SetFrameWorldMatrix,Update] noreturn:[Update]
+Draw call:[MV1DrawModel] noreturn:[MV1DrawModel]
+SetTargetAndFrameNo
+MakeWeaponCollider call:[GetInstance,MakeCollider,Play,emplace,emplace_back,move] noreturn:[Play]
+DeleteWeaponCollider call:[DeleteCollider] noreturn:[DeleteCollider]
+OnHit call:[ChangeSub,ChangeUpdatePhase,GetCamera,GetInstance,GetIsDamage,MV1GetFramePosition,Play,SetIsDamage,SetShakeStatus,lock] noreturn:[Play]

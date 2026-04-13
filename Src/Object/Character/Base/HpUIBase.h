@@ -100,9 +100,6 @@ protected:
 	//マテリアル
 	std::unique_ptr<PixelMaterial>material_;
 
-	//イージング
-	std::unique_ptr<Easing>easing_;
-
 	//補間カウント
 	float lerpCnt_;
 

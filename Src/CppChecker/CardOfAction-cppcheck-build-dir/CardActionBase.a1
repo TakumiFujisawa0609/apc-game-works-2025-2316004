@@ -1,0 +1,574 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="451230579749434099">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility3D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility3D.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Quaternion.h&quot; not found." verbose="Include file: &quot;../Common/Quaternion.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/UtilityCommon.h&quot; not found." verbose="Include file: &quot;../Utility/UtilityCommon.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="6" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility3D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility3D.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="7" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="8" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Transform.h&quot; not found." verbose="Include file: &quot;../Object/Common/Transform.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" line="10" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="5" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/EffectController.h&quot; not found." verbose="Include file: &quot;../Object/Common/EffectController.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" line="7" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardDeck.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardDeck.h" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardDeck.h" line="4" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found." verbose="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardDeck.h" line="6" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="6" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="7" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/SoundManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/SoundManager.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="8" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Transform.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Transform.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;set&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;set&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" line="14" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" line="6" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/SoundManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/SoundManager.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardPresenter.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterOnHitBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;queue&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;queue&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" line="3" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" line="11" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" line="2" column="2"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Transform.h&quot; not found." verbose="Include file: &quot;../Object/Common/Transform.h&quot; not found.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" line="3" column="2"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;CardActionBase::isDuelWait_&apos; is not initialized in the constructor." verbose="Member variable &apos;CardActionBase::isDuelWait_&apos; is not initialized in the constructor. Member variables of native types, pointers, or references are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" line="17" column="17"/>
+            <symbol>CardActionBase::isDuelWait_</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;effect_&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;effect_&apos; a value by passing the value to the constructor in the initialization list." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" line="25" column="2"/>
+            <symbol>effect_</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="25" column="2"/>
+            <symbol>CardBase</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="20" column="2"/>
+            <symbol>Quaternion</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Transform&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Transform&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Transform.h" line="20" column="2"/>
+            <symbol>Transform</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~CardBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~CardBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="27" column="10" info="Destructor in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="42" column="11" info="Virtual destructor in base class"/>
+            <symbol>~CardBase</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="31" column="15" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="44" column="15" info="Virtual function in base class"/>
+            <symbol>Load</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Init&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Init&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="35" column="15" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="45" column="15" info="Virtual function in base class"/>
+            <symbol>Init</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="39" column="15" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="46" column="15" info="Virtual function in base class"/>
+            <symbol>Update</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="43" column="15" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="47" column="15" info="Virtual function in base class"/>
+            <symbol>Draw</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~CardDeck&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~CardDeck&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardDeck.h" line="30" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="42" column="11" info="Virtual destructor in base class"/>
+            <symbol>~CardDeck</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardDeck.h" line="60" column="7" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="46" column="15" info="Virtual function in base class"/>
+            <symbol>Update</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Draw&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardDeck.h" line="64" column="7" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="47" column="15" info="Virtual function in base class"/>
+            <symbol>Draw</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~CardSystem&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~CardSystem&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" line="99" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
+            <symbol>~CardSystem</symbol>
+        </error>
+        <error id="uselessOverride" severity="style" msg="The function &apos;IsJumpAtkCharge&apos; overrides a function in a base class but is identical to the overridden function" verbose="The function &apos;IsJumpAtkCharge&apos; overrides a function in a base class but is identical to the overridden function" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" line="36" column="24" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" line="112" column="21" info="Virtual function in base class"/>
+            <symbol>IsJumpAtkCharge</symbol>
+        </error>
+        <error id="uselessOverride" severity="style" msg="The function &apos;GetJumpCardNum&apos; overrides a function in a base class but is identical to the overridden function" verbose="The function &apos;GetJumpCardNum&apos; overrides a function in a base class but is identical to the overridden function" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" line="41" column="23" info="Function in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" line="117" column="20" info="Virtual function in base class"/>
+            <symbol>GetJumpCardNum</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_tags&apos; should be passed by const reference." verbose="Parameter &apos;_tags&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" line="32" column="52" info="Function parameter &apos;_tags&apos; should be passed by const reference."/>
+            <symbol>_tags</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_notHitTags&apos; should be passed by const reference." verbose="Parameter &apos;_notHitTags&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" line="32" column="115" info="Function parameter &apos;_notHitTags&apos; should be passed by const reference."/>
+            <symbol>_notHitTags</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_tag&apos; should be passed by const reference." verbose="Parameter &apos;_tag&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="90" column="82" info="Function parameter &apos;_tag&apos; should be passed by const reference."/>
+            <symbol>_tag</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_notHitTags&apos; should be passed by const reference." verbose="Parameter &apos;_notHitTags&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" line="90" column="155" info="Function parameter &apos;_notHitTags&apos; should be passed by const reference."/>
+            <symbol>_notHitTags</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="ActionBase::ATK_STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" configuration="" line="71" col="2" hash="9980324043077343168"/>
+<class name="AnimationController::Animation" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" configuration="" line="16" col="2" hash="18345160832387772536"/>
+<class name="CardBase::CARD_STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" configuration="" line="18" col="2" hash="1598540432162395422"/>
+<class name="Geometry::OBB" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" configuration="" line="17" col="2" hash="2816693727323549992"/>
+<class name="CardUIBase::CARD_UI_INFO" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" configuration="" line="63" col="2" hash="1679479673238653640"/>
+<class name="HP_DATA" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="8255624637055078703"/>
+<class name="CharacterOnHitBase::HIT_POINT" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterOnHitBase.h" configuration="" line="10" col="2" hash="17985927915658145947"/>
+<class name="CharacterBase::ROTATION" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" configuration="" line="75" col="2" hash="18415481554161507055"/>
+<class name="CharacterBase::STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" configuration="" line="85" col="2" hash="8041305565987413062"/>
+<class name="LogicBase::ACT_FLAG" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" configuration="" line="35" col="5" hash="16168219573089488594"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetSpeed" lineNumber="85" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetIsTurnable" lineNumber="90" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetIsAliveAtkCol" lineNumber="95" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="SetFlinchCnt" lineNumber="99" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetAtkStatus" lineNumber="104" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetIsDamage" lineNumber="121" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="SetIsDamage" lineNumber="125" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetMovePow" lineNumber="86" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetJumpPow" lineNumber="91" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="JumpPowZero" lineNumber="94" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetActionType" lineNumber="99" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetInput" lineNumber="109" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetAnimation" lineNumber="114" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="AddMainAction" lineNumber="147" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="GetCardStatus" lineNumber="48" column="28"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsWin" lineNumber="55" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsUsed" lineNumber="59" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="GetTags" lineNumber="40" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="GetNotHitTags" lineNumber="51" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="GetParent" lineNumber="56" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="IsHit" lineNumber="66" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="NotHit" lineNumber="70" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="IsDead" lineNumber="75" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="Kill" lineNumber="79" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" functionName="GetTransform" lineNumber="52" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" functionName="SetReloadCount" lineNumber="131" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" functionName="GetSelectState" lineNumber="136" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" functionName="GetCanPut" lineNumber="57" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" functionName="GetCardDif" lineNumber="82" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" functionName="InitCardDif" lineNumber="86" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetHitPoint" lineNumber="36" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetIsHitTarget" lineNumber="45" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" functionName="IsJumpAtkCharge" lineNumber="36" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" functionName="GetJumpCardNum" lineNumber="41" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetCharaTag" lineNumber="158" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetCharaType" lineNumber="163" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetRotation" lineNumber="176" column="25"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="JumpPowZero" lineNumber="197" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetStatus" lineNumber="215" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetFootSEDisCount" lineNumber="220" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetFootSE" lineNumber="225" column="34"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetMovedPos" lineNumber="241" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetIsEndDirect" lineNumber="309" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="CheckAct" lineNumber="71" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetDir" lineNumber="81" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetIsAct" lineNumber="86" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetAttackType" lineNumber="91" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetMoveDir" lineNumber="104" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="123" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="ChangeCardAction" lineNumber="33" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="AttackMotion" lineNumber="44" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="IsCardFailure" lineNumber="80" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="FinishAttack" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="FinishFailureAttack" lineNumber="103" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="SetAtk" lineNumber="118" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="ComboInput" lineNumber="127" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="ActionBase"/>
+    <functioncall functionName="ActionController"/>
+    <functioncall functionName="AddPosRotate"/>
+    <functioncall functionName="AnimationController"/>
+    <functioncall functionName="Args"/>
+    <functioncall functionName="CardActionBase"/>
+    <functioncall functionName="CardBase"/>
+    <functioncall functionName="CardDeck"/>
+    <functioncall functionName="CardSystem"/>
+    <functioncall functionName="CardUIBase"/>
+    <functioncall functionName="ChangeAction"/>
+    <functioncall functionName="ChangeComboAction"/>
+    <functioncall functionName="CharacterBase"/>
+    <functioncall functionName="CharacterOnHitBase"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="ComboInput"/>
+    <functioncall functionName="DeleteAttackCol"/>
+    <functioncall functionName="FailureCard"/>
+    <functioncall functionName="FinishCard"/>
+    <functioncall functionName="FinishFailureAttack"/>
+    <functioncall functionName="GetAnimStep"/>
+    <functioncall functionName="GetCharaTag"/>
+    <functioncall functionName="GetInput"/>
+    <functioncall functionName="GetIsAct"/>
+    <functioncall functionName="GetRotPos"/>
+    <functioncall functionName="GetTransform"/>
+    <functioncall functionName="IntVector3"/>
+    <functioncall functionName="IsActioningSet"/>
+    <functioncall functionName="IsCardFailure"/>
+    <functioncall functionName="IsEnd"/>
+    <functioncall functionName="LERP"/>
+    <functioncall functionName="LogicBase"/>
+    <functioncall functionName="MakeAttackCol"/>
+    <functioncall functionName="NONE"/>
+    <functioncall functionName="ObjectBase"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="SCREEN_HALF_X"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="T"/>
+    <functioncall functionName="Transform"/>
+    <functioncall functionName="VECTOR_ZERO"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="forward"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="pop"/>
+    <functioncall functionName="queue"/>
+    <functioncall functionName="set"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="swap"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="weak_ptr"/>
+  </FileInfo>
+  <FileInfo check="Class">
+<class name="ActionBase::ATK_STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" configuration="_DEBUG=_DEBUG" line="71" col="2" hash="9980324043077343168"/>
+<class name="AnimationController::Animation" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" configuration="_DEBUG=_DEBUG" line="16" col="2" hash="18345160832387772536"/>
+<class name="CardBase::CARD_STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" configuration="_DEBUG=_DEBUG" line="18" col="2" hash="1598540432162395422"/>
+<class name="Geometry::OBB" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" configuration="_DEBUG=_DEBUG" line="17" col="2" hash="2816693727323549992"/>
+<class name="CardUIBase::CARD_UI_INFO" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" configuration="_DEBUG=_DEBUG" line="63" col="2" hash="1679479673238653640"/>
+<class name="HP_DATA" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/UIData/CharacterUIData.h" configuration="_DEBUG=_DEBUG" line="7" col="1" hash="8255624637055078703"/>
+<class name="CharacterOnHitBase::HIT_POINT" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterOnHitBase.h" configuration="_DEBUG=_DEBUG" line="10" col="2" hash="17985927915658145947"/>
+<class name="CharacterBase::ROTATION" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" configuration="_DEBUG=_DEBUG" line="75" col="2" hash="18415481554161507055"/>
+<class name="CharacterBase::STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" configuration="_DEBUG=_DEBUG" line="85" col="2" hash="8041305565987413062"/>
+<class name="LogicBase::ACT_FLAG" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" configuration="_DEBUG=_DEBUG" line="35" col="5" hash="16168219573089488594"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetSpeed" lineNumber="85" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetIsTurnable" lineNumber="90" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetIsAliveAtkCol" lineNumber="95" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="SetFlinchCnt" lineNumber="99" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetAtkStatus" lineNumber="104" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="GetIsDamage" lineNumber="121" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/ActionBase.h" functionName="SetIsDamage" lineNumber="125" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetMovePow" lineNumber="86" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetJumpPow" lineNumber="91" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="JumpPowZero" lineNumber="94" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetActionType" lineNumber="99" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetInput" lineNumber="109" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="GetAnimation" lineNumber="114" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/ActionController.h" functionName="AddMainAction" lineNumber="147" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="GetCardStatus" lineNumber="48" column="28"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsWin" lineNumber="55" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="SetIsUsed" lineNumber="59" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="GetTags" lineNumber="40" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="GetNotHitTags" lineNumber="51" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="GetParent" lineNumber="56" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="IsHit" lineNumber="66" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="NotHit" lineNumber="70" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="IsDead" lineNumber="75" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Collider.h" functionName="Kill" lineNumber="79" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/ObjectBase.h" functionName="GetTransform" lineNumber="52" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" functionName="SetReloadCount" lineNumber="131" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardUIBase.h" functionName="GetSelectState" lineNumber="136" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" functionName="GetCanPut" lineNumber="57" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" functionName="GetCardDif" lineNumber="82" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardSystem.h" functionName="InitCardDif" lineNumber="86" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetHitPoint" lineNumber="36" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterOnHitBase.h" functionName="GetIsHitTarget" lineNumber="45" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" functionName="IsJumpAtkCharge" lineNumber="36" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.h" functionName="GetJumpCardNum" lineNumber="41" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetCharaTag" lineNumber="158" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetCharaType" lineNumber="163" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetRotation" lineNumber="176" column="25"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="JumpPowZero" lineNumber="197" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetStatus" lineNumber="215" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetFootSEDisCount" lineNumber="220" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetFootSE" lineNumber="225" column="34"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetMovedPos" lineNumber="241" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CharacterBase.h" functionName="GetIsEndDirect" lineNumber="309" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="CheckAct" lineNumber="71" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetDir" lineNumber="81" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetIsAct" lineNumber="86" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetAttackType" lineNumber="91" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetMoveDir" lineNumber="104" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="123" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="ChangeCardAction" lineNumber="33" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="AttackMotion" lineNumber="44" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="IsCardFailure" lineNumber="80" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="FinishAttack" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="FinishFailureAttack" lineNumber="103" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="SetAtk" lineNumber="118" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/CardActionBase.cpp" functionName="ComboInput" lineNumber="127" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="ActionBase"/>
+    <functioncall functionName="ActionController"/>
+    <functioncall functionName="AddPosRotate"/>
+    <functioncall functionName="AnimationController"/>
+    <functioncall functionName="Args"/>
+    <functioncall functionName="CardActionBase"/>
+    <functioncall functionName="CardBase"/>
+    <functioncall functionName="CardDeck"/>
+    <functioncall functionName="CardSystem"/>
+    <functioncall functionName="CardUIBase"/>
+    <functioncall functionName="ChangeAction"/>
+    <functioncall functionName="ChangeComboAction"/>
+    <functioncall functionName="CharacterBase"/>
+    <functioncall functionName="CharacterOnHitBase"/>
+    <functioncall functionName="Collider"/>
+    <functioncall functionName="ComboInput"/>
+    <functioncall functionName="DeleteAttackCol"/>
+    <functioncall functionName="FailureCard"/>
+    <functioncall functionName="FinishCard"/>
+    <functioncall functionName="FinishFailureAttack"/>
+    <functioncall functionName="GetAnimStep"/>
+    <functioncall functionName="GetCharaTag"/>
+    <functioncall functionName="GetInput"/>
+    <functioncall functionName="GetIsAct"/>
+    <functioncall functionName="GetRotPos"/>
+    <functioncall functionName="GetTransform"/>
+    <functioncall functionName="IntVector3"/>
+    <functioncall functionName="IsActioningSet"/>
+    <functioncall functionName="IsCardFailure"/>
+    <functioncall functionName="IsEnd"/>
+    <functioncall functionName="LERP"/>
+    <functioncall functionName="LogicBase"/>
+    <functioncall functionName="MakeAttackCol"/>
+    <functioncall functionName="NONE"/>
+    <functioncall functionName="ObjectBase"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="SCREEN_HALF_X"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="T"/>
+    <functioncall functionName="Transform"/>
+    <functioncall functionName="VECTOR_ZERO"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="forward"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="make_unique"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="override"/>
+    <functioncall functionName="pop"/>
+    <functioncall functionName="queue"/>
+    <functioncall functionName="set"/>
+    <functioncall functionName="shared_ptr"/>
+    <functioncall functionName="swap"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="weak_ptr"/>
+  </FileInfo>
+</analyzerinfo>
