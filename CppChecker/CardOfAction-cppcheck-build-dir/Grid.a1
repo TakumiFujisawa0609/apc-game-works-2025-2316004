@@ -1,52 +1,52 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="7738857163157689656">
+<analyzerinfo hash="2046517303940386647">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" line="1" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/Utility3D.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="4" column="2"/>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Init&apos; can be static." verbose="The member function &apos;Grid::Init&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" line="13" column="12"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.h" line="18" column="7"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Init&apos; can be static." verbose="The member function &apos;Grid::Init&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" line="13" column="12"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.h" line="18" column="7"/>
             <symbol>Grid::Init</symbol>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Update&apos; can be static." verbose="The member function &apos;Grid::Update&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" line="17" column="12"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.h" line="22" column="7"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Update&apos; can be static." verbose="The member function &apos;Grid::Update&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" line="17" column="12"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.h" line="22" column="7"/>
             <symbol>Grid::Update</symbol>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Draw&apos; can be static." verbose="The member function &apos;Grid::Draw&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" line="22" column="12"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.h" line="26" column="7"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Draw&apos; can be static." verbose="The member function &apos;Grid::Draw&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" line="22" column="12"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.h" line="26" column="7"/>
             <symbol>Grid::Draw</symbol>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Release&apos; can be static." verbose="The member function &apos;Grid::Release&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" line="73" column="12"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.h" line="30" column="7"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Grid::Release&apos; can be static." verbose="The member function &apos;Grid::Release&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" line="73" column="12"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.h" line="30" column="7"/>
             <symbol>Grid::Release</symbol>
         </error>
-        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="20" column="2"/>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="20" column="2"/>
             <symbol>Quaternion</symbol>
         </error>
   <FileInfo check="Class">
-<class name="Grid" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.h" configuration="" line="3" col="1" hash="14589494231133099275"/>
+<class name="Grid" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.h" configuration="" line="3" col="1" hash="14589494231133099275"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" functionName="Init" lineNumber="13" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" functionName="Update" lineNumber="17" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" functionName="Draw" lineNumber="22" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Grid.cpp" functionName="Release" lineNumber="73" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" functionName="Init" lineNumber="13" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" functionName="Update" lineNumber="17" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" functionName="Draw" lineNumber="22" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Grid.cpp" functionName="Release" lineNumber="73" column="12"/>
     <functioncall functionName="Grid"/>
     <functioncall functionName="Quaternion"/>
   </FileInfo>

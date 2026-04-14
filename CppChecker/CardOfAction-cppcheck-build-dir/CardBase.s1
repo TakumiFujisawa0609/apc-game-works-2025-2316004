@@ -1,6 +1,4 @@
 GetCardStatus
-SetIsWin
-SetIsUsed
 CardBase
 CardBase
 Load call:[GetInstance,Load]

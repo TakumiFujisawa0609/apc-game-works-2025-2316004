@@ -50,17 +50,17 @@ public:
 		ATTACK_ONE_MIDDLE,	//攻撃アクション1回目(中距離)
 		ATTACK_TWO,			//攻撃アクション2回目
 		ATTACK_THREE,		//攻撃アクション3回目
-		DUEL_FAZE,			//敵のジャンプチャージフェーズの時、カード勝負行動に出る
-		DUEL_WAIT_FAZE,		//デュエルのカード待機
-		HEAL_CARD,			//ヒールカード使用
-		MAGIC_CARD,			//マジックカード使用
-		SONIC_RAVE,			//ソニックレイヴ		
+		//DUEL_FAZE,			//敵のジャンプチャージフェーズの時、カード勝負行動に出る
+		//DUEL_WAIT_FAZE,		//デュエルのカード待機
+		//HEAL_CARD,			//ヒールカード使用
+		//MAGIC_CARD,			//マジックカード使用
+		//SONIC_RAVE,			//ソニックレイヴ		
 
 		//敵のアクション
 		STOMP_ATK,			//ひっかき攻撃
-		ROAR_ATK,			//咆哮
+		//ROAR_ATK,			//咆哮
 		JUMP_ATK,			//ジャンプ攻撃
-		RUSH_ATK,			//ロール攻撃
+		//RUSH_ATK,			//ロール攻撃
 
 		//共通
 		RELOAD, //リロード

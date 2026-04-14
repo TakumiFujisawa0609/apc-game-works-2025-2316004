@@ -31,8 +31,6 @@ void Stage::Init(void)
 	wallTrans_.pos = Utility3D::VECTOR_ZERO;
 	wallTrans_.quaRotLocal=
 		Quaternion::Euler({ 0.0f,0.0f, 0.0f });
-	constexpr float WALL_SCL = 60.0f;
-	constexpr float WALL_SCL_Y = 40.0f;
 	wallTrans_.scl= { WALL_SCL ,WALL_SCL ,WALL_SCL };
 
 	scnMng_.GetCamera().lock()->SetStageTransform(&wallTrans_);

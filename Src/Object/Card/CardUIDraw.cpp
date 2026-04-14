@@ -75,7 +75,6 @@ void CardUIDraw::Update(void)
 }
 void CardUIDraw::Draw(void)
 {
-	float totalTime = SceneManager::GetInstance().GetTotalTime();
 	normalCardPSMaterial_->SetConstBuf(1, { 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	DrawCard();
 }

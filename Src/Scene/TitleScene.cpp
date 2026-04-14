@@ -58,7 +58,6 @@ void TitleScene::Init(void)
 		{TITLE_STATE::EASE_MENU,[this]() {UpdateEase();}},
 		{TITLE_STATE::MENU,[this]() {UpdateMenu();}},
 		{TITLE_STATE::START_GAME,[this]() {UpdateSelectGame();}},
-		//{TITLE_STATE::TUTORIAL,[this]() { UpdateTutorial(); }},
 		{TITLE_STATE::EXIT_MENU,[this]() {UpdateExitMenu();}},
 		{TITLE_STATE::SCREEN,[this]() {UpdateScreen();}},
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
@@ -66,7 +65,6 @@ void TitleScene::Init(void)
 
 	buttonStrTable_ = {
 		{TITLE_BTN::START_GAME,L"START　GAME"},
-		//{TITLE_BTN::TUTORIAL,L"TUTORIAL"},
 		{TITLE_BTN::SCREEN,L"SCREEN"},																							
 		{TITLE_BTN::EXIT,L"EXIT"}
 	};
@@ -139,18 +137,18 @@ void TitleScene::NormalDraw(void)
 		std::wstring str = L"";
 		if (selectState_ == TITLE_STATE::EXIT_MENU)
 		{
-			str = L"本当にゲームを終了しますか？";
+			str = EXIT_MESSAGE;
 		}
 		else if (selectState_ == TITLE_STATE::SCREEN)
 		{
 			bool isFull = DataBank::GetInstance().GetIsFullScreen();
 			if (isFull)
 			{
-				str = L"通常スクリーンにしますか？";
+				str = CHANGE_NORMAL_SCREEN_MESSAGE;
 			}
 			else
 			{
-				str = L"フルスクリーンにしますか？";
+				str = CHANGE_FULL_SCREEN_MESSAGE;
 			}
 		}
 		menuController_->YesNoDraw(str);
@@ -163,7 +161,7 @@ void TitleScene::NormalDraw(void)
 	DrawStringToHandle(
 		static_cast<int>(strPos.x),
 		static_cast<int>(strPos.y),
-		L"決定", 
+		DECIDE_STR.c_str(),
 		UtilityCommon::WHITE, buttonFontHandle_);
 
 	//戻るボタン
@@ -172,7 +170,7 @@ void TitleScene::NormalDraw(void)
 	DrawStringToHandle(
 		static_cast<int>(strPos.x), 
 		static_cast<int>(strPos.y), 
-		L"戻る", 
+		BACK_STR.c_str(),
 		UtilityCommon::WHITE, buttonFontHandle_);
 
 }
@@ -203,15 +201,12 @@ void TitleScene::UpdateMenu(void)
 	menuController_->NormalUpdate(SELECT_EASE_DISTANCE, SELECT_EASE_TIME,Easing::EASING_TYPE::COS_BACK);
 
 	// シーン遷移
-	InputManager& ins = InputManager::GetInstance();
-	InputManagerS& insS = InputManagerS::GetInstance();
-
-	if (insS.IsTrgDown(INPUT_EVENT::UP)||ins.IsTrgDown(KEY_INPUT_W))
+	if (inputMngS_.IsTrgDown(INPUT_EVENT::UP)||inputMng_.IsTrgDown(KEY_INPUT_W))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->SubSelectMenuNum();
 	}
-	else if (insS.IsTrgDown(INPUT_EVENT::DOWN) || ins.IsTrgDown(KEY_INPUT_S))
+	else if (inputMngS_.IsTrgDown(INPUT_EVENT::DOWN) || inputMng_.IsTrgDown(KEY_INPUT_S))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->AddSelectMenuNum();
@@ -219,7 +214,7 @@ void TitleScene::UpdateMenu(void)
 	selectNum_ = menuController_->GetSelectMenuNum();
 
 	//OKボタンが押されたら
-	if (insS.IsTrgDown(INPUT_EVENT::OK))
+	if (inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
 		SoundManager::SRC se;
 		//ゲームスタート以外のボタンなら決定音、ゲームスタートならゲームスタート音を鳴らす
@@ -231,10 +226,8 @@ void TitleScene::UpdateMenu(void)
 
 void TitleScene::UpdateScreen(void)
 {
-
 	UpdateYesNo();
-	InputManagerS& insS = InputManagerS::GetInstance();
-	if (insS.IsTrgDown(INPUT_EVENT::OK))
+	if (inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
 		if (menuController_->GetIsYes())
 		{
@@ -264,8 +257,7 @@ void TitleScene::UpdateSelectGame(void)
 void TitleScene::UpdateExitMenu(void)
 {
 	UpdateYesNo();
-	InputManagerS& insS = InputManagerS::GetInstance();
-	if (insS.IsTrgDown(INPUT_EVENT::OK))
+	if (inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
 		if (menuController_->GetIsYes())
 		{
@@ -276,14 +268,12 @@ void TitleScene::UpdateExitMenu(void)
 }
 void TitleScene::UpdateYesNo(void)
 {
-	InputManagerS& insS = InputManagerS::GetInstance();
-	InputManager& ins = InputManager::GetInstance();
-	if (insS.IsTrgDown(INPUT_EVENT::LEFT) || ins.IsTrgDown(KEY_INPUT_A))
+	if (inputMngS_.IsTrgDown(INPUT_EVENT::LEFT) || inputMng_.IsTrgDown(KEY_INPUT_A))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->SetYesNoUpdate(true);
 	}
-	else if (insS.IsTrgDown(INPUT_EVENT::RIGHT) || ins.IsTrgDown(KEY_INPUT_D))
+	else if (inputMngS_.IsTrgDown(INPUT_EVENT::RIGHT) || inputMng_.IsTrgDown(KEY_INPUT_D))
 	{
 		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->SetYesNoUpdate(false);

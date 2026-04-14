@@ -9,15 +9,10 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -79,7 +74,6 @@ UpdateDecision
 UpdateReloadWait
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -89,13 +83,11 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 GetHand
 GetIsDamaged
 SetIsAlive
 SetIsDamaged
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -109,7 +101,7 @@ GetJumpCardNum
 GetHand
 GetIsRoar
 Enemy call:[SetStatus]
-Enemy call:[AllStop,clear] noreturn:[AllStop]
+Enemy call:[AllStop,clear] noreturn:[clear]
 Load call:[Add,AddAction,AddAnimation,Deg2RadF,Euler,Load,LoadModelDuplicate,Quaternion,SetModel] noreturn:[Load]
 Init call:[AddCardData,Deg2RadF,Euler,GetInstance,Init,MakeColliderGeometry,Quaternion,Update] noreturn:[AddCardData,MakeColliderGeometry]
 UpdateDirection call:[Update,UpdateRoarDirection] noreturn:[Update]

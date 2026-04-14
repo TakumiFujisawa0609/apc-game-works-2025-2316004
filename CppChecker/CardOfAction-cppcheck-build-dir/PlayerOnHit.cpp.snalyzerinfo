@@ -54,15 +54,10 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetTags
 GetNotHitTags
 GetParent
@@ -87,7 +82,6 @@ UpdateDecision
 UpdateReloadWait
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -97,14 +91,13 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 GetHand
 PlayerOnHit call:[CollChara,CollNormalAttack,CollRoarAttack,CollRock,CollStage] noreturn:[CollChara,CollNormalAttack,CollRoarAttack,CollRock,CollStage]
 PlayerOnHit call:[clear] noreturn:[clear]
 Load
 Init
-CollChara call:[Distance,GetCardAction,GetGeometry,GetMoveVec,GetParentCharacter,GetRadius,GetTags,GetTransform,VAdd,VScale,abs,any_of,lock] noreturn:[VAdd]
+CollChara call:[Distance,GetGeometry,GetMoveVec,GetParentCharacter,GetRadius,GetTags,GetTransform,VAdd,VScale,abs,lock] noreturn:[VAdd]
 CollNormalAttack call:[ChangeAction,Damage,GetAtkStatus,GetCharaTag,GetInstance,GetIsDamage,GetMainAction,GetParentCharacter,Play,SetIsDamage,SetUsedCard,lock] noreturn:[ChangeAction]
 CollRoarAttack call:[ChangeAction,Damage,GetCharaTag,GetIsDamage,GetParentCharacter,SetFlinchCnt,SetIsDamage,lock] noreturn:[ChangeAction]
 CollRock call:[ChangeAction,Damage,GetInstance,GetIsDamaged,GetParent,Play,SetIsDamaged,lock] noreturn:[ChangeAction]

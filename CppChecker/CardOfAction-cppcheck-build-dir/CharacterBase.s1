@@ -36,8 +36,6 @@ SetObb
 SetVecMin
 SetVecMax
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetTags
 GetNotHitTags
 GetParent
@@ -72,13 +70,9 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -88,7 +82,6 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 CharacterBase call:[ChangeUpdateClearDirection,ChangeUpdateDirection,ChangeUpdateHitStop,ChangeUpdateNone,ChangeUpdateNormal,ChangeUpdateOverDirection] noreturn:[ChangeUpdateClearDirection,ChangeUpdateDirection,ChangeUpdateHitStop,ChangeUpdateNone,ChangeUpdateNormal,ChangeUpdateOverDirection]
 CharacterBase
@@ -114,15 +107,12 @@ SetFlinchCnt call:[SetFlinchCnt] noreturn:[SetFlinchCnt]
 GetCardAction call:[GetCardAction] noreturn:[GetCardAction]
 GetMainAction call:[GetMainAction] noreturn:[GetMainAction]
 GetHitPoint call:[GetHitPoint] noreturn:[GetHitPoint]
-MovedPosMove call:[VAdd,VScale] noreturn:[VAdd]
-LariatMove call:[AngleAxis,Deg2RadF] noreturn:[AngleAxis]
 SetLogicTargetCharacter call:[SetTargetCharacter] noreturn:[SetTargetCharacter]
 AddEnemyRock call:[emplace_back,move] noreturn:[emplace_back]
 LoadEnemyRock call:[Load,empty] noreturn:[Load]
 DeleteEnemyRockCol call:[DeleteRockCollider,empty] noreturn:[DeleteRockCollider]
 SetIsAliveEnemyRock call:[Init,SetIsAlive,empty] noreturn:[Init]
 EnemyRockUpdate call:[Update,empty] noreturn:[Update]
-ClearEnemyRock call:[clear] noreturn:[clear]
 GetIsHitTarget call:[GetIsHitTarget] noreturn:[GetIsHitTarget]
 UpdateNone
 UpdateHitStop call:[ChangeUpdatePhase] noreturn:[ChangeUpdatePhase]

@@ -120,11 +120,12 @@ void AnimationController::Play(int type, bool isLoop,
 void AnimationController::Update(const float _spdScl)
 {
 
-	// Œo‰ßŠÔ‚Ìæ“¾
-	float deltaTime = SceneManager::GetInstance().GetDeltaTime();
 
 	if (!isStop_)
 	{
+
+		// Œo‰ßŠÔ‚Ìæ“¾
+		float deltaTime = SceneManager::GetInstance().GetDeltaTime();
 
 		// Ä¶
 		playAnim_.step += (deltaTime * playAnim_.speed * switchLoopReverse_) * _spdScl;

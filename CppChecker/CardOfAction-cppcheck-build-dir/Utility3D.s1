@@ -1,0 +1,35 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+RotXZPos call:[VGet,cosf,sinf] noreturn:[VGet]
+Magnitude call:[sqrt] noreturn:[sqrt]
+MagnitudeF call:[sqrtf] noreturn:[sqrtf]
+SqrMagnitudeF
+SqrMagnitude
+SqrMagnitude call:[pow] noreturn:[pow]
+Distance call:[pow,sqrt] noreturn:[sqrt]
+IsHitSpheres call:[VSub]
+IsHitSphereCapsule call:[IsHitSpheres,MagnitudeF,VAdd,VDot,VNorm,VScale,VSub] noreturn:[VAdd]
+Equals
+EqualsVZero
+Normalize call:[Magnitude,VGet]
+VNormalize call:[EqualsVZero,VNorm] noreturn:[VNorm]
+AngleDeg call:[SqrMagnitude,VDot,acos,sqrt]
+GetMoveVec call:[EqualsVZero,VNorm,VScale,VSub]
+GetRotAxisToTarget call:[GetMoveVec,LookRotation,ToEuler]
+AddPosRotate call:[PosAxis,VAdd]
+IsBeyondGoalPos
+ReverseValue call:[VScale] noreturn:[VScale]

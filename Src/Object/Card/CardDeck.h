@@ -37,14 +37,21 @@ public:
 	/// @param  
 	void Init(void)override;
 
-	/// @brief カード使用
+	/// @brief 更新
 	/// @param  
-	void CardUseUpdate(void);
+	void Update(void)override;
 
-	/// @brief カードチャージ
+	/// @brief 描画
 	/// @param  
-	void CardCharge(void);
+	void Draw(void)override;
 	
+	/// @brief デュエルデッキにカード追加
+	/// @param _status 追加したいカードの強さ
+	void AddDuelDeck(const CardBase::CARD_STATUS& _status);
+
+	/// @brief カード使用
+/// @param  
+	void CardUseUpdate(void);
 
 	/// @brief 使用中のカードを消す
 	/// @param _isLose カード負けかどうか
@@ -55,22 +62,9 @@ public:
 	void CardMoveLeft(void);
 	void CardMoveRight(void);
 
-	/// @brief 更新
-	/// @param  
-	void Update(void);
-
-	/// @brief 描画
-	/// @param  
-	void Draw(void);
-	
-	/// @brief デュエルデッキにカード追加
-	/// @param _status 追加したいカードの強さ
-	void AddDuelDeck(const CardBase::CARD_STATUS& _status);
-
 	/// @brief カードを使用札に移動
 	/// @param  
 	void MoveUsingCardToDrawPile(void);
-
 
 	/// @brief デュエルデッキから使用札へ
 	/// @param  
@@ -114,31 +108,12 @@ public:
 	/// @brief 使用中カードからチャージカードへ移動
 	/// @param  
 	void MoveChargeToUsingCard(void);
-	
-	/// @brief デュエルデッキをランダムに決定する
-	/// @param  
-	void DicideDuelDeck(void);
 
 private:
 	//メンバ定数
-	
-	static constexpr int DUEL_NUM_MAX = 3;
-	static constexpr CardBase::CARD_STATUS DUEL_DECK_PETTERN_1[DUEL_NUM_MAX] = {
-		{4,CardBase::CARD_TYPE::ATTACK},
-		{6,CardBase::CARD_TYPE::ATTACK},
-		{5,CardBase::CARD_TYPE::ATTACK}
-	};
-																				
-	static constexpr CardBase::CARD_STATUS DUEL_DECK_PETTERN_2[DUEL_NUM_MAX] = {
-		{2,CardBase::CARD_TYPE::ATTACK},
-		{8,CardBase::CARD_TYPE::ATTACK},
-		{6,CardBase::CARD_TYPE::ATTACK}
-	};
-	static constexpr CardBase::CARD_STATUS DUEL_DECK_PETTERN_3[DUEL_NUM_MAX] = { 
-		{5,CardBase::CARD_TYPE::ATTACK},
-		{7,CardBase::CARD_TYPE::ATTACK},
-		{8,CardBase::CARD_TYPE::ATTACK}
-	};
+	//チャージカード最大枚数
+	static constexpr int CHARGE_MAX = 3;
+
 	//メンバ関数
 	
 	//カードを選択したときの制限

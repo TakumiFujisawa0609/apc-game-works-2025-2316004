@@ -38,7 +38,6 @@ private:
 	static constexpr int MAX_ADD_DAMAGE = 10;
 
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//’ÊíUŒ‚
-	void CollDuelSpecialAttack(const std::weak_ptr<Collider> _hitCol);	//ƒfƒ…ƒGƒ‹‚Å•‰‚¯‚½‚Æ‚«‚Ì”½‰
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;
 
 };

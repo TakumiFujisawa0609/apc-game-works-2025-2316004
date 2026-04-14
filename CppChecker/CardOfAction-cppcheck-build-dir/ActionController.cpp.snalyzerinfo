@@ -8,15 +8,10 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -78,7 +73,6 @@ UpdateDecision
 UpdateReloadWait
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -88,10 +82,8 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 GetHand
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -102,7 +94,6 @@ SetFreezeCntByAttackType
 GetTargetCharacter
 DebugDraw
 GetAct
-GetStickDeg
 GetPos
 GetAngles
 GetTargetPos
@@ -133,7 +124,6 @@ GetSpd call:[GetSpeed,at] noreturn:[GetSpeed]
 ChangeAction call:[Init,Release] noreturn:[Init]
 CardChargeUpdate call:[GetIsAct]
 CardMove call:[GetCardUIState,IsCardLeftMoveable,IsCardRightMoveable,RoleRevolver] noreturn:[RoleRevolver]
-GetIsAtkColAlive call:[GetIsAliveAtkCol] noreturn:[GetIsAliveAtkCol]
 GetPlayerRotY
 StopResource
 IsCardDecisionControl call:[GetCardUIState]

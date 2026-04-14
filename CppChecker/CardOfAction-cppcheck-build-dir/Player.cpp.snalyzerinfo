@@ -64,8 +64,6 @@ IsEndDirectionMode
 GetDirectionMode
 GetIsFullScreen
 GetCardStatus
-SetIsWin
-SetIsUsed
 SetReloadCount
 GetSelectState
 ChangeNone
@@ -88,20 +86,15 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 GetHitPoint
 GetIsHitTarget
 GetIsDamage
 SetIsDamage
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -112,7 +105,6 @@ SetFreezeCntByAttackType
 GetTargetCharacter
 DebugDraw
 GetAct
-GetStickDeg
 GetCharaTag
 GetCharaType
 GetRotation
@@ -120,7 +112,6 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 GetHand
 Player call:[SetStatus]

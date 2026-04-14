@@ -7,6 +7,5 @@ CollisionManager
 CollisionManager call:[clear] noreturn:[clear]
 IsWithInHitRange call:[GetColPos,GetGeometry,GetTags,SqrMagnitude,at,lock]
 JudgeIsCollision call:[GetNotHitTags,GetTags,IsWithInHitRange]
-JudgeIsColTag call:[IsItem]
 IsCollision call:[GetGeometry,IsHit,NotHit,lock] noreturn:[NotHit]
 GetTopTags call:[GetTags,begin,lock] noreturn:[begin]

@@ -8,15 +8,10 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -78,7 +73,6 @@ UpdateDecision
 UpdateReloadWait
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -88,9 +82,7 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -102,11 +94,9 @@ GetTargetCharacter
 GetIsDamaged
 SetIsAlive
 SetIsDamaged
-GetCanPut
 GetCardDif
-InitCardDif
 GetJumpCardNum
-EnemyCardAction call:[AddEnemyRock,ChangeCardAction,ChangeDuel,ChangeJumpAtk,ChangeReload,ChangeRoar,ChangeRoleAtk,ChangeStomp] noreturn:[AddEnemyRock,ChangeCardAction,ChangeDuel,ChangeJumpAtk,ChangeReload,ChangeRoar,ChangeRoleAtk,ChangeStomp]
+EnemyCardAction call:[AddEnemyRock,ChangeCardAction,ChangeJumpAtk,ChangeReload,ChangeStomp] noreturn:[AddEnemyRock,ChangeCardAction,ChangeJumpAtk,ChangeReload,ChangeStomp]
 EnemyCardAction
 Load call:[Add,GetInstance,Load,LoadEnemyRock,LoadResource] noreturn:[Add]
 Init call:[ChangeCardAction,GetAttackType,GetCardType,GetInput,PutCard] noreturn:[ChangeCardAction]
@@ -114,18 +104,11 @@ Update call:[front]
 Release call:[ChangeSub,DeleteAttackCol,FinishCard,GetCamera,GetInput,IsActioningSet,SetFreezeCntByAttackType,empty,lock,pop] noreturn:[SetFreezeCntByAttackType,pop]
 IsJumpAtkCharge
 ChangeStomp call:[Play,UpdateStomp,push] noreturn:[UpdateStomp,push]
-ChangeRoar call:[Play,UpdateRoar,push] noreturn:[UpdateRoar,push]
 ChangeJumpAtk call:[GetTransform,Play,SetAtk,UpdateJumpAtk,push] noreturn:[UpdateJumpAtk,push]
-ChangeRoleAtk call:[GetTransform,Play,SetAtk,UpdateRoleAtk,push] noreturn:[UpdateRoleAtk,push]
 ChangeReload call:[EnemyCardReload,Play,UpdateReload,empty,pop,push] noreturn:[UpdateReload,pop,push]
-ChangeDuel call:[PutCardToDuelDeck,UpdateDuel,push] noreturn:[UpdateDuel,push]
 UpdateStomp call:[AddPosRotate,ChangeAction,ChangeSub,Delete,DeleteAttackCol,DeleteEnemyRockCol,EnemyRockUpdate,FinishCard,GetAnimStep,GetCamera,GetDeltaTime,GetInstance,GetTransform,IsCardFailure,IsPlay,Play,SetEndMidLoop,SetIsAliveEnemyRock,SetShakeStatus,Stop,lock] noreturn:[ChangeAction,EnemyRockUpdate,Play]
-UpdateRoar call:[AttackMotion] noreturn:[AttackMotion]
 UpdateJumpAtk call:[AddPosRotate,ChangeAction,ChangeSub,Delete,DeleteAttackCol,EaseFunc,FinishCard,GetAnimStep,GetCamera,GetCharaTag,GetDeltaTime,GetInstance,GetTransform,IsCardFailure,IsPlay,MakeAttackCol,Play,SetEndMidLoop,SetMidLoop,SetScale,SetShakeStatus,Stop,UpdateAttackCol,lock] noreturn:[ChangeAction,FinishCard,Play]
-UpdateRoleAtk call:[AddPosRotate,ChangeAction,GetCharaCenterPos,GetDeltaTime,GetInput,GetTransform,IsCardFailure,MakeAttackCol,SetDir] noreturn:[ChangeAction]
 UpdateReload call:[ChangeAction,EnemyCardReload] noreturn:[ChangeAction]
-UpdateDuel call:[ChangeCardAction,GetDeltaTime,GetInstance,SetEndMidLoop,SetMidLoop] noreturn:[ChangeCardAction,SetMidLoop]
-PutCardToDuelDeck
 CreateInstance call:[CardSystem] noreturn:[CardSystem]
 GetInstance call:[assert]
 Destroy

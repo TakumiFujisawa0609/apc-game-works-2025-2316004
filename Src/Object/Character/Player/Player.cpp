@@ -229,8 +229,8 @@ void Player::Damage(const int _dam)
 void Player::DrawDebug(void)
 {
 	unsigned int color = 0xffffff;
-	const int HIGH = 10;
-	const int WIDTH = 200;
+	//const int HIGH = 10;
+	//const int WIDTH = 200;
 	//DrawSphere3D(trans_.cardPos, RADIUS_X, 4, 0xff0000, 0xff0000, true);
 	for (auto& col : collider_)
 	{

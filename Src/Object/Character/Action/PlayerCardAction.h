@@ -151,8 +151,6 @@ private:
     bool IsAttackable(void);
     //連続攻撃条件
     bool IsCanComboAttack(void);
-    //攻撃モーション
-    //void AttackMotion(const float _atkColStart, const float _atlColEnd);
 
     //１段目を中距離攻撃アクションか近距離攻撃アクションかを決める
     void DecideAttackOne(void);
@@ -168,8 +166,6 @@ private:
     void UpdateMiddleAttack(void);      //中距離攻撃アクション１回目(中距離)
     void UpdateAttackThree(void);       //攻撃アクション３段階目(１，２段目とは違う演出を入れる)
     void UpdateReload(void);            //リロード
-    void UpdateSonicRave(void);         //ソニックレイヴ
-    void UpdateDuel(void)override;      //デュエルモード
 
     //遷移系
 	void ChangeShortAttackOne(void);        //攻撃アクション1回目(近距離)
@@ -177,9 +173,7 @@ private:
 	void ChangeAttackTwo(void);             //攻撃アクション2回目
 	void ChangeAttackThree(void);           //攻撃アクション3回目
     void ChangeReload(void);                //リロード
-    void ChangeSonicRave(void);             //ソニックレイヴ
-    void ChangeDuel(void)override;          //デュエルモード
     //コンボアクション遷移(あれば実装する)
-    void ChangeComboAction(void);
+    void ChangeComboAction(void)override;
 };
 

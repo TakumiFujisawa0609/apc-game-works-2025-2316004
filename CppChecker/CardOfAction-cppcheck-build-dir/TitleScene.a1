@@ -1,260 +1,242 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="15249696612234441531">
+<analyzerinfo hash="15950136472325399590">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" line="1" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Application.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Application.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="5" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/UtilityCommon.h" line="6" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="6" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Template/Singleton.h&quot; not found." verbose="Include file: &quot;../Template/Singleton.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManagerS.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManagerS.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManagerS.h" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManagerS.h" line="5" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="6" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManagerS.h" line="6" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManagerS.h" line="7" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManagerS.h" line="7" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/ButtonUIManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/ButtonUIManager.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Template/Singleton.h&quot; not found." verbose="Include file: &quot;../Template/Singleton.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/ButtonUIManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/ButtonUIManager.h" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/ButtonUIManager.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/ButtonUIManager.h" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/DataBank.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/DataBank.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found." verbose="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/DataBank.h" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="5" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Card/CardBase.h&quot; not found." verbose="Include file: &quot;../Object/Card/CardBase.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/DataBank.h" line="6" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" line="6" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2.h&quot; not found." verbose="Include file: &quot;../Common/Vector2.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/ResourceManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/ResourceManager.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/ResourceManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/ResourceManager.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/Resource.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/Resource.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/Resource.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/FontManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/FontManager.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/SceneBase.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/SceneBase.h" line="2" column="2"/>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;TitleScene::ChangeScreenSize&apos; can be static." verbose="The member function &apos;TitleScene::ChangeScreenSize&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="293" column="18"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.h" line="204" column="7"/>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;TitleScene::UpdateTutorial&apos;" verbose="Unused private function: &apos;TitleScene::UpdateTutorial&apos;" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" line="241" column="18"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.h" line="203" column="7"/>
+            <symbol>TitleScene::UpdateTutorial</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;TitleScene::ChangeScreenSize&apos; can be static." verbose="The member function &apos;TitleScene::ChangeScreenSize&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" line="283" column="18"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.h" line="215" column="7"/>
             <symbol>TitleScene::ChangeScreenSize</symbol>
         </error>
-        <error id="missingOverride" severity="style" msg="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="161" column="3" info="Destructor in derived class"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="161" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
             <symbol>~SceneManager</symbol>
         </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_fontType&apos; should be passed by const reference." verbose="Parameter &apos;_fontType&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" line="45" column="35" info="Function parameter &apos;_fontType&apos; should be passed by const reference."/>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_fontType&apos; should be passed by const reference." verbose="Parameter &apos;_fontType&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="45" column="35" info="Function parameter &apos;_fontType&apos; should be passed by const reference."/>
             <symbol>_fontType</symbol>
         </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_menu&apos; should be passed by const reference." verbose="Parameter &apos;_menu&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" line="49" column="54" info="Function parameter &apos;_menu&apos; should be passed by const reference."/>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_menu&apos; should be passed by const reference." verbose="Parameter &apos;_menu&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="49" column="54" info="Function parameter &apos;_menu&apos; should be passed by const reference."/>
             <symbol>_menu</symbol>
         </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_questionStr&apos; should be passed by const reference." verbose="Parameter &apos;_questionStr&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" line="98" column="36" info="Function parameter &apos;_questionStr&apos; should be passed by const reference."/>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_questionStr&apos; should be passed by const reference." verbose="Parameter &apos;_questionStr&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" line="98" column="36" info="Function parameter &apos;_questionStr&apos; should be passed by const reference."/>
             <symbol>_questionStr</symbol>
         </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_copy&apos; should be passed by const reference." verbose="Parameter &apos;_copy&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/ResourceManager.h" line="147" column="51" info="Function parameter &apos;_copy&apos; should be passed by const reference."/>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_copy&apos; should be passed by const reference." verbose="Parameter &apos;_copy&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/ResourceManager.h" line="147" column="51" info="Function parameter &apos;_copy&apos; should be passed by const reference."/>
             <symbol>_copy</symbol>
         </error>
-        <error id="constVariableReference" severity="style" msg="Variable &apos;button&apos; can be declared as reference to const" verbose="Variable &apos;button&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="99" column="13" info="Variable &apos;button&apos; can be declared as reference to const"/>
+        <error id="constVariableReference" severity="style" msg="Variable &apos;button&apos; can be declared as reference to const" verbose="Variable &apos;button&apos; can be declared as reference to const" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" line="97" column="13" info="Variable &apos;button&apos; can be declared as reference to const"/>
             <symbol>button</symbol>
         </error>
-        <error id="constVariableReference" severity="style" msg="Variable &apos;ins&apos; can be declared as reference to const" verbose="Variable &apos;ins&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="206" column="16" info="Variable &apos;ins&apos; can be declared as reference to const"/>
-            <symbol>ins</symbol>
-        </error>
-        <error id="constVariableReference" severity="style" msg="Variable &apos;insS&apos; can be declared as reference to const" verbose="Variable &apos;insS&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="207" column="17" info="Variable &apos;insS&apos; can be declared as reference to const"/>
-            <symbol>insS</symbol>
-        </error>
-        <error id="constVariableReference" severity="style" msg="Variable &apos;insS&apos; can be declared as reference to const" verbose="Variable &apos;insS&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="236" column="17" info="Variable &apos;insS&apos; can be declared as reference to const"/>
-            <symbol>insS</symbol>
-        </error>
-        <error id="constVariableReference" severity="style" msg="Variable &apos;insS&apos; can be declared as reference to const" verbose="Variable &apos;insS&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="267" column="17" info="Variable &apos;insS&apos; can be declared as reference to const"/>
-            <symbol>insS</symbol>
-        </error>
-        <error id="constVariableReference" severity="style" msg="Variable &apos;insS&apos; can be declared as reference to const" verbose="Variable &apos;insS&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="279" column="17" info="Variable &apos;insS&apos; can be declared as reference to const"/>
-            <symbol>insS</symbol>
-        </error>
-        <error id="constVariableReference" severity="style" msg="Variable &apos;ins&apos; can be declared as reference to const" verbose="Variable &apos;ins&apos; can be declared as reference to const" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="280" column="16" info="Variable &apos;ins&apos; can be declared as reference to const"/>
-            <symbol>ins</symbol>
-        </error>
-        <error id="stlcstrParam" severity="performance" msg="Passing the result of c_str() to a function that takes std::wstring as argument no. 1 is slow and redundant." verbose="The conversion from const char* as returned by c_str() to std::wstring creates an unnecessary string copy or length calculation. Solve that by directly passing the string." cwe="704" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" line="42" column="19"/>
+        <error id="stlcstrParam" severity="performance" msg="Passing the result of c_str() to a function that takes std::wstring as argument no. 1 is slow and redundant." verbose="The conversion from const char* as returned by c_str() to std::wstring creates an unnecessary string copy or length calculation. Solve that by directly passing the string." cwe="704" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" line="42" column="19"/>
         </error>
   <FileInfo check="ctu">
-<function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h:118:7" call-funcname="SetSystemVolume" call-argnr="2" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" line="108" col="95" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Resource\SoundManager.h" line="108" col="56" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
+<function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h:118:7" call-funcname="SetSystemVolume" call-argnr="2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" line="108" col="95" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Resource\SoundManager.h" line="108" col="56" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
 </function-call>  </FileInfo>
   <FileInfo check="Class">
-<class name="SoundManager::SoundResource" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" configuration="" line="127" col="2" hash="15261526066846212897"/>
-<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="65" col="2" hash="10215088381399476255"/>
-<class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="224" col="2" hash="9437638551516248859"/>
-<class name="MenuController::BTN_INFO" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" configuration="" line="24" col="2" hash="4509762181322601358"/>
-<class name="Easing::MATH_FUNC" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" configuration="" line="46" col="2" hash="9725465263561278120"/>
-<class name="Easing::TRIG_FUNC" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" configuration="" line="67" col="2" hash="3721629506448873112"/>
-<class name="TitleScene::BTN" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.h" configuration="" line="44" col="2" hash="6821732955236057438"/>
+<class name="SoundManager::SoundResource" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" configuration="" line="127" col="2" hash="15261526066846212897"/>
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::MouseInfo" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="" line="224" col="2" hash="9437638551516248859"/>
+<class name="MenuController::BTN_INFO" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" configuration="" line="24" col="2" hash="4509762181322601358"/>
+<class name="Easing::MATH_FUNC" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" configuration="" line="46" col="2" hash="9725465263561278120"/>
+<class name="Easing::TRIG_FUNC" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" configuration="" line="67" col="2" hash="3721629506448873112"/>
+<class name="TitleScene" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.h" configuration="" line="9" col="1" hash="4259072491039834295"/>
+<class name="TitleScene::BTN" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.h" configuration="" line="44" col="2" hash="6821732955236057438"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Application.h" functionName="IsGameEnd" lineNumber="54" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" functionName="SetLoadedSoundsVolume" lineNumber="108" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" functionName="GetSoundTypeVolume" lineNumber="123" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/DataBank.h" functionName="GetIsFullScreen" lineNumber="32" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" functionName="IsAllDirectEaseEnd" lineNumber="85" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" functionName="GetIsYes" lineNumber="90" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" functionName="GetSelectMenuNum" lineNumber="110" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="QuadFunc" lineNumber="53" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="CubicFunc" lineNumber="60" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="SinFunc" lineNumber="76" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="CosFunc" lineNumber="81" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="Load" lineNumber="33" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="Init" lineNumber="55" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="ChangeState" lineNumber="110" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="NormalUpdate" lineNumber="117" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="NormalDraw" lineNumber="122" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="OnSceneEnter" lineNumber="180" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateEase" lineNumber="187" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateMenu" lineNumber="200" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateScreen" lineNumber="232" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateTutorial" lineNumber="248" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateSelectGame" lineNumber="253" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateExitMenu" lineNumber="264" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateYesNo" lineNumber="277" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="ChangeScreenSize" lineNumber="293" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Application.h" functionName="IsGameEnd" lineNumber="54" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" functionName="SetLoadedSoundsVolume" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" functionName="GetSoundTypeVolume" lineNumber="123" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" functionName="GetIsFullScreen" lineNumber="22" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="IsAllDirectEaseEnd" lineNumber="85" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="GetIsYes" lineNumber="90" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="GetSelectMenuNum" lineNumber="110" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="QuadFunc" lineNumber="53" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="CubicFunc" lineNumber="60" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="SinFunc" lineNumber="76" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="CosFunc" lineNumber="81" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="Load" lineNumber="33" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="Init" lineNumber="55" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="ChangeState" lineNumber="108" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="NormalUpdate" lineNumber="115" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="NormalDraw" lineNumber="120" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="OnSceneEnter" lineNumber="178" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateEase" lineNumber="185" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateMenu" lineNumber="198" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateScreen" lineNumber="227" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateTutorial" lineNumber="241" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateSelectGame" lineNumber="246" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateExitMenu" lineNumber="257" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateYesNo" lineNumber="269" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="ChangeScreenSize" lineNumber="283" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
     <functioncall functionName="AddMenu"/>
     <functioncall functionName="AddSelectMenuNum"/>
     <functioncall functionName="Application"/>
@@ -345,77 +327,78 @@
     <functioncall functionName="wstring"/>
   </FileInfo>
   <FileInfo check="ctu">
-<function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h:118:7" call-funcname="SetSystemVolume" call-argnr="2" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" line="108" col="95" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Resource\SoundManager.h" line="108" col="56" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
+<function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h:118:7" call-funcname="SetSystemVolume" call-argnr="2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" line="108" col="95" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Resource\SoundManager.h" line="108" col="56" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
 </function-call>  </FileInfo>
   <FileInfo check="Class">
-<class name="SoundManager::SoundResource" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" configuration="_DEBUG=_DEBUG" line="127" col="2" hash="15261526066846212897"/>
-<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="65" col="2" hash="10215088381399476255"/>
-<class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="224" col="2" hash="9437638551516248859"/>
-<class name="MenuController::BTN_INFO" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" configuration="_DEBUG=_DEBUG" line="24" col="2" hash="4509762181322601358"/>
-<class name="Easing::MATH_FUNC" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" configuration="_DEBUG=_DEBUG" line="46" col="2" hash="9725465263561278120"/>
-<class name="Easing::TRIG_FUNC" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" configuration="_DEBUG=_DEBUG" line="67" col="2" hash="3721629506448873112"/>
-<class name="TitleScene::BTN" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.h" configuration="_DEBUG=_DEBUG" line="44" col="2" hash="6821732955236057438"/>
+<class name="SoundManager::SoundResource" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" configuration="_DEBUG=_DEBUG" line="127" col="2" hash="15261526066846212897"/>
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::MouseInfo" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="224" col="2" hash="9437638551516248859"/>
+<class name="MenuController::BTN_INFO" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" configuration="_DEBUG=_DEBUG" line="24" col="2" hash="4509762181322601358"/>
+<class name="Easing::MATH_FUNC" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" configuration="_DEBUG=_DEBUG" line="46" col="2" hash="9725465263561278120"/>
+<class name="Easing::TRIG_FUNC" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" configuration="_DEBUG=_DEBUG" line="67" col="2" hash="3721629506448873112"/>
+<class name="TitleScene" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.h" configuration="_DEBUG=_DEBUG" line="9" col="1" hash="4259072491039834295"/>
+<class name="TitleScene::BTN" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.h" configuration="_DEBUG=_DEBUG" line="44" col="2" hash="6821732955236057438"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Application.h" functionName="IsGameEnd" lineNumber="54" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" functionName="SetLoadedSoundsVolume" lineNumber="108" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Resource/SoundManager.h" functionName="GetSoundTypeVolume" lineNumber="123" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/DataBank.h" functionName="GetIsFullScreen" lineNumber="32" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" functionName="IsAllDirectEaseEnd" lineNumber="85" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" functionName="GetIsYes" lineNumber="90" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/MenuController.h" functionName="GetSelectMenuNum" lineNumber="110" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="QuadFunc" lineNumber="53" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="CubicFunc" lineNumber="60" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="SinFunc" lineNumber="76" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Easing.h" functionName="CosFunc" lineNumber="81" column="9"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="Load" lineNumber="33" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="Init" lineNumber="55" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="ChangeState" lineNumber="110" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="NormalUpdate" lineNumber="117" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="NormalDraw" lineNumber="122" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="OnSceneEnter" lineNumber="180" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateEase" lineNumber="187" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateMenu" lineNumber="200" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateScreen" lineNumber="232" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateTutorial" lineNumber="248" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateSelectGame" lineNumber="253" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateExitMenu" lineNumber="264" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="UpdateYesNo" lineNumber="277" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Scene/TitleScene.cpp" functionName="ChangeScreenSize" lineNumber="293" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Application.h" functionName="IsGameEnd" lineNumber="54" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" functionName="SetLoadedSoundsVolume" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Resource/SoundManager.h" functionName="GetSoundTypeVolume" lineNumber="123" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/DataBank.h" functionName="GetIsFullScreen" lineNumber="22" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="IsAllDirectEaseEnd" lineNumber="85" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="GetIsYes" lineNumber="90" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/MenuController.h" functionName="GetSelectMenuNum" lineNumber="110" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="QuadFunc" lineNumber="53" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="CubicFunc" lineNumber="60" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="SinFunc" lineNumber="76" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="CosFunc" lineNumber="81" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="Load" lineNumber="33" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="Init" lineNumber="55" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="ChangeState" lineNumber="108" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="NormalUpdate" lineNumber="115" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="NormalDraw" lineNumber="120" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="OnSceneEnter" lineNumber="178" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateEase" lineNumber="185" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateMenu" lineNumber="198" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateScreen" lineNumber="227" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateTutorial" lineNumber="241" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateSelectGame" lineNumber="246" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateExitMenu" lineNumber="257" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="UpdateYesNo" lineNumber="269" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Scene/TitleScene.cpp" functionName="ChangeScreenSize" lineNumber="283" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
     <functioncall functionName="AddMenu"/>
     <functioncall functionName="AddSelectMenuNum"/>
     <functioncall functionName="Application"/>

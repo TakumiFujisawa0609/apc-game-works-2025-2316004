@@ -1,0 +1,44 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+Round
+Split call:[getline,push_back,stream] noreturn:[push_back]
+Rad2DegD
+Rad2DegF
+Rad2DegI call:[Round] noreturn:[Round]
+Deg2RadD
+Deg2RadF
+Deg2RadI call:[Round] noreturn:[Round]
+DegIn360 call:[fmod]
+RadIn2PI call:[fmod]
+DirNearAroundRad
+DirNearAroundDeg
+IsTimeOver call:[GetDeltaTime,GetInstance]
+WrapIndex call:[return]
+LoadCSVData call:[OutputDebugString,close,getline,lineStream,push_back,stoi,wifstream] noreturn:[push_back]
+GetWStringFromString call:[MultiByteToWideChar,c_str,data,length,resize,size]
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy

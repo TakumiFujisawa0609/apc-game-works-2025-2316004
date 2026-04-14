@@ -150,7 +150,7 @@ void PlayerCardUI::Draw(void)
 
 	//カード残り枚数ゲージの描画
 	cardGaugePSRenderer_->Draw();
-	//DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumMaskImg_, true);
+
 	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumFrameImg_, true);
 
 	int handCardSize = static_cast<int>(handCards_.size());
@@ -171,8 +171,6 @@ void PlayerCardUI::Draw(void)
 	//矢印とボタン描画
 	DrawArrowAndBotton();
 
-
-
 #ifdef _DEBUG
 	//DrawDebug();
 #endif // _DEBUG
@@ -183,7 +181,7 @@ void PlayerCardUI::Draw(void)
 void PlayerCardUI::DrawDebug(void)
 {
 	int i = 0;
-	for(auto& action:actions_)
+	for(const auto& action:actions_)
 	{
 		std::wstring stateStr;
 		auto state = action->GetState();
@@ -245,7 +243,7 @@ void PlayerCardUI::InitCardUI(void)
 		(*it)->InitCard(i);
 		//見せるカード配列に入れる
 		visibleCards_.emplace_back(*it);
-		float& scl = (*it)->GetScl();
+		const float& scl = (*it)->GetScl();
 		i++;
 	}
 
@@ -262,7 +260,6 @@ void PlayerCardUI::AddCardUIData(void)
 	{
 		AddCardUi(charaDeck[i]);
 	}
-
 }
 // _DEBUG
 void PlayerCardUI::ChangeNone(void)
@@ -354,7 +351,6 @@ void PlayerCardUI::ChangeRight(void)
 	//目標角度をずらす
 	for (auto& card : visibleCards_)
 	{
-		//card.goalAngle_ = card.currentAngle_ + ARROUND_PER_RAD;
 		float currentAngle = card->GetCurrentAngle();
 		card->SetStartAndGoalAngle(currentAngle + ARROUND_PER_RAD);
 	}
@@ -529,12 +525,6 @@ void PlayerCardUI::SetBasePosVisibleCards(void)
 	}
 }
 
-void PlayerCardUI::DrawCardNum(void)
-{
-
-}
-
-
 void PlayerCardUI::UpdateVisibleCard(void)
 {
 	const int size = static_cast<int>(handCards_.size());
@@ -648,7 +638,6 @@ void PlayerCardUI::ReloadAnimation(void)
 	int i = 0;
 	for (auto& card : visibleCards_)
 	{
-
 		card->SetStartAndGoalAngle(ARROUND_PER_RAD * (i - CARDS_BEFORE_CURRENT));
 		card->MoveOnRevolver(cardMoveCnt_, CardUIController::RELOAD_MOVE_CARD_TIME_PER);
 		i++;
@@ -710,27 +699,14 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 
 std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleCurrentIt(void)
 {
-	for (auto it = visibleCards_.begin(); it != visibleCards_.end(); it++)
-	{
-		if (*it == *handCurrent_)
-		{
-			return it;
-		}
-	}
-	return visibleCards_.end();
+	auto it = std::find(visibleCards_.begin(), visibleCards_.end(), *handCurrent_);
+	return it;
 }
 
 std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetSearchHandIt(
 	std::shared_ptr<CardUIController> target)
 {
-
-	for (auto it = handCards_.begin(); it != handCards_.end(); it++)
-	{
-		if (*it == target)
-		{
-			return it;
-		}
-	}
-	return handCards_.end();
+	auto it = std::find(handCards_.begin(), handCards_.end(), target);
+	return it;
 }
 

@@ -30,8 +30,6 @@ Load
 Draw
 GetTransform
 GetCardStatus
-SetIsWin
-SetIsUsed
 operator+
 operator+=
 operator-

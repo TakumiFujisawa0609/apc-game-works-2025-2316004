@@ -42,10 +42,6 @@ void CardUIBase::ChangeSelectState(const CARD_SELECT _select)
 	changeMoveState_[selectState_]();
 }
 
-void CardUIBase::CardDecision(void)
-{
-
-}
 void CardUIBase::ChangeUsedActionCard(void)
 {
 	for (auto& act : actions_)
@@ -60,14 +56,6 @@ void CardUIBase::ChangeReactActionCard(void)
 	for (auto& act : actions_)
 	{
 		act->ChangeReactCard();
-	}
-}
-
-void CardUIBase::ChangeUsingActionCard(void)
-{
-	for (auto& act : actions_)
-	{
-		act->ChangeUsing();
 	}
 }
 
@@ -117,17 +105,12 @@ void CardUIBase::Draw(void)
 	if (actions_.empty())return;
 	for (auto& card : actions_)
 	{
-		//DrawCard(card);
 		card->Draw();
 	}
 }
 
-
-
-
 void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
-	CardBase::CARD_STATUS status = {};
 	int typeImg = -1;
 	//‘®«‚É‚æ‚Á‚Ä‰æ‘œ‚ğ•Ï‚¦‚é
 	typeImg = GetTypeImg(_status);

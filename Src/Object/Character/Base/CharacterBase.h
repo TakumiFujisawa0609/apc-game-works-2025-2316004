@@ -199,7 +199,7 @@ public:
 	/// @brief キャラクターの中心座標取得
 	/// @param  
 	/// @return キャラクターの中心座標
-	const VECTOR& GetCharaCenterPos(void)const;
+	VECTOR GetCharaCenterPos(void)const;
 
 	/// @brief ダメージを与えたことを知らせる
 	/// @param  
@@ -233,26 +233,11 @@ public:
 	/// @param  
 	/// @return 
 	const ActionBase& GetMainAction(void)const;
-	
-
-	/// @brief 移動後座標の取得
-	/// @param  
-	/// @return 移動後座標
-	const VECTOR& GetMovedPos(void)const { return movedPos_; }
 
 	/// @brief ヒットポイントを当たり判定から取得
 	/// @param  
 	/// @return 
 	const CharacterOnHitBase::HIT_POINT& GetHitPoint(void)const;
-
-	/// @brief 移動量を設定して動かす
-	/// @param _movePow 移動量
-	void MovedPosMove(const VECTOR& _vec,const float& _movePow);
-
-	/// @brief 
-	/// @param _dir 
-	/// @param _movePow 
-	void LariatMove(const float& _deg);
 
 	/// @brief ロジッククラスにターゲットをセット
 	/// @param _targetChara ターゲット
@@ -277,10 +262,6 @@ public:
 	/// @brief 岩配列更新
 	/// @param  
 	void EnemyRockUpdate(void);
-
-	/// @brief 岩の消去
-	/// @param  
-	void ClearEnemyRock(void);
 
 	/// @brief ターゲットと当たったかどうかの取得
 	/// @param  

@@ -1,0 +1,33 @@
+IsGameEnd
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+PixelRenderer
+PixelRenderer
+MakeSquareVertex call:[MakeVertex] noreturn:[MakeVertex]
+MakeSquareVertexFromCenter call:[MakeVertex] noreturn:[MakeVertex]
+MakeSquareVertexFromCenter call:[MakeSquareVertexFromCenter] noreturn:[MakeSquareVertexFromCenter]
+MakeVertex call:[GetColorU8,VGet]
+MakeSquareVertex call:[MakeSquareVertex] noreturn:[MakeSquareVertex]
+MakeScreenVertex call:[MakeSquareVertex] noreturn:[MakeSquareVertex]
+SetPos
+SetSize
+Draw call:[DrawPolygonIndexed2DToShader,GetBufferShaderConstantBuffer,GetConstBuf,GetConstBufs,GetShader,GetTextureAddress,GetTextures,MV1SetUseOrigShader,SetShaderConstantBuffer,SetTextureAddressModeUV,SetUsePixelShader,SetUseTextureToShader,UpdateShaderConstantBuffer,size] noreturn:[MV1SetUseOrigShader,SetUseTextureToShader]
+Draw call:[Draw,MakeSquareVertex] noreturn:[Draw]
+DrawFromCenter call:[Draw,MakeSquareVertexFromCenter] noreturn:[Draw]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

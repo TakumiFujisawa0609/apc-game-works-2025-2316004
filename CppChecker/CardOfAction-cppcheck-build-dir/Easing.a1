@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="12820513495938735053">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="6" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="7" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="8" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="9" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="10" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;numeric&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;numeric&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="11" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="12" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/pch.h" line="13" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="6" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;functional&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="3" column="2"/>
+        </error>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;Easing::EaseCubicInOut&apos;" verbose="Unused private function: &apos;Easing::EaseCubicInOut&apos;" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="377" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="195" column="8"/>
+            <symbol>Easing::EaseCubicInOut</symbol>
+        </error>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;Easing::EaseCubicOutIn&apos;" verbose="Unused private function: &apos;Easing::EaseCubicOutIn&apos;" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="382" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="198" column="8"/>
+            <symbol>Easing::EaseCubicOutIn</symbol>
+        </error>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;Easing::EaseEpiCycloid&apos;" verbose="Unused private function: &apos;Easing::EaseEpiCycloid&apos;" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="428" column="18"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="227" column="11"/>
+            <symbol>Easing::EaseEpiCycloid</symbol>
+        </error>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;Easing::EaseHypoCycloid&apos;" verbose="Unused private function: &apos;Easing::EaseHypoCycloid&apos;" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="440" column="18"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="230" column="11"/>
+            <symbol>Easing::EaseHypoCycloid</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::Lerp&apos; can be static." verbose="The member function &apos;Easing::Lerp&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="196" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="162" column="8"/>
+            <symbol>Easing::Lerp</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::OutBack&apos; can be static." verbose="The member function &apos;Easing::OutBack&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="218" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="165" column="8"/>
+            <symbol>Easing::OutBack</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseQuadIn&apos; can be static." verbose="The member function &apos;Easing::EaseQuadIn&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="287" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="171" column="8"/>
+            <symbol>Easing::EaseQuadIn</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseQuadOut&apos; can be static." verbose="The member function &apos;Easing::EaseQuadOut&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="297" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="174" column="8"/>
+            <symbol>Easing::EaseQuadOut</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseQuadBack&apos; can be static." verbose="The member function &apos;Easing::EaseQuadBack&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="307" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="177" column="8"/>
+            <symbol>Easing::EaseQuadBack</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseQuadInOut&apos; can be static." verbose="The member function &apos;Easing::EaseQuadInOut&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="318" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="180" column="8"/>
+            <symbol>Easing::EaseQuadInOut</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseQuadOutIn&apos; can be static." verbose="The member function &apos;Easing::EaseQuadOutIn&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="337" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="183" column="8"/>
+            <symbol>Easing::EaseQuadOutIn</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseCubicIn&apos; can be static." verbose="The member function &apos;Easing::EaseCubicIn&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="357" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="189" column="8"/>
+            <symbol>Easing::EaseCubicIn</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseCubicOut&apos; can be static." verbose="The member function &apos;Easing::EaseCubicOut&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="366" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="192" column="8"/>
+            <symbol>Easing::EaseCubicOut</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseCubicInOut&apos; can be static." verbose="The member function &apos;Easing::EaseCubicInOut&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="377" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="195" column="8"/>
+            <symbol>Easing::EaseCubicInOut</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseCubicOutIn&apos; can be static." verbose="The member function &apos;Easing::EaseCubicOutIn&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="382" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="198" column="8"/>
+            <symbol>Easing::EaseCubicOutIn</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseExpo&apos; can be static." verbose="The member function &apos;Easing::EaseExpo&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="387" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="204" column="8"/>
+            <symbol>Easing::EaseExpo</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseInElastic&apos; can be static." verbose="The member function &apos;Easing::EaseInElastic&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="400" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="207" column="8"/>
+            <symbol>Easing::EaseInElastic</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseOutElastic&apos; can be static." verbose="The member function &apos;Easing::EaseOutElastic&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="229" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="210" column="8"/>
+            <symbol>Easing::EaseOutElastic</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseBackElastic&apos; can be static." verbose="The member function &apos;Easing::EaseBackElastic&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="243" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="213" column="8"/>
+            <symbol>Easing::EaseBackElastic</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseSinBack&apos; can be static." verbose="The member function &apos;Easing::EaseSinBack&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="410" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="222" column="8"/>
+            <symbol>Easing::EaseSinBack</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseCosBack&apos; can be static." verbose="The member function &apos;Easing::EaseCosBack&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="419" column="15"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="224" column="8"/>
+            <symbol>Easing::EaseCosBack</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseEpiCycloid&apos; can be static." verbose="The member function &apos;Easing::EaseEpiCycloid&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="428" column="18"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="227" column="11"/>
+            <symbol>Easing::EaseEpiCycloid</symbol>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Easing::EaseHypoCycloid&apos; can be static." verbose="The member function &apos;Easing::EaseHypoCycloid&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="440" column="18"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" line="230" column="11"/>
+            <symbol>Easing::EaseHypoCycloid</symbol>
+        </error>
+        <error id="knownConditionTrueFalse" severity="style" msg="Condition &apos;1.0f/BOUNCE_POW&lt;=t&apos; is always true" verbose="Condition &apos;1.0f/BOUNCE_POW&lt;=t&apos; is always true" cwe="571" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="267" column="32" info="Condition &apos;1.0f/BOUNCE_POW&lt;=t&apos; is always true"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="263" column="11" info="Assuming condition &apos;t&lt;EASING_MAX/BOUNCE_POW&apos; is false"/>
+        </error>
+        <error id="constParameterReference" severity="style" msg="Parameter &apos;start&apos; can be declared as reference to const" verbose="Parameter &apos;start&apos; can be declared as reference to const" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="126" column="34" info="Parameter &apos;start&apos; can be declared as reference to const"/>
+            <symbol>start</symbol>
+        </error>
+        <error id="constParameterReference" severity="style" msg="Parameter &apos;start&apos; can be declared as reference to const" verbose="Parameter &apos;start&apos; can be declared as reference to const" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="157" column="36" info="Parameter &apos;start&apos; can be declared as reference to const"/>
+            <symbol>start</symbol>
+        </error>
+        <error id="constParameterReference" severity="style" msg="Parameter &apos;start&apos; can be declared as reference to const" verbose="Parameter &apos;start&apos; can be declared as reference to const" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="188" column="34" info="Parameter &apos;start&apos; can be declared as reference to const"/>
+            <symbol>start</symbol>
+        </error>
+        <error id="constParameterReference" severity="style" msg="Parameter &apos;end&apos; can be declared as reference to const" verbose="Parameter &apos;end&apos; can be declared as reference to const" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" line="188" column="48" info="Parameter &apos;end&apos; can be declared as reference to const"/>
+            <symbol>end</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="Easing" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" configuration="" line="6" col="1" hash="1270820279516062487"/>
+<class name="Easing::MATH_FUNC" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" configuration="" line="46" col="2" hash="9725465263561278120"/>
+<class name="Easing::TRIG_FUNC" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" configuration="" line="67" col="2" hash="3721629506448873112"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="QuadFunc" lineNumber="53" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="CubicFunc" lineNumber="60" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="SinFunc" lineNumber="76" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.h" functionName="CosFunc" lineNumber="81" column="9"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="SetEasing" lineNumber="34" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="SetReturnEasing" lineNumber="39" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFunc" lineNumber="57" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFunc" lineNumber="65" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFunc" lineNumber="71" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFunc" lineNumber="77" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFunc" lineNumber="83" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFunc" lineNumber="92" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFunc" lineNumber="108" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFuncDeg" lineNumber="126" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFuncDeg" lineNumber="157" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseFuncRad" lineNumber="188" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="Lerp" lineNumber="196" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="LerpBack" lineNumber="203" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="OutBack" lineNumber="218" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseOutElastic" lineNumber="229" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseBackElastic" lineNumber="243" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseBounce" lineNumber="255" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseQuadIn" lineNumber="287" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseQuadOut" lineNumber="297" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseQuadBack" lineNumber="307" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseQuadInOut" lineNumber="318" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseQuadOutIn" lineNumber="337" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseCubicIn" lineNumber="357" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseCubicOut" lineNumber="366" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseCubicInOut" lineNumber="377" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseCubicOutIn" lineNumber="382" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseExpo" lineNumber="387" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseInElastic" lineNumber="400" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseSinBack" lineNumber="410" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseCosBack" lineNumber="419" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseEpiCycloid" lineNumber="428" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Easing.cpp" functionName="EaseHypoCycloid" lineNumber="440" column="18"/>
+    <functioncall functionName="CosFunc"/>
+    <functioncall functionName="CubicFunc"/>
+    <functioncall functionName="DX_PI_F"/>
+    <functioncall functionName="DX_TWO_PI_F"/>
+    <functioncall functionName="EaseBackElastic"/>
+    <functioncall functionName="EaseBounce"/>
+    <functioncall functionName="EaseCosBack"/>
+    <functioncall functionName="EaseCubicIn"/>
+    <functioncall functionName="EaseCubicOut"/>
+    <functioncall functionName="EaseExpo"/>
+    <functioncall functionName="EaseFunc"/>
+    <functioncall functionName="EaseInElastic"/>
+    <functioncall functionName="EaseOutElastic"/>
+    <functioncall functionName="EaseQuadBack"/>
+    <functioncall functionName="EaseQuadIn"/>
+    <functioncall functionName="EaseQuadInOut"/>
+    <functioncall functionName="EaseQuadOut"/>
+    <functioncall functionName="EaseQuadOutIn"/>
+    <functioncall functionName="EaseSinBack"/>
+    <functioncall functionName="Easing"/>
+    <functioncall functionName="Lerp"/>
+    <functioncall functionName="LerpBack"/>
+    <functioncall functionName="OutBack"/>
+    <functioncall functionName="QuadFunc"/>
+    <functioncall functionName="Round"/>
+    <functioncall functionName="SetEasing"/>
+    <functioncall functionName="SinFunc"/>
+    <functioncall functionName="VAdd"/>
+    <functioncall functionName="VScale"/>
+    <functioncall functionName="VSub"/>
+    <functioncall functionName="cos"/>
+    <functioncall functionName="function"/>
+    <functioncall functionName="pow"/>
+    <functioncall functionName="powf"/>
+    <functioncall functionName="remainder"/>
+    <functioncall functionName="sin"/>
+    <functioncall functionName="sinf"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="unordered_map"/>
+    <functioncall functionName="vector"/>
+  </FileInfo>
+</analyzerinfo>

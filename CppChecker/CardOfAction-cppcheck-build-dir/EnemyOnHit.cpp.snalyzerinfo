@@ -52,7 +52,6 @@ Init
 Load
 DrawDebug
 CollNormalAttack call:[ChangeAction,Damage,GetAtkStatus,GetCardAction,GetCardDif,GetInput,GetInstance,GetIsDamage,GetMainAction,GetParent,GetTargetCharacter,SetIsDamage,lock] noreturn:[ChangeAction]
-CollDuelSpecialAttack
 CollChara
 CreateInstance call:[SceneManager] noreturn:[SceneManager]
 GetInstance call:[assert]

@@ -207,9 +207,6 @@ private:
 
 	//角度を現在角度に設定
 	void SetBasePosVisibleCards(void);
-
-	//カードゲージ(残り枚数描画)
-	void DrawCardNum(void);
 	
 	//見せるカードの更新
 	void UpdateVisibleCard(void);

@@ -1,32 +1,30 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="17106808163579512828">
+<analyzerinfo hash="9262502889858470913">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.cpp" line="1" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/UtilityCommon.h&quot; not found." verbose="Include file: &quot;../Utility/UtilityCommon.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.cpp" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.cpp" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.cpp" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="3" column="2"/>
         </error>
-        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" line="25" column="2"/>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CardBase&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" line="25" column="2"/>
             <symbol>CardBase</symbol>
         </error>
   <FileInfo check="Class">
-<class name="CardBase" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" configuration="" line="5" col="1" hash="9302397663862769081"/>
-<class name="CardBase::CARD_STATUS" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" configuration="" line="18" col="2" hash="1598540432162395422"/>
+<class name="CardBase" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" configuration="" line="5" col="1" hash="11255894582121886041"/>
+<class name="CardBase::CARD_STATUS" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" configuration="" line="18" col="2" hash="1598540432162395422"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" functionName="GetCardStatus" lineNumber="48" column="28"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" functionName="SetIsWin" lineNumber="55" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Card/CardBase.h" functionName="SetIsUsed" lineNumber="59" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Card/CardBase.h" functionName="GetCardStatus" lineNumber="48" column="28"/>
     <functioncall functionName="CardBase"/>
     <functioncall functionName="DrawRotaGraphF"/>
     <functioncall functionName="GetInstance"/>
@@ -37,6 +35,7 @@
     <functioncall functionName="false"/>
     <functioncall functionName="handleId_"/>
     <functioncall functionName="handleIds_"/>
+    <functioncall functionName="override"/>
     <functioncall functionName="true"/>
   </FileInfo>
 </analyzerinfo>

@@ -20,7 +20,6 @@ EnemyRock::EnemyRock(int& _num, VECTOR& _startPos):
 
 EnemyRock::~EnemyRock(void)
 {
-	int i = 0;
 }
 
 void EnemyRock::Load(void)

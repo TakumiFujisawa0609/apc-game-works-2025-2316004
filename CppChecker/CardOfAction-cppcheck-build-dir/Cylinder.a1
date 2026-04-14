@@ -1,50 +1,50 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="2710918616995350976">
+<analyzerinfo hash="10691299280940684075">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cylinder.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cylinder.cpp" line="1" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="4" column="2"/>
         </error>
-        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cylinder.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="20" column="2"/>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cylinder.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="20" column="2"/>
             <symbol>Quaternion</symbol>
         </error>
   <FileInfo check="Class">
-<class name="Geometry::OBB" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" configuration="" line="17" col="2" hash="2816693727323549992"/>
-<class name="Cylinder" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cylinder.h" configuration="" line="3" col="1" hash="13271408024568864169"/>
+<class name="Geometry::OBB" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" configuration="" line="17" col="2" hash="2816693727323549992"/>
+<class name="Cylinder" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cylinder.h" configuration="" line="3" col="1" hash="13271408024568864169"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
     <functioncall functionName="GetRotPos"/>
     <functioncall functionName="Quaternion"/>
     <functioncall functionName="swap"/>

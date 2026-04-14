@@ -13,23 +13,23 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~EnemyHpUI(void);
+	~EnemyHpUI(void)override;
 
 	/// @brief ロード
 	/// @param  
-	void Load(void);
+	void Load(void)override;
 
 	/// @brief 初期化
 	/// @param  
-	void Init(void);
+	void Init(void)override;
 
 	/// @brief 更新
 	/// @param  
-	void Update(void);
+	void Update(void)override;
 
 	/// @brief 描画
 	/// @param  
-	void Draw(void);
+	void Draw(void)override;
 private:
 	//バー固定座標
 	static constexpr Vector2F BAR_POS = { 550.0f,23.0f };

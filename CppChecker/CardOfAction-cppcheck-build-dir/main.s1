@@ -1,0 +1,5 @@
+IsGameEnd
+WinMain call:[CreateInstance,Destroy,GetInstance,Init,Release,Run]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

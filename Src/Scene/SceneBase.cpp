@@ -2,14 +2,16 @@
 #include <string>
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/InputManagerS.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Utility/UtilityCommon.h"
 #include "SceneBase.h"
 
 SceneBase::SceneBase(void) :
-	resMng_(ResourceManager::GetInstance())
-	,scnMng_(SceneManager::GetInstance())
-	,inputMng_(InputManager::GetInstance())
+	resMng_(ResourceManager::GetInstance()),
+	scnMng_(SceneManager::GetInstance()),
+	inputMng_(InputManager::GetInstance()),
+	inputMngS_(InputManagerS::GetInstance())
 {
 	buttonFontHandle_ = -1;
 	loadingTime_ = -1;

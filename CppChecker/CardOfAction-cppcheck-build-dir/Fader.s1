@@ -1,0 +1,28 @@
+IsGameEnd
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+GetState
+IsEnd
+Fader
+Fader
+Init
+Update
+Draw call:[DrawBox,SetDrawBlendMode]
+SetFade
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

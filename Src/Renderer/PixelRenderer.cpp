@@ -1,7 +1,10 @@
 #include "../Application.h"
 #include "PixelRenderer.h"
 
-PixelRenderer::PixelRenderer(PixelMaterial& pixelMaterial) : material_(pixelMaterial)
+PixelRenderer::PixelRenderer(PixelMaterial& pixelMaterial) :
+	material_(pixelMaterial),
+	pos_(),
+	size_()
 {
 }
 

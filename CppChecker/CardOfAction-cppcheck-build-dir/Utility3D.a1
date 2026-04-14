@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="9554828422593219235">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="2" column="2"/>
+        </error>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Utility3D::IsBeyondGoalPos&apos; can be static." verbose="The member function &apos;Utility3D::IsBeyondGoalPos&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="247" column="17"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h" line="128" column="7"/>
+            <symbol>Utility3D::IsBeyondGoalPos</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="20" column="2"/>
+            <symbol>Quaternion</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="Utility3D" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h" configuration="" line="6" col="1" hash="15676839216698614369"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:35:16" my-argnr="1" my-argname="centerPos" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="7" col="31" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:35:16" my-argnr="2" my-argname="radiusPos" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="7" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:40:16" my-argnr="1" my-argname="v" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="14" col="18" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:41:15" my-argnr="1" my-argname="v" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="19" col="19" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:42:15" my-argnr="1" my-argname="v" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="24" col="12" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:43:16" my-argnr="1" my-argname="v" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="29" col="12" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:44:16" my-argnr="1" my-argname="v1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="34" col="23" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:44:16" my-argnr="2" my-argname="v2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="34" col="16" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:50:16" my-argnr="1" my-argname="v1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="39" col="28" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:50:16" my-argnr="2" my-argname="v2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="39" col="21" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:78:14" my-argnr="1" my-argname="v1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="130" col="9" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:78:14" my-argnr="2" my-argname="v2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="130" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:83:14" my-argnr="1" my-argname="v1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="140" col="9" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:93:16" my-argnr="1" my-argname="v" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="163" col="32" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:99:16" my-argnr="1" my-argname="from" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="175" col="30" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:99:16" my-argnr="2" my-argname="to" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="176" col="30" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:121:22" my-argnr="2" my-argname="_followRot" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="239" col="21" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h:121:22" my-argnr="3" my-argname="_localPos" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" line="239" col="40" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="RotXZPos" lineNumber="5" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="Magnitude" lineNumber="12" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="MagnitudeF" lineNumber="17" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="SqrMagnitudeF" lineNumber="22" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="SqrMagnitude" lineNumber="27" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="SqrMagnitude" lineNumber="32" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="Distance" lineNumber="37" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="IsHitSpheres" lineNumber="42" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="IsHitSphereCapsule" lineNumber="63" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="Equals" lineNumber="128" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="EqualsVZero" lineNumber="137" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="Normalize" lineNumber="147" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="VNormalize" lineNumber="161" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="AngleDeg" lineNumber="172" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="GetMoveVec" lineNumber="198" column="25"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="GetRotAxisToTarget" lineNumber="217" column="25"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="AddPosRotate" lineNumber="236" column="25"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="IsBeyondGoalPos" lineNumber="247" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.cpp" functionName="ReverseValue" lineNumber="252" column="25"/>
+    <functioncall functionName="DX_PI"/>
+    <functioncall functionName="EqualsVZero"/>
+    <functioncall functionName="GetMoveVec"/>
+    <functioncall functionName="IsHitSpheres"/>
+    <functioncall functionName="LookRotation"/>
+    <functioncall functionName="Magnitude"/>
+    <functioncall functionName="MagnitudeF"/>
+    <functioncall functionName="PosAxis"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="SqrMagnitude"/>
+    <functioncall functionName="ToEuler"/>
+    <functioncall functionName="VAdd"/>
+    <functioncall functionName="VDot"/>
+    <functioncall functionName="VGet"/>
+    <functioncall functionName="VNorm"/>
+    <functioncall functionName="VScale"/>
+    <functioncall functionName="VSub"/>
+    <functioncall functionName="acos"/>
+    <functioncall functionName="cosf"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="pow"/>
+    <functioncall functionName="sinf"/>
+    <functioncall functionName="sqrt"/>
+    <functioncall functionName="sqrtf"/>
+    <functioncall functionName="true"/>
+  </FileInfo>
+</analyzerinfo>

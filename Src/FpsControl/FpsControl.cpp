@@ -2,12 +2,14 @@
 #include "FpsControl.h"
 #include "../Application.h"
 
-FpsControl::FpsControl()
+FpsControl::FpsControl():
+	currentTime_(),
+	prevFrameTime_(),
+	frameCnt_(),
+	updateFrameRateTime_(),
+	frameRate_()
 {
-	currentTime_ = 0;
-	prevFrameTime_ = 0;
-	frameCnt_ = 0;
-	updateFrameRateTime_ = 0;
+
 }
 
 FpsControl::~FpsControl()

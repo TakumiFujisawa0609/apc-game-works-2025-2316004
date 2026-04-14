@@ -1,0 +1,21 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+ModelRenderer
+ModelRenderer
+Draw call:[GetTextureAddress,GetTextures,MV1DrawModel,MV1SetUseOrigShader,SetReservePS,SetReserveVS,SetTextureAddressModeUV,SetUsePixelShader,SetUseTextureToShader,SetUseVertexShader,size] noreturn:[MV1SetUseOrigShader,SetUseTextureToShader]
+SetReserveVS call:[GetBufferShaderConstantBuffer,GetConstBufVS,GetConstBufsVS,GetShaderVS,SetShaderConstantBuffer,SetUseVertexShader,UpdateShaderConstantBuffer,size] noreturn:[SetUseVertexShader]
+SetReservePS call:[GetBufferShaderConstantBuffer,GetConstBufPS,GetConstBufsPS,GetShaderPS,GetTextures,SetShaderConstantBuffer,SetUsePixelShader,SetUseTextureToShader,UpdateShaderConstantBuffer,size] noreturn:[SetUsePixelShader,SetUseTextureToShader]

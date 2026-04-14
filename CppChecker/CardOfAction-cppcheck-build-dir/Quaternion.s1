@@ -1,0 +1,63 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+Quaternion
+Quaternion call:[Euler]
+Quaternion
+Quaternion
+Euler call:[Euler] noreturn:[Euler]
+Euler call:[Quaternion,RadIn2PI,cos,sin]
+Mult call:[Quaternion]
+Mult call:[Mult,Quaternion] noreturn:[Mult]
+AngleAxis call:[Quaternion,cos,sin,sqrt]
+PosAxis call:[Inverse,Mult,Quaternion]
+PosAxis call:[PosAxis,Quaternion] noreturn:[PosAxis]
+ToEuler call:[asin,atan2]
+ToEuler call:[Quaternion,ToEuler] noreturn:[ToEuler]
+ToMatrix
+ToMatrix call:[Quaternion,ToMatrix] noreturn:[ToMatrix]
+LookRotation call:[LookRotation] noreturn:[LookRotation]
+LookRotation call:[Normalized,Quaternion,VCross,VNormalize,sqrt] noreturn:[Normalized]
+GetRotation call:[sqrtf]
+GetDir call:[PosAxis] noreturn:[PosAxis]
+GetForward call:[GetDir] noreturn:[GetDir]
+GetBack call:[GetDir] noreturn:[GetDir]
+GetRight call:[GetDir] noreturn:[GetDir]
+GetLeft call:[GetDir] noreturn:[GetDir]
+GetUp call:[GetDir] noreturn:[GetDir]
+GetDown call:[GetDir] noreturn:[GetDir]
+Dot call:[return] noreturn:[return]
+Dot call:[return] noreturn:[return]
+Normalize call:[Length,Quaternion,VScale,xyz]
+Normalized call:[Quaternion,sqrt] noreturn:[Quaternion]
+Normalize call:[sqrt]
+Inverse call:[Quaternion] noreturn:[Quaternion]
+Slerp call:[SlerpUnclamped] noreturn:[SlerpUnclamped]
+SIGN call:[return]
+NORM call:[sqrt] noreturn:[sqrt]
+FromToRotation call:[AngleAxis,AngleDeg,Deg2RadD,VCross,VNormalize] noreturn:[AngleAxis]
+RotateTowards call:[Angle,SlerpUnclamped,min] noreturn:[SlerpUnclamped]
+Angle call:[Dot,acos]
+SlerpUnclamped call:[Identity,LengthSquared,Normalize,Quaternion,VAdd,VDot,VScale,acosf,sinf,xyz] noreturn:[Identity,Normalize]
+Identity call:[Quaternion] noreturn:[Quaternion]
+Length call:[sqrt] noreturn:[sqrt]
+LengthSquared
+xyz
+ToAngleAxis call:[Normalize,abs,acosf,sqrtf,xyz] noreturn:[Normalize]
+operator* call:[Quaternion] noreturn:[Quaternion]
+operator* call:[Quaternion] noreturn:[Quaternion]
+operator+ call:[Quaternion] noreturn:[Quaternion]
+operator+ call:[Quaternion] noreturn:[Quaternion]

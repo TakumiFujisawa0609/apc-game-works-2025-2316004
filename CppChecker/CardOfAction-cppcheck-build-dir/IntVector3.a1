@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="13370531052863135100">
+  <FileInfo check="Class">
+<class name="IntVector3" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/IntVector3.h" configuration="" line="3" col="1" hash="14183805245351426096"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functioncall functionName="IntVector3"/>
+  </FileInfo>
+</analyzerinfo>

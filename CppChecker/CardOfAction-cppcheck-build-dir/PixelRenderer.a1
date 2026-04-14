@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="1757828834795433470">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Application.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelMaterial.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelMaterial.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelMaterial.h" line="4" column="2"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;PixelRenderer&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;PixelRenderer&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.h" line="24" column="2"/>
+            <symbol>PixelRenderer</symbol>
+        </error>
+        <error id="cstyleCast" severity="style" msg="C-style pointer casting" verbose="C-style pointer casting detected. C++ offers four different kinds of casts as replacements: static_cast, const_cast, dynamic_cast and reinterpret_cast. A C-style cast could evaluate to any of those automatically, thus it is considered safer if the programmer explicitly states which kind of cast is expected." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" line="152" column="25"/>
+        </error>
+  <FileInfo check="Class">
+<class name="PixelRenderer" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.h" configuration="" line="6" col="1" hash="4413197446829366255"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Application.h" functionName="IsGameEnd" lineNumber="54" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="MakeSquareVertex" lineNumber="15" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="MakeSquareVertexFromCenter" lineNumber="29" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="MakeSquareVertexFromCenter" lineNumber="40" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="MakeVertex" lineNumber="45" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="MakeSquareVertex" lineNumber="112" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="MakeScreenVertex" lineNumber="117" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="SetPos" lineNumber="124" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="SetSize" lineNumber="129" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="Draw" lineNumber="134" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="Draw" lineNumber="207" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/PixelRenderer.cpp" functionName="DrawFromCenter" lineNumber="215" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="Application"/>
+    <functioncall functionName="DX_SHADERTYPE_PIXEL"/>
+    <functioncall functionName="DX_TEXADDRESS_CLAMP"/>
+    <functioncall functionName="Draw"/>
+    <functioncall functionName="DrawPolygonIndexed2DToShader"/>
+    <functioncall functionName="FLOAT4"/>
+    <functioncall functionName="GetBufferShaderConstantBuffer"/>
+    <functioncall functionName="GetColorU8"/>
+    <functioncall functionName="GetConstBuf"/>
+    <functioncall functionName="GetConstBufs"/>
+    <functioncall functionName="GetShader"/>
+    <functioncall functionName="GetTextureAddress"/>
+    <functioncall functionName="GetTextures"/>
+    <functioncall functionName="MV1SetUseOrigShader"/>
+    <functioncall functionName="MakeSquareVertex"/>
+    <functioncall functionName="MakeSquareVertexFromCenter"/>
+    <functioncall functionName="MakeVertex"/>
+    <functioncall functionName="PixelMaterial"/>
+    <functioncall functionName="PixelRenderer"/>
+    <functioncall functionName="SetShaderConstantBuffer"/>
+    <functioncall functionName="SetTextureAddressModeUV"/>
+    <functioncall functionName="SetUsePixelShader"/>
+    <functioncall functionName="SetUseTextureToShader"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="UpdateShaderConstantBuffer"/>
+    <functioncall functionName="VGet"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="w"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+    <functioncall functionName="z"/>
+  </FileInfo>
+</analyzerinfo>

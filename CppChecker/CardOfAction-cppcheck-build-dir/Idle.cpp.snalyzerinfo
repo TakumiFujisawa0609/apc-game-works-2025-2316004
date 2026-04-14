@@ -8,15 +8,10 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -78,7 +73,6 @@ UpdateDecision
 UpdateReloadWait
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -88,9 +82,7 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
-CheckAct
 GetDir
 GetIsAct
 GetAttackType

@@ -1,6 +1,4 @@
 GetCardStatus
-SetIsWin
-SetIsUsed
 operator+
 operator+=
 operator-
@@ -17,15 +15,11 @@ operator*
 operator*=
 operator/
 operator/=
-GetCanPut
 GetCardDif
-InitCardDif
 CardSystem
 GetResult
-InitPutCardPow
 LoseInitPutCardPow
 JudgeIsFirstAtk
-IsNoneCard
 CompareCards
 PutCard
 CreateInstance call:[CardSystem] noreturn:[CardSystem]

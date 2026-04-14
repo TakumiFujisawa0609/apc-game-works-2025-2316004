@@ -1,95 +1,88 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="4895134991880002585">
+<analyzerinfo hash="12008527735833144306">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" line="1" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;chrono&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;list&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="5" column="2"/>
         </error>
-        <error id="normalCheckLevelMaxBranches" severity="information" msg="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." verbose="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" line="0" column="0"/>
-        </error>
-        <error id="useInitializationList" severity="performance" msg="Variable &apos;easing_&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;easing_&apos; a value by passing the value to the constructor in the initialization list." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" line="19" column="2"/>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;easing_&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;easing_&apos; a value by passing the value to the constructor in the initialization list." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" line="19" column="2"/>
             <symbol>easing_</symbol>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;AnimationController::GetFrameLocalMatrix&apos; can be static." verbose="The member function &apos;AnimationController::GetFrameLocalMatrix&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" line="322" column="27"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" line="90" column="7"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;AnimationController::GetFrameLocalMatrix&apos; can be static." verbose="The member function &apos;AnimationController::GetFrameLocalMatrix&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" line="323" column="27"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="90" column="7"/>
             <symbol>AnimationController::GetFrameLocalMatrix</symbol>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;AnimationController::GetFrameAnimAttachLocalMatrix&apos; can be static." verbose="The member function &apos;AnimationController::GetFrameAnimAttachLocalMatrix&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" line="340" column="27"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" line="100" column="7"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;AnimationController::GetFrameAnimAttachLocalMatrix&apos; can be static." verbose="The member function &apos;AnimationController::GetFrameAnimAttachLocalMatrix&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" line="341" column="27"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" line="100" column="7"/>
             <symbol>AnimationController::GetFrameAnimAttachLocalMatrix</symbol>
         </error>
-        <error id="missingOverride" severity="style" msg="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" line="161" column="3" info="Destructor in derived class"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
+        <error id="missingOverride" severity="style" msg="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~SceneManager&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" line="161" column="3" info="Destructor in derived class"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="60" column="14" info="Virtual destructor in base class"/>
             <symbol>~SceneManager</symbol>
         </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;deltaTime&apos; can be reduced." verbose="The scope of the variable &apos;deltaTime&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" line="124" column="8"/>
-            <symbol>deltaTime</symbol>
-        </error>
   <FileInfo check="Class">
-<class name="AnimationController" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" configuration="" line="10" col="1" hash="12704273503212996770"/>
-<class name="AnimationController::Animation" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.h" configuration="" line="16" col="2" hash="18345160832387772536"/>
+<class name="AnimationController" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" configuration="" line="10" col="1" hash="7637703943546433734"/>
+<class name="AnimationController::Animation" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.h" configuration="" line="16" col="2" hash="18345160832387772536"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="Add" lineNumber="30" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="Play" lineNumber="65" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="Update" lineNumber="120" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="SetEndLoop" lineNumber="211" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="SetMidLoop" lineNumber="218" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="SetEndMidLoop" lineNumber="233" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="GetPlayType" lineNumber="240" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="GetAnimStep" lineNumber="245" column="34"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="SetAnimSpeed" lineNumber="250" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="IsEnd" lineNumber="262" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="SetFrameLocalMatrixPos" lineNumber="284" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="SetFrameAnimAttachLocalMatrixPos" lineNumber="303" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="GetFrameLocalMatrix" lineNumber="322" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/AnimationController.cpp" functionName="GetFrameAnimAttachLocalMatrix" lineNumber="340" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Fader.h" functionName="GetState" lineNumber="28" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Fader.h" functionName="IsEnd" lineNumber="31" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="SetIsSceneChange" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetSceneID" lineNumber="88" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetDeltaTime" lineNumber="93" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetTotalTime" lineNumber="98" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetCamera" lineNumber="103" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetMainScreen" lineNumber="108" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/SceneManager.h" functionName="GetIsEndFade" lineNumber="113" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="Add" lineNumber="30" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="Play" lineNumber="65" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="Update" lineNumber="120" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="SetEndLoop" lineNumber="212" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="SetMidLoop" lineNumber="219" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="SetEndMidLoop" lineNumber="234" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="GetPlayType" lineNumber="241" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="GetAnimStep" lineNumber="246" column="34"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="SetAnimSpeed" lineNumber="251" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="IsEnd" lineNumber="263" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="SetFrameLocalMatrixPos" lineNumber="285" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="SetFrameAnimAttachLocalMatrixPos" lineNumber="304" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="GetFrameLocalMatrix" lineNumber="323" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/AnimationController.cpp" functionName="GetFrameAnimAttachLocalMatrix" lineNumber="341" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
     <functioncall functionName="AnimationController"/>
     <functioncall functionName="EaseFunc"/>
     <functioncall functionName="Fader"/>

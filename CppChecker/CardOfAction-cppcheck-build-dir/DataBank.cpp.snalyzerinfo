@@ -16,8 +16,6 @@ operator/
 operator/=
 GetIsFullScreen
 Init call:[GetJoypadNum]
-SetPlayerNum
-GetPlayerNum
 SetIsFullScreen call:[ChangeWindowMode] noreturn:[ChangeWindowMode]
 ReleaseCardData call:[clear] noreturn:[clear]
 AddCardData call:[emplace_back] noreturn:[emplace_back]

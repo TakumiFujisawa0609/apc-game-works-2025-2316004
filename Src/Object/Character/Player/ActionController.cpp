@@ -174,11 +174,6 @@ void ActionController::CardMove(void)
 	}
 }
 
-const bool& ActionController::GetIsAtkColAlive(void)
-{
-	return mainAction_[act_]->GetIsAliveAtkCol();
-}
-
 const Quaternion ActionController::GetPlayerRotY(void)
 {
 	return playerRotY_;

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="11968225801340405987">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;math.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;math.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="6" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="4" column="2"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="20" column="2"/>
+            <symbol>Quaternion</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;from&apos; should be passed by const reference." verbose="Parameter &apos;from&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="520" column="41" info="Function parameter &apos;from&apos; should be passed by const reference."/>
+            <symbol>from</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;to&apos; should be passed by const reference." verbose="Parameter &apos;to&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="520" column="58" info="Function parameter &apos;to&apos; should be passed by const reference."/>
+            <symbol>to</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;a&apos; should be passed by const reference." verbose="Parameter &apos;a&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="576" column="50" info="Function parameter &apos;a&apos; should be passed by const reference."/>
+            <symbol>a</symbol>
+        </error>
+        <error id="constParameterReference" severity="style" msg="Parameter &apos;f&apos; can be declared as reference to const" verbose="Parameter &apos;f&apos; can be declared as reference to const" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="696" column="41" info="Parameter &apos;f&apos; can be declared as reference to const"/>
+            <symbol>f</symbol>
+        </error>
+        <error id="constParameterReference" severity="style" msg="Parameter &apos;rhs&apos; can be declared as reference to const" verbose="Parameter &apos;rhs&apos; can be declared as reference to const" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="704" column="46" info="Parameter &apos;rhs&apos; can be declared as reference to const"/>
+            <symbol>rhs</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="Quaternion" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" configuration="" line="5" col="1" hash="4922590948980119806"/>
+  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:171:7" my-argnr="1" my-argname="angle" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="671" col="3" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:20:2" my-argnr="1" my-argname="rad" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="15" col="26" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:28:20" my-argnr="1" my-argname="rad" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="36" col="18" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:35:20" my-argnr="1" my-argname="q1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="76" col="10" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:35:20" my-argnr="2" my-argname="q2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="76" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:54:16" my-argnr="1" my-argname="q" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="169" col="23" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:110:16" my-argnr="1" my-argname="q1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="475" col="13" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:110:16" my-argnr="2" my-argname="q2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="475" col="20" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:111:9" my-argnr="1" my-argname="q" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="480" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:116:20" my-argnr="1" my-argname="q" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="485" col="45" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:178:13" my-argnr="1" my-argname="f" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="697" col="27" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:179:19" my-argnr="1" my-argname="f" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="701" col="27" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:180:13" my-argnr="1" my-argname="rhs" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="705" col="27" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h:181:19" my-argnr="1" my-argname="rhs" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" line="709" col="27" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Euler" lineNumber="34" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Euler" lineNumber="39" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Mult" lineNumber="69" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Mult" lineNumber="107" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="AngleAxis" lineNumber="112" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="PosAxis" lineNumber="148" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="PosAxis" lineNumber="159" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="ToEuler" lineNumber="164" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="ToEuler" lineNumber="183" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="ToMatrix" lineNumber="188" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="ToMatrix" lineNumber="248" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="LookRotation" lineNumber="253" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="LookRotation" lineNumber="259" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetRotation" lineNumber="326" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetDir" lineNumber="438" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetForward" lineNumber="443" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetBack" lineNumber="448" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetRight" lineNumber="453" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetLeft" lineNumber="458" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetUp" lineNumber="463" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="GetDown" lineNumber="468" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Dot" lineNumber="473" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Dot" lineNumber="478" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Normalize" lineNumber="483" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Normalized" lineNumber="491" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Normalize" lineNumber="499" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Inverse" lineNumber="511" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Slerp" lineNumber="520" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="SIGN" lineNumber="528" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="NORM" lineNumber="532" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="FromToRotation" lineNumber="536" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="RotateTowards" lineNumber="558" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Angle" lineNumber="569" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="SlerpUnclamped" lineNumber="576" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Identity" lineNumber="644" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="Length" lineNumber="649" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="LengthSquared" lineNumber="654" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="xyz" lineNumber="659" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.cpp" functionName="ToAngleAxis" lineNumber="664" column="18"/>
+    <functioncall functionName="Angle"/>
+    <functioncall functionName="AngleAxis"/>
+    <functioncall functionName="AngleDeg"/>
+    <functioncall functionName="DX_PI"/>
+    <functioncall functionName="DX_PI_F"/>
+    <functioncall functionName="Deg2RadD"/>
+    <functioncall functionName="Dot"/>
+    <functioncall functionName="Euler"/>
+    <functioncall functionName="GetDir"/>
+    <functioncall functionName="Identity"/>
+    <functioncall functionName="Inverse"/>
+    <functioncall functionName="Length"/>
+    <functioncall functionName="LengthSquared"/>
+    <functioncall functionName="LookRotation"/>
+    <functioncall functionName="Mult"/>
+    <functioncall functionName="Normalize"/>
+    <functioncall functionName="Normalized"/>
+    <functioncall functionName="PosAxis"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="RadIn2PI"/>
+    <functioncall functionName="SlerpUnclamped"/>
+    <functioncall functionName="ToEuler"/>
+    <functioncall functionName="ToMatrix"/>
+    <functioncall functionName="VAdd"/>
+    <functioncall functionName="VCross"/>
+    <functioncall functionName="VDot"/>
+    <functioncall functionName="VNormalize"/>
+    <functioncall functionName="VScale"/>
+    <functioncall functionName="abs"/>
+    <functioncall functionName="acos"/>
+    <functioncall functionName="acosf"/>
+    <functioncall functionName="asin"/>
+    <functioncall functionName="atan2"/>
+    <functioncall functionName="cos"/>
+    <functioncall functionName="min"/>
+    <functioncall functionName="sin"/>
+    <functioncall functionName="sinf"/>
+    <functioncall functionName="sqrt"/>
+    <functioncall functionName="sqrtf"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="xyz"/>
+  </FileInfo>
+</analyzerinfo>

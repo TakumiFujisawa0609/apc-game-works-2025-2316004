@@ -13,9 +13,6 @@ CardBase::CardBase(const CARD_STATUS _status) :
 	numPos_(),
 	cardNoImg_(nullptr)
 {
-
-	////‚Æ‚è‚ ‚¦‚¸UŒ‚ƒJ[ƒh‚ğ¶¬
-	//type_ = CARD_TYPE::ATTACK;
 }
 
 CardBase::~CardBase(void)

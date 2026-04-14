@@ -1,77 +1,77 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="7175303081710444107">
+<analyzerinfo hash="10873902652344875638">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="1" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;Dxlib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" line="3" column="2"/>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;InputManager::GetJPadType&apos; can be static." verbose="The member function &apos;InputManager::GetJPadType&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="212" column="41"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" line="272" column="14"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;InputManager::GetJPadType&apos; can be static." verbose="The member function &apos;InputManager::GetJPadType&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="212" column="41"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" line="272" column="14"/>
             <symbol>InputManager::GetJPadType</symbol>
         </error>
   <FileInfo check="ctu">
-<function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:275:7" call-funcname="SetJPadInState" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="109" col="16" call-argexpr="JOYPAD_NO::KEY_PAD1" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:158:18" call-funcname="GetJPadInputState" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="282" col="35" call-argexpr="jpNo" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
-</function-call><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="281" col="27" info="Assignment &apos;no=static_cast&lt;int&gt;(jpNo)&apos;, assigned value is 0"/>
-</function-call><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="2" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="286" col="15" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
-</function-call><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:272:14" call-funcname="GetJPadType" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="316" col="25" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="282" col="36" info="Calling function &apos;GetJPadInputState&apos;, 1st argument &apos;jpNo&apos; value is 0"/>
+<function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:275:7" call-funcname="SetJPadInState" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="109" col="16" call-argexpr="JOYPAD_NO::KEY_PAD1" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:158:18" call-funcname="GetJPadInputState" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="282" col="35" call-argexpr="jpNo" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
+</function-call><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="281" col="27" info="Assignment &apos;no=static_cast&lt;int&gt;(jpNo)&apos;, assigned value is 0"/>
+</function-call><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="286" col="15" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
+</function-call><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:272:14" call-funcname="GetJPadType" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="316" col="25" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="282" col="36" info="Calling function &apos;GetJPadInputState&apos;, 1st argument &apos;jpNo&apos; value is 0"/>
 </function-call>  </FileInfo>
   <FileInfo check="Class">
-<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="65" col="2" hash="10215088381399476255"/>
-<class name="InputManager::Info" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="210" col="2" hash="10417824757669941053"/>
-<class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="" line="224" col="2" hash="9437638551516248859"/>
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::Info" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="" line="210" col="2" hash="10417824757669941053"/>
+<class name="InputManager::MouseInfo" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="" line="224" col="2" hash="9437638551516248859"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Init" lineNumber="15" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Update" lineNumber="83" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Release" lineNumber="117" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Add" lineNumber="123" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Clear" lineNumber="136" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsNew" lineNumber="141" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgDown" lineNumber="146" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgUp" lineNumber="151" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetMousePos" lineNumber="156" column="23"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetMouse" lineNumber="161" column="19"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseLeft" lineNumber="166" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseRight" lineNumber="171" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseLeft" lineNumber="176" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseRight" lineNumber="181" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Find" lineNumber="188" column="41"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="FindMouse" lineNumber="201" column="46"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadType" lineNumber="212" column="41"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadDInputState" lineNumber="217" column="31"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadXInputState" lineNumber="224" column="28"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsKeyKeepPressed" lineNumber="231" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsBtnKeepPressed" lineNumber="243" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="SetJPadInState" lineNumber="278" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadInputState" lineNumber="311" column="45"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnNew" lineNumber="445" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgDown" lineNumber="450" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgUp" lineNumber="455" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepTime" lineNumber="460" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepBtnTime" lineNumber="480" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Init" lineNumber="15" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Update" lineNumber="83" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Release" lineNumber="117" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Add" lineNumber="123" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Clear" lineNumber="136" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsNew" lineNumber="141" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgDown" lineNumber="146" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgUp" lineNumber="151" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetMousePos" lineNumber="156" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetMouse" lineNumber="161" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseLeft" lineNumber="166" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseRight" lineNumber="171" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseLeft" lineNumber="176" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseRight" lineNumber="181" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Find" lineNumber="188" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="FindMouse" lineNumber="201" column="46"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadType" lineNumber="212" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadDInputState" lineNumber="217" column="31"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadXInputState" lineNumber="224" column="28"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsKeyKeepPressed" lineNumber="231" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsBtnKeepPressed" lineNumber="243" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="SetJPadInState" lineNumber="278" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadInputState" lineNumber="311" column="45"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnNew" lineNumber="445" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgDown" lineNumber="450" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgUp" lineNumber="455" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepTime" lineNumber="460" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepBtnTime" lineNumber="480" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
     <functioncall functionName="Add"/>
     <functioncall functionName="CheckHitKey"/>
     <functioncall functionName="Find"/>
@@ -125,55 +125,55 @@
     <functioncall functionName="true"/>
   </FileInfo>
   <FileInfo check="ctu">
-<function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:275:7" call-funcname="SetJPadInState" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="109" col="16" call-argexpr="JOYPAD_NO::KEY_PAD1" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:158:18" call-funcname="GetJPadInputState" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="282" col="35" call-argexpr="jpNo" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
-</function-call><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="281" col="27" info="Assignment &apos;no=static_cast&lt;int&gt;(jpNo)&apos;, assigned value is 0"/>
-</function-call><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="2" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="286" col="15" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
-</function-call><function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h:272:14" call-funcname="GetJPadType" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" line="316" col="25" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
-  <path file="C:\Users\dekir\Desktop\AGS\AGS2026\Winter\Game\Src\Manager\Generic\InputManager.cpp" line="282" col="36" info="Calling function &apos;GetJPadInputState&apos;, 1st argument &apos;jpNo&apos; value is 0"/>
+<function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:275:7" call-funcname="SetJPadInState" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="109" col="16" call-argexpr="JOYPAD_NO::KEY_PAD1" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0"/><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:158:18" call-funcname="GetJPadInputState" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="282" col="35" call-argexpr="jpNo" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
+</function-call><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="281" col="27" info="Assignment &apos;no=static_cast&lt;int&gt;(jpNo)&apos;, assigned value is 0"/>
+</function-call><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:277:7" call-funcname="UpdateKeepBtnTime" call-argnr="2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="300" col="20" call-argexpr="i" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="286" col="15" info="Assignment &apos;i=0&apos;, assigned value is 0"/>
+</function-call><function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h:272:14" call-funcname="GetJPadType" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" line="316" col="25" call-argexpr="no" call-argvaluetype="0" call-argvalue="0" call-argvalue-ufr="0">
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="109" col="26" info="Calling function &apos;SetJPadInState&apos;, 1st argument &apos;JOYPAD_NO::KEY_PAD1&apos; value is 0"/>
+  <path file="C:\Users\2316004\Desktop\FindWork\CardOfAction\Src\Manager\Generic\InputManager.cpp" line="282" col="36" info="Calling function &apos;GetJPadInputState&apos;, 1st argument &apos;jpNo&apos; value is 0"/>
 </function-call>  </FileInfo>
   <FileInfo check="Class">
-<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="65" col="2" hash="10215088381399476255"/>
-<class name="InputManager::Info" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="210" col="2" hash="10417824757669941053"/>
-<class name="InputManager::MouseInfo" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="224" col="2" hash="9437638551516248859"/>
+<class name="InputManager::JOYPAD_IN_STATE" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="65" col="2" hash="10215088381399476255"/>
+<class name="InputManager::Info" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="210" col="2" hash="10417824757669941053"/>
+<class name="InputManager::MouseInfo" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.h" configuration="_DEBUG=_DEBUG" line="224" col="2" hash="9437638551516248859"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Init" lineNumber="15" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Update" lineNumber="83" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Release" lineNumber="117" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Add" lineNumber="123" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Clear" lineNumber="136" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsNew" lineNumber="141" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgDown" lineNumber="146" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgUp" lineNumber="151" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetMousePos" lineNumber="156" column="23"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetMouse" lineNumber="161" column="19"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseLeft" lineNumber="166" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseRight" lineNumber="171" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseLeft" lineNumber="176" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseRight" lineNumber="181" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="Find" lineNumber="188" column="41"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="FindMouse" lineNumber="201" column="46"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadType" lineNumber="212" column="41"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadDInputState" lineNumber="217" column="31"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadXInputState" lineNumber="224" column="28"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsKeyKeepPressed" lineNumber="231" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsBtnKeepPressed" lineNumber="243" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="MoveObject" lineNumber="254" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="SetJPadInState" lineNumber="278" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadInputState" lineNumber="311" column="45"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnNew" lineNumber="445" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgDown" lineNumber="450" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgUp" lineNumber="455" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepTime" lineNumber="460" column="26"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepBtnTime" lineNumber="480" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Init" lineNumber="15" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Update" lineNumber="83" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Release" lineNumber="117" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Add" lineNumber="123" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Clear" lineNumber="136" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsNew" lineNumber="141" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgDown" lineNumber="146" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgUp" lineNumber="151" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetMousePos" lineNumber="156" column="23"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetMouse" lineNumber="161" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseLeft" lineNumber="166" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsClickMouseRight" lineNumber="171" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseLeft" lineNumber="176" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsTrgMouseRight" lineNumber="181" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="Find" lineNumber="188" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="FindMouse" lineNumber="201" column="46"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadType" lineNumber="212" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadDInputState" lineNumber="217" column="31"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadXInputState" lineNumber="224" column="28"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsKeyKeepPressed" lineNumber="231" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsBtnKeepPressed" lineNumber="243" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="MoveObject" lineNumber="254" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="SetJPadInState" lineNumber="278" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="GetJPadInputState" lineNumber="311" column="45"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnNew" lineNumber="445" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgDown" lineNumber="450" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="IsPadBtnTrgUp" lineNumber="455" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepTime" lineNumber="460" column="26"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/InputManager.cpp" functionName="UpdateKeepBtnTime" lineNumber="480" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
     <functioncall functionName="Add"/>
     <functioncall functionName="CheckHitKey"/>
     <functioncall functionName="Find"/>

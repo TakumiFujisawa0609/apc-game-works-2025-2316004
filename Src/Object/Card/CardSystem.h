@@ -50,20 +50,11 @@ public:
 	/// @param _pow カードの強さ
 	/// @param _playerNum プレイヤー番号(誰の結果にセットするか)
 	void PutCard(const int _pow,const int _playerNum);
-	
-	/// @brief カードを場に出せるかの取得
-	/// @param  
-	/// @return true:場に出せる false:場に出せない
-	const bool GetCanPut(void) const { return canPut_; }
 
 	/// @brief 勝敗結果の取得
 	/// @param _cardPlayerNo カード勝負プレイヤーの番号
 	/// @return 勝敗結果
 	const BATTLE_RESULT GetResult(const int _cardPlayerNo)const;
-	
-	/// @brief 勝敗結果に使用するカードの強さの初期化
-	/// @param _playerNo 
-	void InitPutCardPow(const int _playerNo);
 
 	/// @brief カード勝負に負けた時の強さの初期化
 	/// @param _playerNo 
@@ -73,17 +64,8 @@ public:
 	/// @param _playerNo 
 	void JudgeIsFirstAtk(const int _playerNo);
 
-	/// @brief 場に何もカードが出されていない状態
-	/// @param  
-	/// @return true:場に何も出ていない	false:何か場にカードが出ている上体
-	const bool IsNoneCard(void);
-
 	//カード２枚のカード強さの取得
 	const int GetCardDif(void)const { return cardDif_; }
-
-	/// @brief カードの強さの初期化
-	/// @param  
-	void InitCardDif(void) { cardDif_ = 0; }
 
 #ifdef _DEBUG
 	void DrawDebug(void);
@@ -96,7 +78,9 @@ private:
 	//------------------------------------------------
 	//再利用を防ぐ
 	CardSystem(void);
-	~CardSystem(void) = default;
+	CardSystem(const CardSystem& _copy) = delete;
+	CardSystem& operator=(const CardSystem&) = delete;
+	~CardSystem(void)override = default;
 
 	//メンバ変数
 	//-------------------------------------------------

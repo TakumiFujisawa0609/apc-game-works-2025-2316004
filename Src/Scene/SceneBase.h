@@ -6,6 +6,7 @@
 class SceneManager;
 class ResourceManager;
 class InputManager;
+class InputManagerS;
 
 class SceneBase
 {
@@ -57,6 +58,7 @@ protected:
 	// リソース管理
 	ResourceManager& resMng_;
 	InputManager& inputMng_;
+	InputManagerS& inputMngS_;
 	SceneManager& scnMng_;
 
 	//更新処理管理

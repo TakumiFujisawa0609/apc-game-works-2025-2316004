@@ -149,10 +149,6 @@ public:
 	/// @return ステータス
 	const CardBase::CARD_STATUS GetStatus(void)const { return status_; }
 
-	/// @brief 最終的にカードの座標をゴール座標に合わせる
-	/// @param  
-	void SyncCardAngleAndPos(void);
-
 	/// @brief イージングのためのスタート角度(角度補完終了後の現在角度)と目標の角度セット
 	/// @param _goalrad 目標角度
 	void SetStartAndGoalAngle(const float& _goalrad);

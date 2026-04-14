@@ -314,8 +314,6 @@ float Cube::ClosestSegmentAABB(const VECTOR& segA, const VECTOR& segB, const VEC
 {
 	// 線分とAABBの最短距離²を求める
 	// → 各軸でクランプを行う
-
-	float t = 0.0f;
 	float minDistSq = FLT_MAX;
 
 	// 線分上の点 P(t) = A + t*(B - A), 0 <= t <= 1
@@ -336,7 +334,6 @@ float Cube::ClosestSegmentAABB(const VECTOR& segA, const VECTOR& segB, const VEC
 		if (distSq < minDistSq)
 		{
 			minDistSq = distSq;
-			t = ft;
 		}
 	}
 

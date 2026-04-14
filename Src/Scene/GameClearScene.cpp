@@ -55,18 +55,10 @@ void GameClearScene::Init(void)
 void GameClearScene::NormalUpdate(void)
 {
 	// ƒV[ƒ“‘JˆÚ
-	InputManager& ins = InputManager::GetInstance();
-	InputManagerS& insS = InputManagerS::GetInstance();
-	if (ins.IsTrgDown(KEY_INPUT_SPACE))
+	if (inputMng_.IsTrgDown(KEY_INPUT_SPACE)|| inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
 	}
-	else if (insS.IsTrgDown(INPUT_EVENT::OK))
-	{
-		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
-	}
-
-
 	const float LIMIT = SceneBase::BACK_TITLE_STRING_POS_Y - BACK_TITLE_STRING_POS_EASE_LIMIT;
 	strYPos_ = easing_->EaseFunc(SceneBase::BACK_TITLE_STRING_POS_Y, LIMIT, easeCnt_ / EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
 	easeCnt_ += scnMng_.GetDeltaTime();

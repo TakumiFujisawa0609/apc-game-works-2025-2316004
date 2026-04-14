@@ -22,29 +22,21 @@ roleAtkCnt_(0.0f),
 preRoleAtkCnt_(0.0f),
 preRolePos_(Utility3D::VECTOR_ZERO),
 roleDeg_(0.0f)
-//soundMng_(SoundManager::GetInstance())
 {
 	isTurnable_ = false;
 	changeAction_ = {
 		{ CARD_ACT_TYPE::STOMP_ATK, [this]() {ChangeStomp(); }},
-		{ CARD_ACT_TYPE::ROAR_ATK, [this]() {ChangeRoar(); }},
 		{ CARD_ACT_TYPE::JUMP_ATK, [this]() {ChangeJumpAtk(); }},
-		{ CARD_ACT_TYPE::RUSH_ATK, [this]() {ChangeRoleAtk(); }},
-		{ CARD_ACT_TYPE::DUEL_FAZE, [this]() {ChangeDuel(); }},
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 	};
 
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::STOMP_ATK, STOMP_ATK},
-		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
-		{CARD_ACT_TYPE::RUSH_ATK, RUSH_ATK }
 	};
 	changeCardAction_ = {
 		{LogicBase::ENEMY_ATTACK_TYPE::STOMP,[this]() {ChangeCardAction(CARD_ACT_TYPE::STOMP_ATK); }},
 		{LogicBase::ENEMY_ATTACK_TYPE::JUMP,[this]() {ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK); }},
-		{LogicBase::ENEMY_ATTACK_TYPE::ROAR,[this]() {ChangeCardAction(CARD_ACT_TYPE::ROAR_ATK); }},
-		{LogicBase::ENEMY_ATTACK_TYPE::ROLE,[this]() {ChangeCardAction(CARD_ACT_TYPE::RUSH_ATK); }}
 	};
 
 	//岩の生成
@@ -72,11 +64,9 @@ void EnemyCardAction::Load(void)
 void EnemyCardAction::Init(void)
 {
 	actType_ = CARD_ACT_TYPE::NONE;
-	//cardPresent_.MoveUsingCardToDrawPile();
 	easing_ = std::make_unique<Easing>();
 	atkStatusTable_ = {
 		{CARD_ACT_TYPE::STOMP_ATK, STOMP_ATK},
-		{CARD_ACT_TYPE::ROAR_ATK, ROAR_ATK},
 		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
 	};
 	atkCnt_ = 0.0f;
@@ -144,14 +134,6 @@ void EnemyCardAction::ChangeStomp(void)
 	cardFuncs_.push([this]() {UpdateStomp(); });
 }
 
-void EnemyCardAction::ChangeRoar(void)
-{
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ROAR_ATK), false, JUMP_ANIM_START);
-	//ジャンプ攻撃処理
-	atk_ = atkStatusTable_[CARD_ACT_TYPE::ROAR_ATK];
-	cardFuncs_.push([this]() {UpdateRoar(); });
-}
-
 void EnemyCardAction::ChangeJumpAtk(void)
 {
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP_ATK), false);
@@ -171,16 +153,6 @@ void EnemyCardAction::ChangeJumpAtk(void)
 	cardFuncs_.push([this]() {UpdateJumpAtk(); });
 }
 
-void EnemyCardAction::ChangeRoleAtk(void)
-{
-	preRoleAtkCnt_ = ROLE_PRE_TIME;
-	roleAtkCnt_ = ROLE_TIME;
-	preRolePos_ = charaObj_.GetTransform().pos;
-	SetAtk(RUSH_ATK);
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
-	cardFuncs_.push([this]() {UpdateRoleAtk(); });
-}
-
 void EnemyCardAction::ChangeReload(void)
 {
 	if (!cardFuncs_.empty())
@@ -191,15 +163,6 @@ void EnemyCardAction::ChangeReload(void)
 	cardPresent_.EnemyCardReload();
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
 	cardFuncs_.push([this]() {UpdateReload(); });
-}
-
-void EnemyCardAction::ChangeDuel(void)
-{
-	isDuelWait_ = true;
-
-	//デュエルdeckから1枚ドロー
-	PutCardToDuelDeck();
-	cardFuncs_.push([this]() {UpdateDuel(); });
 }
 
 void EnemyCardAction::UpdateStomp(void)
@@ -257,6 +220,7 @@ void EnemyCardAction::UpdateStomp(void)
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.SetIsAliveEnemyRock(false);
 
+			//敵の岩の攻撃判定終了
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 
@@ -267,11 +231,6 @@ void EnemyCardAction::UpdateStomp(void)
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
 	}
-}
-
-void EnemyCardAction::UpdateRoar(void)
-{
-	AttackMotion(atkStatusTable_[actType_],Collider::TAG::ROAR_ATK, JUMP_ATK_LOCAL);
 }
 
 void EnemyCardAction::UpdateJumpAtk(void)
@@ -359,44 +318,6 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	}
 }
 
-void EnemyCardAction::UpdateRoleAtk(void)
-{
-	//負けたら終了
-	if (IsCardFailure(Collider::TAG::NML_ATK))return;
-	const float deltaTIme = scnMng_.GetDeltaTime();
-	//前隙カウント
-	if (preRoleAtkCnt_ >= 0.0f)
-	{
-		//前隙中
-		preRoleAtkCnt_ -= deltaTIme;
-		roleMoveDir_.y = 0.0f;
-		isTurnable_ = true;
-		return;
-	}
-	
-
-	//現在の座標取得
-	const Transform trans = charaObj_.GetTransform();
-	const VECTOR charaPos = trans.pos;
-	const VECTOR& centerPos = charaObj_.GetCharaCenterPos();
-	isTurnable_ = false;
-	if (preRoleAtkCnt_ < 0.0f)
-	{
-		roleAtkCnt_ -= deltaTIme;
-		//攻撃中
-		atk_.pos = Utility3D::AddPosRotate(trans.pos, trans.quaRot, { 0.0f,0.0f,0.0f });
-		//転がる間の速度
-		speed_ = ROLE_SPEED;
-		//当たり判定の作成
-		charaObj_.MakeAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK, atk_.pos, ROLE_ATK_RADIUS);
-		actionCntl_.GetInput().SetDir(roleMoveDir_);
-		if (roleAtkCnt_ < 0.0f)
-		{
-			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-		}
-	}
-}
-
 void EnemyCardAction::UpdateReload(void)
 {
 	cardPresent_.EnemyCardReload();
@@ -404,41 +325,4 @@ void EnemyCardAction::UpdateReload(void)
 	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 }
 
-void EnemyCardAction::UpdateDuel(void)
-{
-	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
-	{
-		//if (IsCardFailureJumpCharge())
-		//{
-		//	//アニメーションループ終了
-		//	anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
-
-		//	//charaObj_.GetCardUI().ChangeUsedActionCard();
-		//	cardPresent_.FinishCard();
-		//	//cardPresent_.EraseHandCard();
-		//	//cardPresent_.ClearDuelDeck();
-		//	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-		//	return;
-		//}
-
-		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
-		//アニメーションループ
-		anim_.SetMidLoop(JUMP_CHARGE_ANIM_LOOP_START, JUMP_CHARGE_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
-
-	}
-	else if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
-	{
-		//アニメーションループ終了
-		anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
-		ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK);
-	}
-}
-
-
-
-void EnemyCardAction::PutCardToDuelDeck(void)
-{
-	//cardPresent_.MoveUsingCardToDuelDeck();
-	//charaObj_.GetCardUI().ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
-}
 

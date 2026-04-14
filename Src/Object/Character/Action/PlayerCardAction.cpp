@@ -25,7 +25,6 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{ CARD_ACT_TYPE::ATTACK_TWO, [this]() {ChangeAttackTwo(); }},
 		{ CARD_ACT_TYPE::ATTACK_THREE, [this]() {ChangeAttackThree(); }},
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
-		{ CARD_ACT_TYPE::DUEL_FAZE, [this]() {ChangeDuel(); }},
 	};
 
 	ATK_STATUS initStatus={};
@@ -297,41 +296,6 @@ void PlayerCardAction::UpdateReload(void)
 	}
 }
 
-void PlayerCardAction::UpdateSonicRave(void)
-{
-}
-
-void PlayerCardAction::UpdateDuel(void)
-{
-	////カードの勝敗による処理
-	//bool w = cardPresent_.IsCardWin();
-	//bool f = cardPresent_.IsCardFailure();
-	//if (w)
-	//{
-	//	//チャージカードに移動
-	//	cardPresent_.MoveChargeToUsingCard();
-	//	//カードUIもストックのカードに移動
-	//}
-	//else if(f)
-	//{
-	//	//負けたらカードを削除
-	//	charaObj_.ChangeCard();
-
-	//}
-
-	////カードをドローする
-	//LogicBase& logic = actionCntl_.GetInput();
-	//if (logic.GetIsAct().isCardUse && logic.GetJumpCardNum()< JAMP_CHARGE_CARD_NUM_MAX)
-	//{
-	//	cardPresent_.MoveUsingCardToDrawPile();
-	//}
-	//else if (logic.GetJumpCardNum() >= JAMP_CHARGE_CARD_NUM_MAX)
-	//{
-	//	//一定回数カードに勝ったら大技を出す(未実装)
-	//	actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-	//}
-}
-
 
 void PlayerCardAction::ChangeShortAttackOne(void)
 {
@@ -399,15 +363,6 @@ void PlayerCardAction::ChangeReload(void)
 	cardFuncs_.push([this]() {UpdateReload(); });
 }
 
-void PlayerCardAction::ChangeSonicRave(void)
-{
-}
-
-void PlayerCardAction::ChangeDuel(void)
-{
-	isDuelWait_ = true;
-	cardFuncs_.push([this]() {UpdateDuel(); });
-}
 
 void PlayerCardAction::ChangeComboAction(void)
 {

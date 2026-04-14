@@ -18,7 +18,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	virtual ~HpUIBase(void);
+	virtual ~HpUIBase(void)override;
 
 	/// @brief ロード
 	/// @param  

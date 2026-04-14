@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="2398875232607486676">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="1" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="3" column="2"/>
+        </error>
+  <FileInfo check="Class">
+<class name="Utility2D" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h" configuration="" line="4" col="1" hash="4465840091380513482"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:9:16" my-argnr="1" my-argname="v" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="7" col="18" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:10:13" my-argnr="1" my-argname="v" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="12" col="12" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:11:16" my-argnr="1" my-argname="v1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="17" col="28" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:11:16" my-argnr="2" my-argname="v2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="17" col="21" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:17:17" my-argnr="2" my-argname="mapSize" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="23" col="46" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:23:17" my-argnr="2" my-argname="mapSize" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="31" col="46" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:31:14" my-argnr="1" my-argname="circlePos1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="39" col="16" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:31:14" my-argnr="3" my-argname="circlePos2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="39" col="31" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.h:40:14" my-argnr="2" my-argname="_size" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" line="56" col="38" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" functionName="Magnitude" lineNumber="5" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" functionName="SqrMagnitude" lineNumber="10" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" functionName="Distance" lineNumber="15" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" functionName="WorldToMapPos" lineNumber="20" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" functionName="MapToWorldPos" lineNumber="28" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" functionName="IsHitCircles" lineNumber="36" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility2D.cpp" functionName="DrawBarGraph" lineNumber="53" column="17"/>
+    <functioncall functionName="DrawBox"/>
+    <functioncall functionName="pow"/>
+    <functioncall functionName="sqrt"/>
+    <functioncall functionName="true"/>
+  </FileInfo>
+</analyzerinfo>

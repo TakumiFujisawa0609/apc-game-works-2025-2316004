@@ -1,64 +1,64 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="12892644601005226317">
+<analyzerinfo hash="9772823137702860858">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="1" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/Camera.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/Camera.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="5" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/SoundManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/SoundManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="6" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="6" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility3D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility3D.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="7" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="7" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/UtilityCommon.h&quot; not found." verbose="Include file: &quot;../Utility/UtilityCommon.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="8" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="8" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/ModelFrameUtility.h&quot; not found." verbose="Include file: &quot;../Utility/ModelFrameUtility.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="9" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="9" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/EffectController.h&quot; not found." verbose="Include file: &quot;../Object/Common/EffectController.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="10" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="10" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Geometry/Geometry.h&quot; not found." verbose="Include file: &quot;../Object/Common/Geometry/Geometry.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="11" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="11" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Geometry/Capsule.h&quot; not found." verbose="Include file: &quot;../Object/Common/Geometry/Capsule.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="12" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="12" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found." verbose="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="13" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="13" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/ObjectBase.h&quot; not found." verbose="Include file: &quot;../Object/ObjectBase.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.h" line="2" column="2"/>
         </error>
-        <error id="useInitializationList" severity="performance" msg="Variable &apos;effect_&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;effect_&apos; a value by passing the value to the constructor in the initialization list." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" line="24" column="2"/>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;effect_&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;effect_&apos; a value by passing the value to the constructor in the initialization list." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" line="24" column="2"/>
             <symbol>effect_</symbol>
         </error>
-        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Weapon&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Weapon&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" line="9" column="5"/>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Weapon&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Weapon&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.h" line="9" column="5"/>
             <symbol>Weapon</symbol>
         </error>
   <FileInfo check="Class">
-<class name="Weapon" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" configuration="" line="5" col="1" hash="5188424843266659831"/>
+<class name="Weapon" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.h" configuration="" line="5" col="1" hash="5188424843266659831"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" functionName="GetIsDamage" lineNumber="45" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.h" functionName="SetIsDamage" lineNumber="48" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="SetTargetAndFrameNo" lineNumber="76" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="MakeWeaponCollider" lineNumber="82" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/Weapon.cpp" functionName="DeleteWeaponCollider" lineNumber="105" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.h" functionName="GetIsDamage" lineNumber="45" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.h" functionName="SetIsDamage" lineNumber="48" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" functionName="SetTargetAndFrameNo" lineNumber="76" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" functionName="MakeWeaponCollider" lineNumber="82" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/Weapon.cpp" functionName="DeleteWeaponCollider" lineNumber="105" column="14"/>
     <functioncall functionName="ATK_SPHERE"/>
     <functioncall functionName="Add"/>
     <functioncall functionName="BACK"/>

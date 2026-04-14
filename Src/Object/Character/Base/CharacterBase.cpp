@@ -212,7 +212,7 @@ const bool CharacterBase::GetIsDamage(void) const
 	return action_->GetMainAction().GetIsDamage();
 }
 
-const VECTOR& CharacterBase::GetCharaCenterPos(void) const
+VECTOR CharacterBase::GetCharaCenterPos(void) const
 {
 	return collider_.at(ObjectBase::TAG_PRIORITY::BODY)->GetGeometry().GetCenter();
 }
@@ -242,17 +242,6 @@ const ActionBase& CharacterBase::GetMainAction(void) const
 const CharacterOnHitBase::HIT_POINT& CharacterBase::GetHitPoint(void) const
 {
 	return onHit_->GetHitPoint();
-}
-
-void CharacterBase::MovedPosMove(const VECTOR& _vec, const float& _movePow)
-{
-	movedPos_ = VAdd(movedPos_, VScale(_vec, _movePow));
-}
-
-void CharacterBase::LariatMove(const float& _deg)
-{
-	charaRot_.playerRotY_=Quaternion::AngleAxis(UtilityCommon::Deg2RadF(_deg), Utility3D::AXIS_Y);
-	//input
 }
 
 void CharacterBase::SetLogicTargetCharacter(std::shared_ptr<CharacterBase> _targetChara)
@@ -308,12 +297,6 @@ void CharacterBase::EnemyRockUpdate(void)
 		rock->Update();
 	}
 }
-
-void CharacterBase::ClearEnemyRock(void)
-{
-	rock_.clear();
-}
-
 const bool CharacterBase::GetIsHitTarget(void) const
 {
 	return onHit_->GetIsHitTarget();

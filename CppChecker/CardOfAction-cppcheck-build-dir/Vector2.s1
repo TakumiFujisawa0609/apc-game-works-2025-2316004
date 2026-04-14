@@ -1,0 +1,28 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+Normalize call:[Length,Vector2,return] noreturn:[Vector2]
+Length call:[sqrt]
+IsVector2
+IsSameVector2
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=

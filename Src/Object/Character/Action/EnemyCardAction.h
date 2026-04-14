@@ -169,21 +169,12 @@ private:
 
     //遷移
     void ChangeStomp(void);             //踏みつけ
-    void ChangeRoar(void);              //咆哮攻撃
     void ChangeJumpAtk(void);           //ジャンプ攻撃
-	void ChangeRoleAtk(void);           //転がり
     void ChangeReload(void);            //リロード
-    void ChangeDuel(void)override;      //デュエル
     //更新
     void UpdateStomp(void);             //踏みつけ      
-    void UpdateRoar(void);              //咆哮攻撃  
     void UpdateJumpAtk(void);           //ジャンプ攻撃
-	void UpdateRoleAtk(void);             //転がり
     void UpdateReload(void);            //リロード
-    void UpdateDuel(void)override;      //デュエル
-
-    //デュエルデッキからカードを出す
-    void PutCardToDuelDeck(void);
 
     //攻撃別の当たり判定情報
     std::map<ACT_TYPE, ATK_STATUS>atkTable_;

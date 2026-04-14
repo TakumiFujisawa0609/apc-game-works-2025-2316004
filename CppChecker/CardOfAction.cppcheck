@@ -11,10 +11,14 @@
         <dir name="../Src/Manager"/>
         <dir name="../Src/Object"/>
         <dir name="../Src/Scene"/>
+        <dir name="../Src/Common"/>
+        <dir name="../Src/Utility"/>
+        <dir name="../Src/Renderer"/>
+        <dir name="../Src"/>
     </paths>
     <exclude>
         <path name="../Lib/"/>
     </exclude>
-    <check-level-normal/>
+    <check-level-exhaustive/>
     <project-name>CardOfAction</project-name>
 </project>

@@ -65,15 +65,12 @@ public:
     /// @param  
     virtual void Update(void) = 0;
     
-    /// @brief コントロール判定
-	/// @param _actCntl ゲットしたい操作種類
-    /// @return 
-    const bool CheckAct(const ACT_CNTL& _actCntl)const { return actCntl_ == _actCntl ? true : false; }
+ 
     
     /// @brief 入力方向の取得
     /// @param  
     /// @return 
-    const VECTOR& GetInputDir(void)const;
+    VECTOR GetInputDir(void)const;
 
     /// @brief 移動方向の取得
     /// @param  
@@ -89,11 +86,6 @@ public:
     /// @param  
     /// @return 攻撃種類
     const ENEMY_ATTACK_TYPE& GetAttackType(void)const { return attackType_; }
-
-    /// @brief プレイヤーが敵の攻撃種類を取得する
-    /// @param  
-    /// @return 
-    const bool GetIsEnemyJumpCharge(void)const;
 
     /// @brief ターゲットをセットする
     /// @param _target 

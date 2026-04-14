@@ -1,0 +1,23 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+Magnitude call:[sqrt] noreturn:[sqrt]
+SqrMagnitude
+Distance call:[pow,sqrt] noreturn:[sqrt]
+WorldToMapPos
+MapToWorldPos
+IsHitCircles
+DrawBarGraph call:[DrawBox] noreturn:[DrawBox]

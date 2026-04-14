@@ -19,19 +19,13 @@ LogicBase::~LogicBase(void)
 {
 }
 
-const VECTOR& LogicBase::GetInputDir(void) const
+VECTOR LogicBase::GetInputDir(void) const
 {
 	//ƒJƒƒ‰‚ÌŠp“x‚ðŽæ“¾
 	auto camera = SceneManager::GetInstance().GetCamera();
 	VECTOR cameraRot = camera.lock()->GetAngles();
 	Quaternion cameraQuaRot = camera.lock()->GetQuaRotOutX();
 	return cameraQuaRot.PosAxis(inputDir_);
-}
-
-const bool LogicBase::GetIsEnemyJumpCharge(void)const
-{
-	return targetChara_.lock()->GetCardAction() == CardActionBase::CARD_ACT_TYPE::DUEL_FAZE
-		&& targetChara_.lock()->GetMainAction().IsJumpAtkCharge();
 }
 
 void LogicBase::SetTargetCharacter(std::shared_ptr<CharacterBase> _target)

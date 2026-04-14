@@ -30,11 +30,6 @@ public:
     /// @param  
     virtual void Update(void) override = 0;
 
-    /// @brief ジャンプチャージ攻撃中
-    /// @param  
-    /// @return 
-    virtual const bool IsJumpAtkCharge(void)const override { return false; }
-
     /// @brief 敵のジャンプチャージ中のカード勝負数
     /// @param  
     /// @return 
@@ -82,18 +77,11 @@ protected:
     /// @return 
     bool IsCardFailure(const Collider::TAG& _attackTag);
 
-    //攻撃終了
-    void FinishAttack(const Collider::TAG _attackCol);
-
 	//負けて攻撃が終了
 	void FinishFailureAttack(const Collider::TAG _attackCol);
 
     //攻撃情報をセット
     void SetAtk(const ATK_STATUS& _actType);
-
-    //デュエルモード
-    virtual void ChangeDuel(void) = 0;              //デュエルモード遷移
-    virtual void UpdateDuel(void) = 0;              //デュエルモード更新
 
     //移動量
     VECTOR velocity_;

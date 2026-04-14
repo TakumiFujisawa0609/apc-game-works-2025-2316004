@@ -77,10 +77,6 @@ void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
-void EnemyOnHit::CollDuelSpecialAttack(const std::weak_ptr<Collider> _hitCol)
-{
-}
-
 void EnemyOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 {
 	//‘ŠŽè‚Æ“–‚½‚Á‚½

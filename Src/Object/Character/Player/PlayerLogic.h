@@ -62,7 +62,6 @@ public:
     //ゲッタ
     //----------------------------------------------------------------
     ACT_CNTL GetAct(void) { return actCntl_; }
-    float GetStickDeg(void){ return stickDeg_; }
 private:
 
     //各アクション操作ボタン

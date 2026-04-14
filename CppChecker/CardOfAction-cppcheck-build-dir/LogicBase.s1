@@ -1,6 +1,4 @@
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -72,13 +70,9 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -88,7 +82,6 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 GetPos
 GetAngles
@@ -98,7 +91,6 @@ GetQuaRotOutX
 SetStageTransform
 IsEndDirectionMode
 GetDirectionMode
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -110,7 +102,6 @@ GetTargetCharacter
 LogicBase
 LogicBase
 GetInputDir call:[GetAngles,GetCamera,GetInstance,GetQuaRotOutX,PosAxis,lock] noreturn:[PosAxis]
-GetIsEnemyJumpCharge call:[GetCardAction,GetMainAction,IsJumpAtkCharge,lock] noreturn:[IsJumpAtkCharge]
 SetTargetCharacter
 GetLookAtTargetDir call:[GetMoveVec,GetTransform,lock]
 HitTarget

@@ -19,7 +19,7 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~CardUIDraw(void);
+	~CardUIDraw(void)override;
 
 	/// @brief ロード
 	/// @param  

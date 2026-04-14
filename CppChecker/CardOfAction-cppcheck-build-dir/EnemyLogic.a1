@@ -1,46 +1,45 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="6172118401201470655">
+<analyzerinfo hash="14556945619333124634">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" line="1" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/Utility3D.h&quot; not found." verbose="Include file: &quot;../Utility/Utility3D.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found." verbose="Include file: &quot;../Object/Character/Base/CharacterBase.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Transform.h&quot; not found." verbose="Include file: &quot;../Object/Common/Transform.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Common/Transform.h&quot; not found." verbose="Include file: &quot;../Object/Common/Transform.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.h" line="3" column="2"/>
         </error>
-        <error id="noExplicitConstructor" severity="style" msg="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" line="18" column="2"/>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;EnemyLogic&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.h" line="18" column="2"/>
             <symbol>EnemyLogic</symbol>
         </error>
   <FileInfo check="Class">
-<class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="" line="35" col="5" hash="16168219573089488594"/>
-<class name="EnemyLogic" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="6" col="1" hash="14343129382002385014"/>
-<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="11" col="2" hash="2263838531848007897"/>
+<class name="LogicBase::ACT_FLAG" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" configuration="" line="35" col="5" hash="16168219573089488594"/>
+<class name="EnemyLogic" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="6" col="1" hash="14343129382002385014"/>
+<class name="EnemyLogic::AttackWeight" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.h" configuration="" line="11" col="2" hash="2263838531848007897"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="CheckAct" lineNumber="71" column="16"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetDir" lineNumber="81" column="19"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetIsAct" lineNumber="86" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetAttackType" lineNumber="91" column="30"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="SetMoveDir" lineNumber="104" column="10"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="123" column="10"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="112" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="167" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetDir" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetIsAct" lineNumber="83" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetAttackType" lineNumber="88" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetMoveDir" lineNumber="96" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="115" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="124" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="133" column="39"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="112" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="167" column="18"/>
     <functioncall functionName="DecideAction"/>
     <functioncall functionName="EnemyLogic"/>
     <functioncall functionName="GetDeltaTime"/>
@@ -64,23 +63,22 @@
     <functioncall functionName="weak_ptr"/>
   </FileInfo>
   <FileInfo check="Class">
-<class name="LogicBase::ACT_FLAG" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" configuration="_DEBUG=_DEBUG" line="35" col="5" hash="16168219573089488594"/>
-<class name="EnemyLogic" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="6" col="1" hash="16426213271361091068"/>
-<class name="EnemyLogic::AttackWeight" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="11" col="2" hash="2263838531848007897"/>
+<class name="LogicBase::ACT_FLAG" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" configuration="_DEBUG=_DEBUG" line="35" col="5" hash="16168219573089488594"/>
+<class name="EnemyLogic" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="6" col="1" hash="16426213271361091068"/>
+<class name="EnemyLogic::AttackWeight" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.h" configuration="_DEBUG=_DEBUG" line="11" col="2" hash="2263838531848007897"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="CheckAct" lineNumber="71" column="16"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetDir" lineNumber="81" column="19"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetIsAct" lineNumber="86" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetAttackType" lineNumber="91" column="30"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="SetMoveDir" lineNumber="104" column="10"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="123" column="10"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="132" column="7"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="141" column="39"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugUpdate" lineNumber="78" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugDraw" lineNumber="102" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="112" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="167" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetDir" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetIsAct" lineNumber="83" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetAttackType" lineNumber="88" column="30"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetMoveDir" lineNumber="96" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="SetDir" lineNumber="115" column="10"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="IsActioningSet" lineNumber="124" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/LogicBase.h" functionName="GetTargetCharacter" lineNumber="133" column="39"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugUpdate" lineNumber="78" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DebugDraw" lineNumber="102" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="DecideAction" lineNumber="112" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Enemy/EnemyLogic.cpp" functionName="SetFreezeCntByAttackType" lineNumber="167" column="18"/>
     <functioncall functionName="DIR_B"/>
     <functioncall functionName="DIR_F"/>
     <functioncall functionName="DIR_L"/>

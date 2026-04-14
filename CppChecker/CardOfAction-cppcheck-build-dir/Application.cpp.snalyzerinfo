@@ -1,0 +1,51 @@
+GetState
+IsEnd
+SetIsSceneChange
+GetSceneID
+GetDeltaTime
+GetTotalTime
+GetCamera
+GetMainScreen
+GetIsEndFade
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+SetLoadedSoundsVolume call:[SetSystemVolume] noreturn:[SetSystemVolume]
+GetSoundTypeVolume
+IsGameEnd
+Init call:[ChangeWindowMode,CreateInstance,DxLib_Init,GetInstance,Init,InitEffekseer,SetGraphMode,SetUseDirect3DVersion,SetUseDirectInputFlag,SetWindowText]
+Run call:[CalcFrameRate,CheckHitKey,Draw,DrawFrameRate,GetInstance,GetNowHiPerformanceCount,ProcessMessage,ScreenFlip,Update,UpdateFrameRate] noreturn:[ScreenFlip]
+Release call:[Destroy,DxLib_End,Effkseer_End,GetInstance,Release]
+Application
+InitEffekseer call:[DxLib_End,Effekseer_Init,Effekseer_SetGraphicsDeviceLostCallbackFunctions,SetChangeScreenModeGraphicsSystemResetFlag] noreturn:[DxLib_End,Effekseer_SetGraphicsDeviceLostCallbackFunctions]
+CreateInstance call:[SceneManager] noreturn:[SceneManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManager] noreturn:[InputManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[InputManagerS] noreturn:[InputManagerS]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[SoundManager] noreturn:[SoundManager]
+GetInstance call:[assert]
+Destroy
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

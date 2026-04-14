@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="2680036728770095423">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;fstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="5" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;sstream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityCommon.h" line="6" column="2"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="20" column="2"/>
+            <symbol>Quaternion</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;_str&apos; should be passed by const reference." verbose="Parameter &apos;_str&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" line="68" column="95" info="Function parameter &apos;_str&apos; should be passed by const reference."/>
+            <symbol>_str</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="UtilityDraw" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.h" configuration="" line="5" col="1" hash="7869270143112387690"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.h:10:14" my-argnr="2" my-argname="dir" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" line="8" col="39" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.h:11:14" my-argnr="1" my-argname="pos" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" line="22" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.h:12:14" my-argnr="1" my-argname="pos" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" line="41" col="17" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.h:12:14" my-argnr="2" my-argname="rot" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" line="40" col="11" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" functionName="DrawLineDir" lineNumber="6" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" functionName="DrawLineXYZ" lineNumber="15" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" functionName="DrawLineXYZ" lineNumber="34" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" functionName="DrawPointLine3D" lineNumber="53" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/UtilityDraw.cpp" functionName="DrawStringCenter" lineNumber="68" column="19"/>
+    <functioncall functionName="DX_PI_F"/>
+    <functioncall functionName="DrawLine3D"/>
+    <functioncall functionName="DrawLineDir"/>
+    <functioncall functionName="DrawSphere3D"/>
+    <functioncall functionName="DrawStringToHandle"/>
+    <functioncall functionName="GetDrawStringSizeToHandle"/>
+    <functioncall functionName="GetForward"/>
+    <functioncall functionName="GetRight"/>
+    <functioncall functionName="GetUp"/>
+    <functioncall functionName="Magnitude"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="Quaternion"/>
+    <functioncall functionName="VAdd"/>
+    <functioncall functionName="VNorm"/>
+    <functioncall functionName="VNormalize"/>
+    <functioncall functionName="VScale"/>
+    <functioncall functionName="VSub"/>
+    <functioncall functionName="VTransform"/>
+    <functioncall functionName="c_str"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="wcslen"/>
+  </FileInfo>
+</analyzerinfo>

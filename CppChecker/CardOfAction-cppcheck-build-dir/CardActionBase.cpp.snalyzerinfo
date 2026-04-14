@@ -8,12 +8,9 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 operator+
 operator+=
 operator-
@@ -31,8 +28,6 @@ operator*=
 operator/
 operator/=
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -76,12 +71,9 @@ UpdateLeft
 UpdateRight
 UpdateDecision
 UpdateReloadWait
-GetCanPut
 GetCardDif
-InitCardDif
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -91,9 +83,7 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -108,7 +98,6 @@ CardActionBase call:[clear] noreturn:[clear]
 ChangeCardAction
 AttackMotion call:[AddPosRotate,ChangeAction,ChangeComboAction,ComboInput,DeleteAttackCol,GetAnimStep,GetCharaTag,GetTransform,IsCardFailure,IsEnd,MakeAttackCol] noreturn:[ChangeComboAction,ComboInput,MakeAttackCol]
 IsCardFailure call:[FinishFailureAttack,IsCardFailure]
-FinishAttack call:[DeleteAttackCol,FinishCard,GetCharaTag,pop] noreturn:[pop]
 FinishFailureAttack call:[ChangeAction,DeleteAttackCol,FailureCard,GetCharaTag,GetInput,IsActioningSet,pop] noreturn:[IsActioningSet]
 SetAtk
 ComboInput call:[GetInput,GetIsAct]

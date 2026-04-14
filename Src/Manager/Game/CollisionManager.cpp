@@ -208,23 +208,10 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 				//同じタグを持っていた
 				return false;
 			}
-
-			////設定されたタグか
-			//if (!JudgeIsColTag(tag1, tag2))
-			//{
-			//	//設定されたタグではなかった
-			//	return false;
-			//}
 		}
 	}
 
-
-
 	//双方の当たり判定しないタグか
-	//双方の当たり判定しないタグ
-	const auto& notHitTags1 = colliders3D_[_col1Num]->GetNotHitTags();
-	const auto& notHitTags2 = colliders3D_[_col2Num]->GetNotHitTags();
-
 	//1人目のタグ
 	for (auto tag1 : colliders3D_[_col1Num]->GetTags())
 	{
@@ -255,23 +242,6 @@ const bool CollisionManager::JudgeIsCollision(const int _col1Num, const int _col
 
 	//全判定をクリアしたので当たり判定をする
 	return true;
-}
-
-const bool CollisionManager::JudgeIsColTag(const Collider::TAG _tag1, const Collider::TAG _tag2) const
-{
-	//ここにタグごとの正確な判定の取る取らないを決める
-
-	//総合
-	bool ret = true;
-
-	//どちらともアイテムなら
-	if (IsItem(_tag1) && IsItem(_tag2))
-	{
-		//当たり判定しない
-		ret = false;
-	}
-
-	return ret;
 }
 
 bool CollisionManager::IsCollision(const std::weak_ptr<Collider> _col1, const std::weak_ptr<Collider> _col2)

@@ -1,60 +1,60 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="9864160712435901138">
+<analyzerinfo hash="603369492659436305">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" line="1" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/FontManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/FontManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/ButtonUIManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/ButtonUIManager.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Template/Singleton.h&quot; not found." verbose="Include file: &quot;../Template/Singleton.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/ButtonUIManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/ButtonUIManager.h" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/ButtonUIManager.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/ButtonUIManager.h" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Player/PlayerHpUI.h&quot; not found." verbose="Include file: &quot;../Object/Character/Player/PlayerHpUI.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/Enemy/EnemyHpUI.h&quot; not found." verbose="Include file: &quot;../Object/Character/Enemy/EnemyHpUI.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" line="5" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Card/PlayerCardUI.h&quot; not found." verbose="Include file: &quot;../Object/Card/PlayerCardUI.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" line="6" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" line="6" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Card/EnemyCardUI.h&quot; not found." verbose="Include file: &quot;../Object/Card/EnemyCardUI.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" line="7" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" line="7" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/DirectionUI.h&quot; not found." verbose="Include file: &quot;../Object/DirectionUI.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" line="8" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" line="8" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;unordered_map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found." verbose="Include file: &quot;../Object/Character/UIData/CharacterUIData.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.h" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.h" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Template/Singleton.h&quot; not found." verbose="Include file: &quot;../Template/Singleton.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.h" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.h" line="5" column="2"/>
         </error>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="CreateHpUI" lineNumber="21" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="CreateCardUI" lineNumber="31" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="DrawAttackBottonAndDodgeBotton" lineNumber="42" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="Load" lineNumber="59" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="Init" lineNumber="76" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="Update" lineNumber="91" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="DirectionUpdate" lineNumber="104" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="Draw" lineNumber="109" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="DirectionDraw" lineNumber="124" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="RefreshHpUI" lineNumber="130" column="17"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="GetCardUI" lineNumber="135" column="24"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Manager/Generic/UIManager.cpp" functionName="SetSkipPer" lineNumber="140" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="CreateHpUI" lineNumber="21" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="CreateCardUI" lineNumber="31" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="DrawAttackBottonAndDodgeBotton" lineNumber="42" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="Load" lineNumber="59" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="Init" lineNumber="76" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="Update" lineNumber="91" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="DirectionUpdate" lineNumber="104" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="Draw" lineNumber="109" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="DirectionDraw" lineNumber="124" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="RefreshHpUI" lineNumber="130" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="GetCardUI" lineNumber="135" column="24"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Manager/Generic/UIManager.cpp" functionName="SetSkipPer" lineNumber="140" column="17"/>
     <functioncall functionName="CHARACTER_TYPE"/>
     <functioncall functionName="CreateCardUI"/>
     <functioncall functionName="CreateFontToHandle"/>

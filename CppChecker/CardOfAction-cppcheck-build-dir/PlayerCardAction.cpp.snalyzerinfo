@@ -8,12 +8,9 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 operator+
 operator+=
 operator-
@@ -31,8 +28,6 @@ operator*=
 operator/
 operator/=
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -76,12 +71,9 @@ UpdateLeft
 UpdateRight
 UpdateDecision
 UpdateReloadWait
-GetCanPut
 GetCardDif
-InitCardDif
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -91,9 +83,7 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -103,7 +93,7 @@ IsActioningSet
 SetFreezeCntByAttackType
 GetTargetCharacter
 DebugDraw
-PlayerCardAction call:[ChangeAttackThree,ChangeAttackTwo,ChangeDuel,ChangeMiddleAttackOne,ChangeReload,ChangeShortAttackOne] noreturn:[ChangeAttackThree,ChangeAttackTwo,ChangeDuel,ChangeMiddleAttackOne,ChangeReload,ChangeShortAttackOne]
+PlayerCardAction call:[ChangeAttackThree,ChangeAttackTwo,ChangeMiddleAttackOne,ChangeReload,ChangeShortAttackOne] noreturn:[ChangeAttackThree,ChangeAttackTwo,ChangeMiddleAttackOne,ChangeReload,ChangeShortAttackOne]
 PlayerCardAction call:[clear,swap,void] noreturn:[swap]
 Load call:[Add,GetInstance,Load,LoadResource,SetSoundVolumeSRC] noreturn:[Add]
 Init call:[ChangeCardAction,DecideAttackOne,GetCardType,Play,PutCard,SetIsCanMoveable] noreturn:[ChangeCardAction,DecideAttackOne]
@@ -118,15 +108,11 @@ UpdateAttack call:[AttackMotion] noreturn:[AttackMotion]
 UpdateMiddleAttack call:[ChangeAction,ChangeComboAction,ComboInput,DeleteAttackCol,EaseFunc,GetAnimStep,GetCharaTag,GetDeltaTime,GetIsDamage,GetIsHitTarget,IsCardFailure,MakeAttackCol] noreturn:[ChangeAction,ChangeComboAction,MakeAttackCol]
 UpdateAttackThree call:[ChangeAction,ChangeSub,DeleteAttackCol,GetAnimStep,GetCamera,GetCharaTag,GetDeltaTime,IsCardFailure,IsEnd,MakeAttackCol,SetAnimSpeed,SetShakeStatus,lock] noreturn:[ChangeSub,DeleteAttackCol,MakeAttackCol,SetAnimSpeed]
 UpdateReload call:[ChangeAction,ChangeUIState,DeckReload,Delete,GetDeltaTime,GetInput,GetIsAct,GetTransform,Play,SetMidLoop,SetUIReloadCnt,Stop,pop] noreturn:[ChangeAction,ChangeUIState,SetMidLoop]
-UpdateSonicRave
-UpdateDuel
 ChangeShortAttackOne call:[Play,UpdateAttack,push] noreturn:[UpdateAttack,push]
 ChangeMiddleAttackOne call:[GetInput,GetLookAtTargetDir,Play,UpdateMiddleAttack,push] noreturn:[UpdateMiddleAttack,push]
 ChangeAttackTwo call:[ChangeActionCardInit,Play,UpdateAttack,push] noreturn:[UpdateAttack,push]
 ChangeAttackThree call:[ChangeActionCardInit,Play,UpdateAttackThree,push] noreturn:[UpdateAttackThree,push]
 ChangeReload call:[ChangeUIState,FinishCard,GetTransform,Play,UpdateReload,empty,pop,push] noreturn:[UpdateReload,pop,push]
-ChangeSonicRave
-ChangeDuel call:[UpdateDuel,push] noreturn:[UpdateDuel,push]
 ChangeComboAction call:[ChangeCardAction,GetCardType,IsAttackable,IsCanComboAttack,Play] noreturn:[ChangeCardAction]
 CreateInstance call:[CardSystem] noreturn:[CardSystem]
 GetInstance call:[assert]

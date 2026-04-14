@@ -57,20 +57,16 @@ void PlayerOnHit::Init(void)
 void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 {
 	//相手のタグをとる
-	CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
+	const CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
 	std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
 	isHitTarget_ = true;
 	//攻撃の場合は無視
-	if (std::ranges::any_of(tags, [](Collider::TAG tag) { return tag == Collider::TAG::NML_ATK || tag == Collider::TAG::ROAR_ATK; })
-		||charaObj_.GetCardAction()==ActionBase::CARD_ACT_TYPE::RUSH_ATK)
-	{
-		return;
-	}
+
 	Geometry& myCap = colParam_[TAG_PRIORITY::BODY]->GetGeometry();
 	Geometry& hitCap = _hitCol.lock()->GetGeometry();
 	//自分の座標
 	VECTOR myPos = charaObj_.GetTransform().pos;
-	VECTOR hitCharaPos = parentChara.GetTransform().pos;
+	const VECTOR hitCharaPos = parentChara.GetTransform().pos;
 
 	//お互いの距離をとる
 	float dis = static_cast<float>(Utility3D::Distance(myPos, hitCharaPos));
@@ -106,7 +102,7 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	float damage = parentChara.GetMainAction().GetAtkStatus().atkPoint;
 
 	//ダメージ処理
-	charaObj_.Damage(damage);
+	charaObj_.Damage(static_cast<int>(damage));
 	
 	//攻撃中に敵の攻撃を食らった場合、カードを消費する
 	charaObj_.SetUsedCard();

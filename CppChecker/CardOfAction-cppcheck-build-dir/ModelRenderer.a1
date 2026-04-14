@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="16255920922132284357">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;string&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelMaterial.h" line="2" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;vector&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelMaterial.h" line="3" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;map&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelMaterial.h" line="4" column="2"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelMaterial.h" line="5" column="2"/>
+        </error>
+        <error id="cstyleCast" severity="style" msg="C-style pointer casting" verbose="C-style pointer casting detected. C++ offers four different kinds of casts as replacements: static_cast, const_cast, dynamic_cast and reinterpret_cast. A C-style cast could evaluate to any of those automatically, thus it is considered safer if the programmer explicitly states which kind of cast is expected." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.cpp" line="74" column="25"/>
+        </error>
+        <error id="cstyleCast" severity="style" msg="C-style pointer casting" verbose="C-style pointer casting detected. C++ offers four different kinds of casts as replacements: static_cast, const_cast, dynamic_cast and reinterpret_cast. A C-style cast could evaluate to any of those automatically, thus it is considered safer if the programmer explicitly states which kind of cast is expected." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.cpp" line="124" column="25"/>
+        </error>
+  <FileInfo check="Class">
+<class name="ModelRenderer" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.h" configuration="" line="6" col="1" hash="17652098027012094275"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.cpp" functionName="Draw" lineNumber="12" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.cpp" functionName="SetReserveVS" lineNumber="68" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Renderer/ModelRenderer.cpp" functionName="SetReservePS" lineNumber="102" column="21"/>
+    <functioncall functionName="DX_SHADERTYPE_PIXEL"/>
+    <functioncall functionName="DX_SHADERTYPE_VERTEX"/>
+    <functioncall functionName="DX_TEXADDRESS_CLAMP"/>
+    <functioncall functionName="FLOAT4"/>
+    <functioncall functionName="GetBufferShaderConstantBuffer"/>
+    <functioncall functionName="GetConstBufPS"/>
+    <functioncall functionName="GetConstBufVS"/>
+    <functioncall functionName="GetConstBufsPS"/>
+    <functioncall functionName="GetConstBufsVS"/>
+    <functioncall functionName="GetShaderPS"/>
+    <functioncall functionName="GetShaderVS"/>
+    <functioncall functionName="GetTextureAddress"/>
+    <functioncall functionName="GetTextures"/>
+    <functioncall functionName="MV1DrawModel"/>
+    <functioncall functionName="MV1SetUseOrigShader"/>
+    <functioncall functionName="ModelMaterial"/>
+    <functioncall functionName="ModelRenderer"/>
+    <functioncall functionName="SetReservePS"/>
+    <functioncall functionName="SetReserveVS"/>
+    <functioncall functionName="SetShaderConstantBuffer"/>
+    <functioncall functionName="SetTextureAddressModeUV"/>
+    <functioncall functionName="SetUsePixelShader"/>
+    <functioncall functionName="SetUseTextureToShader"/>
+    <functioncall functionName="SetUseVertexShader"/>
+    <functioncall functionName="UpdateShaderConstantBuffer"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="map"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="vector"/>
+    <functioncall functionName="w"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+    <functioncall functionName="z"/>
+  </FileInfo>
+</analyzerinfo>

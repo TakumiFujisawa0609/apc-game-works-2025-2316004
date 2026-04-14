@@ -1,0 +1,16 @@
+IsGameEnd
+PixelMaterial call:[CreateShaderConstantBuffer,LoadPixelShader,c_str,sizeof]
+AddConstBuf call:[emplace_back,size] noreturn:[emplace_back]
+SetConstBuf call:[size]
+AddTextureBuf call:[emplace_back,size] noreturn:[emplace_back]
+SetTextureBuf call:[size]
+GetConstBufs
+GetTextures
+GetTextureAddress
+SetTextureAddress
+GetShader
+GetConstBuf
+PixelMaterial call:[DeleteShader,DeleteShaderConstantBuffer] noreturn:[DeleteShaderConstantBuffer]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

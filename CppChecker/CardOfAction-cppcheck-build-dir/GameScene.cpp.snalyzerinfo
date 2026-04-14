@@ -76,15 +76,10 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
 GetCardStatus
-SetIsWin
-SetIsUsed
 SetReloadCount
 GetSelectState
 ChangeNone
@@ -99,7 +94,6 @@ UpdateDecision
 UpdateReloadWait
 GetHitPoint
 GetIsHitTarget
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -109,15 +103,12 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 GetHand
 OnHit
 GetHand
 GetIsRoar
-GetCanPut
 GetCardDif
-InitCardDif
 GameScene call:[CreateInstance,GetInstance,MakeScreen,ReleaseCardData,bind] noreturn:[ReleaseCardData]
 GameScene call:[Destroy,GetInstance,Release] noreturn:[Destroy]
 Load call:[CreateFontToHandle,GetInstance,Load,c_str] noreturn:[Load]

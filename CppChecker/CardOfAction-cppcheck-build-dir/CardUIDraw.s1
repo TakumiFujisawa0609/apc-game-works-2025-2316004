@@ -1,12 +1,10 @@
 GetCardStatus
-SetIsWin
-SetIsUsed
 CardUIDraw
 CardUIDraw
 Load
 Init call:[AddConstBuf,AddTextureBuf,Euler,GetGraphSizeF,GetInstance,Load,MakeSquareVertex,MakeSquareVertexFromCenter,Quaternion] noreturn:[MakeSquareVertexFromCenter]
 Update call:[GetInstance,GetTotalTime,SelectFrameEasing,SetConstBuf] noreturn:[SelectFrameEasing]
-Draw call:[DrawCard,GetInstance,GetTotalTime,SetConstBuf] noreturn:[DrawCard]
+Draw call:[DrawCard,SetConstBuf] noreturn:[DrawCard]
 DrawSelectedFrame call:[DrawFromCenter] noreturn:[DrawFromCenter]
 DrawSelectCard call:[DrawCard,GetInstance,GetTotalTime,SetConstBuf] noreturn:[DrawCard]
 DrawCard call:[Draw,GetGraphSizeF,SetSize] noreturn:[Draw]

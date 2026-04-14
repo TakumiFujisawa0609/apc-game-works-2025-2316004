@@ -1,9 +1,5 @@
 GetCardStatus
-SetIsWin
-SetIsUsed
-GetCanPut
 GetCardDif
-InitCardDif
 operator+
 operator+=
 operator-
@@ -78,10 +74,8 @@ UpdateReloadWait
 CardUIBase
 CardUIBase
 ChangeSelectState
-CardDecision
 ChangeUsedActionCard call:[ChangeUsedCard] noreturn:[ChangeUsedCard]
 ChangeReactActionCard call:[ChangeReactCard,PlayCardSound] noreturn:[ChangeReactCard]
-ChangeUsingActionCard call:[ChangeUsing] noreturn:[ChangeUsing]
 PlayCardSound call:[GetInstance,GetResult,IsPlay,Play] noreturn:[Play]
 Load
 Init

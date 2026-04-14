@@ -1,94 +1,79 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="7926418901453569532">
+<analyzerinfo hash="17968334939884637300">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="1" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cassert&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;iostream&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;algorithm&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="4" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Utility/Utility3D.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Utility/Utility3D.h" line="2" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" line="3" column="2"/>
         </error>
-        <error id="normalCheckLevelMaxBranches" severity="information" msg="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." verbose="Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="0" column="0"/>
-        </error>
-        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;Cube::GetAxis&apos;" verbose="Unused private function: &apos;Cube::GetAxis&apos;" cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h" line="82" column="22"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h" line="82" column="22"/>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;Cube::GetAxis&apos;" verbose="Unused private function: &apos;Cube::GetAxis&apos;" cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h" line="82" column="22"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h" line="82" column="22"/>
             <symbol>Cube::GetAxis</symbol>
         </error>
-        <error id="functionStatic" severity="style" msg="The member function &apos;Cube::ClosestSegmentAABB&apos; can be static." verbose="The member function &apos;Cube::ClosestSegmentAABB&apos; can be static." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="313" column="13"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h" line="91" column="8"/>
+        <error id="functionStatic" severity="style" msg="The member function &apos;Cube::ClosestSegmentAABB&apos; can be static." verbose="The member function &apos;Cube::ClosestSegmentAABB&apos; can be static." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="313" column="13"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h" line="91" column="8"/>
             <symbol>Cube::ClosestSegmentAABB</symbol>
         </error>
-        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Common/Quaternion.h" line="20" column="2"/>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Quaternion&apos; has a constructor with 1 argument that is not explicit. Such, so called &quot;Converting constructors&quot;, should in general be explicit for type safety reasons as that prevents unintended implicit conversions." cwe="398" file0="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Quaternion.h" line="20" column="2"/>
             <symbol>Quaternion</symbol>
         </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;t&apos; can be reduced." verbose="The scope of the variable &apos;t&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="318" column="8"/>
-            <symbol>t</symbol>
-        </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;t&apos; is assigned a value that is never used." verbose="Variable &apos;t&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="318" column="10"/>
-            <symbol>t</symbol>
-        </error>
-        <error id="unreadVariable" severity="style" msg="Variable &apos;t&apos; is assigned a value that is never used." verbose="Variable &apos;t&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="339" column="6"/>
-            <symbol>t</symbol>
-        </error>
   <FileInfo check="ctu">
-<function-call call-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h:88:7" call-funcname="CalculateVertices" call-argnr="1" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="45" col="19" call-argexpr="vertices" call-argvaluetype="7" call-argvalue="-1" call-argvalue-ufr="0"/>  </FileInfo>
+<function-call call-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h:88:7" call-funcname="CalculateVertices" call-argnr="1" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="45" col="19" call-argexpr="vertices" call-argvaluetype="7" call-argvalue="-1" call-argvalue-ufr="0"/>  </FileInfo>
   <FileInfo check="Class">
-<class name="Geometry::OBB" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" configuration="" line="17" col="2" hash="2816693727323549992"/>
-<class name="Cube" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h" configuration="" line="5" col="1" hash="1107696075711568899"/>
+<class name="Geometry::OBB" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" configuration="" line="17" col="2" hash="2816693727323549992"/>
+<class name="Cube" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h" configuration="" line="5" col="1" hash="5835454785085737590"/>
   </FileInfo>
   <FileInfo check="Uninitialized variables">
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h:49:13" my-argnr="1" my-argname="_geometry" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="65" col="13" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h:51:13" my-argnr="1" my-argname="_cube" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="79" col="24" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h:52:13" my-argnr="1" my-argname="_sphere" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="145" col="9" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h:53:13" my-argnr="1" my-argname="_capsule" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="166" col="21" value="0"/>
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h:54:13" my-argnr="1" my-argname="_line" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" line="192" col="14" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h:49:13" my-argnr="1" my-argname="_geometry" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="65" col="13" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h:51:13" my-argnr="1" my-argname="_cube" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="79" col="24" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h:52:13" my-argnr="1" my-argname="_sphere" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="145" col="9" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h:53:13" my-argnr="1" my-argname="_capsule" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="166" col="21" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h:54:13" my-argnr="1" my-argname="_line" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" line="192" col="14" value="0"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.h" functionName="GetAxis" lineNumber="82" column="22"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" functionName="UpdateObbAxis" lineNumber="277" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" functionName="CalculateVertices" lineNumber="287" column="12"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Common/Geometry/Cube.cpp" functionName="ClosestSegmentAABB" lineNumber="313" column="13"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColPos" lineNumber="46" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetColRot" lineNumber="47" column="27"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint1" lineNumber="51" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetLocalPosPoint2" lineNumber="53" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint1" lineNumber="56" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetPosPoint2" lineNumber="58" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint1" lineNumber="64" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetLocalPosPoint2" lineNumber="66" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetRadius" lineNumber="69" column="21"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetRadius" lineNumber="71" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitLineInfo" lineNumber="74" column="37"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetHitInfo" lineNumber="76" column="41"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetParentModel" lineNumber="78" column="19"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitLineInfo" lineNumber="81" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetHitInfo" lineNumber="83" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetObb" lineNumber="88" column="20"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMin" lineNumber="90" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="GetVecMax" lineNumber="92" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetObb" lineNumber="94" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMin" lineNumber="96" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Geometry.h" functionName="SetVecMax" lineNumber="98" column="14"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.h" functionName="GetAxis" lineNumber="82" column="22"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" functionName="UpdateObbAxis" lineNumber="277" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" functionName="CalculateVertices" lineNumber="287" column="12"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Common/Geometry/Cube.cpp" functionName="ClosestSegmentAABB" lineNumber="313" column="13"/>
     <functioncall functionName="CalculateVertices"/>
     <functioncall functionName="Capsule"/>
     <functioncall functionName="ClosestSegmentAABB"/>

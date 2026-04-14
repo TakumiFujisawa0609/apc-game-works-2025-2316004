@@ -1,0 +1,55 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+QuadFunc call:[powf,return]
+CubicFunc call:[powf,return]
+SinFunc call:[sin] noreturn:[sin]
+CosFunc call:[cos]
+Easing call:[EaseBackElastic,EaseBounce,EaseCosBack,EaseCubicIn,EaseCubicOut,EaseExpo,EaseInElastic,EaseOutElastic,EaseQuadBack,EaseQuadIn,EaseQuadInOut,EaseQuadOut,EaseQuadOutIn,EaseSinBack,Lerp,LerpBack,OutBack] noreturn:[EaseBackElastic,EaseBounce,EaseCosBack,EaseCubicIn,EaseCubicOut,EaseExpo,EaseInElastic,EaseOutElastic,EaseQuadBack,EaseQuadIn,EaseQuadInOut,EaseQuadOut,EaseQuadOutIn,EaseSinBack,Lerp,LerpBack,OutBack]
+Easing
+SetEasing
+SetReturnEasing call:[EaseBackElastic] noreturn:[EaseBackElastic]
+EaseFunc call:[Round,SetEasing,easingUpdate_]
+EaseFunc call:[SetEasing,easingUpdate_] noreturn:[easingUpdate_]
+EaseFunc call:[SetEasing,easingUpdate_] noreturn:[easingUpdate_]
+EaseFunc call:[SetEasing,easingUpdate_] noreturn:[easingUpdate_]
+EaseFunc call:[Round,SetEasing,easingUpdate_]
+EaseFunc call:[SetEasing,VAdd,VScale,VSub,easingUpdate_] noreturn:[VAdd]
+EaseFunc call:[SetEasing,easingUpdate_]
+EaseFuncDeg call:[EaseFunc] noreturn:[EaseFunc]
+EaseFuncDeg call:[EaseFunc] noreturn:[EaseFunc]
+EaseFuncRad call:[SetEasing,easingUpdate_,remainder] noreturn:[easingUpdate_]
+Lerp
+LerpBack call:[Lerp] noreturn:[Lerp]
+OutBack call:[pow] noreturn:[pow]
+EaseOutElastic call:[powf,sinf]
+EaseBackElastic call:[powf,sinf]
+EaseBounce call:[EaseQuadIn,QuadFunc] noreturn:[EaseQuadIn,QuadFunc]
+EaseQuadIn call:[QuadFunc]
+EaseQuadOut call:[QuadFunc]
+EaseQuadBack call:[QuadFunc] noreturn:[QuadFunc]
+EaseQuadInOut call:[QuadFunc]
+EaseQuadOutIn call:[QuadFunc]
+EaseCubicIn call:[CubicFunc]
+EaseCubicOut call:[CubicFunc]
+EaseCubicInOut
+EaseCubicOutIn
+EaseExpo call:[powf]
+EaseInElastic call:[powf,sinf]
+EaseSinBack call:[SinFunc] noreturn:[SinFunc]
+EaseCosBack call:[CosFunc] noreturn:[CosFunc]
+EaseEpiCycloid call:[cos,sin]
+EaseHypoCycloid call:[cos,sin]

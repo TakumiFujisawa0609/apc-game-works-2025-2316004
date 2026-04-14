@@ -37,7 +37,6 @@ GetQuaRotOutX
 SetStageTransform
 IsEndDirectionMode
 GetDirectionMode
-CheckAct
 GetDir
 GetIsAct
 GetAttackType
@@ -48,7 +47,6 @@ SetFreezeCntByAttackType
 GetTargetCharacter
 DebugDraw
 GetAct
-GetStickDeg
 PlayerLogic call:[InputAll,InputPad] noreturn:[InputAll,InputPad]
 PlayerLogic
 Init call:[GetDir] noreturn:[GetDir]

@@ -30,8 +30,6 @@ Load
 Draw
 GetTransform
 GetCardStatus
-SetIsWin
-SetIsUsed
 operator+
 operator+=
 operator-
@@ -72,13 +70,9 @@ GetJumpCardNum
 GetIsDamage
 SetIsDamage
 GetMovePow
-GetJumpPow
 JumpPowZero
-GetActionType
 GetInput
 GetAnimation
-AddMainAction
-IsJumpAtkCharge
 GetJumpCardNum
 ChangeComboAction
 GetCharaTag
@@ -88,7 +82,6 @@ JumpPowZero
 GetStatus
 GetFootSEDisCount
 GetFootSE
-GetMovedPos
 GetIsEndDirect
 Collider call:[emplace_back] noreturn:[emplace_back]
 Collider call:[clear] noreturn:[clear]

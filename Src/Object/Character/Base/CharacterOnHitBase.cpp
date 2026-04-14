@@ -62,7 +62,7 @@ void CharacterOnHitBase::CollStage(const std::weak_ptr<Collider> _hitCol)
 void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 {
 
-	Geometry& hitModel = _hitCol.lock()->GetGeometry();
+	const Geometry& hitModel = _hitCol.lock()->GetGeometry();
 	//当たったモデルの情報を取得
 	//移動後座標と現在座標で早い移動速度でも対応させる
 	VECTOR hitPos = hitModel.GetHitLineInfo().HitPosition;
@@ -82,7 +82,6 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 		//現在座標の更新
 		trans_.pos = movedPos_;
 		charaObj_.JumpPowZero();
-		//action_.JumpPowZero();
 		return;
 	}
 
@@ -122,7 +121,6 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 			hitPoint_.isSide = true;
 			//当たっている部分の情報を取得
 			auto hit = hitInfo.Dim[i];
-			VECTOR hitPos = hit.HitPosition;
 
 			//一定回数の押し出し処理をする
 			for (int tryCnt = 0; tryCnt < COL_TRY_CNT_MAX; tryCnt++)

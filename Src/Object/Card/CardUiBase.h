@@ -110,10 +110,6 @@ public:
 	/// @param _select 
 	void ChangeSelectState(const CARD_SELECT _select);
 
-	/// @brief カードの決定
-	/// @param  
-	void CardDecision(void);
-
 	/// @brief アクションカード配列の状態を使用済みにする
 	/// @param  
 	void ChangeUsedActionCard(void);
@@ -121,10 +117,6 @@ public:
 	/// @brief アクションカード配列の状態を弾かれ中にする(カード負けしたとき)
 	/// @param  
 	void ChangeReactActionCard(void);
-
-	/// @brief アクションカード配列の状態を使用中にする
-	/// @param  
-	void ChangeUsingActionCard(void);
 
 	/// @brief リロードカウントセット
 	/// @param _cnt 

@@ -58,6 +58,7 @@ Enemy::~Enemy(void)
 {
 	collider_.clear();
 	effect_->AllStop();
+	rock_.clear();
 }
 void Enemy::Load(void)
 {

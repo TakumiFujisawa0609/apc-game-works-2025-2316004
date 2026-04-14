@@ -81,12 +81,6 @@ private:
 	/// @param _col2Num 2つ目のコライダ番号
 	/// @return 当たり判定
 	const bool JudgeIsCollision(const int _col1Num, const int _col2Num)const;
-
-	/// @brief タグごとでの当たり判定するかどうか
-	/// @param _tag1 1つ目のタグ
-	/// @param _tag2 2つ目のタグ
-	/// @return 当たり判定
-	const bool JudgeIsColTag(const Collider::TAG _tag1, const Collider::TAG _tag2)const;
 	
 	/// @brief 当たり判定
 	/// @param _col1 1つ目のコライダ

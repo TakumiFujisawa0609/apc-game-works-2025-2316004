@@ -1,59 +1,54 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="103042487062096100">
+<analyzerinfo hash="11801258896698457815">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="1" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/UtilityCommon.h&quot; not found." verbose="Include file: &quot;../Utility/UtilityCommon.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="5" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/SceneManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="6" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="6" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Easing.h&quot; not found." verbose="Include file: &quot;../Common/Easing.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="7" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="7" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Renderer/PixelRenderer.h&quot; not found." verbose="Include file: &quot;../Renderer/PixelRenderer.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="8" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="8" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Renderer/PixelMaterial.h&quot; not found." verbose="Include file: &quot;../Renderer/PixelMaterial.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="9" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="9" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/UIBase2D.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="3" column="2"/>
-        </error>
-        <error id="missingOverride" severity="style" msg="The destructor &apos;~HpUIBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~HpUIBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="21" column="11" info="Destructor in derived class"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="10" column="11" info="Virtual destructor in base class"/>
-            <symbol>~HpUIBase</symbol>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/UIBase2D.h" line="3" column="2"/>
         </error>
   <FileInfo check="Class">
-<class name="HP_DATA" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="12908037895484562304"/>
-<class name="HpUIBase" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" configuration="" line="11" col="1" hash="13556762608039009927"/>
+<class name="HP_DATA" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="12908037895484562304"/>
+<class name="HpUIBase" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.h" configuration="" line="11" col="1" hash="15100347637892628463"/>
   </FileInfo>
   <FileInfo check="Uninitialized variables">
-    <unsafe-usage my-id="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h:44:7" my-argnr="1" my-argname="_hpData" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" line="87" col="21" value="0"/>
+    <unsafe-usage my-id="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.h:44:7" my-argnr="1" my-argname="_hpData" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" line="87" col="21" value="0"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" functionName="SetShakeTime" lineNumber="80" column="16"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.cpp" functionName="RefreshHp" lineNumber="85" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" functionName="SetShakeTime" lineNumber="80" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.cpp" functionName="RefreshHp" lineNumber="85" column="16"/>
     <functioncall functionName="ELASTIC_BACK"/>
     <functioncall functionName="EaseFunc"/>
     <functioncall functionName="GetDeltaTime"/>

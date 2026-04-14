@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="133754218788938994">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;DxLib.h&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/FpsControl/FpsControl.cpp" line="1" column="2"/>
+        </error>
+  <FileInfo check="Class">
+<class name="FpsControl" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/FpsControl/FpsControl.h" configuration="" line="7" col="1" hash="7653235936485156093"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Application.h" functionName="IsGameEnd" lineNumber="54" column="7"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/FpsControl/FpsControl.cpp" functionName="Init" lineNumber="19" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/FpsControl/FpsControl.cpp" functionName="UpdateFrameRate" lineNumber="28" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/FpsControl/FpsControl.cpp" functionName="CalcFrameRate" lineNumber="52" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/FpsControl/FpsControl.cpp" functionName="DrawFrameRate" lineNumber="77" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="CreateInstance" lineNumber="16" column="17"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="GetInstance" lineNumber="27" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Template/Singleton.h" functionName="Destroy" lineNumber="35" column="17"/>
+    <functioncall functionName="Application"/>
+    <functioncall functionName="DrawFormatString"/>
+    <functioncall functionName="FpsControl"/>
+    <functioncall functionName="GetNowCount"/>
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="Sleep"/>
+    <functioncall functionName="assert"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="unique_ptr"/>
+  </FileInfo>
+</analyzerinfo>

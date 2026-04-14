@@ -1,4 +1,4 @@
-#include<DxLib.h>
+#include "../pch.h"
 #include"../../Application.h"
 #include "CardBase.h"
 #include"./CardSystem.h"
@@ -51,11 +51,6 @@ void CardDeck::CardUseUpdate(void)
 	cardSystem.CompareCards();
 }
 
-void CardDeck::CardCharge(void)
-{
-	int i = 0;
-}
-
 void CardDeck::EraseHandCard(const bool _isLose)
 {
 	usingCards_.clear();
@@ -63,18 +58,6 @@ void CardDeck::EraseHandCard(const bool _isLose)
 	//使ったカードの配列を消す
 	UtilityTemplates::EraseVectorArray(usingCards_);
 	CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
-	//if (_isLose == true)
-	//{
-	//	//カードに負けたときの強さを初期化する
-	//	CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
-	//}
-	//else
-	//{
-	//	//カードを捨てるときに勝敗判定のカードの強さを初期化する
-	//	//CardSystem::GetInstance().InitPutCardPow(playerNum_);
-	//	
-	//}
-
 }
 
 void CardDeck::CardMoveRight(void)
@@ -174,10 +157,15 @@ void CardDeck::DrawCardFromDeck(void)
 	int cardPow = 0;
 
 	//手札の合計値を出す
-	for (auto& it : usingCards_)
-	{
-		cardPow += it->GetCardStatus().pow_;
-	}
+	//for (const auto& it : usingCards_)
+	//{
+	//	cardPow += it->GetCardStatus().pow_;
+	//}
+	cardPow = std::accumulate(usingCards_.begin(), usingCards_.end(), 0,
+		[](int acc, const std::unique_ptr<CardBase>& it)
+		{
+			return acc + it->GetCardStatus().pow_;
+		});
 
 	//カードを場に出してシステム側で処理をする
 	CardSystem& cardSystem = CardSystem::GetInstance();
@@ -192,7 +180,7 @@ void CardDeck::DrawCardFromDeck(void)
 std::vector<CardBase::CARD_TYPE> CardDeck::GetHandCardType(void)
 {
 	std::vector<CardBase::CARD_TYPE>handCardTypes;
-	for (auto& h : usingCards_)
+	for (const auto& h : usingCards_)
 	{
 		CardBase::CARD_TYPE type = h->GetCardStatus().type_;
 		handCardTypes.emplace_back(type);
@@ -208,7 +196,7 @@ const CardBase::CARD_TYPE CardDeck::GetDrawCardType(void)
 void CardDeck::Reload(void)
 {
 	drawPile_.clear();
-	for (auto& deck : initDeck_)
+	for (const auto& deck : initDeck_)
 	{
 		CardBase* newCard = new CardBase(*deck);
 		std::unique_ptr<CardBase>deckPtr(newCard);
@@ -220,7 +208,9 @@ void CardDeck::Reload(void)
 
 void CardDeck::MoveChargeToUsingCard(void)
 {
-	if (usingCards_.size() >= 2)
+
+	const int cardSize = static_cast<int>(usingCards_.size());
+	if (cardSize >= CHARGE_MAX)
 	{
 		//ここは絶対通らないが、エラーチェック
 		return;
@@ -230,40 +220,6 @@ void CardDeck::MoveChargeToUsingCard(void)
 	usingCards_.clear();
 
 	CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
-}
-
-void CardDeck::DicideDuelDeck(void)
-{
-	int rand = GetRand(static_cast<int>(DUELDECK_PETTERN::DUEL_PETTERN_3));
-	DUELDECK_PETTERN pettern = static_cast<DUELDECK_PETTERN>(rand);
-
-	//現在選択中初期化
-	duelNo_ = 0;
-	switch (pettern)
-	{
-	case CardDeck::DUELDECK_PETTERN::DUEL_PETTERN_1:
-		for (int i = 0; i < DUEL_NUM_MAX; i++)
-		{
-			AddDuelDeck(DUEL_DECK_PETTERN_1[i]);
-		}
-		break;
-	case CardDeck::DUELDECK_PETTERN::DUEL_PETTERN_2:
-		for (int i = 0; i < DUEL_NUM_MAX; i++)
-		{
-			AddDuelDeck(DUEL_DECK_PETTERN_2[i]);
-		}
-		break;
-	case CardDeck::DUELDECK_PETTERN::DUEL_PETTERN_3:
-		for (int i = 0; i < DUEL_NUM_MAX; i++)
-		{
-			AddDuelDeck(DUEL_DECK_PETTERN_3[i]);
-		}
-		break;
-	case CardDeck::DUELDECK_PETTERN::END:
-		break;
-	default:
-		break;
-	}
 }
 
 

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="5370262011781673536">
+<analyzerinfo hash="8982394082957012101">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/UIData/CharacterUIData.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/UIData/CharacterUIData.cpp" line="1" column="2"/>
         </error>
   <FileInfo check="Class">
-<class name="HP_DATA" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="12908037895484562304"/>
+<class name="HP_DATA" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="12908037895484562304"/>
   </FileInfo>
 </analyzerinfo>

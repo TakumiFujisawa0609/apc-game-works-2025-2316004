@@ -90,17 +90,6 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 	return false;
 }
 
-void CardActionBase::FinishAttack(const Collider::TAG _attackCol)
-{
-	//カードの終了処理
-	cardPresent_.FinishCard();
-
-	//当たり判定消去
-	charaObj_.DeleteAttackCol(charaObj_.GetCharaTag(),_attackCol);
-	actType_ = CARD_ACT_TYPE::NONE;
-	cardFuncs_.pop();
-}
-
 void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)
 {	
 	//カード負け処理

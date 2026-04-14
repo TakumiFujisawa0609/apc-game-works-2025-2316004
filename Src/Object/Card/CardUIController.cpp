@@ -132,14 +132,6 @@ void CardUIController::ChangeDicisionEnemyCardMove(void)
 	numPos_ = cardPos_ + (NUM_LOCAL_POS * cardScl_);
 }
 
-void CardUIController::SyncCardAngleAndPos(void)
-{
-	currentAngle_ = goalAngle_;
-	startAngle_ = currentAngle_;
-	cardPos_.x = CENTER_X + std::sin(currentAngle_) * RADIUS_X;
-	cardPos_.y = CENTER_Y - std::cos(currentAngle_) * RADIUS_Y;
-}
-
 void CardUIController::SetStartAndGoalAngle(const float& _goalrad)
 {
 	goalAngle_ = _goalrad; 
@@ -215,7 +207,6 @@ int CardUIController::MakeCardUIImg(void)
 	//中央座標取得
 	Vector2F centerPos;
 	GetGraphSizeF(typeImg_, &centerPos.x, &centerPos.y);
-	centerPos /= 2.0f;
 
 	//番号サイズ取得
 	Vector2F size = { 0.0f,0.0f };
@@ -223,9 +214,6 @@ int CardUIController::MakeCardUIImg(void)
 
 	//縮小倍率をかける
 	size *= NUM_SCL;
-
-	//中央合わせ
-	centerPos -= size / 2.0f;
 
 	//座標計算
 	Vector2F numSizeHalf = size / 2.0f;

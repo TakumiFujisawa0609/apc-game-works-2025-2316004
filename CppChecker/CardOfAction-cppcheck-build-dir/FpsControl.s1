@@ -1,0 +1,10 @@
+IsGameEnd
+FpsControl
+FpsControl
+Init
+UpdateFrameRate global:[FRAME_RATE] call:[GetNowCount,Sleep]
+CalcFrameRate
+DrawFrameRate call:[DrawFormatString] noreturn:[DrawFormatString]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

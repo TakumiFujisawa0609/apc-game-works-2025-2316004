@@ -192,7 +192,7 @@ void EffectController::Delete(const EFF_TYPE _effType, const int _arrayNum)
 void EffectController::AllStop(void)
 {
 	//‘S’âŽ~
-	for (auto& effect : effects_)
+	for (const auto& effect : effects_)
 	{
 		for (int i = 0; i < effect.second.playNum; i++)
 		{

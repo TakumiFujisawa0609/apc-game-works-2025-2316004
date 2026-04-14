@@ -66,7 +66,7 @@ void EnemyCardUI::Draw(void)
 void EnemyCardUI::DrawDebug(void)
 {
 	int i = 0;
-	for (auto& action : actions_)
+	for (const auto& action : actions_)
 	{
 		std::wstring stateStr;
 		auto state = action->GetState();

@@ -42,6 +42,9 @@ Destroy
 CreateInstance call:[InputManager] noreturn:[InputManager]
 GetInstance call:[assert]
 Destroy
+CreateInstance call:[InputManagerS] noreturn:[InputManagerS]
+GetInstance call:[assert]
+Destroy
 CreateInstance call:[ResourceManager] noreturn:[ResourceManager]
 GetInstance call:[assert]
 Destroy

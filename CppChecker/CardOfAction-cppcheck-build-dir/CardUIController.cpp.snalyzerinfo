@@ -1,6 +1,4 @@
 GetCardStatus
-SetIsWin
-SetIsUsed
 operator+
 operator+=
 operator-
@@ -45,7 +43,6 @@ ReactUpdate call:[DecisionMove,ReactMove]
 MoveOnRevolver call:[EaseFuncRad,cos,sin]
 MoveUpDown call:[sin]
 ChangeDicisionEnemyCardMove
-SyncCardAngleAndPos call:[cos,sin]
 SetStartAndGoalAngle
 SetStartAngle
 ResetCount

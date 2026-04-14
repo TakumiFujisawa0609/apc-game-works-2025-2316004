@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="8483358737153710104">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2.cpp" line="1" column="2"/>
+        </error>
+  <FileInfo check="Class">
+<class name="Vector2" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2.h" configuration="" line="4" col="1" hash="2705620526327571297"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2.cpp" functionName="Normalize" lineNumber="5" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2.cpp" functionName="Length" lineNumber="11" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2.cpp" functionName="IsVector2" lineNumber="16" column="15"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2.cpp" functionName="IsSameVector2" lineNumber="27" column="15"/>
+    <functioncall functionName="Length"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="sqrt"/>
+    <functioncall functionName="true"/>
+  </FileInfo>
+</analyzerinfo>

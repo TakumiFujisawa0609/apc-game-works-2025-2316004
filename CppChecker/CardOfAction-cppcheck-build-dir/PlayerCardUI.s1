@@ -15,8 +15,6 @@ operator*=
 operator/
 operator/=
 GetCardStatus
-SetIsWin
-SetIsUsed
 GetCenterPos
 GetScl
 GetCurrentAngle
@@ -29,9 +27,7 @@ SetStatus
 SetTypeImg
 SetBaseCardPos
 GetState
-GetCanPut
 GetCardDif
-InitCardDif
 GetColPos
 GetColRot
 GetLocalPosPoint1
@@ -98,7 +94,6 @@ UpdateReload call:[ChangeSelectState,MoveCardAll,ReloadAnimation,SetBasePosVisib
 MoveCardAll call:[MoveOnRevolver] noreturn:[MoveOnRevolver]
 UpdateDrawCardUI call:[Update] noreturn:[Update]
 SetBasePosVisibleCards call:[SetBaseCardPos,SetStartAngle] noreturn:[SetStartAngle]
-DrawCardNum
 UpdateVisibleCard call:[GetVisibleCurrentIt,SetCurrentAngle,begin,emplace_back,end,size] noreturn:[begin,emplace_back]
 EraseHandCard call:[GetSearchHandIt,GetVisibleCurrentIt,end,erase,next] noreturn:[erase]
 DecideGoalAngle call:[GetCurrentAngle,GetVisibleCurrentIt,SetStartAndGoalAngle,end,next] noreturn:[SetStartAndGoalAngle]
@@ -106,8 +101,8 @@ ReloadAnimation call:[MoveOnRevolver,Play,ReloadCardArray,ResetCount,SetCurrentA
 ReloadCardArray call:[ResetCount,SetCurrentAngle,begin,emplace_front,end,find] noreturn:[emplace_front]
 MoveUpDownVisibleCards call:[MoveUpDown] noreturn:[MoveUpDown]
 DrawArrowAndBotton call:[Deg2RadF,DrawFromCenter,DrawRotaGraphF,GetInstance] noreturn:[DrawFromCenter]
-GetVisibleCurrentIt call:[begin,end] noreturn:[end]
-GetSearchHandIt call:[begin,end] noreturn:[end]
+GetVisibleCurrentIt call:[begin,end,find]
+GetSearchHandIt call:[begin,end,find]
 CreateInstance call:[CardSystem] noreturn:[CardSystem]
 GetInstance call:[assert]
 Destroy

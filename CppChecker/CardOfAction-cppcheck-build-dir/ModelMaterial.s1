@@ -1,0 +1,20 @@
+IsGameEnd
+ModelMaterial call:[CreateShaderConstantBuffer,LoadPixelShader,LoadVertexShader,c_str,sizeof]
+AddConstBufVS call:[emplace_back,size] noreturn:[emplace_back]
+AddConstBufPS call:[emplace_back,size] noreturn:[emplace_back]
+SetConstBufVS call:[size]
+SetConstBufPS call:[size]
+SetTextureBuf call:[count,emplace] noreturn:[emplace]
+GetConstBufsVS
+GetConstBufsPS
+GetTextures
+GetTextureAddress
+SetTextureAddress
+GetShaderVS
+GetShaderPS
+GetConstBufVS
+GetConstBufPS
+ModelMaterial call:[DeleteShader,DeleteShaderConstantBuffer] noreturn:[DeleteShaderConstantBuffer]
+CreateInstance call:[Application] noreturn:[Application]
+GetInstance call:[assert]
+Destroy

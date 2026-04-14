@@ -60,6 +60,20 @@ public:
 	//次のボタンのイージングまでの間隔時間
 	static constexpr float EASING_DIS_TIME = 0.1f;
 
+	//ゲーム終了メッセージ
+	const std::wstring EXIT_MESSAGE = L"本当にゲームを終了しますか？";
+
+	//通常スクリーン変更メッセージ
+	const std::wstring CHANGE_NORMAL_SCREEN_MESSAGE= L"通常スクリーンにしますか？";
+
+	//フルスクリーン変更メッセージ
+	const std::wstring CHANGE_FULL_SCREEN_MESSAGE= L"フルスクリーンにしますか？";
+
+	//決定文字列
+	const std::wstring DECIDE_STR = L"決定";
+	//戻る文字列
+	const std::wstring BACK_STR = L"戻る";
+
 	/// @brief コンストラクタ
 	/// @param  
 	TitleScene(void);
@@ -163,9 +177,6 @@ private:
 	//サイズ確認(デバッグ用)
 	int fontSize_;
 	int thick_;
-
-	//ボタンごとでイージングを変えてみる
-	Easing::EASING_TYPE DecideEase(TITLE_BTN _btn);
 
 	//状態遷移
 	void ChangeState(const TITLE_STATE& _state);

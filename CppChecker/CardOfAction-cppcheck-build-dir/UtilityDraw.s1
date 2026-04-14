@@ -1,0 +1,21 @@
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+operator+
+operator+=
+operator-
+operator-=
+operator*
+operator*=
+operator/
+operator/=
+DrawLineDir call:[DrawLine3D,DrawSphere3D,VAdd,VNormalize,VScale] noreturn:[DrawSphere3D]
+DrawLineXYZ call:[DrawLineDir,VTransform] noreturn:[DrawLineDir]
+DrawLineXYZ call:[DrawLineDir,GetForward,GetRight,GetUp] noreturn:[DrawLineDir]
+DrawPointLine3D call:[DrawLine3D,Magnitude,VAdd,VNorm,VScale,VSub]
+DrawStringCenter call:[DrawStringToHandle,GetDrawStringSizeToHandle,c_str,wcslen] noreturn:[DrawStringToHandle]

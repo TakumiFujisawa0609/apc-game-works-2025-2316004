@@ -84,19 +84,9 @@ public:
 	/// @param  
 	/// @return 移動量
 	const VECTOR& GetMovePow(void)const { return movePow_; }
-
-	/// @brief ジャンプ力の取得
-	/// @param  
-	/// @return 
-	const VECTOR& GetJumpPow(void)const { return jumpPow_; }
 	
 	//着地時のジャンプ力初期化
 	void JumpPowZero(void) { jumpPow_ = Utility3D::VECTOR_ZERO; }
-
-	/// @brief 状態の取得
-	/// @param  
-	/// @return 状態
-	const ACTION_TYPE& GetActionType(void)const { return act_; }
 
 	/// @brief カードアクションの取得
 	/// @param  
@@ -113,10 +103,6 @@ public:
 	/// @return 
 	AnimationController& GetAnimation(void)const { return anim_; }
 	
-	/// @brief アニメーションの再生
-	/// @param  
-	/// @return 
-	const bool& GetIsAtkColAlive(void);
 	
 	/// @brief 角度Yを取得
 	/// @param  
@@ -141,14 +127,8 @@ public:
 	/// @param _flinchTime のけぞらせたい時間
 	void SetFlinchCnt(const float _flinchTime);
 
-	/// @brief メインアクションの追加
-	/// @param _action 
-	template <typename T, typename... Args>
-	void AddMainAction(const ACTION_TYPE _type, Args && ...args)
-	{
-		mainAction_[_type] = std::make_unique<T>(std::forward<Args>(args)...);
-	}
-
+	/// @brief アクションの追加
+	/// @param _types 追加したいアクションタイプ
 	void AddAction(std::vector<ACTION_TYPE> _types);
 
 

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="4291301579803100033">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;cmath&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2F.cpp" line="1" column="2"/>
+        </error>
+  <FileInfo check="Class">
+<class name="Vector2F" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2F.h" configuration="" line="4" col="1" hash="9572443025146748083"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2F.cpp" functionName="IsVector2F" lineNumber="7" column="16"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Common/Vector2F.cpp" functionName="IsSameVector2F" lineNumber="18" column="16"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="true"/>
+  </FileInfo>
+</analyzerinfo>

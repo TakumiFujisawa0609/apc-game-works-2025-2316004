@@ -104,7 +104,7 @@ void GameScene::Init(void)
 void GameScene::CheckSkip(void)
 {
 
-	if (InputManager::GetInstance().IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_TOP))
+	if (inputMng_.IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_TOP))
 	{
 		if (skipKeepCnt_ > SKIP_BTN_TIME)
 		{

@@ -1,49 +1,44 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="14073889731913430403">
+<analyzerinfo hash="12781346676998436876">
         <error id="missingInclude" severity="information" msg="Include file: &quot;../pch.h&quot; not found." verbose="Include file: &quot;../pch.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" line="1" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" line="1" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Utility/UtilityCommon.h&quot; not found." verbose="Include file: &quot;../Utility/UtilityCommon.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found." verbose="Include file: &quot;../Manager/Resource/ResourceManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" line="3" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found." verbose="Include file: &quot;../Manager/Generic/InputManager.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" line="4" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" line="4" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Renderer/PixelRenderer.h&quot; not found." verbose="Include file: &quot;../Renderer/PixelRenderer.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" line="5" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" line="5" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Renderer/PixelMaterial.h&quot; not found." verbose="Include file: &quot;../Renderer/PixelMaterial.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" line="6" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" line="6" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Application.h&quot; not found." verbose="Include file: &quot;../Application.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="3" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/HpUIBase.h" line="3" column="2"/>
         </error>
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results." verbose="Include file: &lt;memory&gt; not found. Please note: Standard library headers do not need to be provided to get proper results.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="2" column="2"/>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/UIBase2D.h" line="2" column="2"/>
         </error>
         <error id="missingInclude" severity="information" msg="Include file: &quot;../Common/Vector2F.h&quot; not found." verbose="Include file: &quot;../Common/Vector2F.h&quot; not found.">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="3" column="2"/>
-        </error>
-        <error id="missingOverride" severity="style" msg="The destructor &apos;~HpUIBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." verbose="The destructor &apos;~HpUIBase&apos; overrides a destructor in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp">
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/HpUIBase.h" line="21" column="11" info="Destructor in derived class"/>
-            <location file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Base/UIBase2D.h" line="10" column="11" info="Virtual destructor in base class"/>
-            <symbol>~HpUIBase</symbol>
+            <location file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Base/UIBase2D.h" line="3" column="2"/>
         </error>
   <FileInfo check="Class">
-<class name="HP_DATA" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="12908037895484562304"/>
-<class name="PlayerHpUI" file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.h" configuration="" line="4" col="1" hash="4343715029977219627"/>
+<class name="HP_DATA" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/UIData/CharacterUIData.h" configuration="" line="7" col="1" hash="12908037895484562304"/>
+<class name="PlayerHpUI" file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.h" configuration="" line="4" col="1" hash="4343715029977219627"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Load" lineNumber="23" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Init" lineNumber="31" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Update" lineNumber="42" column="18"/>
-    <functiondecl file="C:/Users/dekir/Desktop/AGS/AGS2026/Winter/Game/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Draw" lineNumber="50" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Load" lineNumber="23" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Init" lineNumber="31" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Update" lineNumber="42" column="18"/>
+    <functiondecl file="C:/Users/2316004/Desktop/FindWork/CardOfAction/Src/Object/Character/Player/PlayerHpUI.cpp" functionName="Draw" lineNumber="50" column="18"/>
     <functioncall functionName="AddConstBuf"/>
     <functioncall functionName="AddTextureBuf"/>
     <functioncall functionName="Draw"/>
