@@ -47,7 +47,7 @@ public:
 
 	/// @brief リロードゲージ描画
 	/// @param  
-	void DrawReloadGauge(const int& _reloadFrameImg,const float& _reloadPer);
+	void DrawReloadGauge(const float& _reloadPer);
 
 private:
 
@@ -71,6 +71,8 @@ private:
 
 	//選択カードの定数バッファスロット
 	static constexpr int CARD_NUM_CONST_BUF_SIZE = 3;
+	//リロードカードの割合の定数バッファスロット
+	static constexpr int RELOAD_PER_CONST_BUF_SIZE = 1;
 
 	//選択カードアウトラインサイズ
 	static constexpr float SELECT_CARD_OUTLINE_SIZE = 100.0f;	

@@ -160,7 +160,8 @@ private:
 	static constexpr Vector2 START_HPBAR_POS = { 10,10 };
 	static constexpr Vector2 HPBAR_SIZE = { 200,30 };
 
-	//static constexpr float CAP_RADIUS = 25.0f;						//半径
+	//敵ヒットSEボリューム
+	static constexpr int ENEMY_HIT_SE_VOL = 80;
 
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 15;
@@ -171,47 +172,6 @@ private:
 	//格納するカードの強さ
 	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
 	static constexpr CardBase::CARD_STATUS CARD_POWS[CARD_NUM_MAX] = {
-		//{0,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK},
-		//{1,CARD_TYPE::ATTACK}
-
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
-		//{9,CARD_TYPE::ATTACK},
 
 		{0,CARD_TYPE::ATTACK},
 		{1,CARD_TYPE::ATTACK},

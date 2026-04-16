@@ -18,7 +18,6 @@ CardUIDraw::CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl):
 
 CardUIDraw::~CardUIDraw(void)
 {
-	typeImg_ = -1;
 }
 void CardUIDraw::Load(void)
 {
@@ -121,7 +120,7 @@ void CardUIDraw::SelectFrameEasing(void)
 	selectCardPSRenderer_->SetSize(size);
 }
 
-void CardUIDraw::DrawReloadGauge(const int& _reloadFrameImg,const float& _reloadPer)
+void CardUIDraw::DrawReloadGauge(const float& _reloadPer)
 {
 	//画像サイズ取得
 	GetGraphSizeF(typeImg_, &size_.x, &size_.y);
@@ -130,7 +129,7 @@ void CardUIDraw::DrawReloadGauge(const int& _reloadFrameImg,const float& _reload
 	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;
 	//右下の座標
 	Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
-	reloadCardPSMaterial_->SetConstBuf(1, { 0.0f,0.0f,_reloadPer,0.0f });
+	reloadCardPSMaterial_->SetConstBuf(RELOAD_PER_CONST_BUF_SIZE, { 0.0f,0.0f,_reloadPer,0.0f });
 	reloadCardPSRenderer_->SetSize(size_ * scl_);
 	reloadCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
 }

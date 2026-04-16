@@ -12,7 +12,6 @@
 #include "../Manager/Resource/FontManager.h"
 #include "../Renderer/PixelMaterial.h"
 #include "../Renderer/PixelRenderer.h"
-
 #include "../Card/CardUIController.h"
 #include "../Card/CardSystem.h"
 #include "PlayerCardUI.h"
@@ -24,8 +23,6 @@ revolverLArrowPos_(REVOLVER_ARROW_L_POS),
 revolverRArrowPos_(),
 revolverArrowAngle_(),
 reloadAnimCurr_(),
-selectFrameImg_(UtilityCommon::INITIAL_HANDLE),
-reloadCardFrameImg_(UtilityCommon::INITIAL_HANDLE),
 cardNumFrameImg_(UtilityCommon::INITIAL_HANDLE),
 cardNumMaskImg_(UtilityCommon::INITIAL_HANDLE),
 cardNumBgImg_(UtilityCommon::INITIAL_HANDLE),
@@ -48,24 +45,20 @@ PlayerCardUI::~PlayerCardUI(void)
 
 void PlayerCardUI::Load(void)
 {
-	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
-	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
-	reloadCardImg_ = res.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
-	reloadGauge_ = res.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
-	reloadFrame_ = res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
-	selectFrameImg_ = res.Load(ResourceManager::SRC::CARD_SELECT_FRAME_IMG).handleId_;
-	cardNumFrameImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
-	cardNumMaskImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
+	CardUIBase::Load();
+	atkCardImg_ = resMng_.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
+	reloadCardImg_ = resMng_.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
+	reloadGauge_ = resMng_.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
+	cardNumFrameImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
+	cardNumMaskImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
 	reloadFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), RELOAD_FONT_SIZE,0);
-	reloadCardFrameImg_=res.Load(ResourceManager::SRC::RELOAD_FRAME).handleId_;
-	cardNumBgImg_ = res.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
+	cardNumBgImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
 	soundMng_.LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
 	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
-	imgRevolverArrow_ = res.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
+	imgRevolverArrow_ = resMng_.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
 
 }
 void PlayerCardUI::Init(void)
@@ -123,9 +116,9 @@ void PlayerCardUI::Draw(void)
 			continue;
 		}
 		card->Draw();
-		if (card->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
+		if (card->GetStatus().type == CardBase::CARD_TYPE::RELOAD)
 		{
-			card->DrawReloadGauge(reloadCardFrameImg_,reloadPer_);
+			card->DrawReloadGauge(reloadPer_);
 			Vector2F pos = card->GetCenterPos();
 			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
 		}
@@ -135,9 +128,9 @@ void PlayerCardUI::Draw(void)
 	{
 		(*handCurrent_)->DrawSelectCard();
 		//リロードカードの描画
-		if ((*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
+		if ((*handCurrent_)->GetStatus().type == CardBase::CARD_TYPE::RELOAD)
 		{
-			(*handCurrent_)->DrawReloadGauge(reloadCardFrameImg_, reloadPer_);
+			(*handCurrent_)->DrawReloadGauge(reloadPer_);
 			Vector2F pos = (*handCurrent_)->GetCenterPos();
 			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
 		}
@@ -363,7 +356,7 @@ void PlayerCardUI::ChangeRight(void)
 void PlayerCardUI::ChangeDecision(void)
 {
 	// カードを使う処理
-	if (selectState_ == CARD_SELECT::NONE&&(*handCurrent_)->GetStatus().type_ == CardBase::CARD_TYPE::RELOAD)
+	if (selectState_ == CARD_SELECT::NONE&&(*handCurrent_)->GetStatus().type == CardBase::CARD_TYPE::RELOAD)
 	{
 		ChangeSelectState(CARD_SELECT::RELOAD_WAIT);
 		return;

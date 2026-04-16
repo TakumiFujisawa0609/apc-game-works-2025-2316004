@@ -23,7 +23,6 @@ void CardBase::Load(void)
 {
 	ResourceManager& res = ResourceManager::GetInstance();
 	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
-	atkCardImg_ = res.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 }
 
 void CardBase::Init(void)
@@ -37,8 +36,4 @@ void CardBase::Update(void)
 
 void CardBase::Draw(void)
 {
-	numPos_ = cardPos_ + (NUM_LOCAL_POS*cardScl_);
-	constexpr double NUM_SCL = 0.18;
-	DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, atkCardImg_, true);
-	DrawRotaGraphF(numPos_.x, numPos_.y, cardScl_* NUM_SCL, 0.0f, cardNoImg_[status_.pow_], true);
 }

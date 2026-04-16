@@ -27,7 +27,6 @@ CardDeck::~CardDeck(void)
 
 void CardDeck::Load(void)
 {
-	//drawPile_[0]->Load();
 }
 
 void CardDeck::Init(void)
@@ -38,7 +37,6 @@ void CardDeck::Init(void)
 	{
 		AddDrawPile(cardDeck[i]);
 	}
-
 
 	//カードUIの選択番号が1番なので1に初期化する
 	currentNum_ = 0;
@@ -82,23 +80,6 @@ void CardDeck::Update(void)
 
 void CardDeck::Draw(void)
 {
-	//CardBase::CARD_STATUS currentCardPow = drawPile_[currentNum_]->GetCardStatus();
-
-
-	//const float DISTANCE_X = 40;
-	//DrawFormatString(0, 300, 0x000000,L"(%d)", currentCardPow.pow_);
-
-
-	////手札の表示
-	//int handSize = static_cast<int>(usingCards_.size());
-	//if (handSize > 0)
-	//{
-	//	for (int i = 0; i < handSize; i++)
-	//	{
-	//		int handCardPow = usingCards_[i]->GetCardStatus().pow_;
-	//		DrawFormatString(centerPos_.x + (DISTANCE_X * i), centerPos_.y + 100, 0x000000, L"(%d)", handCardPow);
-	//	}
-	//}
 }
 
 void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
@@ -155,16 +136,10 @@ void CardDeck::DrawCardFromDeck(void)
 {
 	//使うカードを手札に加える
 	int cardPow = 0;
-
-	//手札の合計値を出す
-	//for (const auto& it : usingCards_)
-	//{
-	//	cardPow += it->GetCardStatus().pow_;
-	//}
 	cardPow = std::accumulate(usingCards_.begin(), usingCards_.end(), 0,
 		[](int acc, const std::unique_ptr<CardBase>& it)
 		{
-			return acc + it->GetCardStatus().pow_;
+			return acc + it->GetCardStatus().pow;
 		});
 
 	//カードを場に出してシステム側で処理をする
@@ -182,7 +157,7 @@ std::vector<CardBase::CARD_TYPE> CardDeck::GetHandCardType(void)
 	std::vector<CardBase::CARD_TYPE>handCardTypes;
 	for (const auto& h : usingCards_)
 	{
-		CardBase::CARD_TYPE type = h->GetCardStatus().type_;
+		CardBase::CARD_TYPE type = h->GetCardStatus().type;
 		handCardTypes.emplace_back(type);
 	}
 	return handCardTypes;
@@ -190,7 +165,7 @@ std::vector<CardBase::CARD_TYPE> CardDeck::GetHandCardType(void)
 
 const CardBase::CARD_TYPE CardDeck::GetDrawCardType(void)
 {
-	return drawPile_[currentNum_]->GetCardStatus().type_;
+	return drawPile_[currentNum_]->GetCardStatus().type;
 }
 
 void CardDeck::Reload(void)

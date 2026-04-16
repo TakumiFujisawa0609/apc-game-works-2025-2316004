@@ -149,12 +149,6 @@ private:
 
 	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;	//リロード用の現在のカードイテレータ
 
-	//選択フレーム画像
-	int selectFrameImg_;
-
-	//リロードフレーム
-	int reloadCardFrameImg_;
-
 	//リロード終了
 	bool isReloadEnd_;
 

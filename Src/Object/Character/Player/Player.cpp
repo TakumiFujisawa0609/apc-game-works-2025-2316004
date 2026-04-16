@@ -78,7 +78,7 @@ void Player::Load(void)
 	weapon_->Load();
 
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::ENEMY_HIT_SE);
-	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::ENEMY_HIT_SE, 80);
+	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::ENEMY_HIT_SE, ENEMY_HIT_SE_VOL);
 }
 
 void Player::Init(void)
@@ -228,10 +228,6 @@ void Player::Damage(const int _dam)
 #ifdef _DEBUG
 void Player::DrawDebug(void)
 {
-	unsigned int color = 0xffffff;
-	//const int HIGH = 10;
-	//const int WIDTH = 200;
-	//DrawSphere3D(trans_.cardPos, RADIUS_X, 4, 0xff0000, 0xff0000, true);
 	for (auto& col : collider_)
 	{
 		col.second->GetGeometry().Draw();
@@ -239,12 +235,6 @@ void Player::DrawDebug(void)
 	
 	VECTOR pos = trans_.pos;
 	DrawFormatString(0, 200, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
-
-	////// 手の位置とグローバルマトリクスを取得
-	//VECTOR atkPos = Utility3D::AddPosRotate(trans_.pos, trans_.quaRot, { 0.0f,100.0f,40.0f });
-	//DrawSphere3D(atkPos, 10, 10, 0xffffff, 0xffffff, false);
-
-	//action_->DrawDebug();
 
 }
 
@@ -256,7 +246,6 @@ void Player::AddAnimation(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), DEFAULT_ANIM_SPEED , resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_JUMP));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DODGE), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DODGE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DEATH), DEFAULT_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_DEATH));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::CARD_RELOAD), DODGE_ANIM_SPD, resMng_.LoadModelDuplicate(ResourceManager::SRC::P_RELOAD));

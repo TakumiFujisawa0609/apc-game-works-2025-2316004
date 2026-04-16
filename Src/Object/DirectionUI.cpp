@@ -11,7 +11,6 @@ DirectionUI::DirectionUI(void):
 	resMng_(ResourceManager::GetInstance()),
 	skipGaugePer_(0.0f),
 	imgSkipButtomMask_(-1),
-	imgSkipButtom_(-1),
 	fontHandle_(-1),
 	intensiveLineImg_1(-1),
 	intensiveLineImg_2(-1),
@@ -33,8 +32,7 @@ void DirectionUI::Load(void)
 	intensiveLineImg_1 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
 	intensiveLineImg_2 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_2).handleId_;
 
-	//スキップボタン
-	imgSkipButtom_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM).handleId_;
+	//スキップボタンマスク
 	imgSkipButtomMask_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM_MASK).handleId_;
 
 }

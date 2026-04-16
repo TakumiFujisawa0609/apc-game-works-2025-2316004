@@ -157,14 +157,6 @@ private:
 	//爆発発生アニメステップ
 	static constexpr float DEATH_BLAST_ANIM_STEP = 93.0f;
 
-	//それぞれの当たり判定座標
-	VECTOR leftArmPos_;
-	VECTOR leftForeArmPos_;
-	VECTOR leftHandPos_;
-	VECTOR rightArmPos_;
-	VECTOR rightForeArmPos_;
-	VECTOR rightHandPos_;
-
 	Vector2 cardCenterPos_; //カードの中心座標
 
 	//敵のスケール

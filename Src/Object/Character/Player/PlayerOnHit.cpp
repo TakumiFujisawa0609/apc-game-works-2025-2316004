@@ -59,9 +59,10 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 	//‘Šè‚Ìƒ^ƒO‚ğ‚Æ‚é
 	const CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
 	std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
+	const auto it = std::find(tags.begin(), tags.end(), Collider::TAG::NML_ATK);
 	isHitTarget_ = true;
-	//UŒ‚‚Ìê‡‚Í–³‹
-
+	//UŒ‚‚Ì“–‚½‚è”»’è‚Ìê‡‚Í–³‹
+	if (it != tags.end())return;
 	Geometry& myCap = colParam_[TAG_PRIORITY::BODY]->GetGeometry();
 	Geometry& hitCap = _hitCol.lock()->GetGeometry();
 	//©•ª‚ÌÀ•W

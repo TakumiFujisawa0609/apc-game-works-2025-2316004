@@ -19,10 +19,10 @@ selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
 reloadCardImg_(-1),
 soundMng_(SoundManager::GetInstance()),
+resMng_(ResourceManager::GetInstance()),
 handCurrent_(),
 centerPos_(),
 cardNoImg_(nullptr),
-reloadFrame_(),
 reloadGauge_(),
 numPos_(),
 cardMoveCnt_(),
@@ -80,7 +80,7 @@ void CardUIBase::PlayCardSound(void)
 
 void CardUIBase::Load(void)
 {
-
+	cardNoImg_ = resMng_.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
 }
 
 void CardUIBase::Init(void)
@@ -111,14 +111,28 @@ void CardUIBase::Draw(void)
 
 void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
-	int typeImg = -1;
-	//属性によって画像を変える
-	typeImg = GetTypeImg(_status);
-	int num = _status.pow_ - 1;
-	if (num == -1) { num = 9; }
+	int img = -1;
+	auto it = cardImgs_.find(_status);
+	int num = _status.pow - 1;
+	if (num < 0) { num = MAX_CARD_POWER; }
 	int drawNumImg = cardNoImg_[num];
 	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
-	info->SetTypeImg(typeImg);
+	//カード画像がない場合は作成して配列に挿入
+	if(it==cardImgs_.end())
+	{
+		img = MakeCardNumImg(_status);
+		cardImgs_.emplace(_status, img);
+	}
+	else
+	{
+		//カード画像がある場合は配列から取得
+		img = it->second;
+	}
+	info->SetCardImg(img);
+
+	//カード情報セット
+	if (num < 0) { num = MAX_CARD_POWER; }
+	info->SetCardImg(img);
 	info->SetStatus(_status);
 	info->Load();
 	info->Init();
@@ -188,10 +202,51 @@ void CardUIBase::SubHandCurrent(void)
 
 
 
+int CardUIBase::MakeCardNumImg(const CardBase::CARD_STATUS& _status)
+{
+	//サイズ
+	int img = UtilityCommon::INITIAL_HANDLE;
+
+	//描画可能なスクリーンの作成
+	img = MakeScreen(GRAPH_SIZE_X, GRAPH_SIZE_Y, true);
+
+	//描画先を作成したスクリーンに変更
+	SetDrawScreen(img);
+
+	//作成したスクリーンで描画
+	int typeImg = GetTypeImg(_status);
+	DrawGraph(0, 0, typeImg, true);
+
+	//中央座標取得
+	Vector2F centerPos;
+	GetGraphSizeF(typeImg, &centerPos.x, &centerPos.y);
+
+	//番号サイズ取得
+	Vector2F size = { 0.0f,0.0f };
+
+	//カードの強さから番号画像を取得
+	int num = _status.pow - 1;
+	if (num < 0) { num = MAX_CARD_POWER; }
+	GetGraphSizeF(cardNoImg_[num], &size.x, &size.y);
+
+	//縮小倍率をかける
+	size *= NUM_SCL;
+
+	//座標計算
+	Vector2F numSizeHalf = size / 2.0f;
+	Vector2F leftTopPos = NUM_LOCAL_POS - numSizeHalf;
+	Vector2F rightBottomPos = NUM_LOCAL_POS + numSizeHalf;
+	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_[num], true);
+
+	//描画先を元に戻す
+	SetDrawScreen(DX_SCREEN_BACK);
+	return img;
+}
+
 const int CardUIBase::GetTypeImg(const CardBase::CARD_STATUS _status)
 {
 	int typeImg = -1;
-	switch (_status.type_)
+	switch (_status.type)
 	{
 	case CardBase::CARD_TYPE::ATTACK:
 		typeImg = atkCardImg_;
@@ -199,7 +254,6 @@ const int CardUIBase::GetTypeImg(const CardBase::CARD_STATUS _status)
 	case CardBase::CARD_TYPE::RELOAD:
 		typeImg = reloadCardImg_;
 	}
-
 	return typeImg;
 }
 

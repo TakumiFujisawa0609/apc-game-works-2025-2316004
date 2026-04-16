@@ -17,8 +17,15 @@ public:
 
 	struct CARD_STATUS
 	{
-		int pow_;			//カードの強さ
-		CARD_TYPE type_;	//カードの種類
+		int pow;			//カードの強さ
+		CARD_TYPE type;	//カードの種類
+
+		//カードの強さと種類の比較
+		bool operator<(const CARD_STATUS& other) const
+		{
+			if (pow != other.pow) return pow < other.pow;
+			return type < other.type;
+		}
 	};
 
 	//コンストラクタ
@@ -70,6 +77,7 @@ protected:
 	Vector2F cardPos_;
 	//カードナンバー座標
 	Vector2F numPos_;
+
 private:
 };
 

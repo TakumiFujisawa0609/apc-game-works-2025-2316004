@@ -128,6 +128,10 @@ private:
 	//はい/いいえの選択肢の数
 	static constexpr int YES_NO_NUM = 2;
 
+	//はいいいえの文字列
+	const std::wstring YES_STR = L"はい";
+	const std::wstring NO_STR = L"いいえ";
+
 	//デフォルトのフォントサイズ
 	int defaultFontSize_;
 

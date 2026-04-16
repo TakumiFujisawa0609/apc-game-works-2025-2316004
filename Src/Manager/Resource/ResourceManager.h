@@ -21,7 +21,6 @@ public:
 		STAGE_WALL,		//ステージ
 		PLAYER,		//プレイヤー
 		ENEMY_1,	//敵1
-		CARD_MDL,		//カード
 		SKY_DOME,	//スカイドーム
 		SPHERE_ROCK,		//岩
 		KEY_BLADE,	//鍵剣
@@ -33,7 +32,6 @@ public:
 		P_ATTACK_1_MIDDLE,	//攻撃1(中距離)
 		P_ATTACK_2,	//攻撃2
 		P_ATTACK_3,	//攻撃3
-		P_JUMP,		//ジャンプ
 		P_DODGE,	//回避
 		P_RELOAD,	//リロード
 		P_DEATH,	//プレイヤー倒れ
@@ -43,7 +41,6 @@ public:
 		E_STOMP_ATK,	//横薙ぎ攻撃
 		E_JUMP_ATK, //ジャンプ攻撃
 		E_ROAR_ATK,	//咆哮攻撃
-		E_ROLE_ATK,	//転がり攻撃
 		E_KNOCK_DOWN,	//大ダウン
 		REACT,
 		E_DEATH,			//敵倒れる
@@ -56,22 +53,20 @@ public:
 		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード
 		ENEMY_ATK_CARD_IMG,//敵番号なしアタックカード
 		RELOAD_CARD_IMG,//リロードカード
-		RELOAD_FRAME,	//リロードカードのフレーム
+		//RELOAD_FRAME,	//リロードカードのフレーム
 		RELOAD_GAGE,	//リロードゲージ
-		P_HP_ARCBAR_MASK,	//HPバーマスク(円形の部分)
-		P_HP_ARCBAR_FRAME,	//円形ゲージフレーム
-		P_HP_LINEBAR_MASK,	//HPバーマスク(線形の部分)
-		P_HP_BAR_FRAME,	//HPフレーム
+		//P_HP_ARCBAR_MASK,	//HPバーマスク(円形の部分)
+		//P_HP_ARCBAR_FRAME,	//円形ゲージフレーム
+		//P_HP_LINEBAR_MASK,	//HPバーマスク(線形の部分)
+		//P_HP_BAR_FRAME,	//HPフレーム
 		P_HP_ARC_OUTLINE,	//円形アウトライン
 		P_HP_LINE_OUT_LINE,	//線形アウトライン
 		P_CARD_NUM_GAUGE_MASK,	//カード枚数ゲージマスク
 		P_CARD_NUM_GAUGE_FRAME,	//カード枚数ゲージフレーム
 		P_CARD_NUM_GAUGE_BACK,	//カード枚数ゲージ背景
-		CARD_SELECT_FRAME_IMG,//カード枠画像
 		E_HP_BAR_MASK,	//敵体力体力ゲージマスク
 		E_HP_BAR_FRAME,	//敵体力体力ゲージフレーム
 		E_HP_COVER,		//敵体力ゲージカバー
-		SKIP_BUTTOM,		//スキップボタン画像
 		SKIP_BUTTOM_MASK,		//スキップボタン画像
 		CARD_REVOLVER_L_ARROW,	//カードリボルバー回転方向の左矢印
 
@@ -95,6 +90,8 @@ public:
 		RELOAD_END_EFF,
 	};
 	
+
+
 	/// @brief 初期化
 	/// @param  
 	void Init(void);

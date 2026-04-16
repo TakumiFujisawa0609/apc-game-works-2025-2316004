@@ -39,6 +39,11 @@ public:
 
 private:
 
+	//フォントのハンドル
+	const std::wstring FONT_DOT_PASS=L"FontDot.otf";
+	const std::wstring FONT_BOKUTATI_PASS = L"bokutachi.otf";
+	const std::wstring FONT_APRIL_GOTHIC_PASS = L"AprilGothicOne-R.ttf";
+
 	//登録用パス
 	std::wstring fontPath_[FONT_TYPES];
 };

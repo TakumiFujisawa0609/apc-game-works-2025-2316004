@@ -64,7 +64,7 @@ public:
 
 	/// @brief リロードゲージの描画
 	/// @param  
-	void DrawReloadGauge(const int& _reloadCardFrameImg,const float& _reloadPer);
+	void DrawReloadGauge(const float& _reloadPer);
 
 	/// @brief 選択カード枠描画
 	/// @param  
@@ -169,9 +169,13 @@ public:
 	/// @param _status ステータス
 	void SetStatus(const CardBase::CARD_STATUS& _status) { status_ = _status; }
 
-	/// @brief カードタイプ画像ノセット
+	/// @brief カードタイプ画像のセット
 	/// @param _type 
 	void SetTypeImg(const int& _type) { typeImg_ = _type; }
+
+	/// @brief ガード画像のセット
+	/// @param _img カード画像
+	void SetCardImg(const int& _img) { cardImg_ = _img; }
 
 	/// @brief 上下に動かす基準となる座標のセット(状態遷移時のみ)
 	/// @param  
@@ -199,7 +203,6 @@ private:
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X - 100.0f, Application::SCREEN_HALF_Y + 200.0f };
 
 	//倍率1の時のカードの強さの描画座標
-	//static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
 	static constexpr Vector2F NUM_LOCAL_POS = { 89.0f,130.0f };
 
 
@@ -249,10 +252,9 @@ private:
 	CardBase::CARD_STATUS status_;	//カードのステータス
 	Vector2F halfSize_;		//カードの大きさ
 	int cardImg_;		//カード画像
+	std::list<int>cardImgs_;	//カード画像保管
+
 	//カード番号イメージ
 	int cardNoImg_;
-
-	//カード画像作成
-	int MakeCardUIImg(void);
 };
 

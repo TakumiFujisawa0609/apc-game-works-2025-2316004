@@ -115,11 +115,6 @@ void Enemy::Init(void)
 	MakeColliderGeometry();
 }
 
-//void Enemy::Update(void)
-//{
-//
-//}
-
 void Enemy::UpdateDirection(void)
 {
 	animationController_->Update();
@@ -247,10 +242,6 @@ void Enemy::ChangeUpdateClearDirection(void)
 
 void Enemy::MakeColliderGeometry(void)
 {
-	//肩の座標を取得
-	leftArmPos_ = MV1GetFramePosition(trans_.modelId, 9);
-	leftForeArmPos_ = MV1GetFramePosition(trans_.modelId, 10);
-	leftHandPos_ = MV1GetFramePosition(trans_.modelId, 11);
 
 	//カプセル
 	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
@@ -302,7 +293,6 @@ void Enemy::AddAnimation(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_STOMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ROAR_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUSH_ATK), ROLL_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROLE_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DEATH), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_DEATH));
 }
 
@@ -313,14 +303,5 @@ void Enemy::DrawDebug(void)
 	{
 		col.second->GetGeometry().Draw();
 	}
-
-
-	//肩の座標を取得
-	VECTOR leftArm = VScale(MV1GetFramePosition(trans_.modelId, 9), 1.0f);
-	VECTOR leftForeArm = VScale(MV1GetFramePosition(trans_.modelId, 10), MODEL_SIZE_MULTIPLITER);
-	VECTOR leftHand = MV1GetFramePosition(trans_.modelId, 11);
-	VECTOR localPosArm = VSub(leftArm, trans_.pos);
-	VECTOR localPosForeArm = VSub(leftForeArm, trans_.pos);
-	VECTOR localPosHand = VSub(trans_.pos, leftHand);
 }
 #endif // _DEBUG

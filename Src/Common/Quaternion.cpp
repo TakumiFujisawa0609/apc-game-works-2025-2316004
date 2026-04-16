@@ -3,7 +3,6 @@
 #include "../Utility/UtilityCommon.h"
 #include "../Utility/Utility3D.h"
 #include "Quaternion.h"
-
 Quaternion::Quaternion(void)
 {
     w = 1;
@@ -51,11 +50,6 @@ Quaternion Quaternion::Euler(double radX, double radY, double radZ)
     double sinX = sin(radX / 2.0f);
     double cosY = cos(radY / 2.0f);
     double sinY = sin(radY / 2.0f);
-
-    //ret.w = cosZ * cosX * cosY + sinZ * sinX * sinY;
-    //ret.x = sinZ * cosX * cosY - cosZ * sinX * sinY;
-    //ret.y = cosZ * sinX * cosY + sinZ * cosX * sinY;
-    //ret.z = cosZ * cosX * sinY - sinZ * sinX * cosY;
 
     ret.w = cosX * cosY * cosZ + sinX * sinY * sinZ;
     ret.x = sinX * cosY * cosZ + cosX * sinY * sinZ;
@@ -118,7 +112,6 @@ Quaternion Quaternion::AngleAxis(double rad, VECTOR axis)
     double c, s;
 
     // UnityÇ…çáÇÌÇπÇÈ
-    //ret.w = ret.x = ret.y = ret.z = 0.0;
     ret.w = 1.0;
     ret.x = ret.y = ret.z = 0.0;
 
@@ -148,7 +141,6 @@ Quaternion Quaternion::AngleAxis(double rad, VECTOR axis)
 VECTOR Quaternion::PosAxis(const Quaternion& q, VECTOR pos)
 {
     // à íuèÓïÒÇ…âÒì]èÓïÒÇîΩâfÇ≥ÇπÇÈ
-    // pos' = qÅEposÅEq(-1)
     Quaternion tmp = Quaternion();
     tmp = tmp.Mult(q);
     tmp = tmp.Mult(Quaternion(0.0f, pos.x, pos.y, pos.z));
@@ -206,42 +198,8 @@ MATRIX Quaternion::ToMatrix(const Quaternion& q)
     mat.m[1][0] = cz - wz;			mat.m[1][1] = 1.0f - (sx + sz);	mat.m[1][2] = cx + wx;			mat.m[1][3] = 0.0f;
     mat.m[2][0] = cy + wy;			mat.m[2][1] = cx - wx;			mat.m[2][2] = 1.0f - (sx + sy);	mat.m[2][3] = 0.0f;
     mat.m[3][0] = 0.0f;				mat.m[3][1] = 0.0f;				mat.m[3][2] = 0.0f;				mat.m[3][3] = 1.0f;
-    //mat.m[3][0] = trans.x;				mat.m[3][1] = trans.y;				mat.m[3][2] = trans.z;				mat.m[3][3] = 1.0f;
 
     return mat;
-
-    //double sqw = q.w * q.w;
-    //double sqx = q.x * q.x;
-    //double sqy = q.y * q.y;
-    //double sqz = q.z * q.z;
-    //double invs = 1.0 / (sqx + sqy + sqz + sqw);
-
-    //MATRIX matrix = MGetIdent();
-
-    //matrix.m[0][0] = static_cast<float>((sqx - sqy - sqz + sqw) * invs);
-    //matrix.m[1][1] = static_cast<float>((-sqx + sqy - sqz + sqw) * invs);
-    //matrix.m[2][2] = static_cast<float>((-sqx - sqy + sqz + sqw) * invs);
-
-    //double tmp1 = q.x * q.y;
-    //double tmp2 = q.z * q.w;
-    ////matrix.m[0][1] = static_cast<float>(2.0 * (tmp1 + tmp2) * invs);
-    ////matrix.m[1][0] = static_cast<float>(2.0 * (tmp1 - tmp2) * invs);
-    //matrix.m[0][1] = static_cast<float>(2.0 * (tmp1 - tmp2) * invs);
-    //matrix.m[1][0] = static_cast<float>(2.0 * (tmp1 + tmp2) * invs);
-
-    //tmp1 = q.x * q.z;
-    //tmp2 = q.y * q.w;
-    //matrix.m[0][2] = static_cast<float>(2.0 * (tmp1 - tmp2) * invs);
-    //matrix.m[2][0] = static_cast<float>(2.0 * (tmp1 + tmp2) * invs);
-
-    //tmp1 = q.y * q.z;
-    //tmp2 = q.x * q.w;
-    ////matrix.m[1][2] = static_cast<float>(2.0 * (tmp1 + tmp2) * invs);
-    ////matrix.m[2][1] = static_cast<float>(2.0 * (tmp1 - tmp2) * invs);
-    //matrix.m[1][2] = static_cast<float>(2.0 * (tmp1 - tmp2) * invs);
-    //matrix.m[2][1] = static_cast<float>(2.0 * (tmp1 + tmp2) * invs);
-
-    //return matrix;
 
 }
 
@@ -287,14 +245,6 @@ Quaternion Quaternion::LookRotation(VECTOR dir, VECTOR up)
     }
     if ((m00 >= m11) && (m00 >= m22))
     {
-        // xÇ∆wÇ™ãtÅH
-        //auto num7 = sqrt(((1.0f + m00) - m11) - m22);
-        //auto num4 = 0.5f / num7;
-        //quaternion.x = 0.5f * num7;
-        //quaternion.y = (m01 + m10) * num4;
-        //quaternion.z = (m02 + m20) * num4;
-        //quaternion.w = (m12 - m21) * num4;
-        //return quaternion.Normalized();
         auto num7 = sqrt(((1.0f + m00) - m11) - m22);
         auto num4 = 0.5f / num7;
         quaternion.x = ((double)m12 - m21) * num4;
@@ -380,58 +330,6 @@ Quaternion Quaternion::GetRotation(MATRIX mat)
     }
 
     return ret;
-
-
-    //float elem[4];
-    //elem[0] = mat.m[0][0] - mat.m[1][1] - mat.m[2][2] + 1.0f;
-    //elem[1] = -mat.m[0][0] + mat.m[1][1] - mat.m[2][2] + 1.0f;
-    //elem[2] = -mat.m[0][0] - mat.m[1][1] + mat.m[2][2] + 1.0f;
-    //elem[3] = mat.m[0][0] + mat.m[1][1] + mat.m[2][2] + 1.0f;
-
-    //int biggestIdx = 0;
-    //for (int i = 0; i < 4; i++)
-    //{
-    //    if (elem[i] > elem[biggestIdx])
-    //    {
-    //        biggestIdx = i;
-    //    }
-    //}
-
-    //if (elem[biggestIdx] < 0)
-    //{
-    //    return Quaternion();
-    //}
-
-    //float q[4];
-    //float v = sqrt(elem[biggestIdx]) * 0.5f;
-    //q[biggestIdx] = v;
-    //float mult = 0.25f / v;
-
-    //switch (biggestIdx)
-    //{
-    //case 0:
-    //    q[1] = (mat.m[1][0] + mat.m[0][1]) * mult;
-    //    q[2] = (mat.m[0][2] + mat.m[2][0]) * mult;
-    //    q[3] = (mat.m[2][1] - mat.m[1][2]) * mult;
-    //    break;
-    //case 1:
-    //    q[0] = (mat.m[1][0] + mat.m[0][1]) * mult;
-    //    q[2] = (mat.m[2][1] + mat.m[1][2]) * mult;
-    //    q[3] = (mat.m[0][2] - mat.m[2][0]) * mult;
-    //    break;
-    //case 2:
-    //    q[0] = (mat.m[0][2] + mat.m[2][0]) * mult;
-    //    q[1] = (mat.m[2][1] + mat.m[1][2]) * mult;
-    //    q[3] = (mat.m[1][0] - mat.m[0][1]) * mult;
-    //    break;
-    //case 3:
-    //    q[0] = (mat.m[2][1] - mat.m[1][2]) * mult;
-    //    q[1] = (mat.m[0][2] - mat.m[2][0]) * mult;
-    //    q[2] = (mat.m[1][0] - mat.m[0][1]) * mult;
-    //    break;
-    //}
-
-    //return Quaternion(q[3], q[0], q[1], q[2]);
 
 }
 

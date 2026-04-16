@@ -111,31 +111,7 @@ void Camera::SetBeforeDraw(void)
 
 void Camera::Draw(void)
 {
-	//float degX = UtilityCommon::Rad2DegF(angles_.x);
-	//float degY = UtilityCommon::Rad2DegF(angles_.y);
-	//float degZ = UtilityCommon::Rad2DegF(angles_.z);
-	//DrawFormatString(0, 0, GetColor(255, 255, 255)
-	//	, L"F2CPos:(%.2f,%.2f,%.2f)\nF2TPos:(%.2f,%.2f,%.2f)\nangle:(%.2f,%.2f,%.2f)\nPos(%.2f,%.2f,%.2f)"
-	//	, localF2CPos_.x, localF2CPos_.y, localF2CPos_.z,
-	//	localF2TPos_.x, localF2TPos_.y, localF2TPos_.z ,
-	//	degX, degY, degZ,
-	//	pos_.x,pos_.y,pos_.z);
-	////DrawFormatString(0, 32, GetColor(255, 255, 255), L"Frame Pos:(%.2f,%.2f,%.2f)", followFramePos_.x, followFramePos_.y, followFramePos_.z);
 
-
-	//if (collider_.size() > 0)
-	//{
-	//	//VECTOR local = VSub(followTransform_->pos, pos_);
-	//	//DrawFormatString(0, 64, GetColor(255, 255, 255), L"Local Pos:(%.2f,%.2f,%.2f)", local.x, local.y, local.z);
-
-	//	// 同期先の位置
-	//	VECTOR followPos = VAdd(followTransform_->pos, followLocalCenterPos_);
-
-	//	VECTOR pos = collider_[TAG_PRIORITY::CAMERA_LINE]->GetGeometry().GetPosPoint2();
-	//	DrawSphere3D(
-	//		pos, 50.0f, 8, GetColor(255, 0, 0), GetColor(255, 0, 0), TRUE);
-	//}
-	//
 }
 
 void Camera::ChangeSub(const  SUB_MODE _submode)
@@ -178,8 +154,6 @@ VECTOR Camera::GetForward(void) const
 
 void Camera::ChangeMode(const MODE mode)
 {
-	// カメラの初期設定
-	//SetDefault();
 	if (mode_ == mode)return;
 	// カメラモードの変更
 	mode_ = mode;
@@ -418,8 +392,6 @@ void Camera::Collision(void)
 			hitPoly = hit;
 		}
 	}
-	//検出した地面ポリゴン情報後始末
-	//MV1CollResultPolyDimTerminate(hits);
 
 	//カメラから注視点へのベクトル
 	MV1CollResultPolyDimTerminate(hits);
@@ -672,8 +644,6 @@ void Camera::DirectionEnemyRoar(void)
 		ChangeDirectionMode(DIRECTION_MODE::PLAYER_ONLY_VIEW);
 		return;
 	}
-	//SetShakeStatus(directionCnt_ / PLAYER_AND_ENEMY_VIEW_TIME, ENEMY_ROAR_SHAKE_LIMIT);
-	//ChangeSub(SUB_MODE::SHAKE);
 	SyncFollow(targetTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
 
@@ -681,7 +651,6 @@ void Camera::DirectionEnemyRoar(void)
 
 void Camera::DirectionPlayerOnly(void)
 {
-	//localF2CPos_.z = easing_->EaseFunc(startF2CPosZ_, goalF2CPosZ_, directionCnt_ / 1.0f, Easing::EASING_TYPE::BOUNCE);
 
 	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
 	{

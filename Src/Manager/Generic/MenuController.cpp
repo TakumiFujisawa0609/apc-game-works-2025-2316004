@@ -10,7 +10,7 @@ MenuController::MenuController(void) :
 	disSpawnCnt_(0.0f),
 	sizeEaseCnt_(0.0f),
 	isAllDirectEaseEnd_(false),
-	yesNoStrTable_{ L"‚Í‚¢",L"‚¢‚¢‚¦" },
+	yesNoStrTable_{ YES_STR, NO_STR },
 	yesNoState_(YES_NO::NO),
 	defaultFontSize_(),
 	defaultFontHandle_(L""),
@@ -244,6 +244,7 @@ void MenuController::DrawFromCenter(const int _arrayNum, const unsigned int _col
 		,static_cast<int>(wcslen(menuList_[_arrayNum].btnStr.c_str()))
 		,_fontHandle );
 
+	//’†SŠî€‚ÌÀ•W‚É•ÏŠ·
 	strPos.x += static_cast<int>(w * 0.5f);
 	strPos.y += static_cast<int>(h * 0.5f);
 

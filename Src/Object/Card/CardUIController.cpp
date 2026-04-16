@@ -7,9 +7,9 @@
 #include "CardUIController.h"
 
 CardUIController::CardUIController(int& _cardNumImgs) :
-	typeImg_(-1),
+	typeImg_(UtilityCommon::INITIAL_HANDLE),
 	cardNoImg_(_cardNumImgs),
-	status_({}),
+	status_(),
 	upDownMoveAngle_(0.0f),
 	disitionCnt_(0.0f),
 	reactCnt_(0.0f),
@@ -42,7 +42,6 @@ void CardUIController::Load(void)
 void CardUIController::Init(void)
 {
 	easing_ = std::make_unique<Easing>();
-	cardImg_ = MakeCardUIImg();
 	cardDraw_->Init();
 }
 void CardUIController::Update(void)
@@ -52,14 +51,13 @@ void CardUIController::Update(void)
 void CardUIController::Draw(void)
 {
 	//カードの描画
-	//DrawRotaGraphF(cardPos_.x, cardPos_.y, cardScl_, 0.0f, cardImg_, true);
 	cardDraw_->Draw();
 }
 
 
-void CardUIController::DrawReloadGauge(const int&_reloadCardFrameImg,const float& _reloadPer)
+void CardUIController::DrawReloadGauge(const float& _reloadPer)
 {
-	cardDraw_->DrawReloadGauge(_reloadCardFrameImg,_reloadPer);
+	cardDraw_->DrawReloadGauge(_reloadPer);
 }
 
 void CardUIController::SelectCardDrawFrame(void)
@@ -186,42 +184,4 @@ void CardUIController::ChangeUsing(void)
 {
 	if (state_ == CARD_STATE::USED || state_ == CARD_STATE::REACT)return;
 	state_ = CARD_STATE::USING;
-}
-
-int CardUIController::MakeCardUIImg(void)
-{
-	//サイズ
-	int img = -1;
-	constexpr int GRAPH_SIZE_X = 120;
-	constexpr int GRAPH_SIZE_Y = 160;
-	constexpr float NUM_SCL = 0.18f;
-	//描画可能なスクリーンの作成
-	img = MakeScreen(GRAPH_SIZE_X, GRAPH_SIZE_Y, true);
-
-	//描画先を作成したスクリーンに変更
-	SetDrawScreen(img);
-
-	//作成したスクリーンで描画
-	DrawGraph(0, 0, typeImg_, true);
-
-	//中央座標取得
-	Vector2F centerPos;
-	GetGraphSizeF(typeImg_, &centerPos.x, &centerPos.y);
-
-	//番号サイズ取得
-	Vector2F size = { 0.0f,0.0f };
-	GetGraphSizeF(cardNoImg_, &size.x, &size.y);
-
-	//縮小倍率をかける
-	size *= NUM_SCL;
-
-	//座標計算
-	Vector2F numSizeHalf = size / 2.0f;
-	Vector2F leftTopPos = NUM_LOCAL_POS - numSizeHalf;
-	Vector2F rightBottomPos = NUM_LOCAL_POS + numSizeHalf;
-	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_, true);
-
-	//描画先を元に戻す
-	SetDrawScreen(DX_SCREEN_BACK);
-	return img;
 }

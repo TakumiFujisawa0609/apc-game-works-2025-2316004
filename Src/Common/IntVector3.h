@@ -8,11 +8,16 @@ public:
 	int y;
 	int z;
 
-	// コンストラクタ
+	/// @brief // コンストラクタ
+	/// @param  
 	IntVector3(void);
-	// コンストラクタ
+	/// @brief // コンストラクタ
+	/// @param vX 
+	/// @param vY 
+	/// @param vZ 
 	IntVector3(int vX, int vY, int vZ);
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~IntVector3(void);
 
 	//演算

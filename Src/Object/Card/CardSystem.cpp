@@ -1,10 +1,10 @@
-
+#include "../Utility/UtilityCommon.h"
 #include "CardBase.h"
 #include"CardDeck.h"
 #include "CardSystem.h"
 
 CardSystem::CardSystem(void):
-	putCardPow_{-1,-1},
+	putCardPow_{ CARD_POW_NONE,CARD_POW_NONE },
 	canPut_(true),
 	isFirstAtk_{ false,false },
 	playerResult_{BATTLE_RESULT::NONE,BATTLE_RESULT::NONE },
@@ -32,14 +32,14 @@ void CardSystem::LoseInitPutCardPow(const int _playerNo)
 		//先出しが負けた場合の処理
 
 		//先出しのカードを消す
-		putCardPow_[FIRST_ATK] = -1;
+		putCardPow_[FIRST_ATK] = CARD_POW_NONE;
 		isFirstAtk_[_playerNo] = false;
 		playerResult_[_playerNo] = BATTLE_RESULT::NONE;
 		//後出しのカードを先出しにする
-		if (putCardPow_[SECOND_ATK] != -1)
+		if (putCardPow_[SECOND_ATK] != CARD_POW_NONE)
 		{
 			putCardPow_[FIRST_ATK] = putCardPow_[SECOND_ATK];
-			putCardPow_[SECOND_ATK] = -1;
+			putCardPow_[SECOND_ATK] = CARD_POW_NONE;
 
 			for(int i=0;i<ARRAY_NUM;i++)
 			{
@@ -53,14 +53,14 @@ void CardSystem::LoseInitPutCardPow(const int _playerNo)
 	}
 	else
 	{
-		putCardPow_[SECOND_ATK] = -1;
+		putCardPow_[SECOND_ATK] = CARD_POW_NONE;
 		playerResult_[_playerNo] = BATTLE_RESULT::NONE;
 	}
 }
 
 void CardSystem::JudgeIsFirstAtk(const int _playerNo)
 {
-	if (putCardPow_[FIRST_ATK] == -1 && putCardPow_[SECOND_ATK] == -1)
+	if (putCardPow_[FIRST_ATK] == CARD_POW_NONE && putCardPow_[SECOND_ATK] == CARD_POW_NONE)
 	{
 		isFirstAtk_[_playerNo] = true;
 	}
@@ -69,7 +69,16 @@ void CardSystem::JudgeIsFirstAtk(const int _playerNo)
 #ifdef _DEBUG
 void CardSystem::DrawDebug(void)
 {
-	DrawFormatString(200, 200, 0x000000, L"CardPow(%d,%d)\nisFirst(%d,%d)"
+	constexpr int CARD_POW_STR_OFF_X = 200;
+	constexpr int CARD_POW_STR_OFF_Y = 200;
+	constexpr int RESULT_POS_X = 200;
+	constexpr int RESULT_POS_Y = 250;
+
+	constexpr int COLOR = 0x000000;
+	constexpr int PLAYER = 0;
+	constexpr int ENEMY = 1;
+
+	DrawFormatString(CARD_POW_STR_OFF_X, CARD_POW_STR_OFF_Y, , L"CardPow(%d,%d)\nisFirst(%d,%d)"
 		, putCardPow_[0], putCardPow_[1], isFirstAtk_[0], isFirstAtk_[1]);
 	std::wstring resultStr[2];
 	for (int i = 0; i < 2; i++)
@@ -111,8 +120,8 @@ void CardSystem::DrawDebug(void)
 		}
 	}
 
-	DrawFormatString(200, 250, 0x000000, L"CardResult(%s,%s)"
-		, resultStr[0].c_str(), resultStr[1].c_str());
+	DrawFormatString(RESULT_POS_X, RESULT_POS_Y, COLOR, L"CardResult(%s,%s)"
+		, resultStr[PLAYER].c_str(), resultStr[ENEMY].c_str());
 }
 #endif // _DEBUG
 
@@ -127,12 +136,12 @@ void CardSystem::CompareCards(void)
 		canPut_ = true;
 	}
 	//どちらも入っていれば引けない
-	else if(putCardPow_[FIRST_ATK] != -1 && putCardPow_[SECOND_ATK] != -1)
+	else if(putCardPow_[FIRST_ATK] != CARD_POW_NONE && putCardPow_[SECOND_ATK] != CARD_POW_NONE)
 	{
 		canPut_ = false;
 	}
 	//お互いに手札が0枚なら処理を抜ける
-	if (putCardPow_[FIRST_ATK]==-1 && putCardPow_[SECOND_ATK] ==-1)
+	if (putCardPow_[FIRST_ATK]== CARD_POW_NONE && putCardPow_[SECOND_ATK] == CARD_POW_NONE)
 	{
 		cardDif_ = 0;
 		return;
@@ -141,7 +150,7 @@ void CardSystem::CompareCards(void)
 	//以下、2つのカードの強さを比較
 	//どちらかのカードが出されていなければ先出し勝利
 	BATTLE_RESULT result[ARRAY_NUM];
-	if (putCardPow_[SECOND_ATK] == -1)
+	if (putCardPow_[SECOND_ATK] == CARD_POW_NONE)
 	{
 		result[FIRST_ATK] = BATTLE_RESULT::SUCCESS_USE;
 	}
@@ -153,9 +162,9 @@ void CardSystem::CompareCards(void)
 		result[SECOND_ATK] = BATTLE_RESULT::GIVE_DRAW;
 
 
-		//カードを両方リセット（Re:COM仕様）
-		putCardPow_[FIRST_ATK] = -1;
-		putCardPow_[SECOND_ATK] = -1;
+		//カードを両方リセット
+		putCardPow_[FIRST_ATK] = CARD_POW_NONE;
+		putCardPow_[SECOND_ATK] = CARD_POW_NONE;
 	}
 	//先出しの勝ち
 	else if (putCardPow_[FIRST_ATK] > putCardPow_[SECOND_ATK])
@@ -194,7 +203,7 @@ void CardSystem::CompareCards(void)
 void CardSystem::PutCard(const int _pow, const int _playerNum)
 {
 	//すでに強さが代入されていれば処理を抜ける
-	if (putCardPow_[PLAYER_NO] != -1 && putCardPow_[CPU_NO] != -1)return;
+	if (putCardPow_[PLAYER_NO] != CARD_POW_NONE && putCardPow_[CPU_NO] != CARD_POW_NONE)return;
 	//カードの強さをセットする
 	if (isFirstAtk_[_playerNum])
 	{

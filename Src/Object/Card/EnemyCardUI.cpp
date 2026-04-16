@@ -19,12 +19,10 @@ EnemyCardUI::~EnemyCardUI(void)
 
 void EnemyCardUI::Load(void)
 {
-	ResourceManager& res = ResourceManager::GetInstance();
-	cardNoImg_ = res.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
-	atkCardImg_ = res.Load(ResourceManager::SRC::ENEMY_ATK_CARD_IMG).handleId_;
+	CardUIBase::Load();
+	atkCardImg_ = resMng_.Load(ResourceManager::SRC::ENEMY_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = -1;	//敵はリロードカードを使わないので読み込まない
 	soundMng_.LoadResource(SoundManager::SRC::CARD_BREAK);
-
 	cardWinRes_ = SoundManager::SRC::CARD_BREAK;
 }
 

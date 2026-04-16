@@ -145,26 +145,23 @@ protected:
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X-100.0f, Application::SCREEN_HALF_Y + 200.0f };
 	//デルタ
 	static constexpr float DELTA = 1.0f/60.0f;
-	//カード数字による画像名
-	static constexpr std::wstring_view CARD_ZERO_NAME = L"Zero";
-	static constexpr std::wstring_view CARD_ONE_NAME = L"One";
-	static constexpr std::wstring_view CARD_TWO_NAME = L"Two";
-	static constexpr std::wstring_view CARD_THREE_NAME = L"Three";
-	static constexpr std::wstring_view CARD_FOUR_NAME = L"Four";
-	static constexpr std::wstring_view CARD_FIVE_NAME = L"Five";
-	static constexpr std::wstring_view CARD_SIX_NAME = L"Six";
-	static constexpr std::wstring_view CARD_SEVEN_NAME = L"Seven";
-	static constexpr std::wstring_view CARD_EIGHT_NAME = L"Eight";
-	static constexpr std::wstring_view CARD_NINE_NAME = L"Nine";
+	//カード強さ最大値
+	static constexpr int MAX_CARD_POWER = 9;
 
-
+	//カードUIの大きさ
+	static constexpr int GRAPH_SIZE_X = 120;
+	static constexpr int GRAPH_SIZE_Y = 160;
+	//数字画像の大きさ
+	static constexpr float NUM_SCL = 0.18f;
+	//カードのナンバーローカル座標
+	static constexpr Vector2F NUM_LOCAL_POS = { 89.0f,130.0f };
 
 	//カード更新関数
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
 	std::unordered_map<CARD_SELECT, std::function<void(void)>>changeMoveState_;
 	//タイプ画像
-	std::unordered_map<CardBase::CARD_TYPE, int> typeImgs_;
+	std::unordered_map<CardBase::CARD_TYPE, int> cardTypeImgs_;
 	//①初期カード
 	std::list<std::shared_ptr<CardUIController>>initialCards_;
 	//②手札
@@ -188,7 +185,6 @@ protected:
 	int atkCardImg_;
 	//リロードカード画像
 	int reloadCardImg_;
-	int reloadFrame_;	//リロードフレーム
 	int reloadGauge_;		//リロードゲージ
 	//カードナンバー座標
 	Vector2F numPos_;
@@ -204,6 +200,8 @@ protected:
 
 	//サウンドマネージャ
 	SoundManager& soundMng_;
+	//リソースマネージャ
+	ResourceManager& resMng_;
 
 	//カード買ったとき流すサウンド
 	SoundManager::SRC cardWinRes_;
@@ -240,7 +238,15 @@ protected:
 	////特定のカードを弾かれ移動させる
 	//void ReactMoveSpecificCard(CARD_UI_INFO& _card, const Vector2F& _goalPos);
 	void SetBasePosActionCards(void);
+
+	//画像作成
+	int MakeCardNumImg(const CardBase::CARD_STATUS& _status);
 	//属性画像取得
 	const int GetTypeImg(const CardBase::CARD_STATUS _status);
+private:
+
+	//カード画像の配列
+	std::map<CardBase::CARD_STATUS, int> cardImgs_;
+
 };
 

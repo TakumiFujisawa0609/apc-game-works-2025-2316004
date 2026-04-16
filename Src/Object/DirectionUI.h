@@ -67,7 +67,6 @@ private:
 	std::unique_ptr<PixelRenderer>skipArcGaugeRenderer_;
 
 	//スキップボタン画像
-	int imgSkipButtom_;
 	int imgSkipButtomMask_;
 
 	//フォント

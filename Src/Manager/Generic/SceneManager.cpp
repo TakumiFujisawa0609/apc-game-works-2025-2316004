@@ -68,19 +68,17 @@ void SceneManager::Init3D(void)
 	SetUseLighting(true);
 	
 	 //ライトの設定
-	ChangeLightTypeDir({ 0.3f, -0.7f, 0.8f });
-	ChangeLightTypeDir({ 1.0f, -1.0f, 1.0f });
+	ChangeLightTypeDir(LIGHT_DIR);
 
 	// フォグ設定
 	SetFogEnable(true);
-	SetFogColor(5, 5, 5);
-	SetFogStartEnd(10000.0f, 20000.0f);
+	SetFogColor(FOG_COLOR_R, FOG_COLOR_G, FOG_COLOR_B);
+	SetFogStartEnd(FOG_START,FOG_END);
 
 }
 
 void SceneManager::Update(void)
 {
-	//if (scene_ == nullptr) { return; }
 
 	// デルタタイム
 	auto nowTime = std::chrono::system_clock::now();
@@ -108,7 +106,6 @@ void SceneManager::Draw(void)
 	
 	// 描画先グラフィック領域の指定
 	// (３Ｄ描画で使用するカメラの設定などがリセットされる)
-	//SetDrawScreen(DX_SCREEN_BACK);
 	SetDrawScreen(mainScreen_);
 
 	// 画面を初期化
@@ -155,17 +152,6 @@ void SceneManager::CreateScene(std::shared_ptr<SceneBase> scene)
 
 	//データのロード
 	scenes_.front()->Load();
-}
-
-void SceneManager::ChangeAllScene(std::shared_ptr<SceneBase> scene)
-{
-	////フェード開始
-	//StartFadeIn();
-
-	//scenes_.clear();
-	//scenes_.push_back(scene);
-	////データのロード
-	//scenes_.front()->LoadData();
 }
 
 void SceneManager::PushScene(std::shared_ptr<SceneBase> scene)
@@ -315,12 +301,6 @@ void SceneManager::Fade(void)
 		// 暗転中
 		if (fader_->IsEnd())
 		{
-			// 完全に暗転してからシーン遷移
-			//DoChangeScene(waitSceneId_);
-			// 暗転から明転へ
-			//fader_->SetFade(Fader::STATE::FADE_IN);
-			//fader_->SetFade(Fader::STATE::NONE);
-
 			isEndFade_ = true;
 		}
 		break;

@@ -20,9 +20,9 @@ void FontManager::Init(void)
 {
 	//フォント登録を行う
 	// フォントパス初期化
-	fontPath_[static_cast<int>(FONT_TYPE::DOT)] = L"FontDot.otf";
-	fontPath_[static_cast<int>(FONT_TYPE::BOKUTATI)] = L"bokutachi.otf";
-	fontPath_[static_cast<int>(FONT_TYPE::APRIL_GOTHIC_ONE)] = L"AprilGothicOne-R.ttf";
+	fontPath_[static_cast<int>(FONT_TYPE::DOT)] = FONT_DOT_PASS;
+	fontPath_[static_cast<int>(FONT_TYPE::BOKUTATI)] = FONT_BOKUTATI_PASS;
+	fontPath_[static_cast<int>(FONT_TYPE::APRIL_GOTHIC_ONE)] = FONT_APRIL_GOTHIC_PASS;
 
 	// フォントをシステムに登録
 	for (int i = 0; i < FONT_TYPES; i++)

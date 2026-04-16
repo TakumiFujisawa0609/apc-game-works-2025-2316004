@@ -53,10 +53,6 @@ public:
 	/// @param scene 切り替え先のシーン
 	void CreateScene(std::shared_ptr<SceneBase> scene);
 	
-	/// @brief すべてのシーンを切り替える
-	/// @param scene 切り替え先のシーン
-	void ChangeAllScene(std::shared_ptr<SceneBase> scene);
-	
 	/// @brief シーンをプッシュする。スタックの数が増える
 	/// 一番上のシーンのUpdateしか呼ばれません。
 	/// @param scene 
@@ -123,6 +119,17 @@ public:
 	void Fade(void);
 
 private:
+
+	//ライトの方向
+	static constexpr VECTOR LIGHT_DIR = { 0.0f, -1.0f, 1.0f };
+	//フォグの色
+	static constexpr int FOG_COLOR_R = 5;
+	static constexpr int FOG_COLOR_G = 5;
+	static constexpr int FOG_COLOR_B = 5;
+	// フォグの開始距離
+	static constexpr float FOG_START = 10000.0f;
+	// フォグの終了距離
+	static constexpr float FOG_END = 20000.0f;
 
 	SCENE_ID sceneId_;
 	SCENE_ID waitSceneId_;

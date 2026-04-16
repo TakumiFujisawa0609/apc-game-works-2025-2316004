@@ -3,6 +3,80 @@
 #include "Resource.h"
 #include "ResourceManager.h"
 
+namespace RES_PATH
+{
+	//モデル
+	const std::wstring NINJA = L"Ninja.mv1";
+	const std::wstring MUTANT = L"Mutant.mv1";
+	const std::wstring SKY_DOME = L"SkyDome/SkyDome.mv1";
+	const std::wstring ROCK = L"Rock.mv1";
+	const std::wstring KEY_BLADE = L"KeyBlade/KeyBlade1.mv1";
+	const std::wstring STAGE = L"SandStage.mv1";
+	const std::wstring WALL = L"Wall.mv1";
+
+	//プレイヤーアニメ
+	const std::wstring P_IDLE = L"PlayerIdle.mv1";
+	const std::wstring P_RUN = L"PlayerRun.mv1";
+	const std::wstring P_ATTACK1 = L"PlayerAttack1.mv1";
+	const std::wstring P_STAB = L"PlayerStabAttack.mv1";
+	const std::wstring P_ATTACK2 = L"PlayerAttack2.mv1";
+	const std::wstring P_ATTACK3 = L"PlayerAttackCombo.mv1";
+	const std::wstring P_JUMP = L"PlayerJump.mv1";
+	const std::wstring P_DODGE = L"PlayerDodge.mv1";
+	const std::wstring P_RELOAD = L"CardReload.mv1";
+	const std::wstring P_REACT = L"PlayerReact.mv1";
+	const std::wstring P_DEATH = L"PlayerDying.mv1";
+
+	//敵アニメ
+	const std::wstring E_IDLE = L"Mutant_Idle.mv1";
+	const std::wstring E_RUN = L"Mutant_Run.mv1";
+	const std::wstring E_STOMP = L"MutantStomp.mv1";
+	const std::wstring E_JUMP = L"Mutant_JumpAttack.mv1";
+	const std::wstring E_DOWN = L"MutantKnockDown.mv1";
+	const std::wstring E_ROAR = L"Mutant_Roar.mv1";
+	const std::wstring E_RUSH = L"Mutant_Rush.mv1";
+	const std::wstring E_DEATH = L"Mutant Dying.mv1";
+
+	//画像
+	const std::wstring TITLE_BACK = L"TitleBack.png";
+	const std::wstring TITLE_LOGO = L"TitleLogo.png";
+	const std::wstring GAME_CLEAR = L"GameClear2.png";
+	const std::wstring GAME_OVER = L"GameOver.png";
+	const std::wstring P_ATK_CARD = L"PlayerAttackCard.png";
+	const std::wstring E_ATK_CARD = L"EnemyAttackCard.png";
+	const std::wstring RELOAD_CARD = L"ReloadCard.png";
+	const std::wstring RELOAD_GAGE = L"ReloadGage.png";
+	const std::wstring E_HP_BAR_MASK = L"E_HpBarMask.png";
+	const std::wstring E_HP_BAR_FRAME = L"E_HpBarFrame.png";
+	const std::wstring E_HP_COVER = L"E_GaugeCover.png";
+	const std::wstring P_CARD_NUM_GAUGE_MASK = L"CardNumGaugeMask.png";
+	const std::wstring P_CARD_NUM_GAUGE_FRAME = L"CardNumGaugeFrame.png";
+	const std::wstring P_CARD_NUM_GAUGE_BACK = L"CardNumBack.png";
+	const std::wstring SKIP_BUTTOM_MASK = L"SkipButtonMask.png";
+	const std::wstring CARD_REVOLVER_L_ARROW = L"CardDirArrowLeft.png";
+	const std::wstring INTENSIVE_LINE_1 = L"Intensive_Line_1.png";
+	const std::wstring INTENSIVE_LINE_2 = L"Intensive_Line_2.png";
+
+	//ピクセルシェーダ
+	const std::wstring PS_DEFAULT = L"PS_Default.hlsl";
+	const std::wstring CARD_PS = L"PS_Card.hlsl";
+
+	//複数画像
+	const std::wstring CARD_NUM = L"CardNumber.png";
+	const std::wstring CONTROLLER_BOTTON_UI = L"XboxControllerBotton128.png";
+
+	//エフェクト
+	const std::wstring BLAST = L"Blast/Blast.efkefc";
+	const std::wstring KEY_BLADE_HIT_EFF = L"ExpandStar/ExpandStar.efkefc";
+	const std::wstring E_JUMP_CHARGE_EFF = L"Blast/EnemyCharge.efkefc";
+	const std::wstring E_DEATH_EFF = L"DeathEnemy/boss_death.efkproj";
+	const std::wstring RELOAD_EFF = L"Reload/PowerUp.efkproj";
+	const std::wstring RELOAD_END_EFF = L"ReloadEnd/MagicHeal1.efkproj";
+
+}
+
+
+
 void ResourceManager::Init(void)
 {
 	static std::wstring PATH_IMG = Application::PATH_IMAGE;
@@ -15,206 +89,166 @@ void ResourceManager::Init(void)
 	std::unique_ptr<ResourceData> res;
 
 	//モデル登録
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Ninja.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + RES_PATH::NINJA);
 	resourcesMap_.emplace(SRC::PLAYER, std::move(res));
 	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Mutant.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + RES_PATH::MUTANT);
 	resourcesMap_.emplace(SRC::ENEMY_1, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Card.mv1");
-	resourcesMap_.emplace(SRC::CARD_MDL, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SkyDome/SkyDome.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + RES_PATH::SKY_DOME);
 	resourcesMap_.emplace(SRC::SKY_DOME, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Rock.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + RES_PATH::ROCK);
 	resourcesMap_.emplace(SRC::SPHERE_ROCK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"KeyBlade/KeyBlade1.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + RES_PATH::KEY_BLADE);
 	resourcesMap_.emplace(SRC::KEY_BLADE, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"SandStage.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + RES_PATH::STAGE);
 	resourcesMap_.emplace(SRC::STAGE, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + L"Wall.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_MDL + RES_PATH::WALL);
 	resourcesMap_.emplace(SRC::STAGE_WALL, std::move(res));
 
 
 	//アニメーション登録
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerIdle.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_IDLE);	
 	resourcesMap_.emplace(SRC::P_IDLE, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerRun.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_RUN);
 	resourcesMap_.emplace(SRC::P_RUN, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack1.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_ATTACK1);
 	resourcesMap_.emplace(SRC::P_ATTACK_1_SHORT, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerStabAttack.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_STAB);
 	resourcesMap_.emplace(SRC::P_ATTACK_1_MIDDLE, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttack2.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_ATTACK2);
 	resourcesMap_.emplace(SRC::P_ATTACK_2 , std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerAttackCombo.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_ATTACK3);
 	resourcesMap_.emplace(SRC::P_ATTACK_3, std::move(res));
-	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerJump.mv1");
-	resourcesMap_.emplace(SRC::P_JUMP, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerDodge.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_DODGE);
 	resourcesMap_.emplace(SRC::P_DODGE, std::move(res));	
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"CardReload.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_RELOAD);
 	resourcesMap_.emplace(SRC::P_RELOAD, std::move(res));	
 	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerReact.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_REACT);
 	resourcesMap_.emplace(SRC::REACT, std::move(res));	
 	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + L"PlayerDying.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_PLAYER + RES_PATH::P_DEATH);
 	resourcesMap_.emplace(SRC::P_DEATH, std::move(res));	
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Idle.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + RES_PATH::E_IDLE);
 	resourcesMap_.emplace(SRC::E_IDLE, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Run.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + RES_PATH::E_RUN);
 	resourcesMap_.emplace(SRC::E_RUN, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"MutantStomp.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + RES_PATH::E_STOMP);
 	resourcesMap_.emplace(SRC::E_STOMP_ATK, std::move(res));
 	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_JumpAttack.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + RES_PATH::E_JUMP);
 	resourcesMap_.emplace(SRC::E_JUMP_ATK, std::move(res));
 	
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"MutantKnockDown.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + RES_PATH::E_DOWN);
 	resourcesMap_.emplace(SRC::E_KNOCK_DOWN, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Roar.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + RES_PATH::E_ROAR);
 	resourcesMap_.emplace(SRC::E_ROAR_ATK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant_Rush.mv1");
-	resourcesMap_.emplace(SRC::E_ROLE_ATK, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + L"Mutant Dying.mv1");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::MODEL, PATH_ANIM_ENEMY + RES_PATH::E_DEATH);
 	resourcesMap_.emplace(SRC::E_DEATH, std::move(res));
 
-
-
-
 	//ピクセルシェーダ登録
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::PIXEL_SHADER, PATH_SHADER + L"CardPS.cso");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::PIXEL_SHADER, PATH_SHADER + RES_PATH::CARD_PS);
 	resourcesMap_.emplace(SRC::CARD_PS, std::move(res));
-	
 
 	//画像登録
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"TitleBack.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::TITLE_BACK);
 	resourcesMap_.emplace(SRC::TITLE_BACK_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"TitleLogo.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::TITLE_LOGO);
 	resourcesMap_.emplace(SRC::TITLE_LOGO, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"GameClear2.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::GAME_CLEAR);
 	resourcesMap_.emplace(SRC::GAME_CLEAR_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"GameOver.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::GAME_OVER);
 	resourcesMap_.emplace(SRC::GAME_OVER_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"PlayerAttackCard.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::P_ATK_CARD);
 	resourcesMap_.emplace(SRC::PLAYER_ATK_CARD_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"EnemyAttackCard.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::E_ATK_CARD);
 	resourcesMap_.emplace(SRC::ENEMY_ATK_CARD_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadCard.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::RELOAD_CARD);
 	resourcesMap_.emplace(SRC::RELOAD_CARD_IMG, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadCard.png");
-	resourcesMap_.emplace(SRC::RELOAD_CARD_IMG, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardSelectFrame2.png");
-	resourcesMap_.emplace(SRC::CARD_SELECT_FRAME_IMG, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadFrame.png");
-	resourcesMap_.emplace(SRC::RELOAD_FRAME, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"ReloadGage.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::RELOAD_GAGE);
 	resourcesMap_.emplace(SRC::RELOAD_GAGE, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_HpBarMask.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::E_HP_BAR_MASK);
 	resourcesMap_.emplace(SRC::E_HP_BAR_MASK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"RadiusHp_Mask.png");
-	resourcesMap_.emplace(SRC::P_HP_ARCBAR_MASK, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"RadiusHpBer.png");
-	resourcesMap_.emplace(SRC::P_HP_ARCBAR_FRAME, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"RadiusHp_OutLine.png");
-	resourcesMap_.emplace(SRC::P_HP_ARC_OUTLINE,move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"LineHpGaugeMask.png");
-	resourcesMap_.emplace(SRC::P_HP_LINEBAR_MASK , std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"LineHp_OutLine.png");
-	resourcesMap_.emplace(SRC::P_HP_LINE_OUT_LINE , std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_HpBarFrame.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::E_HP_BAR_FRAME);
 	resourcesMap_.emplace(SRC::E_HP_BAR_FRAME, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"E_GaugeCover.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::E_HP_COVER);
 	resourcesMap_.emplace(SRC::E_HP_COVER, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardNumGaugeMask.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::P_CARD_NUM_GAUGE_MASK);
 	resourcesMap_.emplace(SRC::P_CARD_NUM_GAUGE_MASK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardNumGaugeFrame.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::P_CARD_NUM_GAUGE_FRAME);	
 	resourcesMap_.emplace(SRC::P_CARD_NUM_GAUGE_FRAME, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardNumBack.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::P_CARD_NUM_GAUGE_BACK);
 	resourcesMap_.emplace(SRC::P_CARD_NUM_GAUGE_BACK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"Intensive_Line_1.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::INTENSIVE_LINE_1);
 	resourcesMap_.emplace(SRC::INTENSIVE_LINE_1, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"Intensive_Line_2.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::INTENSIVE_LINE_2);
 	resourcesMap_.emplace(SRC::INTENSIVE_LINE_2, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"YBottom.png");
-	resourcesMap_.emplace(SRC::SKIP_BUTTOM, std::move(res));
-
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"SkipBottomMask.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::SKIP_BUTTOM_MASK);
 	resourcesMap_.emplace(SRC::SKIP_BUTTOM_MASK, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + L"CardDirArrowLeft.png");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMG, PATH_IMG + RES_PATH::CARD_REVOLVER_L_ARROW);
 	resourcesMap_.emplace(SRC::CARD_REVOLVER_L_ARROW, std::move(res));
 
 	//複数画像
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"CardNumber.png",
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + RES_PATH::CARD_NUM,
 		CARD_NO_X, CARD_NO_Y, CARD_NO_SIZE_X, CARD_NO_SIZE_Y);
 	resourcesMap_.emplace(SRC::NUMBERS_IMGS, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + L"XboxControllerBotton128.png",
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::IMGS, PATH_IMG + RES_PATH::CONTROLLER_BOTTON_UI,
 		CONTROLLER_UI_NO_X, CONTROLLER_UI_NO_Y, CONTROLLER_UI_SIZE_X, CONTROLLER_UI_SIZE_Y);
 	resourcesMap_.emplace(SRC::CONTROLLER_UI_IMGS, std::move(res));
 
 
 	//エフェクト登録
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/Blast.efkefc");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + RES_PATH::BLAST);
 	resourcesMap_.emplace(SRC::BLAST, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Blast/EnemyCharge.efkefc");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + RES_PATH::E_JUMP_CHARGE_EFF);
 	resourcesMap_.emplace(SRC::E_JUMP_CHARGE_EFF, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"ExpandStar/ExpandStar.efkefc");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + RES_PATH::KEY_BLADE_HIT_EFF);
 	resourcesMap_.emplace(SRC::KEY_BLADE_HIT_EFF, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"DeathEnemy/boss_death.efkproj");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + RES_PATH::E_DEATH_EFF);
 	resourcesMap_.emplace(SRC::E_DEATH_EFF, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"Reload/PowerUp.efkproj");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + RES_PATH::RELOAD_EFF);
 	resourcesMap_.emplace(SRC::RELOAD_EFF, std::move(res));
 
-	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + L"ReloadEnd/MagicHeal1.efkproj");
+	res = std::make_unique<ResourceData>(ResourceData::TYPE::EFFEKSEER, PATH_EFF + RES_PATH::RELOAD_END_EFF);
 	resourcesMap_.emplace(SRC::RELOAD_END_EFF, std::move(res));
 }
 

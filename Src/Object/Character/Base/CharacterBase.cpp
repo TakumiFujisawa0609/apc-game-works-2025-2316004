@@ -163,6 +163,11 @@ void CharacterBase::ChangeDirectToNormal(void)
 	phazeUpdate_ = [this]() {UpdateNormal(); };
 }
 
+void CharacterBase::LoadCardData(void)
+{
+
+}
+
 void CharacterBase::ChangeUpdateClearDirection(void)
 {
 	phazeUpdate_ = [this]() {UpdateClearDirection(); };
