@@ -32,6 +32,9 @@ cardMoveCnt_(),
 disitionCnt_(),
 reloadPer_()
 {
+	charaTypeMap_ = {
+		{"Attack", CardBase::CARD_TYPE::ATTACK}
+	};
 }
 
 CardUIBase::~CardUIBase(void)
@@ -91,16 +94,20 @@ void CardUIBase::LoadCardData(void)
 		return;
 	}
 	json j;
+	ifs >> j;
 	std::vector<CardBase::CARD_STATUS> cards;
-	for (auto& card : j[charaType_])
+	for (const auto& card : j[charaType_])
 	{
 		CardBase::CARD_STATUS status;
 		status.pow = card["pow"];
-		status.type = card["type"];
+
+		std::string typeStr = card["type"];
+		status.type = charaTypeMap_[typeStr];
 
 		//配列の中に追加
 		AddCardUi(status);
 	}
+	AddCardUi(CardBase::CARD_STATUS{ RELOAD_CARD_POWER,CardBase::CARD_TYPE::RELOAD });
 }
 
 void CardUIBase::Load(void)
@@ -141,7 +148,7 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 	//同じステータスを見つける
 	auto it = cardImgs_.find(_status);
 	int num = _status.pow - 1;
-	if (num < 0) { num = MAX_CARD_POWER; }
+	if (num == -1) { num = 9; }
 
 	int drawNumImg = cardNoImg_[num];
 	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
@@ -159,7 +166,6 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 	info->SetCardImg(img);
 
 	//カード情報セット
-	if (num < 0) { num = MAX_CARD_POWER; }
 	info->SetCardImg(img);
 	info->SetStatus(_status);
 	info->Load();
@@ -249,22 +255,27 @@ int CardUIBase::MakeCardNumImg(const CardBase::CARD_STATUS& _status)
 	Vector2F centerPos;
 	GetGraphSizeF(typeImg, &centerPos.x, &centerPos.y);
 
-	//番号サイズ取得
-	Vector2F size = { 0.0f,0.0f };
 
-	//カードの強さから番号画像を取得
-	int num = _status.pow - 1;
-	if (num < 0) { num = MAX_CARD_POWER; }
-	GetGraphSizeF(cardNoImg_[num], &size.x, &size.y);
 
-	//縮小倍率をかける
-	size *= NUM_SCL;
+	//数字画像の描画(リロードカードは除く)
+	if (_status.type != CardBase::CARD_TYPE::RELOAD)
+	{
+		//番号サイズ取得
+		Vector2F size = { 0.0f,0.0f };
+		//カードの強さから番号画像を取得
+		int num = _status.pow - 1;
+		if (num < 0) { num = MAX_CARD_POWER; }
+		GetGraphSizeF(cardNoImg_[num], &size.x, &size.y);
 
-	//座標計算
-	Vector2F numSizeHalf = size / 2.0f;
-	Vector2F leftTopPos = NUM_LOCAL_POS - numSizeHalf;
-	Vector2F rightBottomPos = NUM_LOCAL_POS + numSizeHalf;
-	DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_[num], true);
+		//縮小倍率をかける
+		size *= NUM_SCL;
+
+		Vector2F numSizeHalf = size / 2.0f;
+		Vector2F leftTopPos = NUM_LOCAL_POS - numSizeHalf;
+		Vector2F rightBottomPos = NUM_LOCAL_POS + numSizeHalf;
+		DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_[num], true);
+	}
+
 
 	//描画先を元に戻す
 	SetDrawScreen(DX_SCREEN_BACK);

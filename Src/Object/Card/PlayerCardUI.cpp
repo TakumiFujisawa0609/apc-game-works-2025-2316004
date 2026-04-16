@@ -35,6 +35,7 @@ imgRevolverArrow_(UtilityCommon::INITIAL_HANDLE),
 cardNumPer_(UtilityCommon::RATIO_MAX)
 {
 	charaType_ = "Player";
+
 }
 
 PlayerCardUI::~PlayerCardUI(void)

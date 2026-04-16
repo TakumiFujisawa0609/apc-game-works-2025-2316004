@@ -1,4 +1,5 @@
 #include "../pch.h"
+#include "../../Src/Lib/nlohmann/json.hpp"
 #include"../../Application.h"
 #include "CardBase.h"
 #include"./CardSystem.h"
@@ -14,6 +15,9 @@ CardDeck::CardDeck(CHARACTER_TYPE& _charaType, int _playerNum):
 	playerNum_(_playerNum),
 	duelNo_()
 {
+	charaTypeMap_= {
+		{"Attack", CardBase::CARD_TYPE::ATTACK},
+	};
 }
 
 CardDeck::~CardDeck(void)
@@ -31,12 +35,13 @@ void CardDeck::Load(void)
 
 void CardDeck::Init(void)
 {
-	std::vector<CardBase::CARD_STATUS>cardDeck = DataBank::GetInstance().GetCardDatas(charaType_);
-	int size = static_cast<int>(cardDeck.size());
-	for (int i = 0; i < size; i++)
-	{
-		AddDrawPile(cardDeck[i]);
-	}
+	//std::vector<CardBase::CARD_STATUS>cardDeck = DataBank::GetInstance().GetCardDatas(charaType_);
+	//int size = static_cast<int>(cardDeck.size());
+	//for (int i = 0; i < size; i++)
+	//{
+	//	AddDrawPile(cardDeck[i]);
+	//}
+	LoadCardData();
 
 	//カードUIの選択番号が1番なので1に初期化する
 	currentNum_ = 0;
@@ -89,6 +94,33 @@ void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
 	drawPile_.emplace_back(std::move(card)); 
 	initDeck_.emplace_back(std::move(initCard));
 	
+}
+
+void CardDeck::LoadCardData(void)
+{
+
+	std::ifstream ifs("Data/Json/CardData.json");
+	if (!ifs.is_open())
+	{
+		std::cerr << "ファイルが開けません" << std::endl;
+		return;
+	}
+	std::string charaTypeStr;
+	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = "Player" : charaTypeStr = "Enemy";
+	using json = nlohmann::json;
+	json j;
+	ifs >> j;
+	std::vector<CardBase::CARD_STATUS> cards;
+	for (const auto& card : j[charaTypeStr])
+	{
+		CardBase::CARD_STATUS status;
+		status.pow = card["pow"];
+		std::string typeStr = card["type"];
+		status.type = charaTypeMap_[typeStr];
+		//配列の中に追加
+		AddDrawPile(status);
+	}
+	AddDrawPile(CardBase::CARD_STATUS{ RELOAD_CARD_POW,CardBase::CARD_TYPE::RELOAD });
 }
 
 void CardDeck::AddDuelDeck(const CardBase::CARD_STATUS& _status)

@@ -24,8 +24,6 @@ public:
 
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
-	static constexpr int CARD_POWS[20] = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9};
-	//static constexpr int CARD_POWS[20] = {0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9};
 	CardDeck(CHARACTER_TYPE& _charaType,int _playerNum);
 	~CardDeck(void);
 
@@ -114,6 +112,9 @@ private:
 	//チャージカード最大枚数
 	static constexpr int CHARGE_MAX = 3;
 
+	//リロードカードの強さ
+	static constexpr int RELOAD_CARD_POW = -1;
+
 	//メンバ関数
 	
 	//カードを選択したときの制限
@@ -122,6 +123,9 @@ private:
 	/// @brief 山札にカード追加
 	/// @param _status 追加したいカードの強さ
 	void AddDrawPile(const CardBase::CARD_STATUS& _status);
+
+	//カードデータの読み込み
+	void LoadCardData(void);
 
 	//札関連
 	//初期札
@@ -146,6 +150,7 @@ private:
 	int duelNo_;
 	//キャラクタータイプ
 	CHARACTER_TYPE& charaType_;
+	std::unordered_map<std::string, CardBase::CARD_TYPE> charaTypeMap_;
 
 
 };

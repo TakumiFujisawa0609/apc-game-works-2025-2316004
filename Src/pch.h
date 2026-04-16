@@ -1,5 +1,7 @@
 #pragma once
 #include <DxLib.h>
+#include<iostream>
+#include<fstream>
 #include <memory>
 #include <vector>
 #include <functional>

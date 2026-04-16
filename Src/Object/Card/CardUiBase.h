@@ -161,6 +161,9 @@ protected:
 	//カードのナンバーローカル座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 89.0f,130.0f };
 
+	//リロードカードの強さ格納用
+	static constexpr int RELOAD_CARD_POWER = -1;
+
 	//カード更新関数
 	std::function<void(void)>cardUpdate_;
 	//状態遷移
@@ -184,7 +187,7 @@ protected:
 
 	//キャラクター種別(jsonで読み込むため)
 	std::string charaType_;
-
+	std::unordered_map<std::string, CardBase::CARD_TYPE> charaTypeMap_;
 	//円形UIの中心座標
 	Vector2 centerPos_;
 	//カード番号イメージ
