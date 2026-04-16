@@ -84,7 +84,7 @@ void CardUIBase::PlayCardSound(void)
 void CardUIBase::LoadCardData(void)
 {
 	using json = nlohmann::json;
-	std::ifstream ifs("Resources/Json/CardData.json");
+	std::ifstream ifs("Data/Json/CardData.json");
 	if (!ifs.is_open())
 	{
 		std::cerr << "ファイルが開けません" << std::endl;
