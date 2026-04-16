@@ -83,7 +83,6 @@ void Player::Load(void)
 
 void Player::Init(void)
 {
-	//Transformの設定
 
 	//武器の追従対象をセット
 	weapon_->SetTargetAndFrameNo(&trans_, HAND_FRAME_NO);
@@ -99,13 +98,13 @@ void Player::Init(void)
 	weapon_->Init();
 
 
-	//デッキに山札追加
-	for (int i = 0; i < CARD_NUM_MAX; i++)
-	{
-		DataBank::GetInstance().AddCardData(characterType_,CARD_POWS[i]);
-	}
+	////デッキに山札追加
+	//for (int i = 0; i < CARD_NUM_MAX; i++)
+	//{
+	//	DataBank::GetInstance().AddCardData(characterType_,CARD_POWS[i]);
+	//}
 
-	DataBank::GetInstance().AddCardData(characterType_, RELOAD_CARD_STATUS);
+	//DataBank::GetInstance().AddCardData(characterType_, RELOAD_CARD_STATUS);
 
 	deck_->Init();
 

@@ -11,6 +11,7 @@
 
 EnemyCardUI::EnemyCardUI(void)
 {
+	charaType_ = "Enemy";
 }
 
 EnemyCardUI::~EnemyCardUI(void)
@@ -29,7 +30,8 @@ void EnemyCardUI::Load(void)
 void EnemyCardUI::Init(void)
 {
 
-	AddCardUIData();
+	//AddCardUIData();
+	LoadCardData();
 	//ÉJÅ[Éhèâä˙âª
 	InitCardUI();
 	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_BREAK, CARD_BREAK_SOUND_VOLUME);
@@ -96,16 +98,16 @@ void EnemyCardUI::DrawDebug(void)
 
 
 
-void EnemyCardUI::AddCardUIData(void)
-{
-	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::ENEMY);
-	int size = static_cast<int>(charaDeck.size());
-	for (int i = 0; i < size; i++)
-	{
-		AddCardUi(charaDeck[i]);
-	}
-
-}
+//void EnemyCardUI::AddCardUIData(void)
+//{
+//	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::ENEMY);
+//	int size = static_cast<int>(charaDeck.size());
+//	for (int i = 0; i < size; i++)
+//	{
+//		AddCardUi(charaDeck[i]);
+//	}
+//
+//}
 
 void EnemyCardUI::ChangeNone(void)
 {

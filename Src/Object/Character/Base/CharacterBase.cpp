@@ -144,7 +144,6 @@ void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 
 void CharacterBase::SetUsedCard(void)
 {
-	//cardUI_->ChangeReactActionCard();
 	uiMng_.GetCardUI(characterType_).ChangeReactActionCard();
 	deck_->EraseHandCard();
 }
@@ -161,11 +160,6 @@ void CharacterBase::ChangeDirectToNormal(void)
 {
 	animationController_->Play(static_cast<int>(ANIM_TYPE::IDLE));
 	phazeUpdate_ = [this]() {UpdateNormal(); };
-}
-
-void CharacterBase::LoadCardData(void)
-{
-
 }
 
 void CharacterBase::ChangeUpdateClearDirection(void)

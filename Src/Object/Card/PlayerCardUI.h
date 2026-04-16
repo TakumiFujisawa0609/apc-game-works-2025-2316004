@@ -176,9 +176,6 @@ private:
 	Vector2F revolverRArrowPos_;
 	float revolverArrowAngle_;
 
-	//配列にカードを挿入する
-	void AddCardUIData(void)override;
-
 	//カード状態遷移
 	void ChangeNone(void)override;			//通常
 	void ChangeLeft(void)override;			//左に移動
@@ -193,6 +190,11 @@ private:
 	void UpdateDecision(void)override;		//決定
 	void UpdateReloadWait(void)override;	//リロード待機(リロードゲージのチャージ)
 	void UpdateReload(void);				//リロード
+
+
+	//void AddCardUIData(void)override;		//カードUIデータの追加
+
+
 
 	//すべてのカードの移動
 	void MoveCardAll(const float& _moveTImeMax);

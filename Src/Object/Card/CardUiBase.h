@@ -135,6 +135,11 @@ public:
 	/// @param  
 	void PlayCardSound(void);
 
+
+	/// @brief カードのロード
+	/// @param  
+	void LoadCardData(void);
+
 protected:
 
 	//カードUI状態
@@ -177,6 +182,9 @@ protected:
 	//イージング
 	std::unique_ptr<Easing>easing_;
 
+	//キャラクター種別(jsonで読み込むため)
+	std::string charaType_;
+
 	//円形UIの中心座標
 	Vector2 centerPos_;
 	//カード番号イメージ
@@ -206,8 +214,8 @@ protected:
 	//カード買ったとき流すサウンド
 	SoundManager::SRC cardWinRes_;
 
-	//配列にカードデータを入れる
-	virtual void AddCardUIData(void) = 0;
+	////配列にカードデータを入れる
+	//virtual void AddCardUIData(void) = 0;
 
 	//手札選択カードの計算
 	void AddHandCurrent(void);	//足し算

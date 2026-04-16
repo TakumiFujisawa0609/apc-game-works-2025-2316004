@@ -289,8 +289,6 @@ public:
 	/// @return 
 	const bool GetIsEndDirect(void) { return isEndClearDirect_; }
 
-	void LoadCardData(void);
-
 
 protected:
 

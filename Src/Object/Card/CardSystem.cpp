@@ -78,7 +78,7 @@ void CardSystem::DrawDebug(void)
 	constexpr int PLAYER = 0;
 	constexpr int ENEMY = 1;
 
-	DrawFormatString(CARD_POW_STR_OFF_X, CARD_POW_STR_OFF_Y, , L"CardPow(%d,%d)\nisFirst(%d,%d)"
+	DrawFormatString(CARD_POW_STR_OFF_X, CARD_POW_STR_OFF_Y,COLOR , L"CardPow(%d,%d)\nisFirst(%d,%d)"
 		, putCardPow_[0], putCardPow_[1], isFirstAtk_[0], isFirstAtk_[1]);
 	std::wstring resultStr[2];
 	for (int i = 0; i < 2; i++)

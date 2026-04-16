@@ -1,0 +1,149 @@
+{
+	"Player": [
+		{
+			"type": "Attack",
+			"pow": 0
+		},
+		{
+			"type": "Attack",
+			"pow": 1
+		},
+		{
+			"type": "Attack",
+			"pow": 2
+		},
+		{
+			"type": "Attack",
+			"pow": 3
+		},
+		{
+			"type": "Attack",
+			"pow": 4
+		},
+		{
+			"type": "Attack",
+			"pow": 5
+		},
+		{
+			"type": "Attack",
+			"pow": 6
+		},
+		{
+			"type": "Attack",
+			"pow": 7
+		},
+		{
+			"type": "Attack",
+			"pow": 8
+		},
+		{
+			"type": "Attack",
+			"pow": 9
+		},
+		{
+			"type": "Attack",
+			"pow": 0
+		},
+		{
+			"type": "Attack",
+			"pow": 1
+		},
+		{
+			"type": "Attack",
+			"pow": 2
+		},
+		{
+			"type": "Attack",
+			"pow": 3
+		},
+		{
+			"type": "Attack",
+			"pow": 4
+		}
+	],
+
+	"Enemy": [
+		{
+			"type": "Attack",
+			"pow": 1
+		},
+		{
+			"type": "Attack",
+			"pow": 7
+		},
+		{
+			"type": "Attack",
+			"pow": 2
+		},
+		{
+			"type": "Attack",
+			"pow": 5
+		},
+		{
+			"type": "Attack",
+			"pow": 7
+		},
+		{
+			"type": "Attack",
+			"pow": 3
+		},
+		{
+			"type": "Attack",
+			"pow": 0
+		},
+		{
+			"type": "Attack",
+			"pow": 8
+		},
+		{
+			"type": "Attack",
+			"pow": 4
+		},
+		{
+			"type": "Attack",
+			"pow": 1
+		},
+		{
+			"type": "Attack",
+			"pow": 6
+		},
+		{
+			"type": "Attack",
+			"pow": 5
+		},
+		{
+			"type": "Attack",
+			"pow": 4
+		},
+		{
+			"type": "Attack",
+			"pow": 0
+		},
+		{
+			"type": "Attack",
+			"pow": 5
+		},
+		{
+			"type": "Attack",
+			"pow": 6
+		},
+		{
+			"type": "Attack",
+			"pow": 2
+		},
+		{
+			"type": "Attack",
+			"pow": 7
+		},
+		{
+			"type": "Attack",
+			"pow": 3
+		},
+		{
+			"type": "Attack",
+			"pow": 6
+		}
+	]
+}
+
+

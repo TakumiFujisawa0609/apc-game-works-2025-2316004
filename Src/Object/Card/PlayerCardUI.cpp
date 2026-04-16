@@ -1,6 +1,9 @@
 #include <DxLib.h>
 #include <cmath>
 #include <ranges>
+#include <iostream>
+#include <fstream>
+#include <nlohmann/json.hpp>
 #include "../Utility/UtilityCommon.h"
 #include "../Utility/UtilityDraw.h"
 #include"../Manager/Generic/DataBank.h"
@@ -31,6 +34,7 @@ reloadFontHandle_(UtilityCommon::INITIAL_HANDLE),
 imgRevolverArrow_(UtilityCommon::INITIAL_HANDLE),
 cardNumPer_(UtilityCommon::RATIO_MAX)
 {
+	charaType_ = "Player";
 }
 
 PlayerCardUI::~PlayerCardUI(void)
@@ -81,7 +85,8 @@ void PlayerCardUI::Init(void)
 	cardGaugePSMaterial_->AddConstBuf({ cardNumPer_,cardNumPer_,0.0f,0.0f });
 	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, BAR_SIZE);
 
-	AddCardUIData();
+	//AddCardUIData();
+	LoadCardData();
 
 	InitCardUI();
 	ChangeSelectState(CARD_SELECT::NONE);
@@ -245,15 +250,7 @@ void PlayerCardUI::InitCardUI(void)
 		handCurrent_ = handCards_.begin();
 	}
 }
-void PlayerCardUI::AddCardUIData(void)
-{
-	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::PLAYER);
-	int size = static_cast<int>(charaDeck.size());
-	for (int i = 0; i < size; i++)
-	{
-		AddCardUi(charaDeck[i]);
-	}
-}
+
 // _DEBUG
 void PlayerCardUI::ChangeNone(void)
 {

@@ -1,3 +1,6 @@
+#include<iostream>
+#include<fstream>
+#include "../../Src/Lib/nlohmann/json.hpp"
 #include "../pch.h"
 #include "../Utility/UtilityCommon.h"
 #include"../Manager/Generic/InputManager.h"
@@ -78,6 +81,28 @@ void CardUIBase::PlayCardSound(void)
 	}
 }
 
+void CardUIBase::LoadCardData(void)
+{
+	using json = nlohmann::json;
+	std::ifstream ifs("Resources/Json/CardData.json");
+	if (!ifs.is_open())
+	{
+		std::cerr << "ファイルが開けません" << std::endl;
+		return;
+	}
+	json j;
+	std::vector<CardBase::CARD_STATUS> cards;
+	for (auto& card : j[charaType_])
+	{
+		CardBase::CARD_STATUS status;
+		status.pow = card["pow"];
+		status.type = card["type"];
+
+		//配列の中に追加
+		AddCardUi(status);
+	}
+}
+
 void CardUIBase::Load(void)
 {
 	cardNoImg_ = resMng_.Load(ResourceManager::SRC::NUMBERS_IMGS).handleIds_;
@@ -112,9 +137,12 @@ void CardUIBase::Draw(void)
 void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 {
 	int img = -1;
+
+	//同じステータスを見つける
 	auto it = cardImgs_.find(_status);
 	int num = _status.pow - 1;
 	if (num < 0) { num = MAX_CARD_POWER; }
+
 	int drawNumImg = cardNoImg_[num];
 	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
 	//カード画像がない場合は作成して配列に挿入
