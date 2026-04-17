@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <nlohmann/json.hpp>
 #include "../Common/Vector2.h"
 #include "../Common/Vector2F.h"
 
@@ -115,6 +116,11 @@ public:
 	/// @param str stringオブジェクト
 	/// @return wstringオブジェクト
 	static std::wstring GetWStringFromString(const std::string& str);
+
+	/// @brief JSONファイルの読み込み
+	/// @param filePath ファイルパス
+	/// @return 読み込んだJSONデータ
+	static nlohmann::json LoadJsonData(const std::string& filePath);
 
 
 

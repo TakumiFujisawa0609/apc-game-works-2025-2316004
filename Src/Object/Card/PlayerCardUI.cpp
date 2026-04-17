@@ -86,7 +86,6 @@ void PlayerCardUI::Init(void)
 	cardGaugePSMaterial_->AddConstBuf({ cardNumPer_,cardNumPer_,0.0f,0.0f });
 	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, BAR_SIZE);
 
-	//AddCardUIData();
 	LoadCardData();
 
 	InitCardUI();

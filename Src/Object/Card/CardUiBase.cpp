@@ -86,15 +86,16 @@ void CardUIBase::PlayCardSound(void)
 
 void CardUIBase::LoadCardData(void)
 {
+
+	//std::ifstream ifs("Data/Json/CardData.json");
+	//if (!ifs.is_open())
+	//{
+	//	std::cerr << "ファイルが開けません" << std::endl;
+	//	return;
+	//}
 	using json = nlohmann::json;
-	std::ifstream ifs("Data/Json/CardData.json");
-	if (!ifs.is_open())
-	{
-		std::cerr << "ファイルが開けません" << std::endl;
-		return;
-	}
-	json j;
-	ifs >> j;
+	json j=UtilityCommon::LoadJsonData("Data/Json/CardData.json");
+
 	std::vector<CardBase::CARD_STATUS> cards;
 	for (const auto& card : j[charaType_])
 	{

@@ -99,17 +99,17 @@ void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
 void CardDeck::LoadCardData(void)
 {
 
-	std::ifstream ifs("Data/Json/CardData.json");
-	if (!ifs.is_open())
-	{
-		std::cerr << "ファイルが開けません" << std::endl;
-		return;
-	}
+	//std::ifstream ifs("Data/Json/CardData.json");
+	//if (!ifs.is_open())
+	//{
+	//	std::cerr << "ファイルが開けません" << std::endl;
+	//	return;
+	//}
+	//ifs >> j;
 	std::string charaTypeStr;
 	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = "Player" : charaTypeStr = "Enemy";
 	using json = nlohmann::json;
-	json j;
-	ifs >> j;
+	json j=UtilityCommon::LoadJsonData("Data/Json/CardData.json");
 	std::vector<CardBase::CARD_STATUS> cards;
 	for (const auto& card : j[charaTypeStr])
 	{

@@ -53,12 +53,7 @@ public:
 		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード
 		ENEMY_ATK_CARD_IMG,//敵番号なしアタックカード
 		RELOAD_CARD_IMG,//リロードカード
-		//RELOAD_FRAME,	//リロードカードのフレーム
 		RELOAD_GAGE,	//リロードゲージ
-		//P_HP_ARCBAR_MASK,	//HPバーマスク(円形の部分)
-		//P_HP_ARCBAR_FRAME,	//円形ゲージフレーム
-		//P_HP_LINEBAR_MASK,	//HPバーマスク(線形の部分)
-		//P_HP_BAR_FRAME,	//HPフレーム
 		P_HP_ARC_OUTLINE,	//円形アウトライン
 		P_HP_LINE_OUT_LINE,	//線形アウトライン
 		P_CARD_NUM_GAUGE_MASK,	//カード枚数ゲージマスク
@@ -76,11 +71,8 @@ public:
 		//複数画像
 		NUMBERS_IMGS,	//カード番号
 		CONTROLLER_UI_IMGS,
-
-
 		//ピクセルシェーダ
 		CARD_PS,
-
 		//エフェクト
 		BLAST,
 		KEY_BLADE_HIT_EFF,
@@ -89,8 +81,6 @@ public:
 		RELOAD_EFF,
 		RELOAD_END_EFF,
 	};
-	
-
 
 	/// @brief 初期化
 	/// @param  
