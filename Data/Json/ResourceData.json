@@ -1,3 +1,22 @@
 {
+  "ResourceData": [
+    {
+      "type": "model",
+      "name": "",
+      "handle": "",
 
+    },
+    {
+      "id": 2,
+      "name": "Stone",
+      "description": "A sturdy resource used for construction and crafting.",
+      "icon": "stone_icon.png"
+    },
+    {
+      "id": 3,
+      "name": "Iron",
+      "description": "A valuable resource used for advanced crafting and construction.",
+      "icon": "iron_icon.png"
+    }
+  ]
 }
