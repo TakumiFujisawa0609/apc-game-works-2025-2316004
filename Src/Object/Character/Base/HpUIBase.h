@@ -48,6 +48,10 @@ protected:
 	static constexpr int ARC_CONST_BUF = 2;			//円形
 	static constexpr int LINE_CONST_BUF = 3;		//線形
 
+
+	//減る前のHP保存用定数バッファの番号
+	static constexpr int PRE_HP_CONST_BUF = 2;
+
 	//補間時間
 	static constexpr float LERP_TIME = 0.3f;
 	static constexpr float WAIT_TIME = 0.5f;

@@ -9,11 +9,28 @@ public:
 	static constexpr Vector2F BAR_POS = { 26.0f, 23.0f };
 	static constexpr Vector2F BAR_COVER_POS = { 0.0f, 20.0f };
 
+	/// @brief コンストラクタ
+	/// @param  
 	PlayerHpUI(void);
+
+	/// @brief デストラクタ
+	/// @param  
 	~PlayerHpUI(void)override;
+
+	/// @brief ロード
+	/// @param  
 	void Load(void) override;
+
+	/// @brief 初期化
+	/// @param  
 	void Init(void) override;
+
+	/// @brief 更新
+	/// @param  
 	void Update(void)override;
+
+	/// @brief 描画
+	/// @param  
 	void Draw(void)override;
 private:
 	//ゲージサイズ

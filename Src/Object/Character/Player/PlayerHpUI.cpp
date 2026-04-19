@@ -44,7 +44,7 @@ void PlayerHpUI::Update(void)
 	HpUIBase::Update();
 	//シェーダの更新
 	renderer_->SetPos(barPos_);
-	material_->SetConstBuf(2, { hpData_.hpPer,hpData_.preHpPer,0.0f,0.0f });
+	material_->SetConstBuf(PRE_HP_CONST_BUF, { hpData_.hpPer,hpData_.preHpPer,0.0f,0.0f });
 }
 
 void PlayerHpUI::Draw(void)

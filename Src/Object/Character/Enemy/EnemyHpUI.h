@@ -40,7 +40,5 @@ private:
 	//バーの色(紫)
 	static constexpr FLOAT4 BAR_PURPLE = { 0.6f, 0.2f, 0.8f,0.0f };
 
-	//減る前のHP保存用定数バッファの番号
-	static constexpr int PRE_HP_CONST_BUF = 2;
 };
 

@@ -34,7 +34,6 @@ Enemy::Enemy(void):
 	cardCenterPos_({}),
 	modelScl_(MODEL_SIZE_MULTIPLITER)
 {
-	//noneHitTag_.emplace({ Collider::TAG::PLAYER1,Collider::TAG::NML_ATK })
 	//各ステータスの設定
 	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 

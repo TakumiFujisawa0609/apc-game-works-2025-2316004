@@ -7,8 +7,6 @@
 #include "../../../Manager/Resource/ResourceManager.h"
 
 #include"../Object/Card/CardSystem.h"
-
-//#include "../../Object/Common/EffectController.h"
 #include "../../../Object/Common/AnimationController.h"
 
 #include"../../Card/CardDeck.h"
@@ -102,8 +100,6 @@ void ActionController::Update(void)
 	MoveDirFromInput();
 	charaObj_.Rotate();
 	DirAndMovePowUpdate();
-
-	CardChargeUpdate();
 	CardMove();
 }
 
@@ -124,10 +120,6 @@ ActionBase& ActionController::GetMainAction(void)
 #ifdef _DEBUG
 void ActionController::DrawDebug(void)
 {
-	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
-	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)logic_.GetActionType(), dashSeCnt);
-	//cardPresent_.Draw();
-	DrawFormatString(0, 320, 0x000000, L"pos(%f,%f,%f)", trans_.pos.x, trans_.pos.y, trans_.pos.z);
 
 }
 #endif // _DEBUG
@@ -147,14 +139,6 @@ void ActionController::ChangeAction(const ACTION_TYPE _act)
 	mainAction_[prevType]->Release();
 	act_ = _act;
 	mainAction_[act_]->Init();
-}
-
-void ActionController::CardChargeUpdate(void)
-{
-	if (logic_.GetIsAct().isCardCharge)
-	{
-		//cardPresent_.CardCharge();
-	}
 }
 
 void ActionController::CardMove(void)

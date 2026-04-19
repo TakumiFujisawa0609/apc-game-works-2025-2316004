@@ -206,15 +206,6 @@ private:
 	//カード選択
 	void CardMove(void);
 
-	//カードチャージ
-	void CardChargeUpdate(void);
-
-	/// <summary>
-	/// 再生させたいSE以外すべて止める
-	/// </summary>
-	/// <param name="_se">現在再生させたいSE</param>
-	//void StopSe(const ACT_SE _se);
-
 	//入力方向に応じて方向を決める
 	void MoveDirFromInput(void);
 	//方向と移動量の更新

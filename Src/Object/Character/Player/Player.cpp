@@ -97,15 +97,6 @@ void Player::Init(void)
 	action_->Init();
 	weapon_->Init();
 
-
-	////デッキに山札追加
-	//for (int i = 0; i < CARD_NUM_MAX; i++)
-	//{
-	//	DataBank::GetInstance().AddCardData(characterType_,CARD_POWS[i]);
-	//}
-
-	//DataBank::GetInstance().AddCardData(characterType_, RELOAD_CARD_STATUS);
-
 	deck_->Init();
 
 	//更新
