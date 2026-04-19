@@ -50,29 +50,7 @@ public:
 	static constexpr float ROAR_ANIM_END_ANIM = 127.0f;
 	//カメラシェイク強さ
 	static constexpr float CAM_SHAKE_LIMIT = 10.0f;
-	//格納するカードの強さ
-	static constexpr CardBase::CARD_STATUS CARD_POWS[CARD_NUM_MAX] = {
-		{1,CARD_TYPE::ATTACK},
-		{7,CARD_TYPE::ATTACK},
-		{2,CARD_TYPE::ATTACK},
-		{5,CARD_TYPE::ATTACK},
-		{7,CARD_TYPE::ATTACK},
-		{3,CARD_TYPE::ATTACK},
-		{0,CARD_TYPE::ATTACK},
-		{8,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{6,CARD_TYPE::ATTACK},
-		{5,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK},
-		{0,CARD_TYPE::ATTACK},
-		{5,CARD_TYPE::ATTACK},
-		{6,CARD_TYPE::ATTACK},
-		{2,CARD_TYPE::ATTACK},
-		{7,CARD_TYPE::ATTACK},
-		{3,CARD_TYPE::ATTACK},
-		{8,CARD_TYPE::ATTACK}
-	};
+
 
 
 	/// @brief デッキの取得

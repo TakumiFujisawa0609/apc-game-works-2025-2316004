@@ -94,10 +94,10 @@ void CardUIBase::LoadCardData(void)
 	//	return;
 	//}
 	using json = nlohmann::json;
-	json j=UtilityCommon::LoadJsonData("Data/Json/CardData.json");
+	json j=UtilityCommon::LoadJsonData("Data/Json/CharaData.json");
 
 	std::vector<CardBase::CARD_STATUS> cards;
-	for (const auto& card : j[charaType_])
+	for (const auto& card : j[charaType_+"Cards"])
 	{
 		CardBase::CARD_STATUS status;
 		status.pow = card["pow"];

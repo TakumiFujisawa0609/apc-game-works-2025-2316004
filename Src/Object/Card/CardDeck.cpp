@@ -5,7 +5,7 @@
 #include"./CardSystem.h"
 #include "../Manager/Generic/DataBank.h"
 #include"../Utility/UtilityTemplates.h"
-
+#include "../Utility/UtilityCommon.h"
 #include "CardDeck.h"
 
 CardDeck::CardDeck(CHARACTER_TYPE& _charaType, int _playerNum):

@@ -8,8 +8,7 @@
 #include "../Utility/UtilityCommon.h"
 
 PauseScene::PauseScene(void):
-	imgTest_(-1),
-	pauseFont_(-1),
+	pauseFont_(UtilityCommon::INITIAL_HANDLE),
 	selectIndex_()
 {
 	//更新関数のセット
@@ -41,7 +40,6 @@ PauseScene::~PauseScene(void)
 
 void PauseScene::Load(void)
 {
-	imgTest_ = resMng_.Load(ResourceManager::SRC::TEST).handleId_;
 	pauseFont_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, FONT_THICK);
 }
 
@@ -86,16 +84,7 @@ void PauseScene::NormalDraw(void)
 		Application::SCREEN_SIZE_Y- MARGINT,
 		UtilityCommon::WHITE,
 		true);	
-	
-	DrawRotaGraph(
-		Application::SCREEN_HALF_X,
-		Application::SCREEN_HALF_Y,
-		1.0f,
-		0.0f,
-		imgTest_,
-		true,
-		false
-	);
+
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	for (int i = 0; i < LIST_MAX; ++i)

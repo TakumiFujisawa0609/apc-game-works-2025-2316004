@@ -84,14 +84,6 @@ void Enemy::Init(void)
 	//カードデッキ
 	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 
-
-	//デッキに山札追加
-	for (int i = 0; i < CARD_NUM_MAX; i++)
-	{
-		DataBank::GetInstance().AddCardData(characterType_, CARD_POWS[i]);
-	}
-	DataBank::GetInstance().AddCardData(characterType_, RELOAD_CARD_STATUS);
-
 	deck_->Init();
 
 	action_->Init();

@@ -1,5 +1,10 @@
 {
-	"Player": [
+  "PlayerStatus": {
+    "HP": 200,
+    "DEF": 5,
+    "SPD": 7
+  },
+	"PlayerCards": [
 		{
 			"type": "Attack",
 			"pow": 0
@@ -66,7 +71,13 @@
 		}
 	],
 
-	"Enemy": [
+	"EnemyStatus": {
+		"HP": 150,
+    "ATK": 50,
+		"DEF": 100,
+		"SPD": 15.0
+	},
+	"EnemyCards": [
 		{
 			"type": "Attack",
 			"pow": 1

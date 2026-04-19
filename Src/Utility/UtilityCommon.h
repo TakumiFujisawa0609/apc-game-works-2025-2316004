@@ -117,6 +117,11 @@ public:
 	/// @return wstringオブジェクト
 	static std::wstring GetWStringFromString(const std::string& str);
 
+	/// @brief wstringオブジェクトから(SJIS)からstringオブジェクトに変換
+	/// @param str stringオブジェクト
+	/// @return wstringオブジェクト
+	static std::string GetStringFromWString(const std::wstring& wstr);
+
 	/// @brief JSONファイルの読み込み
 	/// @param filePath ファイルパス
 	/// @return 読み込んだJSONデータ

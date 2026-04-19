@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <string>
+#include <unordered_map>
 #include "../../Template/Singleton.h"
 #include "Resource.h"
 
@@ -15,7 +16,6 @@ public:
 	enum class SRC
 	{
 		NONE,
-		TEST,
 		//モデル
 		STAGE,		//ステージ
 		STAGE_WALL,		//ステージ
@@ -82,6 +82,12 @@ public:
 		RELOAD_END_EFF,
 	};
 
+	struct RES_INFO
+	{
+		ResourceData::TYPE resType;
+		std::wstring typePath;
+	};
+
 	/// @brief 初期化
 	/// @param  
 	void Init(void);
@@ -123,7 +129,15 @@ private:
 	// 読み込み済みリソース
 	std::map<SRC, ResourceData&> loadedMap_;
 
+	// ダミーリソース
 	ResourceData dummy_;
+
+	//リソースごとの文字列
+	std::unordered_map<std::string,SRC > resStr_;
+	//リソースのタイプごとの文字列
+	std::unordered_map<std::string, RES_INFO> resTypeStr_;
+
+	std::unordered_map<ResourceData::TYPE, std::function<void(void)>> pushResource_;
 
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
@@ -136,5 +150,6 @@ private:
 
 	// 内部ロード
 	ResourceData& _Load(SRC src);
+
 
 };

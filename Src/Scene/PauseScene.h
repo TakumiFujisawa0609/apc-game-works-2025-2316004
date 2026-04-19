@@ -50,8 +50,6 @@ private:
 
 	static constexpr int FONT_THICK = 3; // フォントの太さ
 
-	int imgTest_;
-
 	//ポーズフォント
 	int pauseFont_; 	
 
