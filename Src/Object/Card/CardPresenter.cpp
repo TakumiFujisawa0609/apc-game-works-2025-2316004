@@ -85,7 +85,7 @@ void CardPresenter::EnemyCardReload(void)
 
 void CardPresenter::ChangeAction(void)
 {
-	//g—pÏ‚İ‚ÖˆÚs
+
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
 	deck_.EraseHandCard();
 }

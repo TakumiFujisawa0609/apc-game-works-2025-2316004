@@ -39,6 +39,7 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path):
 	loopStartTime_(0.0f),
 	loopEndTime_(0.0f)
 {
+	AddFunc();
 }
 
 ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY):
@@ -57,7 +58,7 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int nu
 	loopStartTime_(0.0f),
 	loopEndTime_(0.0f)
 {
-
+	AddFunc();
 }
 
 ResourceData::ResourceData(TYPE type, const std::wstring& path
@@ -77,6 +78,10 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path
 	handleId_(-1),
 	handleIds_(nullptr)
 {
+	AddFunc();
+	if(pitch_!=0.0f){setCreateFunc_[SET_SOUND_STATUS::PITCH] = [this]() { SetCreateSoundPitchRate(pitch_); };}
+	if(timeStretch_!=1.0f){setCreateFunc_[SET_SOUND_STATUS::TIME_STRETCH] = [this]() { SetCreateSoundTimeStretchRate(timeStretch_); }; }
+	if(loopStartTime_!=0.0f || loopEndTime_!=0.0f){ setCreateFunc_[SET_SOUND_STATUS::LOOP_START] = [this]() { SetCreateSoundLoopAreaTimePos(loopStartTime_, loopEndTime_); }; }
 }
 
 ResourceData::~ResourceData(void)
@@ -86,55 +91,55 @@ ResourceData::~ResourceData(void)
 
 void ResourceData::Load(void)
 {
+	loadFunc_[type_]();
+	//switch (type_)
+	//{
+	//case ResourceData::TYPE::IMG:
+	//	// 画像
+	//	handleId_ = LoadGraph(path_.c_str());
+	//	break;
 
-	switch (type_)
-	{
-	case ResourceData::TYPE::IMG:
-		// 画像
-		handleId_ = LoadGraph(path_.c_str());
-		break;
+	//case ResourceData::TYPE::IMGS:
+	//	// 複数画像
+	//	handleIds_ = new int[numX_ * numY_];
+	//	LoadDivGraph(
+	//		path_.c_str(),
+	//		numX_ * numY_,
+	//		numX_, numY_,
+	//		sizeX_, sizeY_,
+	//		&handleIds_[0]);
+	//	break;
 
-	case ResourceData::TYPE::IMGS:
-		// 複数画像
-		handleIds_ = new int[numX_ * numY_];
-		LoadDivGraph(
-			path_.c_str(),
-			numX_ * numY_,
-			numX_, numY_,
-			sizeX_, sizeY_,
-			&handleIds_[0]);
-		break;
+	//case ResourceData::TYPE::MODEL:
+	//	// モデル
+	//	handleId_ = MV1LoadModel(path_.c_str());
+	//	break;
 
-	case ResourceData::TYPE::MODEL:
-		// モデル
-		handleId_ = MV1LoadModel(path_.c_str());
-		break;
+	//case ResourceData::TYPE::EFFEKSEER:
+	//	//エフェクト
+	//	handleId_ = LoadEffekseerEffect(path_.c_str());
+	//	break;
 
-	case ResourceData::TYPE::EFFEKSEER:
-		//エフェクト
-		handleId_ = LoadEffekseerEffect(path_.c_str());
-		break;
+	//case ResourceData::TYPE::FONT:
+	//	//フォント
+	//	handleId_ = AddFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
+	//	break;
 
-	case ResourceData::TYPE::FONT:
-		//フォント
-		handleId_ = AddFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
-		break;
+	//case ResourceData::TYPE::VERTEX_SHADER:
+	//	//頂点シェーダー
+	//	handleId_ = LoadVertexShader(path_.c_str());
+	//	break;
 
-	case ResourceData::TYPE::VERTEX_SHADER:
-		//頂点シェーダー
-		handleId_ = LoadVertexShader(path_.c_str());
-		break;
+	//case ResourceData::TYPE::PIXEL_SHADER:
+	//	//ピクセルシェーダー
+	//	handleId_ = LoadPixelShader(path_.c_str());
+	//	break;
 
-	case ResourceData::TYPE::PIXEL_SHADER:
-		//ピクセルシェーダー
-		handleId_ = LoadPixelShader(path_.c_str());
-		break;
-
-	case ResourceData::TYPE::SOUND:
-		//音声
-		handleId_ = LoadSoundMem(path_.c_str());
-		break;
-	}
+	//case ResourceData::TYPE::SOUND:
+	//	//音声
+	//	handleId_ = LoadSoundMem(path_.c_str());
+	//	break;
+	//}
 
 	//読み込みできたか確認
 	assert(handleId_ != -1); // 読み込みに失敗してたら即終了
@@ -143,56 +148,56 @@ void ResourceData::Load(void)
 
 void ResourceData::Release(void)
 {
+	releaseFunc_[type_]();
+	//switch (type_)
+	//{
+	//case ResourceData::TYPE::IMG:
+	//	DeleteGraph(handleId_);
+	//	break;
 
-	switch (type_)
-	{
-	case ResourceData::TYPE::IMG:
-		DeleteGraph(handleId_);
-		break;
+	//case ResourceData::TYPE::IMGS:
+	//{
+	//	int num = numX_ * numY_;
+	//	for (int i = 0; i < num; i++)
+	//	{
+	//		DeleteGraph(handleIds_[i]);
+	//	}
+	//	delete[] handleIds_;
+	//}
+	//	break;
 
-	case ResourceData::TYPE::IMGS:
-	{
-		int num = numX_ * numY_;
-		for (int i = 0; i < num; i++)
-		{
-			DeleteGraph(handleIds_[i]);
-		}
-		delete[] handleIds_;
-	}
-		break;
+	//case ResourceData::TYPE::MODEL:
+	//{
+	//	MV1DeleteModel(handleId_);
+	//	auto ids = duplicateModelIds_;
+	//	for (auto id : ids)
+	//	{
+	//		MV1DeleteModel(id);
+	//	}
+	//}
+	//	break;
 
-	case ResourceData::TYPE::MODEL:
-	{
-		MV1DeleteModel(handleId_);
-		auto ids = duplicateModelIds_;
-		for (auto id : ids)
-		{
-			MV1DeleteModel(id);
-		}
-	}
-		break;
+	//case ResourceData::TYPE::EFFEKSEER:
+	//	DeleteEffekseerEffect(handleId_);
+	//	break;
 
-	case ResourceData::TYPE::EFFEKSEER:
-		DeleteEffekseerEffect(handleId_);
-		break;
+	//case ResourceData::TYPE::FONT:
+	//	RemoveFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
+	//	break;
 
-	case ResourceData::TYPE::FONT:
-		RemoveFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
-		break;
+	//case ResourceData::TYPE::VERTEX_SHADER:
+	//	DeleteShader(handleId_);
+	//	break;
 
-	case ResourceData::TYPE::VERTEX_SHADER:
-		DeleteShader(handleId_);
-		break;
+	//case ResourceData::TYPE::PIXEL_SHADER:
+	//	DeleteShader(handleId_);
+	//	break;
 
-	case ResourceData::TYPE::PIXEL_SHADER:
-		DeleteShader(handleId_);
-		break;
-
-	case ResourceData::TYPE::SOUND:
-		DeleteSoundMem(handleId_);
-		break;
-	}
-
+	//case ResourceData::TYPE::SOUND:
+	//	DeleteSoundMem(handleId_);
+	//	break;
+	//}
+	
 }
 
 void ResourceData::CopyHandle(int* imgs)
@@ -209,6 +214,31 @@ void ResourceData::CopyHandle(int* imgs)
 		imgs[i] = handleIds_[i];
 	}
 
+}
+
+void ResourceData::AddFunc(void)
+{
+	loadFunc_ = {
+		{ TYPE::IMG, [this]() { LoadImg(); } },
+		{ TYPE::IMGS, [this]() { LoadImgs(); } },
+		{ TYPE::MODEL, [this]() { LoadModel(); } },
+		{ TYPE::SOUND, [this]() { LoadSound(); } },
+		{ TYPE::FONT, [this]() { LoadFont(); } },
+		{ TYPE::EFFEKSEER, [this]() { LoadEffekseer(); } },
+		{ TYPE::VERTEX_SHADER, [this]() { LoadVS(); } },
+		{ TYPE::PIXEL_SHADER, [this]() { LoadPS(); } },
+	};
+
+	releaseFunc_ = {
+		{ TYPE::IMG, [this]() { ReleaseImg(); } },
+		{ TYPE::IMGS, [this]() { ReleaseImgs(); } },
+		{ TYPE::MODEL, [this]() { ReleaseModel(); } },
+		{ TYPE::SOUND, [this]() { ReleaseSound(); } },
+		{ TYPE::FONT, [this]() { ReleaseFont(); } },
+		{ TYPE::EFFEKSEER, [this]() { ReleaseEffekseer(); } },
+		{ TYPE::VERTEX_SHADER, [this]() { ReleaseVS(); } },
+		{ TYPE::PIXEL_SHADER, [this]() { ReleasePS(); } },
+	};
 }
 
 void ResourceData::LoadImg(void)
@@ -234,6 +264,15 @@ void ResourceData::LoadModel(void)
 
 void ResourceData::LoadSound(void)
 {
+	//if (pitch_ != 1.0f){SetCreateSoundPitchRate(pitch_);}
+	//else if (timeStretch_ != 1.0f){SetCreateSoundTimeStretchRate(timeStretch_);}
+	//else if(loopStartTime_!=0.0f || loopEndTime_!=0.0f){ SetCreateSoundLoopAreaTimePos(loopStartTime_, loopEndTime_);}
+
+	//サウンドの状態設定関数の表から、状態に応じた関数を呼び出す
+	for (const auto& func : setCreateFunc_)
+	{
+		func.second();
+	}
 	handleId_ = LoadSoundMem(path_.c_str());
 }
 

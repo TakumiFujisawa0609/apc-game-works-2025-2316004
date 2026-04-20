@@ -39,6 +39,10 @@ public:
 	/// @brief 解放
 	/// @param
     void Release(void)override;
+
+	/// @brief リロードエフェクトの解放
+	/// @param  
+	void ReleaseReloadResource(void)override;
 private:
 
     //攻撃1段目判定(近距離)

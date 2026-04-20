@@ -105,7 +105,7 @@ public:
 	/// @brief “Ç‚İ‚ñ‚¾‰¹—Ê‚ğİ’è‚·‚é
 	/// @param  
 	/// @return 
-	const void SetLoadedSoundsVolume(void) { for (int i = 0; i < TYPE_MAX; i++) { SetSystemVolume(volume_[i], i); } };
+	const void SetLoadedSoundsVolume(void) { for (int i = 0; i < TYPE_MAX; i++) { SetSystemVolume(volume_[i], static_cast<TYPE>(i)); } };
 
 	/// @brief 
 	/// @param _src 

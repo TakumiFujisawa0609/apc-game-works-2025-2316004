@@ -54,6 +54,7 @@ void CardUIBase::ChangeUsedActionCard(void)
 	{
 		act->ChangeUsedCard();
 	}
+
 }
 
 void CardUIBase::ChangeReactActionCard(void)

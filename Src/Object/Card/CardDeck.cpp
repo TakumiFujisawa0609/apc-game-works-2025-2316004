@@ -94,10 +94,12 @@ void CardDeck::LoadCardData(void)
 {
 	std::string charaTypeStr;
 	//キャラタイプを判断して、jsonのどこからデータを取るか決める
-	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = "Player" : charaTypeStr = "Enemy";
+	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = "PlayerCards" : charaTypeStr = "EnemyCards";
 	using json = nlohmann::json;
-	json j=UtilityCommon::LoadJsonData("Data/Json/CardData.json");
+	json j=UtilityCommon::LoadJsonData("Data/Json/CharaData.json");
 	std::vector<CardBase::CARD_STATUS> cards;
+
+	//カードデータの読み込み
 	for (const auto& card : j[charaTypeStr])
 	{
 		CardBase::CARD_STATUS status;

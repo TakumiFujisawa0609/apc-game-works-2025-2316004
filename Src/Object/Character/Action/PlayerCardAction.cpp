@@ -72,7 +72,6 @@ void PlayerCardAction::Init(void)
 	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//手札に移動
-		//PutCard();
 		soundMng_.Play(SoundManager::SRC::CARD_PUT, SoundManager::PLAYTYPE::BACK);
 		cardPresent_.PutCard();
 		DecideAttackOne();
@@ -86,6 +85,8 @@ void PlayerCardAction::Init(void)
 void PlayerCardAction::Update()
 {
 	cardFuncs_.front()();
+
+	//回避でアクションを中断
 	if (actionCntl_.GetInput().GetIsAct().isDodge
 		&&cardPresent_.GetCardUIState()!= CardUIBase::CARD_SELECT::DISITION)
 	{
@@ -102,14 +103,33 @@ void PlayerCardAction::Release(void)
 	charaObj_.DeleteAttackCol(Collider::TAG::PLAYER1,Collider::TAG::NML_ATK);
 	charaObj_.SetIsCanMoveable(true);
 
-	SoundManager::GetInstance().Stop(SoundManager::SRC::CARD_RELOAD);
-
+	//リロード中にアクションが中断された場合、リロードエフェクトと音を停止して解放、UIを通常に戻す
+	if (actType_ == CARD_ACT_TYPE::RELOAD)
+	{
+		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
+		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
+		effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
+		actType_ = CARD_ACT_TYPE::NONE;
+		cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::NONE);
+	}
+	
+	//コンボフラグリセット
 	isCombo_ = false;
 
+	//カード機能配列の解放
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
 	}
+	actType_ = CARD_ACT_TYPE::NONE;
+}
+
+void PlayerCardAction::ReleaseReloadResource(void)
+{
+	//カードリロード音停止
+	soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
+	effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
+	effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
 	actType_ = CARD_ACT_TYPE::NONE;
 }
 
@@ -264,13 +284,8 @@ void PlayerCardAction::UpdateReload(void)
 	{
 		cardFuncs_.pop();
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-		//カードリロード音停止
-		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
-		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
-		effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
-		actType_ = CARD_ACT_TYPE::NONE;
 
-		cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::NONE);
+		//cardPresent_.ChangeUIState(CardUIBase::CARD_SELECT::NONE);
 	}
 	if (pushReloadCnt_ >= RELOAD_TIME)
 	{

@@ -35,6 +35,10 @@ public:
     /// @return 
     virtual const int GetJumpCardNum(void)const override { return -1; }
 
+    /// @brief リロードエフェクトの解放
+    /// @param  
+    virtual void ReleaseReloadResource(void);
+
 protected:
     //ジャンプ溜め中のカード出した回数
     static constexpr int JAMP_CHARGE_CARD_NUM_MAX = 3;
@@ -72,6 +76,7 @@ protected:
     void ChangeCardAction(const CARD_ACT_TYPE& _type);
     //攻撃モーション
     void AttackMotion(const ATK_STATUS& _status, const Collider::TAG& _attackTag,const VECTOR& _localPos);
+
     /// @brief カードの勝敗を常に監視する。負けたらtrueを返し、のけぞり状態にする
     /// @param _attackTag 使っている当たり判定タグ
     /// @return 

@@ -90,6 +90,10 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 	return false;
 }
 
+void CardActionBase::ReleaseReloadResource(void)
+{
+}
+
 void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)
 {	
 	//ƒJ[ƒh•‰‚¯ˆ—

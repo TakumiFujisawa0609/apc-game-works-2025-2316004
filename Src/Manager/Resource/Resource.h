@@ -28,6 +28,20 @@ public:
 		BGM,
 		SE,
 	};
+	enum class SET_SOUND_STATUS
+	{
+		NONE,			//なし
+		PITCH,			//ピッチ調整
+		TIME_STRETCH,	//タイムストレッチ
+		LOOP_START,		//ループ開始
+		LOOP_END,		//ループ終了
+	};
+
+	//struct SET_SOUND_FUNC
+	//{
+	//	std::function<void(void)> createFunc;
+	//	std::function<void(void)> playFunc;
+	//};
 
 	/// @brief コンストラクタ
 	/// @param  
@@ -35,7 +49,7 @@ public:
 	ResourceData(TYPE type, const std::wstring& path);
 	ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY);
 	ResourceData(TYPE type, const std::wstring& path, SOUND_TYPE soundType
-		, const float pitch = 1.0f
+		, const float pitch = 0.0f
 		, const float timeStretch = 1.0f
 		, const float volume = 1.0f
 		, const float loopStartTime = 0.0f, const float loopEndTime = 0.0f);
@@ -89,6 +103,13 @@ public:
 
 	//解放関数の表
 	std::unordered_map<TYPE, std::function<void(void)>>releaseFunc_;
+
+	//サウンドの状態設定関数の表
+	std::unordered_map < SET_SOUND_STATUS, std::function<void(void)>>setCreateFunc_;
+	std::unordered_map < SET_SOUND_STATUS, std::function<void(void)>>setPlayFunc_;
+
+	//関数ポインタの追加
+	void AddFunc(void);
 
 	//ロード
 	void LoadImg(void);

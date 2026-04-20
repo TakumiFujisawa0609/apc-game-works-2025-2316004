@@ -65,49 +65,9 @@ void EnemyCardUI::Draw(void)
 #ifdef _DEBUG
 void EnemyCardUI::DrawDebug(void)
 {
-	int i = 0;
-	for (const auto& action : actions_)
-	{
-		std::wstring stateStr;
-		auto state = action->GetState();
-		switch (state)
-		{
-		case CardUIController::CARD_STATE::DRAW_PILE:
-			stateStr = L"DRAW_PILE";
-			break;
-		case CardUIController::CARD_STATE::MOVE_DRAW:
-			stateStr = L"MOVE_DRAW";
-			break;
-		case CardUIController::CARD_STATE::USING:
-			stateStr = L"USING";
-			break;
-		case CardUIController::CARD_STATE::REACT:
-			stateStr = L"REACT";
-			break;
-		case CardUIController::CARD_STATE::USED:
-			stateStr = L"USED";
-			break;
-		default:
-			break;
-		}
-		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(), action->GetDecisionCnt(), stateStr.c_str());
-		i++;
-	}
+
 }
 #endif // _DEBUG
-
-
-
-//void EnemyCardUI::AddCardUIData(void)
-//{
-//	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::ENEMY);
-//	int size = static_cast<int>(charaDeck.size());
-//	for (int i = 0; i < size; i++)
-//	{
-//		AddCardUi(charaDeck[i]);
-//	}
-//
-//}
 
 void EnemyCardUI::ChangeNone(void)
 {
@@ -134,12 +94,7 @@ void EnemyCardUI::ChangeReloadWait(void)
 
 void EnemyCardUI::UpdateNone(void)
 {
-	////ŽèŽD‚É‚·‚×‚Ä‚Ì‰ŠúŽD‚ð“ü‚ê‚é
-	//for (auto& it : uiInfos_)
-	//{
-	//	handCards_.emplace_back(it);
-	//}
-	//ChangeSelectState(CARD_SELECT::NONE);
+
 }
 
 void EnemyCardUI::UpdateDecision(void)

@@ -81,8 +81,6 @@ void Enemy::Load(void)
 
 void Enemy::Init(void)
 {
-	//カードデッキ
-	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 
 	deck_->Init();
 

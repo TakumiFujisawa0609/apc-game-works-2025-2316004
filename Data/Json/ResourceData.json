@@ -258,13 +258,6 @@
       "type": "effect",
       "name": "RELOAD_END_EFF",
       "handle": "ReloadEnd/MagicHeal1.efkproj"
-    },
-
-    {
-      "type": "sound",
-      "soundtype": "BGM",
-      "name": "TITLE_BGM",
-      "handle": "GameTitle.mp3"
     }
   ]
 }
