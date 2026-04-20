@@ -254,8 +254,8 @@ void MenuController::DrawFromCenter(const int _arrayNum, const unsigned int _col
 		static_cast<float>(strPos.y),
 		1.0,
 		1.0,
-		w * 0.5,   // RotCenterX
-		h * 0.5,   // RotCenterY Å© Ç±Ç±èdóv
+		w * 0.5,
+		h * 0.5,   
 		0.0f,
 		_color,
 		_fontHandle,

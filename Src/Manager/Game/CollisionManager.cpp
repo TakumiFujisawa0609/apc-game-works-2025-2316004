@@ -103,10 +103,7 @@ CollisionManager::CollisionManager(void)
 {
 	updateFrame_ = 0;
 
-	//**********************************************************
 	//‚±‚±‚É“–‚½‚è”»’è‚·‚é”ÍˆÍ‚ÌL‚³‚ğƒ^ƒO‚²‚Æ‚Åİ’è‚·‚é
-	//**********************************************************
-
 	hitRange_[Collider::TAG::PLAYER1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::ENEMY1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::NML_ATK] = HIT_RANGE_NORMAL;
@@ -129,7 +126,6 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 {
 	//‘‡
 	bool ret = false;
-
 
 	// weak_ptr‚ğshared_ptr‚É¸Ši
 	auto col1 = _col1.lock();
@@ -173,9 +169,6 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 			}
 		}
 	}
-
-
-
 	//“–‚½‚ç‚È‚©‚Á‚½
 	return false;
 }

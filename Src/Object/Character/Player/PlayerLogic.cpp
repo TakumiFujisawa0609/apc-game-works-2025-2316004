@@ -42,14 +42,6 @@ void PlayerLogic::Update(void)
 void PlayerLogic::InputKeyBoard(void)
 {
 	using ATK_ACT = Player::ATK_ACT;
-	//actCntl_ = ACT_CNTL::NONE;
-
-#ifdef _DEBUG
-	//if (input_.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
-	//{
-	//	ChangeInput(InputManager::TYPE::PAD);
-	//}
-#endif // _DEBUG
 	
 	//ˆÚ“®Šp“x‚ðŒˆ‚ß‚é
 	if (input_.IsNew(MOVE_FRONT_KEY))
@@ -161,7 +153,6 @@ void PlayerLogic::InputPad(void)
 	}
 
 	VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
-	//moveDir_ = { leftStickX_ ,0.0f,leftStickX_ };
 	moveDir_ = VNorm(stickDir);
 }
 

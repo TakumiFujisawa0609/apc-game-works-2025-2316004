@@ -91,7 +91,6 @@ void SceneManager::Update(void)
 	if (isSceneChanging_)
 	{
 		SceneChangeFade();
-		//Fade();
 	}
 	Fade();
 	// カメラ更新
@@ -195,9 +194,6 @@ void SceneManager::StartFadeIn(void)
 {
 	//フェードを明ける
 	fader_->SetFade(Fader::STATE::FADE_IN);
-
-	////シーンチェンジ
-	//isSceneChanging_ = false;
 }
 
 void SceneManager::StartFadeOut(void)
@@ -210,7 +206,6 @@ void SceneManager::StartFadeOut(void)
 
 SceneManager::SceneManager(void)
 {
-
 	sceneId_ = SCENE_ID::NONE;
 	waitSceneId_ = SCENE_ID::NONE;
 
@@ -228,7 +223,6 @@ SceneManager::SceneManager(void)
 	camera_ = nullptr;
 
 	totalTime_ = -1.0f;
-
 }
 
 void SceneManager::ResetDeltaTime(void)
@@ -293,7 +287,6 @@ void SceneManager::Fade(void)
 		{
 			// 明転が終了したら、フェード処理終了
 			fader_->SetFade(Fader::STATE::NONE);
-			//isSceneChanging_ = false;
 			isEndFade_ = true;
 		}
 		break;

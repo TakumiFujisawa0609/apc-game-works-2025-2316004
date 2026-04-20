@@ -59,7 +59,7 @@ void PlayerCardUI::Load(void)
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
 	reloadFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), RELOAD_FONT_SIZE,0);
 	cardNumBgImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
-	soundMng_.LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
+	soundMng_.LoadResource(SoundManager::SRC::CARD_MOVE, CARD_MOVESE_PITCH);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
 	soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
 	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
@@ -178,35 +178,7 @@ void PlayerCardUI::Draw(void)
 #ifdef _DEBUG
 void PlayerCardUI::DrawDebug(void)
 {
-	int i = 0;
-	for(const auto& action:actions_)
-	{
-		std::wstring stateStr;
-		auto state = action->GetState();
-		switch (state)
-		{
-		case CardUIController::CARD_STATE::DRAW_PILE:
-			stateStr = L"DRAW_PILE";
-			break;
-		case CardUIController::CARD_STATE::MOVE_DRAW:
-			stateStr = L"MOVE_DRAW";
-			break;
-		case CardUIController::CARD_STATE::USING:
-			stateStr = L"USING";
-			break;
-		case CardUIController::CARD_STATE::REACT:
-			stateStr = L"REACT";
-			break;
-		case CardUIController::CARD_STATE::USED:
-			stateStr = L"USED";
-			break;
-		default:
-			break;
-		}
-		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(),action->GetDecisionCnt(), stateStr.c_str());
-		i++;
-	}
-	DrawFormatString(10, 300, 0xffffff, L"select(%d)", selectState_);
+
 }
 #endif 
 void PlayerCardUI::InitCardUI(void)

@@ -54,9 +54,6 @@ private:
 	//当たり判定距離の二乗
 	std::map<Collider::TAG, float> hitRange_;
 
-	////ソート時の当たり判定優先順位
-	//std::map<Collider::TAG>
-
 	//当たり判定するフレーム
 	int updateFrame_;
 

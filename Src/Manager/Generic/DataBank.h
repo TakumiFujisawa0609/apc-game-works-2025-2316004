@@ -9,7 +9,6 @@ class DataBank :public Singleton<DataBank>
 {
 	// シングルトンにだけ共有する
 	friend class Singleton<DataBank>;
-
 public:	
 
 	/// @brief 初期化

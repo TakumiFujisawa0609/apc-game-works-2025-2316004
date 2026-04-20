@@ -12,7 +12,13 @@ ResourceData::ResourceData(void):
 	sizeX_(-1),
 	sizeY_(-1),
 	handleId_(-1),
-	handleIds_(nullptr)
+	handleIds_(nullptr),
+	soundType_(SOUND_TYPE::NONE),
+	pitch_(0.0f),
+	timeStretch_(0.0f),
+	volume_(0.0f),
+	loopStartTime_(0.0f),
+	loopEndTime_(0.0f)
 {
 
 }
@@ -25,7 +31,13 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path):
 	sizeX_(-1),
 	sizeY_(-1),
 	handleId_(-1),
-	handleIds_(nullptr)
+	handleIds_(nullptr),
+	soundType_(SOUND_TYPE::NONE),
+	pitch_(0.0f),
+	timeStretch_(0.0f),
+	volume_(0.0f),
+	loopStartTime_(0.0f),
+	loopEndTime_(0.0f)
 {
 }
 
@@ -37,9 +49,34 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int nu
 	sizeX_(sizeX),
 	sizeY_(sizeY),
 	handleId_(-1),
-	handleIds_(nullptr)
+	handleIds_(nullptr),
+	soundType_(SOUND_TYPE::NONE),
+	pitch_(0.0f),
+	timeStretch_(0.0f),
+	volume_(0.0f),
+	loopStartTime_(0.0f),
+	loopEndTime_(0.0f)
 {
 
+}
+
+ResourceData::ResourceData(TYPE type, const std::wstring& path
+	, SOUND_TYPE soundType
+	, const float pitch
+	, const float timeStretch
+	, const float volume
+	, const float loopStartTime, const float loopEndTime):
+	type_(type),
+	path_(path),
+	soundType_(soundType),
+	pitch_(pitch),
+	timeStretch_(timeStretch),
+	volume_(volume),
+	loopStartTime_(loopStartTime),
+	loopEndTime_(loopEndTime),
+	handleId_(-1),
+	handleIds_(nullptr)
+{
 }
 
 ResourceData::~ResourceData(void)
@@ -172,4 +209,100 @@ void ResourceData::CopyHandle(int* imgs)
 		imgs[i] = handleIds_[i];
 	}
 
+}
+
+void ResourceData::LoadImg(void)
+{
+	handleId_ = LoadGraph(path_.c_str());
+}
+
+void ResourceData::LoadImgs(void)
+{
+	handleIds_ = new int[numX_ * numY_];
+	LoadDivGraph(
+		path_.c_str(),
+		numX_ * numY_,
+		numX_, numY_,
+		sizeX_, sizeY_,
+		&handleIds_[0]);
+}
+
+void ResourceData::LoadModel(void)
+{
+	handleId_ = MV1LoadModel(path_.c_str());
+}
+
+void ResourceData::LoadSound(void)
+{
+	handleId_ = LoadSoundMem(path_.c_str());
+}
+
+void ResourceData::LoadFont(void)
+{
+	handleId_ = AddFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
+}
+
+void ResourceData::LoadEffekseer(void)
+{
+	handleId_ = LoadEffekseerEffect(path_.c_str());
+}
+
+void ResourceData::LoadVS(void)
+{
+	handleId_ = LoadVertexShader(path_.c_str());
+}
+
+void ResourceData::LoadPS(void)
+{
+	handleId_ = LoadPixelShader(path_.c_str());
+}
+
+void ResourceData::ReleaseImg(void)
+{
+	DeleteGraph(handleId_);
+}
+
+void ResourceData::ReleaseImgs(void)
+{
+	int num = numX_ * numY_;
+	for (int i = 0; i < num; i++)
+	{
+		DeleteGraph(handleIds_[i]);
+	}
+	delete[] handleIds_;
+}
+
+void ResourceData::ReleaseModel(void)
+{
+	MV1DeleteModel(handleId_);
+	auto ids = duplicateModelIds_;
+	for (auto id : ids)
+	{
+		MV1DeleteModel(id);
+	}
+}
+
+void ResourceData::ReleaseSound(void)
+{
+	DeleteSoundMem(handleId_);
+}
+
+void ResourceData::ReleaseFont(void)
+{
+	RemoveFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
+}
+
+void ResourceData::ReleaseEffekseer(void)
+{
+	DeleteEffekseerEffect(handleId_);
+}
+
+void ResourceData::ReleaseVS(void)
+{
+	DeleteShader(handleId_);
+}
+
+void ResourceData::ReleasePS(void)
+{
+	DeleteShader(handleId_);
 }

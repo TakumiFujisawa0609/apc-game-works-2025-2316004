@@ -114,7 +114,7 @@ void Player::Init(void)
 
 void Player::UpdateDirection(void)
 {
-	//アニメーションノ更新
+	//アニメーションの更新
 	animationController_->Update();
 
 	//武器の更新

@@ -39,7 +39,7 @@ void GameClearScene::Load(void)
 
 	//BGMÉçÅ[Éh
 	soundMng_.GetInstance().LoadResource(SoundManager::SRC::GAME_CLEAR);
-	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, static_cast<int>(SoundManager::TYPE::BGM));
+	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, SoundManager::TYPE::BGM);
 }
 
 void GameClearScene::Init(void)

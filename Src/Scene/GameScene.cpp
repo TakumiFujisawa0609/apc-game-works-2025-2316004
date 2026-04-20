@@ -97,7 +97,7 @@ void GameScene::Init(void)
 	skyDome_->Init();
 	SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
 	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
-	SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, static_cast<int>(SoundManager::TYPE::BGM));
+	SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, SoundManager::TYPE::BGM);
 
 }
 
@@ -163,7 +163,6 @@ void GameScene::NormalUpdate(void)
 	}
 	else if (CharacterManager::GetInstance().IsSceneChangeGameOverCondition())
 	{
-		//SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
 		ChangeUpdatePhase(UPDATE_PHASE::OVER_DIRECTION);
 		return;
 	}
@@ -183,15 +182,6 @@ void GameScene::NormalUpdate(void)
 
 	//終了した当たり判定の消去
 	CollisionManager::GetInstance().Sweep();
-
-
-
-#ifdef _DEBUG
-	//デバッグ処理
-	DebagUpdate();
-#endif // _DEBUG
-
-
 }
 
 void GameScene::NormalDraw(void)
@@ -205,14 +195,6 @@ void GameScene::NormalDraw(void)
 	CharacterManager::GetInstance().Draw2D();
 
 	UIManager::GetInstance().Draw();
-
-	//UI2DManager::GetInstance().Draw();
-#ifdef _DEBUG
-	//デバッグ処理
-	DebagDraw();
-	//CardSystem::GetInstance().DrawDebug();
-#endif // _DEBUG
-
 }
 
 void GameScene::DirectionDraw(void)
@@ -302,12 +284,10 @@ void GameScene::DirectionUpdate(void)
 	}
 
 	CharacterManager::GetInstance().Update();
-	//UpdateIntensiveLineAnim();
 }
 
 void GameScene::ClearDirectionUpdate(void)
 {
-
 	//敵の演出が終わったらシーン遷移
 	if (CharacterManager::GetInstance().GetIsEndClearDirection())
 	{
@@ -347,48 +327,3 @@ void GameScene::Skip(void)
 	scnMng_.StartFadeOut();
 	isSkippingDirection_ = true;
 }
-#ifdef _DEBUG
-void GameScene::DebagUpdate(void)
-{
-	// シーン遷移
-	InputManager& ins = InputManager::GetInstance();
-	if (ins.IsTrgDown(KEY_INPUT_SPACE))
-	{
-		//scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
-		ChangeUpdatePhase(UPDATE_PHASE::CLEAR_DIRECTION);
-	}
-	frame_++;
-}
-
-void GameScene::DebagDraw(void)
-{
-	//DrawBox(
-	//	0,
-	//	0,
-	//	Application::SCREEN_SIZE_X,
-	//	Application::SCREEN_SIZE_Y,
-	//	0x00ff00,
-	//	true
-	//);
-
-	//DrawFormatString(
-	//	0, 0,
-	//	0x000000,
-	//	L"GameScene"
-	//);
-
-	//constexpr float r = 40.0f;
-	//float angle = DX_PI_F * 2.0f * static_cast<float>(frame_ % 360) / 60.0f;
-
-	//CardSystem::GetInstance().DrawDebug();
-
-	////円運動を描画
-	//DrawCircleAA(
-	//	320+cos(angle) * r, 
-	//	240+sin(angle) * r,
-	//	r, 
-	//	32, 
-	//	0xff8888, 
-	//	true);
-}
-#endif // _DEBUG

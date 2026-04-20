@@ -27,6 +27,7 @@ void CharacterManager::Init(void)
 	SceneManager::GetInstance().GetCamera().lock()->SetFollow(&player_->GetTransform(),{0.0f,playerCenterLocalPosY ,0.0f});
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::START_DIRECTION);
 
+	//プレイヤーと敵のターゲットをお互いに設定
 	player_->SetLogicTargetCharacter(enemy_);
 	enemy_->SetLogicTargetCharacter(player_);
 	player_->Init();

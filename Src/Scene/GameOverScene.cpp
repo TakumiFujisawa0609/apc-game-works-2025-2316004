@@ -38,11 +38,9 @@ void GameOverScene::Load(void)
 
 void GameOverScene::Init(void)
 {
-
 	//BGMçƒê∂
 	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_OVER, SoundManager::PLAYTYPE::LOOP);
-	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, static_cast<int>(SoundManager::TYPE::BGM));
-
+	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, SoundManager::TYPE::BGM);
 }
 
 void GameOverScene::NormalUpdate(void)

@@ -118,9 +118,7 @@ bool Utility3D::IsHitSphereCapsule(
     {
         ret = false;
     }
-
     return ret;
-
 }
 
 

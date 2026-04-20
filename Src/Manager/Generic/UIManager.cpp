@@ -43,7 +43,6 @@ void UIManager::DrawAttackBottonAndDodgeBotton(void)
 {
 
 	Vector2F btnPos = INIT_BOTTON_POS;
-	//btnPos.y += BOTTON_SIZE;
 	ButtonUIManager::GetInstance().DrawFromLeftTop(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, btnPos, BOTTON_SIZE);
 	Vector2F strPos = { btnPos.x + BOTTON_SIZE ,btnPos.y + FONT_SIZE / 2.0f };
 	DrawStringFToHandle(strPos.x , strPos.y, L"攻撃(カード使用)", 0x000000, fontHandle_);

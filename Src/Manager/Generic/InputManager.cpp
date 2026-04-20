@@ -22,7 +22,6 @@ void InputManager::Init(void)
 	InputManager::GetInstance().Add(KEY_INPUT_Z);
 
 	//プレイヤー操作関連
-	//---------------------------------------------------
 	//移動キー
 	InputManager::GetInstance().Add(KEY_INPUT_W);
 	InputManager::GetInstance().Add(KEY_INPUT_A);
@@ -55,7 +54,6 @@ void InputManager::Init(void)
 	InputManager::GetInstance().Add(KEY_INPUT_RCONTROL);
 	//カードチャージ
 	InputManager::GetInstance().Add(KEY_INPUT_R);
-	//---------------------------------------------------
 
 
 	InputManager::MouseInfo info;
@@ -290,7 +288,6 @@ void InputManager::SetJPadInState(JOYPAD_NO jpNo)
 		stateNow.ButtonsNew[i] = stateNew.ButtonsNew[i];
 
 		stateNow.IsOld[i] = stateNow.IsNew[i];
-		//stateNow.IsNew[i] = stateNow.ButtonsNew[i] == 128 || stateNow.ButtonsNew[i] == 255;
 		stateNow.IsNew[i] = stateNow.ButtonsNew[i] > 0;
 
 		stateNow.IsTrgDown[i] = stateNow.IsNew[i] && !stateNow.IsOld[i];

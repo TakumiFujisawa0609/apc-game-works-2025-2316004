@@ -17,7 +17,7 @@ public:
 
 	struct CARD_STATUS
 	{
-		int pow;			//カードの強さ
+		int pow;		//カードの強さ
 		CARD_TYPE type;	//カードの種類
 
 		//カードの強さと種類の比較
@@ -77,7 +77,5 @@ protected:
 	Vector2F cardPos_;
 	//カードナンバー座標
 	Vector2F numPos_;
-
-private:
 };
 

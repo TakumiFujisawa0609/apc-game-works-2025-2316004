@@ -161,7 +161,7 @@ private:
 	static constexpr Vector2 HPBAR_SIZE = { 200,30 };
 
 	//敵ヒットSEボリューム
-	static constexpr int ENEMY_HIT_SE_VOL = 80;
+	static constexpr float ENEMY_HIT_SE_VOL = 0.8f;
 
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 15;

@@ -35,12 +35,7 @@ void CardDeck::Load(void)
 
 void CardDeck::Init(void)
 {
-	//std::vector<CardBase::CARD_STATUS>cardDeck = DataBank::GetInstance().GetCardDatas(charaType_);
-	//int size = static_cast<int>(cardDeck.size());
-	//for (int i = 0; i < size; i++)
-	//{
-	//	AddDrawPile(cardDeck[i]);
-	//}
+	//カードデータの読み込み
 	LoadCardData();
 
 	//カードUIの選択番号が1番なので1に初期化する
@@ -93,20 +88,12 @@ void CardDeck::AddDrawPile(const CardBase::CARD_STATUS& _status)
 	std::unique_ptr<CardBase>initCard = std::make_unique<CardBase>(_status);
 	drawPile_.emplace_back(std::move(card)); 
 	initDeck_.emplace_back(std::move(initCard));
-	
 }
 
 void CardDeck::LoadCardData(void)
 {
-
-	//std::ifstream ifs("Data/Json/CardData.json");
-	//if (!ifs.is_open())
-	//{
-	//	std::cerr << "ファイルが開けません" << std::endl;
-	//	return;
-	//}
-	//ifs >> j;
 	std::string charaTypeStr;
+	//キャラタイプを判断して、jsonのどこからデータを取るか決める
 	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = "Player" : charaTypeStr = "Enemy";
 	using json = nlohmann::json;
 	json j=UtilityCommon::LoadJsonData("Data/Json/CardData.json");

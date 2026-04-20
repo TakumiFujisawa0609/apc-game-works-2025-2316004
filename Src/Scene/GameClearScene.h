@@ -30,7 +30,7 @@ private:
 	static constexpr float EASING_TIME = 1.0f;
 
 	//BGMの大きさ
-	static constexpr int BGM_VOL = 80;
+	static constexpr float BGM_VOL = 0.8f;
 
 	//イージングY座標上限
 	static constexpr float BACK_TITLE_STRING_POS_EASE_LIMIT = 40;

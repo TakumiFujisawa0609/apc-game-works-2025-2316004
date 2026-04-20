@@ -68,7 +68,8 @@ ResourceManager::ResourceManager(void)
 		{"model",{ResourceData::TYPE::MODEL,Application::PATH_MODEL}},
 		{"image",{ResourceData::TYPE::IMG,Application::PATH_IMAGE}},
 		{"images",{ResourceData::TYPE::IMGS,Application::PATH_IMAGE}},
-		{"effect",{ResourceData::TYPE::EFFEKSEER,Application::PATH_EFFECT}}
+		{"effect",{ResourceData::TYPE::EFFEKSEER,Application::PATH_EFFECT}},
+		{"sound",{ResourceData::TYPE::SOUND,Application::PATH_SOUND}}
 	};
 }
 

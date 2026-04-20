@@ -35,7 +35,7 @@ Vector2 Utility2D::MapToWorldPos(const Vector2& mapPos, const Vector2& mapSize)
 
 bool Utility2D::IsHitCircles(const Vector2& circlePos1, const float radius1, const Vector2& circlePos2, const float radius2)
 {
-    // 中心点間のX・Y距離を計算
+    // 中心点間のXY距離を計算
     float dx = circlePos1.x - circlePos2.x;  // X方向の差
     float dy = circlePos1.y - circlePos2.y;  // Y方向の差
 

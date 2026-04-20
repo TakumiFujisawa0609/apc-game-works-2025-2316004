@@ -50,7 +50,7 @@ public:
 private:
 
 	//BGM
-	static constexpr int BGM_GAME_VOL = 50;
+	static constexpr float BGM_GAME_VOL = 0.5f;
 
 	//集中線シェーダー関連
 	//定数バッファの個数
@@ -134,13 +134,4 @@ private:
 
 	//演出スキップ
 	void Skip(void);
-	
-#ifdef _DEBUG
-	//デバッグ処理
-	void DebagUpdate(void);
-	void DebagDraw(void);
-#endif // _DEBUG
-
-
-
 };

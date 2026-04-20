@@ -20,12 +20,12 @@ public:
 	static constexpr int SCREEN_HALF_Y = SCREEN_SIZE_Y / 2;
 
 	// データパス関連
-	//-------------------------------------------
 	static const std::wstring PATH_IMAGE;
 	static const std::wstring PATH_MODEL;
 	static const std::wstring PATH_ANIM_PLAYER;
 	static const std::wstring PATH_ANIM_ENEMY;
 	static const std::wstring PATH_EFFECT;
+	static const std::wstring PATH_SOUND;
 	static const std::wstring PATH_SOUND_BGM;
 	static const std::wstring PATH_SOUND_SE;
 	static const std::wstring PATH_FONT;
@@ -33,7 +33,6 @@ public:
 	static const std::wstring PATH_JSON;
 	static const std::wstring PATH_CSV;
 	static const std::wstring PATH_SHADER;
-	//-------------------------------------------
 	
 	/// @brief 初期化
 	/// @param  

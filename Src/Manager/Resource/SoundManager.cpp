@@ -148,36 +148,39 @@ bool SoundManager::IsPlay(const SRC _src) const
     return CheckSoundMem(it->second.handleId) == 1;
 }
 
-void SoundManager::SetSoundVolumeSRC(const SRC _src, const int _volumePercent)
+void SoundManager::SetSoundVolumeSRC(const SRC _src, const float _volumePercent)
 {
-    constexpr int VOLUME_MAX = 255;  //最大音量
-    constexpr int DIV = 100;         //音量の割合を計算するための定数
+    constexpr float VOLUME_MAX = 255.0f;  //最大音量
+    constexpr float DIV = 1.0f;         //音量の割合を計算するための定数
     const auto& lPair = loadedMap_.find(_src);
     if (lPair == loadedMap_.end())
     {
         return; // 見つからない場合は処理しない
     }
+	int volume = static_cast<int>(VOLUME_MAX * _volumePercent);
     //音量設定
-	ChangeVolumeSoundMem(VOLUME_MAX * _volumePercent / DIV, lPair->second.handleId);
+	ChangeVolumeSoundMem(volume, lPair->second.handleId);
 }
 
-void SoundManager::SetSystemVolume(const int _volumePercent, const int _type)
+void SoundManager::SetSystemVolume(const float _volumePercent, const TYPE _type)
 {    
-    constexpr int VOLUME_MAX = 255;  //最大音量
-    constexpr int DIV = 100;         //音量の割合を計算するための定数
+    constexpr float VOLUME_MAX = 255.0f;  //最大音量
+    constexpr float DIV = 1.0f;         //音量の割合を計算するための定数
 
+	const int type = static_cast<int>(_type);
     //音量設定
-    volume_[_type] = _volumePercent;
+    volume_[type] = _volumePercent;
    
     //音量調整
 	for (const auto& pair : loadedMap_)
 	{
         //種類が異なるものはスキップ
-		if (pair.second.type != static_cast<TYPE>(_type)) 
+		if (pair.second.type != _type)
         {
 			continue;
 		}
-        ChangeVolumeSoundMem(VOLUME_MAX * volume_[_type] / DIV, pair.second.handleId);
+        int volume = static_cast<int>(VOLUME_MAX * volume_[type]);
+        ChangeVolumeSoundMem(volume, pair.second.handleId);
 	}
 }
 

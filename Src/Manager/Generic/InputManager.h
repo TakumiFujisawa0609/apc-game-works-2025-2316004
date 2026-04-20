@@ -274,6 +274,7 @@ private:
 	// コントローラの入力情報を更新する
 	void SetJPadInState(JOYPAD_NO jpNo);
 
+	// キーの長押し時間を更新する
 	void UpdateKeepBtnTime(const int no,const int i);
 
 };

@@ -110,12 +110,12 @@ public:
 	/// @brief 
 	/// @param _src 
 	/// @param _volumePercent 
-	void SetSoundVolumeSRC(const SRC _src, const int _volumePercent);
+	void SetSoundVolumeSRC(const SRC _src, const float _volumePercent);
 
 	/// @brief 音量の設定
 	/// @param _volumePercent 音量パーセント
 	/// @param _type サウンド種類
-	void SetSystemVolume(const int _volumePercent, const int _type);
+	void SetSystemVolume(const float _volumePercent, const TYPE _type);
 
 	/// @brief 音量を返す
 	/// @param _type サウンド種類
@@ -123,6 +123,13 @@ public:
 	const int GetSoundTypeVolume(const int _type) const { return volume_[_type]; }
 
 private:
+	enum class STATUS
+	{
+		PITCH,		//ピッチ調整
+		TIME_STRETCH,	//タイムストレッチ
+		LOOP_START,		//ループ開始
+		LOOP_END,		//ループ終了
+	};
 
 	struct SoundResource
 	{
@@ -135,7 +142,8 @@ private:
 	static SoundManager* instance_;
 	
 	//ボリューム
-	int volume_[TYPE_MAX];
+	//int volume_[TYPE_MAX];
+	float volume_[TYPE_MAX];
 
 	//管理対象
 	std::unordered_map<SRC, SoundResource> resourcesMap_;
