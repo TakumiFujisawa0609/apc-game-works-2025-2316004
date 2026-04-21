@@ -69,11 +69,11 @@ void CardUIBase::ChangeReactActionCard(void)
 void CardUIBase::PlayCardSound(void)
 {
 	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(0);
-	SoundManager::SRC winRes = SoundManager::SRC::NONE;
+	ResourceManager::SRC winRes = ResourceManager::SRC::NONE;
 	if (result == CardSystem::BATTLE_RESULT::BE_DRAW || result == CardSystem::BATTLE_RESULT::GIVE_DRAW 
 		|| result == CardSystem::BATTLE_RESULT::NONE || result == CardSystem::BATTLE_RESULT::FAILURE_USE_BE_REFLECTED)
 	{
-		winRes = SoundManager::SRC::CARD_BE_REFLECTED;
+		winRes = ResourceManager::SRC::CARD_BE_REFLECTED_SE;
 	}
 	else if (result == CardSystem::BATTLE_RESULT::SUCCESS_CARD_BREAK)
 	{

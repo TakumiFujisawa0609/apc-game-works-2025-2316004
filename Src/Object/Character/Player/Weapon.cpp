@@ -34,8 +34,8 @@ void Weapon::Load(void)
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::KEY_BLADE_HIT_EFF).handleId_,
 		EffectController::EFF_TYPE::KEY_BLADE_HIT);
 
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::PLAYER_HIT_SE, ATK_SE_PITCH);
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::PLAYER_ATTACK_SE, ATK_SE_PITCH);
+	resMng_.Load(ResourceManager::SRC::PLAYER_HIT_SE);
+	resMng_.Load(ResourceManager::SRC::PLAYER_ATTACK_SE);
 
 }
 

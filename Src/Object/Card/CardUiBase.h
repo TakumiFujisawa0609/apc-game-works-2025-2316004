@@ -214,8 +214,8 @@ protected:
 	//リソースマネージャ
 	ResourceManager& resMng_;
 
-	//カード買ったとき流すサウンド
-	SoundManager::SRC cardWinRes_;
+	//カード勝ったとき流すサウンド
+	ResourceManager::SRC cardWinRes_;
 
 	////配列にカードデータを入れる
 	//virtual void AddCardUIData(void) = 0;

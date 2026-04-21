@@ -51,9 +51,9 @@ EnemyCardAction::~EnemyCardAction(void)
 
 void EnemyCardAction::Load(void)
 {
-	soundMng_.LoadResource(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
-	soundMng_.LoadResource(SoundManager::SRC::ENEMY_CHARGE_SE);
-	soundMng_.LoadResource(SoundManager::SRC::ENEMY_STOMP_SE);
+	resMng_.Load(ResourceManager::SRC::ENEMY_JUMP_LAND_SE);
+	resMng_.Load(ResourceManager::SRC::ENEMY_CHARGE_SE);
+	resMng_.Load(ResourceManager::SRC::ENEMY_STOMP_SE);
 
 	charaObj_.LoadEnemyRock();
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::BLAST).handleId_,EffectController::EFF_TYPE::BLAST);
@@ -139,7 +139,7 @@ void EnemyCardAction::ChangeJumpAtk(void)
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP_ATK), false);
 	jumpChargeCnt_ = 0.0f;
 
-	soundMng_.Play(SoundManager::SRC::ENEMY_CHARGE_SE, SoundManager::PLAYTYPE::LOOP);
+	soundMng_.Play(ResourceManager::SRC::ENEMY_CHARGE_SE, SoundManager::PLAYTYPE::LOOP);
 	//ジャンプ攻撃処理
 
 	SetAtk(JUMP_ATK);
@@ -196,7 +196,7 @@ void EnemyCardAction::UpdateStomp(void)
 		const bool isPlayStompSE_ = soundMng_.IsPlay(SoundManager::SRC::ENEMY_STOMP_SE);
 		if (!isPlayStompSE_)
 		{
-			soundMng_.Play(SoundManager::SRC::ENEMY_STOMP_SE, SoundManager::PLAYTYPE::BACK);
+			soundMng_.Play(ResourceManager::SRC::ENEMY_STOMP_SE, SoundManager::PLAYTYPE::BACK);
 		}
 
 		//地面から岩の玉を生成してあらゆる方向に飛ばす
@@ -294,9 +294,9 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//サウンド再生
-		if (!soundMng_.IsPlay(SoundManager::SRC::ENEMY_JUMP_LAND_SE))
+		if (!soundMng_.IsPlay(ResourceManager::SRC::ENEMY_JUMP_LAND_SE))
 		{
-			soundMng_.Play(SoundManager::SRC::ENEMY_JUMP_LAND_SE, SoundManager::PLAYTYPE::BACK);
+			soundMng_.Play(ResourceManager::SRC::ENEMY_JUMP_LAND_SE, SoundManager::PLAYTYPE::BACK);
 			effect_->Play(EffectController::EFF_TYPE::BLAST, atk_.pos, {},{ atk_.atkRadius,atk_.atkRadius,atk_.atkRadius},true);
 		}
 		effect_->SetScale(EffectController::EFF_TYPE::BLAST, static_cast<int>(EFF_TYPE::BLAST),

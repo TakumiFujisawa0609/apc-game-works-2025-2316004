@@ -77,8 +77,7 @@ void Player::Load(void)
 	action_->Load();
 	weapon_->Load();
 
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::ENEMY_HIT_SE);
-	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::ENEMY_HIT_SE, ENEMY_HIT_SE_VOL);
+	resMng_.Load(SoundManager::SRC::ENEMY_HIT_SE);
 }
 
 void Player::Init(void)

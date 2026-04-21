@@ -4,7 +4,8 @@
 #include "Resource.h"
 #include "ResourceManager.h"
 
-ResourceManager::ResourceManager(void)
+ResourceManager::ResourceManager(void):
+	dummy_(ResourceData::TYPE::NONE,L"")
 {
 	//素材の登録文字列とSRCの結び付け
 	resStr_ = {
@@ -60,7 +61,30 @@ ResourceManager::ResourceManager(void)
 		{ "E_JUMP_CHARGE_EFF" ,SRC::E_JUMP_CHARGE_EFF},
 		{ "E_DEATH_EFF" ,SRC::E_DEATH_EFF},
 		{ "RELOAD_EFF" ,SRC::RELOAD_EFF},
-		{ "RELOAD_END_EFF" ,SRC::RELOAD_END_EFF}
+		{ "RELOAD_END_EFF" ,SRC::RELOAD_END_EFF},
+		//BGM
+		{"TITLE_BGM",SRC::TITLE_BGM},
+		{"GAME_BGM",SRC::GAME_BGM},
+		{"GAME_CLEAR_BGM",SRC::GAME_CLEAR_BGM},
+		{"GAME_OVER_BGM",SRC::GAME_OVER_BGM},
+		{"PLAYER_FOOT_SE",SRC::PLAYER_FOOT_SE},
+		{"ENEMY_FOOT_SE",SRC::ENEMY_FOOT_SE},
+		{"ENEMY_STOMP_SE",SRC::ENEMY_STOMP_SE},
+		{"ENEMY_CHARGE_SE",SRC::ENEMY_CHARGE_SE},
+		{"ENEMY_JUMP_LAND_SE",SRC::ENEMY_JUMP_LAND_SE},
+		{"ENEMY_HIT_SE",SRC::ENEMY_HIT_SE},
+		{"PLAYER_ATTACK_SE",SRC::PLAYER_ATTACK_SE},
+		{"PLAYER_DODGE_SE",SRC::PLAYER_DODGE_SE},
+		{"PLAYER_HIT_SE",SRC::PLAYER_HIT_SE},
+		{"CARD_PUT_SE",SRC::CARD_PUT_SE},
+		{"CARD_MOVE_SE",SRC::CARD_MOVE_SE},
+		{"CARD_BE_REFLECTED_SE",SRC::CARD_BE_REFLECTED_SE},
+		{"CARD_BREAK_SE",SRC::CARD_BREAK_SE},
+		{"CARD_RELOAD_SE",SRC::CARD_RELOAD_SE},
+		{"CARD_RELOAD_FINISH_SE",SRC::CARD_RELOAD_FINISH_SE},
+		{"MOVE_BTN_SE",SRC::MOVE_BTN_SE},
+		{"DESIDE_BTN_SE",SRC::DESIDE_BTN_SE},
+		{"GAME_START_SE",SRC::GAME_START_SE}
 	};
 
 	//リソース種類と文字列の結び付け
@@ -101,6 +125,35 @@ void ResourceManager::Init(void)
 
 			res = std::make_unique<ResourceData>(type, path,
 				numX, numY, sizeX, sizeY);
+		}
+		else if(type== ResourceData::TYPE::SOUND)
+		{
+			ResourceData::SOUND_TYPE soundType = ResourceData::SOUND_TYPE::NONE;
+			if (data["soundtype"] == "BGM")
+			{
+				soundType = ResourceData::SOUND_TYPE::BGM;
+				path = Application::PATH_SOUND_BGM + UtilityCommon::GetWStringFromString(data["handle"]);
+			}
+			else if (data["soundtype"] == "SE")
+			{
+				soundType = ResourceData::SOUND_TYPE::SE;
+				path = Application::PATH_SOUND_SE + UtilityCommon::GetWStringFromString(data["handle"]);
+			}
+			float pitch = 0.0f;
+			float timeStretch = 1.0f;
+			float volume = 1.0f;
+			float loopStartTime = 0.0f;
+			float loopEndTime = 0.0f;
+
+			//サウンドの情報を読み込む。存在しない場合はデフォルト値を入れる
+			data.contains("pitch") ? pitch = data["pitch"] : pitch = 0.0f;
+			data.contains("timeStretch") ? timeStretch = data["timeStretch"] : timeStretch = 1.0f;
+			data.contains("volume") ? volume = data["volume"] : volume = 1.0f;
+			data.contains("loopStartTime") ? loopStartTime = data["loopStartTime"] : loopStartTime = 0.0f;
+			data.contains("loopEndTime") ? loopEndTime = data["loopEndTime"] : loopEndTime = 0.0f;
+
+			//サウンドの情報を渡す
+			res = std::make_unique<ResourceData>(type, path, soundType, pitch, timeStretch, volume, loopStartTime, loopEndTime);
 		}
 		resourcesMap_.emplace(src, std::move(res));
 

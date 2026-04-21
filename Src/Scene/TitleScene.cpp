@@ -41,10 +41,10 @@ void TitleScene::Load(void)
 	imgTitleLogo = resMng_.Load(ResourceManager::SRC::TITLE_LOGO).handleId_;
 	menuController_->LoadFont(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE);
 
-	soundMng_.LoadResource(SoundManager::SRC::TITLE_BGM);
-	soundMng_.LoadResource(SoundManager::SRC::MOVE_BTN_SE);
-	soundMng_.LoadResource(SoundManager::SRC::DESIDE_BTN_SE);
-	soundMng_.LoadResource(SoundManager::SRC::GAME_START_SE);
+	resMng_.Load(ResourceManager::SRC::TITLE_BGM);
+	resMng_.Load(ResourceManager::SRC::MOVE_BTN_SE);
+	resMng_.Load(ResourceManager::SRC::DESIDE_BTN_SE);
+	resMng_.Load(ResourceManager::SRC::GAME_START_SE);
 
 	ButtonUIManager::GetInstance().Load();
 
@@ -102,7 +102,7 @@ void TitleScene::Init(void)
 		i++;
 	}
 
-	SoundManager::GetInstance().Play(SoundManager::SRC::TITLE_BGM,SoundManager::PLAYTYPE::LOOP);
+	SoundManager::GetInstance().Play(ResourceManager::SRC::TITLE_BGM,SoundManager::PLAYTYPE::LOOP);
 }
 
 void TitleScene::ChangeState(const TITLE_STATE& _state)
@@ -203,12 +203,12 @@ void TitleScene::UpdateMenu(void)
 	// シーン遷移
 	if (inputMngS_.IsTrgDown(INPUT_EVENT::UP)||inputMng_.IsTrgDown(KEY_INPUT_W))
 	{
-		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->SubSelectMenuNum();
 	}
 	else if (inputMngS_.IsTrgDown(INPUT_EVENT::DOWN) || inputMng_.IsTrgDown(KEY_INPUT_S))
 	{
-		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->AddSelectMenuNum();
 	}
 	selectNum_ = menuController_->GetSelectMenuNum();
@@ -216,9 +216,9 @@ void TitleScene::UpdateMenu(void)
 	//OKボタンが押されたら
 	if (inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
-		SoundManager::SRC se;
+		ResourceManager::SRC se;
 		//ゲームスタート以外のボタンなら決定音、ゲームスタートならゲームスタート音を鳴らす
-		selectNum_ != static_cast<int>(TITLE_BTN::START_GAME) ? se = SoundManager::SRC::DESIDE_BTN_SE : se = SoundManager::SRC::GAME_START_SE;
+		selectNum_ != static_cast<int>(TITLE_BTN::START_GAME) ? se = ResourceManager::SRC::DESIDE_BTN_SE : se = ResourceManager::SRC::GAME_START_SE;
 		soundMng_.Play(se, SoundManager::PLAYTYPE::BACK);
 		ChangeState(static_cast<TITLE_STATE>(selectNum_));
 	}
@@ -270,12 +270,12 @@ void TitleScene::UpdateYesNo(void)
 {
 	if (inputMngS_.IsTrgDown(INPUT_EVENT::LEFT) || inputMng_.IsTrgDown(KEY_INPUT_A))
 	{
-		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->SetYesNoUpdate(true);
 	}
 	else if (inputMngS_.IsTrgDown(INPUT_EVENT::RIGHT) || inputMng_.IsTrgDown(KEY_INPUT_D))
 	{
-		soundMng_.Play(SoundManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->SetYesNoUpdate(false);
 	}
 }

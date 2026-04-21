@@ -1,5 +1,5 @@
 #pragma once
-#include "../Manager/Resource/SoundManager.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "../Base/ActionBase.h"
 class Run :
     public ActionBase
@@ -27,7 +27,7 @@ public:
 	float footSECnt_;
 
 	//‘«‰¹‰¹Œ¹
-	SoundManager::SRC footSESrc_;
+	ResourceManager::SRC footSESrc_;
 
     //‘«‰¹Ä¶ŠÔŠu
 	float  footSeDis_;

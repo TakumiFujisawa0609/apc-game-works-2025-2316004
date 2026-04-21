@@ -2,6 +2,7 @@
 #include <DxLib.h>
 #include"../Common/Quaternion.h"
 
+class ResourceManager;
 class SceneManager;
 class SoundManager;
 class ActionController;
@@ -96,7 +97,7 @@ public:
 
 	/// @brief のけぞりカウントのセット
 	/// @param _flinchTime のけぞりカウント
-	void SetFlinchCnt(const float _flinchTime) { flinchCnt_ = _flinchTime; }
+	void SetFlinchCnt(float _flinchTime) { flinchCnt_ = _flinchTime; }
 
 	/// @brief 攻撃ステータスの取得
 	/// @param  
@@ -139,6 +140,8 @@ protected:
 	SceneManager& scnMng_;
 	//サウンドマネージャ
 	SoundManager& soundMng_;
+	//リソースマネージャ
+	ResourceManager& resMng_;
 
 	//アクションコントローラー
 	ActionController& actionCntl_;

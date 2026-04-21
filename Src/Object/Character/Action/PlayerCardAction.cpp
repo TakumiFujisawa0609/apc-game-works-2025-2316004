@@ -51,10 +51,14 @@ PlayerCardAction::~PlayerCardAction(void)
 
 void PlayerCardAction::Load(void)
 {
-	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
-	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, CARD_RELOAD_VOL);
-	soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
-	soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
+	//soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
+	////soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, CARD_RELOAD_VOL);
+	//soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
+	//soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
+
+	resMng_.Load(ResourceManager::SRC::CARD_RELOAD_SE);
+	resMng_.Load(ResourceManager::SRC::CARD_RELOAD_FINISH_SE);
+	resMng_.Load(ResourceManager::SRC::CARD_PUT_SE);
 
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_EFF).handleId_, EffectController::EFF_TYPE::RELOAD);
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_END_EFF).handleId_, EffectController::EFF_TYPE::RELOAD_END);
@@ -72,7 +76,7 @@ void PlayerCardAction::Init(void)
 	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		//手札に移動
-		soundMng_.Play(SoundManager::SRC::CARD_PUT, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::CARD_PUT_SE, SoundManager::PLAYTYPE::BACK);
 		cardPresent_.PutCard();
 		DecideAttackOne();
 	}
@@ -106,7 +110,7 @@ void PlayerCardAction::Release(void)
 	//リロード中にアクションが中断された場合、リロードエフェクトと音を停止して解放、UIを通常に戻す
 	if (actType_ == CARD_ACT_TYPE::RELOAD)
 	{
-		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
+		soundMng_.Stop(ResourceManager::SRC::CARD_RELOAD_SE);
 		effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
 		effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
 		actType_ = CARD_ACT_TYPE::NONE;
@@ -127,7 +131,7 @@ void PlayerCardAction::Release(void)
 void PlayerCardAction::ReleaseReloadResource(void)
 {
 	//カードリロード音停止
-	soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
+	soundMng_.Stop(ResourceManager::SRC::CARD_RELOAD_SE);
 	effect_->Stop(EffectController::EFF_TYPE::RELOAD, 0);
 	effect_->Delete(EffectController::EFF_TYPE::RELOAD, 0);
 	actType_ = CARD_ACT_TYPE::NONE;
@@ -304,8 +308,8 @@ void PlayerCardAction::UpdateReload(void)
 		effect_->Play(EffectController::EFF_TYPE::RELOAD_END, trans.pos, trans.quaRot, { EFF_SCL ,EFF_SCL ,EFF_SCL });
 
 		//カードリロード音停止、完了音再生
-		soundMng_.Stop(SoundManager::SRC::CARD_RELOAD);
-		soundMng_.Play(SoundManager::SRC::CARD_RELOAD_FINISH,SoundManager::PLAYTYPE::BACK);
+		soundMng_.Stop(ResourceManager::SRC::CARD_RELOAD_SE);
+		soundMng_.Play(ResourceManager::SRC::CARD_RELOAD_FINISH_SE,SoundManager::PLAYTYPE::BACK);
 
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 	}
@@ -369,8 +373,7 @@ void PlayerCardAction::ChangeReload(void)
 
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::CARD_RELOAD), true, RELOAD_START_STEP, RELOAD_END_STEP);
 	//リロード音再生
-	soundMng_.Play(SoundManager::SRC::CARD_RELOAD, SoundManager::PLAYTYPE::LOOP);
-
+	soundMng_.Play(ResourceManager::SRC::CARD_RELOAD_SE, SoundManager::PLAYTYPE::LOOP);
 
 	const Transform& trans = charaObj_.GetTransform();
 	effect_->Play(EffectController::EFF_TYPE::RELOAD, trans.pos, trans.quaRot, { RELOD_EFF_SCL,RELOD_EFF_SCL,RELOD_EFF_SCL }, true);
@@ -390,7 +393,7 @@ void PlayerCardAction::ChangeComboAction(void)
 	//攻撃可能かつコンボ攻撃可能なら攻撃段階を上げる
 	if (IsAttackable() && IsCanComboAttack())
 	{
-		soundMng_.Play(SoundManager::SRC::CARD_PUT, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::CARD_PUT_SE, SoundManager::PLAYTYPE::BACK);
 		if (attackStageNum_ == ATTACK_ONE)
 		{
 			ChangeCardAction(CARD_ACT_TYPE::ATTACK_TWO);

@@ -28,7 +28,7 @@ GameClearScene::GameClearScene(void):
 
 GameClearScene::~GameClearScene(void)
 {
-	soundMng_.Stop(SoundManager::SRC::GAME_CLEAR);
+	soundMng_.Stop(ResourceManager::SRC::GAME_CLEAR_BGM);
 }
 
 void GameClearScene::Load(void)
@@ -38,15 +38,14 @@ void GameClearScene::Load(void)
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	//BGMÉçÅ[Éh
-	soundMng_.GetInstance().LoadResource(SoundManager::SRC::GAME_CLEAR);
-	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, SoundManager::TYPE::BGM);
+	resMng_.Load(ResourceManager::SRC::GAME_CLEAR_BGM);
 }
 
 void GameClearScene::Init(void)
 {
 
 	//BGMçƒê∂
-	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_CLEAR, SoundManager::PLAYTYPE::LOOP);
+	soundMng_.GetInstance().Play(ResourceManager::SRC::GAME_CLEAR_BGM, SoundManager::PLAYTYPE::LOOP);
 
 	easing_ = std::make_unique<Easing>();
 

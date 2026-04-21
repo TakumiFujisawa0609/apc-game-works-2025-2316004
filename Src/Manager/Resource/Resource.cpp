@@ -79,9 +79,11 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path
 	handleIds_(nullptr)
 {
 	AddFunc();
+
+	//サウンドの状態設定関数の表に、状態に応じた関数を追加する
 	if(pitch_!=0.0f){setCreateFunc_[SET_SOUND_STATUS::PITCH] = [this]() { SetCreateSoundPitchRate(pitch_); };}
 	if(timeStretch_!=1.0f){setCreateFunc_[SET_SOUND_STATUS::TIME_STRETCH] = [this]() { SetCreateSoundTimeStretchRate(timeStretch_); }; }
-	if(loopStartTime_!=0.0f || loopEndTime_!=0.0f){ setCreateFunc_[SET_SOUND_STATUS::LOOP_START] = [this]() { SetCreateSoundLoopAreaTimePos(loopStartTime_, loopEndTime_); }; }
+	if(loopEndTime_!=0.0f || loopStartTime_<loopEndTime_){ setCreateFunc_[SET_SOUND_STATUS::LOOP_START] = [this]() { SetCreateSoundLoopAreaTimePos(loopStartTime_, loopEndTime_); }; }
 }
 
 ResourceData::~ResourceData(void)
@@ -92,54 +94,6 @@ ResourceData::~ResourceData(void)
 void ResourceData::Load(void)
 {
 	loadFunc_[type_]();
-	//switch (type_)
-	//{
-	//case ResourceData::TYPE::IMG:
-	//	// 画像
-	//	handleId_ = LoadGraph(path_.c_str());
-	//	break;
-
-	//case ResourceData::TYPE::IMGS:
-	//	// 複数画像
-	//	handleIds_ = new int[numX_ * numY_];
-	//	LoadDivGraph(
-	//		path_.c_str(),
-	//		numX_ * numY_,
-	//		numX_, numY_,
-	//		sizeX_, sizeY_,
-	//		&handleIds_[0]);
-	//	break;
-
-	//case ResourceData::TYPE::MODEL:
-	//	// モデル
-	//	handleId_ = MV1LoadModel(path_.c_str());
-	//	break;
-
-	//case ResourceData::TYPE::EFFEKSEER:
-	//	//エフェクト
-	//	handleId_ = LoadEffekseerEffect(path_.c_str());
-	//	break;
-
-	//case ResourceData::TYPE::FONT:
-	//	//フォント
-	//	handleId_ = AddFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
-	//	break;
-
-	//case ResourceData::TYPE::VERTEX_SHADER:
-	//	//頂点シェーダー
-	//	handleId_ = LoadVertexShader(path_.c_str());
-	//	break;
-
-	//case ResourceData::TYPE::PIXEL_SHADER:
-	//	//ピクセルシェーダー
-	//	handleId_ = LoadPixelShader(path_.c_str());
-	//	break;
-
-	//case ResourceData::TYPE::SOUND:
-	//	//音声
-	//	handleId_ = LoadSoundMem(path_.c_str());
-	//	break;
-	//}
 
 	//読み込みできたか確認
 	assert(handleId_ != -1); // 読み込みに失敗してたら即終了
@@ -149,54 +103,6 @@ void ResourceData::Load(void)
 void ResourceData::Release(void)
 {
 	releaseFunc_[type_]();
-	//switch (type_)
-	//{
-	//case ResourceData::TYPE::IMG:
-	//	DeleteGraph(handleId_);
-	//	break;
-
-	//case ResourceData::TYPE::IMGS:
-	//{
-	//	int num = numX_ * numY_;
-	//	for (int i = 0; i < num; i++)
-	//	{
-	//		DeleteGraph(handleIds_[i]);
-	//	}
-	//	delete[] handleIds_;
-	//}
-	//	break;
-
-	//case ResourceData::TYPE::MODEL:
-	//{
-	//	MV1DeleteModel(handleId_);
-	//	auto ids = duplicateModelIds_;
-	//	for (auto id : ids)
-	//	{
-	//		MV1DeleteModel(id);
-	//	}
-	//}
-	//	break;
-
-	//case ResourceData::TYPE::EFFEKSEER:
-	//	DeleteEffekseerEffect(handleId_);
-	//	break;
-
-	//case ResourceData::TYPE::FONT:
-	//	RemoveFontResourceEx(path_.c_str(), FR_PRIVATE, NULL);
-	//	break;
-
-	//case ResourceData::TYPE::VERTEX_SHADER:
-	//	DeleteShader(handleId_);
-	//	break;
-
-	//case ResourceData::TYPE::PIXEL_SHADER:
-	//	DeleteShader(handleId_);
-	//	break;
-
-	//case ResourceData::TYPE::SOUND:
-	//	DeleteSoundMem(handleId_);
-	//	break;
-	//}
 	
 }
 
@@ -264,16 +170,19 @@ void ResourceData::LoadModel(void)
 
 void ResourceData::LoadSound(void)
 {
-	//if (pitch_ != 1.0f){SetCreateSoundPitchRate(pitch_);}
-	//else if (timeStretch_ != 1.0f){SetCreateSoundTimeStretchRate(timeStretch_);}
-	//else if(loopStartTime_!=0.0f || loopEndTime_!=0.0f){ SetCreateSoundLoopAreaTimePos(loopStartTime_, loopEndTime_);}
-
+	constexpr float VOLUME_MAX = 255.0f;  //最大音量
 	//サウンドの状態設定関数の表から、状態に応じた関数を呼び出す
 	for (const auto& func : setCreateFunc_)
 	{
 		func.second();
 	}
 	handleId_ = LoadSoundMem(path_.c_str());
+
+	//読み込んだサウンドの音量を、設定されている音量にする
+	if(volume_!=1.0f)
+	{
+		ChangeVolumeSoundMem(static_cast<int>(VOLUME_MAX * volume_), handleId_);
+	}
 }
 
 void ResourceData::LoadFont(void)

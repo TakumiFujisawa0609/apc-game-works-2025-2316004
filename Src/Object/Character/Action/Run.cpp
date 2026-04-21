@@ -24,7 +24,7 @@ Run::~Run(void)
 
 void Run::Load(void)
 {
-	SoundManager::GetInstance().LoadResource(footSESrc_);
+	resMng_.Load(footSESrc_);
 }
 
 void Run::Init(void)

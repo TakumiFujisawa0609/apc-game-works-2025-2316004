@@ -80,6 +80,38 @@ public:
 		E_DEATH_EFF,
 		RELOAD_EFF,
 		RELOAD_END_EFF,
+
+		//サウンド
+		//BGM
+		TITLE_BGM,					//タイトルBGM
+		GAME_BGM,					//ゲームBGM
+		GAME_CLEAR_BGM,					//ゲームクリアBGM
+		GAME_OVER_BGM,					//ゲームオーバーBGM
+
+		//SE
+		//足音
+		PLAYER_FOOT_SE,				//プレイヤー足音
+		ENEMY_FOOT_SE,				//エネミー足音
+		ENEMY_STOMP_SE,				//エネミー爆発音
+		ENEMY_CHARGE_SE,			//エネミーチャージ音
+		ENEMY_JUMP_LAND_SE,			//エネミージャンプ着地音
+		ENEMY_HIT_SE,				//エネミーヒット着地音
+		PLAYER_ATTACK_SE,			//プレイヤー攻撃音
+		PLAYER_DODGE_SE,			//プレイヤー回避音
+		PLAYER_HIT_SE,				//プレイヤーヒット音
+
+		//カード関連
+		CARD_PUT_SE	,					//カードを引く(アクション開始時)
+		CARD_MOVE_SE,					//カード移動
+		CARD_BE_REFLECTED_SE,			//カード弾かれ音
+		CARD_BREAK_SE,					//カード弾き音(カードに勝った)
+		CARD_RELOAD_SE,				//カードリロード音
+		CARD_RELOAD_FINISH_SE,			//カードリロード終了音
+
+		//ボタン
+		MOVE_BTN_SE,				//移動ボタン
+		DESIDE_BTN_SE,				//決定ボタン
+		GAME_START_SE				//ゲームスタート音
 	};
 
 	struct RES_INFO
@@ -109,6 +141,17 @@ public:
 	/// @param src 複製したいリソース
 	/// @return 複製したリソース
 	int LoadModelDuplicate(SRC src);
+
+
+	const ResourceData GetResource(const SRC src) const
+	{
+		const auto it = loadedMap_.find(src);
+		if (it == loadedMap_.end())
+		{
+			return dummy_;
+		}
+		return it->second;
+	}
 
 private:
 	//カード番号画像

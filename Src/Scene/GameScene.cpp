@@ -95,9 +95,9 @@ void GameScene::Init(void)
 
 	stage_->Init();
 	skyDome_->Init();
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::GAME_BGM);
+	resMng_.Load(SoundManager::SRC::GAME_BGM);
 	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
-	SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, SoundManager::TYPE::BGM);
+	//SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, SoundManager::TYPE::BGM);
 
 }
 
