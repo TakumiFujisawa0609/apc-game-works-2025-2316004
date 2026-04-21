@@ -192,11 +192,6 @@ private:
 	void UpdateReloadWait(void)override;	//リロード待機(リロードゲージのチャージ)
 	void UpdateReload(void);				//リロード
 
-
-	//void AddCardUIData(void)override;		//カードUIデータの追加
-
-
-
 	//すべてのカードの移動
 	void MoveCardAll(const float& _moveTImeMax);
 	//カードUI描画オブジェクト更新

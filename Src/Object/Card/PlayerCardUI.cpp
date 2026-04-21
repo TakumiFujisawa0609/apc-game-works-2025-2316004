@@ -63,6 +63,8 @@ void PlayerCardUI::Load(void)
 	//soundMng_.LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
 	//soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
 	resMng_.Load(ResourceManager::SRC::CARD_MOVE_SE);
+	resMng_.Load(ResourceManager::SRC::CARD_BE_REFLECTED_SE);
+	resMng_.Load(ResourceManager::SRC::CARD_PUT_SE);
 	cardWinRes_ = ResourceManager::SRC::CARD_BREAK_SE;
 	imgRevolverArrow_ = resMng_.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
 
@@ -659,6 +661,7 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::RBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 
 }
+
 
 std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleCurrentIt(void)
 {

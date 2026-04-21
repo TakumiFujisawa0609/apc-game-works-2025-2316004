@@ -268,8 +268,8 @@
       "type": "sound",
       "soundtype": "BGM",
       "name": "GAME_BGM",
-      "handle": "GameSceneK.mp3"
-      "volume": 0.6"
+      "handle": "GameSceneK.mp3",
+      "volume": 0.6
     },
     {
       "type": "sound",

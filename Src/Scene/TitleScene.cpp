@@ -27,7 +27,7 @@ TitleScene::TitleScene(void):
 
 TitleScene::~TitleScene(void)
 {
-	soundMng_.Stop(SoundManager::SRC::TITLE_BGM);
+	soundMng_.Stop(ResourceManager::SRC::TITLE_BGM);
 }
 
 void TitleScene::Load(void)

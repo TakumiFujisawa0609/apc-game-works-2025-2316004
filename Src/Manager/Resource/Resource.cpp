@@ -13,12 +13,12 @@ ResourceData::ResourceData(void):
 	sizeY_(-1),
 	handleId_(-1),
 	handleIds_(nullptr),
-	soundType_(SOUND_TYPE::NONE),
+	soundType_(SOUND_TYPE::MAX),
 	pitch_(0.0f),
 	timeStretch_(0.0f),
 	volume_(0.0f),
-	loopStartTime_(0.0f),
-	loopEndTime_(0.0f)
+	loopStartTime_(0),
+	loopEndTime_(0)
 {
 
 }
@@ -32,12 +32,12 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path):
 	sizeY_(-1),
 	handleId_(-1),
 	handleIds_(nullptr),
-	soundType_(SOUND_TYPE::NONE),
+	soundType_(SOUND_TYPE::MAX),
 	pitch_(0.0f),
 	timeStretch_(0.0f),
 	volume_(0.0f),
-	loopStartTime_(0.0f),
-	loopEndTime_(0.0f)
+	loopStartTime_(0),
+	loopEndTime_(0)
 {
 	AddFunc();
 }
@@ -51,12 +51,12 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int nu
 	sizeY_(sizeY),
 	handleId_(-1),
 	handleIds_(nullptr),
-	soundType_(SOUND_TYPE::NONE),
+	soundType_(SOUND_TYPE::MAX),
 	pitch_(0.0f),
 	timeStretch_(0.0f),
 	volume_(0.0f),
-	loopStartTime_(0.0f),
-	loopEndTime_(0.0f)
+	loopStartTime_(0),
+	loopEndTime_(0)
 {
 	AddFunc();
 }
@@ -66,7 +66,7 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path
 	, const float pitch
 	, const float timeStretch
 	, const float volume
-	, const float loopStartTime, const float loopEndTime):
+	, const int loopStartTime, const int loopEndTime):
 	type_(type),
 	path_(path),
 	soundType_(soundType),
@@ -81,9 +81,21 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path
 	AddFunc();
 
 	//サウンドの状態設定関数の表に、状態に応じた関数を追加する
-	if(pitch_!=0.0f){setCreateFunc_[SET_SOUND_STATUS::PITCH] = [this]() { SetCreateSoundPitchRate(pitch_); };}
-	if(timeStretch_!=1.0f){setCreateFunc_[SET_SOUND_STATUS::TIME_STRETCH] = [this]() { SetCreateSoundTimeStretchRate(timeStretch_); }; }
-	if(loopEndTime_!=0.0f || loopStartTime_<loopEndTime_){ setCreateFunc_[SET_SOUND_STATUS::LOOP_START] = [this]() { SetCreateSoundLoopAreaTimePos(loopStartTime_, loopEndTime_); }; }
+	if(pitch_!=0.0f)
+	{
+		setCreateFunc_[SET_SOUND_STATUS::PITCH] = [this]() { SetCreateSoundPitchRate(pitch_); };
+		setReturnStatusFunc_[SET_SOUND_STATUS::PITCH] = [this]() { SetCreateSoundPitchRate(0.0f);  };
+	}
+	if(timeStretch_!=1.0f)
+	{
+		setCreateFunc_[SET_SOUND_STATUS::TIME_STRETCH] = [this]() {SetCreateSoundTimeStretchRate(timeStretch_); }; 
+		setReturnStatusFunc_[SET_SOUND_STATUS::TIME_STRETCH] = [this]() { SetCreateSoundTimeStretchRate(1.0f); };
+	}
+	if(loopEndTime_!=0|| loopStartTime_<loopEndTime_)
+	{ 
+		setCreateFunc_[SET_SOUND_STATUS::LOOP_START] = [this]() { SetCreateSoundLoopAreaTimePos(loopStartTime_, loopEndTime_); };
+		setReturnStatusFunc_[SET_SOUND_STATUS::LOOP_START] = [this]() { SetCreateSoundLoopAreaTimePos(0, 0); };
+	}
 }
 
 ResourceData::~ResourceData(void)
@@ -178,6 +190,10 @@ void ResourceData::LoadSound(void)
 	}
 	handleId_ = LoadSoundMem(path_.c_str());
 
+	for (const auto& func : setReturnStatusFunc_)
+	{
+		func.second();
+	}
 	//読み込んだサウンドの音量を、設定されている音量にする
 	if(volume_!=1.0f)
 	{

@@ -23,20 +23,16 @@ void EnemyCardUI::Load(void)
 	CardUIBase::Load();
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::ENEMY_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = -1;	//敵はリロードカードを使わないので読み込まない
-	//soundMng_.LoadResource(SoundManager::SRC::CARD_BREAK_SE);
 	resMng_.Load(ResourceManager::SRC::CARD_BREAK_SE);
-	//cardWinRes_ = SoundManager::SRC::CARD_BREAK;
 	cardWinRes_ = ResourceManager::SRC::CARD_BREAK_SE;
 }
 
 void EnemyCardUI::Init(void)
 {
 
-	//AddCardUIData();
 	LoadCardData();
 	//カード初期化
 	InitCardUI();
-	//soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_BREAK, CARD_BREAK_SOUND_VOLUME);
 	//状態遷移登録
 	changeMoveState_ = {
 	{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
@@ -124,6 +120,7 @@ void EnemyCardUI::UpdateDrawCardUI(void)
 		card->Update();
 	}
 }
+
 
 void EnemyCardUI::InitCardUI(void)
 {

@@ -240,7 +240,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	{
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 
-		soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
+		soundMng_.Stop(ResourceManager::SRC::ENEMY_CHARGE_SE);
 
 		const int JUMP_CHARGE_EFF_ARRAY = 0;
 		effect_->Stop(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);

@@ -128,7 +128,7 @@ void ResourceManager::Init(void)
 		}
 		else if(type== ResourceData::TYPE::SOUND)
 		{
-			ResourceData::SOUND_TYPE soundType = ResourceData::SOUND_TYPE::NONE;
+			ResourceData::SOUND_TYPE soundType = ResourceData::SOUND_TYPE::MAX;
 			if (data["soundtype"] == "BGM")
 			{
 				soundType = ResourceData::SOUND_TYPE::BGM;
@@ -205,6 +205,33 @@ int ResourceManager::LoadModelDuplicate(SRC src)
 
 	return duId;
 }
+
+const ResourceData ResourceManager::GetResource(const SRC src) const
+{
+	const auto it = loadedMap_.find(src);
+	if (it == loadedMap_.end())
+	{
+		return dummy_;
+	}
+	return it->second;
+}
+
+std::vector<const ResourceData*> ResourceManager::GetSoundResources(ResourceData::SOUND_TYPE _soundType) const
+{
+	std::vector<const ResourceData*>retArray;
+	for (auto& load : loadedMap_)
+	{
+		if (load.second.type_ == ResourceData::TYPE::SOUND && load.second.soundType_ == _soundType)
+		{
+			retArray.push_back(&load.second);
+		}
+	}
+
+	return retArray;
+}
+
+
+
 
 
 

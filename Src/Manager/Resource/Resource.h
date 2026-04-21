@@ -24,9 +24,9 @@ public:
 	};
 	enum class SOUND_TYPE
 	{
-		NONE,
 		BGM,
 		SE,
+		MAX
 	};
 	enum class SET_SOUND_STATUS
 	{
@@ -52,7 +52,7 @@ public:
 		, const float pitch = 0.0f
 		, const float timeStretch = 1.0f
 		, const float volume = 1.0f
-		, const float loopStartTime = 0.0f, const float loopEndTime = 0.0f);
+		, const int loopStartTime = 0.0f, const int loopEndTime = 0.0f);
 
 	/// @brief デストラクタ
 	/// @param  
@@ -87,12 +87,12 @@ public:
 	int sizeY_;
 
 	//サウンド用
-	SOUND_TYPE soundType_;
-	float pitch_;
-	float timeStretch_;
-	float volume_;
-	float loopStartTime_;
-	float loopEndTime_;
+	SOUND_TYPE soundType_;		//サウンドの種類(BGM, SE)
+	float pitch_;				//サウンドのピッチ調整値
+	float timeStretch_;			//サウンドのタイムストレッチ値
+	float volume_;				//サウンドの音量
+	LONGLONG loopStartTime_;	//サウンドのループ開始時間(1秒=1000000)
+	LONGLONG loopEndTime_;		//サウンドのループ終了時間(1秒=1000000)
 
 
 	// モデル複製用
@@ -106,7 +106,9 @@ public:
 
 	//サウンドの状態設定関数の表
 	std::unordered_map < SET_SOUND_STATUS, std::function<void(void)>>setCreateFunc_;
-	std::unordered_map < SET_SOUND_STATUS, std::function<void(void)>>setPlayFunc_;
+
+	//サウンドの状態を元に戻す関数の表
+	std::unordered_map < SET_SOUND_STATUS, std::function<void(void)>>setReturnStatusFunc_;
 
 	//関数ポインタの追加
 	void AddFunc(void);

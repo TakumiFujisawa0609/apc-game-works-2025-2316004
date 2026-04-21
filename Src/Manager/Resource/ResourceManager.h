@@ -142,16 +142,16 @@ public:
 	/// @return 複製したリソース
 	int LoadModelDuplicate(SRC src);
 
+	/// @brief ロード済みリソースの取得
+	/// @param src 
+	/// @return 
+	const ResourceData GetResource(const SRC src) const;
 
-	const ResourceData GetResource(const SRC src) const
-	{
-		const auto it = loadedMap_.find(src);
-		if (it == loadedMap_.end())
-		{
-			return dummy_;
-		}
-		return it->second;
-	}
+	/// @brief サウンドリソースのイテレータの取得
+	/// @param _soundType BGM、SEなどのサウンドの種類
+	/// @return 
+	std::vector<const ResourceData*> GetSoundResources(ResourceData::SOUND_TYPE _soundType)const;
+
 
 private:
 	//カード番号画像

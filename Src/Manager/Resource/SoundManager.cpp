@@ -23,13 +23,13 @@ SoundManager::~SoundManager(void)
 
 void SoundManager::Release(void)
 {
-    if (loadedMap_.empty())return;
-    for (auto& p : loadedMap_)
-    {
-        DeleteSoundMem(p.second.handleId);
-    }
+    //if (loadedMap_.empty())return;
+    //for (auto& p : loadedMap_)
+    //{
+    //    DeleteSoundMem(p.second.handleId);
+    //}
 
-    loadedMap_.clear();
+    //loadedMap_.clear();
 }
 
 void SoundManager::Init(void)
@@ -134,7 +134,7 @@ void SoundManager::Play(const SRC _src, const PLAYTYPE _playType)
 void SoundManager::Stop(const SRC _src)
 {
     //音源の停止
-    StopSoundMem(loadedMap_[_src].handleId);
+    StopSoundMem(resMng_.GetResource(_src).handleId_);
 }
 
 bool SoundManager::IsPlay(const SRC _src) const
@@ -151,14 +151,14 @@ void SoundManager::SetSoundVolumeSRC(const SRC _src, const float _volumePercent)
 {
     constexpr float VOLUME_MAX = 255.0f;  //最大音量
     constexpr float DIV = 1.0f;         //音量の割合を計算するための定数
-    const auto& lPair = loadedMap_.find(_src);
-    if (lPair == loadedMap_.end())
+	const ResourceData res = resMng_.GetResource(_src);
+    if (res.type_ == ResourceData::TYPE::NONE)
     {
         return; // 見つからない場合は処理しない
     }
 	int volume = static_cast<int>(VOLUME_MAX * _volumePercent);
     //音量設定
-	ChangeVolumeSoundMem(volume, lPair->second.handleId);
+	ChangeVolumeSoundMem(volume, res.handleId_);
 }
 
 void SoundManager::SetSystemVolume(const float _volumePercent, const TYPE _type)
@@ -170,16 +170,12 @@ void SoundManager::SetSystemVolume(const float _volumePercent, const TYPE _type)
     //音量設定
     volume_[type] = _volumePercent;
    
+	const auto sounds = resMng_.GetSoundResources(_type);
     //音量調整
-	for (const auto& pair : loadedMap_)
+	for (const auto& pair : sounds)
 	{
-        //種類が異なるものはスキップ
-		if (pair.second.type != _type)
-        {
-			continue;
-		}
         int volume = static_cast<int>(VOLUME_MAX * volume_[type]);
-        ChangeVolumeSoundMem(volume, pair.second.handleId);
+        ChangeVolumeSoundMem(volume, pair->handleId_);
 	}
 }
 
