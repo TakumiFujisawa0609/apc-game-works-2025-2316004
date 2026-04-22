@@ -16,13 +16,17 @@ public:
 	/// @param  
 	~GameClearScene(void)override;
 
-	/// @brief “Ç‚İ‚İ
+	/// @brief ƒ[ƒh
 	/// @param  
 	void Load(void) override;
 
-	/// @brief ‰Šú‰»ˆ—
+	/// @brief ‰Šú‰»
 	/// @param  
 	void Init(void) override;
+
+	/// @brief ‰ğ•ú
+	/// @param  
+	void Release(void)override;
 
 private:
 

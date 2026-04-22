@@ -46,9 +46,8 @@ void Weapon::Init(void)
 	//武器の相対回転初期化
 	localRot_ = { 0.0f,UtilityCommon::Deg2RadF(LOCAL_ANGLE_DEG.y),UtilityCommon::Deg2RadF(LOCAL_ANGLE_DEG.z) };
 
+	//タグ付け
 	tag_ = Collider::TAG::PLAYER1;
-
-	//MakeWeaponCollider();
 
 	//モデル情報初期化
 	trans_.scl = { WEAPON_SCL,WEAPON_SCL, WEAPON_SCL };
@@ -64,6 +63,7 @@ void Weapon::Update(void)
 		localPos_, localRot_
 	);
 
+	//モデル情報から角度を取得し、常に同期
 	trans_.quaRot = Quaternion::GetRotation(trans_.matRot);
 	trans_.Update();
 }
@@ -92,6 +92,7 @@ void Weapon::MakeWeaponCollider(void)
 	noneHitTag_.emplace(Collider::TAG::STAGE);
 	noneHitTag_.emplace(Collider::TAG::JUMP_ATK);
 	noneHitTag_.emplace(Collider::TAG::ROAR_ATK);
+
 	//カプセル形状作成
 	const VECTOR CAP_TOP = { 0.0f,CAPSULE_COL_HEIGHT ,0.0f };
 	std::unique_ptr<Capsule> geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, CAP_TOP, CAPSULE_COL_RADIUS);

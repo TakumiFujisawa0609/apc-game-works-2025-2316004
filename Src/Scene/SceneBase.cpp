@@ -4,6 +4,7 @@
 #include "../Manager/Generic/InputManager.h"
 #include "../Manager/Generic/InputManagerS.h"
 #include "../Manager/Resource/ResourceManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Utility/UtilityCommon.h"
 #include "SceneBase.h"
 
@@ -11,7 +12,8 @@ SceneBase::SceneBase(void) :
 	resMng_(ResourceManager::GetInstance()),
 	scnMng_(SceneManager::GetInstance()),
 	inputMng_(InputManager::GetInstance()),
-	inputMngS_(InputManagerS::GetInstance())
+	inputMngS_(InputManagerS::GetInstance()),
+	soundMng_(SoundManager::GetInstance())
 {
 	buttonFontHandle_ = -1;
 	loadingTime_ = -1;
@@ -40,6 +42,10 @@ void SceneBase::Draw(void)
 {
 	drawFunc_();
 	return;
+}
+void SceneBase::Release(void)
+{
+
 }
 
 void SceneBase::LoadingUpdate(void)

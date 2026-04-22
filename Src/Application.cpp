@@ -115,9 +115,8 @@ bool Application::Release(void)
 	//各クラスのリソースの破棄
 	InputManager::GetInstance().Release();
 	InputManagerS::GetInstance().Release();
-	ResourceManager::GetInstance().Release();
 	SceneManager::GetInstance().Release();
-	SoundManager::GetInstance().Release();
+	ResourceManager::GetInstance().Release();
 
 	//インスタンスの破棄
 	fontMng_->Destroy();

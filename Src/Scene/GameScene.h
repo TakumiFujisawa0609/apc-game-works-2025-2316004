@@ -47,6 +47,9 @@ public:
 	/// @param  
 	void Init(void) override;
 
+	/// @brief ‰ð•ú
+	/// @param  
+	void Release(void)override;
 private:
 
 	//BGM

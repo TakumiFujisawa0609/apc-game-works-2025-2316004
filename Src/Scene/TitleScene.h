@@ -90,6 +90,9 @@ public:
 	/// @param  
 	void Init(void) override;
 
+	//‰ð•ú
+	void Release(void)override;
+
 private:
 
 

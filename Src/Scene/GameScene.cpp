@@ -32,13 +32,10 @@ GameScene::GameScene(void)
 
 	postEffectScreen_ = MakeScreen(Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, true);
 
-	CharacterManager::CreateInstance();
-	CollisionManager::CreateInstance();
 	CardSystem::CreateInstance();
 	UIManager::CreateInstance();
-
-	//カードデータの開放
-	DataBank::GetInstance().ReleaseCardData();
+	CharacterManager::CreateInstance();
+	CollisionManager::CreateInstance();
 }
 
 GameScene::~GameScene(void)
@@ -47,7 +44,6 @@ GameScene::~GameScene(void)
 	CardSystem::GetInstance().Destroy();
 	CollisionManager::GetInstance().Destroy();
 	CharacterManager::GetInstance().Destroy();
-	SoundManager::GetInstance().Release();
 	UIManager::GetInstance().Destroy();
 }
 
@@ -96,9 +92,13 @@ void GameScene::Init(void)
 	stage_->Init();
 	skyDome_->Init();
 	resMng_.Load(SoundManager::SRC::GAME_BGM);
-	SoundManager::GetInstance().Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
-	//SoundManager::GetInstance().SetSystemVolume(BGM_GAME_VOL, SoundManager::TYPE::BGM);
+	soundMng_.Play(SoundManager::SRC::GAME_BGM, SoundManager::PLAYTYPE::LOOP);
 
+}
+
+void GameScene::Release(void)
+{
+	soundMng_.AllStop();
 }
 
 void GameScene::CheckSkip(void)

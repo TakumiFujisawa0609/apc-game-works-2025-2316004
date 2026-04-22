@@ -27,7 +27,6 @@ TitleScene::TitleScene(void):
 
 TitleScene::~TitleScene(void)
 {
-	soundMng_.Stop(ResourceManager::SRC::TITLE_BGM);
 }
 
 void TitleScene::Load(void)
@@ -103,6 +102,11 @@ void TitleScene::Init(void)
 	}
 
 	SoundManager::GetInstance().Play(ResourceManager::SRC::TITLE_BGM,SoundManager::PLAYTYPE::LOOP);
+}
+
+void TitleScene::Release(void)
+{
+	soundMng_.Stop(ResourceManager::SRC::TITLE_BGM);
 }
 
 void TitleScene::ChangeState(const TITLE_STATE& _state)

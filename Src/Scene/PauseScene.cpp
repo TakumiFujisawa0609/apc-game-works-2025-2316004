@@ -47,7 +47,10 @@ void PauseScene::Init(void)
 {	
 	
 }
+void PauseScene::Release(void)
+{
 
+}
 void PauseScene::NormalUpdate(void)
 {
 	if (inputMng_.IsTrgDown(KEY_INPUT_P))

@@ -148,9 +148,9 @@ public:
 	const ResourceData GetResource(const SRC src) const;
 
 	/// @brief サウンドリソースのイテレータの取得
-	/// @param _soundType BGM、SEなどのサウンドの種類
-	/// @return 
-	std::vector<const ResourceData*> GetSoundResources(ResourceData::SOUND_TYPE _soundType)const;
+	/// @param _soundType BGM、SEなどのサウンドの種類(指定なしでサウンドの種類をすべて渡す)
+	/// @return サウンドの配列
+	std::vector<const ResourceData*> GetSoundResources(ResourceData::SOUND_TYPE _soundType=ResourceData::SOUND_TYPE::MAX)const;
 
 
 private:

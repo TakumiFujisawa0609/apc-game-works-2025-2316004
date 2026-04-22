@@ -169,8 +169,6 @@ void SceneManager::PopScene()
 
 void SceneManager::Release(void)
 {
-	//全てのシーンで使うシングルトンクラスやリソースはここで解放する
-	DataBank::GetInstance().ReleaseCardData();
 	DataBank::Destroy();
 }
 
@@ -242,6 +240,8 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 	// 現在のシーンを解放（空チェックあり）
 	if (!scenes_.empty() && scenes_.back() != nullptr)
 	{
+		//シーンチェンジ時する前に解放(ゲーム終了時、Manager関連が解放されたのちにManagerの処理が通り、例外スローを避けるため)
+		scenes_.back()->Release();	
 		scenes_.back().reset();
 		scenes_.pop_back(); // シーンを使い終わったのでリストからも削除
 	}

@@ -28,7 +28,7 @@ GameClearScene::GameClearScene(void):
 
 GameClearScene::~GameClearScene(void)
 {
-	soundMng_.Stop(ResourceManager::SRC::GAME_CLEAR_BGM);
+
 }
 
 void GameClearScene::Load(void)
@@ -49,6 +49,11 @@ void GameClearScene::Init(void)
 
 	easing_ = std::make_unique<Easing>();
 
+}
+
+void GameClearScene::Release(void)
+{
+	soundMng_.Stop(ResourceManager::SRC::GAME_CLEAR_BGM);
 }
 
 void GameClearScene::NormalUpdate(void)

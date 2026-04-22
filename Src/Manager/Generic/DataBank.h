@@ -24,20 +24,6 @@ public:
 	/// @param _isFullScreen フルスクリーンフラグ(true:フルスクリーン　false:ウィンドウ)
 	void SetIsFullScreen(const bool _isFullScreen);
 
-	/// @brief カードデータの破棄
-	/// @param  
-	void ReleaseCardData(void);
-
-	/// @brief キャラクターのカードデータ保管
-	/// @param _charaType キャラクター種類
-	/// @param _status カードのステータス
-	void AddCardData(const CHARACTER_TYPE _charaType, CardBase::CARD_STATUS _status);
-
-	/// @brief カードデータの取得
-	/// @param _charaType 取得したいキャラクター
-	/// @return 初期カードデッキ
-	std::vector<CardBase::CARD_STATUS> GetCardDatas(const CHARACTER_TYPE _charaType);
-
 private:
 
 	/// @brief コンストラクタ
@@ -54,8 +40,5 @@ private:
 
 	//フルスクリーンの設定
 	bool isFullScreen_;
-
-	//キャラクターカードデッキデータ
-	std::unordered_map<CHARACTER_TYPE, std::vector<CardBase::CARD_STATUS>>characterCardDecks_;
 };
 

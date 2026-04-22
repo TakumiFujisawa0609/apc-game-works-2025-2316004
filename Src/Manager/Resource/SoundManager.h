@@ -14,14 +14,6 @@ public:
 	using SRC = ResourceManager::SRC;
 	using TYPE = ResourceData::SOUND_TYPE;
 
-	///// 音源種類
-	//enum class TYPE
-	//{
-	//	BGM,						//BGM
-	//	SE,							//効果音
-	//	MAX
-	//};
-
 	/// 再生種類
 	enum class PLAYTYPE
 	{
@@ -39,10 +31,6 @@ public:
 	/// @brief デストラクタ
 	/// @param  
 	~SoundManager(void)override;
-
-	/// @brief リソースの解放
-	/// @param  
-	void Release(void);
 
 	/// @brief 初期化
 	/// @param  
@@ -82,34 +70,18 @@ public:
 	/// @return 指定したサウンド種類の音量を返す
 	const float GetSoundTypeVolume(const int _type) const { return volume_[_type]; }
 
-private:
-	enum class STATUS
-	{
-		PITCH,		//ピッチ調整
-		TIME_STRETCH,	//タイムストレッチ
-		LOOP_START,		//ループ開始
-		LOOP_END,		//ループ終了
-	};
+	/// @brief 再生中のサウンドをすべて止める
+	/// @param  
+	void AllStop(void);
 
-	struct SoundResource
-	{
-		int handleId = -1;		//音源ハンドルID
-		TYPE type = TYPE::MAX;	//音源の種類
-		std::wstring path = L"";	//音源のパス
-	};		
+private:	
 	
 	//静的インスタンス
 	static SoundManager* instance_;
 	
 	//ボリューム
-	//int volume_[TYPE_MAX];
 	float volume_[TYPE_MAX];
 
-	//管理対象
-	std::unordered_map<SRC, SoundResource> resourcesMap_;
-
-	////読み込み済み
-	//std::unordered_map<SRC, SoundResource> loadedMap_;
 
 	//リソースマネージャー
 	ResourceManager& resMng_;
@@ -125,9 +97,6 @@ private:
 
 	// コピー代入演算子は使用不可
 	SoundManager& operator=(const SoundManager&) = delete;
-
-	//内部読み込み処理
-	bool _Load(const SRC _src, const float _pich = 0.0f);
 
 	//再生種類を取得
 	int GetPlayType(const PLAYTYPE _playType);

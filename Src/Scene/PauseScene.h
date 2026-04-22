@@ -33,7 +33,9 @@ public:
 	/// @param  
 	void Init(void)override;
 
-	//
+	/// @brief ‰ğ•ú
+	/// @param  
+	void Release(void);
 	
 	/// @brief XV
 	/// @param  

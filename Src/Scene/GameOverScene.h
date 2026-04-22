@@ -22,6 +22,10 @@ public:
 	/// @param  
 	void Init(void) override;
 
+	/// @brief ‰ð•ú
+	/// @param  
+	void Release(void);
+
 private:
 
 	//BGM‚Ì‘å‚«‚³

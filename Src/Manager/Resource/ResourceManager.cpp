@@ -221,9 +221,18 @@ std::vector<const ResourceData*> ResourceManager::GetSoundResources(ResourceData
 	std::vector<const ResourceData*>retArray;
 	for (auto& load : loadedMap_)
 	{
-		if (load.second.type_ == ResourceData::TYPE::SOUND && load.second.soundType_ == _soundType)
+		if (load.second.type_ == ResourceData::TYPE::SOUND)
 		{
-			retArray.push_back(&load.second);
+			//サウンドの種類に指定がなければサウンドをすべて渡す
+			if (_soundType == ResourceData::SOUND_TYPE::MAX)
+			{
+				retArray.push_back(&load.second);
+			}
+			//BGMかSEが指定されていれば、そのサウンドの種類のみを渡す
+			else if (load.second.soundType_ == _soundType)
+			{
+				retArray.push_back(&load.second);
+			}
 		}
 	}
 

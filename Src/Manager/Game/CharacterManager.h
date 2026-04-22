@@ -1,5 +1,6 @@
 #pragma once
 #include<vector>
+#include "../Object/Character/UIData/CharacterUIData.h"
 #include "../../Template/Singleton.h"
 
 class CharacterBase;
@@ -78,10 +79,20 @@ public:
 	void ChangeCharacterOverDirection(void);
 
 private:
+
+	//ÉvÉåÉCÉÑÅ[î‘çÜ
+	static constexpr int PLAYER_NO = static_cast<int>(CHARACTER_TYPE::PLAYER);
+
+	//ìGî‘çÜ
+	static constexpr int ENEMY_NO = static_cast<int>(CHARACTER_TYPE::ENEMY);
+
 	CharacterManager(void);
 	~CharacterManager(void)override;
-	std::shared_ptr<Player>player_;
-	std::shared_ptr<Enemy>enemy_;
+
+	
+	//std::shared_ptr<Player>player_;
+	//std::shared_ptr<Enemy>enemy_;
 	//std::vector<std::unique_ptr<CharacterBase>> characters_;
+	std::shared_ptr<CharacterBase> characters_[static_cast<int>(CHARACTER_TYPE::MAX)];
 };
 
