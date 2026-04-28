@@ -2,6 +2,7 @@
 
 struct IntVector3
 {
+
 public:
 
 	int x;
@@ -11,11 +12,13 @@ public:
 	/// @brief // コンストラクタ
 	/// @param  
 	IntVector3(void);
+
 	/// @brief // コンストラクタ
 	/// @param vX 
 	/// @param vY 
 	/// @param vZ 
 	IntVector3(int vX, int vY, int vZ);
+
 	/// @brief デストラクタ
 	/// @param  
 	~IntVector3(void);
@@ -31,5 +34,5 @@ public:
 	void operator/=(const int _value);
 
 private:
-};
 
+};

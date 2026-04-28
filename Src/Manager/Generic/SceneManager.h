@@ -14,6 +14,7 @@ class Camera;
 
 class SceneManager : public Singleton<SceneManager>
 {
+
 	//シングルトンにだけ共有する
 	friend class Singleton<SceneManager>; 
 
@@ -113,7 +114,6 @@ public:
 	/// @return 
 	const Fader& GetFader(void);
 
-
 	/// @brief  フェード
 	/// @param  
 	void Fade(void);
@@ -122,12 +122,15 @@ private:
 
 	//ライトの方向
 	static constexpr VECTOR LIGHT_DIR = { 0.0f, -1.0f, 1.0f };
+
 	//フォグの色
 	static constexpr int FOG_COLOR_R = 5;
 	static constexpr int FOG_COLOR_G = 5;
 	static constexpr int FOG_COLOR_B = 5;
+
 	// フォグの開始距離
 	static constexpr float FOG_START = 10000.0f;
+
 	// フォグの終了距離
 	static constexpr float FOG_END = 20000.0f;
 
@@ -159,12 +162,10 @@ private:
 	//フェードが終了したか
 	bool isEndFade_;
 
-	
-	// デフォルトコンストラクタをprivateにして、
-	// 外部から生成できない様にする
+	// コンストラクタ(シングルトンのためprivate)
 	SceneManager(void);
 
-	// デストラクタも同様
+	// デストラクタ
 	~SceneManager(void) = default;
 
 	//コピーの禁止
@@ -177,9 +178,6 @@ private:
 	// シーン遷移
 	void DoChangeScene(SCENE_ID sceneId);
 
-
-
 	//シーン遷移用フェード
 	void SceneChangeFade(void);
-
 };

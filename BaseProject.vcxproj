@@ -85,7 +85,6 @@
     <ClCompile Include="Src\Object\Common\Geometry\Line.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\Model.cpp" />
     <ClCompile Include="Src\Object\Common\Geometry\Sphere.cpp" />
-    <ClCompile Include="Src\Object\Grid.cpp" />
     <ClCompile Include="Src\Scene\PauseScene.cpp" />
     <ClCompile Include="Src\Manager\Generic\InputManagerS.cpp" />
     <ClCompile Include="Src\Manager\Resource\FontManager.cpp" />
@@ -179,7 +178,6 @@
     <ClInclude Include="Src\Object\Common\Geometry\Line.h" />
     <ClInclude Include="Src\Object\Common\Geometry\Model.h" />
     <ClInclude Include="Src\Object\Common\Geometry\Sphere.h" />
-    <ClInclude Include="Src\Object\Grid.h" />
     <ClInclude Include="Src\Scene\PauseScene.h" />
     <ClInclude Include="Src\Template\Singleton.h" />
     <ClInclude Include="Src\Manager\Generic\InputManagerS.h" />

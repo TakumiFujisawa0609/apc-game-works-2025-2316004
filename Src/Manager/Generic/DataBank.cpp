@@ -4,8 +4,6 @@
 
 void DataBank::Init(void)
 {
-	playerNum_ = 0;
-	maxPlayerNum_ = GetJoypadNum();
 	isFullScreen_ = false;
 }
 
@@ -16,8 +14,6 @@ void DataBank::SetIsFullScreen(const bool _isFullScreen)
 }
 
 DataBank::DataBank(void):
-	maxPlayerNum_(),
-	playerNum_(),
 	isFullScreen_(false)
 {
 

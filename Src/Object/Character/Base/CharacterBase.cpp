@@ -22,7 +22,6 @@
 CharacterBase::CharacterBase(void) :
 	movedPos_(Utility3D::VECTOR_ZERO),
 	moveDiff_(Utility3D::VECTOR_ZERO),
-	jumpPow_({Utility3D::VECTOR_ZERO}),
 	soundMng_(SoundManager::GetInstance()),
 	isMoveable_(true),
 	updatePhase_(UPDATE_PHASE::NONE),

@@ -80,12 +80,6 @@ public:
 	/// @brief 初期化
 	/// @param  
 	void Init(void)override;
-	//
-	///// @brief 更新
-	///// @param  
-	//void Update(void)override;
-
-
 	
 	/// @brief 描画
 	/// @param  
@@ -140,16 +134,22 @@ private:
 
 	//重力の割合
 	static constexpr float GRAVITY_PER = 20.0f;
+
 	//プレイヤー１のX座標
 	static constexpr float PLAYER_ONE_POS_X = -300.0f;
+
 	//座標の間隔
 	static constexpr float DISTANCE_POS = 50.0f;
+
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
+
 	//プレイヤーの大きさ
 	static constexpr VECTOR MODEL_SCL = { 1.0f,1.0f,1.0f };
+
 	//プレイヤーの初期のZ座標
 	static constexpr float INIT_POS_Z = -500.0f;
+
 	//プレイヤーナンバー(デッキクラスで判定用)
 	static constexpr int PLAYER_NUM = 0;
 
@@ -169,45 +169,17 @@ private:
 	//手のフレーム番号
 	static constexpr int HAND_FRAME_NO = 36;
 
-	//格納するカードの強さ
-	//static constexpr int CARD_POWS[20] = { 0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9 };
-	static constexpr CardBase::CARD_STATUS CARD_POWS[CARD_NUM_MAX] = {
-
-		{0,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{2,CARD_TYPE::ATTACK},
-		{3,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK},
-		{5,CARD_TYPE::ATTACK},
-		{6,CARD_TYPE::ATTACK},
-		{7,CARD_TYPE::ATTACK},
-		{8,CARD_TYPE::ATTACK},
-		{9,CARD_TYPE::ATTACK},
-		{0,CARD_TYPE::ATTACK},
-		{1,CARD_TYPE::ATTACK},
-		{2,CARD_TYPE::ATTACK},
-		{3,CARD_TYPE::ATTACK},
-		{4,CARD_TYPE::ATTACK}
-
-	};
-
-
-
-
-	//***********************************
-	//アニメーション関連
-	//***********************************
-
 	//当たり判定を行う範囲
 	static constexpr int COL_RANGE = 1;
 
 	//入力デバイス
 	InputManager::CONTROLL_TYPE cntl_;
+
 	//ゲームパッド番号
 	InputManager::JOYPAD_NO padNum_;
+
 	//カメラ
 	std::weak_ptr<Camera>camera_;
-
 
 	//メンバ変数
 	//--------------------------------------------
@@ -216,6 +188,7 @@ private:
 
 	//状態更新
 	std::function<void(void)>stateUpdate_;
+
 	//武器オブジェクト
 	std::unique_ptr<Weapon>weapon_;
 

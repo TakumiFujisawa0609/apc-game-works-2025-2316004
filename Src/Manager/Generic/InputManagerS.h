@@ -138,12 +138,15 @@ private:
 	using AnalogInputTable_t = std::unordered_map<ANALOG_INPUT_TYPE, std::function<bool(XINPUT_STATE&)>>;
 	AnalogInputTable_t analogInputTable_;
 
-	//コンストラクタ
-	InputManagerS(); 
+	//コンストラクタ(シングルトンのためprivate)
+	InputManagerS(void); 
+
+	//コピー禁止
 	InputManagerS(const InputManager& _copy) = delete;
 	InputManagerS& operator=(const InputManager& _copy) = delete;
+
 	//デストラクタ
-	~InputManagerS()override = default;
+	~InputManagerS(void)override = default;
 
 };
 

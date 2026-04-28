@@ -20,6 +20,7 @@ const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) c
 {
 	//配列数より大きい数字を指定されたら何も返さない
 	if (_cardPlayerNo >= ARRAY_NUM)return CardSystem::BATTLE_RESULT::NONE;
+
 	CardSystem::BATTLE_RESULT result = playerResult_[_cardPlayerNo];
 
 	return result;
@@ -29,18 +30,21 @@ void CardSystem::LoseInitPutCardPow(const int _playerNo)
 {
 	if (isFirstAtk_[_playerNo] == true)
 	{
-		//先出しが負けた場合の処理
-
 		//先出しのカードを消す
 		putCardPow_[FIRST_ATK] = CARD_POW_NONE;
 		isFirstAtk_[_playerNo] = false;
 		playerResult_[_playerNo] = BATTLE_RESULT::NONE;
+
 		//後出しのカードを先出しにする
 		if (putCardPow_[SECOND_ATK] != CARD_POW_NONE)
 		{
+			//先出のカードの強さに後だしのカードの強さを移動
 			putCardPow_[FIRST_ATK] = putCardPow_[SECOND_ATK];
+
+			//後だしカードの強さは初期化
 			putCardPow_[SECOND_ATK] = CARD_POW_NONE;
 
+			//後だしを先出判定にする
 			for(int i=0;i<ARRAY_NUM;i++)
 			{
 				if (i!=_playerNo)
@@ -69,59 +73,7 @@ void CardSystem::JudgeIsFirstAtk(const int _playerNo)
 #ifdef _DEBUG
 void CardSystem::DrawDebug(void)
 {
-	constexpr int CARD_POW_STR_OFF_X = 200;
-	constexpr int CARD_POW_STR_OFF_Y = 200;
-	constexpr int RESULT_POS_X = 200;
-	constexpr int RESULT_POS_Y = 250;
 
-	constexpr int COLOR = 0x000000;
-	constexpr int PLAYER = 0;
-	constexpr int ENEMY = 1;
-
-	DrawFormatString(CARD_POW_STR_OFF_X, CARD_POW_STR_OFF_Y,COLOR , L"CardPow(%d,%d)\nisFirst(%d,%d)"
-		, putCardPow_[0], putCardPow_[1], isFirstAtk_[0], isFirstAtk_[1]);
-	std::wstring resultStr[2];
-	for (int i = 0; i < 2; i++)
-	{
-		switch (playerResult_[i])
-		{
-		case CardSystem::BATTLE_RESULT::NONE:
-			resultStr[i] = L"NONE";
-			break;
-		case CardSystem::BATTLE_RESULT::SUCCESS_USE:
-			resultStr[i] = L"SUCCESS_USE";
-			break;
-		case CardSystem::BATTLE_RESULT::SUCCESS_USE_CONTINUE:
-			resultStr[i] = L"SUCCESS_USE_CONTINUE";
-			break;
-		case CardSystem::BATTLE_RESULT::SUCCESS_CARD_BREAK:
-			resultStr[i] = L"SUCCESS_CARD_BREAK";
-			break;
-		case CardSystem::BATTLE_RESULT::FAILURE_USE_BE_REFLECTED:
-			resultStr[i] = L"FAILURE_USE_BE_REFLECTED";
-			break;
-		case CardSystem::BATTLE_RESULT::SUCCESS_REFLECT:
-			resultStr[i] = L"SUCCESS_REFLECT";
-			break;
-		case CardSystem::BATTLE_RESULT::NOTHING:
-			resultStr[i] = L"NOTHING";
-			break;
-		case CardSystem::BATTLE_RESULT::GIVE_DRAW:
-			resultStr[i] = L"GIVE_DRAW";
-			break;
-		case CardSystem::BATTLE_RESULT::BE_DRAW:
-			resultStr[i] = L"BE_DRAW";
-			break;
-		case CardSystem::BATTLE_RESULT::RELOAD:
-			resultStr[i] = L"RELOAD";
-			break;
-		default:
-			break;
-		}
-	}
-
-	DrawFormatString(RESULT_POS_X, RESULT_POS_Y, COLOR, L"CardResult(%s,%s)"
-		, resultStr[PLAYER].c_str(), resultStr[ENEMY].c_str());
 }
 #endif // _DEBUG
 

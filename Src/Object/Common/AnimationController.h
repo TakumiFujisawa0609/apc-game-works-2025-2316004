@@ -25,34 +25,59 @@ public :
 		VECTOR movePow = {};
 	};
 
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param _modelId モデルID
+	/// @param _hipNum 尻のボーン番号
 	AnimationController(const int _modelId,const int _hipNum);
-	// デストラクタ
+
+	/// @brief デストラクタ
+	/// @param  
 	~AnimationController(void);
 
-	// アニメーション追加
+	/// @brief アニメーション追加
+	/// @param type 
+	/// @param speed 
+	/// @param modelId 
 	void Add(int type, const float speed, int modelId);
 
-	// アニメーション再生
+	/// @brief アニメーション再生
+	/// @param type アニメーションタイプ
+	/// @param isLoop ループするかしないか
+	/// @param startStep アニメーションスタート位置
+	/// @param endStep アニメーション終了位置
+	/// @param isStop 
+	/// @param isForce 
 	void Play(int type, bool isLoop = true, 
 		float startStep = 0.0f, float endStep = -1.0f, bool isStop = false, bool isForce = false);
 
-	//アニメーション更新 
+	/// @brief アニメーション更新 
+	/// @param _spdScl 
 	void Update(const float _spdScl=1.0f);
 
-	// アニメーション終了後に繰り返すループステップ
+	/// @brief アニメーション終了後に繰り返すループステップ
+	/// @param startStep スタート位置
+	/// @param endStep 終了位置
+	/// @param speed アニメーション速度
 	void SetEndLoop(float startStep, float endStep, float speed);
 
-	//アニメーションの途中からのループ再生
+	/// @brief アニメーションの途中からのループ再生
+	/// @param startStep スタート位置
+	/// @param endStep 終了位置
+	/// @param _spd アニメーション速度
 	void SetMidLoop(const float startStep,const float endStep,float _spd);
 
-	//アニメーション途中ループ終了
+	/// @brief アニメーション途中ループ終了
+	/// @param _spd 元に戻した時のアニメーション速度
 	void SetEndMidLoop(const float _spd);
 
-	// 再生中のアニメーション
+	/// @brief 再生中のアニメーションタイプの取得
+	/// @param  
+	/// @return 
 	int GetPlayType(void) const;
 
-	//アニメーションステップゲッタ
+	/// @brief アニメーションステップゲッタ
+	/// @param  
+	/// @return 
 	const float GetAnimStep(void)const;
 
 	/// @brief アニメーションスピードセッタ(イージングで、だんだん増やしていくのも可)
@@ -105,13 +130,17 @@ private :
 
 	//イージング
 	std::unique_ptr<Easing>easing_;
+
 	// モデルのハンドルID
 	int modelId_;
 
 	// 種類別のアニメーションデータ
 	std::map<int, Animation> animations_;
 
+	//再生の種類
 	int playType_;
+
+	//アニメーションのタイプ
 	Animation playAnim_;
 
 	// アニメーションをループするかしないか
@@ -136,6 +165,5 @@ private :
 
 	//モデルのヒップ番号
 	int hipNum_;
-
 };
 

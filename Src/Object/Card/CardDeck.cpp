@@ -15,7 +15,7 @@ CardDeck::CardDeck(CHARACTER_TYPE& _charaType, int _playerNum):
 	playerNum_(_playerNum),
 	duelNo_()
 {
-	charaTypeMap_= {
+	cardTypeMap_= {
 		{"Attack", CardBase::CARD_TYPE::ATTACK},
 	};
 }
@@ -94,21 +94,23 @@ void CardDeck::LoadCardData(void)
 {
 	std::string charaTypeStr;
 	//キャラタイプを判断して、jsonのどこからデータを取るか決める
-	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = "PlayerCards" : charaTypeStr = "EnemyCards";
+	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = PLAYER_CARD_PATH : charaTypeStr = ENEMY_CARD_PATH;
 	using json = nlohmann::json;
-	json j=UtilityCommon::LoadJsonData("Data/Json/CharaData.json");
+	json j=UtilityCommon::LoadJsonData(JSON_CARD_DATA_PATH);
 	std::vector<CardBase::CARD_STATUS> cards;
 
 	//カードデータの読み込み
 	for (const auto& card : j[charaTypeStr])
 	{
 		CardBase::CARD_STATUS status;
-		status.pow = card["pow"];
-		std::string typeStr = card["type"];
-		status.type = charaTypeMap_[typeStr];
+		status.pow = card[CARD_POWER_PATH];
+		std::string typeStr = card[CARD_TYPE_PATH];
+		status.type = cardTypeMap_[typeStr];
 		//配列の中に追加
 		AddDrawPile(status);
 	}
+
+	//末尾に必ずリロードカードを追加する
 	AddDrawPile(CardBase::CARD_STATUS{ RELOAD_CARD_POW,CardBase::CARD_TYPE::RELOAD });
 }
 
@@ -192,6 +194,7 @@ const CardBase::CARD_TYPE CardDeck::GetDrawCardType(void)
 void CardDeck::Reload(void)
 {
 	drawPile_.clear();
+	//手札にデッキを入れていく
 	for (const auto& deck : initDeck_)
 	{
 		CardBase* newCard = new CardBase(*deck);
@@ -208,7 +211,7 @@ void CardDeck::MoveChargeToUsingCard(void)
 	const int cardSize = static_cast<int>(usingCards_.size());
 	if (cardSize >= CHARGE_MAX)
 	{
-		//ここは絶対通らないが、エラーチェック
+		//ここは絶対通らない
 		return;
 	}
 	//チャージ札に移動

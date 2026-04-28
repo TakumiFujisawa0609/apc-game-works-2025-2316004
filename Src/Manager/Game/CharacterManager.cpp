@@ -9,7 +9,6 @@
 
 void CharacterManager::Load(void)
 {
-
 	for (auto& chara : characters_)
 	{
 		chara->Load();
@@ -39,7 +38,6 @@ void CharacterManager::Init(void)
 
 void CharacterManager::Update(void)
 {
-	//XV
 	for (const auto& chara : characters_)
 	{
 		chara->Update();
@@ -84,8 +82,6 @@ const bool CharacterManager::GetIsEndOverDirection(void) const
 }
 void CharacterManager::ChangeCharacterNormalUpdate(void)
 {
-	//player_->ChangeDirectToNormal();
-	//enemy_->ChangeDirectToNormal();
 	for (auto& chara : characters_)
 	{
 		chara->ChangeDirectToNormal();
@@ -93,8 +89,6 @@ void CharacterManager::ChangeCharacterNormalUpdate(void)
 }
 void CharacterManager::ChangeCharacterDirectionUpdate(void)
 {
-	//player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::DIRECTION);
-	//enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::DIRECTION);
 	for (auto& chara : characters_)
 	{
 		chara->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::DIRECTION);
@@ -103,8 +97,6 @@ void CharacterManager::ChangeCharacterDirectionUpdate(void)
 }
 void CharacterManager::ChangeCharacterClearDirection(void)
 {
-	//player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::CLEAR_DIRECTION);
-	//enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::CLEAR_DIRECTION);
 	for (const auto& chara : characters_)
 	{
 		chara->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::CLEAR_DIRECTION);
@@ -112,8 +104,6 @@ void CharacterManager::ChangeCharacterClearDirection(void)
 }
 void CharacterManager::ChangeCharacterOverDirection(void)
 {
-	//player_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::OVER_DIRECTION);
-	//enemy_->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::OVER_DIRECTION);
 	for (const auto& chara : characters_)
 	{
 		chara->ChangeUpdatePhase(CharacterBase::UPDATE_PHASE::OVER_DIRECTION);

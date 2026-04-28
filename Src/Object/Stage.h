@@ -12,18 +12,25 @@ public:
     //ステージのスケール
     static constexpr float STAGE_SCL = 30.0f;
     static constexpr float STAGE_SCL_Y = 0.1f;
+
     //壁のスケール
     static constexpr float WALL_SCL = 60.0f;
 
     //UVスケール
     static constexpr float STAGE_UV_SCL = 300.0f;
+
     //ステージのサイズ
     static constexpr float STAGE_SIZE = 200.0f * STAGE_SCL;
+
     //ステージの座標
     static constexpr VECTOR STAGE_POS = { 0.0f,0.0f,0.0f };
 
-
+	/// @brief コンストラクタ
+	/// @param  
 	Stage(void);
+
+	/// @brief デストラクタ
+	/// @param  
 	~Stage(void)override;
 
     /// @brief ロード
@@ -43,7 +50,7 @@ public:
     void Draw(void)override;
 
     /// @brief 当たった時の処理
-    /// @param _hitCol 
+    /// @param _hitCol 相手のコライダ
     void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 private:
 
@@ -51,7 +58,7 @@ private:
     Transform wallTrans_;
 
     //シェーダー関連
-    std::unique_ptr<ModelMaterial> material_;
-    std::unique_ptr<ModelRenderer> renderer_;
+    std::unique_ptr<ModelMaterial> material_;       //マテリアル
+    std::unique_ptr<ModelRenderer> renderer_;       //レンダラー
 };
 

@@ -252,18 +252,19 @@ private:
 
 	// パッド情報
 	JOYPAD_IN_STATE padInfos_[5];
-
-	// デフォルトコンストラクタをprivateにして、
-	// 外部から生成できない様にする
+	
+	//コンストラクタ(シングルトンのためprivate)
 	InputManager(void);
+
+	//コピー禁止
 	InputManager(const InputManager& _copy) = delete;
 	InputManager& operator=(InputManager& _copy) = delete;
 
+	//デストラクタ
 	~InputManager(void)override = default;
 
 	// 配列の中からキー情報を取得する
 	const InputManager::Info& Find(int key) const;
-
 
 	// 配列の中からマウス情報を取得する
 	const InputManager::MouseInfo& FindMouse(int key) const;
@@ -276,5 +277,4 @@ private:
 
 	// キーの長押し時間を更新する
 	void UpdateKeepBtnTime(const int no,const int i);
-
 };

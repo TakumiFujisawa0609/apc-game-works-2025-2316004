@@ -36,24 +36,6 @@ void Easing::SetEasing(const float t, const EASING_TYPE type)
     easingFuncTable_[type](t);
 }
 
-void Easing::SetReturnEasing(const float t, EASING_RETURN type)
-{
-    switch (type)
-    {
-    case Easing::EASING_RETURN::ELASTIC:
-        easingUpdate_ = [this, t](float) {return EaseBackElastic(t); };
-        break;
-    case Easing::EASING_RETURN::EPICYCLOID:
-        //easingUpdate_ = [this, t](float) {return EaseEpiCycloid(t); };
-        break;
-    case Easing::EASING_RETURN::HYPOCYCLOID:
-        //easingUpdate_ = [this, t](float) {return EaseHypoCycloid(t); };
-        break;
-    default:
-        break;
-    }
-}
-
 int Easing::EaseFunc(const int start, const int end, const float t, const EASING_TYPE type)
 {
     SetEasing(t, type);
@@ -362,18 +344,6 @@ float Easing::EaseCubicOut(const float t)
     qubic.graph_vertex = { -EASING_MAX,EASING_MAX };
     float ret = qubic.CubicFunc(t);
     return ret;
-}
-
-
-
-float Easing::EaseCubicInOut(const float start, const float end, const float t)
-{
-    return 0.0f;
-}
-
-float Easing::EaseCubicOutIn(const float start, const float end, const float t)
-{
-    return 0.0f;
 }
 
 float Easing::EaseExpo(const float t, const int expo)

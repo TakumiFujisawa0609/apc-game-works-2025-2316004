@@ -9,8 +9,11 @@
 class ResourceManager;
 class SoundManager : public Singleton<SoundManager>
 {
+
 	friend class Singleton<SoundManager>;
+
 public:
+
 	using SRC = ResourceManager::SRC;
 	using TYPE = ResourceData::SOUND_TYPE;
 
@@ -82,7 +85,6 @@ private:
 	//ボリューム
 	float volume_[TYPE_MAX];
 
-
 	//リソースマネージャー
 	ResourceManager& resMng_;
 
@@ -100,5 +102,4 @@ private:
 
 	//再生種類を取得
 	int GetPlayType(const PLAYTYPE _playType);
-
 };

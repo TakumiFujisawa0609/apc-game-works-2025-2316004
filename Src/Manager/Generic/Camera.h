@@ -6,16 +6,22 @@
 #include "../../Object/ObjectBase.h"
 #include "../Template/Singleton.h"
 #include "../Common/Easing.h"
+
 class Transform;
 class Easing;
 class Camera:public ObjectBase
 {
+
 	friend class Singleton<Camera>;
+
 public:
 
 	// カメラスピード(度)
 	static constexpr float SPEED = 1.0f;
-	static constexpr float SPEED_PAD = 0.0015f;	//カメラのスピードパッド時
+
+	//カメラのスピードパッド時
+	static constexpr float SPEED_PAD = 0.0015f;	
+
 	// カメラクリップ：NEAR
 	static constexpr float CAMERA_NEAR = 10.0f;
 
@@ -35,7 +41,6 @@ public:
 
 	// カメラのX回転上限度角
 	static constexpr float LIMIT_X_UP_RAD = 15.0f * (DX_PI_F / 180.0f);
-	//static constexpr float LIMIT_X_DW_RAD = 5.0f * (DX_PI_F / 180.0f);
 	static constexpr float LIMIT_X_DW_RAD = -30.0f * (DX_PI_F / 180.0f);
 
 	//ターゲットカメラ遷移時の補完時間
@@ -211,6 +216,7 @@ private:
 
 	//カメラの初期角度
 	static constexpr float DEFAULT_CAMERA_ANGLES_RAD_X = 30.0f;
+
 	//追従対象のフレームナンバー
 	static constexpr int FOLLOW_FRAME_NUM = 1;
 
@@ -222,6 +228,7 @@ private:
 
 	//プレイヤーの頭上位置
 	static constexpr VECTOR PLAYER_HEAD_POS = { 0.0f,160.0f,0.0f };
+
 	//敵の頭上位置
 	static constexpr VECTOR PLAYER_WAIST = { 0.0f,80.0f,0.0f };
 
@@ -277,10 +284,13 @@ private:
 
 	//演出カウント
 	float directionCnt_;
+
 	//イージング初期値
 	float startF2CPosZ_;
+
 	//イージング終端値
 	float goalF2CPosZ_;
+
 	//イージングカウント
 	float directionEaseCnt_;
 
@@ -333,23 +343,32 @@ private:
 
 	//追従対象フレーム座標
 	VECTOR followFramePos_;
+
 	//追従対象の中心座標
 	VECTOR followCenterPos_;
+
 	//追従位置から注視点までの相対座標
 	VECTOR localF2TPos_;
+
 	//追従位置からカメラ位置までの相対座標
 	VECTOR localF2CPos_;
+
 	//イージングスタートF2C位置
 	VECTOR easingStartF2CPos_;
+
 	//イージングゴールF2C位置
 	VECTOR easingGoalF2CPos_;
+
 	//イージングスタートF2C位置
 	VECTOR easingStartF2TPos_;
+
 	//イージングゴールF2C位置
 	VECTOR easingGoalF2TPos_;
+
 	//演出用ローカル中心座標
 	VECTOR startFollowLocalCenterPos_;
 	VECTOR goalFollowLocalCenterPos_;
+
 	//イージング角度
 	VECTOR startAngles_;
 	VECTOR goalAngles_;
@@ -357,8 +376,10 @@ private:
 	/// @brief 当たったときの処理
 	/// @param _hitCol ヒットしたコライダ
 	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override;
+
 	//イージング演出時、次の状態格納
 	DIRECTION_MODE nextDirectionMode_;
+
 	//イージング演出次のタイプ格納
 	float directionEasingTime_;
 
@@ -424,7 +445,6 @@ private:
 	void DirectionPlayerOnly(void);
 	void EndDirection(void);
 
-
 	//遷移
 	void ChangeDirectionNone(void);
 	void ChangeDirectionLegLow(void);
@@ -433,4 +453,3 @@ private:
 	void ChangeDirectionPlayerOnly(void);
 	void ChangeEndDirection(void);
 };
-

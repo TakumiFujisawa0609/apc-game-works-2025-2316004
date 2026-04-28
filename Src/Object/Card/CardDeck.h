@@ -13,18 +13,14 @@ class CardDeck:
 {
 
 public:
-	enum class DUELDECK_PETTERN
-	{
-		DUEL_PETTERN_1,
-		DUEL_PETTERN_2,
-		DUEL_PETTERN_3,
-		END
-	};
 
-
-	//カード最大枚数
-	static constexpr int CARD_NUM_MAX = 20;
+	/// @brief コンストラクタ
+	/// @param _charaType キャラタイプ
+	/// @param _playerNum プレイヤー番号
 	CardDeck(CHARACTER_TYPE& _charaType,int _playerNum);
+
+	/// @brief デストラクタ
+	/// @param  
 	~CardDeck(void);
 
 	/// @brief ロード
@@ -48,7 +44,7 @@ public:
 	void AddDuelDeck(const CardBase::CARD_STATUS& _status);
 
 	/// @brief カード使用
-/// @param  
+	/// @param  
 	void CardUseUpdate(void);
 
 	/// @brief 使用中のカードを消す
@@ -108,14 +104,27 @@ public:
 	void MoveChargeToUsingCard(void);
 
 private:
-	//メンバ定数
+
 	//チャージカード最大枚数
 	static constexpr int CHARGE_MAX = 3;
 
 	//リロードカードの強さ
 	static constexpr int RELOAD_CARD_POW = -1;
 
-	//メンバ関数
+	//Json読み込みパス
+	const std::string JSON_CARD_DATA_PATH = "Data/Json/CharaData.json";
+
+	//プレイヤーのカードデータが入っている文字列
+	const std::string PLAYER_CARD_PATH = "PlayerCards";
+
+	//敵のカードデータが入っている文字列
+	const std::string ENEMY_CARD_PATH = "EnemyCards";
+
+	//カードの種類のデータが入っている文字列
+	const std::string CARD_TYPE_PATH = "type";
+
+	//ka-
+	const std::string CARD_POWER_PATH = "pow";
 	
 	//カードを選択したときの制限
 	void CardMoveLimit(void);
@@ -130,12 +139,16 @@ private:
 	//札関連
 	//初期札
 	std::vector<std::unique_ptr<CardBase>>initDeck_;
+
 	//山札
 	std::vector<std::unique_ptr<CardBase>>drawPile_;
+
 	//今使っているカード
 	std::vector<std::unique_ptr<CardBase>>usingCards_;
+
 	//チャージ中カード
 	std::vector<std::unique_ptr<CardBase>>chargeCard_;
+
 	//捨て札
 	std::vector<std::unique_ptr<CardBase>>disCard_;
 
@@ -144,14 +157,16 @@ private:
 
 	//現在選択中のカード
 	int currentNum_;
+
 	//カード使用者のプレイヤー番号
 	int playerNum_;
+
 	//敵デュエルデッキの現在選択中番号
 	int duelNo_;
+
 	//キャラクタータイプ
 	CHARACTER_TYPE& charaType_;
-	std::unordered_map<std::string, CardBase::CARD_TYPE> charaTypeMap_;
 
-
+	//カード種類の文字列との対応マップ
+	std::unordered_map<std::string, CardBase::CARD_TYPE> cardTypeMap_;
 };
-

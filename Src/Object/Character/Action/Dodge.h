@@ -7,6 +7,7 @@ class Dodge :
 {
 
 public:
+
     /// @brief コンストラクタ
     /// @param _actCntl アクションコントローラ
     /// @param _trans モデル情報
@@ -27,6 +28,7 @@ public:
 	///@brief 更新
 	/// @param
     void Update(void) override;
+
 private:
 
     //通常移動スピードにプラスする

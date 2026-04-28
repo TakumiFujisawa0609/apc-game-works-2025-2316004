@@ -152,8 +152,8 @@ public:
 	/// @return サウンドの配列
 	std::vector<const ResourceData*> GetSoundResources(ResourceData::SOUND_TYPE _soundType=ResourceData::SOUND_TYPE::MAX)const;
 
-
 private:
+
 	//カード番号画像
 	static constexpr int CARD_NO_X = 5;	//横の数
 	static constexpr int CARD_NO_Y = 2;	//縦の数
@@ -193,6 +193,4 @@ private:
 
 	// 内部ロード
 	ResourceData& _Load(SRC src);
-
-
 };

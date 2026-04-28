@@ -13,21 +13,25 @@ public:
 	enum class TYPE
 	{
 		NONE,
-		IMG,
-		IMGS,
-		MODEL,
-		SOUND,
-		FONT,
-		EFFEKSEER,
-		VERTEX_SHADER,
-		PIXEL_SHADER,
+		IMG,			//画像
+		IMGS,			//複数画像
+		MODEL,			//モデル
+		SOUND,			//サウンド
+		FONT,			//フォント
+		EFFEKSEER,		//エフェクシア
+		VERTEX_SHADER,	//頂点シェーダ
+		PIXEL_SHADER,	//ピクセルシェーダ
 	};
+
+	//サウンドの種類
 	enum class SOUND_TYPE
 	{
 		BGM,
-		SE,
+		SE,				
 		MAX
 	};
+
+	//サウンドステータス
 	enum class SET_SOUND_STATUS
 	{
 		NONE,			//なし
@@ -37,17 +41,33 @@ public:
 		LOOP_END,		//ループ終了
 	};
 
-	//struct SET_SOUND_FUNC
-	//{
-	//	std::function<void(void)> createFunc;
-	//	std::function<void(void)> playFunc;
-	//};
-
 	/// @brief コンストラクタ
 	/// @param  
 	ResourceData(void);
+
+	/// @brief パスと種類指定のコンストラクタ
+	/// @param type リソースの種類
+	/// @param path リソースパス
 	ResourceData(TYPE type, const std::wstring& path);
+
+	/// @brief 複数画像用コンストラクタ
+	/// @param type リソースの種類
+	/// @param path リソースパス
+	/// @param numX 画像の横の枚数
+	/// @param numY 画像の縦の枚数
+	/// @param sizeX 画像一枚のサイズX
+	/// @param sizeY 画像一枚のサイズY
 	ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY);
+
+	/// @brief サウンドようのコンストラクタ
+	/// @param type リソースの種類
+	/// @param path リソースパス
+	/// @param soundType サウンドの種類
+	/// @param pitch ピッチ
+	/// @param timeStretch タイムストレッチ
+	/// @param volume 音量
+	/// @param loopStartTime ループ開始位置
+	/// @param loopEndTime ループ終了位置
 	ResourceData(TYPE type, const std::wstring& path, SOUND_TYPE soundType
 		, const float pitch = 0.0f
 		, const float timeStretch = 1.0f
@@ -94,9 +114,10 @@ public:
 	LONGLONG loopStartTime_;	//サウンドのループ開始時間(1秒=1000000)
 	LONGLONG loopEndTime_;		//サウンドのループ終了時間(1秒=1000000)
 
-
 	// モデル複製用
 	std::vector<int> duplicateModelIds_;
+
+private:
 
 	//ロード関数の表
 	std::unordered_map<TYPE, std::function<void(void)>>loadFunc_;

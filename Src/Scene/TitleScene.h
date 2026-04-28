@@ -14,14 +14,12 @@ public:
 	{
 		//ボタンメニュ
 		START_GAME,
-		//TUTORIAL,
 		SCREEN,
 		EXIT_MENU,
 		SCREEN_MENU,
 		//その他
 		EASE_MENU,
 		MENU,
-
 		EXIT,
 		MAX
 	};
@@ -29,7 +27,6 @@ public:
 	enum class TITLE_BTN
 	{
 		START_GAME,
-		//TUTORIAL,
 		SCREEN,
 		EXIT,
 		MAX
@@ -43,7 +40,7 @@ public:
 
 	struct BTN
 	{
-		std::wstring btnStr;
+		std::wstring btnStr;	//ボタン文字列
 		TITLE_BTN btnType;		//何のボタンか
 		Vector2F startPos;		//イージング前の座標
 		Vector2F curPos = startPos;//現在座標
@@ -59,20 +56,6 @@ public:
 
 	//次のボタンのイージングまでの間隔時間
 	static constexpr float EASING_DIS_TIME = 0.1f;
-
-	//ゲーム終了メッセージ
-	const std::wstring EXIT_MESSAGE = L"本当にゲームを終了しますか？";
-
-	//通常スクリーン変更メッセージ
-	const std::wstring CHANGE_NORMAL_SCREEN_MESSAGE= L"通常スクリーンにしますか？";
-
-	//フルスクリーン変更メッセージ
-	const std::wstring CHANGE_FULL_SCREEN_MESSAGE= L"フルスクリーンにしますか？";
-
-	//決定文字列
-	const std::wstring DECIDE_STR = L"決定";
-	//戻る文字列
-	const std::wstring BACK_STR = L"戻る";
 
 	/// @brief コンストラクタ
 	/// @param  
@@ -94,6 +77,30 @@ public:
 	void Release(void)override;
 
 private:
+
+	//ゲーム終了メッセージ
+	const std::wstring EXIT_MESSAGE = L"本当にゲームを終了しますか？";
+
+	//通常スクリーン変更メッセージ
+	const std::wstring CHANGE_NORMAL_SCREEN_MESSAGE = L"通常スクリーンにしますか？";
+
+	//フルスクリーン変更メッセージ
+	const std::wstring CHANGE_FULL_SCREEN_MESSAGE = L"フルスクリーンにしますか？";
+
+	//決定文字列
+	const std::wstring DECIDE_STR = L"決定";
+
+	//戻る文字列
+	const std::wstring BACK_STR = L"戻る";
+
+	//はいいいえの文字列
+	const std::wstring YES_STR = L"はい";
+	const std::wstring NO_STR = L"いいえ";
+
+	//ボタンの文字列
+	const std::wstring START_GAME_STR = L"START　GAME";
+	const std::wstring SCREEN_STR = L"SCREEN";
+	const std::wstring EXIT_STR = L"EXIT";
 
 
 	//メニュー座標の間隔

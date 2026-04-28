@@ -124,6 +124,7 @@ public:
 	/// @brief ダメージを与えたことをセット
 	/// @param  
 	void SetIsDamage(void) { atk_.isDamage = true; }
+
 protected:
 
 	//移動スピード
@@ -138,8 +139,10 @@ protected:
 
 	//シーンマネージャ
 	SceneManager& scnMng_;
+
 	//サウンドマネージャ
 	SoundManager& soundMng_;
+
 	//リソースマネージャ
 	ResourceManager& resMng_;
 
@@ -165,6 +168,7 @@ protected:
 	ATK_STATUS atk_;
 
 private:
+
 	// 回転完了までの時間
 	static constexpr float TIME_ROT = 0.1f;
 };

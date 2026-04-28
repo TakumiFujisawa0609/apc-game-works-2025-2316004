@@ -43,9 +43,14 @@ public:
 	/// @brief リロードエフェクトの解放
 	/// @param  
 	void ReleaseReloadResource(void)override;
+
 private:
 
+    //カプセル球の半径(プレイヤーは武器のコライダを持っているため不要)
+    static constexpr float ATK_SPHERE_RADIUS = 0.0f;				    
+
     //攻撃1段目判定(近距離)
+    static constexpr float ATTACK_ONE_POINT = 10.0f;                //攻撃威力
 	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 24.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 36.0f;     //攻撃当たり判定終了アニメーションカウント
     static constexpr float ATTACK_ONE_BUFFER_FRAME = 20.0f;          //先行入力受付フレーム
@@ -53,51 +58,34 @@ private:
     //攻撃1段目判定(中距離)
 	static constexpr float ATTACK_ONE_MID_COL_START_ANIM_CNT = 16.0f;   //攻撃当たり判定開始アニメーションカウント
 	static constexpr float ATTACK_ONE_MID_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
+    static constexpr float ATTACK_ONE_MID_ANIM_START = 13.0f;           //アニメーションスタート位置
+    static constexpr float ATTACK_ONE_MID_ANIM_END = 37.0f;             //アニメーション終了位置
+    static constexpr float ATTACK_ONE_MID_COMBO_TIME = 0.2f;            //コンボ受付時間
 
-    //アニメーションスタート位置
-    static constexpr float ATTACK_ONE_MID_ANIM_START = 13.0f;
-    static constexpr float ATTACK_ONE_MID_ANIM_END = 37.0f;
-
-    //コンボ受付時間
-    static constexpr float ATTACK_ONE_MID_COMBO_TIME = 0.2f;
-
-    //中距離移動時間
-    static constexpr float ATTACK_ONE_MID_TIME = 1.0f;
-
-    //中距離初期速度
-    static constexpr float ATTACK_ONE_MID_SPD = 30.0f;
+    //中距離攻撃
+    static constexpr float ATTACK_ONE_MID_TIME = 1.0f;                  //中距離移動時間
+    static constexpr float ATTACK_ONE_MID_SPD = 30.0f;                  //中距離初期速度
 
     //攻撃2段目判定
-	static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;   //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
+    static constexpr float ATTACK_TWO_POINT = 15.0f;
+	static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;       //攻撃当たり判定開始アニメーションカウント
+	static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;         //攻撃当たり判定終了アニメーションカウント
 
     //攻撃3段目判定
-	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 73.0f;   //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 83.0f;     //攻撃当たり判定終了アニメーションカウント
+    static constexpr float ATTACK_THREE_POINT = 25.0f;                  //攻撃威力
+	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 73.0f;     //攻撃当たり判定開始アニメーションカウント
+	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 83.0f;       //攻撃当たり判定終了アニメーションカウント
+    static constexpr float ATTACK_THREE_ANIM_START = 60.0f;             //攻撃３段階目アニメーションスタート
+    static constexpr float ATTACK_THREE_ANIM_GOAL = 86.0f;              //攻撃３段階目アニメーションゴール
+    static constexpr float ATTACK_THREE_ANIM_SPD = 10.0f;               //攻撃アニメーション3段階目の溜め時のアニメ速度
+    static constexpr float ATTACK_THREE_ANIM_LERP_TIME = 0.4f;          //攻撃3段階目アニメスピード補完時間
 
-
-    static constexpr float ATK_SPHERE_RADIUS = 0.0f;				//カプセル球の半径
-    //攻撃３段階目アニメーションスタート
-    static constexpr float ATTACK_THREE_ANIM_START = 60.0f;
-    //攻撃３段階目アニメーションゴール
-    static constexpr float ATTACK_THREE_ANIM_GOAL = 86.0f;
-    //攻撃アニメーション3段階目の溜め時のアニメ速度
-    static constexpr float ATTACK_THREE_ANIM_SPD = 10.0f;
-    //攻撃3段階目アニメスピード補完時間
-    static constexpr float ATTACK_THREE_ANIM_LERP_TIME = 0.4f; 
-
-    //リロードエフェクトスケール
-    static constexpr float RELOD_EFF_SCL = 100.0f;
-    //リロードアニメーション始め
+    //リロード
+    static constexpr float RELOD_EFF_SCL = 100.0f;          //エフェクトスケール
     static constexpr float RELOAD_START_STEP = 17.0f;       //アニメーション始まりステップ
     static constexpr float RELOAD_END_STEP = 33.0f;         //アニメーション終わり
     static constexpr float RELOAD_LOOP_START = 26.0f;       //アニメーションループスタート
     static constexpr float RELOAD_LOOP_END = 30.0f;         //アニメーションループ終了
-
-    //攻撃ごとの攻撃力
-    static constexpr float ATTACK_ONE_POINT = 10.0f;
-    static constexpr float ATTACK_TWO_POINT = 15.0f;
-    static constexpr float ATTACK_THREE_POINT =25.0f;
 
     //攻撃段階
     static constexpr int ATTACK_ONE = 0;
@@ -125,15 +113,16 @@ private:
 
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,0.0f,50.0f };
+
     //カードリロード中の音量
     static constexpr float CARD_RELOAD_VOL = 0.6f;
 
-
-
     //攻撃の当たり判定始まりカウント
     float attackStartAnimcnt_;
+
     //攻撃の当たり判定終わりカウント
     float attackEndAnimCnt_;
+
     //攻撃段階
     int attackStageNum_;
 
@@ -148,11 +137,12 @@ private:
     float atkThreeEndCnt_;
     float atkAnimLerpCnt_;
 
-
     //イージング
     std::unique_ptr<Easing>easing_;
+
     //攻撃条件
     bool IsAttackable(void);
+
     //連続攻撃条件
     bool IsCanComboAttack(void);
 
@@ -177,6 +167,7 @@ private:
 	void ChangeAttackTwo(void);             //攻撃アクション2回目
 	void ChangeAttackThree(void);           //攻撃アクション3回目
     void ChangeReload(void);                //リロード
+
     //コンボアクション遷移(あれば実装する)
     void ChangeComboAction(void)override;
 };

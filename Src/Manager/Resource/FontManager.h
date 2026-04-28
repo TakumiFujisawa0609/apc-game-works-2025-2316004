@@ -3,6 +3,7 @@
 
 class FontManager
 {
+
 public:
 
 	enum class FONT_TYPE

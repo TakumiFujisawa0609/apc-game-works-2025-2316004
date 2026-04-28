@@ -8,6 +8,7 @@ class CardDeck;
 
 class CardPresenter
 {
+
 public:
 
 	/// @brief コンストラクタ
@@ -79,6 +80,7 @@ public:
 	const CardUIBase::CARD_SELECT GetCardUIState(void)const;
 	
 private:
+
 	//カードデッキ
 	CardDeck& deck_;
 
@@ -87,6 +89,4 @@ private:
 
 	//キャラクター
 	CHARACTER_TYPE& type_;
-	
 };
-

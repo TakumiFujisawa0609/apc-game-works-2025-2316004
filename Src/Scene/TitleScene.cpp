@@ -63,15 +63,15 @@ void TitleScene::Init(void)
 	};
 
 	buttonStrTable_ = {
-		{TITLE_BTN::START_GAME,L"START　GAME"},
-		{TITLE_BTN::SCREEN,L"SCREEN"},																							
-		{TITLE_BTN::EXIT,L"EXIT"}
+		{TITLE_BTN::START_GAME,START_GAME_STR},
+		{TITLE_BTN::SCREEN,SCREEN_STR},
+		{TITLE_BTN::EXIT,EXIT_STR}
 	};
 
 
 	yesNoStrTable_ = {
-		{YES_NO::YES,L"はい"},
-		{YES_NO::NO,L"いいえ"}
+		{YES_NO::YES,YES_STR},
+		{YES_NO::NO,NO_STR}
 	};
 	for (int i = 0; i < static_cast<int>(TITLE_BTN::MAX); i++)
 	{
@@ -215,6 +215,8 @@ void TitleScene::UpdateMenu(void)
 		soundMng_.Play(ResourceManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);
 		menuController_->AddSelectMenuNum();
 	}
+
+	//メニューコントローラーから選択番号を取得
 	selectNum_ = menuController_->GetSelectMenuNum();
 
 	//OKボタンが押されたら
@@ -231,6 +233,8 @@ void TitleScene::UpdateMenu(void)
 void TitleScene::UpdateScreen(void)
 {
 	UpdateYesNo();
+
+	//スクリーンを変更する
 	if (inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
 		if (menuController_->GetIsYes())
@@ -261,6 +265,8 @@ void TitleScene::UpdateSelectGame(void)
 void TitleScene::UpdateExitMenu(void)
 {
 	UpdateYesNo();
+
+	//ゲーム終了処理
 	if (inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
 		if (menuController_->GetIsYes())

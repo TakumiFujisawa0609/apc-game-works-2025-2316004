@@ -1,5 +1,4 @@
 #include "../pch.h"
-
 #include <DxLib.h>
 #include <EffekseerForDXLib.h>
 #include"../Application.h"
@@ -451,6 +450,7 @@ void Camera::SetBeforeDrawFollow(void)
 	//線分当たり判定の更新
 	UpdateCameraColliderLine();
 
+	//カメラの押し出し
 	Collision();
 
 	//pos_ = easing_->EaseFunc(prePos, pos_, 0.1f, Easing::EASING_TYPE::LERP);
@@ -471,12 +471,14 @@ void Camera::SetBeforeDrawLerpCamera(void)
 
 void Camera::SetBeforeDrawTargetPoint(void)
 {
+	//追従対象がなかった場合、カメラモードを切り替える
 	if (followTransform_ == nullptr)
 	{
 		ChangeMode(MODE::FIXED_POINT);
 		return;
 	}
 	ProcessRot();
+
 	SyncTargetFollow();
 
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
@@ -498,7 +500,6 @@ void Camera::ChangeFixedPoint(void)
 
 void Camera::ChangeFollow(void)
 {
-	//SetDefault();
 	localF2CPos_ = LOCAL_F2C_POS;
 	localF2TPos_ = LOCAL_F2T_POS;
 	modeUpdate_ = [this]() {SetBeforeDrawFollow(); };
@@ -606,6 +607,7 @@ void Camera::DirectionNone(void)
 
 void Camera::DirectionPlayerAndTarget(void)
 {
+	//一定時間後、敵注視のカメラモードにする
 	if(directionCnt_>PLAYER_AND_ENEMY_VIEW_TIME)
 	{
 		ChangeDirectionMode(DIRECTION_MODE::ENEMY_ONLY_VIEW);
@@ -624,13 +626,13 @@ void Camera::DirectionEnemyOnly(void)
 		return;
 	}
 	
-	////ローカル座標をイージングで補完
+	//ローカル座標をイージングで補完
 	localF2CPos_ = easing_->EaseFunc(easingStartF2CPos_, easingGoalF2CPos_, directionCnt_ / 1.0f
 		, Easing::EASING_TYPE::OUT_BACK);
 	localF2TPos_ = easing_->EaseFunc(easingStartF2TPos_, easingGoalF2TPos_, directionCnt_ / 1.0f
 		, Easing::EASING_TYPE::OUT_BACK);
 
-
+	//敵に注目する
 	SyncFollow(targetTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
 	
@@ -638,6 +640,7 @@ void Camera::DirectionEnemyOnly(void)
 
 void Camera::DirectionEnemyRoar(void)
 {
+	//敵の咆哮が終わったらプレイヤーのみを移すカメラに移動
 	if (directionCnt_ > ENEMY_ROAR_VIEW_TIME)
 	{
 		ChangeSub(SUB_MODE::NONE);
@@ -651,7 +654,7 @@ void Camera::DirectionEnemyRoar(void)
 
 void Camera::DirectionPlayerOnly(void)
 {
-
+	//プレイヤーオンリーの演出が終わったらプレイヤーの後ろまでに行くカメラのイージングへ
 	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
 	{
 		ChangeDirectionMode(DIRECTION_MODE::END);
@@ -669,15 +672,21 @@ void Camera::DirectionPlayerOnly(void)
 
 void Camera::EndDirection(void)
 {
+	//終わったらゲームに移行
 	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
 	{
 		ChangeMode(MODE::FOLLOW);
 		return;
 	}
 
+	//イージング処理
 	angles_ = easing_->EaseFunc(startAngles_, goalAngles_, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
 	localF2CPos_ = easing_->EaseFunc(easingStartF2CPos_, LOCAL_F2C_POS, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
-	followLocalCenterPos_ = easing_->EaseFunc(startFollowLocalCenterPos_, goalFollowLocalCenterPos_, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
+	followLocalCenterPos_ = easing_->EaseFunc(startFollowLocalCenterPos_, goalFollowLocalCenterPos_
+		, directionCnt_ / 2.0f
+		, Easing::EASING_TYPE::QUAD_OUT);
+
+	//追従処理
 	SyncFollow(followTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
 
@@ -716,10 +725,8 @@ void Camera::ChangeDirectionEnemyRoar(void)
 void Camera::ChangeDirectionPlayerOnly(void)
 {
 	localF2TPos_ = LOCAL_F2T_POS;
-
 	easingStartF2CPos_ = PLAYER_ONLY_LOCAL_F2C_START_POS;
 	easingGoalF2CPos_ = PLAYER_ONLY_LOCAL_F2C_GOAL_POS;
-
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	directionCnt_ = 0.0f;
 	angles_.y = UtilityCommon::Deg2RadF(PLAYER_ONLY_CAMERA_ANGLE_Y);

@@ -110,12 +110,13 @@ private:
 
 	//更新関数
 	void NoneUpdate(void);				//何もしない
-	void FadeUpdate(void);
+	void FadeUpdate(void);				//フェード
 	void NormalUpdate(void) override;	//通常
 	void DirectionUpdate(void);			//演出時
 	void ClearDirectionUpdate(void);	//クリア演出
 	void OverDirectionUpdate(void);		//ゲームオーバー
 	void SlowUpdate(void);				//スロー
+
 	//描画関数
 	void NormalDraw(void) override;		//通常
 	void DirectionDraw(void);			//演出時の描画

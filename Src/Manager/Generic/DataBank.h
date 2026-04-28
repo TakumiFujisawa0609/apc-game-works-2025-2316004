@@ -9,6 +9,7 @@ class DataBank :public Singleton<DataBank>
 {
 	// シングルトンにだけ共有する
 	friend class Singleton<DataBank>;
+
 public:	
 
 	/// @brief 初期化
@@ -29,16 +30,16 @@ private:
 	/// @brief コンストラクタ
 	/// @param  
 	DataBank(void);
+
+	/// @brief コピー禁止
+	/// @param instance_ 
 	DataBank(const DataBank& instance_) = delete;
 	DataBank& operator=(const DataBank& _copy) = delete;
 
 	/// @brief デストラクタ
 	/// @param  
 	~DataBank(void)override;
-	int playerNum_;		//プレイヤーの人数
-	int maxPlayerNum_;	//コントローラー数よりプレイヤー人数が多くならないようにする
 
 	//フルスクリーンの設定
 	bool isFullScreen_;
 };
-

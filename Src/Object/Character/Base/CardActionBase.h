@@ -40,6 +40,7 @@ public:
     virtual void ReleaseReloadResource(void);
 
 protected:
+
     //ジャンプ溜め中のカード出した回数
     static constexpr int JAMP_CHARGE_CARD_NUM_MAX = 3;
 
@@ -72,8 +73,10 @@ protected:
 
     //攻撃座標
     VECTOR atkPos_;
+
     //状態遷移
     void ChangeCardAction(const CARD_ACT_TYPE& _type);
+
     //攻撃モーション
     void AttackMotion(const ATK_STATUS& _status, const Collider::TAG& _attackTag,const VECTOR& _localPos);
 
@@ -96,6 +99,7 @@ protected:
 
 	//コンボ入力受付
 	void ComboInput(void);
+
 private:
 
 };

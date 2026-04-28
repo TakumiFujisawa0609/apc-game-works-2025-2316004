@@ -5,6 +5,7 @@ class React :
 {
 
 public:
+
     /// @brief コンストラクタ
 	/// @param _actCntl アクションコントローラー
     React(ActionController& _actCntl);
@@ -24,6 +25,7 @@ public:
 	/// @brief 更新
 	/// @param
     void Update(void) override;
+
 private:
 
     //アニメーションスタート

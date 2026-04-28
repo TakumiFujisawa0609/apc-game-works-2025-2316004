@@ -5,6 +5,7 @@
 class Easing;
 class MenuController
 {
+
 public:
 
 	enum class MENU_STATE
@@ -24,7 +25,6 @@ public:
 	struct BTN_INFO
 	{
 		std::wstring btnStr;				//ボタンの文字
-		//TITLE_BTN btnType;				//何のボタンか
 		Vector2 startPos;					//イージング前の座標
 		Vector2 curPos = startPos;			//現在座標
 		float directionEaseCnt=0.0f;					//イージング時間
@@ -61,7 +61,6 @@ public:
 	/// @return サイズ変更後のフォントハンドル
 	const int GetSizeEasingFontHandle(const int _arrayNum,const int _startSize, const int _goalSize, const float _easeTime,Easing::EASING_TYPE _easeType);
 
-	
 	/// @brief メニュー演出の更新
 	/// @param _disSpawn 出てくる間隔時間
 	/// @param _easeTime イージング時間
@@ -100,6 +99,7 @@ public:
 	/// @brief 選択中のメニュー番号の加算
 	/// @param  
 	void AddSelectMenuNum(void);
+
 	/// @brief 選択中のメニュー番号の加算
 	/// @param  
 	void SubSelectMenuNum(void);
@@ -177,9 +177,4 @@ private:
 
 	//中央座標で描画
 	void DrawFromCenter(const int _arrayNum, const unsigned int _color, const int _fontHandle);
-
-
-
-
 };
-

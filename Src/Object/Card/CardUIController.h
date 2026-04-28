@@ -10,7 +10,9 @@ class Easing;
 
 class CardUIController
 {
+
 public:
+
 	enum class CARD_STATE
 	{
 		DRAW_PILE		//山札
@@ -25,25 +27,31 @@ public:
 		int typeImg = -1;
 		CardBase::CARD_STATUS status;
 	};
-	//static constexpr std::wstring CARD_UI_PATH = L"Resource/Image/Card/CardUI.png";
+
 	//カードサイズ補完時間
 	static constexpr float SCL_LERP_TIME = 0.5f;
+
 	//リロード1枚あたりの時間
 	static constexpr float RELOAD_MOVE_CARD_TIME_PER = 0.06f;
+
 	//カードセレクト時間
 	static constexpr float SELECT_MOVE_CARD_TIME = 0.1f;
-	//static constexpr float SELECT_MOVE_CARD_TIME = 1.0f;
+
 	//カード決定UI時間
 	static constexpr float DISITION_MOVE_CARD_TIME = SELECT_MOVE_CARD_TIME;
+
 	//敵の選択カード初期位置
 	static constexpr Vector2F ENEMY_SELECT_CARD_START_POS = { Application::SCREEN_SIZE_X - 200,Application::SCREEN_HALF_Y + 200 };
+
 	//弾かれるUI時間
 	static constexpr float REACT_MOVE_CARD_TIME = 0.3f;
 
-
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param _cardNumImgs カード番号の複数画像
 	CardUIController(int& _cardNumImgs);
-	// デストラクタ
+
+	/// @brief デストラクタ
+	/// @param  
 	~CardUIController(void);
 
 	/// @brief ロード
@@ -73,7 +81,6 @@ public:
 	/// @brief 選択カード描画
 	/// @param  
 	void DrawSelectCard(void);
-
 
 	/// @brief 選択移動
 	/// @param  
@@ -195,10 +202,11 @@ public:
 	const float& GetReactCount(void)const { return reactCnt_; }
 #endif // _DEBUG
 
-
 private:
+
 	//決定したカードの座標
 	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };
+
 	//弾かれる前のゴール座標
 	static constexpr Vector2F REACT_START_CARD_POS = { Application::SCREEN_HALF_X - 100.0f, Application::SCREEN_HALF_Y + 200.0f };
 
@@ -209,13 +217,12 @@ private:
 	//楕円中心
 	static constexpr float CENTER_X = 80.0f;
 	static constexpr float CENTER_Y = 640.0f;
-	///*static constexpr float CENTER_X = 0.0f;
-	//static constexpr float CENTER_X = 200.0f;
-	//static constexpr float CENTER_Y = 440.0f;
+
 	//楕円の半径
 	static constexpr float RADIUS_X = 186.0f;	//横半径
-	//static constexpr float RADIUS_X = 170.0f;	//横半径
 	static constexpr float RADIUS_Y = 214.0f;	//横半径
+
+	//角度関連
 	static constexpr int ARROUND_NUM = 16;			//一周当たりの枚数		
 	static constexpr int ARROUND_NUM_PER_QUAD = ARROUND_NUM / 4;//90度当たりの枚数
 	static constexpr float ARROUND_PER_DEG = 360.0f / ARROUND_NUM;	//１枚当たりの角度
@@ -231,28 +238,62 @@ private:
 	//コントローラークラスが使われるイージングの参照
 	std::unique_ptr<Easing>easing_;
 
-	Vector2F cardPos_;		//カードの座標(画面外で初期化)
-	float upDownMovePow_;	//カード上下に動かす移動量
-	float upDownMoveAngle_;	//上下動かし用の角度(sin波で動かすため)
-	Vector2F baseCardPos_;	//カードを上下に動かす基準の座標
-	Vector2F numPos_;		//カードの強さ番号座標(画面外で初期化)
-	float currentAngle_;	//カードの現在の角度
-	float startAngle_;		//始まり角度
-	float goalAngle_;	//カードの目標の角度
+	//カードの座標(画面外で初期化)
+	Vector2F cardPos_;		
+
+	//カード上下に動かす移動量
+	float upDownMovePow_;	
+
+	//上下動かし用の角度(sin波で動かすため)
+	float upDownMoveAngle_;	
+
+	//カードを上下に動かす基準の座標
+	Vector2F baseCardPos_;	
+
+	//カードの強さ番号座標(画面外で初期化)
+	Vector2F numPos_;		
+
+	//カードの現在の角度
+	float currentAngle_;	
+
+	//始まり角度
+	float startAngle_;		
+
+	//カードの目標の角度
+	float goalAngle_;	
+
+	//カードのスケール
 	float cardScl_;
+
+	//スケールのイージング用カウント
 	float sclCnt_;
-	float disitionCnt_;													//決定カウント
-	float reactCnt_;													//はじかれるカウント
-	CARD_STATE state_;							//カードの状態
 
-	Vector2F centerPos_;						//カードリボルバーの中心
+	//決定カウント
+	float disitionCnt_;
 
-	int typeImg_;		//カードの種類画像
+	//はじかれるカウント
+	float reactCnt_;													
 
-	CardBase::CARD_STATUS status_;	//カードのステータス
-	Vector2F halfSize_;		//カードの大きさ
-	int cardImg_;		//カード画像
-	std::list<int>cardImgs_;	//カード画像保管
+	//カードの状態
+	CARD_STATE state_;							
+
+	//カードリボルバーの中心
+	Vector2F centerPos_;						
+
+	//カードの種類画像
+	int typeImg_;		
+
+	//カードのステータス
+	CardBase::CARD_STATUS status_;	
+
+	//カードの大きさ
+	Vector2F halfSize_;		
+
+	//カード画像
+	int cardImg_;		
+
+	//カード画像保管
+	std::list<int>cardImgs_;	
 
 	//カード番号イメージ
 	int cardNoImg_;

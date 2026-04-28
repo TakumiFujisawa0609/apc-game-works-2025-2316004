@@ -1,4 +1,5 @@
 #include "../pch.h"
+#include "../Utility/UtilityCommon.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Generic/ButtonUIManager.h"
 #include "../Object/Character/Player/PlayerHpUI.h"
@@ -10,12 +11,10 @@
 
 UIManager::UIManager(void)
 {
-
 	CreateHpUI();
 	CreateCardUI();
 
 	directionUI_ = std::make_unique<DirectionUI>();
-
 }
 
 void UIManager::CreateHpUI(void)
@@ -45,11 +44,11 @@ void UIManager::DrawAttackBottonAndDodgeBotton(void)
 	Vector2F btnPos = INIT_BOTTON_POS;
 	ButtonUIManager::GetInstance().DrawFromLeftTop(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, btnPos, BOTTON_SIZE);
 	Vector2F strPos = { btnPos.x + BOTTON_SIZE ,btnPos.y + FONT_SIZE / 2.0f };
-	DrawStringFToHandle(strPos.x , strPos.y, L"攻撃(カード使用)", 0x000000, fontHandle_);
+	DrawStringFToHandle(strPos.x , strPos.y, ATTACK_BTN_STR.c_str(), UtilityCommon::BLACK, fontHandle_);
 
 	btnPos.y += BOTTON_SIZE + BOTTON_DISTANCE;
 	strPos.y += BOTTON_SIZE + BOTTON_DISTANCE;
-	DrawStringFToHandle(strPos.x, strPos.y, L"回避", 0x000000, fontHandle_);
+	DrawStringFToHandle(strPos.x, strPos.y, DODGE_BTN_STR.c_str(), UtilityCommon::BLACK, fontHandle_);
 	ButtonUIManager::GetInstance().DrawFromLeftTop(ButtonUIManager::BTN_UI_TYPE::X_BUTTON_COL_PUSH, btnPos, BOTTON_SIZE);
 
 }

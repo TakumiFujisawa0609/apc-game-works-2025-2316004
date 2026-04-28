@@ -1,4 +1,3 @@
-#include "GameScene.h"
 #include <DxLib.h>
 #include "../Application.h"
 #include "../Common/Fader.h"
@@ -20,9 +19,8 @@
 #include "../Object/Character/Enemy/Enemy.h"
 #include "../Object/Card/CardSystem.h"	
 #include "../Object/Stage.h"	
-
 #include "PauseScene.h"
-
+#include "GameScene.h"
 GameScene::GameScene(void)
 {
 	//更新関数のセット
@@ -55,9 +53,12 @@ void GameScene::Load(void)
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
 	pauseScene_->Load();
-
+	//UIマネージャ
 	UIManager::GetInstance().Load();
+
+	//ボタンUIマネージャ
 	ButtonUIManager::GetInstance().Load();
+
 
 	stage_ = std::make_unique<Stage>();
 

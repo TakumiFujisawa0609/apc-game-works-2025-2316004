@@ -22,9 +22,6 @@
 PlayerCardUI::PlayerCardUI(void):
 radius_({RADIUS_X,RADIUS_Y}),
 isReloadEnd_(false),
-revolverLArrowPos_(REVOLVER_ARROW_L_POS),
-revolverRArrowPos_(),
-revolverArrowAngle_(),
 reloadAnimCurr_(),
 cardNumFrameImg_(UtilityCommon::INITIAL_HANDLE),
 cardNumMaskImg_(UtilityCommon::INITIAL_HANDLE),
@@ -34,15 +31,13 @@ reloadFontHandle_(UtilityCommon::INITIAL_HANDLE),
 imgRevolverArrow_(UtilityCommon::INITIAL_HANDLE),
 cardNumPer_(UtilityCommon::RATIO_MAX)
 {
-	charaType_ = "Player";
-
+	charaType_ = JSON_PLAYER_STR;
 }
 
 PlayerCardUI::~PlayerCardUI(void)
 {
 	handCards_.clear();
 	visibleCards_.clear();
-	//アクション中カード
 	actions_.clear();
 	changeMoveState_.clear();
 	initialCards_.clear();
@@ -51,27 +46,38 @@ PlayerCardUI::~PlayerCardUI(void)
 void PlayerCardUI::Load(void)
 {
 	CardUIBase::Load();
+
+	//素材のロード
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
+
 	reloadCardImg_ = resMng_.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
+
 	reloadGauge_ = resMng_.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
+
 	cardNumFrameImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
+
 	cardNumMaskImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
+
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
+
 	reloadFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), RELOAD_FONT_SIZE,0);
+
 	cardNumBgImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
-	//soundMng_.LoadResource(SoundManager::SRC::CARD_MOVE, CARD_MOVESE_PITCH);
-	//soundMng_.LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
-	//soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
+
 	resMng_.Load(ResourceManager::SRC::CARD_MOVE_SE);
+
 	resMng_.Load(ResourceManager::SRC::CARD_BE_REFLECTED_SE);
+
 	resMng_.Load(ResourceManager::SRC::CARD_PUT_SE);
+
 	cardWinRes_ = ResourceManager::SRC::CARD_BREAK_SE;
+
 	imgRevolverArrow_ = resMng_.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
 
 }
 void PlayerCardUI::Init(void)
 {
-	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(L"LineHpBarPS.cso", CARD_NUM_GAUGE_CONST_BUF_SIZE);
+	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(LINE_HP_BAR_PS_PATH, CARD_NUM_GAUGE_CONST_BUF_SIZE);
 	cardGaugePSRenderer_ = std::make_unique<PixelRenderer>(*cardGaugePSMaterial_);
 
 	cardGaugePSMaterial_->AddTextureBuf(cardNumMaskImg_);
@@ -84,15 +90,24 @@ void PlayerCardUI::Init(void)
 		{CARD_SELECT::RELOAD, [this]() {ChangeReload(); } }
 	};
 
+	//マテリアル関連
 	cardGaugePSMaterial_->AddConstBuf(BAR_LIGHT_GREEN);
 	cardGaugePSMaterial_->AddConstBuf(BAR_BLUE);
 	cardGaugePSMaterial_->AddConstBuf({ cardNumPer_,cardNumPer_,0.0f,0.0f });
+
+	//頂点作成
 	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, BAR_SIZE);
 
+	//Jsonからカードデータを読み込む
 	LoadCardData();
 
+	//カードの初期化
 	InitCardUI();
+
+	//状態の初期化
 	ChangeSelectState(CARD_SELECT::NONE);
+
+	//見せカードの座標をセット
 	SetBasePosVisibleCards();
 
 }
@@ -101,8 +116,10 @@ void PlayerCardUI::Update(void)
 {
 	CardUIBase::Update();
 
+	//常に見せカードは上下にふわふわ動かす
 	MoveUpDownVisibleCards();
 
+	//定数バッファのセット
 	float initCardNum = static_cast<float>(initialCards_.size());
 	float handCardNum = static_cast<float>(handCards_.size());
 	cardNumPer_ = handCardNum / initCardNum;
@@ -110,7 +127,6 @@ void PlayerCardUI::Update(void)
 
 	//弾かれるカードの大きさ補完
 	ReactMoveCard(REACT_GOAL_CARD_POS);
-
 }
 
 void PlayerCardUI::Draw(void)

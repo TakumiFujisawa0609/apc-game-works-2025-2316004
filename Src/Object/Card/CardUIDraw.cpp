@@ -29,8 +29,10 @@ void CardUIDraw::Init(void)
 	//画像サイズ取得
 	GetGraphSizeF(typeImg_, &size_.x, &size_.y);
 	halfSize_ = size_ / 2.0f;
+
 	//左上の座標
 	rightTopPos_ = centerPos_ - halfSize_ * scl_;
+
 	//右下の座標
 	leftDownPos_ = centerPos_ + halfSize_ * scl_;
 
@@ -98,12 +100,13 @@ void CardUIDraw::DrawCard(void)
 	//画像サイズ取得
 	GetGraphSizeF(typeImg_, &size_.x, &size_.y);
 
+	//ハーフサイズ計算
 	halfSize_ = size_ / 2.0f;
+
 	//左上の座標
 	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;
-	//右下の座標
-	Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
 
+	//レンダラーにセット
 	normalCardPSRenderer_->SetSize(size_ * scl_);
 	normalCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);
 }
@@ -116,6 +119,7 @@ void CardUIDraw::SelectFrameEasing(void)
 	//イージングカウント更新
 	selectEaseCnt_ += SceneManager::GetInstance().GetDeltaTime();
 	selectEaseCnt_ > SELECT_CARD_FRAME_EASING_TIME ? selectEaseCnt_ = 0.0f : selectEaseCnt_;
+
 	//シェーダーに値セット
 	selectCardPSRenderer_->SetSize(size);
 }
@@ -124,11 +128,12 @@ void CardUIDraw::DrawReloadGauge(const float& _reloadPer)
 {
 	//画像サイズ取得
 	GetGraphSizeF(typeImg_, &size_.x, &size_.y);
+
 	halfSize_ = size_ / 2.0f;
+
 	//左上の座標
 	Vector2F rightTopPos = centerPos_ - halfSize_ * scl_;
-	//右下の座標
-	Vector2F leftDownPos = centerPos_ + halfSize_ * scl_;
+
 	reloadCardPSMaterial_->SetConstBuf(RELOAD_PER_CONST_BUF_SIZE, { 0.0f,0.0f,_reloadPer,0.0f });
 	reloadCardPSRenderer_->SetSize(size_ * scl_);
 	reloadCardPSRenderer_->Draw(rightTopPos.x, rightTopPos.y);

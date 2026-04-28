@@ -5,6 +5,7 @@ class Idle :
 {
 
 public:
+
     /// @brief コンストラクタ
 	/// @param _actCntl アクションコントローラー
     Idle(ActionController& _actCntl);
@@ -26,7 +27,6 @@ public:
     void Update(void) override;
 
 public:
-
 
 };
 
