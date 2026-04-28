@@ -130,15 +130,6 @@ void EnemyLogic::DecideAction(void)
 			//ジャンプ
 			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
 		}
-		else if (rand > weight_.Roar)
-		{
-			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
-		}
-		else
-		{
-			//転がる攻撃
-			attackType_ = ENEMY_ATTACK_TYPE::STOMP;
-		}
 	}
 	else
 	{
@@ -147,14 +138,9 @@ void EnemyLogic::DecideAction(void)
 			//通常攻撃
 			attackType_ = ENEMY_ATTACK_TYPE::STOMP;
 		}
-		else if (rand > weight_.jump)
-		{
-			//ジャンプ攻撃
-			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
-		}
 		else
 		{
-			//咆哮
+			//ジャンプ攻撃
 			attackType_ = ENEMY_ATTACK_TYPE::JUMP;
 		}
 	}
@@ -176,17 +162,5 @@ void EnemyLogic::SetFreezeCntByAttackType(void)
 	case LogicBase::ENEMY_ATTACK_TYPE::JUMP:
 		freezeCnt_ = JUMP_FREEZE_TIME;
 		break;
-	case LogicBase::ENEMY_ATTACK_TYPE::ROAR:
-		freezeCnt_ = ROAR_FREEZE_TIME;
-		break;
-	case LogicBase::ENEMY_ATTACK_TYPE::ROLE:
-		freezeCnt_ = ROLE_FREEZE_TIME;
-		break;
-	default:
-		break;
 	}
-
-	//デバッグ用
-	//freezeCnt_ = 0.0f;
 }
-

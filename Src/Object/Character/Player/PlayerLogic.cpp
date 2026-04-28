@@ -41,7 +41,6 @@ void PlayerLogic::Update(void)
 
 void PlayerLogic::InputKeyBoard(void)
 {
-	using ATK_ACT = Player::ATK_ACT;
 	
 	//ˆÚ“®Šp“x‚ðŒˆ‚ß‚é
 	if (input_.IsNew(MOVE_FRONT_KEY))
@@ -71,7 +70,6 @@ void PlayerLogic::InputKeyBoard(void)
 
 void PlayerLogic::InputAll(void)
 {
-	using ATK_ACT = Player::ATK_ACT;
 	isAct_ = {};
 	inputDir_ = {};
 
@@ -138,7 +136,6 @@ void PlayerLogic::InputAll(void)
 
 void PlayerLogic::InputPad(void)
 {
-	using ATK_ACT = Player::ATK_ACT;
 	actCntl_ = ACT_CNTL::NONE;
 
 

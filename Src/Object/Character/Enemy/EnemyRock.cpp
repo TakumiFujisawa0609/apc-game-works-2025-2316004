@@ -37,7 +37,6 @@ void EnemyRock::Init(void)
 
 	tag_ = Collider::TAG::ROCK;
 	velocity_.y = sqrtf(2.0f * GRAVITY * JUMP_HEIGHT);
-	jumpPow_.y = velocity_.y;
 
 	isDamaged_ = false;
 
@@ -59,11 +58,9 @@ void EnemyRock::Update(void)
 	if (!isAlive_)return;
 
 	velocity_.y -= GRAVITY;
-	jumpPow_.y = velocity_.y;
 	
 	VECTOR vec = VNorm(VSub(goalPos_, startPos_));
-	trans_.pos = VAdd(trans_.pos, VScale(vec, MOVE_HORIZONTAL_SPD));
-	trans_.pos = VAdd(trans_.pos, jumpPow_);
+	trans_.pos = VAdd(trans_.pos, VScale(vec, MOVE_HORIZONTAL_SPD));;
 
 	trans_.Update();
 

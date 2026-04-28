@@ -49,23 +49,6 @@ public:
 	static constexpr VECTOR CAP_LOCAL_TOP = { 0.0f, 200.0f, 0.0f };	//トップ座標
 	static constexpr VECTOR CAP_LOCAL_DOWN = { 0.0f,50.0f,0.0f };	//ダウン座標
 
-	enum class FLOOR_COL
-	{
-		NONE
-		, SIDE
-		, TOP
-	};
-
-	enum class ATK_ACT
-	{
-		NONE,	//何もなし
-		INPUT,	//入力
-		MOVE,	//移動
-		PUNCH,	//パンチ
-		REACT,//パンチされた状態
-		JUMP
-	};
-	
 	/// @brief コンストラクタ
 	/// @param  
 	Player(void);
@@ -118,9 +101,8 @@ public:
 	void DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)override;
 
 	/// @brief ダメージ処理
-/// @param _dam ダメージ数
+	/// @param _dam ダメージ数
 	virtual void Damage(const int _dam = 0);
-
 
 private:
 
@@ -129,6 +111,7 @@ private:
 	static constexpr float MAX_HP = 200.0f;			//体力
 	static constexpr float MAX_ATK = 50.0f;			//攻撃力
 	static constexpr float MAX_DEF = 100.0f;		//防御力
+
 	//足音間隔
 	static constexpr float FOOT_SE_DIS = 0.2f;
 
@@ -181,8 +164,6 @@ private:
 	//カメラ
 	std::weak_ptr<Camera>camera_;
 
-	//メンバ変数
-	//--------------------------------------------
 	//プレイヤー単体が持っているもの
 	int playerNum_;			//プレイヤー番号
 

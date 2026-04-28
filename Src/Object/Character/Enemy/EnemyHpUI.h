@@ -33,10 +33,13 @@ public:
 private:
 	//バー固定座標
 	static constexpr Vector2F BAR_POS = { 550.0f,23.0f };
+
+	//バーのカバー座標
 	static constexpr Vector2F BAR_COVER_POS = { 524.0f, 20.0f };
 
 	//バーの色(明るい青)
 	static constexpr FLOAT4 BAR_LIGHT_BLUE = { 0.2f, 0.8f, 1.0f,0.0f };
+
 	//バーの色(紫)
 	static constexpr FLOAT4 BAR_PURPLE = { 0.6f, 0.2f, 0.8f,0.0f };
 

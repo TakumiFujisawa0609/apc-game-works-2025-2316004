@@ -10,6 +10,7 @@ class PixelMaterial;
 
 class HpUIBase:public UIBase2D
 {
+
 public:
 
 	/// @brief コンストラクタ
@@ -44,6 +45,7 @@ public:
 	void RefreshHp(const HP_DATA& _hpData);
 
 protected:
+
 	//シェーダ定数バッファ
 	static constexpr int ARC_CONST_BUF = 2;			//円形
 	static constexpr int LINE_CONST_BUF = 3;		//線形
@@ -63,21 +65,19 @@ protected:
 
 	//Hpバーカバーハンドル
 	int barCoverHandle_;
+
 	//HPバーフレーム
 	int barFrame_;
+
 	//Hpマスクハンドル
 	int hpMask_;
 
-	// プレイヤーの体力の割合
-	//float hpPer_;
-
-	//差分を線形補間で減らす
-	//float preHp_;
-
 	//バーカバー座標
 	Vector2F barCoverPos_;
+
 	//バー座標
 	Vector2F barPos_;
+
 	//HPUIデータ
 	HP_DATA hpData_;
 
@@ -109,7 +109,5 @@ protected:
 	//シェイクカウント
 	float shakeCnt_;
 private:
-
-
 };
 
