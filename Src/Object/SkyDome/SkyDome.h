@@ -90,8 +90,8 @@ private:
 	static constexpr float SIZE_SCL = 1.0f;
 
 	//バトル中のカラースケール
-	static constexpr float COLOR_SCL_BATTLE_R = 1.7f;
-	static constexpr float COLOR_SCL_BATTLE_G = 0.2f;
+	static constexpr float COLOR_SCL_BATTLE_R = 1.7f;		
+	static constexpr float COLOR_SCL_BATTLE_G = 0.2f;	
 	static constexpr float COLOR_SCL_BATTLE_B = 0.5f;
 	static constexpr VECTOR COLOR_SCL_BATTLE = { COLOR_SCL_BATTLE_R ,COLOR_SCL_BATTLE_G ,COLOR_SCL_BATTLE_B };
 
@@ -108,8 +108,8 @@ private:
 	FOLLOW_STATE followState_;
 
 	//シェーダー関連
-	std::unique_ptr<ModelMaterial> material_;
-	std::unique_ptr<ModelRenderer> renderer_;
+	std::unique_ptr<ModelMaterial> material_;	//マテリアル
+	std::unique_ptr<ModelRenderer> renderer_;	//レンダラー
 
 	//状態
 	PHASE phase_;
@@ -129,4 +129,3 @@ private:
 	void UpdateNone(void);			 //何もしない
 	void UpdateClear(void);			 //クリア
 };
-

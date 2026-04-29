@@ -125,6 +125,7 @@ public :
 	void GetFrameAnimAttachLocalMatrix(int modelId, int attachNo, int frameIdx, VECTOR& scl, MATRIX& matRot, VECTOR& pos);
 
 private :
+
 	//ヒップフレームの番号
 	static constexpr int HIP_FRAME_NO = 0;
 

@@ -59,11 +59,7 @@ private:
 	int selectIndex_;
 
 	//選択リスト
-	std::wstring pasueList_[LIST_MAX] =
-	{
-		L"つづける",
-		L"タイトルへ戻る"
-	};
+	std::wstring pauseList_[LIST_MAX];
 
 	//リスト選択テーブル
 	std::unordered_map<LIST, std::function<void()>> listFuncTable_;

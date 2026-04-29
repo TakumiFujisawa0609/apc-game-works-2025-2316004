@@ -107,6 +107,4 @@ protected:
 
 	//‘S“–‚½‚è”»’è‚Ìíœ
 	void DeleteAllCollider(void);
-
 };
-

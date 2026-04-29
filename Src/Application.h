@@ -7,6 +7,7 @@ class FontManager;
 
 class Application : public Singleton<Application>
 {
+
 	friend class Singleton<Application>; 
 
 public:

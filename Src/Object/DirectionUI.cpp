@@ -1,4 +1,5 @@
 #include "../pch.h"
+#include "../Utility/UtilityCommon.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Manager/Game/CharacterManager.h"
@@ -12,8 +13,8 @@ DirectionUI::DirectionUI(void):
 	skipGaugePer_(0.0f),
 	imgSkipButtomMask_(-1),
 	fontHandle_(-1),
-	intensiveLineImg_1(-1),
-	intensiveLineImg_2(-1),
+	intensiveLineFirstImg_(-1),
+	intensiveLineSecondImg_(-1),
 	intensiveLineAnimImg_(-1),
 	intensiveLineAnimFrame_(-1)
 {
@@ -25,22 +26,22 @@ DirectionUI::~DirectionUI(void)
 
 void DirectionUI::Load(void)
 {
-
 	//何回かフォントを使うと一定の大きさだけ大きくなる不具合が発生しているので別で作る
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+
 	//集中線画像のロード
-	intensiveLineImg_1 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
-	intensiveLineImg_2 = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_2).handleId_;
+	intensiveLineFirstImg_ = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_1).handleId_;
+	intensiveLineSecondImg_ = resMng_.Load(ResourceManager::SRC::INTENSIVE_LINE_2).handleId_;
 
 	//スキップボタンマスク
 	imgSkipButtomMask_ = resMng_.Load(ResourceManager::SRC::SKIP_BUTTOM_MASK).handleId_;
-
 }
 
 void DirectionUI::Init(void)
 {
-	skipArcGaugeMaterial_ = std::make_unique<PixelMaterial>(L"ArcHpBarPS.cso", SKIP_GAUGE_CONST_BUFF_SIZE);
+	skipArcGaugeMaterial_ = std::make_unique<PixelMaterial>(ARC_GAUGE_SHADER_PATH.c_str(), SKIP_GAUGE_CONST_BUFF_SIZE);
 	skipArcGaugeRenderer_ = std::make_unique<PixelRenderer>(*skipArcGaugeMaterial_);
+
 	skipArcGaugeMaterial_->AddTextureBuf(imgSkipButtomMask_);
 	skipArcGaugeMaterial_->AddConstBuf({ 1.0f,0.0f,0.0f,1.0f });
 	skipArcGaugeMaterial_->AddConstBuf({ 0.0f,0.0f,0.0f,0.0f });
@@ -65,7 +66,7 @@ void DirectionUI::Draw(void)
 
 	//文字列描画
 	DrawStringFToHandle(leftTop.x + SKIP_BTN_SIZE.x, leftTop.y + SKIP_BTN_STR_OFFSET_Y
-		, L"ボタン長押しでスキップ", 0x000000, fontHandle_);
+		, SKIP_STR.c_str(), UtilityCommon::BLACK, fontHandle_);
 
 	//方向アニメーション時に集中線描画
 	if (CharacterManager::GetInstance().GetIsEnemyRoar())
@@ -82,11 +83,14 @@ void DirectionUI::SetSkipGaugePer(const float _skipPer)
 
 void DirectionUI::UpdateIntensiveLineAnim(void)
 {
+	//咆哮が終わったら処理しない
 	if (!CharacterManager::GetInstance().GetIsEnemyRoar())return;
 	intensiveLineAnimFrame_++;
+
+	//集中線アニメーション
 	if (intensiveLineAnimFrame_ >= INTENSIVE_LINE_ANIM_SPEED)
 	{
 		intensiveLineAnimFrame_ = 0;
 	}
-	intensiveLineAnimImg_ = (intensiveLineAnimFrame_ % INTENSIVE_LINE_ANIM_SPEED / 2 == 0) ? intensiveLineImg_1 : intensiveLineImg_2;
+	intensiveLineAnimImg_ = (intensiveLineAnimFrame_ % INTENSIVE_LINE_ANIM_SPEED / 2 == 0) ? intensiveLineFirstImg_ : intensiveLineSecondImg_;
 }

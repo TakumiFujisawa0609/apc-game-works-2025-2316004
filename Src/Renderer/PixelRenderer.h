@@ -33,7 +33,6 @@ public:
 	/// @param size サイズ
 	void MakeSquareVertex(Vector2F pos, Vector2F size); 
 	void MakeSquareVertex(void);
-	//
 	
 	/// @brief 中心から作る矩形
 	/// @param centerPos 中心座標
@@ -65,7 +64,6 @@ public:
 	void Draw(float x, float y);
 	void DrawFromCenter(float centerX, float centerY);
 
-
 private:
 
 	// 座標
@@ -82,5 +80,4 @@ private:
 
 	// ピクセルマテリアル
 	PixelMaterial& material_;
-
 };

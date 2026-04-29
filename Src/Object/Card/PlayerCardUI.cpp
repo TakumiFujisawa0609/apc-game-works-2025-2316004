@@ -678,7 +678,6 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 
 }
 
-
 std::list<std::shared_ptr<CardUIController>>::iterator PlayerCardUI::GetVisibleCurrentIt(void)
 {
 	auto it = std::find(visibleCards_.begin(), visibleCards_.end(), *handCurrent_);

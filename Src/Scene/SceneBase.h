@@ -66,8 +66,10 @@ protected:
 	SceneManager& scnMng_;
 	SoundManager& soundMng_;
 
-	//更新処理管理
+	//更新処理
 	std::function<void(void)> updateFunc_;
+
+	//描画処理
 	std::function<void(void)> drawFunc_;
 
 	//ローディング経過時間

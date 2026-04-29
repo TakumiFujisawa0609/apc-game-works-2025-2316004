@@ -54,7 +54,6 @@ private:
 	//•¶š‚ÌYÀ•W
 	float strYPos_;
 
-
 	//XVŠÖ”
 	void NormalUpdate(void) override;
 

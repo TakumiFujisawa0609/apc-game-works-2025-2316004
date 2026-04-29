@@ -9,7 +9,8 @@
 
 PauseScene::PauseScene(void):
 	pauseFont_(UtilityCommon::INITIAL_HANDLE),
-	selectIndex_()
+	selectIndex_(),
+	pauseList_({ L"つづける",L"タイトルへ戻る" })
 {
 	//更新関数のセット
 	updateFunc_ = std::bind(&PauseScene::NormalUpdate, this);
@@ -100,7 +101,7 @@ void PauseScene::NormalDraw(void)
 		}
 
 		//座標位置を設定
-		int posX = static_cast<int>(Application::SCREEN_HALF_X - pasueList_[i].length() * FONT_SIZE / 2);
+		int posX = static_cast<int>(Application::SCREEN_HALF_X - pauseList_[i].length() * FONT_SIZE / 2);
 		int posY = Application::SCREEN_HALF_Y - OFFSET_Y * i;
 
 		//文字列を描画
@@ -109,6 +110,6 @@ void PauseScene::NormalDraw(void)
 			posY,
 			color,
 			pauseFont_,
-			pasueList_[i].c_str());
+			pauseList_[i].c_str());
 	}
 }

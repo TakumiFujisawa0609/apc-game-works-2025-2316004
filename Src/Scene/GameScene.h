@@ -19,6 +19,7 @@ class GameScene : public SceneBase
 
 public:
 	
+	//更新フェーズ
 	enum class UPDATE_PHASE   
 	{
 		NONE,
@@ -28,7 +29,6 @@ public:
 		CLEAR_DIRECTION,
 		OVER_DIRECTION,
 		SLOW
-
 	};
 
 	/// @brief コンストラクタ
@@ -67,23 +67,22 @@ private:
 
 	//スキップボタン画像の位置
 	static constexpr Vector2F SKIP_BTN_POS = { 30.0f,30.0f };
+
 	//スキップボタン長押し時間
 	static constexpr float SKIP_BTN_TIME = 1.0f;
+
 	//ボタン長押し文字のY座標オフセット
 	static constexpr float SKIP_BTN_STR_OFFSET_Y = 16.0f;
 
 	//ポストエフェクト用スクリーン
 	int postEffectScreen_;
 
-	int frame_;
-
 	//スローカウンタ(フレーム)
 	int slowFrame_;
 
 	//更新フェーズ
-	UPDATE_PHASE updatePhase_;
-	std::map<UPDATE_PHASE, std::function<void(void)>>changeUpdate_;
-
+	UPDATE_PHASE updatePhase_;											//更新
+	std::map<UPDATE_PHASE, std::function<void(void)>>changeUpdate_;		//遷移
 
 	//スカイドーム
 	std::unique_ptr<SkyDome> skyDome_;

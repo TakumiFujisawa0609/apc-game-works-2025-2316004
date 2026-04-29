@@ -9,6 +9,7 @@ class Stage :
 {
 
 public:
+
     //ステージのスケール
     static constexpr float STAGE_SCL = 30.0f;
     static constexpr float STAGE_SCL_Y = 0.1f;
@@ -52,6 +53,7 @@ public:
     /// @brief 当たった時の処理
     /// @param _hitCol 相手のコライダ
     void OnHit(const std::weak_ptr<Collider> _hitCol)override;
+
 private:
 
     //壁の情報

@@ -6,14 +6,6 @@ class Cube : public Geometry
 {
 public:
 
-	//バウンディングボックス
-	//struct OBB
-	//{
-	//	VECTOR vMin;
-	//	VECTOR vMax;
-	//	VECTOR axis[3];
-	//};
-
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
@@ -39,10 +31,12 @@ public:
 	/// <param name="_rot">追従する親の回転</param>
 	Cube(const Cube& _copyBase, const VECTOR& _pos, const Quaternion& _rot);
 
-	//デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~Cube(void)override;
 
-	//描画
+	/// @brief 描画
+	/// @param  
 	void Draw(void)override;
 
 	//各種当たり判定
@@ -53,30 +47,7 @@ public:
 	const bool IsHit(Capsule& _capsule)override;
 	const bool IsHit(Line& _line)override;
 
-	////回転バウンティボックスの取得
-	//inline const OBB& GetObb(void)const { return obb_; }
-
-	////箱の最小地点の取得
-	//inline const VECTOR GetVecMin(void)const { return obb_.vMin; }
-
-	////箱の最大地点の取得
-	//inline const VECTOR GetVecMax(void)const { return obb_.vMax; }
-
-	////回転バウンティボックスの設定
-	//inline void SetObb(const OBB& _obb) { obb_ = _obb; }
-
-	////箱の最小地点の設定
-	//inline void SetVecMin(const VECTOR& _min) { obb_.vMin = _min; }
-
-	////箱の最大地点の設定
-	//inline void SetVecMax(const VECTOR& _max){ obb_.vMax = _max; }
-
-	////サイズの半分の設定
-	//inline void SetHalfSize(const VECTOR& _halfSize);
-
 private:
-
-	//OBB obb_;			//回転バウンディングボックス
 
 	//箱の回転情報の取得
 	inline const VECTOR GetAxis(const int _num)const { return obb_.axis[_num]; }
