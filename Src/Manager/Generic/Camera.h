@@ -12,9 +12,6 @@ class Easing;
 class Camera :
 	public ObjectBase
 {
-	// シングルトン
-	friend class Singleton<Camera>;
-
 public:
 
 	// カメラスピード(度)
@@ -103,7 +100,13 @@ public:
 		ONE_SHAKE,	//一回のみシェイク
 	};
 
+	/// @brief コンストラクタ
+	/// @param  
+	Camera(void);
 
+	/// @brief デストラクタ
+	/// @param  
+	~Camera(void)override;
 
 	/// @brief 当たり判定配列の格納
 	/// @param  
@@ -368,13 +371,7 @@ private:
 	VECTOR startAngles_;
 	VECTOR goalAngles_;
 
-	/// @brief コンストラクタ
-	/// @param  
-	Camera(void);
 
-	/// @brief デストラクタ
-	/// @param  
-	~Camera(void)override;
 
 	//コピー禁止
 	Camera(const Camera& _copy) = delete;

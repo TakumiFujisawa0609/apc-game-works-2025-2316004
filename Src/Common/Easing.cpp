@@ -410,5 +410,3 @@ Vector2F Easing::EaseHypoCycloid(const Vector2F& start, const float t, const flo
     ret.y = (baseRadius - smallRadius) * sin(rad) - smallRadius * sin(((baseRadius - smallRadius) / smallRadius) * rad);
     return start + ret;
 }
-
-

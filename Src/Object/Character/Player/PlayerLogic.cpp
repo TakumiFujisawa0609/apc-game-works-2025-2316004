@@ -128,6 +128,7 @@ void PlayerLogic::InputAll(void)
 	//カード移動
 	if (IsCardLeft()) {isAct_.isCardMoveLeft = true;}
 	if (IsCardRight()) {isAct_.isCardMoveRight = true;}
+
 	//カード使用キー長押し(リロード用)
 	if (input_.IsPadBtnNew(padNum_, CARD_USE_BTN) || input_.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
 	//回避

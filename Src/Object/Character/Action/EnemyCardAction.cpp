@@ -75,7 +75,8 @@ void EnemyCardAction::Init(void)
 	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		cardPresent_.PutCard();
-		LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+		//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
+		LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::STOMP;
 		changeCardAction_[attackType]();
 	}
 	else if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD)
@@ -110,8 +111,6 @@ void EnemyCardAction::Release(void)
 
 	//çdíºéûä‘ÉZÉbÉg
 	actionCntl_.GetInput().SetFreezeCntByAttackType();
-
-
 }
 
 const bool EnemyCardAction::IsJumpAtkCharge(void) const
