@@ -47,7 +47,7 @@ void CardUIDraw::Init(void)
 		Quaternion::Euler({ 0.0f,0.0f,0.0f });
 
 	//通常カードシェーダ
-	normalCardPSMaterial_ = std::make_unique<PixelMaterial>(L"CardNormalPS.cso", CONST_BUF_SLOT_NUM);
+	normalCardPSMaterial_ = std::make_unique<PixelMaterial>(NORMAL_CARD_SHADER_PATH, CONST_BUF_SLOT_NUM);
 	normalCardPSMaterial_->AddTextureBuf(typeImg_);
 	normalCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	normalCardPSMaterial_->AddConstBuf({ 1.0f,0.0f, size_.x,size_.y });		//サイズ
@@ -55,7 +55,7 @@ void CardUIDraw::Init(void)
 	normalCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
 
 	//リロードカード
-	reloadCardPSMaterial_= std::make_unique<PixelMaterial>(L"CardReloadPS.cso", CONST_BUF_SLOT_NUM);
+	reloadCardPSMaterial_= std::make_unique<PixelMaterial>(RELOAD_CARD_SHADER_PATH, CONST_BUF_SLOT_NUM);
 	reloadCardPSMaterial_->AddTextureBuf(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_GAGE).handleId_);
 	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	reloadCardPSMaterial_->AddConstBuf({ 1.0f,0.0f, 0.0f,1.0f });		//アウトラインの色
@@ -63,15 +63,15 @@ void CardUIDraw::Init(void)
 	reloadCardPSRenderer_ = std::make_unique<PixelRenderer>(*reloadCardPSMaterial_);
 	reloadCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
 
-	selectCardPSMaterial_ = std::make_unique<PixelMaterial>(L"SelectCardPS.cso", CARD_NUM_CONST_BUF_SIZE);
-	selectCardPSMaterial_->AddTextureBuf(typeImg_);
-	selectCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,0.0f });		//カードの色
-	selectCardPSRenderer_ = std::make_unique<PixelRenderer>(*selectCardPSMaterial_);
-	selectCardPSRenderer_->MakeSquareVertexFromCenter(centerPos_, size_);
+	selectFramePSMaterial_ = std::make_unique<PixelMaterial>(SELECT_FRAME_SHADER_PATH, CARD_NUM_CONST_BUF_SIZE);
+	selectFramePSMaterial_->AddTextureBuf(typeImg_);
+	selectFramePSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,0.0f });		//カードの色
+	selectFramePSRenderer_ = std::make_unique<PixelRenderer>(*selectFramePSMaterial_);
+	selectFramePSRenderer_->MakeSquareVertexFromCenter(centerPos_, size_);
 }
 void CardUIDraw::Update(void)
 {
-	selectCardPSMaterial_->SetConstBuf(0, { SceneManager::GetInstance().GetTotalTime(),1.0f, 1.0f,0.0f});
+	selectFramePSMaterial_->SetConstBuf(0, { SceneManager::GetInstance().GetTotalTime(),1.0f, 1.0f,0.0f});
 	SelectFrameEasing();
 }
 void CardUIDraw::Draw(void)
@@ -83,7 +83,7 @@ void CardUIDraw::Draw(void)
 void CardUIDraw::DrawSelectedFrame(void)
 {
 	//選択枠描画
-	selectCardPSRenderer_->DrawFromCenter(centerPos_.x, centerPos_.y);
+	selectFramePSRenderer_->DrawFromCenter(centerPos_.x, centerPos_.y);
 }
 
 void CardUIDraw::DrawSelectCard(void)
@@ -121,7 +121,7 @@ void CardUIDraw::SelectFrameEasing(void)
 	selectEaseCnt_ > SELECT_CARD_FRAME_EASING_TIME ? selectEaseCnt_ = 0.0f : selectEaseCnt_;
 
 	//シェーダーに値セット
-	selectCardPSRenderer_->SetSize(size);
+	selectFramePSRenderer_->SetSize(size);
 }
 
 void CardUIDraw::DrawReloadGauge(const float& _reloadPer)

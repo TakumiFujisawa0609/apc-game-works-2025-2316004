@@ -194,6 +194,7 @@ const CardBase::CARD_TYPE CardDeck::GetDrawCardType(void)
 void CardDeck::Reload(void)
 {
 	drawPile_.clear();
+
 	//èD‚ÉƒfƒbƒL‚ğ“ü‚ê‚Ä‚¢‚­
 	for (const auto& deck : initDeck_)
 	{
@@ -201,13 +202,13 @@ void CardDeck::Reload(void)
 		std::unique_ptr<CardBase>deckPtr(newCard);
 		drawPile_.emplace_back(std::move(deckPtr));
 	}
+
 	//‚»‚ê‚¼‚ê‚Ì”Ô†‚Ì‰Šú‰»
 	currentNum_ = 0;
 }
 
 void CardDeck::MoveChargeToUsingCard(void)
 {
-
 	const int cardSize = static_cast<int>(usingCards_.size());
 	if (cardSize >= CHARGE_MAX)
 	{

@@ -40,7 +40,7 @@ void UIManager::CreateCardUI(void)
 
 void UIManager::DrawAttackBottonAndDodgeBotton(void)
 {
-
+	//çUåÇÇ∆âÒîÉ{É^ÉìÇÃï`âÊ
 	Vector2F btnPos = INIT_BOTTON_POS;
 	ButtonUIManager::GetInstance().DrawFromLeftTop(ButtonUIManager::BTN_UI_TYPE::B_BUTTON_COL_PUSH, btnPos, BOTTON_SIZE);
 	Vector2F strPos = { btnPos.x + BOTTON_SIZE ,btnPos.y + FONT_SIZE / 2.0f };
@@ -50,9 +50,7 @@ void UIManager::DrawAttackBottonAndDodgeBotton(void)
 	strPos.y += BOTTON_SIZE + BOTTON_DISTANCE;
 	DrawStringFToHandle(strPos.x, strPos.y, DODGE_BTN_STR.c_str(), UtilityCommon::BLACK, fontHandle_);
 	ButtonUIManager::GetInstance().DrawFromLeftTop(ButtonUIManager::BTN_UI_TYPE::X_BUTTON_COL_PUSH, btnPos, BOTTON_SIZE);
-
 }
-
 
 void UIManager::Load(void)
 {

@@ -131,6 +131,8 @@ void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax
 void CardUIController::MoveUpDown(void)
 {
 	upDownMoveAngle_ += UP_DOWN_MOVE_SPEED;
+
+	//YÀ•W‚ğƒTƒCƒ“”g‚Å“®‚©‚·
 	cardPos_.y = baseCardPos_.y + sin(upDownMoveAngle_) * UP_DOWN_MOVE_RADIUS;
 }
 

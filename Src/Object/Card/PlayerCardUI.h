@@ -126,6 +126,9 @@ private:
 	//リロード文字列のセンターからのオフセット
 	static constexpr float RELOAD_STR_OFF_Y = 30.0f;
 
+	//リロード文字列
+	std::wstring RELOAD_STR = L"RELOAD";
+
 	//フォントの輪郭幅
 	static constexpr int FONT_EDGE_SIZE = 2;
 	static constexpr Vector2F FONT_POS = { BAR_POS.x,550.0f };

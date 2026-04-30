@@ -301,22 +301,22 @@ private:
 	//カメラ演出遷移
 	std::map<DIRECTION_MODE, std::function<void(void)>>changeDirectionMode_;
 
-	// カメラの位置
+	//カメラの位置
 	VECTOR pos_;
 
 	//移動後座標
 	VECTOR goalPos_;
 
-	// カメラ角度(rad)
+	//カメラ角度(rad)
 	VECTOR angles_;
 
-	// X軸回転が無い角度
+	//X軸回転が無い角度
 	Quaternion rotOutX_;
 
-	// カメラ角度
+	//カメラ角度
 	Quaternion rot_;
 
-	// 注視点
+	//注視点
 	VECTOR targetPos_;
 
 	// カメラの上方向
@@ -370,12 +370,6 @@ private:
 	//イージング角度
 	VECTOR startAngles_;
 	VECTOR goalAngles_;
-
-
-
-	//コピー禁止
-	Camera(const Camera& _copy) = delete;
-	Camera& operator=(const Camera& _copy) = delete;
 
 	/// @brief 当たったときの処理
 	/// @param _hitCol ヒットしたコライダ

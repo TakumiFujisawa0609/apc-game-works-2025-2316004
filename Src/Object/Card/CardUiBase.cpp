@@ -190,7 +190,6 @@ void CardUIBase::DecisionMoveCardAll(void)
 
 		card->DecisionMove();
 	}
-
 }
 
 void CardUIBase::UpdateUsedCard(void)

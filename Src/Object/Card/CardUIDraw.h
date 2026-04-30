@@ -52,6 +52,15 @@ public:
 
 private:
 
+	//通常カードのシェーダパス
+	std::wstring NORMAL_CARD_SHADER_PATH = L"CardNormalPS.cso";
+
+	//リロードカードのシェーダパス
+	std::wstring RELOAD_CARD_SHADER_PATH = L"CardReloadPS.cso";
+
+	//選択枠シェーダパス
+	std::wstring SELECT_FRAME_SHADER_PATH = L"SelectCardPS.cso";
+
 	//カード強さ番号の倍率
 	static constexpr float CARD_SCL = 0.5f;
 
@@ -94,8 +103,8 @@ private:
 	std::unique_ptr<PixelRenderer> reloadCardPSRenderer_;
 
 	//選択カード枠マテリアル
-	std::unique_ptr<PixelMaterial> selectCardPSMaterial_;
-	std::unique_ptr<PixelRenderer> selectCardPSRenderer_;
+	std::unique_ptr<PixelMaterial> selectFramePSMaterial_;
+	std::unique_ptr<PixelRenderer> selectFramePSRenderer_;
 
 	//イージング
 	std::unique_ptr<Easing>easing_;

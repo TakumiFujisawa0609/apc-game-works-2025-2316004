@@ -144,7 +144,7 @@ void PlayerCardUI::Draw(void)
 		{
 			card->DrawReloadGauge(reloadPer_);
 			Vector2F pos = card->GetCenterPos();
-			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
+			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), RELOAD_STR, UtilityCommon::WHITE, reloadFontHandle_);
 		}
 	}
 
@@ -156,7 +156,7 @@ void PlayerCardUI::Draw(void)
 		{
 			(*handCurrent_)->DrawReloadGauge(reloadPer_);
 			Vector2F pos = (*handCurrent_)->GetCenterPos();
-			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
+			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), RELOAD_STR, UtilityCommon::WHITE, reloadFontHandle_);
 		}
 		//選択カード枠描画
 		(*handCurrent_)->SelectCardDrawFrame();
@@ -450,6 +450,7 @@ void PlayerCardUI::UpdateDecision(void)
 		(*it)->MoveOnRevolver(cardMoveCnt_,CardUIController::DISITION_MOVE_CARD_TIME);
 	}
 	cardMoveCnt_ -= DELTA;
+
 	//決定移動が終わったらnone状態に戻す
 	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
 

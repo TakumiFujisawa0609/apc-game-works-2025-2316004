@@ -75,8 +75,7 @@ void EnemyCardAction::Init(void)
 	if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::ATTACK)
 	{
 		cardPresent_.PutCard();
-		//LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
-		LogicBase::ENEMY_ATTACK_TYPE attackType = LogicBase::ENEMY_ATTACK_TYPE::STOMP;
+		LogicBase::ENEMY_ATTACK_TYPE attackType = actionCntl_.GetInput().GetAttackType();
 		changeCardAction_[attackType]();
 	}
 	else if (cardPresent_.GetCardType() == CardBase::CARD_TYPE::RELOAD)
@@ -208,6 +207,7 @@ void EnemyCardAction::UpdateStomp(void)
 		{
 			atkCnt_ = 0.0f;
 			atk_.atkRadius = JUMP_ATK_RADIUS;
+
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 			charaObj_.DeleteEnemyRockCol();
@@ -217,10 +217,14 @@ void EnemyCardAction::UpdateStomp(void)
 			charaObj_.DeleteEnemyRockCol();
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 
+			//エフェクトの終了
 			effect_->Stop(EffectController::EFF_TYPE::JUMP, 0);
 			effect_->Delete(EffectController::EFF_TYPE::JUMP, 0);
 
+			//カード終了処理
 			cardPresent_.FinishCard();
+
+			//アイドル状態へ
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
 	}
@@ -231,10 +235,13 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	////負けたら終了
 	if (IsCardFailure(Collider::TAG::NML_ATK))
 	{
+		//カメラシェイクを止める
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
 
+		//音を止める
 		soundMng_.Stop(ResourceManager::SRC::ENEMY_CHARGE_SE);
 
+		//エフェクトを消去
 		const int JUMP_CHARGE_EFF_ARRAY = 0;
 		effect_->Stop(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
 		effect_->Delete(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
@@ -244,7 +251,9 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	//ジャンプチャージ
 	if (jumpChargeCnt_ < JUMP_CHARGE_TIME)
 	{
+		//攻撃カウント
 		jumpChargeCnt_ += SceneManager::GetInstance().GetDeltaTime();
+
 		//アニメーションループ
 		anim_.SetMidLoop(JUMP_CHARGE_ANIM_LOOP_START, JUMP_CHARGE_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
 
@@ -271,9 +280,12 @@ void EnemyCardAction::UpdateJumpAtk(void)
 	{
 		const Transform& charaTrans = charaObj_.GetTransform();
 
+		//攻撃カウント
 		atkCnt_ += SceneManager::GetInstance().GetDeltaTime();
+
 		//攻撃中
 		atk_.pos = Utility3D::AddPosRotate(charaTrans.pos, charaTrans.quaRot, { 0.0f,0.0f,0.0f });
+
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
@@ -292,20 +304,29 @@ void EnemyCardAction::UpdateJumpAtk(void)
 			soundMng_.Play(ResourceManager::SRC::ENEMY_JUMP_LAND_SE, SoundManager::PLAYTYPE::BACK);
 			effect_->Play(EffectController::EFF_TYPE::BLAST, atk_.pos, {},{ atk_.atkRadius,atk_.atkRadius,atk_.atkRadius},true);
 		}
+
+		//エフェクトの大きさを大きくしていく
 		effect_->SetScale(EffectController::EFF_TYPE::BLAST, static_cast<int>(EFF_TYPE::BLAST),
 			{ atk_.atkRadius * BLAST_EFF_SCL,atk_.atkRadius * BLAST_EFF_SCL,atk_.atkRadius * BLAST_EFF_SCL });
 
 		//攻撃アニメーションループ
 		anim_.SetMidLoop(JUMP_ATK_ANIM_LOOP_START, JUMP_ATK_ANIM_LOOP_END, JUMP_ATK_ANIM_ATTACK_LOOP_SPEED);
 
+		//攻撃時間が終わったら
 		if (atkCnt_ > JUMP_ATK_CNT_MAX)
 		{
 			atkCnt_ = 0.0f;
 			atk_.atkRadius = JUMP_ATK_RADIUS;
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
+
+			//当たり判定の消去
 			charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
+
+			//エフェクトの消去
 			effect_->Delete(EffectController::EFF_TYPE::BLAST,static_cast<int>(EFF_TYPE::BLAST));
+
+			//アイドル状態へ移行
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
 		}
 	}
