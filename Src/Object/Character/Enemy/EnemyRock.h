@@ -80,6 +80,9 @@ private:
     //‰ŠúÀ•W
     VECTOR& startPos_;
 
+    //Šâ‚ğ•ú•¨ü‚Å”ò‚Î‚·‚½‚ß‚ÌY
+    VECTOR jumpPow_;
+
     //ˆÚ“®—Ê
     VECTOR velocity_;
 

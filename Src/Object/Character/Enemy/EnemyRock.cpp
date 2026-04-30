@@ -10,7 +10,8 @@
 EnemyRock::EnemyRock(int& _num, VECTOR& _startPos):
 	num_(_num),
 	startPos_(_startPos),
-	distance_(0.0f),
+	distance_(),
+	jumpPow_(),
 	isAlive_(false),
 	isDamaged_(false),
 	modelId_(UtilityCommon::INITIAL_HANDLE)
@@ -57,11 +58,14 @@ void EnemyRock::Update(void)
 	//生存していなければ処理しない
 	if (!isAlive_)return;
 
+	//重力分加速度を引く
 	velocity_.y -= GRAVITY;
-	
+	jumpPow_.y = velocity_.y;
+
+	//岩座標を更新する
 	VECTOR vec = VNorm(VSub(goalPos_, startPos_));
 	trans_.pos = VAdd(trans_.pos, VScale(vec, MOVE_HORIZONTAL_SPD));
-
+	trans_.pos = VAdd(trans_.pos, jumpPow_);
 
 	trans_.Update();
 
