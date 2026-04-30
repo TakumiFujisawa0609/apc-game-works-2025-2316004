@@ -79,7 +79,6 @@ void SceneManager::Init3D(void)
 
 void SceneManager::Update(void)
 {
-
 	// デルタタイム
 	auto nowTime = std::chrono::system_clock::now();
 	deltaTime_ = static_cast<float>(

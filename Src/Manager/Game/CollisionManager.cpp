@@ -17,14 +17,14 @@ void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 
 void CollisionManager::Sweep(void)
 {
-	//終了したコライダを並び変える
+	//終了したコライダの並び変え
 	auto it = std::remove_if(colliders3D_.begin(), colliders3D_.end(),
 		[](const std::shared_ptr<Collider> _col)
 		{
 			return _col->IsDead();
 		});
 
-	//終了したコライダを削除する
+	//終了したコライダを削除
 	colliders3D_.erase(it, colliders3D_.end());
 }
 
@@ -72,8 +72,6 @@ void CollisionManager::Update(void)
 			//当たり判定
 			if(IsCollision(colliders3D_[i],colliders3D_[j]))
 			{
-
-
 				//それぞれの当たった処理
 				colliders3D_[i]->OnHit(colliders3D_[j]);
 				colliders3D_[j]->OnHit(colliders3D_[i]);
@@ -119,6 +117,7 @@ CollisionManager::~CollisionManager(void)
 	//コライダの全削除
 	colliders3D_.clear();
 
+	//判定を行う範囲の削除
 	hitRange_.clear();
 }
 
@@ -150,7 +149,6 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 		pos2);
 
 	//双方のタグ
-
 	for (const auto tag1 : _col1.lock()->GetTags())
 	{
 		for (const auto tag2 : _col2.lock()->GetTags())

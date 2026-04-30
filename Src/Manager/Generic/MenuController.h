@@ -8,6 +8,7 @@ class MenuController
 
 public:
 
+	//メニュー状態
 	enum class MENU_STATE
 	{
 		DIRECTION,		//メニューが出てくる演出
@@ -172,7 +173,6 @@ private:
 	int selectMenuNum_;
 
 	//はい/いいえ状態
-	//bool isYes_;
 	YES_NO yesNoState_;
 
 	//中央座標で描画

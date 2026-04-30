@@ -98,11 +98,8 @@ protected:
 	//モデルの当たった時の共通処理
 	void HitModelCommon(const std::weak_ptr<Collider> _hitCol);
 
-	//オブジェクト毎の当たった時にされる処理
+	//衝突後の処理
 	void CollNone(void);												//当たっても何もしない(プレイヤー側で何も起きない)
 	void CollStage(const std::weak_ptr<Collider> _hitCol);				//ステージ
 	virtual void CollChara(const std::weak_ptr<Collider> _hitCol) = 0;	//キャラクター同士
-
-private:
-
 };

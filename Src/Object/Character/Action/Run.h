@@ -1,12 +1,21 @@
 #pragma once
 #include "../Manager/Resource/ResourceManager.h"
 #include "../Base/ActionBase.h"
+
 class Run :
     public ActionBase
 {
 public:
 
+    /// @brief コンストラクタ
+    /// @param _actCntl アクションコントローラー
+    /// @param _speed 速度
+    /// @param _src 足音
+    /// @param _footSeDis 足音の間隔 
     Run(ActionController& _actCntl,const float _speed,SoundManager::SRC _src,const float _footSeDis);
+
+    /// @brief デストラクタ
+    /// @param  
     ~Run(void)override;
 
 	/// @brief ロード

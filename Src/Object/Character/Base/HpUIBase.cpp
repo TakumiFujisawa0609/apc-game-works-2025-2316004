@@ -44,7 +44,6 @@ void HpUIBase::Init(void)
 
 void HpUIBase::Update(void)
 {
-
 	//HP‚ÌŒ¸‚ç‚µ•ƒQ[ƒW‚Ì•âŠ®
 	if (hpDis_ > 0.0f)
 	{

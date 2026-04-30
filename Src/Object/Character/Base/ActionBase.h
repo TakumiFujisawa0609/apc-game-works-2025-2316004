@@ -11,24 +11,10 @@ class PlayerLogic;
 
 class ActionBase
 {
+
 public:
-	ActionBase(ActionController& _actCntl);
-	virtual ~ActionBase();
 
-	virtual void Load(void) = 0;
-
-	/// @brief 初期化
-	/// @param  
-	virtual void Init(void) = 0;
-
-	/// @brief 更新
-	/// @param  
-	virtual void Update(void) = 0;
-	
-	/// @brief 解放
-	/// @param  
-	virtual void Release(void);
-
+	//アクションタイプ
 	enum TYPE
 	{
 		NONE = -1,
@@ -50,19 +36,10 @@ public:
 		ATTACK_ONE_SHORT,	//攻撃アクション1回目(近距離)
 		ATTACK_ONE_MIDDLE,	//攻撃アクション1回目(中距離)
 		ATTACK_TWO,			//攻撃アクション2回目
-		ATTACK_THREE,		//攻撃アクション3回目
-		//DUEL_FAZE,			//敵のジャンプチャージフェーズの時、カード勝負行動に出る
-		//DUEL_WAIT_FAZE,		//デュエルのカード待機
-		//HEAL_CARD,			//ヒールカード使用
-		//MAGIC_CARD,			//マジックカード使用
-		//SONIC_RAVE,			//ソニックレイヴ		
-
+		ATTACK_THREE,		//攻撃アクション3回目		
 		//敵のアクション
 		STOMP_ATK,			//ひっかき攻撃
-		//ROAR_ATK,			//咆哮
 		JUMP_ATK,			//ジャンプ攻撃
-		//RUSH_ATK,			//ロール攻撃
-
 		//共通
 		RELOAD, //リロード
 		NUM,
@@ -71,15 +48,39 @@ public:
 	//攻撃のステータス
 	struct ATK_STATUS
 	{
-		float colStartCnt=0.0f;
-		float colEndCnt=0.0f;
-		float bufferFrame = 0.0f;
-		float atkRadius=0.0f;
+		float colStartCnt = 0.0f;	//当たり判定発生の時間
+		float colEndCnt = 0.0f;		//当たり判定終了の時間
+		float bufferFrame = 0.0f;	//コンボ入力のバッファ
+		float atkRadius = 0.0f;		//攻撃範囲
 		float atkPoint = 0.0f;		//攻撃力
-		VECTOR pos = {};
-		bool isDamage = true;
+		VECTOR pos = {};			//当たり判定座標
+		bool isDamage = true;		//ダメージ判定
 	};
+
+	/// @brief コンストラクタ
+	/// @param _actCntl アクションコントローラー
+	ActionBase(ActionController& _actCntl);
+
+	/// @brief デストラクタ
+	/// @param  
+	virtual ~ActionBase(void);
+
+	/// @brief ロード
+	/// @param  
+	virtual void Load(void) = 0;
+
+	/// @brief 初期化
+	/// @param  
+	virtual void Init(void) = 0;
+
+	/// @brief 更新
+	/// @param  
+	virtual void Update(void) = 0;
 	
+	/// @brief 解放
+	/// @param  
+	virtual void Release(void);
+
 	/// @brief 1方向に動く移動量
 	/// @param  
 	/// @return 1方向に動く移動量
@@ -130,9 +131,8 @@ protected:
 	//移動スピード
 	static constexpr float MOVE_SPEED = 6.0f;
 
-	//移動
-	//------------------------
-	float speed_;			// 移動スピード
+	//速度
+	float speed_;			
 
 	//怯み時間
 	float flinchCnt_;

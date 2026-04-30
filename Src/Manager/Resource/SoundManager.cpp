@@ -1,9 +1,8 @@
-#include "SoundManager.h"
 #include <DxLib.h>
 #include <cassert>
 #include "../Resource/ResourceManager.h"
 #include "../../Application.h"
-
+#include "SoundManager.h"
 SoundManager::SoundManager(void):
 	resMng_(ResourceManager::GetInstance()),
     dummy_()
@@ -29,7 +28,7 @@ void SoundManager::Play(const SRC _src, const PLAYTYPE _playType)
 {
 	//音源が読み込まれていない場合はエラー
 	int handleId = resMng_.GetResource(_src).handleId_;
-	assert(handleId == -1 && "音源が読み込まれてないです");
+	assert(handleId == -1 && NOT_LOAD_ERROR_MESSAGE);
 
     //音源が再生済みか調べる
 	if (CheckSoundMem(handleId) == 1 &&
@@ -58,10 +57,17 @@ bool SoundManager::IsPlay(const SRC _src) const
     return CheckSoundMem(res.handleId_) == 1;
 }
 
+const void SoundManager::SetLoadedSoundsVolume(void)
+{
+    for (int i = 0; i < TYPE_MAX; i++) 
+    {
+        SetSystemVolume(volume_[i], static_cast<TYPE>(i)); 
+    }
+}
+
 void SoundManager::SetSoundVolumeSRC(const SRC _src, const float _volumePercent)
 {
-    constexpr float VOLUME_MAX = 255.0f;  //最大音量
-    constexpr float DIV = 1.0f;         //音量の割合を計算するための定数
+    //リソースの取得
 	const ResourceData res = resMng_.GetResource(_src);
     if (res.type_ == ResourceData::TYPE::NONE)
     {
@@ -74,9 +80,7 @@ void SoundManager::SetSoundVolumeSRC(const SRC _src, const float _volumePercent)
 
 void SoundManager::SetSystemVolume(const float _volumePercent, const TYPE _type)
 {    
-    constexpr float VOLUME_MAX = 255.0f;  //最大音量
-    constexpr float DIV = 1.0f;         //音量の割合を計算するための定数
-
+    //型変換
 	const int type = static_cast<int>(_type);
     //音量設定
     volume_[type] = _volumePercent;

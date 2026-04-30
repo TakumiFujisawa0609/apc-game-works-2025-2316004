@@ -1,5 +1,6 @@
 #pragma once
 #include "CardUIBase.h"
+
 class EnemyCardUI :
     public CardUIBase
 {

@@ -1,3 +1,4 @@
+#include "../pch.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/UIManager.h"
 #include "../Object/Common/AnimationController.h"
@@ -100,11 +101,29 @@ void CharacterBase::UpdatePost(void)
 	trans_.pos = movedPos_;
 }
 
-void CharacterBase::SetStatus(const float& _spd, const float& _hp, const float& _atk, const float& _def)
+void CharacterBase::LoadStatus(void)
 {
-	//最大値をセット
-	maxStatus_ = { _spd,_hp,_atk,_def };
+	//jsonロード
+	nlohmann::json j = UtilityCommon::LoadJsonData(CHARACTER_DATA_PATH);
 
+	std::string statusPath = "";
+
+	characterType_ == CHARACTER_TYPE::PLAYER ? statusPath = "PlayerStatus" : statusPath = "EnemyStatus";
+	for (const auto& data : j[statusPath])
+	{
+		if(data.contains("HP")){ 
+			maxStatus_.hp = data["HP"]; 
+		}
+		if (data.contains("ATK")) {
+			maxStatus_.atk = data["ATK"];
+		}
+		if (data.contains("DEF")) {
+			maxStatus_.atk = data["DEF"];
+		}
+		if (data.contains("SPD")) {
+			maxStatus_.speed = data["SPD"];
+		}
+	}
 	//現在ステータスを最大値にセット
 	status_ = maxStatus_;
 }
@@ -190,11 +209,11 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	//ダメージを受ける前にUI補間するためのpreHpを計算
-	//hpUi_->SetShakeTime();
 	HP_DATA hpData = {};
+
 	//減らす前のhpを入れる
 	hpData.preHpPer = status_.hp / maxStatus_.hp;
-	//preHpPer_ = hpPer_;
+
 	//ダメージ分hpを減らす
 	status_.hp -= _dam;
 

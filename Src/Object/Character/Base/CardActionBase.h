@@ -6,6 +6,7 @@
 class CardPresenter;
 class CharacterBase;
 class EffectController;
+
 class CardActionBase :
     public ActionBase
 {
@@ -99,8 +100,5 @@ protected:
 
 	//ƒRƒ“ƒ{“ü—ÍŽó•t
 	void ComboInput(void);
-
-private:
-
 };
 

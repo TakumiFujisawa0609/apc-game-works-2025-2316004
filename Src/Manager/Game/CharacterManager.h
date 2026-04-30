@@ -6,7 +6,9 @@
 class CharacterBase;
 class Player;
 class Enemy;
-class CharacterManager :public Singleton<CharacterManager>
+
+class CharacterManager :
+	public Singleton<CharacterManager>
 {
 	// ƒVƒ“ƒOƒ‹ƒgƒ“
 	friend class Singleton<CharacterManager>;

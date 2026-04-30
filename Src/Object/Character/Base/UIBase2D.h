@@ -33,6 +33,5 @@ protected:
 
 	//イージング
 	std::unique_ptr<Easing>easing_;
-private:
 };
 

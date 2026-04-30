@@ -1,4 +1,3 @@
-//#include "....//Manager/System/SoundManager.h"
 #include <ranges>
 #include "../../../Manager/Generic/SceneManager.h"
 #include "../../../Manager/Resource/ResourceManager.h"
@@ -10,7 +9,6 @@
 #include "../Object/Character/Enemy/EnemyRock.h"
 #include"../../../Utility/Utility3D.h"
 #include"./ActionController.h"
-
 #include"./Player.h"
 #include "../Base/CharacterOnHitBase.h"
 #include "PlayerOnHit.h"
@@ -32,7 +30,6 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos,VECTOR& _moveD
 		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
 		{ TAG::ROCK, [this](const std::weak_ptr<Collider>_hitCol) {CollRock(_hitCol); } },
 	};
-
 }
 
 PlayerOnHit::~PlayerOnHit(void)
@@ -56,15 +53,22 @@ void PlayerOnHit::Init(void)
 
 void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 {
-	//相手のタグをとる
+	//相手のタグの取得
 	const CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
 	std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
+
+	//攻撃のタグを見つける
 	const auto it = std::find(tags.begin(), tags.end(), Collider::TAG::NML_ATK);
+
 	isHitTarget_ = true;
+
 	//攻撃の当たり判定の場合は無視
 	if (it != tags.end())return;
+
+	//それぞれのカプセルの取得
 	Geometry& myCap = colParam_[TAG_PRIORITY::BODY]->GetGeometry();
 	Geometry& hitCap = _hitCol.lock()->GetGeometry();
+
 	//自分の座標
 	VECTOR myPos = charaObj_.GetTransform().pos;
 	const VECTOR hitCharaPos = parentChara.GetTransform().pos;
@@ -81,6 +85,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 
 	//押し出す方向ベクトルの計算
 	VECTOR vec = Utility3D::GetMoveVec(parentChara.GetTransform().pos,charaObj_.GetTransform().pos );
+
 	//Y成分はいらない
 	vec.y = 0.0f;
 
@@ -90,12 +95,16 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 
 void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
-
+	//相手の親キャラクターの取得
 	auto& parentChara = _hitCol.lock()->GetParentCharacter();
+
+	//ダメージ判定の取得
 	bool getIsDam = parentChara.GetIsDamage();
 	if (getIsDam)return;
 
+	//相手のタグの取得
 	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
+
 	//ダメージを与えたことを知らせる
 	parentChara.SetIsDamage();
 
@@ -131,9 +140,13 @@ void PlayerOnHit::CollRoarAttack(const std::weak_ptr<Collider> _hitCol)
 
 void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
 {
+	//岩の取得
 	auto& rock = dynamic_cast<EnemyRock&>(_hitCol.lock()->GetParent());
+
 	//ダメージを与えていた場合、処理を抜ける
 	if (rock.GetIsDamaged())return;
+
+	//ダメージを与える
 	charaObj_.Damage(STONE_DMG);
 	//のけぞり時間セット
 	rock.SetIsDamaged();

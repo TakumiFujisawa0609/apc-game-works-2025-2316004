@@ -8,7 +8,8 @@ class ResourceManager;
 class PixelRenderer;
 class PixelMaterial;
 
-class HpUIBase:public UIBase2D
+class HpUIBase
+	: public UIBase2D
 {
 
 public:
@@ -108,6 +109,4 @@ protected:
 
 	//シェイクカウント
 	float shakeCnt_;
-private:
 };
-

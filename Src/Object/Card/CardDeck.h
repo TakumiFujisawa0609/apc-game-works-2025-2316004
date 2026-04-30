@@ -8,7 +8,7 @@
 
 class CardBase;
 
-class CardDeck:
+class CardDeck :
 	public ObjectBase
 {
 
@@ -123,7 +123,7 @@ private:
 	//カードの種類のデータが入っている文字列
 	const std::string CARD_TYPE_PATH = "type";
 
-	//ka-
+	//カードパワーを読み込むパス
 	const std::string CARD_POWER_PATH = "pow";
 	
 	//カードを選択したときの制限

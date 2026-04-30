@@ -43,7 +43,7 @@ Player::Player(void)
 	characterType_ = CHARACTER_TYPE::PLAYER;
 
 	//各ステータスの設定
-	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
+	//SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
 
 	footSEDisCount_ = FOOT_SE_DIS;
 	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
@@ -71,7 +71,13 @@ void Player::Load(void)
 	trans_.pos = { 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
 	trans_.localPos = { 0.0f,Player::CAP_RADIUS,0.0f };
 
+	//ステータスのロード
+	LoadStatus();
+
+	//アニメーションの追加
 	AddAnimation();
+
+	//アクションの追加
 	AddAction();
 	
 	action_->Load();

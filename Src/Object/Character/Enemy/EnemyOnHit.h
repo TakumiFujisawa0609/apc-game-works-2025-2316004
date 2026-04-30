@@ -1,8 +1,10 @@
 #pragma once
 #include "../Base/CharacterOnHitBase.h"
+
 class EnemyOnHit :
     public CharacterOnHitBase
 {
+
 public:
 
 	/// @brief コンストラクタ
@@ -39,6 +41,7 @@ private:
 	//最大追加ダメージ(プレイヤーとのカードの強さを比べる)
 	static constexpr int MAX_ADD_DAMAGE = 10;
 
+	//衝突後処理
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;		//キャラ同士の当たり判定
 };

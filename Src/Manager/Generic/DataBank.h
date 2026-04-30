@@ -5,9 +5,10 @@
 #include "../Object/Character/UIData/CharacterUIData.h"
 #include "../Object/Card/CardBase.h"
 #include "../../Template/Singleton.h"
-class DataBank :public Singleton<DataBank>
+class DataBank :
+	public Singleton<DataBank>
 {
-	// シングルトンにだけ共有する
+	// シングルトン
 	friend class Singleton<DataBank>;
 
 public:	

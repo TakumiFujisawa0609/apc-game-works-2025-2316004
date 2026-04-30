@@ -24,7 +24,8 @@ class PlayerOnHit;
 class EnemyOnHit;
 class EnemyRock;
 
-class CharacterBase :public ObjectBase
+class CharacterBase 
+	: public ObjectBase
 {
 
 public:
@@ -37,8 +38,10 @@ public:
 
 	// 回転完了までの時間
 	static constexpr float TIME_ROT = 0.1f;
+
 	//最大ＨＰ
 	static constexpr float HP_MAX = 200.0f;
+
 	//転がるアニメーション速度
 	static constexpr float ROLL_ANIM_SPEED = 20.0f;
 
@@ -111,6 +114,7 @@ public:
 		OVER_DIRECTION,
 		HIT_STOP
 	};
+
 	/// @brief コンストラクタ
 	/// @param  
 	CharacterBase(void);
@@ -227,12 +231,12 @@ public:
 
 	/// @brief 敵のジャンプチャージ中取得
 	/// @param  
-	/// @return 
+	/// @return true:敵のジャンプチャージ中
 	const ActionBase& GetMainAction(void)const;
 
 	/// @brief ヒットポイントを当たり判定から取得
 	/// @param  
-	/// @return 
+	/// @return ヒットポイント
 	const CharacterOnHitBase::HIT_POINT& GetHitPoint(void)const;
 
 	/// @brief ロジッククラスにターゲットをセット
@@ -248,11 +252,12 @@ public:
 	/// @param  
 	void LoadEnemyRock(void);
 
-	//岩の当たり判定削除
+	/// @brief 岩の当たり判定削除
+	/// @param  
 	void DeleteEnemyRockCol(void);
 
 	/// @brief 岩の生存フラグセット
-	/// @param _isAlive 
+	/// @param _isAlive セットしたいフラグ
 	void SetIsAliveEnemyRock(const bool _isAlive);
 
 	/// @brief 岩配列更新
@@ -282,7 +287,7 @@ public:
 
 	/// @brief クリア演出が終わったか
 	/// @param  
-	/// @return 
+	/// @return true:クリア演出終了 : false:演出終了していない
 	const bool GetIsEndDirect(void) { return isEndClearDirect_; }
 
 protected:
@@ -298,6 +303,9 @@ protected:
 
 	//中心からのZオフセット
 	static constexpr float CENTER_POS_Z_OFFSET = 600.0f;
+
+	//キャラクターデータの外部ファイルパス
+	const std::string CHARACTER_DATA_PATH = "Data/Json/CharaData.json";
 
 	//入力
 	std::unique_ptr<LogicBase>logic_;
@@ -388,8 +396,8 @@ protected:
 	//移動後座標などの更新
 	void UpdatePost(void);
 
-	//ステータスの設定
-	void SetStatus(const float& _spd, const float& _hp, const float& _atk, const float& _def);
+	//Jsonからステータスをロード
+	void LoadStatus(void);
 
 	//移動制限
 	void MoveLimit(const VECTOR& _stagePos, const VECTOR& _stageSize);
@@ -419,8 +427,4 @@ protected:
 	virtual void ChangeUpdateClearDirection(void);	//クリア演出
 	virtual void ChangeUpdateOverDirection(void);	//ゲームオーバー演出
 	void ChangeUpdateHitStop(void);				//ヒットストップ
-
-private:
-
 };
-

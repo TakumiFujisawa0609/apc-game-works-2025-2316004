@@ -6,7 +6,8 @@ class PixelMaterial;
 class PixelRenderer;
 class CardUIController;
 
-class CardUIDraw :public ObjectBase
+class CardUIDraw :
+	public ObjectBase
 {
 
 public:

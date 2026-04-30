@@ -153,5 +153,4 @@ private:
 	void ReleaseEffekseer(void);
 	void ReleaseVS(void);
 	void ReleasePS(void);
-
 };

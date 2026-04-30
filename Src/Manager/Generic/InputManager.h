@@ -5,9 +5,10 @@
 #include "../../Common/Vector2.h"
 #include "../../Common/Vector2F.h"
 
-class InputManager : public Singleton<InputManager>
+class InputManager 
+	: public Singleton<InputManager>
 {
-	// シングルトンにだけ共有する
+	// シングルトン
 	friend class Singleton<InputManager>;
 
 public:

@@ -453,7 +453,6 @@ void Camera::SetBeforeDrawFollow(void)
 	//カメラの押し出し
 	Collision();
 
-	//pos_ = easing_->EaseFunc(prePos, pos_, 0.1f, Easing::EASING_TYPE::LERP);
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
 	{
 		ChangeMode(MODE::TARGET_POINT);
@@ -477,8 +476,11 @@ void Camera::SetBeforeDrawTargetPoint(void)
 		ChangeMode(MODE::FIXED_POINT);
 		return;
 	}
+
+	//入力でのカメラ操作
 	ProcessRot();
 
+	//ターゲットカメラの追従
 	SyncTargetFollow();
 
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))

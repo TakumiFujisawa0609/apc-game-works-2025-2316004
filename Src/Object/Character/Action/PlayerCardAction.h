@@ -1,7 +1,6 @@
 #pragma once
 #include<functional>
 #include<queue>
-//#include "../Base/ActionBase.h"
 #include "../Base/CardActionBase.h"
 
 class Easing;
@@ -50,10 +49,10 @@ private:
     static constexpr float ATK_SPHERE_RADIUS = 0.0f;				    
 
     //攻撃1段目判定(近距離)
-    static constexpr float ATTACK_ONE_POINT = 10.0f;                //攻撃威力
-	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 24.0f;   //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 36.0f;     //攻撃当たり判定終了アニメーションカウント
-    static constexpr float ATTACK_ONE_BUFFER_FRAME = 20.0f;          //先行入力受付フレーム
+    static constexpr float ATTACK_ONE_POINT = 10.0f;                    //攻撃威力
+	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 24.0f;       //攻撃当たり判定開始アニメーションカウント
+	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 36.0f;         //攻撃当たり判定終了アニメーションカウント
+    static constexpr float ATTACK_ONE_BUFFER_FRAME = 20.0f;             //先行入力受付フレーム
 
     //攻撃1段目判定(中距離)
 	static constexpr float ATTACK_ONE_MID_COL_START_ANIM_CNT = 16.0f;   //攻撃当たり判定開始アニメーションカウント
@@ -81,11 +80,11 @@ private:
     static constexpr float ATTACK_THREE_ANIM_LERP_TIME = 0.4f;          //攻撃3段階目アニメスピード補完時間
 
     //リロード
-    static constexpr float RELOD_EFF_SCL = 100.0f;          //エフェクトスケール
-    static constexpr float RELOAD_START_STEP = 17.0f;       //アニメーション始まりステップ
-    static constexpr float RELOAD_END_STEP = 33.0f;         //アニメーション終わり
-    static constexpr float RELOAD_LOOP_START = 26.0f;       //アニメーションループスタート
-    static constexpr float RELOAD_LOOP_END = 30.0f;         //アニメーションループ終了
+    static constexpr float RELOD_EFF_SCL = 100.0f;                      //エフェクトスケール
+    static constexpr float RELOAD_START_STEP = 17.0f;                   //アニメーション始まりステップ
+    static constexpr float RELOAD_END_STEP = 33.0f;                     //アニメーション終わり
+    static constexpr float RELOAD_LOOP_START = 26.0f;                   //アニメーションループスタート
+    static constexpr float RELOAD_LOOP_END = 30.0f;                     //アニメーションループ終了
 
     //攻撃段階
     static constexpr int ATTACK_ONE = 0;
@@ -156,17 +155,17 @@ private:
 	void SetUIReloadCnt(void);
 
     //更新系
-	void UpdateAttack(void);            //攻撃アクション
-    void UpdateMiddleAttack(void);      //中距離攻撃アクション１回目(中距離)
-    void UpdateAttackThree(void);       //攻撃アクション３段階目(１，２段目とは違う演出を入れる)
-    void UpdateReload(void);            //リロード
+	void UpdateAttack(void);                   //攻撃アクション
+    void UpdateMiddleAttack(void);             //中距離攻撃アクション１回目(中距離)
+    void UpdateAttackThree(void);              //攻撃アクション３段階目(１，２段目とは違う演出を入れる)
+    void UpdateReload(void);                   //リロード
 
     //遷移系
-	void ChangeShortAttackOne(void);        //攻撃アクション1回目(近距離)
-	void ChangeMiddleAttackOne(void);        //攻撃アクション1回目(中距離)
-	void ChangeAttackTwo(void);             //攻撃アクション2回目
-	void ChangeAttackThree(void);           //攻撃アクション3回目
-    void ChangeReload(void);                //リロード
+	void ChangeShortAttackOne(void);           //攻撃アクション1回目(近距離)
+	void ChangeMiddleAttackOne(void);          //攻撃アクション1回目(中距離)
+	void ChangeAttackTwo(void);                //攻撃アクション2回目
+	void ChangeAttackThree(void);              //攻撃アクション3回目
+    void ChangeReload(void);                   //リロード
 
     //コンボアクション遷移(あれば実装する)
     void ChangeComboAction(void)override;

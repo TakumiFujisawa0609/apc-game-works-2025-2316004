@@ -17,11 +17,7 @@
 
 EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck):
 CardActionBase(_actCntl, _charaObj, _deck),
-atkCnt_(0.0f),
-roleAtkCnt_(0.0f),
-preRoleAtkCnt_(0.0f),
-preRolePos_(Utility3D::VECTOR_ZERO),
-roleDeg_(0.0f)
+atkCnt_(0.0f)
 {
 	isTurnable_ = false;
 	changeAction_ = {
@@ -71,8 +67,6 @@ void EnemyCardAction::Init(void)
 	};
 	atkCnt_ = 0.0f;
 	speed_ = 0.0f;
-	roleAtkCnt_ = 0.0f;
-	roleDeg_ = 0.0f;
 	jampCardNum_ = 0;
 	atk_ = {};
 	atk_.isDamage = false;

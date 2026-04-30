@@ -3,9 +3,10 @@
 #include "../Template/Singleton.h"
 #include "../Common/Vector2F.h"
 
-class ButtonUIManager:public Singleton<ButtonUIManager>
+class ButtonUIManager :
+	public Singleton<ButtonUIManager>
 {
-
+	// シングルトン
 	friend class Singleton<ButtonUIManager>;
 
 public:
@@ -125,13 +126,13 @@ public:
 	/// @param  
 	void Init(void);
 
-	/// @brief 描画
+	/// @brief センター座標基準の描画
 	/// @param _btnType ボタンの種類
 	/// @param _centerPos 中心座標
 	/// @param _size サイズ
 	void DrawFromCenter(const BTN_UI_TYPE _btnType, const Vector2F _centerPos, const float _size = DEFAULT_UI_SIZE);
 
-	/// @brief 描画
+	/// @brief 左上基準の描画
 	/// @param _btnType ボタンの種類
 	/// @param _centerPos 左上座標
 	/// @param _size サイズ
@@ -142,6 +143,10 @@ private:
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
 	ButtonUIManager(void);
+
+	//コピー禁止
+	ButtonUIManager(const ButtonUIManager& _copy) = delete;
+	ButtonUIManager& operator=(const ButtonUIManager& _copy) = delete;
 
 	// デストラクタも同様
 	~ButtonUIManager(void)override = default;

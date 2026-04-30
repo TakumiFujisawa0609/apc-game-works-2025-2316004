@@ -168,6 +168,7 @@ void PlayerCardUI::Draw(void)
 	//カード残り枚数ゲージの描画
 	cardGaugePSRenderer_->Draw();
 
+	//カード枚数ゲージのフレーム
 	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumFrameImg_, true);
 
 	int handCardSize = static_cast<int>(handCards_.size());
@@ -202,9 +203,11 @@ void PlayerCardUI::DrawDebug(void)
 #endif 
 void PlayerCardUI::InitCardUI(void)
 {
+	//初めに配列を初期化
 	handCards_.clear();
 	visibleCards_.clear();
 	actions_.clear();
+
 	//手札にすべての初期札を入れる
 	for (auto& it : initialCards_)
 	{
@@ -212,9 +215,11 @@ void PlayerCardUI::InitCardUI(void)
 		(*it).Init();
 		handCards_.emplace_back(it);
 	}
+
 	//はじめの配列にリロードカードを描画したいので、最後の配列にセットする
 	auto beginit = std::prev(handCards_.end());
 	auto endIt = handCards_.begin();
+
 	//endItをbeginの５個先(６枚目)に指定する
 	std::advance(endIt, VISIBLE_CARD_MAX - 1);
 
@@ -236,6 +241,7 @@ void PlayerCardUI::InitCardUI(void)
 		i++;
 	}
 
+	//現在のカードをセット
 	if (!handCards_.empty())
 	{
 		handCurrent_ = handCards_.begin();
@@ -280,6 +286,7 @@ void PlayerCardUI::ChangeLeft(void)
 			it = handCards_.begin();
 		}
 	}
+
 	//次の角度を現在角度に代入
 	//見せるカードのマックス分角度をかける
 	int size = static_cast<int>(visibleCards_.size());
@@ -289,6 +296,7 @@ void PlayerCardUI::ChangeLeft(void)
 	//手札選択カードを更新
 	AddHandCurrent();
 
+	//イージングするために始点と終点をセット
 	for (auto& card : visibleCards_)
 	{
 		float currentAngle = card->GetCurrentAngle();
@@ -361,8 +369,10 @@ void PlayerCardUI::ChangeDecision(void)
 	
 	//手札に6枚よりカードが多かったら配列に入れる
 	UpdateVisibleCard();
+
 	//手札から使用するカードを消去
 	EraseHandCard();
+
 	//カードの範囲変数を更新する
 	DecideGoalAngle();
 
@@ -396,7 +406,10 @@ void PlayerCardUI::UpdateNone(void)
 
 void PlayerCardUI::UpdateLeft(void)
 {
+	//イージングカウント
 	cardMoveCnt_ -= DELTA;
+
+	//イージングが終わったら状態を戻す
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_front();
@@ -404,12 +417,17 @@ void PlayerCardUI::UpdateLeft(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
+
+	//カードの移動
 	MoveCardAll(CardUIController::SELECT_MOVE_CARD_TIME);
 }
 
 void PlayerCardUI::UpdateRight(void)
 {
+	//イージングカウント
 	cardMoveCnt_ -= DELTA;
+
+	//移動が終わったら状態を戻す
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_back();
@@ -417,6 +435,8 @@ void PlayerCardUI::UpdateRight(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
+
+	//カードの移動
 	MoveCardAll(CardUIController::SELECT_MOVE_CARD_TIME);
 }
 
@@ -456,6 +476,7 @@ void PlayerCardUI::UpdateReloadWait(void)
 }
 void PlayerCardUI::UpdateReload(void)
 {
+	//リロードアニメーションの更新
 	ReloadAnimation();
 
 	//リロードが終了したら
@@ -469,6 +490,7 @@ void PlayerCardUI::UpdateReload(void)
 		}
 		else
 		{
+			//選択カードを先頭にセット
 			if (!handCards_.empty())
 			{
 				handCurrent_ = handCards_.begin();
@@ -587,6 +609,7 @@ void PlayerCardUI::ReloadAnimation(void)
 		//サウンドを再生
 		soundMng_.Play(ResourceManager::SRC::CARD_MOVE_SE, SoundManager::PLAYTYPE::BACK);
 
+		//配列追加
 		ReloadCardArray();
 
 		//見せカードが7枚以上の時は終了
@@ -595,6 +618,7 @@ void PlayerCardUI::ReloadAnimation(void)
 			isReloadEnd_ = true;
 		}
 		
+		//リロード中カードを更新
 		reloadAnimCurr_--;
 
 		//先頭まで来たら最後尾に戻し、見せカードにリロードカードを追加
@@ -623,6 +647,7 @@ void PlayerCardUI::ReloadAnimation(void)
 		card->MoveOnRevolver(cardMoveCnt_, CardUIController::RELOAD_MOVE_CARD_TIME_PER);
 		i++;
 	}
+
 	//見せカードが7枚以上お時はポップ
 	if(visibleCards_.size()>VISIBLE_CARD_MAX)
 	{
@@ -634,6 +659,7 @@ void PlayerCardUI::ReloadCardArray(void)
 {
 	//リロードカードの現在位置にセット
 	(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
+
 	//見せるカード配列に追加
 	visibleCards_.emplace_front(*reloadAnimCurr_);
 
@@ -664,6 +690,7 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 	//リボルバー回転方向の左方向矢印の描画
 	DrawRotaGraphF(REVOLVER_ARROW_L_POS.x, REVOLVER_ARROW_L_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_L_ANGLE), imgRevolverArrow_, true);
+
 	//リボルバー回転方向の右方向矢印の描画
 	DrawRotaGraphF(REVOLVER_ARROW_R_POS.x, REVOLVER_ARROW_R_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(-REVOLVER_ARROW_L_ANGLE), imgRevolverArrow_, true,true,false);
@@ -671,6 +698,7 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 	Vector2F btnPos = REVOLVER_ARROW_L_POS;
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + REVOLVER_BTN_ARROW_OFFSET;
 
+	//移動矢印の描画
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::LBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 	btnPos = REVOLVER_ARROW_R_POS;
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + REVOLVER_BTN_ARROW_OFFSET;

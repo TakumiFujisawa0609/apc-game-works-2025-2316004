@@ -11,6 +11,7 @@ class Geometry;
 
 class CollisionManager :public Singleton<CollisionManager>
 {
+	// ƒVƒ“ƒOƒ‹ƒgƒ“
 	friend class Singleton<CollisionManager>;
 
 public:

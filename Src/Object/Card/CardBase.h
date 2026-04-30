@@ -2,8 +2,8 @@
 #include "../Object/ObjectBase.h"
 #include"../Common/Vector2F.h"
 
-class CardBase
-	:public ObjectBase
+class CardBase :
+	public ObjectBase
 {
 
 public:

@@ -15,8 +15,6 @@
 #include "../Renderer/PixelRenderer.h"
 #include "CardUIBase.h"
 
-
-
 CardUIBase::CardUIBase(void):
 selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
@@ -199,6 +197,7 @@ void CardUIBase::UpdateUsedCard(void)
 {
 	//アクション中のカードがなければ飛ばす
 	if (actions_.empty())return;
+
 	//使用済みカードを消す
 	for (auto& act : actions_)
 	{
@@ -220,7 +219,6 @@ void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 	{
 		card->ReactUpdate(_goalPos);
 	}
-	
 }
 
 void CardUIBase::AddHandCurrent(void)

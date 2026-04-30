@@ -5,17 +5,14 @@
 #include "../../Template/Singleton.h"
 #include "../../Common/Fader.h"
 
-// 推奨しませんが、どうしても使いたい方は
-//#define mainCamera SceneManager::GetInstance().GetCamera().lock()
-
 class SceneBase;
 class Fader;
 class Camera;
 
-class SceneManager : public Singleton<SceneManager>
+class SceneManager : 
+	public Singleton<SceneManager>
 {
-
-	//シングルトンにだけ共有する
+	//シングルトン
 	friend class Singleton<SceneManager>; 
 
 public:

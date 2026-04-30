@@ -5,11 +5,12 @@
 #include "../Resource/Resource.h"
 #include "../Template/Singleton.h"
 
-
 class ResourceManager;
-class SoundManager : public Singleton<SoundManager>
-{
 
+class SoundManager :
+	public Singleton<SoundManager>
+{
+	//シングルトン
 	friend class Singleton<SoundManager>;
 
 public:
@@ -56,11 +57,11 @@ public:
 	/// @brief 読み込んだ音量を設定する
 	/// @param  
 	/// @return 
-	const void SetLoadedSoundsVolume(void) { for (int i = 0; i < TYPE_MAX; i++) { SetSystemVolume(volume_[i], static_cast<TYPE>(i)); } };
+	const void SetLoadedSoundsVolume(void);
 
-	/// @brief 
-	/// @param _src 
-	/// @param _volumePercent 
+	/// @brief リソース別の音量をセット
+	/// @param _src 音量調整したいリソース
+	/// @param _volumePercent 設定したい音量
 	void SetSoundVolumeSRC(const SRC _src, const float _volumePercent);
 
 	/// @brief 音量の設定
@@ -79,6 +80,12 @@ public:
 
 private:	
 	
+	//音源が読み込まれていないときのエラーメッセージ
+	const std::string NOT_LOAD_ERROR_MESSAGE = "音源が読み込まれてないです";
+
+	//音量マックス値
+	static constexpr float VOLUME_MAX = 255.0f;
+
 	//静的インスタンス
 	static SoundManager* instance_;
 	

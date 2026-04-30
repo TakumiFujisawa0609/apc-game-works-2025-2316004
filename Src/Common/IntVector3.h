@@ -32,7 +32,4 @@ public:
 	void operator*=(const int _value);
 	const IntVector3 operator/(const int _value)const;
 	void operator/=(const int _value);
-
-private:
-
 };

@@ -4,9 +4,11 @@
 #include "../../Template/Singleton.h"
 
 class CardDeck;
-class CardSystem : public Singleton<CardSystem>
-{
 
+class CardSystem : 
+	public Singleton<CardSystem>
+{
+	//シングルトン
 	friend class Singleton<CardSystem>;
 
 public:
@@ -62,7 +64,9 @@ public:
 	/// @param _playerNo 
 	void JudgeIsFirstAtk(const int _playerNo);
 
-	//カード２枚のカード強さの取得
+	/// @brief カード２枚のカード強さの差を取得
+	/// @param  
+	/// @return  カード２枚のカード強さの差
 	const int GetCardDif(void)const { return cardDif_; }
 
 #ifdef _DEBUG

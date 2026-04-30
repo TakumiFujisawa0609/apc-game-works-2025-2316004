@@ -1,5 +1,6 @@
 #pragma once
 #include "../Base/ActionBase.h"
+
 class React :
     public ActionBase
 {
@@ -40,4 +41,3 @@ private:
     //ループアニメーション速度
     static constexpr float LOOP_SPD = 3.0f;
 };
-

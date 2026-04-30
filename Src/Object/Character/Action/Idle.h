@@ -1,5 +1,6 @@
 #pragma once
 #include "../Base/ActionBase.h"
+
 class Idle :
     public ActionBase
 {
@@ -25,8 +26,5 @@ public:
     /// @brief XV
 	/// @param
     void Update(void) override;
-
-public:
-
 };
 

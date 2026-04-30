@@ -82,7 +82,6 @@ const int MenuController::GetSizeEasingFontHandle(const int _arrayNum, const int
 
 void MenuController::UpdateDirection(const float _disSpawn, const float _easeTime, const int _goalPosX)
 {
-
 	//すべてのメニューが演出イージングが終わっているかをチェック
 	isAllDirectEaseEnd_ = std::all_of(menuList_.begin(), menuList_.end(), [](const auto& menu) { return menu.second.isEndDirectEase; });
 
@@ -263,6 +262,5 @@ void MenuController::DrawFromCenter(const int _arrayNum, const unsigned int _col
 		FALSE,
 		menuList_[_arrayNum].btnStr.c_str()
 	);
-
 }
 

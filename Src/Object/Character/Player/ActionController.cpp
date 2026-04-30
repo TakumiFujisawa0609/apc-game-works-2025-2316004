@@ -44,10 +44,9 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 {
 	//エフェクト
 	//effect_ = std::make_unique<EffectController>();
-
 	SoundManager::SRC footSE = charaObj_.GetFootSE();
-	float footSEDisCount = charaObj_.GetFootSEDisCount();
-	float speed = charaObj_.GetStatus().speed;
+	const float& footSEDisCount = charaObj_.GetFootSEDisCount();
+	const float& speed = charaObj_.GetStatus().speed;
 	VECTOR dir = trans_.GetForward();
 	actionTable_ = {
 		{ACTION_TYPE::IDLE, [this]() {mainAction_.emplace(ACTION_TYPE::IDLE,std::make_unique<Idle>(*this)); }},
@@ -77,7 +76,7 @@ ActionController::~ActionController(void)
 
 void ActionController::Init(void)
 {
-	//auto cntl = player_.GetCntl();
+
 	auto cntl = InputManager::CONTROLL_TYPE::ALL;
 
 	//初期化の前に追加したアクションの初期化

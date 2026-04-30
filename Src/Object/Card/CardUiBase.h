@@ -18,6 +18,7 @@ class PixelRenderer;
 class CardUIController;
 class CardUIDraw;
 class Easing;
+
 class CardUIBase
 {
 
@@ -37,30 +38,30 @@ public:
 	enum class CARD_SELECT
 	{
 		NONE
-		, LEFT
-		, RIGHT
-		, DISITION
-		, RELOAD_WAIT
-		, RELOAD
-
+		, LEFT			//左回転
+		, RIGHT			//右回転
+		, DISITION		//決定
+		, RELOAD_WAIT	//リロード待機
+		, RELOAD		//リロード
 	};
+
 	//カードサイズ補完時間
 	static constexpr double SCL_LERP_TIME = 0.5;
 	
 	//カードUIの情報
 	struct CARD_UI_INFO
 	{
-		CardBase::CARD_STATUS status;										//カードのステータス
+		CardBase::CARD_STATUS status;																	//カードのステータス
 		int typeImg = -1;																				//カードの種類画像
 		Vector2F cardPos_ = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの座標(画面外で初期化)
 		Vector2F numPos_ = { Application::SCREEN_SIZE_X + 180,Application::SCREEN_HALF_Y * 222 };		//カードの強さ番号座標(画面外で初期化)
 		float currentAngle_ = 0.0f;																		//カードの現在の角度
-		float goalAngle_ = currentAngle_;	//カードの目標の角度
+		float goalAngle_ = currentAngle_;																//カードの目標の角度
 		double cardScl_ = 1.0;
 		double sclCnt = SCL_LERP_TIME;
-		float disitionCnt_;													//決定カウント
-		float reactCnt_;													//はじかれるカウント
-		CARD_STATE state_ = CARD_STATE::DRAW_PILE;							//カードの状態
+		float disitionCnt_;																				//決定カウント
+		float reactCnt_;																				//はじかれるカウント
+		CARD_STATE state_ = CARD_STATE::DRAW_PILE;														//カードの状態
 	};
 
 	/// @brief コンストラクタ
@@ -91,8 +92,8 @@ public:
 	/// @param _status 
 	void AddCardUi(const CardBase::CARD_STATUS _status);
 
-	/// @brief カード状態選択
-	/// @param _select 
+	/// @brief カード選択状態変更
+	/// @param _select 変更したい状態
 	void ChangeSelectState(const CARD_SELECT _select);
 
 	/// @brief アクションカード配列の状態を使用済みにする
@@ -171,17 +172,16 @@ protected:
 	//タイプ画像
 	std::unordered_map<CardBase::CARD_TYPE, int> cardTypeImgs_;
 
-	//①初期カード
+	//初期カード
 	std::list<std::shared_ptr<CardUIController>>initialCards_;
 
-	//②手札
+	//手札
 	std::list<std::shared_ptr<CardUIController>>handCards_;
 
-	//③手札UIは派生のPlayerCardUI
-	//④手札の現在選択中カード
+	//手札の現在選択中カード
 	std::list<std::shared_ptr<CardUIController>>::iterator handCurrent_;
 
-	//⑤アクション中カード
+	//アクション中カード
 	std::list<std::shared_ptr<CardUIController>>actions_;
 
 	//シェーダー関連
@@ -227,14 +227,10 @@ protected:
 	//状態
 	CARD_SELECT selectState_;
 
-	//サウンドマネージャ
-	SoundManager& soundMng_;
-
-	//リソースマネージャ
-	ResourceManager& resMng_;
-
-	//シーンマネージャ
-	SceneManager& scnMng_;
+	//マネージャ関連
+	SoundManager& soundMng_;		//サウンド
+	ResourceManager& resMng_;		//リソース
+	SceneManager& scnMng_;			//シーン
 
 	//カード勝ったとき流すサウンド
 	ResourceManager::SRC cardWinRes_;

@@ -23,6 +23,7 @@ public:
         , CARD_MOVE_RIGHT//カード右
     };
 
+    //敵の攻撃タイプ
     enum class ENEMY_ATTACK_TYPE {
         NONE,
         STOMP,
@@ -64,8 +65,6 @@ public:
     /// @brief 更新
     /// @param  
     virtual void Update(void) = 0;
-    
- 
     
     /// @brief 入力方向の取得
     /// @param  

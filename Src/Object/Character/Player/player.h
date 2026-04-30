@@ -34,14 +34,18 @@ class EffectController;
 
 class Player :public CharacterBase
 {
+
 public:
-	using CARD_TYPE = CardBase::CARD_TYPE;
+
 	//半径
 	static constexpr float CAP_RADIUS = 25.0f;
+
 	//デフォルトのアニメーションスピード
 	static constexpr float DEFAULT_ANIM_SPD = 60.0f;
+
 	//ドッジアニメーション速度
 	static constexpr float DODGE_ANIM_SPD = 80.0f;
+
 	//中距離攻撃アニメ速度
 	static constexpr float ATK_MID_ANIM_SPD = 40.0f;
 
@@ -53,7 +57,8 @@ public:
 	/// @param  
 	Player(void);
 
-	// デストラクタ
+	/// @brief  デストラクタ
+	/// @param  
 	~Player(void)override;
 	
 	/// @brief 読み込み
@@ -102,15 +107,9 @@ public:
 
 	/// @brief ダメージ処理
 	/// @param _dam ダメージ数
-	virtual void Damage(const int _dam = 0);
+	virtual void Damage(const int _dam);
 
 private:
-
-	//ステータス関連
-	static constexpr float MOVE_SPEED = 10.0f;		//移動スピード
-	static constexpr float MAX_HP = 200.0f;			//体力
-	static constexpr float MAX_ATK = 50.0f;			//攻撃力
-	static constexpr float MAX_DEF = 100.0f;		//防御力
 
 	//足音間隔
 	static constexpr float FOOT_SE_DIS = 0.2f;
@@ -187,11 +186,11 @@ private:
 	//当たり判定初期化
 	void MakeColliderGeometry(void)override;
 
-	//演出時の更新
-	void UpdateDirection(void) override;
-	void UpdateNormal(void)override;
-	void UpdateClearDirection(void)override;
-	void UpdateOverDirection(void)override;
+	//更新
+	void UpdateDirection(void) override;		//演出
+	void UpdateNormal(void)override;			//通常(ゲーム中)
+	void UpdateClearDirection(void)override;	//クリア演出
+	void UpdateOverDirection(void)override;		//ゲームオーバー
 
 	//ゲームオーバーに遷移
 	void ChangeUpdateOverDirection(void)override;

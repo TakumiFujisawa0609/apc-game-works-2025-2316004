@@ -51,11 +51,6 @@ PlayerCardAction::~PlayerCardAction(void)
 
 void PlayerCardAction::Load(void)
 {
-	//soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD);
-	////soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_RELOAD, CARD_RELOAD_VOL);
-	//soundMng_.LoadResource(SoundManager::SRC::CARD_RELOAD_FINISH);
-	//soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
-
 	resMng_.Load(ResourceManager::SRC::CARD_RELOAD_SE);
 	resMng_.Load(ResourceManager::SRC::CARD_RELOAD_FINISH_SE);
 	resMng_.Load(ResourceManager::SRC::CARD_PUT_SE);

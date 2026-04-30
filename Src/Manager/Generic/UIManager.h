@@ -8,9 +8,10 @@ class HpUIBase;
 class CardUIBase;
 class DirectionUI;
 
-class UIManager :public Singleton<UIManager>
+class UIManager :
+	public Singleton<UIManager>
 {
-
+	//シングルトン
 	friend class Singleton<UIManager>;
 
 public:
@@ -104,4 +105,3 @@ private:
 	//攻撃ボタンと回避ボタンの表示
 	void DrawAttackBottonAndDodgeBotton(void);
 };
-

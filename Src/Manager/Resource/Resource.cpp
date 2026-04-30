@@ -109,18 +109,15 @@ void ResourceData::Load(void)
 
 	//“Ç‚İ‚İ‚Å‚«‚½‚©Šm”F
 	assert(handleId_ != -1); // “Ç‚İ‚İ‚É¸”s‚µ‚Ä‚½‚ç‘¦I—¹
-
 }
 
 void ResourceData::Release(void)
 {
 	releaseFunc_[type_]();
-	
 }
 
 void ResourceData::CopyHandle(int* imgs)
 {
-
 	if (handleIds_ == nullptr)
 	{
 		return;
@@ -131,7 +128,6 @@ void ResourceData::CopyHandle(int* imgs)
 	{
 		imgs[i] = handleIds_[i];
 	}
-
 }
 
 void ResourceData::AddFunc(void)

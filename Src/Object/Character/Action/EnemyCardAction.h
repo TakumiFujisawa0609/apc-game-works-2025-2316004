@@ -17,6 +17,7 @@ class EnemyCardAction :
 
 public:
 
+    //アクションの種類
     enum class ACT_TYPE
     {
         NONE = -1,
@@ -30,6 +31,7 @@ public:
         RELOAD, //リロード
     };
 
+    //エフェクトの種類
     enum class EFF_TYPE
     {
         BLAST,
@@ -176,12 +178,4 @@ private:
 
     //岩生成フラグ
     bool isGenerateRock_;
-
-    //転がる攻撃関連
-    float preRoleAtkCnt_;   //前隙カウント
-    float roleAtkCnt_;      //後隙カウント
-    VECTOR preRolePos_;     //転がる攻撃する前の座標
-	float roleDeg_;         //ラリアット回転角
-	float roleMoveDeg_;     //ラリアット移動方向
-	VECTOR roleMoveDir_;    //ラリアット移動方向ベクトル
 };

@@ -165,11 +165,11 @@ public:
 	void SetStartAngle(void);
 
 	/// @brief 現在の角度セット
-	/// @param _rad 
+	/// @param _rad セットしたいラジアン角度
 	void SetCurrentAngle(const float& _rad) { currentAngle_ = _rad; }
 
 	/// @brief 決定カウントセット
-	/// @param _cnt 
+	/// @param _cnt セットしたいカウント
 	void SetDecisionCount(const float& _cnt) { disitionCnt_ = _cnt; }
 
 	/// @brief ステータスの取得
@@ -194,7 +194,7 @@ public:
 
 	/// @brief 状態の取得
 	/// @param  
-	/// @return 
+	/// @return 状態
 	const CARD_STATE& GetState(void)const { return state_; }
 
 #ifdef _DEBUG
@@ -298,4 +298,3 @@ private:
 	//カード番号イメージ
 	int cardNoImg_;
 };
-

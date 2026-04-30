@@ -52,8 +52,10 @@ enum class ANALOG_INPUT_TYPE
 	R_TRIGGER,		//右トリガー
 };
 
-class InputManagerS : public Singleton<InputManagerS>
+class InputManagerS 
+	: public Singleton<InputManagerS>
 {
+	// シングルトン
 	friend class Singleton<InputManagerS>;
 
 public:	
@@ -99,6 +101,7 @@ public:
 	/// @return 
 	Vector2 GetKnockLStickSize(InputManager::JOYPAD_NO no) const;
 	Vector2 GetKnockRStickSize(InputManager::JOYPAD_NO no) const;
+
 private:
 
 	//入力イベントの対応表
@@ -147,6 +150,5 @@ private:
 
 	//デストラクタ
 	~InputManagerS(void)override = default;
-
 };
 
