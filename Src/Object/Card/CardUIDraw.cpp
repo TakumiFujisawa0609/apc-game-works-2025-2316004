@@ -114,7 +114,9 @@ void CardUIDraw::DrawCard(void)
 void CardUIDraw::SelectFrameEasing(void)
 {
 	//サイズ
-	Vector2F size = easing_->EaseFunc(size_ - SELECT_CARD_FRAME_MOVE_AMOUNT, size_, selectEaseCnt_ / SELECT_CARD_FRAME_EASING_TIME, Easing::EASING_TYPE::QUAD_BACK);
+	Vector2F size = easing_->EaseFunc(size_ - SELECT_CARD_FRAME_MOVE_AMOUNT,
+		size_, selectEaseCnt_ / SELECT_CARD_FRAME_EASING_TIME,
+		Easing::EASING_TYPE::QUAD_BACK);
 
 	//イージングカウント更新
 	selectEaseCnt_ += SceneManager::GetInstance().GetDeltaTime();

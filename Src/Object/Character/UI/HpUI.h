@@ -2,13 +2,13 @@
 #include "../Application.h"
 #include "../Common/Vector2F.h"
 #include "../UIData/CharacterUIData.h"
-#include "./UIBase2D.h"
+#include "../Base/UIBase2D.h"
 class Easing;
 class ResourceManager;
 class PixelRenderer;
 class PixelMaterial;
 
-class HpUIBase
+class HpUI
 	: public UIBase2D
 {
 
@@ -16,27 +16,27 @@ public:
 
 	/// @brief コンストラクタ
 	/// @param  
-	HpUIBase(void);
+	HpUI(CHARACTER_TYPE _charaType);
 
 	/// @brief デストラクタ
 	/// @param  
-	virtual ~HpUIBase(void)override;
+	~HpUI(void)override;
 
 	/// @brief ロード
 	/// @param  
-	virtual void Load(void)override;
+	 void Load(void)override;
 
 	/// @brief 初期化
 	/// @param  
-	virtual void Init(void)override;
+	 void Init(void)override;
 
 	/// @brief 更新
 	/// @param  
-	virtual void Update(void)override;
+	 void Update(void)override;
 
 	/// @brief 描画
 	/// @param  
-	virtual void Draw(void)override;
+	 void Draw(void)override;
 
 	//シェイク時間セット
 	void SetShakeTime(void);
@@ -44,6 +44,10 @@ public:
 	/// @brief Hpの更新
 	/// @param  
 	void RefreshHp(const HP_DATA& _hpData);
+
+	/// @brief Jsonからデータを取得
+	/// @param  
+	void LoadJsonHpUI(void);
 
 protected:
 
@@ -109,4 +113,21 @@ protected:
 
 	//シェイクカウント
 	float shakeCnt_;
+
+private:
+
+	//Jsonのパス
+	const std::string JSON_DATA_PATH = "Data/Json/CharaData.json";
+
+	//減る前のHP保存用定数バッファの番号
+	static constexpr int PRE_HP_CONST_BUF = 2;
+
+	//キャラクタータイプ
+	const CHARACTER_TYPE charaType_;
+
+	//バーの左の色
+	FLOAT4 barColorL_;
+
+	//バーの右の色
+	FLOAT4 barColorR_;
 };

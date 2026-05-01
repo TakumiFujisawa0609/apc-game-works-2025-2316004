@@ -112,6 +112,7 @@ void ResourceManager::Init(void)
 		SRC src = resStr_[data["name"]];
 		std::wstring path = resTypeStr_[data["type"]].typePath + UtilityCommon::GetWStringFromString(data["handle"]);
 
+		//リソースの配列に挿入
 		res = std::make_unique<ResourceData>(type, path);
 
 		//複数の画像を読み込んだ時は個数とサイズを読み込む
@@ -155,7 +156,6 @@ void ResourceManager::Init(void)
 			res = std::make_unique<ResourceData>(type, path, soundType, pitch, timeStretch, volume, loopStartTime, loopEndTime);
 		}
 		resourcesMap_.emplace(src, std::move(res));
-
 	}
 
 	//Jsonを読み込み終わったので、関連の情報は解放する

@@ -216,7 +216,7 @@ void PlayerCardUI::InitCardUI(void)
 		handCards_.emplace_back(it);
 	}
 
-	//はじめの配列にリロードカードを描画したいので、最後の配列にセットする
+	//始めの配列にリロードカードを描画したいので、最後の配列にセットする
 	auto beginit = std::prev(handCards_.end());
 	auto endIt = handCards_.begin();
 
@@ -234,10 +234,11 @@ void PlayerCardUI::InitCardUI(void)
 			it = handCards_.begin();
 		}
 
+		//カードの初期化
 		(*it)->InitCard(i);
+
 		//見せるカード配列に入れる
 		visibleCards_.emplace_back(*it);
-		const float& scl = (*it)->GetScl();
 		i++;
 	}
 
@@ -251,13 +252,16 @@ void PlayerCardUI::InitCardUI(void)
 // _DEBUG
 void PlayerCardUI::ChangeNone(void)
 {
+	//イージング時間のセット
 	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
+
 	//目標角度を現在の角度にする
 	for (auto& card : visibleCards_)
 	{
 		//card->SyncCardAngleAndPos();
 		card->SetStartAndGoalAngle(0.0f);
 	}
+
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
 
@@ -291,6 +295,8 @@ void PlayerCardUI::ChangeLeft(void)
 	//見せるカードのマックス分角度をかける
 	int size = static_cast<int>(visibleCards_.size());
 	(*it)->SetCurrentAngle(ARROUND_PER_RAD * (size - CARDS_BEFORE_CURRENT));
+
+	//見せカードの末尾に追加
 	visibleCards_.emplace_back(*it);
 
 	//手札選択カードを更新
@@ -310,6 +316,7 @@ void PlayerCardUI::ChangeLeft(void)
 
 void PlayerCardUI::ChangeRight(void)
 {
+	//イージング補完時間をセット
 	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
 
 	//visible配列に入れる前に現在の番地を引くことで、
@@ -322,6 +329,7 @@ void PlayerCardUI::ChangeRight(void)
 	
 	//先頭に追加
 	auto it = handCurrent_;
+
 	//現在位置より２枚遡って配列に入れる
 	for (int i = 0; i < PREV_CARD_COUNT; i++)
 	{
@@ -331,9 +339,13 @@ void PlayerCardUI::ChangeRight(void)
 		}
 		it--;
 	}
-	
+
+	//角度をセット
 	(*it)->SetCurrentAngle(-ARROUND_PER_RAD * PREV_CARD_COUNT);
+
+	//見せカードの先頭に追加
 	visibleCards_.emplace_front(*it);
+
 	//手札選択カードを更新
 	SubHandCurrent();
 
@@ -343,6 +355,7 @@ void PlayerCardUI::ChangeRight(void)
 		float currentAngle = card->GetCurrentAngle();
 		card->SetStartAndGoalAngle(currentAngle + ARROUND_PER_RAD);
 	}
+
 	//サウンドを再生
 	soundMng_.Play(ResourceManager::SRC::CARD_MOVE_SE, SoundManager::PLAYTYPE::BACK);
 	
@@ -360,10 +373,15 @@ void PlayerCardUI::ChangeDecision(void)
 	actions_.emplace_back(*handCurrent_);
 
 	//決定カウントをセット
-	for(auto& act:actions_)
+	for (auto& act : actions_)
 	{
+		//弾かれ状態の場合は飛ばす
 		if (act->GetState() == CardUIController::CARD_STATE::REACT)continue;
+
+		//使用中状態にする
 		act->ChangeUsing();
+
+		//決定した時のイージング時間セット
 		act->SetDecisionCount(CardUIController::DISITION_MOVE_CARD_TIME);
 	}
 	
@@ -390,6 +408,7 @@ void PlayerCardUI::ChangeReload(void)
 	handCards_.clear();
 	visibleCards_.clear();
 
+	//リロード終了フラグの初期化
 	isReloadEnd_ = false;
 
 	//一番最後の配列を見る
@@ -451,9 +470,10 @@ void PlayerCardUI::UpdateDecision(void)
 	}
 	cardMoveCnt_ -= DELTA;
 
-	//決定移動が終わったらnone状態に戻す
+	//決定移動が終わったカードを探す
 	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
 
+	//終わっていたら、NONE状態へ
 	if(it==actions_.end())
 	{
 		SetBasePosVisibleCards();
@@ -466,7 +486,7 @@ void PlayerCardUI::UpdateReloadWait(void)
 {
 	if(reloadPer_>= UtilityCommon::RATIO_MAX)
 	{
-		//一瞬none状態にする
+		//一瞬none状態にし、必ずRELOADの遷移処理をさせる
 		ChangeSelectState(CARD_SELECT::NONE);
 		
 		ChangeSelectState(CARD_SELECT::RELOAD);

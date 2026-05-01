@@ -132,8 +132,10 @@ private:
     float midAtkCnt_;
     float midAtkOverCnt_;
 
-    //3段階目攻撃判定終了カウント
+    //攻撃3段階目判定終了カウント
     float atkThreeEndCnt_;
+
+    //攻撃3段階目のアニメーション速度補完
     float atkAnimLerpCnt_;
 
     //イージング

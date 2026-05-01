@@ -47,13 +47,17 @@ EnemyCardAction::~EnemyCardAction(void)
 
 void EnemyCardAction::Load(void)
 {
+	//素材のロード
 	resMng_.Load(ResourceManager::SRC::ENEMY_JUMP_LAND_SE);
 	resMng_.Load(ResourceManager::SRC::ENEMY_CHARGE_SE);
 	resMng_.Load(ResourceManager::SRC::ENEMY_STOMP_SE);
 
-	charaObj_.LoadEnemyRock();
+	//エフェクトの追加
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::BLAST).handleId_,EffectController::EFF_TYPE::BLAST);
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::E_JUMP_CHARGE_EFF).handleId_,EffectController::EFF_TYPE::E_JUMP_CHARGE);
+
+	//敵の岩生成
+	charaObj_.LoadEnemyRock();
 
 }
 
@@ -91,6 +95,7 @@ void EnemyCardAction::Update(void)
 
 void EnemyCardAction::Release(void)
 {
+	//当たり判定の消去
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::JUMP_ATK);
@@ -119,22 +124,31 @@ const bool EnemyCardAction::IsJumpAtkCharge(void) const
 
 void EnemyCardAction::ChangeStomp(void)
 {
-	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::SWIP_ATK), false);
+	//岩生成フラグの初期化
 	isGenerateRock_ = false;
+
 	//ジャンプ攻撃処理
 	atk_ = atkStatusTable_[CARD_ACT_TYPE::STOMP_ATK];
+
+	//スタンプアニメーション再生
+	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::STOMP_ATK), false);
+
 	cardFuncs_.push([this]() {UpdateStomp(); });
 }
 
 void EnemyCardAction::ChangeJumpAtk(void)
 {
+	//ジャンプアニメーション再生
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::JUMP_ATK), false);
 	jumpChargeCnt_ = 0.0f;
 
+	//溜めジャンプSE再生
 	soundMng_.Play(ResourceManager::SRC::ENEMY_CHARGE_SE, SoundManager::PLAYTYPE::LOOP);
-	//ジャンプ攻撃処理
 
+	//ジャンプ攻撃処理
 	SetAtk(JUMP_ATK);
+
+	//溜めジャンプエフェクト再生
 	effect_->Play(EffectController::EFF_TYPE::E_JUMP_CHARGE,
 		charaObj_.GetTransform().pos,
 		charaObj_.GetTransform().quaRot,
@@ -147,19 +161,23 @@ void EnemyCardAction::ChangeJumpAtk(void)
 
 void EnemyCardAction::ChangeReload(void)
 {
+	//カードアクション配列初期化
 	if (!cardFuncs_.empty())
 	{
 		cardFuncs_.pop();
 	}
 	//現在使っているカードを捨てる
 	cardPresent_.EnemyCardReload();
+
+	//アニメーションの再生
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::RUSH_ATK), true);
+
 	cardFuncs_.push([this]() {UpdateReload(); });
 }
 
 void EnemyCardAction::UpdateStomp(void)
 {
-	////負けたら終了
+	//負けたら、岩のモデルや当たり判定を消去
 	if (IsCardFailure(Collider::TAG::NML_ATK))
 	{
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
@@ -168,9 +186,10 @@ void EnemyCardAction::UpdateStomp(void)
 		return;
 	}
 
-
+	//アニメーションで足をつく動作をしたら
 	if (anim_.GetAnimStep() > STOMP_COL_START_ANIM_CNT)
 	{
+		//キャラ情報
 		const Transform& charaTrans = charaObj_.GetTransform();
 
 		//攻撃中
@@ -261,16 +280,19 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		scnMng_.GetCamera().lock()->SetShakeStatus(jumpChargeCnt_ / JUMP_CHARGE_TIME, 10.0f);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
-
+		//ジャンプチャージが終わったら
 		if (jumpChargeCnt_ >= JUMP_CHARGE_TIME)
 		{
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 			soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
 
+			//チャージエフェクトの消去
 			const int JUMP_CHARGE_EFF_ARRAY = 0;
 			effect_->Stop(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
 			effect_->Delete(EffectController::EFF_TYPE::E_JUMP_CHARGE, JUMP_CHARGE_EFF_ARRAY);
+
+			//カードを終了状態にし、プレイヤーの攻撃で中断できないようにする
 			cardPresent_.FinishCard();
 		}
 	}

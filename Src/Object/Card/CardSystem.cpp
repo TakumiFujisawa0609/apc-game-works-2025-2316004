@@ -64,6 +64,7 @@ void CardSystem::LoseInitPutCardPow(const int _playerNo)
 
 void CardSystem::JudgeIsFirstAtk(const int _playerNo)
 {
+	//どちらも値が-1でカードが出されていない場合、先出フラグをtrueにする
 	if (putCardPow_[FIRST_ATK] == CARD_POW_NONE && putCardPow_[SECOND_ATK] == CARD_POW_NONE)
 	{
 		isFirstAtk_[_playerNo] = true;

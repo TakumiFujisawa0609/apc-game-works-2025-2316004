@@ -103,9 +103,19 @@ void CardDeck::LoadCardData(void)
 	for (const auto& card : j[charaTypeStr])
 	{
 		CardBase::CARD_STATUS status;
-		status.pow = card[CARD_POWER_PATH];
-		std::string typeStr = card[CARD_TYPE_PATH];
-		status.type = cardTypeMap_[typeStr];
+		//カードの強さ
+		if (card.contains(CARD_POWER_PATH))
+		{
+			status.pow = card.value(CARD_POWER_PATH, 0);
+		}
+
+		//カードの種類
+		if (card.contains(CARD_TYPE_PATH))
+		{
+			std::string typeStr = card[CARD_TYPE_PATH];
+			status.type = cardTypeMap_[typeStr];
+		}
+
 		//配列の中に追加
 		AddDrawPile(status);
 	}
@@ -159,6 +169,8 @@ void CardDeck::DrawCardFromDeck(void)
 {
 	//使うカードを手札に加える
 	int cardPow = 0;
+
+	//合計値を出す
 	cardPow = std::accumulate(usingCards_.begin(), usingCards_.end(), 0,
 		[](int acc, const std::unique_ptr<CardBase>& it)
 		{
@@ -219,6 +231,7 @@ void CardDeck::MoveChargeToUsingCard(void)
 	chargeCard_.emplace_back(std::move(usingCards_[0]));
 	usingCards_.clear();
 
+	//負けた時の初期化
 	CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
 }
 
@@ -226,12 +239,15 @@ void CardDeck::MoveChargeToUsingCard(void)
 void CardDeck::CardMoveLimit(void)
 {
 	int cardMax = static_cast<int>(drawPile_.size());
+	//現在の番号が０未満なら
 	if (currentNum_ < 0)
 	{
+		//最後の数にする
 		currentNum_ = cardMax - 1;
 	}
 	else if (currentNum_ > cardMax - 1)
 	{
+		//最大数になったら初めに戻す
 		currentNum_ = 0;
 	}
 }

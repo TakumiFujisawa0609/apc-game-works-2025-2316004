@@ -25,7 +25,7 @@ void EnemyCardUI::Load(void)
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::ENEMY_ATK_CARD_IMG).handleId_;
 
 	//敵はリロードカードを使わないので読み込まない
-	reloadCardImg_ = -1;	
+	reloadCardImg_ = UtilityCommon::INITIAL_HANDLE;	
 
 	resMng_.Load(ResourceManager::SRC::CARD_BREAK_SE);
 

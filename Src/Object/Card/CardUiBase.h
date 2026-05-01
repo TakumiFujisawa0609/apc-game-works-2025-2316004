@@ -135,8 +135,8 @@ protected:
 	const std::string JSON_ENEMY_STR = "EnemyCards";
 
 	//カードステータスの文字列
-	const std::string POW_STR = "pow";	//カードの強さのデータ格納文字列
-	const std::string TYPE_STR = "type";//カードの種類のデータ格納文字列
+	const std::string CARD_POWER_PATH = "pow";	//カードの強さのデータ格納文字列
+	const std::string CARD_TYPE_PATH = "type";//カードの種類のデータ格納文字列
 
 	//決定したカードの座標
 	static constexpr Vector2F DISITON_CARD_POS = { Application::SCREEN_HALF_X, Application::SCREEN_HALF_Y + 200 };

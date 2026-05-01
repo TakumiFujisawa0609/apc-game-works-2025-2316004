@@ -53,33 +53,6 @@ void MenuController::Update(void)
 {
 }
 
-const int MenuController::GetSizeEasingFontHandle(const int _arrayNum, const int _startSize, const int _goalSize, const float _easeTime, Easing::EASING_TYPE _easeType)
-{
-	int size = easing_->EaseFunc(_startSize, _goalSize, sizeEaseCnt_ / _easeTime, _easeType);
-	if (sizeEaseCnt_ >= _easeTime)
-	{
-		sizeEaseCnt_ = 0.0f;
-	}
-	sizeEaseCnt_ += SceneManager::GetInstance().GetDeltaTime();
-
-	auto& dynamicFont = sizeEasingFontHandleTable_;
-	auto it = dynamicFont.find(size);
-	int dynamicFontHandle = -1;
-
-	//同じサイズのフォントがすでにあるかをチェック
-	if (it != dynamicFont.end())
-	{
-		dynamicFontHandle = it->second;
-	}
-	else
-	{
-		int newFontHandle = CreateFontToHandle(defaultFontHandle_.c_str(), size, 0);
-		dynamicFont[size] = newFontHandle;
-		dynamicFontHandle = newFontHandle;
-	}
-	return dynamicFontHandle;
-}
-
 void MenuController::UpdateDirection(const float _disSpawn, const float _easeTime, const int _goalPosX)
 {
 	//すべてのメニューが演出イージングが終わっているかをチェック

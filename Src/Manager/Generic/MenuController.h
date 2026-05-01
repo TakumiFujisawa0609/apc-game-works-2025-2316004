@@ -53,15 +53,6 @@ public:
 	/// @param  
 	void Update(void);
 
-	/// @brief サイズイージングのフォントハンドルの取得(サイズを変えるためにはフォントを作り直す必要があるため)
-	/// @param _arrayNum 配列番号
-	/// @param _startSize1 初期サイズ　
-	/// @param _goalSize1 最終的なサイズ
-	/// @param _easeTime イージング時間
-	/// @param _easeType イージング種類
-	/// @return サイズ変更後のフォントハンドル
-	const int GetSizeEasingFontHandle(const int _arrayNum,const int _startSize, const int _goalSize, const float _easeTime,Easing::EASING_TYPE _easeType);
-
 	/// @brief メニュー演出の更新
 	/// @param _disSpawn 出てくる間隔時間
 	/// @param _easeTime イージング時間

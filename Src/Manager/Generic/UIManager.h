@@ -4,7 +4,7 @@
 #include "../Common/Vector2F.h"
 #include "../Template/Singleton.h"
 
-class HpUIBase;
+class HpUI;
 class CardUIBase;
 class DirectionUI;
 
@@ -77,7 +77,7 @@ private:
 	int imgBtns_;
 
 	//キャラHPUI
-	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<HpUIBase>>characterHpUI_;
+	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<HpUI>>characterHpUI_;
 
 	//カードUI
 	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<CardUIBase>>cardUI_;

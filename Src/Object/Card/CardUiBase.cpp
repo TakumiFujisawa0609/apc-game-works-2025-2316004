@@ -98,13 +98,19 @@ void CardUIBase::LoadCardData(void)
 	//キャラタイプからどのJsonデータを読み取るかを決める
 	for (const auto& card : j[charaType_])
 	{
-		//カードの強さの読み込み
 		CardBase::CARD_STATUS status;
-		status.pow = card[POW_STR];
-
 		//カードの強さの読み込み
-		std::string typeStr = card[TYPE_STR];
-		status.type = cardTypeMap_[typeStr];
+		if (card.contains(CARD_POWER_PATH))
+		{
+			status.pow = card[CARD_POWER_PATH];
+		}
+
+		//カードの種類の読み込み
+		if (card.contains(CARD_TYPE_PATH))
+		{
+			std::string typeStr = card[CARD_TYPE_PATH];
+			status.type = cardTypeMap_[typeStr];
+		}
 
 		//配列の中に追加
 		AddCardUi(status);

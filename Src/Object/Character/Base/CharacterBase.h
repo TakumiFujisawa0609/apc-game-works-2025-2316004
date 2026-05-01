@@ -18,7 +18,6 @@ class CardUIBase;
 class CardPresenter;
 class InputBase;
 class Capsule;
-class HpUIBase;
 class LogicBase;
 class PlayerOnHit;
 class EnemyOnHit;
@@ -67,7 +66,7 @@ public:
 		DODGE,				//回避
 		CARD_RELOAD,		//カードリロード
 		//敵
-		SWIP_ATK,			//ひっかき
+		STOMP_ATK,			//スタンプ攻撃
 		ROAR_ATK,			//咆哮
 		JUMP_ATK,			//ジャンプ攻撃
 		RUSH_ATK			//突進
@@ -321,9 +320,6 @@ protected:
 
 	//当たった時の処理
 	std::unique_ptr<CharacterOnHitBase>onHit_;
-
-	//HPのUI
-	std::unique_ptr<HpUIBase>hpUi_;
 
 	//敵のスタンプ攻撃時に発生する岩
 	std::vector<std::unique_ptr<EnemyRock>>rock_;

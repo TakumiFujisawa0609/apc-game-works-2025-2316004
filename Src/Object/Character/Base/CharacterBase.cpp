@@ -3,7 +3,6 @@
 #include "../Manager/Generic/UIManager.h"
 #include "../Object/Common/AnimationController.h"
 #include "../Object/Character/Player/ActionController.h"
-#include "../Object/Character/Base/HpUIBase.h"
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Object/Character/Base/CharacterOnHitBase.h"
 #include "../Object/Common/EffectController.h"
@@ -14,9 +13,7 @@
 #include "../../Common/Geometry/Capsule.h"
 #include "../../Common/Geometry/Sphere.h"
 #include "../../Common/Geometry/Line.h"
-
 #include "../Object/Character/Enemy/EnemyRock.h"
-
 #include "../Object/ObjectBase.h"
 #include "CharacterBase.h"
 

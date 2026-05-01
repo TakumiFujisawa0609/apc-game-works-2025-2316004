@@ -291,9 +291,6 @@
     <ClCompile Include="Src\Object\Character\Enemy\EnemyRock.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Character\Player\PlayerHpUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Object\Common\EffectController.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -303,10 +300,7 @@
     <ClCompile Include="Src\Utility\ModelFrameUtility.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Character\Enemy\EnemyHpUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Object\Character\Base\HpUIBase.cpp">
+    <ClCompile Include="Src\Object\Character\UI\HpUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Object\Character\Base\UIBase2D.cpp">
@@ -710,9 +704,6 @@
     <ClInclude Include="Src\Object\Character\Enemy\EnemyRock.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Character\Player\PlayerHpUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Object\Common\EffectController.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -722,10 +713,7 @@
     <ClInclude Include="Src\Utility\ModelFrameUtility.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Character\Enemy\EnemyHpUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Object\Character\Base\HpUIBase.h">
+    <ClInclude Include="Src\Object\Character\UI\HpUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Object\Character\Base\UIBase2D.h">

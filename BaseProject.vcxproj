@@ -24,9 +24,7 @@
     <ClCompile Include="Src\Manager\Generic\ButtonUIManager.cpp" />
     <ClCompile Include="Src\Object\DirectionUI.cpp" />
     <ClCompile Include="Src\Object\Character\UIData\CharacterUIData.cpp" />
-    <ClCompile Include="Src\Object\Character\Base\HpUIBase.cpp" />
-    <ClCompile Include="Src\Object\Character\Enemy\EnemyHpUI.cpp" />
-    <ClCompile Include="Src\Object\Character\Player\PlayerHpUI.cpp" />
+    <ClCompile Include="Src\Object\Character\UI\HpUI.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyRock.cpp" />
     <ClCompile Include="Src\Object\Character\Enemy\EnemyOnHit.cpp" />
     <ClCompile Include="Src\Object\Character\Base\CharacterOnHitBase.cpp" />
@@ -122,9 +120,7 @@
     <ClInclude Include="Src\Manager\Generic\ButtonUIManager.h" />
     <ClInclude Include="Src\Object\DirectionUI.h" />
     <ClInclude Include="Src\Object\Character\UIData\CharacterUIData.h" />
-    <ClInclude Include="Src\Object\Character\Base\HpUIBase.h" />
-    <ClInclude Include="Src\Object\Character\Enemy\EnemyHpUI.h" />
-    <ClInclude Include="Src\Object\Character\Player\PlayerHpUI.h" />
+    <ClInclude Include="Src\Object\Character\UI\HpUI.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyRock.h" />
     <ClInclude Include="Src\Object\Character\Enemy\EnemyOnHit.h" />
     <ClInclude Include="Src\Object\Character\Base\CharacterOnHitBase.h" />

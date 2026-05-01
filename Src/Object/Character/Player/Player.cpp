@@ -14,8 +14,6 @@
 #include"../Object/Card/CardDeck.h"
 #include "../../Card/CardPresenter.h"
 #include"../Object/Card/PlayerCardUI.h"
-#include"../Base/HpUIBase.h"
-#include"./PlayerHpUI.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
 #include"../Base/CharacterOnHitBase.h"

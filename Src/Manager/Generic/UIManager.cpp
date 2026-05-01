@@ -2,8 +2,7 @@
 #include "../Utility/UtilityCommon.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Generic/ButtonUIManager.h"
-#include "../Object/Character/Player/PlayerHpUI.h"
-#include "../Object/Character/Enemy/EnemyHpUI.h"
+#include "../Object/Character/UI/HpUI.h"
 #include "../Object/Card/PlayerCardUI.h"
 #include "../Object/Card/EnemyCardUI.h"
 #include "../Object/DirectionUI.h"
@@ -19,11 +18,11 @@ UIManager::UIManager(void)
 
 void UIManager::CreateHpUI(void)
 {
-	std::unique_ptr<HpUIBase>hpUi;
-	hpUi = std::make_unique<PlayerHpUI>();
+	std::unique_ptr<HpUI>hpUi;
+	hpUi = std::make_unique<HpUI>(CHARACTER_TYPE::PLAYER);
 	characterHpUI_[CHARACTER_TYPE::PLAYER] = std::move(hpUi);
 
-	hpUi = std::make_unique<EnemyHpUI>();
+	hpUi = std::make_unique<HpUI>(CHARACTER_TYPE::ENEMY);
 	characterHpUI_[CHARACTER_TYPE::ENEMY] = std::move(hpUi);
 }
 

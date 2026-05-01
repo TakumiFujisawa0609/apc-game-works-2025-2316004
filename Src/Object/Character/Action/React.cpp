@@ -36,8 +36,10 @@ void React::Init(void)
 void React::Update(void)
 {
 	//ダウン時間中は一定のアニメーションフレームでループ
-	if (flinchCnt_ == 0)
+	if (flinchCnt_ <= 0.0f)
 	{
+		flinchCnt_ = 0.0f;
+		//アニメーション終了でアイドル状態へ
 		if (anim_.IsEnd())
 		{
 			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
@@ -45,13 +47,11 @@ void React::Update(void)
 	}
 	else
 	{
+		//のけぞりカウント
 		flinchCnt_ -= SceneManager::GetInstance().GetDeltaTime();
+
+		//のけぞり中はアニメーションループ
 		anim_.SetEndLoop(LOOP_START, LOOP_END, LOOP_SPD);
-		if (flinchCnt_ < 0.0f)
-		{
-			flinchCnt_ = 0.0f;
-			actionCntl_.ChangeAction(ActionController::ACTION_TYPE::IDLE);
-		}
 	}
 
 }
