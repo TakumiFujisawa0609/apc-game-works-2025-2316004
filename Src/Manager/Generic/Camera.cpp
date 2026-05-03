@@ -245,7 +245,6 @@ void Camera::SyncTargetFollow(void)
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
 	pos_ = VAdd(followPos, localPos);
 
-
 	// カメラの上方向
 	cameraUp_ = gRot.GetUp();
 }
@@ -306,12 +305,12 @@ void Camera::SmoothChangeCamera(void)
 	// 注視点(通常重力でいうところのY値を追従対象と同じにする)
 	localPos = rotOutX_.PosAxis(LOCAL_F2T_POS);
 
-	//ゴールターゲットの座標
 	VECTOR goalTargetPos = VAdd(targetPos, localPos);
 	if (changeTargetLerpCnt_ > 0.0)
 	{
 		targetPos_ = easing_->EaseFunc(targetPos_, goalTargetPos, static_cast<float>(lerpRate),Easing::EASING_TYPE::LERP);
 	}
+
 
 	// カメラ位置
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
@@ -324,7 +323,6 @@ void Camera::SmoothChangeCamera(void)
 	// カメラの上方向
 	cameraUp_ = gRot.GetUp();
 
-	//カメラのイージング
 	changeTargetLerpCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 
 	if (changeTargetLerpCnt_ < 0.0)
@@ -623,7 +621,7 @@ void Camera::DirectionPlayerOnly(void)
 	{
 		ChangeDirectionMode(DIRECTION_MODE::END);
 	}
-	//追従
+
 	SyncFollow(followTransform_);
 	if (directionCnt_ <= 1.0f)
 	{
@@ -701,7 +699,7 @@ void Camera::ChangeEndDirection(void)
 {
 	easingStartF2CPos_ = localF2CPos_;
 	startAngles_ = angles_;
-	goalAngles_ = { UtilityCommon::Deg2RadF(END_DIRECTION_GOAL_ANGLE), 0.0f, 0.0f };
+	goalAngles_ = { UtilityCommon::Deg2RadF(-10.0f), 0.0f, 0.0f };
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	startFollowLocalCenterPos_ = followLocalCenterPos_;
 	goalFollowLocalCenterPos_ = Utility3D::VECTOR_ZERO;
