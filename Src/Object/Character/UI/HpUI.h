@@ -49,7 +49,7 @@ public:
 	/// @param  
 	void LoadJsonHpUI(void);
 
-protected:
+private:
 
 	//シェーダ定数バッファ
 	static constexpr int ARC_CONST_BUF = 2;			//円形
@@ -117,14 +117,6 @@ protected:
 
 	//シェイクカウント
 	float shakeCnt_;
-
-private:
-
-	//Jsonのパス
-	const std::string JSON_DATA_PATH = "Data/Json/CharaData.json";
-
-	//減る前のHP保存用定数バッファの番号
-	static constexpr int PRE_HP_CONST_BUF = 2;
 
 	//キャラクタータイプ
 	const CHARACTER_TYPE charaType_;
