@@ -46,7 +46,6 @@ public:
 	/// @return ターゲットと当たったかどうか
 	const bool GetIsHitTarget(void)const { return isHitTarget_; }
 
-
 #ifdef _DEBUG
 	/// @brief デバッグ表示
 /// @param  

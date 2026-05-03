@@ -100,7 +100,7 @@ void CharacterBase::UpdatePost(void)
 void CharacterBase::LoadStatus(void)
 {
 	//jsonƒ[ƒh
-	nlohmann::json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData_;
+	nlohmann::json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData;
 
 	std::string statusPath = "";
 
@@ -173,13 +173,11 @@ void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 	}
 }
 
-
 void CharacterBase::SetUsedCard(void)
 {
 	uiMng_.GetCardUI(characterType_).ChangeReactActionCard();
 	deck_->EraseHandCard();
 }
-
 
 void CharacterBase::ChangeUpdatePhase(const UPDATE_PHASE _phase)
 {
@@ -261,12 +259,10 @@ const CardActionBase::CARD_ACT_TYPE& CharacterBase::GetCardAction(void) const
 	return action_->GetCardAction();
 }
 
-
 const ActionBase& CharacterBase::GetMainAction(void) const
 {
 	return action_->GetMainAction();
 }
-
 
 const CharacterOnHitBase::HIT_POINT& CharacterBase::GetHitPoint(void) const
 {
@@ -330,8 +326,6 @@ const bool CharacterBase::GetIsHitTarget(void) const
 {
 	return onHit_->GetIsHitTarget();
 }
-
-
 
 void CharacterBase::UpdateNone(void)
 {

@@ -125,6 +125,5 @@ private:
 
     //“ü—ÍXV
     std::map<InputManager::CONTROLL_TYPE, std::function<void(void)>>inputUpdates_;
-
 };
 

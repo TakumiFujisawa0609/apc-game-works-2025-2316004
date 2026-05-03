@@ -27,7 +27,6 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos,VECTOR& _moveD
 		{ TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); } },
 		{ TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); } },
 		{ TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); } },
-		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
 		{ TAG::ROCK, [this](const std::weak_ptr<Collider>_hitCol) {CollRock(_hitCol); } },
 	};
 }
@@ -49,7 +48,6 @@ void PlayerOnHit::Init(void)
 	bodyRadius_ = Player::CAP_RADIUS;
 	movedPos_ = Utility3D::VECTOR_ZERO;
 }
-
 
 void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 {
@@ -117,25 +115,9 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	//攻撃中に敵の攻撃を食らった場合、カードを消費する
 	charaObj_.SetUsedCard();
 
-	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
+	SoundManager::GetInstance().Play(ResourceManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	
-}
-
-
-void PlayerOnHit::CollRoarAttack(const std::weak_ptr<Collider> _hitCol)
-{
-	auto& parentChara = _hitCol.lock()->GetParentCharacter();
-	if (parentChara.GetIsDamage())return;
-
-	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
-	//ダメージを与えたことを知らせる
-	parentChara.SetIsDamage();
-	charaObj_.Damage(20);
-
-	//のけぞり時間セット
-	charaObj_.SetFlinchCnt(ROAR_FLICTION_TIME);
-	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
 void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
@@ -150,17 +132,14 @@ void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
 	charaObj_.Damage(STONE_DMG);
 	//のけぞり時間セット
 	rock.SetIsDamaged();
-	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
+	SoundManager::GetInstance().Play(ResourceManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
 #ifdef _DEBUG
 void PlayerOnHit::DrawDebug(void)
 {
-	//colParam_[BODY_SPHERE_COL_NO].geometry_->DrawPlayerUI();
-	//colParam_[MOVE_LINE_COL_NO].geometry_->DrawPlayerUI();
-	//colParam_[UP_AND_DOWN_LINE_COL_NO].geometry_->DrawPlayerUI();
-	//colParam_[EYE_LINE_NO].geometry_->DrawPlayerUI();
+
 }
 #endif // _DEBUG
 

@@ -18,6 +18,7 @@ namespace
 	using TAG_PRIORITY = ObjectBase::TAG_PRIORITY;
 	using TAG = Collider::TAG;
 }
+
 EnemyOnHit::EnemyOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff
 	, ActionController& _action, std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& _colParam, Transform& _trans):
 	CharacterOnHitBase(_chara, _movedPos, _moveDiff, _action, _colParam, _trans)
@@ -51,9 +52,6 @@ void EnemyOnHit::DrawDebug(void)
 }
 #endif // _DEBUG
 
-
-
-
 void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
 	//親の情報を取得
@@ -62,6 +60,7 @@ void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	//武器の取得
 	auto& weapon = dynamic_cast<Weapon&>(parent);
 	if (weapon.GetIsDamage()||charaObj_.GetCardAction()==CardActionBase::CARD_ACT_TYPE::JUMP_ATK)return;
+
 	//ダメージを与えたことを知らせる
 	weapon.SetIsDamage();
 

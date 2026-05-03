@@ -8,7 +8,6 @@ EnemyLogic::EnemyLogic(Transform& _myTrans):
 	LogicBase(_myTrans),
 	scnMng_(SceneManager::GetInstance()),
 	cardCoolCnt_(0.0f),
-	moveCnt_(0.0f),
 	freezeCnt_(0.0f),
 	atkRange_(0.0f),
 	prevAttackType_(ENEMY_ATTACK_TYPE::NONE)
@@ -23,9 +22,8 @@ void EnemyLogic::Init(void)
 {
 	cardCoolCnt_ = CARD_COOL_TIME;
 	attackType_ = ENEMY_ATTACK_TYPE::NONE;
-	moveCnt_ = -1.0f;
 
-	freezeCnt_ = 1.5f;
+	freezeCnt_ = INIT_FREEZE_TIME;
 }
 
 void EnemyLogic::Update(void)
@@ -47,8 +45,6 @@ void EnemyLogic::Update(void)
 
 	cardCoolCnt_ -= scnMng_.GetDeltaTime();
 
-	moveCnt_ -= scnMng_.GetDeltaTime();
-
 	float distance = GetTargetDis();
 
 	if (distance > ATK_DISTANCE &&!isActioning_)
@@ -67,11 +63,9 @@ void EnemyLogic::Update(void)
 		cardCoolCnt_ = CARD_COOL_TIME;
 	}
 
-
 #ifdef _DEBUG
 	//DebugUpdate();
 #endif // _DEBUG
-
 }
 
 #ifdef _DEBUG
@@ -97,30 +91,25 @@ void EnemyLogic::DebugUpdate(void)
 }
 #endif // _DEBUG
 
-
 #ifdef _DEBUG
 void EnemyLogic::DebugDraw(void)
 {
-	//‹——£‚ÌŒvZ
-	float distance = GetTargetDis();
-	DrawFormatString(50, 100, 0x000000, L"Dis(%f)", distance);
+
 }
 #endif // _DEBUG
-
-
 
 void EnemyLogic::DecideAction(void)
 {
 
 	const float distance = GetTargetDis();
+
 	//ƒ‰ƒ“ƒ_ƒ€‚Ì”’læ“¾
 	int rand = GetRand(UtilityCommon::PERCENT_MAX);
-
 	
 	if (distance > ATK_DISTANCE)
 	{
 		//‰“‹——£
-		if (rand > weight_.normal)
+		if (rand > weight_.stomp)
 		{
 			//’ÊíUŒ‚
 			attackType_ = ENEMY_ATTACK_TYPE::STOMP;
@@ -133,7 +122,7 @@ void EnemyLogic::DecideAction(void)
 	}
 	else
 	{
-		if (rand > weight_.normal)
+		if (rand > weight_.stomp)
 		{
 			//’ÊíUŒ‚
 			attackType_ = ENEMY_ATTACK_TYPE::STOMP;

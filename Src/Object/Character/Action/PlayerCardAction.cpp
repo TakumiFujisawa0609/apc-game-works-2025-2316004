@@ -193,7 +193,6 @@ void PlayerCardAction::SetUIReloadCnt(void)
 	cardPresent_.SetUIReloadCount(per);
 }
 
-
 void PlayerCardAction::UpdateAttack(void)
 {
 	//UŒ‚‚ÌXV

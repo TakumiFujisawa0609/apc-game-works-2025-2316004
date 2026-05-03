@@ -13,12 +13,11 @@ public:
 	static constexpr int NORMAL_WEIGHT = 60;	//通常攻撃
 	static constexpr int JUMP_WEIGHT = 30;		//ジャンプ攻撃
 
+
 	//攻撃の重み
 	struct ATTACK_WEIGHT {
-		int normal = NORMAL_WEIGHT;
-		int jump = 30;
-		int Roar = 20;
-		int role = 10;
+		int stomp = NORMAL_WEIGHT;
+		int jump = JUMP_WEIGHT;
 	};
 
 	/// @brief コンストラクタ
@@ -51,8 +50,9 @@ private:
 	//硬直時間
 	static constexpr float NORMAL_FREEZE_TIME = 3.0f;	//通常攻撃硬直時間
 	static constexpr float JUMP_FREEZE_TIME = 0.7f;		//ジャンプ攻撃硬直時間
-	static constexpr float ROAR_FREEZE_TIME = 1.0f;		//咆哮攻撃硬直時間
-	static constexpr float ROLE_FREEZE_TIME = 1.5f;		//咆哮攻撃硬直時間
+
+	//最初に急に行動しないためのフリーズ時間
+	static constexpr float INIT_FREEZE_TIME = 1.5f;
 
 	//カードクールタイム制限
 	static constexpr float CARD_COOL_TIME = 1.0f;	
@@ -71,9 +71,6 @@ private:
 
 	//カード使用クールタイム
 	float cardCoolCnt_;
-
-	//移動時間
-	float moveCnt_;
 
 	//攻撃の重み付け
 	ATTACK_WEIGHT weight_;

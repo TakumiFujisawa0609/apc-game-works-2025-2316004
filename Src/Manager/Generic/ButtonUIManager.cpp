@@ -4,6 +4,7 @@
 
 void ButtonUIManager::Load(void)
 {
+	//ƒ{ƒ^ƒ“‰æ‘œ
 	buttonUI_ = ResourceManager::GetInstance().Load(ResourceManager::SRC::CONTROLLER_UI_IMGS).handleIds_;
 }
 

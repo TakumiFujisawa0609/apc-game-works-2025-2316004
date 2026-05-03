@@ -21,8 +21,6 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	actType_(CARD_ACT_TYPE::NONE),
 	isTargetTurn_(false)
 {
-
-
 }
 
 ActionBase::~ActionBase()
@@ -37,8 +35,3 @@ const CardActionBase::CARD_ACT_TYPE& ActionBase::GetCardAction(void)const
 {
 	return actType_;
 }
-
-
-
-
-

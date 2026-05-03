@@ -40,11 +40,8 @@ Player::Player(void)
 
 	characterType_ = CHARACTER_TYPE::PLAYER;
 
-	//各ステータスの設定
-	//SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
-
 	footSEDisCount_ = FOOT_SE_DIS;
-	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
+	footSE_ = ResourceManager::SRC::PLAYER_FOOT_SE;
 
 	capRadius_ = CAP_RADIUS;
 
@@ -100,15 +97,6 @@ void Player::Init(void)
 	action_->Init();
 	weapon_->Init();
 
-
-	////デッキに山札追加
-	//for (int i = 0; i < CARD_NUM_MAX; i++)
-	//{
-	//	DataBank::GetInstance().AddCardData(characterType_,CARD_POWS[i]);
-	//}
-
-	//DataBank::GetInstance().AddCardData(characterType_, RELOAD_CARD_STATUS);
-
 	deck_->Init();
 
 	//更新
@@ -126,7 +114,6 @@ void Player::UpdateDirection(void)
 	//Transformの更新
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
-
 }
 
 void Player::UpdateNormal(void)
@@ -148,7 +135,6 @@ void Player::UpdateClearDirection(void)
 
 	//プレイヤー状態更新
 	Action();
-
 }
 
 void Player::UpdateOverDirection(void)
@@ -173,6 +159,7 @@ void Player::Draw(void)
 
 	weapon_->Draw();
 }
+
 void Player::Draw2D(void)
 {
 
@@ -185,6 +172,7 @@ void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
 	onHit_->OnHitUpdate(_hitCol);
 }
+
 void Player::MoveDirFromInput(void)
 {
 	//プレイヤー入力クラスから角度を取得
@@ -193,6 +181,7 @@ void Player::MoveDirFromInput(void)
 	//charaRot_.dir_ = getDir;
 
 }
+
 void Player::SetGoalRotate(void)
 {
 	//ベクトルからクォータニオンへ
@@ -210,12 +199,14 @@ void Player::SetGoalRotate(void)
 
 	charaRot_.goalQuaRot_ = axis;
 }
+
 void Player::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
 {
 	//すでに当たり判定がある場合は作らない
 	if (weapon_->IsAliveCollider(_charaTag, _attackTag))return;
 	weapon_->MakeWeaponCollider();
 }
+
 void Player::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)
 {
 	if (!weapon_->IsAliveCollider(_charaTag, _attackCol))return;
@@ -234,10 +225,6 @@ void Player::DrawDebug(void)
 	{
 		col.second->GetGeometry().Draw();
 	}
-	
-	VECTOR pos = trans_.pos;
-	DrawFormatString(0, 200, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
-
 }
 
 #endif // _DEBUG
@@ -287,11 +274,11 @@ void Player::MakeColliderGeometry(void)
 	onHit_->Load();
 }
 
-
 void Player::Action(void)
 {
 	//ロジック
 	logic_->Update();
+
 	//アクション関係の更新
 	action_->Update();
 

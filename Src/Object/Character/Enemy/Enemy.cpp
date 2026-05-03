@@ -39,7 +39,7 @@ Enemy::Enemy(void):
 	isRoar_ = false;
 
 	footSEDisCount_ = FOOT_SE_DIS;
-	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
+	footSE_ = ResourceManager::SRC::ENEMY_FOOT_SE;
 
 	logic_ = std::make_unique<EnemyLogic>(trans_);
 
@@ -66,10 +66,13 @@ void Enemy::Load(void)
 	//アニメーション
 	AddAnimation();
 
+	//エフェクト
 	effect_->Add(resMng_.Load(ResourceManager::SRC::E_DEATH_EFF).handleId_, EffectController::EFF_TYPE::E_DEATH);
 
+	//ステータスロード
 	LoadStatus();
 
+	//アクションの追加
 	AddAction();
 
 	action_->Load();
@@ -217,13 +220,12 @@ void Enemy::ChangeUpdateClearDirection(void)
 	isRoar_ = false;
 	animationController_->Play(static_cast<int>(ANIM_TYPE::DEATH), false);
 	VECTOR effPos = MV1GetFramePosition(trans_.modelId, CHEST_FRAME_NO);
-	soundMng_.Stop(SoundManager::SRC::ENEMY_FOOT_SE);
-	soundMng_.Stop(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
-	soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
+	soundMng_.Stop(ResourceManager::SRC::ENEMY_FOOT_SE);
+	soundMng_.Stop(ResourceManager::SRC::ENEMY_JUMP_LAND_SE);
+	soundMng_.Stop(ResourceManager::SRC::ENEMY_CHARGE_SE);
 	effect_->Play(EffectController::EFF_TYPE::E_DEATH, effPos, trans_.quaRot, DEATH_EFF_SCL_VEC);
 	CharacterBase::ChangeUpdateClearDirection();
 }
-
 
 void Enemy::MakeColliderGeometry(void)
 {

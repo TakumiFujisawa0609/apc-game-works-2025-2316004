@@ -45,6 +45,8 @@ private:
 	//プレイヤーの大きさ
 	static constexpr float RADIUS = 25.0f;
 
+	//
+
 	//プレイヤーの体の球
 	static constexpr int BODY_SPHERE_COL_NO = 0;
 
@@ -66,7 +68,6 @@ private:
 	//衝突後の処理
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;		//キャラ同士
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃
-	void CollRoarAttack(const std::weak_ptr<Collider>_hitCol);			//おたけび攻撃
 	void CollRock(const std::weak_ptr<Collider>_hitCol);			//岩攻撃
 };
 

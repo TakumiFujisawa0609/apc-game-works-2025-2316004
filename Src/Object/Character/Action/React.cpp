@@ -53,5 +53,4 @@ void React::Update(void)
 		//のけぞり中はアニメーションループ
 		anim_.SetEndLoop(LOOP_START, LOOP_END, LOOP_SPD);
 	}
-
 }

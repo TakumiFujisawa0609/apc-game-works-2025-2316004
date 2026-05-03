@@ -208,9 +208,6 @@ private:
 	//カード選択
 	void CardMove(void);
 
-	//カードチャージ
-	void CardChargeUpdate(void);
-
 	//入力方向に応じて方向を決める
 	void MoveDirFromInput(void);
 

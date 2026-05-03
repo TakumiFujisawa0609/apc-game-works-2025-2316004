@@ -34,15 +34,16 @@ void Weapon::Load(void)
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::KEY_BLADE_HIT_EFF).handleId_,
 		EffectController::EFF_TYPE::KEY_BLADE_HIT);
 
+	//リソースロード
 	resMng_.Load(ResourceManager::SRC::PLAYER_HIT_SE);
 	resMng_.Load(ResourceManager::SRC::PLAYER_ATTACK_SE);
-
 }
 
 void Weapon::Init(void)
 {
 	//武器の相対位置初期化
 	localPos_ = { 0.0f,0.0f,0.0f };
+
 	//武器の相対回転初期化
 	localRot_ = { 0.0f,UtilityCommon::Deg2RadF(LOCAL_ANGLE_DEG.y),UtilityCommon::Deg2RadF(LOCAL_ANGLE_DEG.z) };
 
@@ -55,7 +56,6 @@ void Weapon::Init(void)
 
 void Weapon::Update(void)
 {
-
 	// 対象フレームの位置にtargetを配置し、
 	// 対象フレームの回転に加え、指定した相対座標・回転を加える
 	ModelFrameUtility::SetFrameWorldMatrix(
@@ -81,8 +81,6 @@ void Weapon::SetTargetAndFrameNo(Transform* _targetTrans, int _frameNo)
 
 void Weapon::MakeWeaponCollider(void)
 {
-	//当たり判定が存在したら削除する
-	//if (IsAliveCollider(Collider::TAG::PLAYER1, Collider::TAG::NML_ATK))return;
 	//ダメージフラグ初期化
 	isDamage_ = false;
 
@@ -91,7 +89,6 @@ void Weapon::MakeWeaponCollider(void)
 	noneHitTag_.emplace(Collider::TAG::CAMERA);
 	noneHitTag_.emplace(Collider::TAG::STAGE);
 	noneHitTag_.emplace(Collider::TAG::JUMP_ATK);
-	noneHitTag_.emplace(Collider::TAG::ROAR_ATK);
 
 	//カプセル形状作成
 	const VECTOR CAP_TOP = { 0.0f,CAPSULE_COL_HEIGHT ,0.0f };
@@ -100,7 +97,7 @@ void Weapon::MakeWeaponCollider(void)
 	tagPrioritys_.emplace_back(TAG_PRIORITY::ATK_SPHERE);
 
 	//攻撃発生時にSE再生
-	SoundManager::GetInstance().Play(SoundManager::SRC::PLAYER_ATTACK_SE, SoundManager::PLAYTYPE::BACK);
+	SoundManager::GetInstance().Play(ResourceManager::SRC::PLAYER_ATTACK_SE, SoundManager::PLAYTYPE::BACK);
 }
 
 void Weapon::DeleteWeaponCollider(void)
@@ -124,5 +121,5 @@ void Weapon::OnHit(const std::weak_ptr<Collider> _hitCol)
 	//ヒットエフェクトを再生
 	VECTOR bladeFramePos = MV1GetFramePosition(trans_.modelId, EFFECT_PLAY_FRAME_NO);
 	effect_->Play(EffectController::EFF_TYPE::KEY_BLADE_HIT, bladeFramePos, {}, { EFFECT_PLAY_SCL,EFFECT_PLAY_SCL,EFFECT_PLAY_SCL });
-	SoundManager::GetInstance().Play(SoundManager::SRC::PLAYER_HIT_SE, SoundManager::PLAYTYPE::BACK);
+	SoundManager::GetInstance().Play(ResourceManager::SRC::PLAYER_HIT_SE, SoundManager::PLAYTYPE::BACK);
 }

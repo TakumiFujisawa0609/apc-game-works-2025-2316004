@@ -163,7 +163,6 @@ void CardUIController::ResetCount(void)
 	state_ = CARD_STATE::DRAW_PILE;
 }
 
-
 void CardUIController::EraseUsedCard(void)
 {
 	if (state_ != CARD_STATE::USED)return;

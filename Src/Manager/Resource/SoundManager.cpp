@@ -18,8 +18,6 @@ SoundManager::~SoundManager(void)
 {
 }
 
-
-
 void SoundManager::Init(void)
 {
 }

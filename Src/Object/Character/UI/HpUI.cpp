@@ -38,7 +38,7 @@ HpUI::~HpUI(void)
 
 void HpUI::Load(void)
 {
-	//素材のロード
+	//リソースのロード
 	hpMask_ = resMng_.Load(ResourceManager::SRC::E_HP_BAR_MASK).handleId_;
 	barCoverHandle_ = resMng_.Load(ResourceManager::SRC::E_HP_COVER).handleId_;
 	barFrame_ = resMng_.Load(ResourceManager::SRC::E_HP_BAR_FRAME).handleId_;
@@ -114,7 +114,7 @@ void HpUI::RefreshHp(const HP_DATA& _hpData)
 void HpUI::LoadJsonHpUI(void)
 {
 	//Jsonからデータを取得
-	nlohmann::json j= UtilityCommon::LoadJsonData(JSON_DATA_PATH);
+	nlohmann::json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData;
 	CHARACTER_TYPE chara = CHARACTER_TYPE::MAX;
 	std::string charaStr = "";
 
@@ -160,7 +160,6 @@ void HpUI::LoadJsonHpUI(void)
 			initCoverPos_.y = pos.value("y", 0.0f);
 		}
 	}
-
 }
 
 void HpUI::Draw(void)

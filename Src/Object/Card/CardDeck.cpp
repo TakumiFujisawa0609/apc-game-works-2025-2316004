@@ -98,7 +98,7 @@ void CardDeck::LoadCardData(void)
 	using json = nlohmann::json;
 
 	//Jsonのデータを取得
-	json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData_;
+	json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData;
 	std::vector<CardBase::CARD_STATUS> cards;
 
 	//カードデータの読み込み
@@ -236,7 +236,6 @@ void CardDeck::MoveChargeToUsingCard(void)
 	//負けた時の初期化
 	CardSystem::GetInstance().LoseInitPutCardPow(playerNum_);
 }
-
 
 void CardDeck::CardMoveLimit(void)
 {

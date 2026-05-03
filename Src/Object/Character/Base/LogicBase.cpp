@@ -40,7 +40,6 @@ void LogicBase::GetLookAtTargetDir(void)
 	moveDir_ = targetVec;
 }
 
-
 const bool LogicBase::HitTarget(void) const
 {
 	return false;

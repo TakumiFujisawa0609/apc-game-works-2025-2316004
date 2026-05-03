@@ -30,6 +30,7 @@ void EnemyRock::Load(void)
 
 void EnemyRock::Init(void)
 {
+	//âΩå¬ñ⁄Ç…ê∂ê¨Ç≥ÇÍÇΩÇ©Ç≈äpìxÇïœÇ¶ÇÈ
 	float angle = ARROUND_PER_RAD * num_;
 
 	goalPos_.x = startPos_.x + sin(angle) * DISTANCE_RADIUS;
@@ -50,7 +51,6 @@ void EnemyRock::Init(void)
 	MakeCollider(TAG_PRIORITY::ROCK_SPHERE, {tag_ }, std::move(geo),noneHitTag_);
 
 	trans_.pos = startPos_;
-
 }
 
 void EnemyRock::Update(void)
@@ -68,7 +68,6 @@ void EnemyRock::Update(void)
 	trans_.pos = VAdd(trans_.pos, jumpPow_);
 
 	trans_.Update();
-
 }
 
 void EnemyRock::Draw(void)

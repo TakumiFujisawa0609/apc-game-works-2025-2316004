@@ -163,7 +163,6 @@ void Camera::ChangeMode(const MODE mode)
 
 void Camera::SetDefault(void)
 {
-
 	// カメラの初期設定
 	pos_ = DEFAULT_CAMERA_POS;
 
@@ -180,7 +179,6 @@ void Camera::SetDefault(void)
 	startF2CPosZ_ = {};
 	goalF2CPosZ_ = {};
 	rot_ = Quaternion();
-
 }
 
 void Camera::SyncFollow(const Transform* _followTransform)
@@ -211,7 +209,6 @@ void Camera::SyncFollow(const Transform* _followTransform)
 	cameraUp_ = gRot.GetUp();
 
 }
-
 
 void Camera::SyncTargetFollow(void)
 {
@@ -251,7 +248,6 @@ void Camera::SyncTargetFollow(void)
 
 void Camera::ProcessRot(void)
 {
-
 	// マウスを表示状態にする
 	SetMouseDispFlag(FALSE);
 
@@ -311,7 +307,6 @@ void Camera::SmoothChangeCamera(void)
 		targetPos_ = easing_->EaseFunc(targetPos_, goalTargetPos, static_cast<float>(lerpRate),Easing::EASING_TYPE::LERP);
 	}
 
-
 	// カメラ位置
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
 	VECTOR goalPos = VAdd(followPos, localPos);
@@ -334,6 +329,8 @@ void Camera::SmoothChangeCamera(void)
 
 void Camera::Collision(void)
 {
+	//腰座標を常に取得する
+	followFramePos_ = MV1GetFramePosition(followTransform_->modelId, FOLLOW_FRAME_NUM);
 
 	auto hits = MV1CollCheck_LineDim(stageTransform_->modelId
 		, -1, pos_, followFramePos_);
@@ -501,6 +498,8 @@ void Camera::UpdateShake(void)
 		ChangeSub(SUB_MODE::NONE);
 		return;
 	}
+
+	//シェイクカウントリセット
 	if (shekePerCnt_ > SHAKE_PER)
 	{
 		shekePerCnt_ = 0.0f;
@@ -565,8 +564,6 @@ void Camera::DirectionNone(void)
 {
 }
 
-
-
 void Camera::DirectionPlayerAndTarget(void)
 {
 	//一定時間後、敵注視のカメラモードにする
@@ -575,7 +572,9 @@ void Camera::DirectionPlayerAndTarget(void)
 		ChangeDirectionMode(DIRECTION_MODE::ENEMY_ONLY_VIEW);
 		return;
 	}
+
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
+
 	SyncFollow(targetTransform_);
 	angles_.y += UtilityCommon::Deg2RadF(0.1f);
 }
@@ -609,9 +608,10 @@ void Camera::DirectionEnemyRoar(void)
 		ChangeDirectionMode(DIRECTION_MODE::PLAYER_ONLY_VIEW);
 		return;
 	}
+
+	//ターゲットに追従
 	SyncFollow(targetTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
-
 }
 
 void Camera::DirectionPlayerOnly(void)
@@ -651,7 +651,6 @@ void Camera::EndDirection(void)
 	//追従処理
 	SyncFollow(followTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
-
 }
 
 void Camera::ChangeDirectionNone(void)
@@ -699,7 +698,7 @@ void Camera::ChangeEndDirection(void)
 {
 	easingStartF2CPos_ = localF2CPos_;
 	startAngles_ = angles_;
-	goalAngles_ = { UtilityCommon::Deg2RadF(-10.0f), 0.0f, 0.0f };
+	goalAngles_ = { UtilityCommon::Deg2RadF(END_DIRECTION_GOAL_ANGLE), 0.0f, 0.0f };
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	startFollowLocalCenterPos_ = followLocalCenterPos_;
 	goalFollowLocalCenterPos_ = Utility3D::VECTOR_ZERO;

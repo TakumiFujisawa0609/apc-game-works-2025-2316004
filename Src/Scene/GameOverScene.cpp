@@ -13,9 +13,10 @@ GameOverScene::GameOverScene(void):
 	soundMng_(SoundManager::GetInstance())
 {
 	//更新関数のセット
-	updateFunc_ = std::bind(&GameOverScene::LoadingUpdate, this);
+	updateFunc_ = [this]() {LoadingUpdate(); };
+
 	//描画関数のセット
-	drawFunc_ = std::bind(&GameOverScene::LoadingDraw, this);
+	drawFunc_ = [this]() {LoadingDraw(); };
 
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
 }
@@ -38,7 +39,7 @@ void GameOverScene::Load(void)
 void GameOverScene::Init(void)
 {
 	//BGM再生
-	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_OVER_BGM, SoundManager::PLAYTYPE::LOOP);
+	soundMng_.GetInstance().Play(ResourceManager::SRC::GAME_OVER_BGM, SoundManager::PLAYTYPE::LOOP);
 	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, SoundManager::TYPE::BGM);
 }
 
@@ -57,13 +58,14 @@ void GameOverScene::NormalUpdate(void)
 
 void GameOverScene::NormalDraw(void)
 {
+	//ゲームオーバー画像
 	DrawExtendGraph(0, 0, Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, imgGameOver_, true);
 
-
+	//Bボタン、スペースキーでタイトルに戻るの描画
 	UtilityDraw::DrawStringCenter(
 		Application::SCREEN_HALF_X,
 		static_cast<int>(BACK_TITLE_STRING_POS_Y),
-		L"'B'ボタンまたは'スペースキー'でタイトルに戻る",
+		BACK_TITLE_SCENE_STR,
 		UtilityCommon::WHITE,
 		buttonFontHandle_
 	);
@@ -72,6 +74,6 @@ void GameOverScene::NormalDraw(void)
 void GameOverScene::OnSceneEnter(void)
 {
 	//処理変更
-	updateFunc_ = std::bind(&GameOverScene::NormalUpdate, this);
-	drawFunc_ = std::bind(&GameOverScene::NormalDraw, this);
+	updateFunc_ = [this]() {NormalUpdate(); };
+	drawFunc_ = [this]() {NormalDraw(); };
 }

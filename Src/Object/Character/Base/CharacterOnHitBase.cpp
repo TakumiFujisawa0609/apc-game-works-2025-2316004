@@ -10,12 +10,6 @@
 #include "../Object/Character/Player/ActionController.h"
 #include "CharacterOnHitBase.h"
 
-namespace
-{
-	using TAG_PRIORITY = ObjectBase::TAG_PRIORITY;
-	using TAG = Collider::TAG;
-}
-
 CharacterOnHitBase::CharacterOnHitBase(CharacterBase& _chara, VECTOR& _movedPos,VECTOR& _moveDiff,
 	ActionController& _action, std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& _colParam, Transform& _trans):
 	charaObj_(_chara),
@@ -48,7 +42,6 @@ void CharacterOnHitBase::InitHit(void)
 	isHitTarget_ = false;
 }
 
-
 void CharacterOnHitBase::CollNone(void)
 {
 	//何もしない
@@ -69,13 +62,13 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 	VECTOR hitPos = hitModel.GetHitLineInfo().HitPosition;
 
 	//移動後と移動前のコライダ
-	auto& moveLineCol = colParam_[TAG_PRIORITY::MOVE_LINE];
+	auto& moveLineCol = colParam_[ObjectBase::TAG_PRIORITY::MOVE_LINE];
 
 	//上下を引いたラインのコライダ(接地)
-	auto& upDownLine = colParam_[TAG_PRIORITY::UPDOWN_LINE];
+	auto& upDownLine = colParam_[ObjectBase::TAG_PRIORITY::UPDOWN_LINE];
 
 	//球の当たり判定(プレイヤーの周囲)
-	auto& bodyShere = colParam_[TAG_PRIORITY::BODY];
+	auto& bodyShere = colParam_[ObjectBase::TAG_PRIORITY::BODY];
 
 	if (moveLineCol->IsHit())
 	{

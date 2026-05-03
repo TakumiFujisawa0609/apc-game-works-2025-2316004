@@ -65,6 +65,9 @@ protected:
 	//ドット
 	const std::wstring DOT_STR = L".";
 
+	//クリアシーンとゲームオーバーシーンの戻る説明の文字列
+	const std::wstring BACK_TITLE_SCENE_STR = L"'B'ボタンまたは'スペースキー'でタイトルに戻る";
+
 	// リソース管理
 	ResourceManager& resMng_;
 	InputManager& inputMng_;

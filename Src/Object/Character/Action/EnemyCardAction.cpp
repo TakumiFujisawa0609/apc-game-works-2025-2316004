@@ -47,7 +47,7 @@ EnemyCardAction::~EnemyCardAction(void)
 
 void EnemyCardAction::Load(void)
 {
-	//素材のロード
+	//リソースのロード
 	resMng_.Load(ResourceManager::SRC::ENEMY_JUMP_LAND_SE);
 	resMng_.Load(ResourceManager::SRC::ENEMY_CHARGE_SE);
 	resMng_.Load(ResourceManager::SRC::ENEMY_STOMP_SE);
@@ -97,7 +97,6 @@ void EnemyCardAction::Release(void)
 {
 	//当たり判定の消去
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::NML_ATK);
-	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::ROAR_ATK);
 	charaObj_.DeleteAttackCol(Collider::TAG::ENEMY1, Collider::TAG::JUMP_ATK);
 	
 	//カメラシェイクを元に戻す
@@ -204,7 +203,7 @@ void EnemyCardAction::UpdateStomp(void)
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//地響き音再生
-		const bool isPlayStompSE_ = soundMng_.IsPlay(SoundManager::SRC::ENEMY_STOMP_SE);
+		const bool isPlayStompSE_ = soundMng_.IsPlay(ResourceManager::SRC::ENEMY_STOMP_SE);
 		if (!isPlayStompSE_)
 		{
 			soundMng_.Play(ResourceManager::SRC::ENEMY_STOMP_SE, SoundManager::PLAYTYPE::BACK);
@@ -285,7 +284,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		{
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
-			soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
+			soundMng_.Stop(ResourceManager::SRC::ENEMY_CHARGE_SE);
 
 			//チャージエフェクトの消去
 			const int JUMP_CHARGE_EFF_ARRAY = 0;

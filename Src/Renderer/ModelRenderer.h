@@ -40,5 +40,4 @@ private:
 
 	// シェーダ設定(ピクセル)
 	void SetReservePS(void);
-
 };

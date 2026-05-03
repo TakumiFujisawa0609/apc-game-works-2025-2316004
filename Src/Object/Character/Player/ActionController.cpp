@@ -5,16 +5,11 @@
 #include "../../../Manager/Generic/Camera.h"
 #include "../../../Manager/Generic/SceneManager.h"
 #include "../../../Manager/Resource/ResourceManager.h"
-
 #include"../Object/Card/CardSystem.h"
-
-//#include "../../Object/Common/EffectController.h"
 #include "../../../Object/Common/AnimationController.h"
-
 #include"../../Card/CardDeck.h"
 #include"../../Card/CardBase.h"
 #include"../../Card/CardUIBase.h"
-
 #include"../Base/ActionBase.h"
 #include"../Action/Idle.h"
 #include"../Action/Run.h"
@@ -43,8 +38,7 @@ ActionController::ActionController(CharacterBase& _charaObj, LogicBase& _input, 
 	,dir_(Utility3D::VECTOR_ZERO)
 {
 	//エフェクト
-	//effect_ = std::make_unique<EffectController>();
-	SoundManager::SRC footSE = charaObj_.GetFootSE();
+	ResourceManager::SRC footSE = charaObj_.GetFootSE();
 	const float& footSEDisCount = charaObj_.GetFootSEDisCount();
 	const float& speed = charaObj_.GetStatus().speed;
 	VECTOR dir = trans_.GetForward();
@@ -99,10 +93,11 @@ void ActionController::Update(void)
 	mainAction_[act_]->Update();
 
 	MoveDirFromInput();
+
 	charaObj_.Rotate();
+
 	DirAndMovePowUpdate();
 
-	CardChargeUpdate();
 	CardMove();
 }
 
@@ -123,21 +118,13 @@ ActionBase& ActionController::GetMainAction(void)
 #ifdef _DEBUG
 void ActionController::DrawDebug(void)
 {
-	//int dashSeCnt = effect_->GetPlayNum(EffectController::EFF_TYPE::DASH);
-	//DrawFormatString(0, 300, 0x000000, "act(%d)\ndashSESize(%d)", (int)logic_.GetActionType(), dashSeCnt);
-	//cardPresent_.Draw();
-	DrawFormatString(0, 320, 0x000000, L"pos(%f,%f,%f)", trans_.pos.x, trans_.pos.y, trans_.pos.z);
-
 }
 #endif // _DEBUG
-
-
 
 const float& ActionController::GetSpd(void) const
 {
 	return mainAction_.at(act_)->GetSpeed();
 }
-
 
 void ActionController::ChangeAction(const ACTION_TYPE _act)
 {
@@ -146,14 +133,6 @@ void ActionController::ChangeAction(const ACTION_TYPE _act)
 	mainAction_[prevType]->Release();
 	act_ = _act;
 	mainAction_[act_]->Init();
-}
-
-void ActionController::CardChargeUpdate(void)
-{
-	if (logic_.GetIsAct().isCardCharge)
-	{
-		//cardPresent_.CardCharge();
-	}
 }
 
 void ActionController::CardMove(void)

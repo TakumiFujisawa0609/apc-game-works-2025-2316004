@@ -187,8 +187,8 @@ void TitleScene::NormalDraw(void)
 void TitleScene::OnSceneEnter(void)
 {
 	//処理変更
-	updateFunc_ = std::bind(&TitleScene::NormalUpdate, this);
-	drawFunc_ = std::bind(&TitleScene::NormalDraw, this);
+	updateFunc_ = [this]() {NormalUpdate(); };
+	drawFunc_ = [this]() {NormalDraw(); };
 }
 
 void TitleScene::UpdateEase(void)
@@ -267,9 +267,9 @@ void TitleScene::UpdateTutorial(void)
 
 void TitleScene::UpdateSelectGame(void)
 {
-	if (!soundMng_.IsPlay(SoundManager::SRC::GAME_START_SE))
+	if (!soundMng_.IsPlay(ResourceManager::SRC::GAME_START_SE))
 	{
-		soundMng_.Play(SoundManager::SRC::GAME_START_SE, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::GAME_START_SE, SoundManager::PLAYTYPE::BACK);
 	}
 
 	//ゲームシーンに遷移
@@ -290,6 +290,7 @@ void TitleScene::UpdateExitMenu(void)
 		else { ChangeState(TITLE_STATE::MENU); }
 	}
 }
+
 void TitleScene::UpdateYesNo(void)
 {
 	//はいいいえSE

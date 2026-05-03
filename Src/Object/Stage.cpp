@@ -38,20 +38,23 @@ void Stage::Init(void)
 	//カプセル
 	tag_ = Collider::TAG::STAGE;
 
+	//当たり判定作成
 	std::unique_ptr<Geometry>geo = std::make_unique<Model>(trans_.pos, trans_.quaRot, trans_.modelId);
-	MakeCollider(TAG_PRIORITY::BODY,{ tag_ }, std::move(geo), { Collider::TAG::NML_ATK,Collider::TAG::ROAR_ATK });
+	MakeCollider(TAG_PRIORITY::BODY,{ tag_ }, std::move(geo), { Collider::TAG::NML_ATK });
 
+	//マテリアル
 	constexpr int STAGE_VS_CONST_BUF = 1;
 	material_=std::make_unique<ModelMaterial>(
-		L"StageVS.cso", STAGE_VS_CONST_BUF,
-		L"StagePS.cso", 0
+		VERTEX_SHADER_PATH, STAGE_VS_CONST_BUF,
+		PIXEL_SHADER_PATH, 0
 	);
-	//material_->AddConstBufVS({ STAGE_UV_SCL,0.0f,0.0f,0.0f });
 	material_->AddConstBufVS({ STAGE_UV_SCL,0.0f,0.0f,0.0f });
 	renderer_ = std::make_unique<ModelRenderer>(trans_.modelId,*material_);
 
+	//モデル更新
 	trans_.Update();
 
+	//壁
 	wallTrans_.Update();
 }
 
@@ -62,7 +65,6 @@ void Stage::Update(void)
 
 void Stage::Draw(void)
 {
-	//MV1DrawModel(trans_.modelId);
 	MV1DrawModel(wallTrans_.modelId);
 	renderer_->Draw();
 

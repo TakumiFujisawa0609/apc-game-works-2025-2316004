@@ -116,7 +116,7 @@ public:
 	LONGLONG loopEndTime_;		//サウンドのループ終了時間(1秒=1000000)
 
 	//JSONデータ
-	nlohmann::json jsonData_;
+	nlohmann::json jsonData;
 
 	// モデル複製用
 	std::vector<int> duplicateModelIds_;

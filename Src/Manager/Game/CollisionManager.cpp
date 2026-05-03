@@ -106,7 +106,6 @@ CollisionManager::CollisionManager(void)
 	hitRange_[Collider::TAG::PLAYER1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::ENEMY1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::NML_ATK] = HIT_RANGE_NORMAL;
-	hitRange_[Collider::TAG::ROAR_ATK] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::JUMP_ATK] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::CAMERA] = HIT_RANGE_CAMERA;
 	hitRange_[Collider::TAG::STAGE] = HIT_RANGE_STAGE;

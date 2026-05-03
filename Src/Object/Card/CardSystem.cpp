@@ -15,7 +15,6 @@ CardSystem::CardSystem(void):
 	
 }
 
-
 const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) const
 {
 	//”z—ñ”‚æ‚è‘å‚«‚¢”š‚ğw’è‚³‚ê‚½‚ç‰½‚à•Ô‚³‚È‚¢

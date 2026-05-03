@@ -13,11 +13,10 @@ PauseScene::PauseScene(void):
 	pauseList_({ L"つづける",L"タイトルへ戻る" })
 {
 	//更新関数のセット
-	updateFunc_ = std::bind(&PauseScene::NormalUpdate, this);
+	updateFunc_ = [this]() {LoadingUpdate(); };
+
 	//描画関数のセット
-	drawFunc_ = std::bind(&PauseScene::NormalDraw, this);
-
-
+	drawFunc_ = [this]() {LoadingDraw(); };
 	
 	//リストごとに処理を分ける
 	listFuncTable_ =

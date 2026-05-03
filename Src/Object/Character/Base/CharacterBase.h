@@ -114,6 +114,15 @@ public:
 		HIT_STOP
 	};
 
+	//ステータスの種類
+	enum class STATUS_TYPE
+	{
+		HP,
+		ATK,
+		DEF,
+		SPD,
+	};
+
 	/// @brief コンストラクタ
 	/// @param  
 	CharacterBase(void);
@@ -221,7 +230,7 @@ public:
 	/// @brief 足音素材の取得
 	/// @param  
 	/// @return 足音素材
-	inline const SoundManager::SRC& GetFootSE(void)const { return footSE_; }
+	inline const ResourceManager::SRC& GetFootSE(void)const { return footSE_; }
 
 	/// @brief カードアクションの取得
 	/// @param  
@@ -335,7 +344,7 @@ protected:
 	VECTOR movedPos_;		//移動後座標
 	VECTOR moveDiff_;		//移動前座標
 	VECTOR movePow_;		// 移動量
-	
+
 	//角度関連
 	ROTATION charaRot_;
 

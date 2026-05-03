@@ -47,7 +47,7 @@ void PlayerCardUI::Load(void)
 {
 	CardUIBase::Load();
 
-	//素材のロード
+	//リソースのロード
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 
 	reloadCardImg_ = resMng_.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;

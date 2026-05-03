@@ -229,7 +229,7 @@ void ResourceData::LoadJson(void)
 	{
 		std::cerr << "ファイルが開けません" << std::endl;
 	}
-	ifs >> jsonData_;
+	ifs >> jsonData;
 }
 
 void ResourceData::ReleaseImg(void)
