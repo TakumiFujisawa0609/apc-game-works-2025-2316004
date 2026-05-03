@@ -13,6 +13,7 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	actionCntl_(_actCntl),
 	anim_(_actCntl.GetAnimation()),
 	soundMng_(SoundManager::GetInstance()),
+	resMng_(ResourceManager::GetInstance()),
 	isTurnable_(true),
 	isAliveAtkCol_(false),
 	speed_(0.0f),
@@ -20,8 +21,6 @@ ActionBase::ActionBase(ActionController& _actCntl):
 	actType_(CARD_ACT_TYPE::NONE),
 	isTargetTurn_(false)
 {
-
-
 }
 
 ActionBase::~ActionBase()
@@ -36,8 +35,3 @@ const CardActionBase::CARD_ACT_TYPE& ActionBase::GetCardAction(void)const
 {
 	return actType_;
 }
-
-
-
-
-

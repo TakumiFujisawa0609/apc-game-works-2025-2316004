@@ -22,9 +22,6 @@
 PlayerCardUI::PlayerCardUI(void):
 radius_({RADIUS_X,RADIUS_Y}),
 isReloadEnd_(false),
-revolverLArrowPos_(REVOLVER_ARROW_L_POS),
-revolverRArrowPos_(),
-revolverArrowAngle_(),
 reloadAnimCurr_(),
 cardNumFrameImg_(UtilityCommon::INITIAL_HANDLE),
 cardNumMaskImg_(UtilityCommon::INITIAL_HANDLE),
@@ -34,15 +31,13 @@ reloadFontHandle_(UtilityCommon::INITIAL_HANDLE),
 imgRevolverArrow_(UtilityCommon::INITIAL_HANDLE),
 cardNumPer_(UtilityCommon::RATIO_MAX)
 {
-	charaType_ = "Player";
-
+	charaType_ = JSON_PLAYER_STR;
 }
 
 PlayerCardUI::~PlayerCardUI(void)
 {
 	handCards_.clear();
 	visibleCards_.clear();
-	//アクション中カード
 	actions_.clear();
 	changeMoveState_.clear();
 	initialCards_.clear();
@@ -51,24 +46,38 @@ PlayerCardUI::~PlayerCardUI(void)
 void PlayerCardUI::Load(void)
 {
 	CardUIBase::Load();
+
+	//リソースのロード
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
+
 	reloadCardImg_ = resMng_.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
+
 	reloadGauge_ = resMng_.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
+
 	cardNumFrameImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
+
 	cardNumMaskImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
+
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
+
 	reloadFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), RELOAD_FONT_SIZE,0);
+
 	cardNumBgImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
-	soundMng_.LoadResource(SoundManager::SRC::CARD_MOVE,500.0f);
-	soundMng_.LoadResource(SoundManager::SRC::CARD_BE_REFLECTED);
-	soundMng_.LoadResource(SoundManager::SRC::CARD_PUT);
-	cardWinRes_ = SoundManager::SRC::CARD_BE_REFLECTED;
+
+	resMng_.Load(ResourceManager::SRC::CARD_MOVE_SE);
+
+	resMng_.Load(ResourceManager::SRC::CARD_BE_REFLECTED_SE);
+
+	resMng_.Load(ResourceManager::SRC::CARD_PUT_SE);
+
+	cardWinRes_ = ResourceManager::SRC::CARD_BREAK_SE;
+
 	imgRevolverArrow_ = resMng_.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;
 
 }
 void PlayerCardUI::Init(void)
 {
-	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(L"LineHpBarPS.cso", CARD_NUM_GAUGE_CONST_BUF_SIZE);
+	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(LINE_HP_BAR_PS_PATH, CARD_NUM_GAUGE_CONST_BUF_SIZE);
 	cardGaugePSRenderer_ = std::make_unique<PixelRenderer>(*cardGaugePSMaterial_);
 
 	cardGaugePSMaterial_->AddTextureBuf(cardNumMaskImg_);
@@ -81,15 +90,24 @@ void PlayerCardUI::Init(void)
 		{CARD_SELECT::RELOAD, [this]() {ChangeReload(); } }
 	};
 
+	//マテリアル関連
 	cardGaugePSMaterial_->AddConstBuf(BAR_LIGHT_GREEN);
 	cardGaugePSMaterial_->AddConstBuf(BAR_BLUE);
 	cardGaugePSMaterial_->AddConstBuf({ cardNumPer_,cardNumPer_,0.0f,0.0f });
+
+	//頂点作成
 	cardGaugePSRenderer_->MakeSquareVertex(BAR_POS, BAR_SIZE);
 
+	//Jsonからカードデータを読み込む
 	LoadCardData();
 
+	//カードの初期化
 	InitCardUI();
+
+	//状態の初期化
 	ChangeSelectState(CARD_SELECT::NONE);
+
+	//見せカードの座標をセット
 	SetBasePosVisibleCards();
 
 }
@@ -98,8 +116,10 @@ void PlayerCardUI::Update(void)
 {
 	CardUIBase::Update();
 
+	//常に見せカードは上下にふわふわ動かす
 	MoveUpDownVisibleCards();
 
+	//定数バッファのセット
 	float initCardNum = static_cast<float>(initialCards_.size());
 	float handCardNum = static_cast<float>(handCards_.size());
 	cardNumPer_ = handCardNum / initCardNum;
@@ -107,7 +127,6 @@ void PlayerCardUI::Update(void)
 
 	//弾かれるカードの大きさ補完
 	ReactMoveCard(REACT_GOAL_CARD_POS);
-
 }
 
 void PlayerCardUI::Draw(void)
@@ -125,7 +144,7 @@ void PlayerCardUI::Draw(void)
 		{
 			card->DrawReloadGauge(reloadPer_);
 			Vector2F pos = card->GetCenterPos();
-			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
+			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), RELOAD_STR, UtilityCommon::WHITE, reloadFontHandle_);
 		}
 	}
 
@@ -137,7 +156,7 @@ void PlayerCardUI::Draw(void)
 		{
 			(*handCurrent_)->DrawReloadGauge(reloadPer_);
 			Vector2F pos = (*handCurrent_)->GetCenterPos();
-			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), L"Reload", UtilityCommon::WHITE, reloadFontHandle_);
+			UtilityDraw::DrawStringCenter(static_cast<int>(pos.x), static_cast<int>(pos.y - RELOAD_STR_OFF_Y), RELOAD_STR, UtilityCommon::WHITE, reloadFontHandle_);
 		}
 		//選択カード枠描画
 		(*handCurrent_)->SelectCardDrawFrame();
@@ -149,6 +168,7 @@ void PlayerCardUI::Draw(void)
 	//カード残り枚数ゲージの描画
 	cardGaugePSRenderer_->Draw();
 
+	//カード枚数ゲージのフレーム
 	DrawExtendGraphF(BAR_POS.x, BAR_POS.y, BAR_POS.x + BAR_SIZE.x, BAR_POS.y + BAR_SIZE.y, cardNumFrameImg_, true);
 
 	int handCardSize = static_cast<int>(handCards_.size());
@@ -178,42 +198,16 @@ void PlayerCardUI::Draw(void)
 #ifdef _DEBUG
 void PlayerCardUI::DrawDebug(void)
 {
-	int i = 0;
-	for(const auto& action:actions_)
-	{
-		std::wstring stateStr;
-		auto state = action->GetState();
-		switch (state)
-		{
-		case CardUIController::CARD_STATE::DRAW_PILE:
-			stateStr = L"DRAW_PILE";
-			break;
-		case CardUIController::CARD_STATE::MOVE_DRAW:
-			stateStr = L"MOVE_DRAW";
-			break;
-		case CardUIController::CARD_STATE::USING:
-			stateStr = L"USING";
-			break;
-		case CardUIController::CARD_STATE::REACT:
-			stateStr = L"REACT";
-			break;
-		case CardUIController::CARD_STATE::USED:
-			stateStr = L"USED";
-			break;
-		default:
-			break;
-		}
-		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(),action->GetDecisionCnt(), stateStr.c_str());
-		i++;
-	}
-	DrawFormatString(10, 300, 0xffffff, L"select(%d)", selectState_);
+
 }
 #endif 
 void PlayerCardUI::InitCardUI(void)
 {
+	//初めに配列を初期化
 	handCards_.clear();
 	visibleCards_.clear();
 	actions_.clear();
+
 	//手札にすべての初期札を入れる
 	for (auto& it : initialCards_)
 	{
@@ -221,9 +215,11 @@ void PlayerCardUI::InitCardUI(void)
 		(*it).Init();
 		handCards_.emplace_back(it);
 	}
-	//はじめの配列にリロードカードを描画したいので、最後の配列にセットする
+
+	//始めの配列にリロードカードを描画したいので、最後の配列にセットする
 	auto beginit = std::prev(handCards_.end());
 	auto endIt = handCards_.begin();
+
 	//endItをbeginの５個先(６枚目)に指定する
 	std::advance(endIt, VISIBLE_CARD_MAX - 1);
 
@@ -238,13 +234,15 @@ void PlayerCardUI::InitCardUI(void)
 			it = handCards_.begin();
 		}
 
+		//カードの初期化
 		(*it)->InitCard(i);
+
 		//見せるカード配列に入れる
 		visibleCards_.emplace_back(*it);
-		const float& scl = (*it)->GetScl();
 		i++;
 	}
 
+	//現在のカードをセット
 	if (!handCards_.empty())
 	{
 		handCurrent_ = handCards_.begin();
@@ -254,13 +252,16 @@ void PlayerCardUI::InitCardUI(void)
 // _DEBUG
 void PlayerCardUI::ChangeNone(void)
 {
+	//イージング時間のセット
 	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
+
 	//目標角度を現在の角度にする
 	for (auto& card : visibleCards_)
 	{
 		//card->SyncCardAngleAndPos();
 		card->SetStartAndGoalAngle(0.0f);
 	}
+
 	cardUpdate_ = [this]() {UpdateNone(); };
 }
 
@@ -289,28 +290,33 @@ void PlayerCardUI::ChangeLeft(void)
 			it = handCards_.begin();
 		}
 	}
+
 	//次の角度を現在角度に代入
 	//見せるカードのマックス分角度をかける
 	int size = static_cast<int>(visibleCards_.size());
 	(*it)->SetCurrentAngle(ARROUND_PER_RAD * (size - CARDS_BEFORE_CURRENT));
+
+	//見せカードの末尾に追加
 	visibleCards_.emplace_back(*it);
 
 	//手札選択カードを更新
 	AddHandCurrent();
 
+	//イージングするために始点と終点をセット
 	for (auto& card : visibleCards_)
 	{
 		float currentAngle = card->GetCurrentAngle();
 		card->SetStartAndGoalAngle(currentAngle - ARROUND_PER_RAD);
 	}
 	//サウンドを再生
-	soundMng_.Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+	soundMng_.Play(ResourceManager::SRC::CARD_MOVE_SE, SoundManager::PLAYTYPE::BACK);
 
 	cardUpdate_ = [this]() {UpdateLeft(); };
 }
 
 void PlayerCardUI::ChangeRight(void)
 {
+	//イージング補完時間をセット
 	cardMoveCnt_ = CardUIController::SELECT_MOVE_CARD_TIME;
 
 	//visible配列に入れる前に現在の番地を引くことで、
@@ -323,6 +329,7 @@ void PlayerCardUI::ChangeRight(void)
 	
 	//先頭に追加
 	auto it = handCurrent_;
+
 	//現在位置より２枚遡って配列に入れる
 	for (int i = 0; i < PREV_CARD_COUNT; i++)
 	{
@@ -332,9 +339,13 @@ void PlayerCardUI::ChangeRight(void)
 		}
 		it--;
 	}
-	
+
+	//角度をセット
 	(*it)->SetCurrentAngle(-ARROUND_PER_RAD * PREV_CARD_COUNT);
+
+	//見せカードの先頭に追加
 	visibleCards_.emplace_front(*it);
+
 	//手札選択カードを更新
 	SubHandCurrent();
 
@@ -344,8 +355,9 @@ void PlayerCardUI::ChangeRight(void)
 		float currentAngle = card->GetCurrentAngle();
 		card->SetStartAndGoalAngle(currentAngle + ARROUND_PER_RAD);
 	}
+
 	//サウンドを再生
-	soundMng_.Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+	soundMng_.Play(ResourceManager::SRC::CARD_MOVE_SE, SoundManager::PLAYTYPE::BACK);
 	
 	cardUpdate_ = [this]() {UpdateRight(); };
 }
@@ -361,17 +373,24 @@ void PlayerCardUI::ChangeDecision(void)
 	actions_.emplace_back(*handCurrent_);
 
 	//決定カウントをセット
-	for(auto& act:actions_)
+	for (auto& act : actions_)
 	{
+		//弾かれ状態の場合は飛ばす
 		if (act->GetState() == CardUIController::CARD_STATE::REACT)continue;
+
+		//使用中状態にする
 		act->ChangeUsing();
+
+		//決定した時のイージング時間セット
 		act->SetDecisionCount(CardUIController::DISITION_MOVE_CARD_TIME);
 	}
 	
 	//手札に6枚よりカードが多かったら配列に入れる
 	UpdateVisibleCard();
+
 	//手札から使用するカードを消去
 	EraseHandCard();
+
 	//カードの範囲変数を更新する
 	DecideGoalAngle();
 
@@ -389,6 +408,7 @@ void PlayerCardUI::ChangeReload(void)
 	handCards_.clear();
 	visibleCards_.clear();
 
+	//リロード終了フラグの初期化
 	isReloadEnd_ = false;
 
 	//一番最後の配列を見る
@@ -405,7 +425,10 @@ void PlayerCardUI::UpdateNone(void)
 
 void PlayerCardUI::UpdateLeft(void)
 {
+	//イージングカウント
 	cardMoveCnt_ -= DELTA;
+
+	//イージングが終わったら状態を戻す
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_front();
@@ -413,12 +436,17 @@ void PlayerCardUI::UpdateLeft(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
+
+	//カードの移動
 	MoveCardAll(CardUIController::SELECT_MOVE_CARD_TIME);
 }
 
 void PlayerCardUI::UpdateRight(void)
 {
+	//イージングカウント
 	cardMoveCnt_ -= DELTA;
+
+	//移動が終わったら状態を戻す
 	if (cardMoveCnt_ < 0.0f)
 	{
 		visibleCards_.pop_back();
@@ -426,6 +454,8 @@ void PlayerCardUI::UpdateRight(void)
 		ChangeSelectState(CARD_SELECT::NONE);
 		return;
 	}
+
+	//カードの移動
 	MoveCardAll(CardUIController::SELECT_MOVE_CARD_TIME);
 }
 
@@ -439,9 +469,11 @@ void PlayerCardUI::UpdateDecision(void)
 		(*it)->MoveOnRevolver(cardMoveCnt_,CardUIController::DISITION_MOVE_CARD_TIME);
 	}
 	cardMoveCnt_ -= DELTA;
-	//決定移動が終わったらnone状態に戻す
+
+	//決定移動が終わったカードを探す
 	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
 
+	//終わっていたら、NONE状態へ
 	if(it==actions_.end())
 	{
 		SetBasePosVisibleCards();
@@ -454,7 +486,7 @@ void PlayerCardUI::UpdateReloadWait(void)
 {
 	if(reloadPer_>= UtilityCommon::RATIO_MAX)
 	{
-		//一瞬none状態にする
+		//一瞬none状態にし、必ずRELOADの遷移処理をさせる
 		ChangeSelectState(CARD_SELECT::NONE);
 		
 		ChangeSelectState(CARD_SELECT::RELOAD);
@@ -465,6 +497,7 @@ void PlayerCardUI::UpdateReloadWait(void)
 }
 void PlayerCardUI::UpdateReload(void)
 {
+	//リロードアニメーションの更新
 	ReloadAnimation();
 
 	//リロードが終了したら
@@ -478,6 +511,7 @@ void PlayerCardUI::UpdateReload(void)
 		}
 		else
 		{
+			//選択カードを先頭にセット
 			if (!handCards_.empty())
 			{
 				handCurrent_ = handCards_.begin();
@@ -594,8 +628,9 @@ void PlayerCardUI::ReloadAnimation(void)
 	if (cardMoveCnt_ < 0.0f)
 	{
 		//サウンドを再生
-		soundMng_.Play(SoundManager::SRC::CARD_MOVE, SoundManager::PLAYTYPE::BACK);
+		soundMng_.Play(ResourceManager::SRC::CARD_MOVE_SE, SoundManager::PLAYTYPE::BACK);
 
+		//配列追加
 		ReloadCardArray();
 
 		//見せカードが7枚以上の時は終了
@@ -604,6 +639,7 @@ void PlayerCardUI::ReloadAnimation(void)
 			isReloadEnd_ = true;
 		}
 		
+		//リロード中カードを更新
 		reloadAnimCurr_--;
 
 		//先頭まで来たら最後尾に戻し、見せカードにリロードカードを追加
@@ -632,6 +668,7 @@ void PlayerCardUI::ReloadAnimation(void)
 		card->MoveOnRevolver(cardMoveCnt_, CardUIController::RELOAD_MOVE_CARD_TIME_PER);
 		i++;
 	}
+
 	//見せカードが7枚以上お時はポップ
 	if(visibleCards_.size()>VISIBLE_CARD_MAX)
 	{
@@ -643,6 +680,7 @@ void PlayerCardUI::ReloadCardArray(void)
 {
 	//リロードカードの現在位置にセット
 	(*reloadAnimCurr_)->SetCurrentAngle(static_cast<float>(-ARROUND_PER_RAD * PREV_CARD_COUNT));
+
 	//見せるカード配列に追加
 	visibleCards_.emplace_front(*reloadAnimCurr_);
 
@@ -673,6 +711,7 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 	//リボルバー回転方向の左方向矢印の描画
 	DrawRotaGraphF(REVOLVER_ARROW_L_POS.x, REVOLVER_ARROW_L_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(REVOLVER_ARROW_L_ANGLE), imgRevolverArrow_, true);
+
 	//リボルバー回転方向の右方向矢印の描画
 	DrawRotaGraphF(REVOLVER_ARROW_R_POS.x, REVOLVER_ARROW_R_POS.y
 		, REVOLVER_ARROW_SCL, UtilityCommon::Deg2RadF(-REVOLVER_ARROW_L_ANGLE), imgRevolverArrow_, true,true,false);
@@ -680,6 +719,7 @@ void PlayerCardUI::DrawArrowAndBotton(void)
 	Vector2F btnPos = REVOLVER_ARROW_L_POS;
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + REVOLVER_BTN_ARROW_OFFSET;
 
+	//移動矢印の描画
 	ButtonUIManager::GetInstance().DrawFromCenter(ButtonUIManager::BTN_UI_TYPE::LBUTTON_NOPUSH, btnPos, REVOLVER_BTN_SIZE);
 	btnPos = REVOLVER_ARROW_R_POS;
 	btnPos.y -= REVOLVER_ARROW_SCL_SIZE.y / 2 + REVOLVER_BTN_ARROW_OFFSET;

@@ -2,9 +2,10 @@
 #include "../Object/ObjectBase.h"
 #include"../Common/Vector2F.h"
 
-class CardBase
-	:public ObjectBase
+class CardBase :
+	public ObjectBase
 {
+
 public:
 
 	enum class CARD_TYPE
@@ -17,7 +18,7 @@ public:
 
 	struct CARD_STATUS
 	{
-		int pow;			//カードの強さ
+		int pow;		//カードの強さ
 		CARD_TYPE type;	//カードの種類
 
 		//カードの強さと種類の比較
@@ -28,9 +29,12 @@ public:
 		}
 	};
 
-	//コンストラクタ
+	/// @brief //コンストラクタ
+	/// @param _status カードのステータス
 	CardBase(const CARD_STATUS _status);
-	//デストラクタ
+
+	/// @brief デストラクタ
+	/// @param  
 	virtual~CardBase(void)override;
 
 	/// @brief ロード
@@ -58,26 +62,31 @@ protected:
 
 	//カードのナンバーローカル座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 35.0f,53.0f };
+
 	//カードのスケール
 	static constexpr float CARD_SCALE = 1.4f;
 
 	////カードの種類
 	CARD_STATUS status_;
+
 	//カードの勝敗
 	bool isWin_;
+
 	//使用済みかどうか
 	bool isUsed_;
+
 	//カード番号イメージ
 	int* cardNoImg_;
+
 	//攻撃カード画像
 	int atkCardImg_;
+
 	//カードの大きさ
 	double cardScl_;
+
 	//カードの座標
 	Vector2F cardPos_;
+
 	//カードナンバー座標
 	Vector2F numPos_;
-
-private:
 };
-

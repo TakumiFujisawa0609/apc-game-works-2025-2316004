@@ -5,9 +5,10 @@
 #include "../../Template/Singleton.h"
 #include "Resource.h"
 
-class ResourceManager : public Singleton<ResourceManager>
+class ResourceManager : 
+	public Singleton<ResourceManager>
 {
-
+	//シングルトン
 	friend class Singleton<ResourceManager>;
 
 public:
@@ -17,69 +18,98 @@ public:
 	{
 		NONE,
 		//モデル
-		STAGE,		//ステージ
-		STAGE_WALL,		//ステージ
-		PLAYER,		//プレイヤー
-		ENEMY_1,	//敵1
-		SKY_DOME,	//スカイドーム
-		SPHERE_ROCK,		//岩
-		KEY_BLADE,	//鍵剣
+		STAGE,						//ステージ
+		STAGE_WALL,					//壁
+		PLAYER,						//プレイヤー
+		ENEMY,						//敵
+		SKY_DOME,					//スカイドーム
+		SPHERE_ROCK,				//岩
+		KEY_BLADE,					//鍵剣
 		//アニメーション
 		//プレイヤー
-		P_IDLE,		//待機
-		P_RUN,		//走る
-		P_ATTACK_1_SHORT,	//攻撃1(近距離)
-		P_ATTACK_1_MIDDLE,	//攻撃1(中距離)
-		P_ATTACK_2,	//攻撃2
-		P_ATTACK_3,	//攻撃3
-		P_DODGE,	//回避
-		P_RELOAD,	//リロード
-		P_DEATH,	//プレイヤー倒れ
+		P_IDLE,						//待機
+		P_RUN,						//走る
+		P_ATTACK_1_SHORT,			//攻撃1(近距離)
+		P_ATTACK_1_MIDDLE,			//攻撃1(中距離)
+		P_ATTACK_2,					//攻撃2
+		P_ATTACK_3,					//攻撃3
+		P_DODGE,					//回避
+		P_RELOAD,					//リロード
+		P_DEATH,					//プレイヤー倒れ
 		//敵
-		E_IDLE,		//待機
-		E_RUN,		//走る
-		E_STOMP_ATK,	//横薙ぎ攻撃
-		E_JUMP_ATK, //ジャンプ攻撃
-		E_ROAR_ATK,	//咆哮攻撃
-		E_KNOCK_DOWN,	//大ダウン
+		E_IDLE,						//待機
+		E_RUN,						//走る
+		E_STOMP_ATK,				//横薙ぎ攻撃
+		E_JUMP_ATK,					//ジャンプ攻撃
+		E_ROAR_ATK,					//咆哮攻撃
+		E_KNOCK_DOWN,				//大ダウン
 		REACT,
-		E_DEATH,			//敵倒れる
+		E_DEATH,					//敵倒れる
 
 		//画像
-		TITLE_BACK_IMG,	//タイトル背景
-		TITLE_LOGO,		//タイトルロゴ
-		GAME_OVER_IMG,	//
+		TITLE_BACK_IMG,				//タイトル背景
+		TITLE_LOGO,					//タイトルロゴ
+		GAME_OVER_IMG,				//ゲームオーバーイメージ
 		GAME_CLEAR_IMG,
-		PLAYER_ATK_CARD_IMG,	//番号なしアタックカード
-		ENEMY_ATK_CARD_IMG,//敵番号なしアタックカード
-		RELOAD_CARD_IMG,//リロードカード
-		RELOAD_GAGE,	//リロードゲージ
-		P_HP_ARC_OUTLINE,	//円形アウトライン
-		P_HP_LINE_OUT_LINE,	//線形アウトライン
-		P_CARD_NUM_GAUGE_MASK,	//カード枚数ゲージマスク
-		P_CARD_NUM_GAUGE_FRAME,	//カード枚数ゲージフレーム
-		P_CARD_NUM_GAUGE_BACK,	//カード枚数ゲージ背景
-		E_HP_BAR_MASK,	//敵体力体力ゲージマスク
-		E_HP_BAR_FRAME,	//敵体力体力ゲージフレーム
-		E_HP_COVER,		//敵体力ゲージカバー
-		SKIP_BUTTOM_MASK,		//スキップボタン画像
-		CARD_REVOLVER_L_ARROW,	//カードリボルバー回転方向の左矢印
+		PLAYER_ATK_CARD_IMG,		//番号なしアタックカード
+		ENEMY_ATK_CARD_IMG,			//敵番号なしアタックカード
+		RELOAD_CARD_IMG,			//リロードカード
+		RELOAD_GAGE,				//リロードゲージ
+		P_HP_ARC_OUTLINE,			//円形アウトライン
+		P_HP_LINE_OUT_LINE,			//線形アウトライン
+		P_CARD_NUM_GAUGE_MASK,		//カード枚数ゲージマスク
+		P_CARD_NUM_GAUGE_FRAME,		//カード枚数ゲージフレーム
+		P_CARD_NUM_GAUGE_BACK,		//カード枚数ゲージ背景
+		E_HP_BAR_MASK,				//敵体力体力ゲージマスク
+		E_HP_BAR_FRAME,				//敵体力体力ゲージフレーム
+		E_HP_COVER,					//敵体力ゲージカバー
+		SKIP_BUTTOM_MASK,			//スキップボタン画像
+		CARD_REVOLVER_L_ARROW,		//カードリボルバー回転方向の左矢印
+		INTENSIVE_LINE_1,			//集中線画像1(複数画像でアニメーション)
+		INTENSIVE_LINE_2,			//集中線画像2(複数画像でアニメーション)
 
-		INTENSIVE_LINE_1,	//集中線画像1(複数画像でアニメーション)
-		INTENSIVE_LINE_2,	//集中線画像2(複数画像でアニメーション)
+		//Json
+		CHARA_DATA,
 
 		//複数画像
-		NUMBERS_IMGS,	//カード番号
-		CONTROLLER_UI_IMGS,
-		//ピクセルシェーダ
-		CARD_PS,
+		NUMBERS_IMGS,				//カード番号
+		CONTROLLER_UI_IMGS,			//コントローラーのボタンUI
+
 		//エフェクト
-		BLAST,
-		KEY_BLADE_HIT_EFF,
-		E_JUMP_CHARGE_EFF,
-		E_DEATH_EFF,
-		RELOAD_EFF,
-		RELOAD_END_EFF,
+		BLAST,						//爆発エフェクト
+		KEY_BLADE_HIT_EFF,			//鍵剣ヒットエフェクト
+		E_JUMP_CHARGE_EFF,			//敵のジャンプチャージエフェクト
+		E_DEATH_EFF,				//敵の死亡エフェクト
+		RELOAD_EFF,					//リロードエフェクト
+		RELOAD_END_EFF,				//リロード終了エフェクト
+
+		//サウンド
+		//BGM
+		TITLE_BGM,					//タイトルBGM
+		GAME_BGM,					//ゲームBGM
+		GAME_CLEAR_BGM,				//ゲームクリアBGM
+		GAME_OVER_BGM,				//ゲームオーバーBGM
+		//SE
+		PLAYER_FOOT_SE,				//プレイヤー足音
+		ENEMY_FOOT_SE,				//エネミー足音
+		ENEMY_STOMP_SE,				//エネミー爆発音
+		ENEMY_CHARGE_SE,			//エネミーチャージ音
+		ENEMY_JUMP_LAND_SE,			//エネミージャンプ着地音
+		ENEMY_HIT_SE,				//エネミーヒット着地音
+		PLAYER_ATTACK_SE,			//プレイヤー攻撃音
+		PLAYER_DODGE_SE,			//プレイヤー回避音
+		PLAYER_HIT_SE,				//プレイヤーヒット音
+		//カード関連
+		CARD_PUT_SE	,					//カードを引く(アクション開始時)
+		CARD_MOVE_SE,					//カード移動
+		CARD_BE_REFLECTED_SE,			//カード弾かれ音
+		CARD_BREAK_SE,					//カード弾き音(カードに勝った)
+		CARD_RELOAD_SE,					//カードリロード音
+		CARD_RELOAD_FINISH_SE,			//カードリロード終了音
+		//ボタン
+		MOVE_BTN_SE,					//移動ボタン
+		DESIDE_BTN_SE,					//決定ボタン
+		GAME_START_SE					//ゲームスタート音
 	};
 
 	struct RES_INFO
@@ -110,7 +140,18 @@ public:
 	/// @return 複製したリソース
 	int LoadModelDuplicate(SRC src);
 
+	/// @brief ロード済みリソースの取得
+	/// @param src 
+	/// @return 
+	const ResourceData GetResource(const SRC src) const;
+
+	/// @brief サウンドリソースのイテレータの取得
+	/// @param _soundType BGM、SEなどのサウンドの種類(指定なしでサウンドの種類をすべて渡す)
+	/// @return サウンドの配列
+	std::vector<const ResourceData*> GetSoundResources(ResourceData::SOUND_TYPE _soundType=ResourceData::SOUND_TYPE::MAX)const;
+
 private:
+
 	//カード番号画像
 	static constexpr int CARD_NO_X = 5;	//横の数
 	static constexpr int CARD_NO_Y = 2;	//縦の数
@@ -150,6 +191,4 @@ private:
 
 	// 内部ロード
 	ResourceData& _Load(SRC src);
-
-
 };

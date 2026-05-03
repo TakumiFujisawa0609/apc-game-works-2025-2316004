@@ -25,56 +25,25 @@ public:
 	/// <param name="_rot">追従する親の回転</param>
 	Capsule(const Capsule& _copyBase, const VECTOR& _pos, const Quaternion& _rot);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~Capsule(void)override;
 
-	// 描画
+	/// @brief 描画
+	/// @param  
 	void Draw(void)override;
 
 	//各種当たり判定
-	const bool IsHit(Geometry& _geometry) override;
-	const bool IsHit(Model& _model) override;
-	const bool IsHit(Cube& _cube) override;
-	const bool IsHit(Sphere& _sphere) override;
-	const bool IsHit(Capsule& _capsule) override;
-	const bool IsHit(Line& _line) override;
+	const bool IsHit(Geometry& _geometry) override;			//ジオメトリ
+	const bool IsHit(Model& _model) override;				//モデル
+	const bool IsHit(Cube& _cube) override;					//キューブ
+	const bool IsHit(Sphere& _sphere) override;				//球
+	const bool IsHit(Capsule& _capsule) override;			//カプセル
+	const bool IsHit(Line& _line) override;					//ライン
 
-	//ヒット後の処理
+	/// @brief ヒット後の処理
+	/// @param  
 	void HitAfter(void)override;
 
-	//// 親Transformからの相対位置を取得
-	//inline const VECTOR GetLocalPosTop(void) const { return localPosPoint1_; }
-	//inline const VECTOR GetLocalPosDown(void) const { return localPosPoint2_; }
-
-	//// 親Transformからの相対位置をセット
-	//inline void SetLocalPosTop(const VECTOR& _pos) { localPosPoint1_ = _pos; }
-	//inline void SetLocalPosDown(const VECTOR& _pos) { localPosPoint2_ = _pos; }
-
-	//// ワールド座標を取得
-	//inline const VECTOR GetPosTop(void) const { return GetRotPos(localPosPoint1_); }
-	//inline const VECTOR GetPosDown(void) const { return GetRotPos(localPosPoint2_); }
-
-	//// 半径
-	//inline const float GetRadius(void) const { return radius_; }
-	//inline void SetRadius(float _radius) { radius_ = _radius; }
-
-	//// 高さ
-	//inline const float GetHeight(void) const { return localPosPoint1_.y; }
-
-	//// カプセルの中心座標
-	//inline const VECTOR GetCenter(void) const;
-
-	////当たった時の情報取得
-	//inline const MV1_COLL_RESULT_POLY_DIM& GetHitInfo(void)const { return hitInfo_; }
-
-	////当たった時の情報設定
-	//inline void SetHitInfo(MV1_COLL_RESULT_POLY_DIM _hitInfo) { std::swap(hitInfo_, _hitInfo); }
-
 private:
-
-	//VECTOR localPosPoint1_;	// 親Transformからの相対位置(上側)
-	//VECTOR localPosPoint2_;	// 親Transformからの相対位置(下側)
-	//float radius_;			// 半径
-
-	//MV1_COLL_RESULT_POLY_DIM hitInfo_;	//当たった時の情報(球、カプセル)
 };

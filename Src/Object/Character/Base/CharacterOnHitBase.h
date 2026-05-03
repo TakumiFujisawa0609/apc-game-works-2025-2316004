@@ -6,7 +6,9 @@ class CharacterBase;
 
 class CharacterOnHitBase
 {
+
 public:
+
 	struct HIT_POINT
 	{
 		bool isDown = false;
@@ -44,32 +46,30 @@ public:
 	/// @return ターゲットと当たったかどうか
 	const bool GetIsHitTarget(void)const { return isHitTarget_; }
 
-
 #ifdef _DEBUG
 	/// @brief デバッグ表示
 /// @param  
 	virtual void DrawDebug(void) = 0;
 #endif // _DEBUG
 
-
-
-
 protected:
 
 	//当たり判定の押し出し回数
 	static constexpr int COL_TRY_CNT_MAX = 10;
+
 	//ヒットした法線方向へのオフセット
 	static constexpr float HIT_NORMAL_OFFSET = 3.0f;
+
 	//押し出す移動量
 	static constexpr float POSITION_OFFSET = 0.1f;
 
-
-
 	//プレイヤー
 	ActionController& action_;
+
 	//移動量
 	VECTOR& movedPos_;
 	VECTOR& moveDiff_;
+
 	//プレイヤーの情報
 	Transform& trans_;
 
@@ -78,11 +78,16 @@ protected:
 
 	//当たり判定ごとの更新
 	std::map<Collider::TAG, std::function<void(const std::weak_ptr<Collider> _hitCol)>>colUpdates_;
+
 	//当たり判定関係
 	std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& colParam_;
-	Collider::TAG tag_;	//プレイヤーの当たり判定タグ
+
+	//プレイヤーの当たり判定タグ
+	Collider::TAG tag_;
+
 	//キャラクターの情報
 	CharacterBase& charaObj_;
+
 	//当たった箇所
 	HIT_POINT hitPoint_;
 
@@ -92,10 +97,8 @@ protected:
 	//モデルの当たった時の共通処理
 	void HitModelCommon(const std::weak_ptr<Collider> _hitCol);
 
-	//オブジェクト毎の当たった時にされる処理
+	//衝突後の処理
 	void CollNone(void);												//当たっても何もしない(プレイヤー側で何も起きない)
 	void CollStage(const std::weak_ptr<Collider> _hitCol);				//ステージ
-	virtual void CollChara(const std::weak_ptr<Collider> _hitCol) = 0;				//キャラクター同士
-private:
+	virtual void CollChara(const std::weak_ptr<Collider> _hitCol) = 0;	//キャラクター同士
 };
-

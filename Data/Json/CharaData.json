@@ -1,9 +1,37 @@
 {
-  "PlayerStatus": {
-    "HP": 200,
-    "DEF": 5,
-    "SPD": 7
-  },
+	"PlayerStatus": [
+		{
+			"HP": 200,
+			"ATK": 50,
+			"DEF": 100,
+			"SPD": 10
+		}
+	],
+	"PlayerHPBar": [
+		{
+			"barPos": {
+				"x": 26,
+				"y": 23
+			},
+			"barColor_L": {
+				"red": 0.2,
+				"green": 0.6,
+				"blue": 1.0,
+				"alpha": 1.0
+			},
+			"barColor_R": {
+				"red": 0.2,
+				"green": 1.0,
+				"blue": 0.4,
+				"alpha": 1.0
+			},
+			"coverPos": {
+				"x": 0,
+				"y": 20
+			}
+		}
+
+	],
 	"PlayerCards": [
 		{
 			"type": "Attack",
@@ -70,13 +98,39 @@
 			"pow": 4
 		}
 	],
+	"EnemyStatus": [
+		{
+			"HP": 200,
+			"ATK": 50,
+			"DEF": 100,
+			"SPD": 15.0
+		}
+	],
+	"EnemyHPBar": [
+		{
+			"barPos": {
+				"x": 550,
+				"y": 23
+			},
+			"barColor_L": {
+				"red": 0.2,
+				"green": 0.8,
+				"blue": 1.0,
+				"alpha": 1.0
+			},
+			"barColor_R": {
+				"red": 0.6,
+				"green": 0.2,
+				"blue": 0.8,
+				"alpha": 1.0
+			},
+			"coverPos": {
+				"x": 524,
+				"y": 20
+			}
+		}
+	],
 
-	"EnemyStatus": {
-		"HP": 150,
-    "ATK": 50,
-		"DEF": 100,
-		"SPD": 15.0
-	},
 	"EnemyCards": [
 		{
 			"type": "Attack",

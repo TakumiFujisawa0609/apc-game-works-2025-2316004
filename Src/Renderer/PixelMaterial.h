@@ -59,7 +59,6 @@ public:
 	/// @return 定数バッファ
 	int GetConstBuf(void) const;
 
-	
 	/// @brief 定数バッファ配列の取得
 	/// @param  
 	/// @return 定数バッファ配列
@@ -70,8 +69,6 @@ public:
 	/// @return テクスチャ
 	const std::vector<int>& GetTextures(void) const;
 
-	// テクスチャアドレスを取得
-	
 	/// @brief テクスチャアドレスを取得
 	/// @param  
 	/// @return テクスチャアドレス

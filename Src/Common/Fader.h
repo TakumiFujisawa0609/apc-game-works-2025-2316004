@@ -60,5 +60,4 @@ private:
 
 	// フェード処理の終了判定
 	bool isEnd_;
-
 };

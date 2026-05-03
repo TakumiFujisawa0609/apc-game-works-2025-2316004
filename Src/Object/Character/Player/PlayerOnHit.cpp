@@ -1,4 +1,3 @@
-//#include "....//Manager/System/SoundManager.h"
 #include <ranges>
 #include "../../../Manager/Generic/SceneManager.h"
 #include "../../../Manager/Resource/ResourceManager.h"
@@ -10,7 +9,6 @@
 #include "../Object/Character/Enemy/EnemyRock.h"
 #include"../../../Utility/Utility3D.h"
 #include"./ActionController.h"
-
 #include"./Player.h"
 #include "../Base/CharacterOnHitBase.h"
 #include "PlayerOnHit.h"
@@ -29,10 +27,8 @@ PlayerOnHit::PlayerOnHit(CharacterBase& _chara, VECTOR& _movedPos,VECTOR& _moveD
 		{ TAG::ENEMY1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); } },
 		{ TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); } },
 		{ TAG::STAGE, [this](const std::weak_ptr<Collider>_hitCol) {CollStage(_hitCol); } },
-		{ TAG::ROAR_ATK, [this](const std::weak_ptr<Collider>_hitCol) {CollRoarAttack(_hitCol); } },
 		{ TAG::ROCK, [this](const std::weak_ptr<Collider>_hitCol) {CollRock(_hitCol); } },
 	};
-
 }
 
 PlayerOnHit::~PlayerOnHit(void)
@@ -53,18 +49,24 @@ void PlayerOnHit::Init(void)
 	movedPos_ = Utility3D::VECTOR_ZERO;
 }
 
-
 void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 {
-	//相手のタグをとる
+	//相手のタグの取得
 	const CharacterBase& parentChara = _hitCol.lock()->GetParentCharacter();
 	std::set<Collider::TAG> tags = _hitCol.lock()->GetTags();
+
+	//攻撃のタグを見つける
 	const auto it = std::find(tags.begin(), tags.end(), Collider::TAG::NML_ATK);
+
 	isHitTarget_ = true;
+
 	//攻撃の当たり判定の場合は無視
 	if (it != tags.end())return;
+
+	//それぞれのカプセルの取得
 	Geometry& myCap = colParam_[TAG_PRIORITY::BODY]->GetGeometry();
 	Geometry& hitCap = _hitCol.lock()->GetGeometry();
+
 	//自分の座標
 	VECTOR myPos = charaObj_.GetTransform().pos;
 	const VECTOR hitCharaPos = parentChara.GetTransform().pos;
@@ -81,6 +83,7 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 
 	//押し出す方向ベクトルの計算
 	VECTOR vec = Utility3D::GetMoveVec(parentChara.GetTransform().pos,charaObj_.GetTransform().pos );
+
 	//Y成分はいらない
 	vec.y = 0.0f;
 
@@ -90,12 +93,16 @@ void PlayerOnHit::CollChara(const std::weak_ptr<Collider> _hitCol)
 
 void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
-
+	//相手の親キャラクターの取得
 	auto& parentChara = _hitCol.lock()->GetParentCharacter();
+
+	//ダメージ判定の取得
 	bool getIsDam = parentChara.GetIsDamage();
 	if (getIsDam)return;
 
+	//相手のタグの取得
 	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
+
 	//ダメージを与えたことを知らせる
 	parentChara.SetIsDamage();
 
@@ -108,46 +115,31 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	//攻撃中に敵の攻撃を食らった場合、カードを消費する
 	charaObj_.SetUsedCard();
 
-	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
+	SoundManager::GetInstance().Play(ResourceManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	
 }
 
-
-void PlayerOnHit::CollRoarAttack(const std::weak_ptr<Collider> _hitCol)
-{
-	auto& parentChara = _hitCol.lock()->GetParentCharacter();
-	if (parentChara.GetIsDamage())return;
-
-	auto tag = _hitCol.lock()->GetParentCharacter().GetCharaTag();
-	//ダメージを与えたことを知らせる
-	parentChara.SetIsDamage();
-	charaObj_.Damage(20);
-
-	//のけぞり時間セット
-	charaObj_.SetFlinchCnt(ROAR_FLICTION_TIME);
-	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
-}
-
 void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
 {
+	//岩の取得
 	auto& rock = dynamic_cast<EnemyRock&>(_hitCol.lock()->GetParent());
+
 	//ダメージを与えていた場合、処理を抜ける
 	if (rock.GetIsDamaged())return;
+
+	//ダメージを与える
 	charaObj_.Damage(STONE_DMG);
 	//のけぞり時間セット
 	rock.SetIsDamaged();
-	SoundManager::GetInstance().Play(SoundManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
+	SoundManager::GetInstance().Play(ResourceManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 
 #ifdef _DEBUG
 void PlayerOnHit::DrawDebug(void)
 {
-	//colParam_[BODY_SPHERE_COL_NO].geometry_->DrawPlayerUI();
-	//colParam_[MOVE_LINE_COL_NO].geometry_->DrawPlayerUI();
-	//colParam_[UP_AND_DOWN_LINE_COL_NO].geometry_->DrawPlayerUI();
-	//colParam_[EYE_LINE_NO].geometry_->DrawPlayerUI();
+
 }
 #endif // _DEBUG
 

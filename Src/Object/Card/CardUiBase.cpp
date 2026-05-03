@@ -15,14 +15,13 @@
 #include "../Renderer/PixelRenderer.h"
 #include "CardUIBase.h"
 
-
-
 CardUIBase::CardUIBase(void):
 selectState_(CARD_SELECT::RELOAD_WAIT),
 atkCardImg_(-1),
 reloadCardImg_(-1),
 soundMng_(SoundManager::GetInstance()),
 resMng_(ResourceManager::GetInstance()),
+scnMng_(SceneManager::GetInstance()),
 handCurrent_(),
 centerPos_(),
 cardNoImg_(nullptr),
@@ -32,7 +31,7 @@ cardMoveCnt_(),
 disitionCnt_(),
 reloadPer_()
 {
-	charaTypeMap_ = {
+	cardTypeMap_ = {
 		{"Attack", CardBase::CARD_TYPE::ATTACK}
 	};
 }
@@ -54,6 +53,7 @@ void CardUIBase::ChangeUsedActionCard(void)
 	{
 		act->ChangeUsedCard();
 	}
+
 }
 
 void CardUIBase::ChangeReactActionCard(void)
@@ -68,16 +68,21 @@ void CardUIBase::ChangeReactActionCard(void)
 void CardUIBase::PlayCardSound(void)
 {
 	CardSystem::BATTLE_RESULT result = CardSystem::GetInstance().GetResult(0);
-	SoundManager::SRC winRes = SoundManager::SRC::NONE;
-	if (result == CardSystem::BATTLE_RESULT::BE_DRAW || result == CardSystem::BATTLE_RESULT::GIVE_DRAW 
+	ResourceManager::SRC winRes = ResourceManager::SRC::NONE;
+
+	//負けた場合
+	if (result == CardSystem::BATTLE_RESULT::BE_DRAW || result == CardSystem::BATTLE_RESULT::GIVE_DRAW
 		|| result == CardSystem::BATTLE_RESULT::NONE || result == CardSystem::BATTLE_RESULT::FAILURE_USE_BE_REFLECTED)
 	{
-		winRes = SoundManager::SRC::CARD_BE_REFLECTED;
+		winRes = ResourceManager::SRC::CARD_BE_REFLECTED_SE;
 	}
+	//勝った場合
 	else if (result == CardSystem::BATTLE_RESULT::SUCCESS_CARD_BREAK)
 	{
-		winRes = cardWinRes_;
+		winRes = ResourceManager::SRC::CARD_BREAK_SE;
 	}
+
+	//SEの重複再生を防ぐ
 	if (!SoundManager::GetInstance().IsPlay(winRes))
 	{
 		SoundManager::GetInstance().Play(winRes, SoundManager::PLAYTYPE::BACK);
@@ -86,28 +91,34 @@ void CardUIBase::PlayCardSound(void)
 
 void CardUIBase::LoadCardData(void)
 {
-
-	//std::ifstream ifs("Data/Json/CardData.json");
-	//if (!ifs.is_open())
-	//{
-	//	std::cerr << "ファイルが開けません" << std::endl;
-	//	return;
-	//}
 	using json = nlohmann::json;
-	json j=UtilityCommon::LoadJsonData("Data/Json/CharaData.json");
+	
+	//Jsonデータの取得
+	json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData;
 
 	std::vector<CardBase::CARD_STATUS> cards;
-	for (const auto& card : j[charaType_+"Cards"])
+	//キャラタイプからどのJsonデータを読み取るかを決める
+	for (const auto& card : j[charaType_])
 	{
 		CardBase::CARD_STATUS status;
-		status.pow = card["pow"];
+		//カードの強さの読み込み
+		if (card.contains(CARD_POWER_PATH))
+		{
+			status.pow = card[CARD_POWER_PATH];
+		}
 
-		std::string typeStr = card["type"];
-		status.type = charaTypeMap_[typeStr];
+		//カードの種類の読み込み
+		if (card.contains(CARD_TYPE_PATH))
+		{
+			std::string typeStr = card[CARD_TYPE_PATH];
+			status.type = cardTypeMap_[typeStr];
+		}
 
 		//配列の中に追加
 		AddCardUi(status);
 	}
+
+	//リロードカードを末尾に追加
 	AddCardUi(CardBase::CARD_STATUS{ RELOAD_CARD_POWER,CardBase::CARD_TYPE::RELOAD });
 }
 
@@ -148,6 +159,8 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 
 	//同じステータスを見つける
 	auto it = cardImgs_.find(_status);
+
+	//画像に番号を合わせる
 	int num = _status.pow - 1;
 	if (num == -1) { num = 9; }
 
@@ -185,14 +198,14 @@ void CardUIBase::DecisionMoveCardAll(void)
 
 		card->DecisionMove();
 	}
-
 }
-
-
 
 void CardUIBase::UpdateUsedCard(void)
 {
+	//アクション中のカードがなければ飛ばす
 	if (actions_.empty())return;
+
+	//使用済みカードを消す
 	for (auto& act : actions_)
 	{
 		act->EraseUsedCard();
@@ -213,9 +226,7 @@ void CardUIBase::ReactMoveCard(const Vector2F& _goalPos)
 	{
 		card->ReactUpdate(_goalPos);
 	}
-	
 }
-
 
 void CardUIBase::AddHandCurrent(void)
 {
@@ -234,8 +245,6 @@ void CardUIBase::SubHandCurrent(void)
 	}
 	handCurrent_--;
 }
-
-
 
 int CardUIBase::MakeCardNumImg(const CardBase::CARD_STATUS& _status)
 {
@@ -256,13 +265,12 @@ int CardUIBase::MakeCardNumImg(const CardBase::CARD_STATUS& _status)
 	Vector2F centerPos;
 	GetGraphSizeF(typeImg, &centerPos.x, &centerPos.y);
 
-
-
 	//数字画像の描画(リロードカードは除く)
 	if (_status.type != CardBase::CARD_TYPE::RELOAD)
 	{
 		//番号サイズ取得
 		Vector2F size = { 0.0f,0.0f };
+
 		//カードの強さから番号画像を取得
 		int num = _status.pow - 1;
 		if (num < 0) { num = MAX_CARD_POWER; }
@@ -277,9 +285,9 @@ int CardUIBase::MakeCardNumImg(const CardBase::CARD_STATUS& _status)
 		DrawExtendGraphF(leftTopPos.x, leftTopPos.y, rightBottomPos.x, rightBottomPos.y, cardNoImg_[num], true);
 	}
 
-
 	//描画先を元に戻す
 	SetDrawScreen(DX_SCREEN_BACK);
+
 	return img;
 }
 

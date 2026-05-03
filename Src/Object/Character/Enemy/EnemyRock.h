@@ -45,17 +45,24 @@ public:
 	/// @brief 岩の当たり判定削除
     /// @param  
     void DeleteRockCollider(void);
+
 private:
+
     //ジャンプ力
     static constexpr float POW_JUMP = 100.0f;
+
     //重力
     static constexpr float GRAVITY = 1.3f;
+
     //ジャンプ高さ
     static constexpr float JUMP_HEIGHT = 300.0f;
 
+    //キャラ同士の間隔
     static constexpr float DISTANCE_RADIUS = 100.0f;
-    static constexpr int ARROUND_NUM = 8;			//一周当たりの枚数		
-    static constexpr float ARROUND_PER_DEG = 360.0f / ARROUND_NUM;	//１枚当たりの角度
+
+    //岩の角度関連
+    static constexpr int ARROUND_NUM = 8;			//1周で出す岩の数	
+    static constexpr float ARROUND_PER_DEG = 360.0f / ARROUND_NUM;	//岩と岩の間隔
     static constexpr float ARROUND_PER_RAD = ARROUND_PER_DEG * DX_PI_F / 180.0f;//ラジアン変換
 
     //当たり判定球の半径
@@ -73,10 +80,11 @@ private:
     //初期座標
     VECTOR& startPos_;
 
+    //岩を放物線で飛ばすためのY
+    VECTOR jumpPow_;
+
     //移動量
     VECTOR velocity_;
-
-    VECTOR jumpPow_;		// ジャンプ量
 
     //飛距離
     float distance_;
@@ -92,6 +100,4 @@ private:
 
 	//ダメージ処理済みフラグ
 	bool isDamaged_;
-
 };
-

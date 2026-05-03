@@ -16,13 +16,17 @@ public:
 	/// @param  
 	~GameClearScene(void)override;
 
-	/// @brief 読み込み
+	/// @brief ロード
 	/// @param  
 	void Load(void) override;
 
-	/// @brief 初期化処理
+	/// @brief 初期化
 	/// @param  
 	void Init(void) override;
+
+	/// @brief 解放
+	/// @param  
+	void Release(void)override;
 
 private:
 
@@ -30,7 +34,7 @@ private:
 	static constexpr float EASING_TIME = 1.0f;
 
 	//BGMの大きさ
-	static constexpr int BGM_VOL = 80;
+	static constexpr float BGM_VOL = 0.8f;
 
 	//イージングY座標上限
 	static constexpr float BACK_TITLE_STRING_POS_EASE_LIMIT = 40;
@@ -49,7 +53,6 @@ private:
 
 	//文字のY座標
 	float strYPos_;
-
 
 	//更新関数
 	void NormalUpdate(void) override;

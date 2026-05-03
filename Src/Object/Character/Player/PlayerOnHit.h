@@ -40,29 +40,34 @@ public:
 	void DrawDebug(void)override;
 #endif // _DEBUG
 
-
 private:
 
 	//プレイヤーの大きさ
 	static constexpr float RADIUS = 25.0f;
-	//接地しているときのラインのコライダ
-	//static constexpr int UP_AND_DOWN_LINE_COL_NO = 1;
+
+	//
+
 	//プレイヤーの体の球
 	static constexpr int BODY_SPHERE_COL_NO = 0;
+
 	//移動後移動前のコライダ
 	static constexpr int MOVE_LINE_COL_NO = 1;
+
 	//上下ライン
 	static constexpr int UP_AND_DOWN_LINE_COL_NO = 2;
+
 	//雄たけび硬直時間
 	static constexpr float ROAR_FLICTION_TIME = 0.1f;
+
 	//固定ダメージ
 	static constexpr int FIX_DAMAGE = 20;
+
 	//岩ダメージ
 	static constexpr int STONE_DMG = 15;
 
+	//衝突後の処理
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;		//キャラ同士
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃
-	void CollRoarAttack(const std::weak_ptr<Collider>_hitCol);			//おたけび攻撃
 	void CollRock(const std::weak_ptr<Collider>_hitCol);			//岩攻撃
 };
 

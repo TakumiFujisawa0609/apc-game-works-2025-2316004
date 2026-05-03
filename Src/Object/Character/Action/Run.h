@@ -1,11 +1,21 @@
 #pragma once
-#include "../Manager/Resource/SoundManager.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "../Base/ActionBase.h"
+
 class Run :
     public ActionBase
 {
 public:
-    Run(ActionController& _actCntl,const float _speed,SoundManager::SRC _src,const float _footSeDis);
+
+    /// @brief コンストラクタ
+    /// @param _actCntl アクションコントローラー
+    /// @param _speed 速度
+    /// @param _src 足音
+    /// @param _footSeDis 足音の間隔 
+    Run(ActionController& _actCntl,const float _speed, ResourceManager::SRC _src,const float _footSeDis);
+
+    /// @brief デストラクタ
+    /// @param  
     ~Run(void)override;
 
 	/// @brief ロード
@@ -19,7 +29,9 @@ public:
     /// @brief 更新
     /// @param  
     void Update(void) override;
+
 public:
+
     //移動速度
     const float moveSpd_;
 
@@ -27,11 +39,9 @@ public:
 	float footSECnt_;
 
 	//足音音源
-	SoundManager::SRC footSESrc_;
+	ResourceManager::SRC footSESrc_;
 
     //足音再生間隔
 	float  footSeDis_;
-
-
 };
 

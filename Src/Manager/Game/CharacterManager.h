@@ -1,15 +1,20 @@
 #pragma once
 #include<vector>
+#include "../Object/Character/UIData/CharacterUIData.h"
 #include "../../Template/Singleton.h"
 
 class CharacterBase;
 class Player;
 class Enemy;
-class CharacterManager :public Singleton<CharacterManager>
+
+class CharacterManager :
+	public Singleton<CharacterManager>
 {
-	// シングルトンにだけ共有する
+	// シングルトン
 	friend class Singleton<CharacterManager>;
+
 public:
+
 	static constexpr int CHARA_MAX = 2;
 
 	/// @brief ロード
@@ -31,10 +36,6 @@ public:
 	/// @brief 2D描画
 	/// @param  
 	void Draw2D(void);
-
-	/// @brief 解放
-	/// @param  
-	void Release(void);
 
 	/// @brief ゲームクリアシーン遷移条件(敵のHPによるもの)
 	/// @param  
@@ -78,10 +79,21 @@ public:
 	void ChangeCharacterOverDirection(void);
 
 private:
+
+	//プレイヤー番号
+	static constexpr int PLAYER_NO = static_cast<int>(CHARACTER_TYPE::PLAYER);
+
+	//敵番号
+	static constexpr int ENEMY_NO = static_cast<int>(CHARACTER_TYPE::ENEMY);
+
+	//シングルトンのためprivate
 	CharacterManager(void);
 	~CharacterManager(void)override;
-	std::shared_ptr<Player>player_;
-	std::shared_ptr<Enemy>enemy_;
-	//std::vector<std::unique_ptr<CharacterBase>> characters_;
-};
 
+	//コピー禁止
+	CharacterManager(const CharacterManager& _copy) = delete;
+	CharacterManager& operator=(const CharacterManager& _copy) = delete;
+
+	//キャラクター配列
+	std::shared_ptr<CharacterBase> characters_[static_cast<int>(CHARACTER_TYPE::MAX)];
+};

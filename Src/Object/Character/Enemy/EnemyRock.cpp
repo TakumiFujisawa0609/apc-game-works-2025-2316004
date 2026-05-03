@@ -10,7 +10,8 @@
 EnemyRock::EnemyRock(int& _num, VECTOR& _startPos):
 	num_(_num),
 	startPos_(_startPos),
-	distance_(0.0f),
+	distance_(),
+	jumpPow_(),
 	isAlive_(false),
 	isDamaged_(false),
 	modelId_(UtilityCommon::INITIAL_HANDLE)
@@ -29,6 +30,7 @@ void EnemyRock::Load(void)
 
 void EnemyRock::Init(void)
 {
+	//何個目に生成されたかで角度を変える
 	float angle = ARROUND_PER_RAD * num_;
 
 	goalPos_.x = startPos_.x + sin(angle) * DISTANCE_RADIUS;
@@ -37,7 +39,6 @@ void EnemyRock::Init(void)
 
 	tag_ = Collider::TAG::ROCK;
 	velocity_.y = sqrtf(2.0f * GRAVITY * JUMP_HEIGHT);
-	jumpPow_.y = velocity_.y;
 
 	isDamaged_ = false;
 
@@ -50,7 +51,6 @@ void EnemyRock::Init(void)
 	MakeCollider(TAG_PRIORITY::ROCK_SPHERE, {tag_ }, std::move(geo),noneHitTag_);
 
 	trans_.pos = startPos_;
-
 }
 
 void EnemyRock::Update(void)
@@ -58,15 +58,16 @@ void EnemyRock::Update(void)
 	//生存していなければ処理しない
 	if (!isAlive_)return;
 
+	//重力分加速度を引く
 	velocity_.y -= GRAVITY;
 	jumpPow_.y = velocity_.y;
-	
+
+	//岩座標を更新する
 	VECTOR vec = VNorm(VSub(goalPos_, startPos_));
 	trans_.pos = VAdd(trans_.pos, VScale(vec, MOVE_HORIZONTAL_SPD));
 	trans_.pos = VAdd(trans_.pos, jumpPow_);
 
 	trans_.Update();
-
 }
 
 void EnemyRock::Draw(void)

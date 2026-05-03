@@ -6,12 +6,9 @@
 template <typename T>
 class Singleton
 {
+
 public:
 
-    /// <summary>
-    /// 
-    /// </summary>
-    
     /// @brief インスタンスの生成
     static void CreateInstance(void)
     {
@@ -58,7 +55,6 @@ protected:
     /// @brief デストラクタも protected
     /// @param  
     virtual ~Singleton(void) = default;
-
 
 private:
 

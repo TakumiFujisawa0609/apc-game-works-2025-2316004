@@ -91,17 +91,17 @@ bool Utility3D::IsHitSphereCapsule(
     // 球体の位置が３エリアに分割されたカプセル形状のどこにいるか判別
     if (rate > 0.0f && rate <= 1.0f)
     {
-        // ①球体がカプセル繋ぎ上にいる
+        // 球体がカプセル繋ぎ上にいる
         centerPos = VAdd(capPos1, VScale(cap1to2ENor, dot));
     }
     else if (rate > 1.0f)
     {
-        // ②球体がカプセルの終点側にいる
+        // 球体がカプセルの終点側にいる
         centerPos = capPos2;
     }
     else if (rate < 0.0f)
     {
-        // ③球体がカプセルの始点側にいる
+        // 球体がカプセルの始点側にいる
         centerPos = capPos1;
     }
     else
@@ -118,9 +118,7 @@ bool Utility3D::IsHitSphereCapsule(
     {
         ret = false;
     }
-
     return ret;
-
 }
 
 
@@ -171,7 +169,6 @@ VECTOR Utility3D::VNormalize(const VECTOR& v)
 
 double Utility3D::AngleDeg(const VECTOR& from, const VECTOR& to)
 {
-    // sqrt(a) * sqrt(b) = sqrt(a * b) -- valid for real numbers
     auto fLen = SqrMagnitude(from);
     auto tLen = SqrMagnitude(to);
     auto denominator = sqrt(fLen * tLen);
@@ -180,8 +177,6 @@ double Utility3D::AngleDeg(const VECTOR& from, const VECTOR& to)
         return 0.0f;
     }
 
-    //float dot = std::clamp(Dot(from, to) / denominator, -1.0f, 1.0f);
-    //auto dot = Dot(from, to) / denominator;
     auto dot = VDot(from, to) / denominator;
     if (dot < -1.0f)
     {

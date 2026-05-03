@@ -12,7 +12,7 @@ FontManager::FontManager(void)
 	//‰Šú‰»
 	for (int i = 0; i < static_cast<int>(FONT_TYPE::MAX); i++)
 	{
-		fontPath_[i] = L"null";
+		fontPath_[i] = FONT_INIT;
 	}
 }
 

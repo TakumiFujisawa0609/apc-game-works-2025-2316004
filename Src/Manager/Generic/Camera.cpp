@@ -1,5 +1,4 @@
 #include "../pch.h"
-
 #include <DxLib.h>
 #include <EffekseerForDXLib.h>
 #include"../Application.h"
@@ -26,10 +25,12 @@ Camera::Camera(void):
 	changeTargetLerpCnt_(CHANGE_TARGET_LERP_TIME),
 	targetTransform_(nullptr),
 	stageTransform_(nullptr),
-	subMode_(SUB_MODE::NONE),
+	subMode_(SUB_MODE::SHAKE),
 	directionCnt_(),
 	startF2CPosZ_(),
 	goalF2CPosZ_(),
+	localF2CPos_(),
+	localF2TPos_(),
 	directionEaseCnt_(),
 	directionMode_(),
 	initLimit_(),
@@ -52,6 +53,8 @@ Camera::~Camera(void)
 void Camera::Init(void)
 {
 	easing_ = std::make_unique<Easing>();
+
+	//遷移系の格納
 	changeMode_ = {
 		{MODE::FIXED_POINT,[this]() {ChangeFixedPoint(); }},
 		{MODE::FOLLOW,[this]() {ChangeFollow(); }},
@@ -60,11 +63,15 @@ void Camera::Init(void)
 		{MODE::CHANGE_TARGET,[this]() {ChangeTargetLerp(); }},
 		{MODE::START_DIRECTION ,[this]() {ChangeStartDirection(); }}
 	};
+
+	//カメラのサブモード
 	changeSub_ = {
 		{SUB_MODE::NONE,[this]() {ChangeNone(); }},
 		{SUB_MODE::SHAKE,[this]() {ChangeShake(); }},
 		{SUB_MODE::ONE_SHAKE,[this]() {ChangeShakeOne(); }}
 	};
+
+	//演出のカメラモード
 	changeDirectionMode_ = {
 		{DIRECTION_MODE::NONE,[this]() {ChangeDirectionNone(); }},
 		{DIRECTION_MODE::PLAYER_AND_ENEMY_VIEW,[this]() {ChangeDirectionLegLow(); }},
@@ -73,12 +80,7 @@ void Camera::Init(void)
 		{DIRECTION_MODE::PLAYER_ONLY_VIEW,[this]() {ChangeDirectionPlayerOnly(); }},
 		{DIRECTION_MODE::END,[this]() {ChangeEndDirection(); }}
 	};
-	subMode_ = SUB_MODE::SHAKE;
-	directionEaseCnt_ = 0.0f;
-	startF2CPosZ_ = {};
-	goalF2CPosZ_ = {};
-	localF2CPos_ = {};
-	localF2TPos_ = {};
+
 	ChangeSub(SUB_MODE::NONE);
 	ChangeMode(MODE::FIXED_POINT);
 }
@@ -87,13 +89,13 @@ void Camera::Update(void)
 {
 	//モード更新
 	modeUpdate_();
+
 	//イージングなどの更新
 	subUpdate_();
 }
 
 void Camera::SetBeforeDraw(void)
 {
-
 	// クリップ距離を設定する(SetDrawScreenでリセットされる)
 	SetCameraNearFar(CAMERA_NEAR, CAMERA_FAR);
 
@@ -106,7 +108,6 @@ void Camera::SetBeforeDraw(void)
 
 	// DXライブラリのカメラとEffekseerのカメラを同期する。
 	Effekseer_Sync3DSetting();
-
 }
 
 void Camera::Draw(void)
@@ -114,11 +115,11 @@ void Camera::Draw(void)
 
 }
 
-void Camera::ChangeSub(const  SUB_MODE _submode)
+void Camera::ChangeSub(const  SUB_MODE _subMode)
 {
 	//同じモード、またはすでに連続シェイクが入っている場合は処理を抜ける
-	if (subMode_ == _submode || (subMode_ == SUB_MODE::SHAKE && _submode == SUB_MODE::ONE_SHAKE))return;
-	subMode_ = _submode;
+	if (subMode_ == _subMode || (subMode_ == SUB_MODE::SHAKE && _subMode == SUB_MODE::ONE_SHAKE))return;
+	subMode_ = _subMode;
 	changeSub_[subMode_]();
 }
 
@@ -160,47 +161,8 @@ void Camera::ChangeMode(const MODE mode)
 	changeMode_[mode_]();
 }
 
-
-
-void Camera::MakeColliderGeometry(void)
-{
-	tag_ = Collider::TAG::CAMERA;
-	//球体の当たり判定
-	//ステージ以外都は当たり判定しない
-	noneHitTag_.emplace(Collider::TAG::ENEMY1);
-	noneHitTag_.emplace(Collider::TAG::JUMP_ATK);
-	noneHitTag_.emplace(Collider::TAG::NML_ATK);
-	noneHitTag_.emplace(Collider::TAG::ROAR_ATK);
-	noneHitTag_.emplace(Collider::TAG::ROCK);
-	noneHitTag_.emplace(Collider::TAG::PLAYER1);
-
-	followFramePos_ = { 0.0f,0.0f,0.0f };
-	std::unique_ptr<Geometry>geo = std::make_unique<Line>(pos_, rot_, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
-	MakeCollider(TAG_PRIORITY::CAMERA_LINE, { tag_ }, std::move(geo),noneHitTag_);
-	tagPrioritys_.emplace_back(TAG_PRIORITY::CAMERA_LINE);
-
-}
-
-void Camera::OnHit(const std::weak_ptr<Collider> _hitCol)
-{
-
-}
-
-void Camera::UpdateCameraColliderLine(void)
-{
-	Geometry& cameraGeo = collider_[TAG_PRIORITY::CAMERA_LINE]->GetGeometry();
-	followFramePos_ = MV1GetFramePosition(followTransform_->modelId, FOLLOW_FRAME_NUM);
-
-	VECTOR pos = VAdd(followFramePos_, pos_);
-
-	VECTOR localPos = VSub(pos, pos_);
-	cameraGeo.SetLocalPosPoint1(Utility3D::VECTOR_ZERO);
-	cameraGeo.SetLocalPosPoint2(localPos);
-}
-
 void Camera::SetDefault(void)
 {
-
 	// カメラの初期設定
 	pos_ = DEFAULT_CAMERA_POS;
 
@@ -217,7 +179,6 @@ void Camera::SetDefault(void)
 	startF2CPosZ_ = {};
 	goalF2CPosZ_ = {};
 	rot_ = Quaternion();
-
 }
 
 void Camera::SyncFollow(const Transform* _followTransform)
@@ -248,7 +209,6 @@ void Camera::SyncFollow(const Transform* _followTransform)
 	cameraUp_ = gRot.GetUp();
 
 }
-
 
 void Camera::SyncTargetFollow(void)
 {
@@ -282,14 +242,12 @@ void Camera::SyncTargetFollow(void)
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
 	pos_ = VAdd(followPos, localPos);
 
-
 	// カメラの上方向
 	cameraUp_ = gRot.GetUp();
 }
 
 void Camera::ProcessRot(void)
 {
-
 	// マウスを表示状態にする
 	SetMouseDispFlag(FALSE);
 
@@ -342,13 +300,12 @@ void Camera::SmoothChangeCamera(void)
 
 	// 注視点(通常重力でいうところのY値を追従対象と同じにする)
 	localPos = rotOutX_.PosAxis(LOCAL_F2T_POS);
-	//targetPos_ = VAdd(followPos, localPos);
+
 	VECTOR goalTargetPos = VAdd(targetPos, localPos);
 	if (changeTargetLerpCnt_ > 0.0)
 	{
 		targetPos_ = easing_->EaseFunc(targetPos_, goalTargetPos, static_cast<float>(lerpRate),Easing::EASING_TYPE::LERP);
 	}
-
 
 	// カメラ位置
 	localPos = rot_.PosAxis(TARGET_CAM_LOCAL_F2C_POS);
@@ -372,6 +329,8 @@ void Camera::SmoothChangeCamera(void)
 
 void Camera::Collision(void)
 {
+	//腰座標を常に取得する
+	followFramePos_ = MV1GetFramePosition(followTransform_->modelId, FOLLOW_FRAME_NUM);
 
 	auto hits = MV1CollCheck_LineDim(stageTransform_->modelId
 		, -1, pos_, followFramePos_);
@@ -448,12 +407,9 @@ void Camera::SetBeforeDrawFollow(void)
 	// 追従対象との相対位置を同期
 	SyncFollow(followTransform_);
 
-	//線分当たり判定の更新
-	UpdateCameraColliderLine();
-
+	//カメラの押し出し
 	Collision();
 
-	//pos_ = easing_->EaseFunc(prePos, pos_, 0.1f, Easing::EASING_TYPE::LERP);
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
 	{
 		ChangeMode(MODE::TARGET_POINT);
@@ -471,12 +427,17 @@ void Camera::SetBeforeDrawLerpCamera(void)
 
 void Camera::SetBeforeDrawTargetPoint(void)
 {
+	//追従対象がなかった場合、カメラモードを切り替える
 	if (followTransform_ == nullptr)
 	{
 		ChangeMode(MODE::FIXED_POINT);
 		return;
 	}
+
+	//入力でのカメラ操作
 	ProcessRot();
+
+	//ターゲットカメラの追従
 	SyncTargetFollow();
 
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_T))
@@ -498,7 +459,6 @@ void Camera::ChangeFixedPoint(void)
 
 void Camera::ChangeFollow(void)
 {
-	//SetDefault();
 	localF2CPos_ = LOCAL_F2C_POS;
 	localF2TPos_ = LOCAL_F2T_POS;
 	modeUpdate_ = [this]() {SetBeforeDrawFollow(); };
@@ -538,6 +498,8 @@ void Camera::UpdateShake(void)
 		ChangeSub(SUB_MODE::NONE);
 		return;
 	}
+
+	//シェイクカウントリセット
 	if (shekePerCnt_ > SHAKE_PER)
 	{
 		shekePerCnt_ = 0.0f;
@@ -602,16 +564,17 @@ void Camera::DirectionNone(void)
 {
 }
 
-
-
 void Camera::DirectionPlayerAndTarget(void)
 {
+	//一定時間後、敵注視のカメラモードにする
 	if(directionCnt_>PLAYER_AND_ENEMY_VIEW_TIME)
 	{
 		ChangeDirectionMode(DIRECTION_MODE::ENEMY_ONLY_VIEW);
 		return;
 	}
+
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
+
 	SyncFollow(targetTransform_);
 	angles_.y += UtilityCommon::Deg2RadF(0.1f);
 }
@@ -624,13 +587,13 @@ void Camera::DirectionEnemyOnly(void)
 		return;
 	}
 	
-	////ローカル座標をイージングで補完
+	//ローカル座標をイージングで補完
 	localF2CPos_ = easing_->EaseFunc(easingStartF2CPos_, easingGoalF2CPos_, directionCnt_ / 1.0f
 		, Easing::EASING_TYPE::OUT_BACK);
 	localF2TPos_ = easing_->EaseFunc(easingStartF2TPos_, easingGoalF2TPos_, directionCnt_ / 1.0f
 		, Easing::EASING_TYPE::OUT_BACK);
 
-
+	//敵に注目する
 	SyncFollow(targetTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
 	
@@ -638,20 +601,22 @@ void Camera::DirectionEnemyOnly(void)
 
 void Camera::DirectionEnemyRoar(void)
 {
+	//敵の咆哮が終わったらプレイヤーのみを移すカメラに移動
 	if (directionCnt_ > ENEMY_ROAR_VIEW_TIME)
 	{
 		ChangeSub(SUB_MODE::NONE);
 		ChangeDirectionMode(DIRECTION_MODE::PLAYER_ONLY_VIEW);
 		return;
 	}
+
+	//ターゲットに追従
 	SyncFollow(targetTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
-
 }
 
 void Camera::DirectionPlayerOnly(void)
 {
-
+	//プレイヤーオンリーの演出が終わったらプレイヤーの後ろまでに行くカメラのイージングへ
 	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
 	{
 		ChangeDirectionMode(DIRECTION_MODE::END);
@@ -669,18 +634,23 @@ void Camera::DirectionPlayerOnly(void)
 
 void Camera::EndDirection(void)
 {
+	//終わったらゲームに移行
 	if (directionCnt_ > PLAYER_AND_ENEMY_VIEW_TIME)
 	{
 		ChangeMode(MODE::FOLLOW);
 		return;
 	}
 
+	//イージング処理
 	angles_ = easing_->EaseFunc(startAngles_, goalAngles_, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
 	localF2CPos_ = easing_->EaseFunc(easingStartF2CPos_, LOCAL_F2C_POS, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
-	followLocalCenterPos_ = easing_->EaseFunc(startFollowLocalCenterPos_, goalFollowLocalCenterPos_, directionCnt_ / 2.0f, Easing::EASING_TYPE::QUAD_OUT);
+	followLocalCenterPos_ = easing_->EaseFunc(startFollowLocalCenterPos_, goalFollowLocalCenterPos_
+		, directionCnt_ / 2.0f
+		, Easing::EASING_TYPE::QUAD_OUT);
+
+	//追従処理
 	SyncFollow(followTransform_);
 	directionCnt_ += SceneManager::GetInstance().GetDeltaTime();
-
 }
 
 void Camera::ChangeDirectionNone(void)
@@ -716,10 +686,8 @@ void Camera::ChangeDirectionEnemyRoar(void)
 void Camera::ChangeDirectionPlayerOnly(void)
 {
 	localF2TPos_ = LOCAL_F2T_POS;
-
 	easingStartF2CPos_ = PLAYER_ONLY_LOCAL_F2C_START_POS;
 	easingGoalF2CPos_ = PLAYER_ONLY_LOCAL_F2C_GOAL_POS;
-
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	directionCnt_ = 0.0f;
 	angles_.y = UtilityCommon::Deg2RadF(PLAYER_ONLY_CAMERA_ANGLE_Y);
@@ -730,7 +698,7 @@ void Camera::ChangeEndDirection(void)
 {
 	easingStartF2CPos_ = localF2CPos_;
 	startAngles_ = angles_;
-	goalAngles_ = { UtilityCommon::Deg2RadF(-10.0f), 0.0f, 0.0f };
+	goalAngles_ = { UtilityCommon::Deg2RadF(END_DIRECTION_GOAL_ANGLE), 0.0f, 0.0f };
 	followLocalCenterPos_ = PLAYER_HEAD_POS;
 	startFollowLocalCenterPos_ = followLocalCenterPos_;
 	goalFollowLocalCenterPos_ = Utility3D::VECTOR_ZERO;

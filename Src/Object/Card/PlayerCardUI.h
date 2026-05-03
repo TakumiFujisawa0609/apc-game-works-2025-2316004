@@ -25,7 +25,8 @@ public:
 	/// @param  
 	PlayerCardUI(void);
 
-	//デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~PlayerCardUI(void)override;
 
 	/// @brief ロード
@@ -51,27 +52,32 @@ public:
 	void DrawDebug(void);
 #endif // _DEBUG
 
-
 private:
+
+	//シェーダファイルのパス
+	const std::wstring LINE_HP_BAR_PS_PATH = L"LineHpBarPS.cso";
 
 	//楕円の半径
 	static constexpr float RADIUS_X = 186.0f;	//横半径
-	//static constexpr float RADIUS_X = 170.0f;	//横半径
-	static constexpr float RADIUS_Y = 214.0f;	//横半径
+	static constexpr float RADIUS_Y = 214.0f;	//縦半径
 
 	//見せるカード枚数
 	static constexpr int VISIBLE_CARD_MAX = 6;
+
 	//カード角度間隔
 	static constexpr float VISIBLE_ANGLE_OFFSET = 22.6f;
 
 	//先頭に追加するときの戻る枚数
 	static constexpr int PREV_CARD_COUNT = 2;
+
 	//現在カードの前にある枚数
 	static constexpr int CARDS_BEFORE_CURRENT = 1;
+
 	//始点角度
 	static constexpr float START_ANGLE = 0.0f;
 	//終点角度
 	static constexpr float END_ANGLE = 135.0f;
+
 	//カード角度関連
 	static constexpr int ARROUND_NUM = 16;			//一周当たりの枚数		
 	static constexpr int ARROUND_NUM_PER_QUAD = ARROUND_NUM / 4;//90度当たりの枚数
@@ -80,20 +86,24 @@ private:
 	static constexpr float ARROUND_PER_QUAD_DEG = ARROUND_PER_DEG * ARROUND_NUM_PER_QUAD;//90度当たりの枚数
 	static constexpr float ARROUND_PER_QUAD_RAD = ARROUND_PER_QUAD_DEG * DX_PI_F / 180.0f;//90度当たりの枚数
 
-
 	//バーの色(明るい緑)
 	static constexpr FLOAT4 BAR_LIGHT_GREEN = { 0.2f, 0.6f, 1.0f,0.0f };
+
 	//バーの色(青)
 	static constexpr FLOAT4 BAR_BLUE = { 0.2f, 1.0f, 0.4f,0.0f };
+
 	//ゲージ座標
 	static constexpr Vector2F BAR_POS = { 30.0f,Application::SCREEN_SIZE_Y - 70 };
+
 	//ゲージの大きさ
 	static constexpr float BAR_SCALE = 0.1f;
+
 	//マスクサイズ
 	static constexpr Vector2F BAR_SIZE = { 1095 * BAR_SCALE,618 * BAR_SCALE };
 
 	//ゲージ背景位置
 	static constexpr Vector2F BAR_BG_POS = { BAR_POS.x - 20.0f,BAR_POS.y - 40.0f };
+
 	//ゲージサイズ
 	static constexpr Vector2F BAR_BG_SIZE = { BAR_SIZE.x + 40.0f,BAR_SIZE.y + 70.0f };
 
@@ -116,6 +126,9 @@ private:
 	//リロード文字列のセンターからのオフセット
 	static constexpr float RELOAD_STR_OFF_Y = 30.0f;
 
+	//リロード文字列
+	std::wstring RELOAD_STR = L"RELOAD";
+
 	//フォントの輪郭幅
 	static constexpr int FONT_EDGE_SIZE = 2;
 	static constexpr Vector2F FONT_POS = { BAR_POS.x,550.0f };
@@ -134,6 +147,7 @@ private:
 	//矢印座標
 	static constexpr Vector2F REVOLVER_ARROW_L_POS = { 57.0f,331.0f };
 	static constexpr Vector2F REVOLVER_ARROW_R_POS = { 128.0f,331.0f };
+
 	//右矢印回転角度
 	static constexpr float REVOLVER_ARROW_R_ANGLE = 321.0f;
 
@@ -143,11 +157,14 @@ private:
 	//ボタン座標と矢印の間隔
 	static constexpr float REVOLVER_BTN_ARROW_OFFSET = 10.0f;
 
+	//半径
 	Vector2F radius_;
 
-	std::list<std::shared_ptr<CardUIController>>visibleCards_;				//見せるカード
+	//見せるカード
+	std::list<std::shared_ptr<CardUIController>>visibleCards_;				
 
-	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;	//リロード用の現在のカードイテレータ
+	//リロード用の現在のカードイテレータ
+	std::list<std::shared_ptr<CardUIController>>::iterator reloadAnimCurr_;	
 
 	//リロード終了
 	bool isReloadEnd_;
@@ -171,11 +188,6 @@ private:
 	//矢印
 	int imgRevolverArrow_;
 
-	//矢印画像の座標
-	Vector2F revolverLArrowPos_;
-	Vector2F revolverRArrowPos_;
-	float revolverArrowAngle_;
-
 	//カード状態遷移
 	void ChangeNone(void)override;			//通常
 	void ChangeLeft(void)override;			//左に移動
@@ -184,6 +196,7 @@ private:
 	void ChangeReloadWait(void)override;	//リロード待機(リロードゲージのチャージ)
 	void ChangeReload(void);				//リロード
 
+	//更新系
 	void UpdateNone(void)override;			//通常
 	void UpdateLeft(void)override;			//左に移動
 	void UpdateRight(void)override;			//右に移動
@@ -191,13 +204,9 @@ private:
 	void UpdateReloadWait(void)override;	//リロード待機(リロードゲージのチャージ)
 	void UpdateReload(void);				//リロード
 
-
-	//void AddCardUIData(void)override;		//カードUIデータの追加
-
-
-
 	//すべてのカードの移動
 	void MoveCardAll(const float& _moveTImeMax);
+
 	//カードUI描画オブジェクト更新
 	void UpdateDrawCardUI(void) override;
 
@@ -231,7 +240,4 @@ private:
 	//カード残り枚数のゲージ
 	std::unique_ptr<PixelMaterial> cardGaugePSMaterial_;
 	std::unique_ptr<PixelRenderer> cardGaugePSRenderer_;
-
-
 };
-

@@ -41,15 +41,6 @@ void PlayerLogic::Update(void)
 
 void PlayerLogic::InputKeyBoard(void)
 {
-	using ATK_ACT = Player::ATK_ACT;
-	//actCntl_ = ACT_CNTL::NONE;
-
-#ifdef _DEBUG
-	//if (input_.IsTrgDown(InputManager::CONTROL_TYPE::DEBUG_CHANGE_INPUT, InputManager::JOYPAD_NO::PAD1, InputManager::TYPE::PAD))
-	//{
-	//	ChangeInput(InputManager::TYPE::PAD);
-	//}
-#endif // _DEBUG
 	
 	//移動角度を決める
 	if (input_.IsNew(MOVE_FRONT_KEY))
@@ -79,7 +70,6 @@ void PlayerLogic::InputKeyBoard(void)
 
 void PlayerLogic::InputAll(void)
 {
-	using ATK_ACT = Player::ATK_ACT;
 	isAct_ = {};
 	inputDir_ = {};
 
@@ -115,7 +105,6 @@ void PlayerLogic::InputAll(void)
 		//スティックの角度を求める
 		stickDeg_ = inputS_.GetLStickDeg(padNum_);
 
-
 		//ベクトルの計算
 		VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
 		inputDir_ = VNorm(stickDir);
@@ -133,22 +122,24 @@ void PlayerLogic::InputAll(void)
 
 	//カードチャージ
 	if (input_.IsPadBtnTrgDown(padNum_, CARD_CHARGE_BTN) || input_.IsTrgDown(CARD_CHARGE_KEY)) { isAct_.isCardCharge = true; }
+
 	//カード使用
 	if (input_.IsPadBtnTrgDown(padNum_, CARD_USE_BTN) || input_.IsTrgDown(CARD_USE_KEY)) { isAct_.isCardUse = true; }
+
 	//カード移動
 	if (IsCardLeft()) {isAct_.isCardMoveLeft = true;}
 	if (IsCardRight()) {isAct_.isCardMoveRight = true;}
+
 	//カード使用キー長押し(リロード用)
 	if (input_.IsPadBtnNew(padNum_, CARD_USE_BTN) || input_.IsNew(CARD_USE_KEY)) { isAct_.isCardPushKeep = true; }
+
 	//回避
 	if (input_.IsPadBtnTrgDown(padNum_, DODGE_BTN) || input_.IsTrgDown(DODGE_KEY)) { isAct_.isDodge = true; }
 }
 
 void PlayerLogic::InputPad(void)
 {
-	using ATK_ACT = Player::ATK_ACT;
 	actCntl_ = ACT_CNTL::NONE;
-
 
 	//スティックの倒れ値が200以上だったら
 	if (inputS_.IsPressed(INPUT_EVENT::UP) || inputS_.IsPressed(INPUT_EVENT::DOWN)
@@ -161,7 +152,6 @@ void PlayerLogic::InputPad(void)
 	}
 
 	VECTOR stickDir = { static_cast<float>(LStickAngleSize_.x) ,0.0f,static_cast<float>(-LStickAngleSize_.y) };
-	//moveDir_ = { leftStickX_ ,0.0f,leftStickX_ };
 	moveDir_ = VNorm(stickDir);
 }
 
@@ -199,5 +189,4 @@ bool PlayerLogic::IsCardLeft(void)
 		return true;
 	}
 	return false;
-;
 }

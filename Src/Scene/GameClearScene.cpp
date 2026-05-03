@@ -19,37 +19,42 @@ GameClearScene::GameClearScene(void):
 	strYPos_(SceneBase::BACK_TITLE_STRING_POS_Y)
 {
 	//更新関数のセット
-	updateFunc_ = std::bind(&GameClearScene::LoadingUpdate, this);
-	//描画関数のセット
-	drawFunc_ = std::bind(&GameClearScene::LoadingDraw, this);
+	updateFunc_ = [this]() {LoadingUpdate(); };
 
+	//描画関数のセット
+	drawFunc_ = [this]() {LoadingDraw(); };
+
+	//カメラの変更
 	SceneManager::GetInstance().GetCamera().lock()->ChangeMode(Camera::MODE::FIXED_POINT);
 }
 
 GameClearScene::~GameClearScene(void)
 {
-	soundMng_.Stop(SoundManager::SRC::GAME_CLEAR);
 }
 
 void GameClearScene::Load(void)
 {
+	//画像のロード
 	imgGameClear_ = ResourceManager::GetInstance().Load(ResourceManager::SRC::GAME_CLEAR_IMG).handleId_;
+
 	//フォントの登録
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	//BGMロード
-	soundMng_.GetInstance().LoadResource(SoundManager::SRC::GAME_CLEAR);
-	SoundManager::GetInstance().SetSystemVolume(BGM_VOL, static_cast<int>(SoundManager::TYPE::BGM));
+	resMng_.Load(ResourceManager::SRC::GAME_CLEAR_BGM);
 }
 
 void GameClearScene::Init(void)
 {
-
 	//BGM再生
-	soundMng_.GetInstance().Play(SoundManager::SRC::GAME_CLEAR, SoundManager::PLAYTYPE::LOOP);
+	soundMng_.GetInstance().Play(ResourceManager::SRC::GAME_CLEAR_BGM, SoundManager::PLAYTYPE::LOOP);
 
 	easing_ = std::make_unique<Easing>();
+}
 
+void GameClearScene::Release(void)
+{
+	soundMng_.Stop(ResourceManager::SRC::GAME_CLEAR_BGM);
 }
 
 void GameClearScene::NormalUpdate(void)
@@ -66,33 +71,18 @@ void GameClearScene::NormalUpdate(void)
 	{
 		easeCnt_ = 0.0f;
 	}
-
 }
 
 void GameClearScene::NormalDraw(void)
 {
-	DrawBox(
-		0,
-		0,
-		Application::SCREEN_SIZE_X,
-		Application::SCREEN_SIZE_Y,
-		0xff0000,
-		true
-	);
-
-
-	DrawFormatString(
-		0, 0,
-		0xffffff,
-		L"GameClearScene"
-	);
-
+	//ゲームクリア画像
 	DrawExtendGraph(0, 0, Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, imgGameClear_, true);
 
+	//Bボタン、スペースキーでタイトルに戻るの描画
 	UtilityDraw::DrawStringCenter(
 		Application::SCREEN_HALF_X,
 		static_cast<int>(strYPos_),
-		L"'B'ボタンまたは'スペースキー'でタイトルに戻る",
+		BACK_TITLE_SCENE_STR,
 		UtilityCommon::WHITE,
 		buttonFontHandle_
 	);
@@ -102,6 +92,6 @@ void GameClearScene::NormalDraw(void)
 void GameClearScene::OnSceneEnter(void)
 {
 	//処理変更
-	updateFunc_ = std::bind(&GameClearScene::NormalUpdate, this);
-	drawFunc_ = std::bind(&GameClearScene::NormalDraw, this);
+	updateFunc_ = [this]() {NormalUpdate(); };
+	drawFunc_ = [this]() {NormalDraw(); };
 }

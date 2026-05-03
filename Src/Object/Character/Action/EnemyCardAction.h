@@ -1,9 +1,11 @@
 #pragma once
 #include<functional>
 #include<queue>
+#include "../Base/LogicBase.h"
 #include "../Base/ActionBase.h"
 #include "../Base/CardActionBase.h"
 
+class Easing;
 class CardDeck;
 class EnemyRock;
 class CharacterBase;
@@ -15,6 +17,7 @@ class EnemyCardAction :
 
 public:
 
+    //アクションの種類
     enum class ACT_TYPE
     {
         NONE = -1,
@@ -28,6 +31,7 @@ public:
         RELOAD, //リロード
     };
 
+    //エフェクトの種類
     enum class EFF_TYPE
     {
         BLAST,
@@ -77,65 +81,67 @@ private:
     static constexpr float STOMP_ATK_SHAKE_CNT = 1.0f;              //カメラシェイク時間
     static constexpr int STOMP_ATK_ROCK_NUM = 9;                    //岩の生成数
 
-
     //重力
     static constexpr float GRAVITY = 0.1f;
 
     ////攻撃2段目判定
     static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 63.0f;   //攻撃当たり判定開始アニメーションカウント
     static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 65.0f;     //攻撃当たり判定終了アニメーションカウント
+
     //攻撃半径広がるスピード
     static constexpr float JUMP_ATK_COL_SPD = 5.0f;
+
     //広がる時間
     static constexpr float JUMP_ATK_CNT_MAX = 2.5f;
+
     //ジャンプチャージ時間
     static constexpr float JUMP_CHARGE_TIME = 6.0f;
+
     //ジャンプ高さ
     static constexpr float JUMP_HEIGHT = 100.0f;
+
     //ジャンプ攻撃アニメーション
     static constexpr float JUMP_ANIM_START = 16.4f;
     static constexpr float JUMP_ANIM_END = 52.0f;
+
     //ジャンプ攻撃ローカル座標
     static constexpr VECTOR JUMP_ATK_LOCAL = { 0.0f,100.0f,0.0f };
+
     //ジャンプ攻撃範囲
     static constexpr float JUMP_ATK_GOAL_RADIUS = 2500.0f;
+
     //ジャンプ溜めカメラシェイク
     static constexpr float JUMP_CHARGE_SHAKE_LIMIT = 10.0f;
     static constexpr float JUMP_ATK_SHAKE_LIMIT = 30.0f;
+
     //ジャンプアニメーションループ(溜めアニメーション)
     static constexpr float JUMP_CHARGE_ANIM_LOOP_START = 12.0f;
     static constexpr float JUMP_CHARGE_ANIM_LOOP_END = 13.0f;
     static constexpr float JUMP_ATK_ANIM_LOOP_SPEED = 5.0f;
+
 	//ジャンプアニメーションループ(攻撃アニメーション)
 	static constexpr float JUMP_ATK_ANIM_LOOP_START = 53.0f;
 	static constexpr float JUMP_ATK_ANIM_LOOP_END = 69.0f;
+
 	//ジャンプアニメーションループ速度
 	static constexpr float JUMP_ATK_ANIM_ATTACK_LOOP_SPEED = 10.0f;
-
 
     //ジャンプ攻撃力
     static constexpr float JUMP_ATK_POWER = 40.0f;
 
+    //ジャンプチャージ時のカメラシェイク可動範囲
+    static constexpr float JUMP_CHARGE_CAMERA_SHAKE_LIMIT = 10.0f;
 
-    static constexpr float ROAR_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
-    static constexpr float ROAR_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
-    //転がる攻撃
-    static constexpr float ROLE_COL_START_ANIM_CNT = 52.0f;   //攻撃当たり判定開始アニメーションカウント
-    static constexpr float ROLE_COL_END_ANIM_CNT = 122.0f;     //攻撃当たり判定終了アニメーションカウント
-
-    static constexpr float ROLE_PRE_TIME = 5.0F;     //攻撃前隙時間
-    static constexpr float ROLE_TIME = 0.5f;    //転がる時間
-    static constexpr float ROLE_SPEED = 50.0f; //転がるスピード
+    //ジャンプ攻撃時のカメラシェイク可動範囲
+    static constexpr float JUMP_ATTACK_CAMERA_SHAKE_LIMIT = 30.0f;
 
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
-
 
     static constexpr float ATK_SPHERE_RADIUS = 300.0f;					//通常攻撃の球体の半径
     static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃の始まりの半径
 	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //咆哮攻撃の球体の半径
 	static constexpr float ROLE_ATK_RADIUS = 300.0f;                     //転がる攻撃の球体の半径
-
 
     //エフェクトサイズ
 	static constexpr float BLAST_EFF_SCL = 1.4f;            //爆発
@@ -144,20 +150,17 @@ private:
     //ひっかき攻撃のステータス
     static constexpr ATK_STATUS STOMP_ATK = 
     { STOMP_COL_START_ANIM_CNT,STOMP_COL_END_ANIM_CNT,0.0f};
+
     //ジャンプ攻撃のステータス
     static constexpr ATK_STATUS JUMP_ATK = 
     { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,0.0f,JUMP_ATK_RADIUS,JUMP_ATK_POWER };
-    //咆哮のステータス
-    static constexpr ATK_STATUS ROAR_ATK = { ROAR_COL_START_ANIM_CNT,ROAR_COL_END_ANIM_CNT,0.0f,ROAR_ATK_RADIUS };
-	//転がるのステータス
-	static constexpr ATK_STATUS RUSH_ATK = { ROLE_COL_START_ANIM_CNT,ROLE_COL_END_ANIM_CNT,0.0f,ROLE_ATK_RADIUS };
-
 
     //攻撃カウント
     float atkCnt_;
 
     //ジャンプチャージカウント
     float jumpChargeCnt_;
+
     //ジャンプチャージ中のカード勝敗数カウント
     int jampCardNum_;
 
@@ -171,6 +174,7 @@ private:
     void ChangeStomp(void);             //踏みつけ
     void ChangeJumpAtk(void);           //ジャンプ攻撃
     void ChangeReload(void);            //リロード
+
     //更新
     void UpdateStomp(void);             //踏みつけ      
     void UpdateJumpAtk(void);           //ジャンプ攻撃
@@ -181,13 +185,4 @@ private:
 
     //岩生成フラグ
     bool isGenerateRock_;
-
-    //転がる攻撃関連
-    float preRoleAtkCnt_;//前隙カウント
-    float roleAtkCnt_; //後隙カウント
-    VECTOR preRolePos_;//転がる攻撃する前の座標
-	float roleDeg_; //ラリアット回転角
-	float roleMoveDeg_; //ラリアット移動方向
-	VECTOR roleMoveDir_; //ラリアット移動方向ベクトル
 };
-

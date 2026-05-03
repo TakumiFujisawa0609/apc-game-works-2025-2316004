@@ -19,6 +19,7 @@ class GameScene : public SceneBase
 
 public:
 	
+	//更新フェーズ
 	enum class UPDATE_PHASE   
 	{
 		NONE,
@@ -28,7 +29,6 @@ public:
 		CLEAR_DIRECTION,
 		OVER_DIRECTION,
 		SLOW
-
 	};
 
 	/// @brief コンストラクタ
@@ -47,10 +47,13 @@ public:
 	/// @param  
 	void Init(void) override;
 
+	/// @brief 解放
+	/// @param  
+	void Release(void)override;
 private:
 
 	//BGM
-	static constexpr int BGM_GAME_VOL = 50;
+	static constexpr float BGM_GAME_VOL = 0.5f;
 
 	//集中線シェーダー関連
 	//定数バッファの個数
@@ -64,23 +67,22 @@ private:
 
 	//スキップボタン画像の位置
 	static constexpr Vector2F SKIP_BTN_POS = { 30.0f,30.0f };
+
 	//スキップボタン長押し時間
 	static constexpr float SKIP_BTN_TIME = 1.0f;
+
 	//ボタン長押し文字のY座標オフセット
 	static constexpr float SKIP_BTN_STR_OFFSET_Y = 16.0f;
 
 	//ポストエフェクト用スクリーン
 	int postEffectScreen_;
 
-	int frame_;
-
 	//スローカウンタ(フレーム)
 	int slowFrame_;
 
 	//更新フェーズ
-	UPDATE_PHASE updatePhase_;
-	std::map<UPDATE_PHASE, std::function<void(void)>>changeUpdate_;
-
+	UPDATE_PHASE updatePhase_;											//更新
+	std::map<UPDATE_PHASE, std::function<void(void)>>changeUpdate_;		//遷移
 
 	//スカイドーム
 	std::unique_ptr<SkyDome> skyDome_;
@@ -107,12 +109,13 @@ private:
 
 	//更新関数
 	void NoneUpdate(void);				//何もしない
-	void FadeUpdate(void);
+	void FadeUpdate(void);				//フェード
 	void NormalUpdate(void) override;	//通常
 	void DirectionUpdate(void);			//演出時
 	void ClearDirectionUpdate(void);	//クリア演出
 	void OverDirectionUpdate(void);		//ゲームオーバー
 	void SlowUpdate(void);				//スロー
+
 	//描画関数
 	void NormalDraw(void) override;		//通常
 	void DirectionDraw(void);			//演出時の描画
@@ -134,13 +137,4 @@ private:
 
 	//演出スキップ
 	void Skip(void);
-	
-#ifdef _DEBUG
-	//デバッグ処理
-	void DebagUpdate(void);
-	void DebagDraw(void);
-#endif // _DEBUG
-
-
-
 };

@@ -77,6 +77,4 @@ struct Vector2F
 		x /= _value;
 		y /= _value;
 	}
-
-
 };

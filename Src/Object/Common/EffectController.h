@@ -6,6 +6,7 @@
 
 class EffectController
 {
+
 public:
 
 	//エフェクトの種類
@@ -24,10 +25,12 @@ public:
 		E_DEATH_BLAST,	//死んで爆発
 	};
 
-	//コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	EffectController(void);
 
-	//デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~EffectController(void);
 
 	/// @brief 更新関係
@@ -129,9 +132,11 @@ private:
 		int playNum;						//プレイ中のエフェクトの数
 	};
 
-	static constexpr float NORMAL_MULTI = 1.0f;	//通常倍率
+	//通常倍率
+	static constexpr float NORMAL_MULTI = 1.0f;
 
-	std::map<EFF_TYPE, EffectData> effects_;	//エフェクト関連
+	//エフェクト
+	std::map<EFF_TYPE, EffectData> effects_;	
 
 	/// @brief もう一度再生
 	/// @param _effType もう一度再生させるエフェクトの種類

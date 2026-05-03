@@ -2,10 +2,10 @@
 
 //フレームレート
 static constexpr float FRAME_RATE(1000 / 60);
-//static constexpr float FRAME_RATE(1000 / 30);
 
 class FpsControl
 {
+
 public:
 
 	/// @brief コンストラクタ
@@ -49,6 +49,4 @@ private:
 
 	//フレームレート(表示用)
 	float frameRate_;
-
 };
-

@@ -1,12 +1,14 @@
 #pragma once
 #include <memory>
 #include "../Common/Vector2F.h"
+
 class ResourceManager;
 class PixelMaterial;
 class PixelRenderer;
 
 class DirectionUI
 {
+
 public:
 	
 	/// @brief コンストラクタ
@@ -37,22 +39,32 @@ public:
 	/// @param  
 	void SetSkipGaugePer(const float _skipPer);
 
-
 private:
+
+	//ボタン長押しスキップの文字列
+	const std::wstring SKIP_STR = L"ボタン長押しでスキップ";
+
+	//円形ゲージシェーダのパス
+	const std::wstring ARC_GAUGE_SHADER_PATH = L"ArcHpBarPS.cso";
 
 	//フォントサイズ
 	static constexpr int FONT_SIZE = 30;
 
 	//スキップボタンゲージシェーダの定数バッファサイズ
 	static constexpr int SKIP_GAUGE_CONST_BUFF_SIZE = 2;
+
 	//割合定数バッファ番号
 	static constexpr int SKIP_GAUGE_PER_CONSTBUF_NUM = 1;
+
 	//スキップボタン画像の位置
 	static constexpr Vector2F SKIP_BTN_POS = { 30.0f,30.0f };
+
 	//スキップボタンサイズ
 	static constexpr Vector2F SKIP_BTN_SIZE = { 64.0f,64.0f };
+
 	//スキップボタン長押し時間
 	static constexpr float SKIP_BTN_TIME = 1.0f;
+
 	//ボタン長押し文字のY座標オフセット
 	static constexpr float SKIP_BTN_STR_OFFSET_Y = 16.0f;
 
@@ -72,9 +84,10 @@ private:
 	//フォント
 	int fontHandle_;
 
-	//集中線
-	int intensiveLineImg_1;
-	int intensiveLineImg_2;
+	//集中線(交互に表示する
+	int intensiveLineFirstImg_;			//交互表示1枚目
+	int intensiveLineSecondImg_;		//交互表示1枚目
+
 	//集中線アニメーション
 	int intensiveLineAnimImg_;
 
@@ -87,6 +100,4 @@ private:
 	//集中線アニメーション更新
 	void UpdateIntensiveLineAnim(void);
 
-
 };
-

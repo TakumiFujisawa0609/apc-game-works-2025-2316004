@@ -63,7 +63,6 @@ void FpsControl::CalcFrameRate()
 		float castFrameCnt = (float)(frameCnt_ * 1000);
 
 		//フレームレートを求める
-		//理想通りなら 60000 / 1000 で60となる
 		frameRate_ = castFrameCnt / difTime;
 
 		//フレームカウントをリセット

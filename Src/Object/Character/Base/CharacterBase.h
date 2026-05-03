@@ -18,16 +18,15 @@ class CardUIBase;
 class CardPresenter;
 class InputBase;
 class Capsule;
-class HpUIBase;
 class LogicBase;
 class PlayerOnHit;
 class EnemyOnHit;
 class EnemyRock;
 
-
-
-class CharacterBase :public ObjectBase
+class CharacterBase 
+	: public ObjectBase
 {
+
 public:
 
 	//ヒットストップ止めるフレーム数
@@ -38,8 +37,10 @@ public:
 
 	// 回転完了までの時間
 	static constexpr float TIME_ROT = 0.1f;
+
 	//最大ＨＰ
 	static constexpr float HP_MAX = 200.0f;
+
 	//転がるアニメーション速度
 	static constexpr float ROLL_ANIM_SPEED = 20.0f;
 
@@ -65,13 +66,14 @@ public:
 		DODGE,				//回避
 		CARD_RELOAD,		//カードリロード
 		//敵
-		SWIP_ATK,			//ひっかき
+		STOMP_ATK,			//スタンプ攻撃
 		ROAR_ATK,			//咆哮
 		JUMP_ATK,			//ジャンプ攻撃
 		RUSH_ATK			//突進
 
 	};
 
+	//角度
 	struct ROTATION
 	{
 		//回転
@@ -90,6 +92,7 @@ public:
 		float def;			//防御力
 	};
 
+	//アクションの種類
 	enum class ACTION_TYPE
 	{
 		IDLE,		//何もしてない
@@ -100,6 +103,7 @@ public:
 		CARD_ACTION	//カードアクション
 	};
 
+	//更新フェーズ
 	enum class UPDATE_PHASE
 	{
 		NONE,
@@ -109,11 +113,19 @@ public:
 		OVER_DIRECTION,
 		HIT_STOP
 	};
+
+	//ステータスの種類
+	enum class STATUS_TYPE
+	{
+		HP,
+		ATK,
+		DEF,
+		SPD,
+	};
+
 	/// @brief コンストラクタ
 	/// @param  
 	CharacterBase(void);
-
-
 
 	/// @brief デストラクタ
 	/// @param  
@@ -192,10 +204,6 @@ public:
 	/// @return 
 	const bool GetIsDamage(void)const;
 
-	/// @brief 着地時のジャンプ力初期化
-	/// @param  
-	void JumpPowZero(void) { jumpPow_ = Utility3D::VECTOR_ZERO; }
-
 	/// @brief キャラクターの中心座標取得
 	/// @param  
 	/// @return キャラクターの中心座標
@@ -222,7 +230,7 @@ public:
 	/// @brief 足音素材の取得
 	/// @param  
 	/// @return 足音素材
-	inline const SoundManager::SRC& GetFootSE(void)const { return footSE_; }
+	inline const ResourceManager::SRC& GetFootSE(void)const { return footSE_; }
 
 	/// @brief カードアクションの取得
 	/// @param  
@@ -231,12 +239,12 @@ public:
 
 	/// @brief 敵のジャンプチャージ中取得
 	/// @param  
-	/// @return 
+	/// @return true:敵のジャンプチャージ中
 	const ActionBase& GetMainAction(void)const;
 
 	/// @brief ヒットポイントを当たり判定から取得
 	/// @param  
-	/// @return 
+	/// @return ヒットポイント
 	const CharacterOnHitBase::HIT_POINT& GetHitPoint(void)const;
 
 	/// @brief ロジッククラスにターゲットをセット
@@ -252,11 +260,12 @@ public:
 	/// @param  
 	void LoadEnemyRock(void);
 
-	//岩の当たり判定削除
+	/// @brief 岩の当たり判定削除
+	/// @param  
 	void DeleteEnemyRockCol(void);
 
 	/// @brief 岩の生存フラグセット
-	/// @param _isAlive 
+	/// @param _isAlive セットしたいフラグ
 	void SetIsAliveEnemyRock(const bool _isAlive);
 
 	/// @brief 岩配列更新
@@ -286,59 +295,71 @@ public:
 
 	/// @brief クリア演出が終わったか
 	/// @param  
-	/// @return 
+	/// @return true:クリア演出終了 : false:演出終了していない
 	const bool GetIsEndDirect(void) { return isEndClearDirect_; }
-
 
 protected:
 
 	//移動量ラインオフセット
 	static constexpr float MOVE_LINE_Y_OFFSET = - 1.0f;
+
 	//移動量更新条件の移動ラインの長さ
 	static constexpr float MOVE_LINE_Y_CHECK_VALUE =  1.5f;
+
 	//リロードカードステータス
 	static constexpr CardBase::CARD_STATUS RELOAD_CARD_STATUS = { -1,CardBase::CARD_TYPE::RELOAD };
+
 	//中心からのZオフセット
 	static constexpr float CENTER_POS_Z_OFFSET = 600.0f;
 
+	//キャラステータスのデータパス
+	const std::string PLAYER_STATUS_DATA = "PlayerStatus";	//プレイヤー
+	const std::string ENEMY_STATUS_DATA = "EnemyStatus";	//敵
 
 	//入力
 	std::unique_ptr<LogicBase>logic_;
+
 	//行動系
 	std::unique_ptr<ActionController>action_;
+
 	// アニメーション
 	std::unique_ptr<AnimationController>animationController_;
+
 	//デッキ
 	std::shared_ptr<CardDeck>deck_;
+
 	//当たった時の処理
 	std::unique_ptr<CharacterOnHitBase>onHit_;
-
-	//HPのUI
-	std::unique_ptr<HpUIBase>hpUi_;
 
 	//敵のスタンプ攻撃時に発生する岩
 	std::vector<std::unique_ptr<EnemyRock>>rock_;
 
 	//使う足音
 	SoundManager::SRC footSE_;
-	float footSEDisCount_;	//足音の再生間隔のディスカウント
+
+	//足音の再生間隔のディスカウント
+	float footSEDisCount_;	
+
 	//当たり判定の要素
 	VECTOR movedPos_;		//移動後座標
 	VECTOR moveDiff_;		//移動前座標
-
-	VECTOR jumpPow_;		// ジャンプ量
 	VECTOR movePow_;		// 移動量
-	
+
 	//角度関連
 	ROTATION charaRot_;
+
 	//ステータス
 	STATUS status_;
+
 	//更新フェーズ
 	UPDATE_PHASE updatePhase_;
+
 	//更新フェーズ変更
 	std::map <UPDATE_PHASE, std::function<void(void)>>changeUpdate_;
+
 	//更新フェーズの更新
 	std::function<void(void)>phazeUpdate_;
+
 	//UIマネージャ
 	UIManager& uiMng_;
 
@@ -357,8 +378,6 @@ protected:
 	//エフェクト
 	std::unique_ptr<EffectController>effect_;
 
-
-
 	//攻撃によってダメージを与えたか(与えたら判定を抜ける)
 	bool isDamage_;
 
@@ -370,14 +389,10 @@ protected:
 
 	//クリア演出が終わったか
 	bool isEndClearDirect_;
-	////Hp割合計算
-	//float hpPer_;
-
-	////減る前の体力
-	//float preHpPer_;
 
 	//Hpのデータ
 	HP_DATA hpData_;
+
 	//キャラ種別
 	CHARACTER_TYPE characterType_;
 
@@ -386,16 +401,19 @@ protected:
 
 	//移動後座標などの更新
 	void UpdatePost(void);
-	//ステータスの設定
-	void SetStatus(const float& _spd, const float& _hp, const float& _atk, const float& _def);
+
+	//Jsonからステータスをロード
+	void LoadStatus(void);
 
 	//移動制限
 	void MoveLimit(const VECTOR& _stagePos, const VECTOR& _stageSize);
 
 	//アクションの追加
 	virtual void AddAction(void) = 0;
+
 	//アニメーションの追加
 	virtual void AddAnimation(void) = 0;
+
 	//コライダ作成
 	virtual void MakeColliderGeometry(void) = 0;;
 
@@ -415,7 +433,4 @@ protected:
 	virtual void ChangeUpdateClearDirection(void);	//クリア演出
 	virtual void ChangeUpdateOverDirection(void);	//ゲームオーバー演出
 	void ChangeUpdateHitStop(void);				//ヒットストップ
-private:
-
 };
-

@@ -11,7 +11,7 @@
 
 EnemyCardUI::EnemyCardUI(void)
 {
-	charaType_ = "Enemy";
+	charaType_ = JSON_ENEMY_STR;
 }
 
 EnemyCardUI::~EnemyCardUI(void)
@@ -21,35 +21,43 @@ EnemyCardUI::~EnemyCardUI(void)
 void EnemyCardUI::Load(void)
 {
 	CardUIBase::Load();
+
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::ENEMY_ATK_CARD_IMG).handleId_;
-	reloadCardImg_ = -1;	//敵はリロードカードを使わないので読み込まない
-	soundMng_.LoadResource(SoundManager::SRC::CARD_BREAK);
-	cardWinRes_ = SoundManager::SRC::CARD_BREAK;
+
+	//敵はリロードカードを使わないので読み込まない
+	reloadCardImg_ = UtilityCommon::INITIAL_HANDLE;	
+
+	resMng_.Load(ResourceManager::SRC::CARD_BREAK_SE);
+
+	cardWinRes_ = ResourceManager::SRC::CARD_BREAK_SE;
 }
 
 void EnemyCardUI::Init(void)
 {
-
-	//AddCardUIData();
+	//カードデータの読み込み
 	LoadCardData();
+
 	//カード初期化
 	InitCardUI();
-	soundMng_.SetSoundVolumeSRC(SoundManager::SRC::CARD_BREAK, CARD_BREAK_SOUND_VOLUME);
+
 	//状態遷移登録
 	changeMoveState_ = {
 	{CARD_SELECT::NONE, [this]() {ChangeNone(); } },
 	{CARD_SELECT::DISITION, [this]() {ChangeDecision(); } },
 	{CARD_SELECT::RELOAD_WAIT, [this]() {ChangeReloadWait(); } }
 	};
+
+	//状態の初期化
 	ChangeSelectState(CARD_SELECT::NONE);
 
 }
 
 void EnemyCardUI::Update(void)
 {
-
+	//基底クラスの更新
 	CardUIBase::Update();
 
+	//常に勝敗を監視し、負けたら弾く
 	ReactMoveCard(REACT_GOAL_CARD_POS);
 }
 
@@ -57,6 +65,7 @@ void EnemyCardUI::Draw(void)
 {
 	//カード描画(共通)
 	CardUIBase::Draw();
+
 #ifdef _DEBUG
 	DrawDebug();
 #endif // _DEBUG
@@ -65,49 +74,9 @@ void EnemyCardUI::Draw(void)
 #ifdef _DEBUG
 void EnemyCardUI::DrawDebug(void)
 {
-	int i = 0;
-	for (const auto& action : actions_)
-	{
-		std::wstring stateStr;
-		auto state = action->GetState();
-		switch (state)
-		{
-		case CardUIController::CARD_STATE::DRAW_PILE:
-			stateStr = L"DRAW_PILE";
-			break;
-		case CardUIController::CARD_STATE::MOVE_DRAW:
-			stateStr = L"MOVE_DRAW";
-			break;
-		case CardUIController::CARD_STATE::USING:
-			stateStr = L"USING";
-			break;
-		case CardUIController::CARD_STATE::REACT:
-			stateStr = L"REACT";
-			break;
-		case CardUIController::CARD_STATE::USED:
-			stateStr = L"USED";
-			break;
-		default:
-			break;
-		}
-		DrawFormatString(10, 10 + i * 20, 0xffffff, L"react(%f),Dicision(%f),state(%s)", action->GetReactCount(), action->GetDecisionCnt(), stateStr.c_str());
-		i++;
-	}
+
 }
 #endif // _DEBUG
-
-
-
-//void EnemyCardUI::AddCardUIData(void)
-//{
-//	std::vector<CardBase::CARD_STATUS> charaDeck = DataBank::GetInstance().GetCardDatas(CHARACTER_TYPE::ENEMY);
-//	int size = static_cast<int>(charaDeck.size());
-//	for (int i = 0; i < size; i++)
-//	{
-//		AddCardUi(charaDeck[i]);
-//	}
-//
-//}
 
 void EnemyCardUI::ChangeNone(void)
 {
@@ -116,8 +85,13 @@ void EnemyCardUI::ChangeNone(void)
 
 void EnemyCardUI::ChangeDecision(void)
 {
+	//アクション配列に入れる
 	actions_.emplace_back(*handCurrent_);
+
+	//現在の選択カードを増やす
 	handCurrent_++;
+
+	//使用中状態に移行。カードUIを動かす
 	for (auto& act : actions_)
 	{
 		act->ChangeDicisionEnemyCardMove();
@@ -134,19 +108,18 @@ void EnemyCardUI::ChangeReloadWait(void)
 
 void EnemyCardUI::UpdateNone(void)
 {
-	////手札にすべての初期札を入れる
-	//for (auto& it : uiInfos_)
-	//{
-	//	handCards_.emplace_back(it);
-	//}
-	//ChangeSelectState(CARD_SELECT::NONE);
+
 }
 
 void EnemyCardUI::UpdateDecision(void)
 {
+	//使用中カードを動かす
 	DecisionMoveCardAll();
-	//決定移動が終わったらnone状態に戻す
+
+	//決定移動が終わったものを探す
 	auto it = std::find_if(actions_.begin(), actions_.end(), [this](auto& act) {return act->GetDecisionCnt() > 0.0f; });
+
+	//終わっていたらNONE状態へ移行
 	if (it == actions_.end())
 	{
 		SetBasePosActionCards();
@@ -168,9 +141,12 @@ void EnemyCardUI::UpdateDrawCardUI(void)
 	}
 }
 
+
 void EnemyCardUI::InitCardUI(void)
 {
+	//手札をすべて消去する
 	handCards_.clear();
+
 	//手札にすべての初期札を入れる
 	for (auto& it : initialCards_)
 	{
@@ -178,6 +154,7 @@ void EnemyCardUI::InitCardUI(void)
 		handCards_.emplace_back(it);
 	}
 
+	//手札が空でなければ、選択中カードを手札の初めの配列へ設定する
 	if (!handCards_.empty())
 	{
 		handCurrent_ = handCards_.begin();

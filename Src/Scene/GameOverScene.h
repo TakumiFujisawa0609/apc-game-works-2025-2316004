@@ -22,10 +22,14 @@ public:
 	/// @param  
 	void Init(void) override;
 
+	/// @brief 解放
+	/// @param  
+	void Release(void);
+
 private:
 
 	//BGMの大きさ
-	static constexpr int BGM_VOL = 80;
+	static constexpr float BGM_VOL = 0.8f;
 
 	//ゲームオーバー画面
 	int imgGameOver_;

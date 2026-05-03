@@ -17,9 +17,20 @@ public:
 	/// @brief コンストラクタ
 	/// @param  
 	Quaternion(void);
+
+	/// @brief コンストラクタ
+	/// @param rad ラジアン角度
 	Quaternion(const VECTOR& rad);
+
+	/// @brief コンストラクタ
+	/// @param w クォータニオンw
+	/// @param x クォータニオンx
+	/// @param y クォータニオンy
+	/// @param z クォータニオンz
 	Quaternion(double w, double x, double y, double z);
 
+	/// @brief デストラクタ
+	/// @param  
 	~Quaternion(void);
 
 	/// @brief オイラー角からクォータニオンへ変換
@@ -175,9 +186,9 @@ private:
 	// 基本ベクトルを取得
 	VECTOR GetDir(VECTOR dir) const;
 
+	//演算子
 	Quaternion operator*(float& rhs);
 	const Quaternion operator*(const float& rhs);
 	Quaternion operator+(Quaternion& rhs);
 	const Quaternion operator+(const Quaternion& rhs);
-	
 };

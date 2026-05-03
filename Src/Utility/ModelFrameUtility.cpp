@@ -5,8 +5,7 @@
 void ModelFrameUtility::GetFrameWorldMatrix(
 	int modelId, int frameIdx, VECTOR& scl, MATRIX& matRot, VECTOR& pos)
 {
-
-	// 対象フレームのワールド行列を取得する
+	// 対象フレームのワールド行列を取得
 	auto mat = MV1GetFrameLocalWorldMatrix(modelId, frameIdx);
 
 	// 拡大縮小成分
@@ -14,19 +13,17 @@ void ModelFrameUtility::GetFrameWorldMatrix(
 
 	// 回転成分＋拡大縮小成分
 	matRot = MGetRotElem(mat);
-	// 回転成分のみにする
+	// 回転成分のみ
 	auto revScl = VGet(1.0f / scl.x, 1.0f / scl.y, 1.0f / scl.z);
 	matRot = MMult(matRot, MGetScale(revScl));
 
 	// 移動成分
 	pos = MGetTranslateElem(mat);
-
 }
 
 void ModelFrameUtility::SetFrameWorldMatrix(const Transform& follow, int followFrameIdx, 
 	Transform& target, VECTOR localPos, VECTOR localRot)
 {
-
 	// フレームのワールド行列を取得
 	MATRIX worldMatMix = MV1GetFrameLocalWorldMatrix(follow.modelId, followFrameIdx);
 
@@ -44,7 +41,6 @@ void ModelFrameUtility::SetFrameWorldMatrix(const Transform& follow, int followF
 			localRot.x
 		)
 	);
-
 	// Y軸回転
 	rotMat = MMult(rotMat,
 		MGetRotAxis(
@@ -52,7 +48,6 @@ void ModelFrameUtility::SetFrameWorldMatrix(const Transform& follow, int followF
 			localRot.y
 		)
 	);
-
 	// Z軸回転
 	rotMat = MMult(rotMat,
 		MGetRotAxis(
@@ -60,12 +55,10 @@ void ModelFrameUtility::SetFrameWorldMatrix(const Transform& follow, int followF
 			localRot.z
 		)
 	);
-
 	// 回転行列反映
 	target.matRot = rotMat;
 
 	// 位置調整
 	VECTOR followFramePos = MV1GetFramePosition(follow.modelId, followFrameIdx);
 	target.pos = VAdd(followFramePos, VTransform(localPos, target.matRot));
-
 }

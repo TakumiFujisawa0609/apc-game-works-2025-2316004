@@ -5,8 +5,8 @@
 class CharacterBase;
 
 class LogicBase
-
 {
+
 public:
 
     //アクションボタンの種類
@@ -23,6 +23,7 @@ public:
         , CARD_MOVE_RIGHT//カード右
     };
 
+    //敵の攻撃タイプ
     enum class ENEMY_ATTACK_TYPE {
         NONE,
         STOMP,
@@ -65,8 +66,6 @@ public:
     /// @param  
     virtual void Update(void) = 0;
     
- 
-    
     /// @brief 入力方向の取得
     /// @param  
     /// @return 
@@ -95,10 +94,13 @@ public:
 	/// @param _trans モデル情報 
     void SetMoveDir(const VECTOR _dir) { moveDir_ = _dir;}
 
-	/// @brief ターゲットの方向を見る
+    /// @brief ターゲットの方向を見る
+    /// @param  
     void GetLookAtTargetDir(void);
 
-    //ターゲットと当たった
+    /// @brief ターゲットと当たった
+    /// @param  
+    /// @return true:当たっている:false:当たっていない
     const bool HitTarget(void)const;
 
     //相手の座標情報を取得
@@ -145,12 +147,16 @@ protected:
 
 	//操作管理用
 	ACT_CNTL actCntl_;
-    //移動関連
-	VECTOR moveDir_;            //移動方向ベクトル(これをもとにキャラクターが動く)
-    //入力方向
-    VECTOR inputDir_;           //入力方向(入力していないときは{0,0,0})
 
-	VECTOR prevMoveDir_;        //前回の移動方向ベクトル
+    //移動方向ベクトル(これをもとにキャラクターが動く)
+	VECTOR moveDir_;            
+
+    //入力方向(入力していないときは{0,0,0})
+    VECTOR inputDir_;           
+
+    //前回の移動方向ベクトル
+	VECTOR prevMoveDir_;        
+
     //攻撃種類
     ENEMY_ATTACK_TYPE attackType_;
     

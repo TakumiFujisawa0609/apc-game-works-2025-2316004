@@ -6,7 +6,12 @@ class UIBase2D
 {
 public:
 
+	/// @brief コンストラクタ
+	/// @param  
 	UIBase2D(void);
+
+	/// @brief デストラクタ
+	/// @param  
 	virtual ~UIBase2D(void);
 
 	/// @brief ロード
@@ -25,7 +30,8 @@ public:
 	/// @param  
 	virtual void Draw(void) = 0;
 protected:
+
+	//イージング
 	std::unique_ptr<Easing>easing_;
-private:
 };
 

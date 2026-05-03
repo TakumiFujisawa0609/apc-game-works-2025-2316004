@@ -1,9 +1,12 @@
 #pragma once
 #include "CardUIBase.h"
+
 class EnemyCardUI :
     public CardUIBase
 {
+
 public:
+
     /// @brief コンストラクタ
     /// @param  
     EnemyCardUI(void);
@@ -40,23 +43,20 @@ private:
 
     //弾かれた後のゴール座標(敵)
     static constexpr Vector2F REACT_GOAL_CARD_POS = { Application::SCREEN_SIZE_X + 200.0f, Application::SCREEN_HALF_Y + 500 };
+
 	//カードブレイクサウンド音量
-	static constexpr int CARD_BREAK_SOUND_VOLUME = 60;
+	static constexpr float CARD_BREAK_SOUND_VOLUME = 0.6f;
 
-    ////カードUIに配列を挿入
-    //void AddCardUIData(void)override;
+    //遷移系
+    void ChangeNone(void) override;		        //通常
+    void ChangeDecision(void) override;	        //決定
+    void ChangeReloadWait(void) override;       //リロード待機
 
-    //カード状態遷移
-    void ChangeNone(void) override;		//通常
-    void ChangeDecision(void) override;	//決定
-    void ChangeReloadWait(void) override;
-    void UpdateNone(void) override;
-    void UpdateDecision(void) override;
+    //更新系
+    void UpdateNone(void) override;             //何もしない
+    void UpdateDecision(void) override;         //決定
 	void UpdateReloadWait(void) override;
 
     //カードUI描画オブジェクト更新
     void UpdateDrawCardUI(void) override;
-
-
 };
-

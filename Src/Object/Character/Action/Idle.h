@@ -1,10 +1,12 @@
 #pragma once
 #include "../Base/ActionBase.h"
+
 class Idle :
     public ActionBase
 {
 
 public:
+
     /// @brief コンストラクタ
 	/// @param _actCntl アクションコントローラー
     Idle(ActionController& _actCntl);
@@ -24,9 +26,5 @@ public:
     /// @brief 更新
 	/// @param
     void Update(void) override;
-
-public:
-
-
 };
 

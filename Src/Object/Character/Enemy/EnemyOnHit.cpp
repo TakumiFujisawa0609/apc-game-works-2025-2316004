@@ -18,12 +18,15 @@ namespace
 	using TAG_PRIORITY = ObjectBase::TAG_PRIORITY;
 	using TAG = Collider::TAG;
 }
+
 EnemyOnHit::EnemyOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff
 	, ActionController& _action, std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& _colParam, Transform& _trans):
 	CharacterOnHitBase(_chara, _movedPos, _moveDiff, _action, _colParam, _trans)
 {
 	//‚»‚ê‚¼‚ê‚Ì“–‚½‚Á‚½ˆ—‚ğŠi”[‚·‚é
 	using TAG = Collider::TAG;
+
+	//Õ“ËŒãˆ—‚ÌŠi”[
 	colUpdates_ = {
 		{ TAG::PLAYER1, [this](const std::weak_ptr<Collider> _hitCol) {CollChara(_hitCol); } },
 		{ TAG::NML_ATK, [this](const std::weak_ptr<Collider> _hitCol) {CollNormalAttack(_hitCol); } },
@@ -49,14 +52,15 @@ void EnemyOnHit::DrawDebug(void)
 }
 #endif // _DEBUG
 
-
-
-
 void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 {
+	//e‚Ìî•ñ‚ğæ“¾
 	auto& parent = _hitCol.lock()->GetParent();
+
+	//•Ší‚Ìæ“¾
 	auto& weapon = dynamic_cast<Weapon&>(parent);
 	if (weapon.GetIsDamage()||charaObj_.GetCardAction()==CardActionBase::CARD_ACT_TYPE::JUMP_ATK)return;
+
 	//ƒ_ƒ[ƒW‚ğ—^‚¦‚½‚±‚Æ‚ğ’m‚ç‚¹‚é
 	weapon.SetIsDamage();
 

@@ -85,6 +85,3 @@ struct Vector2
 		y /= _value;
 	}
 };
-
-
-

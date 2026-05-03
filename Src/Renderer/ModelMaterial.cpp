@@ -26,8 +26,6 @@ ModelMaterial::ModelMaterial(
 	// ピクセルシェーダー用の定数バッファを作成
 	constBufPS_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4SizePS);
 
-
-
 	// テクスチャアドレス
 	texAddress_ = TEXADDRESS::CLAMP;
 
@@ -35,46 +33,38 @@ ModelMaterial::ModelMaterial(
 
 void ModelMaterial::AddConstBufVS(const FLOAT4& contBuf)
 {
-
 	if (constBufFloat4SizeVS_ > constBufsVS_.size())
 	{
 		constBufsVS_.emplace_back(contBuf);
 	}
-
 }
 
 void ModelMaterial::AddConstBufPS(const FLOAT4& contBuf)
 {
-
 	if (constBufFloat4SizePS_ > constBufsPS_.size())
 	{
 		constBufsPS_.emplace_back(contBuf);
 	}
-
 }
 
 void ModelMaterial::SetConstBufVS(int idx, const FLOAT4& contBuf)
 {
-
 	if (idx >= constBufsVS_.size())
 	{
 		return;
 	}
 
 	constBufsVS_[idx] = contBuf;
-
 }
 
 void ModelMaterial::SetConstBufPS(int idx, const FLOAT4& contBuf)
 {
-
 	if (idx >= constBufsPS_.size())
 	{
 		return;
 	}
 
 	constBufsPS_[idx] = contBuf;
-
 }
 
 void ModelMaterial::SetTextureBuf(int slot, int texDiffuse)

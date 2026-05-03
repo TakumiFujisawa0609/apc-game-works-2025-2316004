@@ -4,12 +4,14 @@
 #include "../Common/Vector2F.h"
 #include "../Template/Singleton.h"
 
-class HpUIBase;
+class HpUI;
 class CardUIBase;
 class DirectionUI;
 
-class UIManager :public Singleton<UIManager>
+class UIManager :
+	public Singleton<UIManager>
 {
+	//シングルトン
 	friend class Singleton<UIManager>;
 
 public:
@@ -50,6 +52,7 @@ public:
 	/// @brief スキップ割り
 	/// @param _skipPer 
 	void SetSkipPer(const float _skipPer);
+
 private:
 
 	//フォントサイズ
@@ -57,16 +60,24 @@ private:
 
 	//ボタンX座標
 	static constexpr Vector2F INIT_BOTTON_POS = { 10.0f,60.0f };
+
 	//ボタンサイズ
 	static constexpr float BOTTON_SIZE = 50.0f;
+
 	//ボタン同士の間隔
 	static constexpr float BOTTON_DISTANCE = 10.0f;
+
+	//攻撃ボタン文字列
+	const std::wstring ATTACK_BTN_STR = L"攻撃(カード使用)";
+
+	//回避ボタン文字列
+	const std::wstring DODGE_BTN_STR = L"回避";
 
 	//ボタン
 	int imgBtns_;
 
 	//キャラHPUI
-	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<HpUIBase>>characterHpUI_;
+	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<HpUI>>characterHpUI_;
 
 	//カードUI
 	std::unordered_map<CHARACTER_TYPE,std::unique_ptr<CardUIBase>>cardUI_;
@@ -77,16 +88,13 @@ private:
 	//フォント
 	int fontHandle_;
 
-	// デフォルトコンストラクタをprivateにして、
-	// 外部から生成できない様にする
+	//コピー禁止
 	UIManager(void);
 	UIManager(const UIManager& _copy) = delete;
 	UIManager& operator=(const UIManager& _copy) = delete;
+
 	// デストラクタも同様
 	~UIManager(void)override = default;
-
-
-
 
 	//HpUIの生成
 	void CreateHpUI(void);
@@ -96,7 +104,4 @@ private:
 
 	//攻撃ボタンと回避ボタンの表示
 	void DrawAttackBottonAndDodgeBotton(void);
-
-
 };
-

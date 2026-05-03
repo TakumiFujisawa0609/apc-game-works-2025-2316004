@@ -7,6 +7,7 @@ class SceneManager;
 class ResourceManager;
 class InputManager;
 class InputManagerS;
+class SoundManager;
 
 class SceneBase
 {
@@ -26,7 +27,6 @@ public:
 	static constexpr int LOADING_STRING_POS_Y = Application::SCREEN_SIZE_Y - 40;	//「now loading......」の座標Y
 
 	//タイトル戻る文字列の座標
-	//static constexpr Vector2 BACK_TITLE_STRING_POS_Y = { 200,500 };
 	static constexpr float BACK_TITLE_STRING_POS_Y = 500.0f;
 
 	/// @brief コンストラクタ
@@ -37,11 +37,11 @@ public:
 	/// @param  
 	virtual ~SceneBase(void);
 
-	/// @brief 読み込み処理
+	/// @brief ロード
 	/// @param  
 	virtual void Load(void);
 	
-	/// @brief 初期化処理
+	/// @brief 初期化
 	/// @param  
 	virtual void Init(void);
 
@@ -49,20 +49,36 @@ public:
 	/// @param  
 	virtual void Update(void);
 
-	/// @brief 描画処理
+	/// @brief 描画
 	/// @param  
 	virtual void Draw(void);
 
+	/// @brief 解放
+	/// @param  
+	virtual void Release(void);
+
 protected:
+	
+	//Now Loading文字列
+	const std::wstring NOW_LOAD_STR = L"Now loading";
+
+	//ドット
+	const std::wstring DOT_STR = L".";
+
+	//クリアシーンとゲームオーバーシーンの戻る説明の文字列
+	const std::wstring BACK_TITLE_SCENE_STR = L"'B'ボタンまたは'スペースキー'でタイトルに戻る";
 
 	// リソース管理
 	ResourceManager& resMng_;
 	InputManager& inputMng_;
 	InputManagerS& inputMngS_;
 	SceneManager& scnMng_;
+	SoundManager& soundMng_;
 
-	//更新処理管理
+	//更新処理
 	std::function<void(void)> updateFunc_;
+
+	//描画処理
 	std::function<void(void)> drawFunc_;
 
 	//ローディング経過時間

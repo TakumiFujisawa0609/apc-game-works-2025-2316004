@@ -7,11 +7,11 @@
 #include"../Template/Singleton.h"
 #include"../Object/Common/Collider.h"
 
-class Geometry;
-
 class CollisionManager :public Singleton<CollisionManager>
 {
+	// シングルトン
 	friend class Singleton<CollisionManager>;
+
 public:
 
 	//当たり判定をする範囲
@@ -54,20 +54,20 @@ private:
 	//当たり判定距離の二乗
 	std::map<Collider::TAG, float> hitRange_;
 
-	////ソート時の当たり判定優先順位
-	//std::map<Collider::TAG>
-
 	//当たり判定するフレーム
 	int updateFrame_;
 
-	//コンストラクタ
+	/// @brief //コンストラクタ
+	/// @param  
 	CollisionManager(void);
 
-	//コピーの禁止
+	/// @brief //コピーの禁止
+	/// @param _copy 
 	CollisionManager(const CollisionManager& _copy) = delete;
 	CollisionManager& operator= (const CollisionManager& _copy) = delete;
 
-	//デストラクタ
+	/// @brief //デストラクタ
+	/// @param  
 	~CollisionManager(void)override;
 
 	/// @brief 当たり判定距離内にいるか
@@ -88,8 +88,8 @@ private:
 	/// @return 
 	bool IsCollision(const std::weak_ptr<Collider> _col1, const std::weak_ptr<Collider> _col2);
 
-	/// @brief 当たったときの処理
+	/// @brief 一番上のタグを取得
+	/// @param _col どのコリジョンか
+	/// @return 
 	Collider::TAG GetTopTags(const std::weak_ptr<Collider> _col);
-
 };
-

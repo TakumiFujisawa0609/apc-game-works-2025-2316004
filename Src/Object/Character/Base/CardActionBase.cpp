@@ -46,6 +46,7 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 {
 	//攻撃中にカード負けしたら処理を飛ばす
 	if (IsCardFailure(_attackTag))return;
+
 	//コンボ入力受付
 	if (anim_.GetAnimStep() >= _status.colEndCnt - _status.bufferFrame)
 	{
@@ -58,10 +59,12 @@ void CardActionBase::AttackMotion(const ATK_STATUS& _status, const Collider::TAG
 	{
 		//攻撃中
 		atkPos_ = Utility3D::AddPosRotate(charaObj_.GetTransform().pos, charaObj_.GetTransform().quaRot, _localPos);
+
 		//攻撃判定有効
 		isAliveAtkCol_ = true;
-		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), _attackTag, atkPos_,_status.atkRadius);
 
+		//攻撃の当たり判定消去
+		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), _attackTag, atkPos_,_status.atkRadius);
 	}
 	else if (anim_.IsEnd())		//アニメーション終了でアイドル状態変更
 	{
@@ -88,6 +91,10 @@ bool CardActionBase::IsCardFailure(const Collider::TAG& _attackTag)
 		return true;
 	}
 	return false;
+}
+
+void CardActionBase::ReleaseReloadResource(void)
+{
 }
 
 void CardActionBase::FinishFailureAttack(const Collider::TAG _attackCol)

@@ -10,7 +10,6 @@ class ActionController;
 class AnimationController;
 class PixelMaterial;
 class PixelRenderer;
-
 class Idle;
 class Run;
 class Jump;
@@ -19,39 +18,38 @@ class EnemyCardAction;
 
 class Enemy :public CharacterBase
 {
+
 public:
-	using CARD_TYPE = CardBase::CARD_TYPE;
-	//定数
-	static constexpr int RADIUS = 25; //敵のサイズ
+
+	//敵のサイズ
+	static constexpr int RADIUS = 25; 
+
 	//プレイヤーのローカル角度
 	static constexpr float MODEL_LOCAL_DEG = 180.0f;
 
 	//敵の大きさの倍率
 	static constexpr float MODEL_SIZE_MULTIPLITER = 5.0f;
-	//static constexpr float MODEL_SIZE_MULTIPLITER = 1.0f;
 
 	//敵の大きさ
 	static constexpr VECTOR MODEL_SCL = { MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER,MODEL_SIZE_MULTIPLITER };
+
 	//カード最大枚数
 	static constexpr int CARD_NUM_MAX = 20;
 
-	//ステータス関連
-	static constexpr float MOVE_SPEED = 15.0f;		//移動スピード
-	static constexpr float MAX_HP = 200.0f;			//体力
-	static constexpr float MAX_ATK = 50.0f;			//攻撃力
-	static constexpr float MAX_DEF = 100.0f;		//防御力
 	//アニメーション速度
 	static constexpr float ANIM_SPEED = 10.0f;
+
 	//咆哮アニメーション速度
 	static constexpr float ROAR_ANIM_SPEED = 30.0f;
+
 	//咆哮アニメーション咆哮開始位置
 	static constexpr float ROAR_ANIM_START_ANIM = 50.0f;
+
 	//咆哮アニメーション咆哮終了位置
 	static constexpr float ROAR_ANIM_END_ANIM = 127.0f;
+
 	//カメラシェイク強さ
 	static constexpr float CAM_SHAKE_LIMIT = 10.0f;
-
-
 
 	/// @brief デッキの取得
 	/// @param  
@@ -108,12 +106,12 @@ public:
 	/// @return true:咆哮状態 false:通常状態
 	const bool GetIsRoar(void)const { return isRoar_; }
 
-
 private:
 
 	//定数
 	//プレイヤーの腰のフレーム番号
 	static constexpr int SPINE_FRAME_NO = 1;
+
 	//胸のフレーム
 	static constexpr int CHEST_FRAME_NO = 4;
 
@@ -135,7 +133,8 @@ private:
 	//爆発発生アニメステップ
 	static constexpr float DEATH_BLAST_ANIM_STEP = 93.0f;
 
-	Vector2 cardCenterPos_; //カードの中心座標
+	//カードの中心座標
+	Vector2 cardCenterPos_; 
 
 	//敵のスケール
 	float modelScl_;
@@ -146,17 +145,11 @@ private:
 	//コライダ作成
 	void MakeColliderGeometry(void)override;
 
-	//通常更新
-	void UpdateNormal(void)override;
-
-	//演出時の更新
-	void UpdateDirection(void)override;
-	//クリア時(敵が倒れる)
-	void UpdateClearDirection(void)override;
-
-	//ゲームオーバー
-	void UpdateOverDirection(void)override;
-
+	//更新系
+	void UpdateNormal(void)override;			//通常更新
+	void UpdateDirection(void)override;			//演出時の更新
+	void UpdateClearDirection(void)override;	//クリア時(敵が倒れる)
+	void UpdateOverDirection(void)override;		//ゲームオーバー
 
 	/// @brief クリア演出に変更
 	/// @param  
@@ -164,11 +157,11 @@ private:
 
 	//アクションの追加
 	void AddAction(void)override;
+
 	//アニメーションの追加
 	void AddAnimation(void)override;
+
 #ifdef _DEBUG
 	void DrawDebug(void);
 #endif // _DEBUG
-
 };
-

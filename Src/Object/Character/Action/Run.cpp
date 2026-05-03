@@ -8,7 +8,7 @@
 #include"../../Common/AnimationController.h"
 #include "Run.h"
 
-Run::Run(ActionController& _actCntl, const float _speed, SoundManager::SRC _src, const float  _footSeDis):
+Run::Run(ActionController& _actCntl, const float _speed, ResourceManager::SRC _src, const float  _footSeDis):
 	ActionBase(_actCntl),
 	moveSpd_(_speed),
 	footSESrc_(_src),
@@ -24,7 +24,7 @@ Run::~Run(void)
 
 void Run::Load(void)
 {
-	SoundManager::GetInstance().LoadResource(footSESrc_);
+	resMng_.Load(footSESrc_);
 }
 
 void Run::Init(void)

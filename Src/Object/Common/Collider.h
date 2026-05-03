@@ -17,7 +17,6 @@ public :
 		PLAYER1,		//プレイヤー1
 		ENEMY1,			//敵1
 		NML_ATK,		//剣
-		ROAR_ATK,		//方向
 		JUMP_ATK,		//ジャンプ
 		STAGE,			//ステージ
 		ROCK,			//敵の攻撃用岩
@@ -31,7 +30,8 @@ public :
 	/// @param _notHitTags 衝突させないタグ
 	Collider(ObjectBase& _parent, const std::set<TAG> _tags, std::unique_ptr<Geometry>_geometry, const std::set<TAG> _notHitTags);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param 
 	~Collider(void);
 
 	/// @brief 衝突用タグの取得
@@ -96,7 +96,6 @@ private:
 
 	//当たり判定の形状
 	std::unique_ptr<Geometry> geometry_;
-	//std::shared_ptr<Geometry> geometry_;
 
 	//優先順位を決めるためのタグ配列
 	std::vector<TAG>tagTable_;

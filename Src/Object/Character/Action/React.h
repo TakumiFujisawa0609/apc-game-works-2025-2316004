@@ -1,10 +1,12 @@
 #pragma once
 #include "../Base/ActionBase.h"
+
 class React :
     public ActionBase
 {
 
 public:
+
     /// @brief コンストラクタ
 	/// @param _actCntl アクションコントローラー
     React(ActionController& _actCntl);
@@ -24,6 +26,7 @@ public:
 	/// @brief 更新
 	/// @param
     void Update(void) override;
+
 private:
 
     //アニメーションスタート
@@ -38,4 +41,3 @@ private:
     //ループアニメーション速度
     static constexpr float LOOP_SPD = 3.0f;
 };
-

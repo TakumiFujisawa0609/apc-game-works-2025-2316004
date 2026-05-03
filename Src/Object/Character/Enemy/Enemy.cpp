@@ -6,7 +6,6 @@
 #include "../Base/CharacterOnHitBase.h"
 #include "./EnemyOnHit.h"
 #include "./EnemyRock.h"
-#include "./EnemyHpUi.h"
 #include "../Object/Common/AnimationController.h"
 #include "../Enemy/EnemyLogic.h"
 #include "../../Common/Geometry/Capsule.h"
@@ -27,16 +26,12 @@
 #include "../Action/Run.h"
 #include "../Action/React.h"
 #include "../Action/EnemyCardAction.h"
-
 #include "Enemy.h"
 
 Enemy::Enemy(void):
 	cardCenterPos_({}),
 	modelScl_(MODEL_SIZE_MULTIPLITER)
 {
-	//各ステータスの設定
-	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
-
 	capRadius_ = CAP_RADIUS;
 
 	characterType_ = CHARACTER_TYPE::ENEMY;
@@ -44,13 +39,15 @@ Enemy::Enemy(void):
 	isRoar_ = false;
 
 	footSEDisCount_ = FOOT_SE_DIS;
-	footSE_ = SoundManager::SRC::ENEMY_FOOT_SE;
+	footSE_ = ResourceManager::SRC::ENEMY_FOOT_SE;
 
 	logic_ = std::make_unique<EnemyLogic>(trans_);
-	deck_ = std::make_shared<CardDeck>(characterType_, ENEMY_NUM);
-	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
-	effect_ = std::make_unique<EffectController>();
 
+	deck_ = std::make_shared<CardDeck>(characterType_, ENEMY_NUM);
+
+	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
+
+	effect_ = std::make_unique<EffectController>();
 }
 
 Enemy::~Enemy(void)
@@ -61,7 +58,7 @@ Enemy::~Enemy(void)
 }
 void Enemy::Load(void)
 {
-	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::ENEMY_1));
+	trans_.SetModel(resMng_.LoadModelDuplicate(ResourceManager::SRC::ENEMY));
 	trans_.quaRot = Quaternion();
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f,UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
@@ -69,19 +66,20 @@ void Enemy::Load(void)
 	//アニメーション
 	AddAnimation();
 
+	//エフェクト
 	effect_->Add(resMng_.Load(ResourceManager::SRC::E_DEATH_EFF).handleId_, EffectController::EFF_TYPE::E_DEATH);
 
+	//ステータスロード
+	LoadStatus();
+
+	//アクションの追加
 	AddAction();
 
 	action_->Load();
-
-
 }
 
 void Enemy::Init(void)
 {
-	//カードデッキ
-	cardCenterPos_ = { Application::SCREEN_SIZE_X-140,140 };//カードの中心位置
 
 	deck_->Init();
 
@@ -94,7 +92,6 @@ void Enemy::Init(void)
 
 	//Transformの設定
 	trans_.quaRot = Quaternion();
-	//trans_.scl = MODEL_SCL;
 	trans_.scl = { modelScl_,modelScl_,modelScl_ };
 	trans_.quaRotLocal =
 		Quaternion::Euler({ 0.0f, UtilityCommon::Deg2RadF(MODEL_LOCAL_DEG), 0.0f });
@@ -103,6 +100,7 @@ void Enemy::Init(void)
 	trans_.localPos = { 0.0f,0.0f,0.0f };
 	trans_.Update();
 
+	//当たり判定の作成
 	MakeColliderGeometry();
 }
 
@@ -120,7 +118,6 @@ void Enemy::UpdateDirection(void)
 void Enemy::UpdateClearDirection(void)
 {
 	animationController_->Update();
-	//action_->Update();
 	VECTOR effPos = MV1GetFramePosition(trans_.modelId, CHEST_FRAME_NO);
 	effect_->SetPos(EffectController::EFF_TYPE::E_DEATH, 0, effPos);
 	effect_->Update();
@@ -149,7 +146,7 @@ void Enemy::Draw(void)
 	//通常描画
 	MV1DrawModel(trans_.modelId);
 
-
+	//岩の描画
 	if (!rock_.empty())
 	{
 		for (auto& rock : rock_)
@@ -207,8 +204,8 @@ void Enemy::UpdateRoarDirection(void)
 			scnMng_.GetCamera().lock()->SetShakeStatus(t, CAM_SHAKE_LIMIT);
 			scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
+			//咆哮状態にする
 			isRoar_ = true;
-
 		}
 	}
 	else
@@ -223,13 +220,12 @@ void Enemy::ChangeUpdateClearDirection(void)
 	isRoar_ = false;
 	animationController_->Play(static_cast<int>(ANIM_TYPE::DEATH), false);
 	VECTOR effPos = MV1GetFramePosition(trans_.modelId, CHEST_FRAME_NO);
-	soundMng_.Stop(SoundManager::SRC::ENEMY_FOOT_SE);
-	soundMng_.Stop(SoundManager::SRC::ENEMY_JUMP_LAND_SE);
-	soundMng_.Stop(SoundManager::SRC::ENEMY_CHARGE_SE);
+	soundMng_.Stop(ResourceManager::SRC::ENEMY_FOOT_SE);
+	soundMng_.Stop(ResourceManager::SRC::ENEMY_JUMP_LAND_SE);
+	soundMng_.Stop(ResourceManager::SRC::ENEMY_CHARGE_SE);
 	effect_->Play(EffectController::EFF_TYPE::E_DEATH, effPos, trans_.quaRot, DEATH_EFF_SCL_VEC);
 	CharacterBase::ChangeUpdateClearDirection();
 }
-
 
 void Enemy::MakeColliderGeometry(void)
 {
@@ -238,7 +234,6 @@ void Enemy::MakeColliderGeometry(void)
 	std::unique_ptr<Geometry>geo = std::make_unique<Capsule>(trans_.pos, trans_.quaRot, CAP_LOCAL_TOP, CAP_LOCAL_DOWN, CAP_RADIUS);
 	MakeCollider(TAG_PRIORITY::BODY, { tag_ }, std::move(geo));
 	tagPrioritys_.emplace_back(TAG_PRIORITY::BODY);
-
 
 	//現在の座標と移動後座標を結んだ線のコライダ(落下時の当たり判定)
 	geo = std::make_unique<Line>(trans_.pos, trans_.quaRot, Utility3D::VECTOR_ZERO, Utility3D::VECTOR_ZERO);
@@ -257,6 +252,7 @@ void Enemy::UpdateNormal(void)
 	animationController_->Update();
 
 	logic_->Update();
+
 	action_->Update();
 
 	//回転の同期
@@ -264,8 +260,6 @@ void Enemy::UpdateNormal(void)
 	trans_.quaRot = charaRot_.playerRotY_;
 
 	trans_.Update();
-
-
 }
 void Enemy::AddAction(void)
 {
@@ -281,7 +275,7 @@ void Enemy::AddAnimation(void)
 	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_IDLE));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_RUN));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::REACT), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::REACT));
-	animationController_->Add(static_cast<int>(ANIM_TYPE::SWIP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_STOMP_ATK));
+	animationController_->Add(static_cast<int>(ANIM_TYPE::STOMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_STOMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::JUMP_ATK), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_JUMP_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::ROAR_ATK), ROAR_ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_ROAR_ATK));
 	animationController_->Add(static_cast<int>(ANIM_TYPE::DEATH), ANIM_SPEED, resMng_.LoadModelDuplicate(ResourceManager::SRC::E_DEATH));

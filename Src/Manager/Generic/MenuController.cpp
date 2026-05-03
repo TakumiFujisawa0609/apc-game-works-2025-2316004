@@ -53,36 +53,8 @@ void MenuController::Update(void)
 {
 }
 
-const int MenuController::GetSizeEasingFontHandle(const int _arrayNum, const int _startSize, const int _goalSize, const float _easeTime, Easing::EASING_TYPE _easeType)
-{
-	int size = easing_->EaseFunc(_startSize, _goalSize, sizeEaseCnt_ / _easeTime, _easeType);
-	if (sizeEaseCnt_ >= _easeTime)
-	{
-		sizeEaseCnt_ = 0.0f;
-	}
-	sizeEaseCnt_ += SceneManager::GetInstance().GetDeltaTime();
-
-	auto& dynamicFont = sizeEasingFontHandleTable_;
-	auto it = dynamicFont.find(size);
-	int dynamicFontHandle = -1;
-
-	//同じサイズのフォントがすでにあるかをチェック
-	if (it != dynamicFont.end())
-	{
-		dynamicFontHandle = it->second;
-	}
-	else
-	{
-		int newFontHandle = CreateFontToHandle(defaultFontHandle_.c_str(), size, 0);
-		dynamicFont[size] = newFontHandle;
-		dynamicFontHandle = newFontHandle;
-	}
-	return dynamicFontHandle;
-}
-
 void MenuController::UpdateDirection(const float _disSpawn, const float _easeTime, const int _goalPosX)
 {
-
 	//すべてのメニューが演出イージングが終わっているかをチェック
 	isAllDirectEaseEnd_ = std::all_of(menuList_.begin(), menuList_.end(), [](const auto& menu) { return menu.second.isEndDirectEase; });
 
@@ -254,8 +226,8 @@ void MenuController::DrawFromCenter(const int _arrayNum, const unsigned int _col
 		static_cast<float>(strPos.y),
 		1.0,
 		1.0,
-		w * 0.5,   // RotCenterX
-		h * 0.5,   // RotCenterY ← ここ重要
+		w * 0.5,
+		h * 0.5,   
 		0.0f,
 		_color,
 		_fontHandle,
@@ -263,6 +235,5 @@ void MenuController::DrawFromCenter(const int _arrayNum, const unsigned int _col
 		FALSE,
 		menuList_[_arrayNum].btnStr.c_str()
 	);
-
 }
 

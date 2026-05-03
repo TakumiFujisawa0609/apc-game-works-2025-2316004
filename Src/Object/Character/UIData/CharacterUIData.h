@@ -2,7 +2,8 @@
 enum class CHARACTER_TYPE
 {
 	PLAYER,
-	ENEMY
+	ENEMY,
+	MAX
 };
 struct HP_DATA
 {

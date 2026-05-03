@@ -1,60 +1,22 @@
 #pragma once
 #include <unordered_map>
 #include <string>
+#include "../Resource/ResourceManager.h"
+#include "../Resource/Resource.h"
 #include "../Template/Singleton.h"
 
+class ResourceManager;
 
-
-class SoundManager : public Singleton<SoundManager>
+class SoundManager :
+	public Singleton<SoundManager>
 {
+	//シングルトン
 	friend class Singleton<SoundManager>;
+
 public:
 
-	/// リソース種類
-	enum class SRC
-	{
-		NONE,						//なし
-
-		//BGM
-		TITLE_BGM,					//タイトルBGM
-		GAME_BGM,					//ゲームBGM
-		GAME_CLEAR,
-		GAME_OVER,
-		//SE
-
-		//足音
-		PLAYER_FOOT_SE,				//プレイヤー足音
-		ENEMY_FOOT_SE,				//エネミー足音
-		ENEMY_STOMP_SE,				//エネミー爆発音
-		ENEMY_CHARGE_SE,			//エネミーチャージ音
-		ENEMY_JUMP_LAND_SE,			//エネミージャンプ着地音
-		ENEMY_HIT_SE,			//エネミーヒット着地音
-		PLAYER_ATTACK_SE,			//プレイヤー攻撃音
-		PLAYER_DODGE_SE,			//プレイヤー回避音
-		PLAYER_HIT_SE,				//プレイヤーヒット音
-
-		//カード関連
-		CARD_PUT,					//カードを引く(アクション開始時)
-		CARD_MOVE,					//カード移動
-		CARD_BE_REFLECTED,			//カード弾かれ音
-		CARD_BREAK,					//カード弾き音(カードに勝った)
-		CARD_RELOAD,				//カードリロード音
-		CARD_RELOAD_FINISH,			//カードリロード終了音
-
-		//ボタン
-		MOVE_BTN_SE	,				//移動ボタン
-		DESIDE_BTN_SE,				//決定ボタン
-		GAME_START_SE				//ゲームスタート音
-
-	};
-
-	/// 音源種類
-	enum class TYPE
-	{
-		BGM,						//BGM
-		SE,							//効果音
-		MAX
-	};
+	using SRC = ResourceManager::SRC;
+	using TYPE = ResourceData::SOUND_TYPE;
 
 	/// 再生種類
 	enum class PLAYTYPE
@@ -74,19 +36,9 @@ public:
 	/// @param  
 	~SoundManager(void)override;
 
-	/// @brief リソースの解放
-	/// @param  
-	void Release(void);
-
 	/// @brief 初期化
 	/// @param  
 	void Init(void);
-
-	/// @brief リソースの読み込み
-	/// @param _src リソース種類
-	/// @param _pitch ピッチ調整値(0.0fで通常のピッチ、正の値で高く、負の値で低くなる)
-	/// @return true:読み込み成功　false:場合失敗
-	const bool LoadResource(const SRC _src, const float _pitch = 0.0f);
 
 	/// @brief 音源の再生
 	/// @param _src リソース種類
@@ -105,44 +57,46 @@ public:
 	/// @brief 読み込んだ音量を設定する
 	/// @param  
 	/// @return 
-	const void SetLoadedSoundsVolume(void) { for (int i = 0; i < TYPE_MAX; i++) { SetSystemVolume(volume_[i], i); } };
+	const void SetLoadedSoundsVolume(void);
 
-	/// @brief 
-	/// @param _src 
-	/// @param _volumePercent 
-	void SetSoundVolumeSRC(const SRC _src, const int _volumePercent);
+	/// @brief リソース別の音量をセット
+	/// @param _src 音量調整したいリソース
+	/// @param _volumePercent 設定したい音量
+	void SetSoundVolumeSRC(const SRC _src, const float _volumePercent);
 
 	/// @brief 音量の設定
 	/// @param _volumePercent 音量パーセント
 	/// @param _type サウンド種類
-	void SetSystemVolume(const int _volumePercent, const int _type);
+	void SetSystemVolume(const float _volumePercent, const TYPE _type);
 
 	/// @brief 音量を返す
 	/// @param _type サウンド種類
 	/// @return 指定したサウンド種類の音量を返す
-	const int GetSoundTypeVolume(const int _type) const { return volume_[_type]; }
+	const float GetSoundTypeVolume(const int _type) const { return volume_[_type]; }
 
-private:
+	/// @brief 再生中のサウンドをすべて止める
+	/// @param  
+	void AllStop(void);
 
-	struct SoundResource
-	{
-		int handleId = -1;		//音源ハンドルID
-		TYPE type = TYPE::MAX;	//音源の種類
-		std::wstring path = L"";	//音源のパス
-	};		
+private:	
 	
+	//音源が読み込まれていないときのエラーメッセージ
+	const std::string NOT_LOAD_ERROR_MESSAGE = "音源が読み込まれてないです";
+
+	//音量マックス値
+	static constexpr float VOLUME_MAX = 255.0f;
+
 	//静的インスタンス
 	static SoundManager* instance_;
 	
 	//ボリューム
-	int volume_[TYPE_MAX];
+	float volume_[TYPE_MAX];
 
-	//管理対象
-	std::unordered_map<SRC, SoundResource> resourcesMap_;
+	//リソースマネージャー
+	ResourceManager& resMng_;
 
-	//読み込み済み
-	std::unordered_map<SRC, SoundResource> loadedMap_;
-
+	// ダミーリソース
+	ResourceData dummy_;
 
 	// コンストラクタ
 	SoundManager(void);
@@ -153,10 +107,6 @@ private:
 	// コピー代入演算子は使用不可
 	SoundManager& operator=(const SoundManager&) = delete;
 
-	//内部読み込み処理
-	bool _Load(const SRC _src, const float _pich = 0.0f);
-
 	//再生種類を取得
 	int GetPlayType(const PLAYTYPE _playType);
-
 };

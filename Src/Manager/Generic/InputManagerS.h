@@ -8,7 +8,7 @@
 #include"InputManager.h"
 #include "../../Template/Singleton.h"
 
-/// 入力イベント
+//入力イベント
 enum class INPUT_EVENT
 {
 	OK,		//決定
@@ -36,7 +36,7 @@ enum class PEIPHERAL_TYPE
 	MAX
 };
 
-/// アナログ入力種類
+//アナログ入力種類
 enum class ANALOG_INPUT_TYPE
 {
 	NONE,
@@ -52,8 +52,10 @@ enum class ANALOG_INPUT_TYPE
 	R_TRIGGER,		//右トリガー
 };
 
-class InputManagerS : public Singleton<InputManagerS>
+class InputManagerS 
+	: public Singleton<InputManagerS>
 {
+	// シングルトン
 	friend class Singleton<InputManagerS>;
 
 public:	
@@ -99,6 +101,7 @@ public:
 	/// @return 
 	Vector2 GetKnockLStickSize(InputManager::JOYPAD_NO no) const;
 	Vector2 GetKnockRStickSize(InputManager::JOYPAD_NO no) const;
+
 private:
 
 	//入力イベントの対応表
@@ -138,12 +141,14 @@ private:
 	using AnalogInputTable_t = std::unordered_map<ANALOG_INPUT_TYPE, std::function<bool(XINPUT_STATE&)>>;
 	AnalogInputTable_t analogInputTable_;
 
-	//コンストラクタ
-	InputManagerS(); 
+	//コンストラクタ(シングルトンのためprivate)
+	InputManagerS(void); 
+
+	//コピー禁止
 	InputManagerS(const InputManager& _copy) = delete;
 	InputManagerS& operator=(const InputManager& _copy) = delete;
-	//デストラクタ
-	~InputManagerS()override = default;
 
+	//デストラクタ
+	~InputManagerS(void)override = default;
 };
 

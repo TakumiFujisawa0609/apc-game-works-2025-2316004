@@ -72,29 +72,40 @@ void CardUIController::DrawSelectCard(void)
 
 void CardUIController::DecisionMove(void)
 {
+	//カード座標のイージング
 	cardPos_ = easing_->EaseFunc(baseCardPos_, DISITON_CARD_POS,
 		(DISITION_MOVE_CARD_TIME - disitionCnt_) / DISITION_MOVE_CARD_TIME, Easing::EASING_TYPE::CUBIC_OUT);
+
+	//カウントのセット
 	disitionCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
 }
 
 void CardUIController::ReactMove(const Vector2F& _goalPos)
 {
+	//カード座標のイージング
 	cardPos_ = easing_->EaseFunc(baseCardPos_, _goalPos,
 		(REACT_MOVE_CARD_TIME - reactCnt_) / REACT_MOVE_CARD_TIME,Easing::EASING_TYPE::LERP);
+
+	//カウントセット
 	reactCnt_ -= UtilityCommon::FIXED_DELTA_TIME;
 }
 
 void CardUIController::ReactUpdate(const Vector2F& _goalPos)
 {
+	//すでに弾き状態だったら飛ばす
 	if (state_ != CARD_STATE::REACT)return;
+
 	//まだ決定移動中ならそちらを優先
 	if (disitionCnt_ > 0.0f)
 	{
 		DecisionMove();
 		return;
 	}
+
 	//弾かれ移動
 	ReactMove(_goalPos);
+
+	//弾き状態にする
 	if (reactCnt_ <= 0.0f)
 	{
 		state_ = CARD_STATE::USED;
@@ -108,7 +119,7 @@ void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax
 	float startRad = startAngle_;
 	float goalRad = goalAngle_;
 
-	//アングルをイージングで補完
+	//角度をイージングで補完
 	currentAngle_ = easing_->EaseFuncRad(startRad
 		, goalRad, time,Easing::EASING_TYPE::LERP);
 
@@ -120,6 +131,8 @@ void CardUIController::MoveOnRevolver(const float& _cnt,const float& moveTimeMax
 void CardUIController::MoveUpDown(void)
 {
 	upDownMoveAngle_ += UP_DOWN_MOVE_SPEED;
+
+	//Y座標をサイン波で動かす
 	cardPos_.y = baseCardPos_.y + sin(upDownMoveAngle_) * UP_DOWN_MOVE_RADIUS;
 }
 
@@ -150,12 +163,14 @@ void CardUIController::ResetCount(void)
 	state_ = CARD_STATE::DRAW_PILE;
 }
 
-
 void CardUIController::EraseUsedCard(void)
 {
 	if (state_ != CARD_STATE::USED)return;
 
+	//カードのスケールのイージング
 	cardScl_ = easing_->EaseFunc(cardScl_, 0.0f, (SCL_LERP_TIME - sclCnt_) / SCL_LERP_TIME,Easing::EASING_TYPE::LERP);
+
+	//カウント
 	sclCnt_ -= static_cast<double>(UtilityCommon::FIXED_DELTA_TIME);
 }
 

@@ -10,6 +10,7 @@ void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 	//コライダの追加
 	colliders3D_.push_back(_collider);
 
+	//コライダーの並べ替え
 	std::sort(colliders3D_.begin(), colliders3D_.end(), [this](std::weak_ptr<Collider> a, std::weak_ptr<Collider> b) {
 		return static_cast<int>(GetTopTags(a)) < static_cast<int>(GetTopTags(b));
 		});
@@ -17,14 +18,14 @@ void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 
 void CollisionManager::Sweep(void)
 {
-	//終了したコライダを並び変える
+	//終了したコライダの並び変え
 	auto it = std::remove_if(colliders3D_.begin(), colliders3D_.end(),
 		[](const std::shared_ptr<Collider> _col)
 		{
 			return _col->IsDead();
 		});
 
-	//終了したコライダを削除する
+	//終了したコライダを削除
 	colliders3D_.erase(it, colliders3D_.end());
 }
 
@@ -72,8 +73,6 @@ void CollisionManager::Update(void)
 			//当たり判定
 			if(IsCollision(colliders3D_[i],colliders3D_[j]))
 			{
-
-
 				//それぞれの当たった処理
 				colliders3D_[i]->OnHit(colliders3D_[j]);
 				colliders3D_[j]->OnHit(colliders3D_[i]);
@@ -103,14 +102,10 @@ CollisionManager::CollisionManager(void)
 {
 	updateFrame_ = 0;
 
-	//**********************************************************
-	//ここに当たり判定する範囲の広さをタグごとで設定する
-	//**********************************************************
-
+	//ここに当たり判定する範囲の広さをタグごとで設定
 	hitRange_[Collider::TAG::PLAYER1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::ENEMY1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::NML_ATK] = HIT_RANGE_NORMAL;
-	hitRange_[Collider::TAG::ROAR_ATK] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::JUMP_ATK] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::CAMERA] = HIT_RANGE_CAMERA;
 	hitRange_[Collider::TAG::STAGE] = HIT_RANGE_STAGE;
@@ -122,6 +117,7 @@ CollisionManager::~CollisionManager(void)
 	//コライダの全削除
 	colliders3D_.clear();
 
+	//判定を行う範囲の削除
 	hitRange_.clear();
 }
 
@@ -129,7 +125,6 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 {
 	//総合
 	bool ret = false;
-
 
 	// weak_ptrをshared_ptrに昇格
 	auto col1 = _col1.lock();
@@ -154,7 +149,6 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 		pos2);
 
 	//双方のタグ
-
 	for (const auto tag1 : _col1.lock()->GetTags())
 	{
 		for (const auto tag2 : _col2.lock()->GetTags())
@@ -173,9 +167,6 @@ const bool CollisionManager::IsWithInHitRange(const std::weak_ptr<Collider> _col
 			}
 		}
 	}
-
-
-
 	//当たらなかった
 	return false;
 }

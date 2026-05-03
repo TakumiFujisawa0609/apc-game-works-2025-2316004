@@ -5,7 +5,9 @@
 #include"../Common/Vector2.h"
 class Easing
 {
+
 public:
+
 	//2点間を定めてイージング
 	enum class EASING_TYPE
 	{
@@ -37,7 +39,6 @@ public:
 		EPICYCLOID,
 		HYPOCYCLOID,
 	};
-
 
 	//半分の割合
 	static constexpr float HALF = 0.5f;
@@ -86,7 +87,8 @@ public:
 		}
 	};
 
-	//コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	Easing(void);
 
 	//デストラクタ
@@ -94,9 +96,6 @@ public:
 
 	//イージングセット(OneWay)
 	void SetEasing(const float t, const EASING_TYPE type);
-
-	//イージングセット(Return)
-	void SetReturnEasing(const float t, const EASING_RETURN type);
 
 	/// @brief イージング計算
 	/// @param start 初期位置
@@ -112,10 +111,6 @@ public:
 	VECTOR EaseFunc(const VECTOR& start, const VECTOR& end, const float t, const EASING_TYPE type);
 	COLOR_F EaseFunc(const COLOR_F& start, const COLOR_F& end, const float t, const EASING_TYPE type);
 
-	//template<typename T>
-	//T EaseFunc(const T& start,const T& end, const float t, const EASING_TYPE type);
-
-
 	/// @brief 角度の最終計算(360度などの制限があるため、別で処理する)
 	/// @param start 初期位置
 	/// @param end 終了位置
@@ -125,10 +120,6 @@ public:
 	float EaseFuncDeg(float& start, float& end, const float t, const EASING_TYPE type);
 	double EaseFuncDeg(double& start, double& end, const float t, const EASING_TYPE type);
 	float EaseFuncRad(float& start, float& end, const float t, const EASING_TYPE type);
-
-
-
-
 
 private:
 
@@ -191,12 +182,6 @@ private:
 	// 三次関数の動き(だんだん遅く)
 	float EaseCubicOut(const float t);
 
-	// 三次関数的な動き(スローインスローアウト的な)
-	float EaseCubicInOut(const float start, const float end, const float t);
-
-	//三次関数的な動き(ファストインファストアウト的な)
-	float EaseCubicOutIn(const float start, const float end, const float t);
-
 	//---------------------------------------------------------------------------------------------
 	//指数関数
 	//---------------------------------------------------------------------------------------------
@@ -215,7 +200,7 @@ private:
 	//バウンドの動き 
 	float EaseBounce(const float t);
 	
-
+	//----------------------------------------------------------------------------------------------
 	//三角関数
 	//----------------------------------------------------------------------------------------------
 	//サイン波(初めから早く)
@@ -223,12 +208,9 @@ private:
 	//コサイン波(遅く始まる)
 	float EaseCosBack(const float t);
 
-	//外周を回る(お花の形)
+	//外周を回る(花の形)
 	Vector2F EaseEpiCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
 
-	//内側を回る(とんがりお花)
+	//内側を回る(とんがっているお花)
 	Vector2F EaseHypoCycloid(const Vector2F& start, const float t, const float halfRadiusNum = 4, const float smallRadius = 30);
-
-
 };
-

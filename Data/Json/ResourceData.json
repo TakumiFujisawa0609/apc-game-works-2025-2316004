@@ -211,6 +211,11 @@
       "handle": "CardDirArrowLeft.png"
     },
     {
+      "type": "json",
+      "name": "CHARA_DATA",
+      "handle": "CharaData.json"
+    },
+    {
       "type": "images",
       "name": "NUMBERS_IMGS",
       "handle": "CardNumber.png",
@@ -218,7 +223,6 @@
       "numY": 2,
       "sizeX": 180,
       "sizeY": 222
-
     },
     {
       "type": "images",
@@ -258,6 +262,140 @@
       "type": "effect",
       "name": "RELOAD_END_EFF",
       "handle": "ReloadEnd/MagicHeal1.efkproj"
+    },
+    {
+      "type": "sound",
+      "soundtype": "BGM",
+      "name": "TITLE_BGM",
+      "handle": "GameTitle.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "BGM",
+      "name": "GAME_BGM",
+      "handle": "GameSceneK.mp3",
+      "volume": 0.6
+    },
+    {
+      "type": "sound",
+      "soundtype": "BGM",
+      "name": "GAME_CLEAR_BGM",
+      "handle": "GameClear.mp3",
+      "volume": 0.8
+    },
+    {
+      "type": "sound",
+      "soundtype": "BGM",
+      "name": "GAME_OVER_BGM",
+      "handle": "GameOver.mp3"
+    },
+
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "CARD_PUT_SE",
+      "handle": "PutCard.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "CARD_MOVE_SE",
+      "handle": "CardSelect2.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "CARD_BE_REFLECTED_SE",
+      "handle": "CardReflected.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "CARD_BREAK_SE",
+      "handle": "CardBreak.mp3",
+      "volume": 0.6
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "CARD_RELOAD_SE",
+      "handle": "CardReload1.mp3",
+      "volume": 0.6
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "CARD_RELOAD_FINISH_SE",
+      "handle": "CardReloadFinish.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "PLAYER_FOOT_SE",
+      "handle": "PlayerFoot.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "PLAYER_ATTACK_SE",
+      "handle": "Blade_Atk.mp3",
+      "pitch": -1000.0
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "PLAYER_HIT_SE",
+      "handle": "KeyBladeHit.mp3",
+      "pitch": -1000.0
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "ENEMY_FOOT_SE",
+      "handle": "EnemyFoot.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "ENEMY_STOMP_SE",
+      "handle": "EnemyStomp.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "ENEMY_CHARGE_SE",
+      "handle": "EnemyCharge.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "ENEMY_JUMP_LAND_SE",
+      "handle": "Enemy_Bomb2.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "ENEMY_HIT_SE",
+      "handle": "PlayerDamage.mp3",
+      "volume": 0.8
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "MOVE_BTN_SE",
+      "handle": "CursolButtonSE.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "DESIDE_BTN_SE",
+      "handle": "DesideButton3.mp3"
+    },
+    {
+      "type": "sound",
+      "soundtype": "SE",
+      "name": "GAME_START_SE",
+      "handle": "DesideButton.mp3"
     }
   ]
 }

@@ -14,8 +14,6 @@
 #include"../Object/Card/CardDeck.h"
 #include "../../Card/CardPresenter.h"
 #include"../Object/Card/PlayerCardUI.h"
-#include"../Base/HpUIBase.h"
-#include"./PlayerHpUI.h"
 #include "../../../Object/Common/AnimationController.h"
 #include"./ActionController.h"
 #include"../Base/CharacterOnHitBase.h"
@@ -42,11 +40,8 @@ Player::Player(void)
 
 	characterType_ = CHARACTER_TYPE::PLAYER;
 
-	//各ステータスの設定
-	SetStatus(MOVE_SPEED, MAX_HP, MAX_ATK, MAX_DEF);
-
 	footSEDisCount_ = FOOT_SE_DIS;
-	footSE_ = SoundManager::SRC::PLAYER_FOOT_SE;
+	footSE_ = ResourceManager::SRC::PLAYER_FOOT_SE;
 
 	capRadius_ = CAP_RADIUS;
 
@@ -71,14 +66,19 @@ void Player::Load(void)
 	trans_.pos = { 0.0f,0.0f,-CENTER_POS_Z_OFFSET };
 	trans_.localPos = { 0.0f,Player::CAP_RADIUS,0.0f };
 
+	//ステータスのロード
+	LoadStatus();
+
+	//アニメーションの追加
 	AddAnimation();
+
+	//アクションの追加
 	AddAction();
 	
 	action_->Load();
 	weapon_->Load();
 
-	SoundManager::GetInstance().LoadResource(SoundManager::SRC::ENEMY_HIT_SE);
-	SoundManager::GetInstance().SetSoundVolumeSRC(SoundManager::SRC::ENEMY_HIT_SE, ENEMY_HIT_SE_VOL);
+	resMng_.Load(SoundManager::SRC::ENEMY_HIT_SE);
 }
 
 void Player::Init(void)
@@ -105,7 +105,7 @@ void Player::Init(void)
 
 void Player::UpdateDirection(void)
 {
-	//アニメーションノ更新
+	//アニメーションの更新
 	animationController_->Update();
 
 	//武器の更新
@@ -114,7 +114,6 @@ void Player::UpdateDirection(void)
 	//Transformの更新
 	trans_.quaRot = charaRot_.playerRotY_;
 	trans_.Update();
-
 }
 
 void Player::UpdateNormal(void)
@@ -136,7 +135,6 @@ void Player::UpdateClearDirection(void)
 
 	//プレイヤー状態更新
 	Action();
-
 }
 
 void Player::UpdateOverDirection(void)
@@ -161,6 +159,7 @@ void Player::Draw(void)
 
 	weapon_->Draw();
 }
+
 void Player::Draw2D(void)
 {
 
@@ -173,6 +172,7 @@ void Player::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
 	onHit_->OnHitUpdate(_hitCol);
 }
+
 void Player::MoveDirFromInput(void)
 {
 	//プレイヤー入力クラスから角度を取得
@@ -181,6 +181,7 @@ void Player::MoveDirFromInput(void)
 	//charaRot_.dir_ = getDir;
 
 }
+
 void Player::SetGoalRotate(void)
 {
 	//ベクトルからクォータニオンへ
@@ -198,12 +199,14 @@ void Player::SetGoalRotate(void)
 
 	charaRot_.goalQuaRot_ = axis;
 }
+
 void Player::MakeAttackCol(const Collider::TAG _charaTag, const Collider::TAG _attackTag, const VECTOR& _atkPos, const float& _radius)
 {
 	//すでに当たり判定がある場合は作らない
 	if (weapon_->IsAliveCollider(_charaTag, _attackTag))return;
 	weapon_->MakeWeaponCollider();
 }
+
 void Player::DeleteAttackCol(const Collider::TAG& _charaTag, const Collider::TAG& _attackCol)
 {
 	if (!weapon_->IsAliveCollider(_charaTag, _attackCol))return;
@@ -222,10 +225,6 @@ void Player::DrawDebug(void)
 	{
 		col.second->GetGeometry().Draw();
 	}
-	
-	VECTOR pos = trans_.pos;
-	DrawFormatString(0, 200, 0x000000, L"pos(%f,%f,%f)", pos.x, pos.y,pos.z);
-
 }
 
 #endif // _DEBUG
@@ -275,11 +274,11 @@ void Player::MakeColliderGeometry(void)
 	onHit_->Load();
 }
 
-
 void Player::Action(void)
 {
 	//ロジック
 	logic_->Update();
+
 	//アクション関係の更新
 	action_->Update();
 

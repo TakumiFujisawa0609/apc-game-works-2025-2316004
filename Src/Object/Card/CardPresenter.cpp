@@ -32,7 +32,10 @@ void CardPresenter::FailureCard(void)
 
 void CardPresenter::PutCard(void)
 {
+	//手札からドロー中に移動
 	deck_.MoveUsingCardToDrawPile();
+
+	//決定状態に移行
 	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 
@@ -69,17 +72,23 @@ void CardPresenter::ChangeCard(void)
 {
 	//現在使っているカードを捨てる
 	deck_.EraseHandCard();
+
 	//手札に移動
 	deck_.MoveUsingCardToDrawPile();
+
 	//UIを使用済み状態へ移行
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
+
 	//決定状態へ移行
 	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::DISITION);
 }
 
 void CardPresenter::EnemyCardReload(void)
 {
+	//内部的なリロード
 	deck_.Reload();
+
+	//UIをリロード状態に遷移
 	uiMng_.GetCardUI(type_).ChangeSelectState(CardUIBase::CARD_SELECT::RELOAD_WAIT);
 }
 
@@ -87,6 +96,8 @@ void CardPresenter::ChangeAction(void)
 {
 	//使用済みへ移行
 	uiMng_.GetCardUI(type_).ChangeUsedActionCard();
+
+	//アクション中カードを消す
 	deck_.EraseHandCard();
 }
 

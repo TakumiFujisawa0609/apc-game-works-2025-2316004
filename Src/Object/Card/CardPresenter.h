@@ -8,6 +8,7 @@ class CardDeck;
 
 class CardPresenter
 {
+
 public:
 
 	/// @brief コンストラクタ
@@ -42,7 +43,7 @@ public:
 
 	/// @brief 手札の取得
 	/// @param  
-	/// @return 
+	/// @return 手札
 	const std::vector<CardBase::CARD_TYPE> GetHandCardType(void)const;
 
 	/// @brief デッキクラスでのリロード処理
@@ -70,7 +71,7 @@ public:
 	void SetUIReloadCount(const float _per);
 
 	/// @brief カードUIの状態変更
-	/// @param _select 
+	/// @param _select 変更したい状態
 	void ChangeUIState(const CardUIBase::CARD_SELECT _select);
 
 	/// @brief カードUIの状態の取得
@@ -79,6 +80,7 @@ public:
 	const CardUIBase::CARD_SELECT GetCardUIState(void)const;
 	
 private:
+
 	//カードデッキ
 	CardDeck& deck_;
 
@@ -87,6 +89,4 @@ private:
 
 	//キャラクター
 	CHARACTER_TYPE& type_;
-	
 };
-

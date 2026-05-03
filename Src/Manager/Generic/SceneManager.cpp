@@ -74,12 +74,10 @@ void SceneManager::Init3D(void)
 	SetFogEnable(true);
 	SetFogColor(FOG_COLOR_R, FOG_COLOR_G, FOG_COLOR_B);
 	SetFogStartEnd(FOG_START,FOG_END);
-
 }
 
 void SceneManager::Update(void)
 {
-
 	// デルタタイム
 	auto nowTime = std::chrono::system_clock::now();
 	deltaTime_ = static_cast<float>(
@@ -91,7 +89,6 @@ void SceneManager::Update(void)
 	if (isSceneChanging_)
 	{
 		SceneChangeFade();
-		//Fade();
 	}
 	Fade();
 	// カメラ更新
@@ -103,7 +100,6 @@ void SceneManager::Update(void)
 
 void SceneManager::Draw(void)
 {
-	
 	// 描画先グラフィック領域の指定
 	// (３Ｄ描画で使用するカメラの設定などがリセットされる)
 	SetDrawScreen(mainScreen_);
@@ -136,7 +132,6 @@ void SceneManager::Draw(void)
 
 	// メインスクリーンを画面に描画する
 	DrawGraph(0, 0, mainScreen_, false);
-
 }
 
 void SceneManager::CreateScene(std::shared_ptr<SceneBase> scene)
@@ -170,8 +165,6 @@ void SceneManager::PopScene()
 
 void SceneManager::Release(void)
 {
-	//全てのシーンで使うシングルトンクラスやリソースはここで解放する
-	DataBank::GetInstance().ReleaseCardData();
 	DataBank::Destroy();
 }
 
@@ -188,16 +181,12 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 	fader_->SetFade(Fader::STATE::FADE_OUT);
 	isSceneChanging_ = true;
 	isEndFade_ = false;
-
 }
 
 void SceneManager::StartFadeIn(void)
 {
 	//フェードを明ける
 	fader_->SetFade(Fader::STATE::FADE_IN);
-
-	////シーンチェンジ
-	//isSceneChanging_ = false;
 }
 
 void SceneManager::StartFadeOut(void)
@@ -210,7 +199,6 @@ void SceneManager::StartFadeOut(void)
 
 SceneManager::SceneManager(void)
 {
-
 	sceneId_ = SCENE_ID::NONE;
 	waitSceneId_ = SCENE_ID::NONE;
 
@@ -223,17 +211,16 @@ SceneManager::SceneManager(void)
 	isSceneChanging_ = false;
 
 	// デルタタイム
-	deltaTime_ = 1.0f / 60.0f;
+	deltaTime_ = DELTA_TIME;
 
 	camera_ = nullptr;
 
 	totalTime_ = -1.0f;
-
 }
 
 void SceneManager::ResetDeltaTime(void)
 {
-	deltaTime_ = 0.016f;
+	deltaTime_ = DELTA_TIME;
 	preTime_ = std::chrono::system_clock::now();
 }
 
@@ -248,6 +235,8 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 	// 現在のシーンを解放（空チェックあり）
 	if (!scenes_.empty() && scenes_.back() != nullptr)
 	{
+		//シーンチェンジ時する前に解放(ゲーム終了時、Manager関連が解放されたのちにManagerの処理が通り、例外スローを避けるため)
+		scenes_.back()->Release();	
 		scenes_.back().reset();
 		scenes_.pop_back(); // シーンを使い終わったのでリストからも削除
 	}
@@ -282,7 +271,6 @@ const Fader& SceneManager::GetFader(void)
 
 void SceneManager::Fade(void)
 {
-
 	Fader::STATE fState = fader_->GetState();
 	isEndFade_ = false;
 	switch (fState)
@@ -293,7 +281,6 @@ void SceneManager::Fade(void)
 		{
 			// 明転が終了したら、フェード処理終了
 			fader_->SetFade(Fader::STATE::NONE);
-			//isSceneChanging_ = false;
 			isEndFade_ = true;
 		}
 		break;

@@ -1,8 +1,8 @@
+#include "../pch.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/UIManager.h"
 #include "../Object/Common/AnimationController.h"
 #include "../Object/Character/Player/ActionController.h"
-#include "../Object/Character/Base/HpUIBase.h"
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Object/Character/Base/CharacterOnHitBase.h"
 #include "../Object/Common/EffectController.h"
@@ -13,16 +13,13 @@
 #include "../../Common/Geometry/Capsule.h"
 #include "../../Common/Geometry/Sphere.h"
 #include "../../Common/Geometry/Line.h"
-
 #include "../Object/Character/Enemy/EnemyRock.h"
-
 #include "../Object/ObjectBase.h"
 #include "CharacterBase.h"
 
 CharacterBase::CharacterBase(void) :
 	movedPos_(Utility3D::VECTOR_ZERO),
 	moveDiff_(Utility3D::VECTOR_ZERO),
-	jumpPow_({Utility3D::VECTOR_ZERO}),
 	soundMng_(SoundManager::GetInstance()),
 	isMoveable_(true),
 	updatePhase_(UPDATE_PHASE::NONE),
@@ -39,7 +36,6 @@ CharacterBase::CharacterBase(void) :
 		{UPDATE_PHASE::OVER_DIRECTION, [this]() {ChangeUpdateOverDirection(); }},
 		{UPDATE_PHASE::HIT_STOP,[this]() {ChangeUpdateHitStop(); } }
 	};
-
 }
 
 CharacterBase::~CharacterBase(void)
@@ -56,7 +52,7 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const Collider:
 	//当たり判定が存在したら削除する
 	if (IsAliveCollider(_charaTag, _attackTag))return;
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-//	isDamage_ = false;
+
 	MakeCollider(TAG_PRIORITY::ATK_SPHERE,{ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
 }
 
@@ -101,27 +97,64 @@ void CharacterBase::UpdatePost(void)
 	trans_.pos = movedPos_;
 }
 
-void CharacterBase::SetStatus(const float& _spd, const float& _hp, const float& _atk, const float& _def)
+void CharacterBase::LoadStatus(void)
 {
-	//最大値をセット
-	maxStatus_ = { _spd,_hp,_atk,_def };
+	//jsonロード
+	nlohmann::json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData;
 
+	std::string statusPath = "";
+
+	characterType_ == CHARACTER_TYPE::PLAYER ? statusPath = PLAYER_STATUS_DATA 
+												: statusPath = ENEMY_STATUS_DATA;
+	for (const auto& data : j[statusPath])
+	{
+		if(data.contains("HP"))
+		{ 
+			maxStatus_.hp = data["HP"]; 
+		}
+		if (data.contains("ATK")) 
+		{
+			maxStatus_.atk = data["ATK"];
+		}
+		if (data.contains("DEF")) 
+		{
+			maxStatus_.atk = data["DEF"];
+		}
+		if (data.contains("SPD")) 
+		{
+			maxStatus_.speed = data["SPD"];
+		}
+	}
 	//現在ステータスを最大値にセット
 	status_ = maxStatus_;
 }
 
 void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 {
+	//カプセルを考慮したステージの制限サイズ
 	VECTOR subRadiusSize={_stageSize.x- capRadius_,0.0f,_stageSize.z- capRadius_};
+
+	//センターサイズ
 	VECTOR sizeHalf = VScale(subRadiusSize, 0.5f);
+
+	//制限
 	VECTOR limit = VAdd(_stagePos, sizeHalf);
+
+	//移動ベクトル
 	VECTOR moveVec = Utility3D::GetMoveVec(trans_.pos, movedPos_);
+
+	//カプセル関係を考慮した移動座標
 	VECTOR addPos = VScale(moveVec, capRadius_);
+
+	//制限座標
 	VECTOR limitPos = VAdd(trans_.pos, addPos);
 
+	//押し出しベクトル
 	VECTOR pushVec = Utility3D::GetMoveVec(movedPos_, moveDiff_);
 	pushVec.y = 0.0f;
 	VECTOR pushPow = VScale(pushVec, action_->GetSpd());
+
+	//移動制限
 	if (limitPos.x >= limit.x)
 	{
 		movedPos_.x = limit.x + pushPow.x;
@@ -138,16 +171,13 @@ void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 	{
 		movedPos_.z = -limit.z + pushPow.z;
 	}
-
 }
-
 
 void CharacterBase::SetUsedCard(void)
 {
 	uiMng_.GetCardUI(characterType_).ChangeReactActionCard();
 	deck_->EraseHandCard();
 }
-
 
 void CharacterBase::ChangeUpdatePhase(const UPDATE_PHASE _phase)
 {
@@ -172,17 +202,15 @@ void CharacterBase::ChangeUpdateOverDirection(void)
 	phazeUpdate_ = [this]() {UpdateOverDirection(); };
 }
 
-
-
 void CharacterBase::MoveDirFromInput(void)
 {
 }
-
 
 void CharacterBase::Rotate(void)
 {
 	if (charaRot_.stepRotTime_ <= 0.0f)return;
 	charaRot_.stepRotTime_ -= scnMng_.GetDeltaTime();
+
 	// 回転の球面補間
 	charaRot_.playerRotY_ = Quaternion::Slerp(
 		charaRot_.playerRotY_, charaRot_.goalQuaRot_, (TIME_ROT - charaRot_.stepRotTime_) / TIME_ROT);
@@ -191,11 +219,11 @@ void CharacterBase::Rotate(void)
 void CharacterBase::Damage(const int _dam)
 {
 	//ダメージを受ける前にUI補間するためのpreHpを計算
-	//hpUi_->SetShakeTime();
 	HP_DATA hpData = {};
+
 	//減らす前のhpを入れる
 	hpData.preHpPer = status_.hp / maxStatus_.hp;
-	//preHpPer_ = hpPer_;
+
 	//ダメージ分hpを減らす
 	status_.hp -= _dam;
 
@@ -231,12 +259,10 @@ const CardActionBase::CARD_ACT_TYPE& CharacterBase::GetCardAction(void) const
 	return action_->GetCardAction();
 }
 
-
 const ActionBase& CharacterBase::GetMainAction(void) const
 {
 	return action_->GetMainAction();
 }
-
 
 const CharacterOnHitBase::HIT_POINT& CharacterBase::GetHitPoint(void) const
 {
@@ -300,8 +326,6 @@ const bool CharacterBase::GetIsHitTarget(void) const
 {
 	return onHit_->GetIsHitTarget();
 }
-
-
 
 void CharacterBase::UpdateNone(void)
 {

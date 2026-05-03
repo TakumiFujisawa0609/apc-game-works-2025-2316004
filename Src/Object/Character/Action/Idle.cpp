@@ -37,18 +37,10 @@ void Idle::Update(void)
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::CARD_ACTION);
 		return;
 	}
-
-	if (actionCntl_.GetInput().GetIsAct().isJump)
-	{
-		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::JUMP);
-		return;
-	}
+	//回避
 	if (actionCntl_.GetInput().GetIsAct().isDodge)
 	{
 		actionCntl_.ChangeAction(ActionController::ACTION_TYPE::DODGE);
 		return;
 	}
-
-
-	//何もしないが、待機モーションとかずっと止まってるときにアニメーションを変えたりしたい
 }
