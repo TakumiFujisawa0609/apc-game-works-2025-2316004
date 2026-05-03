@@ -18,9 +18,10 @@ TitleScene::TitleScene(void):
 	soundMng_(SoundManager::GetInstance())
 {
 	//更新関数のセット
-	updateFunc_ = std::bind(&TitleScene::LoadingUpdate, this);
+	updateFunc_ = [this]() {LoadingUpdate(); };
+
 	//描画関数のセット
-	drawFunc_ = std::bind(&TitleScene::LoadingDraw, this);
+	drawFunc_ = [this]() {LoadingDraw(); };
 
 	menuController_ = std::make_unique<MenuController>();
 }
@@ -33,26 +34,32 @@ void TitleScene::Load(void)
 {
 	//フォントの登録
 	buttonFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
+
 	//タイトル画像の読み込み
 	imgTitleBack = resMng_.Load(ResourceManager::SRC::TITLE_BACK_IMG).handleId_;
 
 	//タイトルロゴの読み込み
 	imgTitleLogo = resMng_.Load(ResourceManager::SRC::TITLE_LOGO).handleId_;
+
+	//フォントのロード
 	menuController_->LoadFont(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE);
 
+	//リソースロード
 	resMng_.Load(ResourceManager::SRC::TITLE_BGM);
 	resMng_.Load(ResourceManager::SRC::MOVE_BTN_SE);
 	resMng_.Load(ResourceManager::SRC::DESIDE_BTN_SE);
 	resMng_.Load(ResourceManager::SRC::GAME_START_SE);
 
+	//ボタンUIのロード
 	ButtonUIManager::GetInstance().Load();
 
-
+	//はいいいえ初期化
 	yesNoState_ = YES_NO::NO;
 }
 
 void TitleScene::Init(void)
 {
+	//更新関連の格納
 	titleSelectFuncTable_ = {
 		{TITLE_STATE::EASE_MENU,[this]() {UpdateEase();}},
 		{TITLE_STATE::MENU,[this]() {UpdateMenu();}},
@@ -62,36 +69,32 @@ void TitleScene::Init(void)
 		{TITLE_STATE::EXIT,[this](){ Application::GetInstance().IsGameEnd(); }}
 	};
 
+	//文字列とボタンの対応
 	buttonStrTable_ = {
 		{TITLE_BTN::START_GAME,START_GAME_STR},
 		{TITLE_BTN::SCREEN,SCREEN_STR},
 		{TITLE_BTN::EXIT,EXIT_STR}
 	};
 
-
+	//文字列の結びつけ
 	yesNoStrTable_ = {
 		{YES_NO::YES,YES_STR},
 		{YES_NO::NO,NO_STR}
 	};
-	for (int i = 0; i < static_cast<int>(TITLE_BTN::MAX); i++)
-	{
-		BTN btn = {};
-		Vector2F pos = { Application::SCREEN_SIZE_X,BUTTON_START_POS_Y + BUTTON_DISTANCE * i };
-		btn.btnStr = buttonStrTable_[static_cast<TITLE_BTN>(i)];
-		btn.btnType = static_cast<TITLE_BTN>(i);
-		btn.startPos = pos;
-		btn.curPos = btn.startPos;
-		btn.easeCnt = BUTTON_EASING_TIME;
-		buttons_.emplace_back(btn);
-	}
+
+	//イージング
 	easing_ = std::make_unique<Easing>();
+
+	//状態初期化
 	selectState_ = TITLE_STATE::MENU;
 	ChangeState(TITLE_STATE::EASE_MENU);
+
 	selectNum_ = 0;
 	easeDistanceCnt_ = 0.0f;
 	logoPos_ = { -LOGO_SIZE_X,-LOGO_SIZE_Y };
 	logoEaseCnt_ = BUTTON_EASING_TIME;
 
+	//メニューコントローラーの追加
 	int i = 0;
 	for (auto& button : buttonStrTable_)
 	{
@@ -123,6 +126,7 @@ void TitleScene::NormalUpdate(void)
 
 void TitleScene::NormalDraw(void)
 {
+	//背景
 	DrawExtendGraph(
 		0,
 		0,
@@ -136,6 +140,7 @@ void TitleScene::NormalDraw(void)
 	DrawExtendGraphF(logoPos_.x, logoPos_.y, logoPos_.x + LOGO_SIZE_X, logoPos_.y + LOGO_SIZE_Y, imgTitleLogo, true);
 	menuController_->Draw();
 
+	//はいいいえ
 	if (selectState_ == TITLE_STATE::EXIT_MENU|| selectState_ == TITLE_STATE::SCREEN)
 	{
 		std::wstring str = L"";
@@ -188,11 +193,17 @@ void TitleScene::OnSceneEnter(void)
 
 void TitleScene::UpdateEase(void)
 {
+	//ロゴのイージングカウント
 	logoEaseCnt_ -= SceneManager::GetInstance().GetDeltaTime();
 
+	//ロゴ座標のイージング
 	logoPos_ = easing_->EaseFunc(START_POS, GOAL_POS, (LOGO_EASING_TIME - logoEaseCnt_) / LOGO_EASING_TIME, Easing::EASING_TYPE::ELASTIC_OUT);
 
-	menuController_->UpdateDirection(EASING_DIS_TIME, BUTTON_EASING_TIME, static_cast<int>(BUTTON_START_POS_X));
+	//メニューコントローラー更新
+	menuController_->UpdateDirection(EASING_DIS_TIME, BUTTON_EASING_TIME
+		, static_cast<int>(BUTTON_START_POS_X));
+
+	//すべてのメニューの出現演出終了後、メニュー選択へ
 	if (menuController_->IsAllDirectEaseEnd())
 	{
 		ChangeState(TITLE_STATE::MENU);
@@ -224,7 +235,10 @@ void TitleScene::UpdateMenu(void)
 	{
 		ResourceManager::SRC se;
 		//ゲームスタート以外のボタンなら決定音、ゲームスタートならゲームスタート音を鳴らす
-		selectNum_ != static_cast<int>(TITLE_BTN::START_GAME) ? se = ResourceManager::SRC::DESIDE_BTN_SE : se = ResourceManager::SRC::GAME_START_SE;
+		selectNum_ != static_cast<int>(TITLE_BTN::START_GAME) ? se = ResourceManager::SRC::DESIDE_BTN_SE 
+			: se = ResourceManager::SRC::GAME_START_SE;
+
+		//SE再生
 		soundMng_.Play(se, SoundManager::PLAYTYPE::BACK);
 		ChangeState(static_cast<TITLE_STATE>(selectNum_));
 	}
@@ -278,6 +292,7 @@ void TitleScene::UpdateExitMenu(void)
 }
 void TitleScene::UpdateYesNo(void)
 {
+	//はいいいえSE
 	if (inputMngS_.IsTrgDown(INPUT_EVENT::LEFT) || inputMng_.IsTrgDown(KEY_INPUT_A))
 	{
 		soundMng_.Play(ResourceManager::SRC::MOVE_BTN_SE, SoundManager::PLAYTYPE::BACK);

@@ -10,6 +10,7 @@ void CollisionManager::AddCollider(const std::shared_ptr<Collider> _collider)
 	//コライダの追加
 	colliders3D_.push_back(_collider);
 
+	//コライダーの並べ替え
 	std::sort(colliders3D_.begin(), colliders3D_.end(), [this](std::weak_ptr<Collider> a, std::weak_ptr<Collider> b) {
 		return static_cast<int>(GetTopTags(a)) < static_cast<int>(GetTopTags(b));
 		});
@@ -101,7 +102,7 @@ CollisionManager::CollisionManager(void)
 {
 	updateFrame_ = 0;
 
-	//ここに当たり判定する範囲の広さをタグごとで設定する
+	//ここに当たり判定する範囲の広さをタグごとで設定
 	hitRange_[Collider::TAG::PLAYER1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::ENEMY1] = HIT_RANGE_NORMAL;
 	hitRange_[Collider::TAG::NML_ATK] = HIT_RANGE_NORMAL;

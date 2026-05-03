@@ -92,7 +92,9 @@ void CardUIBase::PlayCardSound(void)
 void CardUIBase::LoadCardData(void)
 {
 	using json = nlohmann::json;
-	json j=UtilityCommon::LoadJsonData(JSON_DATA_PATH);
+	
+	//Jsonデータの取得
+	json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData_;
 
 	std::vector<CardBase::CARD_STATUS> cards;
 	//キャラタイプからどのJsonデータを読み取るかを決める

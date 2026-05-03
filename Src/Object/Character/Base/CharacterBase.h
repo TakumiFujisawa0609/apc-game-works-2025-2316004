@@ -303,8 +303,9 @@ protected:
 	//中心からのZオフセット
 	static constexpr float CENTER_POS_Z_OFFSET = 600.0f;
 
-	//キャラクターデータの外部ファイルパス
-	const std::string CHARACTER_DATA_PATH = "Data/Json/CharaData.json";
+	//キャラステータスのデータパス
+	const std::string PLAYER_STATUS_DATA = "PlayerStatus";	//プレイヤー
+	const std::string ENEMY_STATUS_DATA = "EnemyStatus";	//敵
 
 	//入力
 	std::unique_ptr<LogicBase>logic_;

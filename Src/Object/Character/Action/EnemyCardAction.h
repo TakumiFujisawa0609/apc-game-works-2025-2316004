@@ -129,6 +129,12 @@ private:
     //ジャンプ攻撃力
     static constexpr float JUMP_ATK_POWER = 40.0f;
 
+    //ジャンプチャージ時のカメラシェイク可動範囲
+    static constexpr float JUMP_CHARGE_CAMERA_SHAKE_LIMIT = 10.0f;
+
+    //ジャンプ攻撃時のカメラシェイク可動範囲
+    static constexpr float JUMP_ATTACK_CAMERA_SHAKE_LIMIT = 30.0f;
+
     //攻撃ローカル座標
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
 
@@ -144,6 +150,7 @@ private:
     //ひっかき攻撃のステータス
     static constexpr ATK_STATUS STOMP_ATK = 
     { STOMP_COL_START_ANIM_CNT,STOMP_COL_END_ANIM_CNT,0.0f};
+
     //ジャンプ攻撃のステータス
     static constexpr ATK_STATUS JUMP_ATK = 
     { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,0.0f,JUMP_ATK_RADIUS,JUMP_ATK_POWER };

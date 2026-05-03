@@ -9,8 +9,8 @@
 
 class Transform;
 class Easing;
-class Camera :
-	public ObjectBase
+
+class Camera
 {
 public:
 
@@ -41,13 +41,13 @@ public:
 	static constexpr float LIMIT_X_UP_RAD = 15.0f * (DX_PI_F / 180.0f);
 	static constexpr float LIMIT_X_DW_RAD = -30.0f * (DX_PI_F / 180.0f);
 
-	//ターゲットカメラ遷移時の補完時間
+	// ターゲットカメラ遷移時の補完時間
 	static constexpr double CHANGE_TARGET_LERP_TIME = 0.7;
 
-	//カメラ感度
+	// カメラ感度
 	static constexpr float FOV_PER = 0.2f;
 
-	//1シェイクにかかる時間
+	// 1シェイクにかかる時間
 	static constexpr float SHAKE_PER = 0.1f;
 	
 	//当たり判定の半径
@@ -106,19 +106,15 @@ public:
 
 	/// @brief デストラクタ
 	/// @param  
-	~Camera(void)override;
-
-	/// @brief 当たり判定配列の格納
-	/// @param  
-	void MakeColliderGeometry(void);
+	~Camera(void);
 
 	/// @brief 初期化
 	/// @param  
-	void Init(void)override;
+	void Init(void);
 
 	/// @brief 更新
 	/// @param  
-	void Update(void)override;
+	void Update(void);
 
 	/// @brief カメラの設定
 	/// @param  
@@ -126,7 +122,7 @@ public:
 
 	/// @brief 描画
 	/// @param  
-	void Draw(void)override;
+	void Draw(void);
 
 	/// @brief カメラ位置の取得
 	/// @param  
@@ -164,7 +160,7 @@ public:
 	
 	/// @brief サブ処理の変更
 	/// @param _submode サブ処理(イージングなど)
-	void ChangeSub(const SUB_MODE _submode);
+	void ChangeSub(const SUB_MODE _subMode);
 
 	/// @brief 追従対象の設定
 	/// @param _follow 追従したい対象のTransform
@@ -247,6 +243,9 @@ private:
 
 	//敵咆哮演出時のカメラ振動範囲
 	static constexpr float ENEMY_ROAR_SHAKE_LIMIT = 5.0f;
+
+	//演出終了のゴール角度
+	static constexpr float END_DIRECTION_GOAL_ANGLE = -10.0f;
 
 	// カメラが追従対象とするTransform
 	const Transform* followTransform_;
@@ -371,18 +370,11 @@ private:
 	VECTOR startAngles_;
 	VECTOR goalAngles_;
 
-	/// @brief 当たったときの処理
-	/// @param _hitCol ヒットしたコライダ
-	virtual void OnHit(const std::weak_ptr<Collider> _hitCol)override;
-
 	//イージング演出時、次の状態格納
 	DIRECTION_MODE nextDirectionMode_;
 
 	//イージング演出次のタイプ格納
 	float directionEasingTime_;
-
-	//カメラ当たり判定の線分更新
-	void UpdateCameraColliderLine(void);
 
 	// カメラを初期位置に戻す
 	void SetDefault(void);

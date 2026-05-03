@@ -37,10 +37,6 @@ public:
 	/// @param  
 	void Draw2D(void);
 
-	/// @brief 解放
-	/// @param  
-	void Release(void);
-
 	/// @brief ゲームクリアシーン遷移条件(敵のHPによるもの)
 	/// @param  
 	/// @return 

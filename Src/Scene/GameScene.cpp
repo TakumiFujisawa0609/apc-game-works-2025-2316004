@@ -21,14 +21,26 @@
 #include "../Object/Stage.h"	
 #include "PauseScene.h"
 #include "GameScene.h"
+
 GameScene::GameScene(void)
 {
 	//更新関数のセット
 	updateFunc_ = std::bind(&GameScene::LoadingUpdate, this);
+
 	//描画関数のセット
 	drawFunc_ = std::bind(&GameScene::LoadingDraw, this);
 
 	postEffectScreen_ = MakeScreen(Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, true);
+
+	changeUpdate_ = {
+	{UPDATE_PHASE::NONE,[this]() {ChangeNone(); }},
+	{UPDATE_PHASE::FADE,[this]() {ChangeFade(); }},
+	{UPDATE_PHASE::DIRECTION,[this]() {ChangeDirection(); }},
+	{UPDATE_PHASE::CLEAR_DIRECTION,[this]() {ChangeClearDirection(); }},
+	{UPDATE_PHASE::OVER_DIRECTION,[this]() {ChangeOverDirection(); }},
+	{UPDATE_PHASE::NORMAL,[this]() {ChangeNormal(); }},
+	{UPDATE_PHASE::SLOW,[this]() {ChangeSlow(); }}
+	};
 
 	CardSystem::CreateInstance();
 	UIManager::CreateInstance();
@@ -53,6 +65,7 @@ void GameScene::Load(void)
 	//ポーズ画面のリソース
 	pauseScene_ = std::make_shared<PauseScene>();
 	pauseScene_->Load();
+
 	//UIマネージャ
 	UIManager::GetInstance().Load();
 
@@ -70,16 +83,9 @@ void GameScene::Load(void)
 
 void GameScene::Init(void)
 {
-	changeUpdate_ = {
-		{UPDATE_PHASE::NONE,[this]() {ChangeNone(); }},
-		{UPDATE_PHASE::FADE,[this]() {ChangeFade(); }},
-		{UPDATE_PHASE::DIRECTION,[this]() {ChangeDirection(); }},
-		{UPDATE_PHASE::CLEAR_DIRECTION,[this]() {ChangeClearDirection(); }},
-		{UPDATE_PHASE::OVER_DIRECTION,[this]() {ChangeOverDirection(); }},
-		{UPDATE_PHASE::NORMAL,[this]() {ChangeNormal(); }},
-		{UPDATE_PHASE::SLOW,[this]() {ChangeSlow(); }}
-	};
 	updatePhase_ = UPDATE_PHASE::NONE;
+
+	//演出へ
 	ChangeUpdatePhase(UPDATE_PHASE::DIRECTION);
 
 	CharacterManager::GetInstance().Init();
@@ -87,8 +93,6 @@ void GameScene::Init(void)
 
 	//シェイク状態を初期化
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
-	//カメラの当たり判定作成
-	scnMng_.GetCamera().lock()->MakeColliderGeometry();
 
 	stage_->Init();
 	skyDome_->Init();
@@ -104,7 +108,7 @@ void GameScene::Release(void)
 
 void GameScene::CheckSkip(void)
 {
-
+	//Yボタン長押しでスキップする
 	if (inputMng_.IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHTBUTTON_TOP))
 	{
 		if (skipKeepCnt_ > SKIP_BTN_TIME)
@@ -122,16 +126,15 @@ void GameScene::CheckSkip(void)
 	float per = skipKeepCnt_ / SKIP_BTN_TIME;
 	UIManager::GetInstance().SetSkipPer(per);
 
+	//スキップされたら演出を終了し、フェードイン
 	if (isSkippingDirection_)
 	{
 		scnMng_.Fade();
 		if (scnMng_.GetIsEndFade())
 		{
 			ChangeUpdatePhase(UPDATE_PHASE::FADE);
-			return;
 		}
 	}
-
 }
 
 void GameScene::NoneUpdate(void)
@@ -142,6 +145,8 @@ void GameScene::NoneUpdate(void)
 void GameScene::FadeUpdate(void)
 {
 	scnMng_.Fade();
+
+	//フェード終了後、通常処理へ
 	if (scnMng_.GetIsEndFade())
 	{
 		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
@@ -156,17 +161,19 @@ void GameScene::NormalUpdate(void)
 		scnMng_.PushScene(pauseScene_);
 		return;
 	}
-	//とりあえず敵が倒れたら
+	//敵が倒れたらクリアシ－ンへ
 	if (CharacterManager::GetInstance().IsSceneChageClearCondition())
 	{
 		ChangeUpdatePhase(UPDATE_PHASE::CLEAR_DIRECTION);
 		return;
 	}
+	//自分が倒れたらゲームオーバーシーンへ
 	else if (CharacterManager::GetInstance().IsSceneChangeGameOverCondition())
 	{
 		ChangeUpdatePhase(UPDATE_PHASE::OVER_DIRECTION);
 		return;
 	}
+
 	//ステージ
 	stage_->Update();
 
@@ -176,6 +183,7 @@ void GameScene::NormalUpdate(void)
 	//カード勝敗状態の監視
 	CardSystem::GetInstance().CompareCards();
 
+	//UIの更新
 	UIManager::GetInstance().Update();
 
 	//更新はアクション中のみ
@@ -187,24 +195,31 @@ void GameScene::NormalUpdate(void)
 
 void GameScene::NormalDraw(void)
 {
-	//プレイヤーの描画
+	//プレイヤー
 	skyDome_->Draw();
+
+	//ステージ
 	stage_->Draw();
+
+	//キャラクター
 	CharacterManager::GetInstance().Draw();
-
-	//UIなどの描画
-	CharacterManager::GetInstance().Draw2D();
-
+	
+	//UI
 	UIManager::GetInstance().Draw();
 }
 
 void GameScene::DirectionDraw(void)
 {
-	//プレイヤーの描画
+	//プレイヤー
 	skyDome_->Draw();
+
+	//ステージ
 	stage_->Draw();
+
+	//キャラクター
 	CharacterManager::GetInstance().Draw();
 
+	//演出時の2D描画
 	if (updatePhase_ == UPDATE_PHASE::DIRECTION)
 	{
 		UIManager::GetInstance().DirectionDraw();
@@ -226,64 +241,95 @@ void GameScene::ChangeNone(void)
 
 void GameScene::ChangeFade(void)
 {
+	//フェード開始
 	scnMng_.StartFadeIn();
+
+	//スキップ
 	isSkippingDirection_ = true;
+
+	//カメラ遷移
 	scnMng_.GetCamera().lock()->ChangeMode(Camera::MODE::FOLLOW);
+
 	updateFunc_ = [this]() {FadeUpdate(); };
 }
 
 void GameScene::ChangeDirection(void)
 {
+	//スキップフラグ初期化
 	isSkippingDirection_ = false;
+
+	//キャラクターの演出更新
 	CharacterManager::GetInstance().ChangeCharacterDirectionUpdate();
+
 	updateFunc_ = [this]() {DirectionUpdate(); };
 	drawFunc_ = [this]() {DirectionDraw(); };
 }
 
 void GameScene::ChangeClearDirection()
 {
+	//キャラクターをクリア状態へ
 	CharacterManager::GetInstance().ChangeCharacterClearDirection();
+
+	//カメラのリセット
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+
+	//スカイドームをクリア状態へ
 	skyDome_->ChangePhase(SkyDome::PHASE::CLEAR);
+
 	updateFunc_ = [this]() {ClearDirectionUpdate(); };
 	drawFunc_ = [this]() {DirectionDraw(); };
 }
 
 void GameScene::ChangeOverDirection(void)
 {
+	//キャラクターをゲームオーバーへ
 	CharacterManager::GetInstance().ChangeCharacterOverDirection();
+
+	//カメラのリセット
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+
 	updateFunc_ = [this]() {OverDirectionUpdate(); };
 	drawFunc_ = [this]() {DirectionDraw(); };
 }
 
 void GameScene::ChangeNormal(void)
 {
+	//キャラクターを通常更新へ
 	CharacterManager::GetInstance().ChangeCharacterNormalUpdate();
+
+	//カメラのリセット
 	scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::NONE);
+
 	updateFunc_ = [this]() {NormalUpdate(); };
 	drawFunc_ = [this]() {NormalDraw(); };
 }
 
 void GameScene::ChangeSlow(void)
 {
+	//スロー状態へ
 	CharacterManager::GetInstance().ChangeCharacterNormalUpdate();
 	updateFunc_ = [this]() {SlowUpdate(); };
 }
 
 void GameScene::DirectionUpdate(void)
 {
-
+	//スキップ
 	CheckSkip();
+
+	//演出UI
 	UIManager::GetInstance().DirectionUpdate();
+
+	//フェードアウトしているとき、更新を飛ばす
 	if (scnMng_.GetFader().GetState()==Fader::STATE::FADE_OUT)return;
 
+	//演出終了後、通常カメラへ
 	if (scnMng_.GetCamera().lock()->IsEndDirectionMode())
 	{
 		ChangeUpdatePhase(UPDATE_PHASE::NORMAL);
 		return;
 	}
 
+	//キャラクターの更新
 	CharacterManager::GetInstance().Update();
 }
 
@@ -294,6 +340,8 @@ void GameScene::ClearDirectionUpdate(void)
 	{
 		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_CLEAR);
 	}
+
+	//キャラクター
 	CharacterManager::GetInstance().Update();
 
 	//スカイドーム
@@ -307,13 +355,18 @@ void GameScene::OverDirectionUpdate(void)
 	{
 		scnMng_.ChangeScene(SceneManager::SCENE_ID::GAME_OVER);
 	}
+
+	//キャラクター
 	CharacterManager::GetInstance().Update();
 }
 
 void GameScene::SlowUpdate(void)
 {
+	//2フレームに1回更新
 	if (--slowFrame_ > 0)return;
 	slowFrame_ = FRAME_PER_UPDATE;
+
+	//通常更新
 	NormalUpdate();
 }
 
@@ -324,7 +377,12 @@ void GameScene::OnSceneEnter(void)
 }
 void GameScene::Skip(void)
 {
+	//すでにtrueの場合、処理を飛ばす
 	if (isSkippingDirection_)return;
+
+	//フェード開始
 	scnMng_.StartFadeOut();
+
+	//演出スキップフラグ
 	isSkippingDirection_ = true;
 }

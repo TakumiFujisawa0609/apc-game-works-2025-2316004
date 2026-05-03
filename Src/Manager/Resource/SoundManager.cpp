@@ -50,7 +50,8 @@ void SoundManager::Stop(const SRC _src)
 bool SoundManager::IsPlay(const SRC _src) const
 {
     const auto res = resMng_.GetResource(_src);
-    if (res.handleId_==-1)
+
+    if (res.handleId_ == -1)
     {
         return false; // Œ©‚Â‚©‚ç‚È‚¢ê‡‚Í–¢Ä¶‚Æ‚·‚é
     }
@@ -73,6 +74,7 @@ void SoundManager::SetSoundVolumeSRC(const SRC _src, const float _volumePercent)
     {
         return; // Œ©‚Â‚©‚ç‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
     }
+
 	int volume = static_cast<int>(VOLUME_MAX * _volumePercent);
     //‰¹—Êİ’è
 	ChangeVolumeSoundMem(volume, res.handleId_);

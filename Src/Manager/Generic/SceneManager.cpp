@@ -74,7 +74,6 @@ void SceneManager::Init3D(void)
 	SetFogEnable(true);
 	SetFogColor(FOG_COLOR_R, FOG_COLOR_G, FOG_COLOR_B);
 	SetFogStartEnd(FOG_START,FOG_END);
-
 }
 
 void SceneManager::Update(void)
@@ -101,7 +100,6 @@ void SceneManager::Update(void)
 
 void SceneManager::Draw(void)
 {
-	
 	// 描画先グラフィック領域の指定
 	// (３Ｄ描画で使用するカメラの設定などがリセットされる)
 	SetDrawScreen(mainScreen_);
@@ -134,7 +132,6 @@ void SceneManager::Draw(void)
 
 	// メインスクリーンを画面に描画する
 	DrawGraph(0, 0, mainScreen_, false);
-
 }
 
 void SceneManager::CreateScene(std::shared_ptr<SceneBase> scene)
@@ -184,7 +181,6 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 	fader_->SetFade(Fader::STATE::FADE_OUT);
 	isSceneChanging_ = true;
 	isEndFade_ = false;
-
 }
 
 void SceneManager::StartFadeIn(void)
@@ -215,7 +211,7 @@ SceneManager::SceneManager(void)
 	isSceneChanging_ = false;
 
 	// デルタタイム
-	deltaTime_ = 1.0f / 60.0f;
+	deltaTime_ = DELTA_TIME;
 
 	camera_ = nullptr;
 
@@ -224,7 +220,7 @@ SceneManager::SceneManager(void)
 
 void SceneManager::ResetDeltaTime(void)
 {
-	deltaTime_ = 0.016f;
+	deltaTime_ = DELTA_TIME;
 	preTime_ = std::chrono::system_clock::now();
 }
 
@@ -275,7 +271,6 @@ const Fader& SceneManager::GetFader(void)
 
 void SceneManager::Fade(void)
 {
-
 	Fader::STATE fState = fader_->GetState();
 	isEndFade_ = false;
 	switch (fState)

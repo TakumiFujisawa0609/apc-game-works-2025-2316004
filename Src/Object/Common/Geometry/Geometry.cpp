@@ -1,20 +1,9 @@
 #include "../../../Common/Quaternion.h"
 #include "Geometry.h"
 
-//***************************************************
-//Šî–{
-//***************************************************
-
 Geometry::~Geometry(void)
 {
 }
-
-//Geometry::Geometry(const VECTOR& _pos, const Quaternion& _rot) :
-//	pos_(_pos),
-//	quaRot_(_rot)
-//{
-//}
-
 
 inline void Geometry::SetHalfSize(const VECTOR& _halfSize)
 {
@@ -29,8 +18,6 @@ const VECTOR Geometry::GetCenter(void) const
 	VECTOR diff = VSub(top, down);
 	return VAdd(down, VScale(diff, 0.5f));
 }
-
-
 
 Geometry::Geometry(const VECTOR& _pos, const Quaternion& _rot, const float& _radius,
 	const VECTOR& _localPosPoint1, const VECTOR& _localPosPoint2,

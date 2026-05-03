@@ -36,7 +36,6 @@ CharacterBase::CharacterBase(void) :
 		{UPDATE_PHASE::OVER_DIRECTION, [this]() {ChangeUpdateOverDirection(); }},
 		{UPDATE_PHASE::HIT_STOP,[this]() {ChangeUpdateHitStop(); } }
 	};
-
 }
 
 CharacterBase::~CharacterBase(void)
@@ -53,7 +52,7 @@ void CharacterBase::MakeAttackCol(const Collider::TAG _charaTag, const Collider:
 	//当たり判定が存在したら削除する
 	if (IsAliveCollider(_charaTag, _attackTag))return;
 	std::unique_ptr<Sphere>sphere = std::make_unique<Sphere>(_atkPos, _radius);
-//	isDamage_ = false;
+
 	MakeCollider(TAG_PRIORITY::ATK_SPHERE,{ _charaTag,_attackTag }, std::move(sphere),{Collider::TAG::STAGE});
 }
 
@@ -101,23 +100,28 @@ void CharacterBase::UpdatePost(void)
 void CharacterBase::LoadStatus(void)
 {
 	//jsonロード
-	nlohmann::json j = UtilityCommon::LoadJsonData(CHARACTER_DATA_PATH);
+	nlohmann::json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData_;
 
 	std::string statusPath = "";
 
-	characterType_ == CHARACTER_TYPE::PLAYER ? statusPath = "PlayerStatus" : statusPath = "EnemyStatus";
+	characterType_ == CHARACTER_TYPE::PLAYER ? statusPath = PLAYER_STATUS_DATA 
+												: statusPath = ENEMY_STATUS_DATA;
 	for (const auto& data : j[statusPath])
 	{
-		if(data.contains("HP")){ 
+		if(data.contains("HP"))
+		{ 
 			maxStatus_.hp = data["HP"]; 
 		}
-		if (data.contains("ATK")) {
+		if (data.contains("ATK")) 
+		{
 			maxStatus_.atk = data["ATK"];
 		}
-		if (data.contains("DEF")) {
+		if (data.contains("DEF")) 
+		{
 			maxStatus_.atk = data["DEF"];
 		}
-		if (data.contains("SPD")) {
+		if (data.contains("SPD")) 
+		{
 			maxStatus_.speed = data["SPD"];
 		}
 	}
@@ -127,16 +131,30 @@ void CharacterBase::LoadStatus(void)
 
 void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 {
+	//カプセルを考慮したステージの制限サイズ
 	VECTOR subRadiusSize={_stageSize.x- capRadius_,0.0f,_stageSize.z- capRadius_};
+
+	//センターサイズ
 	VECTOR sizeHalf = VScale(subRadiusSize, 0.5f);
+
+	//制限
 	VECTOR limit = VAdd(_stagePos, sizeHalf);
+
+	//移動ベクトル
 	VECTOR moveVec = Utility3D::GetMoveVec(trans_.pos, movedPos_);
+
+	//カプセル関係を考慮した移動座標
 	VECTOR addPos = VScale(moveVec, capRadius_);
+
+	//制限座標
 	VECTOR limitPos = VAdd(trans_.pos, addPos);
 
+	//押し出しベクトル
 	VECTOR pushVec = Utility3D::GetMoveVec(movedPos_, moveDiff_);
 	pushVec.y = 0.0f;
 	VECTOR pushPow = VScale(pushVec, action_->GetSpd());
+
+	//移動制限
 	if (limitPos.x >= limit.x)
 	{
 		movedPos_.x = limit.x + pushPow.x;
@@ -153,7 +171,6 @@ void CharacterBase::MoveLimit(const VECTOR& _stagePos,const VECTOR& _stageSize)
 	{
 		movedPos_.z = -limit.z + pushPow.z;
 	}
-
 }
 
 
@@ -187,17 +204,15 @@ void CharacterBase::ChangeUpdateOverDirection(void)
 	phazeUpdate_ = [this]() {UpdateOverDirection(); };
 }
 
-
-
 void CharacterBase::MoveDirFromInput(void)
 {
 }
-
 
 void CharacterBase::Rotate(void)
 {
 	if (charaRot_.stepRotTime_ <= 0.0f)return;
 	charaRot_.stepRotTime_ -= scnMng_.GetDeltaTime();
+
 	// 回転の球面補間
 	charaRot_.playerRotY_ = Quaternion::Slerp(
 		charaRot_.playerRotY_, charaRot_.goalQuaRot_, (TIME_ROT - charaRot_.stepRotTime_) / TIME_ROT);

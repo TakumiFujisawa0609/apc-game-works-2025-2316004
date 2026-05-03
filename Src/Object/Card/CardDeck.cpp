@@ -1,9 +1,9 @@
 #include "../pch.h"
-#include "../../Src/Lib/nlohmann/json.hpp"
 #include"../../Application.h"
 #include "CardBase.h"
 #include"./CardSystem.h"
 #include "../Manager/Generic/DataBank.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include"../Utility/UtilityTemplates.h"
 #include "../Utility/UtilityCommon.h"
 #include "CardDeck.h"
@@ -96,7 +96,9 @@ void CardDeck::LoadCardData(void)
 	//キャラタイプを判断して、jsonのどこからデータを取るか決める
 	charaType_ == CHARACTER_TYPE::PLAYER ? charaTypeStr = PLAYER_CARD_PATH : charaTypeStr = ENEMY_CARD_PATH;
 	using json = nlohmann::json;
-	json j=UtilityCommon::LoadJsonData(JSON_CARD_DATA_PATH);
+
+	//Jsonのデータを取得
+	json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData_;
 	std::vector<CardBase::CARD_STATUS> cards;
 
 	//カードデータの読み込み

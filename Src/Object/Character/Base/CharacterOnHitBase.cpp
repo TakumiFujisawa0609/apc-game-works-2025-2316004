@@ -79,7 +79,7 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 
 	if (moveLineCol->IsHit())
 	{
-		////Y座標のみ半径分上に移動させる
+		//Y座標のみ半径分上に移動させる
 		movedPos_.y = hitPos.y + POSITION_OFFSET;
 
 		hitPoint_.isDown = true;
@@ -110,6 +110,7 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 
 		}
 	}
+
 	//移動後座標を一回格納し、移動前をとる
 	Transform trans = Transform(trans_);
 	trans.pos = movedPos_;

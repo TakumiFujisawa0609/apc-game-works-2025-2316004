@@ -58,6 +58,12 @@ public:
 	virtual void Release(void);
 
 protected:
+	
+	//Now Loading文字列
+	const std::wstring NOW_LOAD_STR = L"Now loading";
+
+	//ドット
+	const std::wstring DOT_STR = L".";
 
 	// リソース管理
 	ResourceManager& resMng_;

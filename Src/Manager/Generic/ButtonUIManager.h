@@ -11,6 +11,7 @@ class ButtonUIManager :
 
 public:
 
+	//ƒ{ƒ^ƒ“‚ÌŽí—Þ
 	enum class BTN_UI_TYPE
 	{
 		RSTICK_L,

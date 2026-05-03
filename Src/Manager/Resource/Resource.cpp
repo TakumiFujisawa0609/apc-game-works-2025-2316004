@@ -2,16 +2,17 @@
 #include <wingdi.h>
 #include <EffekseerForDXLib.h>
 #include <cassert>
+#include "../Utility/UtilityCommon.h"
 #include "Resource.h"
 
 ResourceData::ResourceData(void):
 	type_(TYPE::NONE),
 	path_(L""),
-	numX_(-1),
-	numY_(-1),
-	sizeX_(-1),
-	sizeY_(-1),
-	handleId_(-1),
+	numX_(UtilityCommon::INITIAL_HANDLE),
+	numY_(UtilityCommon::INITIAL_HANDLE),
+	sizeX_(UtilityCommon::INITIAL_HANDLE),
+	sizeY_(UtilityCommon::INITIAL_HANDLE),
+	handleId_(UtilityCommon::INITIAL_HANDLE),
 	handleIds_(nullptr),
 	soundType_(SOUND_TYPE::MAX),
 	pitch_(0.0f),
@@ -26,11 +27,11 @@ ResourceData::ResourceData(void):
 ResourceData::ResourceData(TYPE type, const std::wstring& path):
 	type_(type),
 	path_(path),
-	numX_(-1),
-	numY_(-1),
-	sizeX_(-1),
-	sizeY_(-1),
-	handleId_(-1),
+	numX_(UtilityCommon::INITIAL_HANDLE),
+	numY_(UtilityCommon::INITIAL_HANDLE),
+	sizeX_(UtilityCommon::INITIAL_HANDLE),
+	sizeY_(UtilityCommon::INITIAL_HANDLE),
+	handleId_(UtilityCommon::INITIAL_HANDLE),
 	handleIds_(nullptr),
 	soundType_(SOUND_TYPE::MAX),
 	pitch_(0.0f),
@@ -49,7 +50,7 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path, int numX, int nu
 	numY_(numY),
 	sizeX_(sizeX),
 	sizeY_(sizeY),
-	handleId_(-1),
+	handleId_(UtilityCommon::INITIAL_HANDLE),
 	handleIds_(nullptr),
 	soundType_(SOUND_TYPE::MAX),
 	pitch_(0.0f),
@@ -141,6 +142,7 @@ void ResourceData::AddFunc(void)
 		{ TYPE::EFFEKSEER, [this]() { LoadEffekseer(); } },
 		{ TYPE::VERTEX_SHADER, [this]() { LoadVS(); } },
 		{ TYPE::PIXEL_SHADER, [this]() { LoadPS(); } },
+		{ TYPE::JSON, [this]() { LoadJson(); } },
 	};
 
 	releaseFunc_ = {
@@ -152,6 +154,7 @@ void ResourceData::AddFunc(void)
 		{ TYPE::EFFEKSEER, [this]() { ReleaseEffekseer(); } },
 		{ TYPE::VERTEX_SHADER, [this]() { ReleaseVS(); } },
 		{ TYPE::PIXEL_SHADER, [this]() { ReleasePS(); } },
+		{ TYPE::JSON, [this]() { ReleaseJson(); } }
 	};
 }
 
@@ -190,6 +193,7 @@ void ResourceData::LoadSound(void)
 	{
 		func.second();
 	}
+
 	//読み込んだサウンドの音量を、設定されている音量にする
 	if(volume_!=1.0f)
 	{
@@ -215,6 +219,17 @@ void ResourceData::LoadVS(void)
 void ResourceData::LoadPS(void)
 {
 	handleId_ = LoadPixelShader(path_.c_str());
+}
+
+void ResourceData::LoadJson(void)
+{
+	using json = nlohmann::json;
+	std::ifstream ifs(UtilityCommon::GetStringFromWString(path_));
+	if (!ifs.is_open())
+	{
+		std::cerr << "ファイルが開けません" << std::endl;
+	}
+	ifs >> jsonData_;
 }
 
 void ResourceData::ReleaseImg(void)
@@ -265,4 +280,9 @@ void ResourceData::ReleaseVS(void)
 void ResourceData::ReleasePS(void)
 {
 	DeleteShader(handleId_);
+}
+
+void ResourceData::ReleaseJson(void)
+{
+
 }

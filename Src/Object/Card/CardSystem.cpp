@@ -78,9 +78,6 @@ void CardSystem::DrawDebug(void)
 }
 #endif // _DEBUG
 
-
-
-
 void CardSystem::CompareCards(void)
 {
 	//‚Ç‚¿‚ç‚©‚ÉƒJ[ƒh‚ª“ü‚Á‚Ä‚¢‚È‚¯‚ê‚Îˆø‚¯‚é

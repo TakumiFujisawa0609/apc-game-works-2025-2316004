@@ -21,6 +21,7 @@ public:
 		EFFEKSEER,		//エフェクシア
 		VERTEX_SHADER,	//頂点シェーダ
 		PIXEL_SHADER,	//ピクセルシェーダ
+		JSON
 	};
 
 	//サウンドの種類
@@ -114,6 +115,9 @@ public:
 	LONGLONG loopStartTime_;	//サウンドのループ開始時間(1秒=1000000)
 	LONGLONG loopEndTime_;		//サウンドのループ終了時間(1秒=1000000)
 
+	//JSONデータ
+	nlohmann::json jsonData_;
+
 	// モデル複製用
 	std::vector<int> duplicateModelIds_;
 
@@ -143,6 +147,7 @@ private:
 	void LoadEffekseer(void);
 	void LoadVS(void);
 	void LoadPS(void);
+	void LoadJson(void);
 
 	//解放
 	void ReleaseImg(void);
@@ -153,4 +158,5 @@ private:
 	void ReleaseEffekseer(void);
 	void ReleaseVS(void);
 	void ReleasePS(void);
+	void ReleaseJson(void);	//形だけ作る
 };

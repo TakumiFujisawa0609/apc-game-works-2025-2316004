@@ -17,7 +17,8 @@
 
 EnemyCardAction::EnemyCardAction(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck):
 CardActionBase(_actCntl, _charaObj, _deck),
-atkCnt_(0.0f)
+atkCnt_(),
+jampCardNum_()
 {
 	isTurnable_ = false;
 	changeAction_ = {
@@ -42,7 +43,6 @@ atkCnt_(0.0f)
 
 EnemyCardAction::~EnemyCardAction(void)
 {
-	//Release();
 }
 
 void EnemyCardAction::Load(void)
@@ -277,7 +277,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		anim_.SetMidLoop(JUMP_CHARGE_ANIM_LOOP_START, JUMP_CHARGE_ANIM_LOOP_END, JUMP_ATK_ANIM_LOOP_SPEED);
 
 		//溜めのカメラシェイク
-		scnMng_.GetCamera().lock()->SetShakeStatus(jumpChargeCnt_ / JUMP_CHARGE_TIME, 10.0f);
+		scnMng_.GetCamera().lock()->SetShakeStatus(jumpChargeCnt_ / JUMP_CHARGE_TIME, JUMP_CHARGE_CAMERA_SHAKE_LIMIT);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//ジャンプチャージが終わったら
@@ -317,7 +317,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		charaObj_.UpdateAttackCol(atk_.atkRadius);
 
 		//溜めのカメラシェイク()
-		scnMng_.GetCamera().lock()->SetShakeStatus(atkCnt_ / JUMP_ATK_CNT_MAX, 30.0f);
+		scnMng_.GetCamera().lock()->SetShakeStatus(atkCnt_ / JUMP_ATK_CNT_MAX, JUMP_ATTACK_CAMERA_SHAKE_LIMIT);
 		scnMng_.GetCamera().lock()->ChangeSub(Camera::SUB_MODE::SHAKE);
 
 		//サウンド再生
@@ -339,6 +339,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		{
 			atkCnt_ = 0.0f;
 			atk_.atkRadius = JUMP_ATK_RADIUS;
+
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
 

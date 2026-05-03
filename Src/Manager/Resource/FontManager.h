@@ -45,6 +45,9 @@ private:
 	const std::wstring FONT_BOKUTATI_PASS = L"bokutachi.otf";
 	const std::wstring FONT_APRIL_GOTHIC_PASS = L"AprilGothicOne-R.ttf";
 
+	//フォントパスの初期化
+	const std::wstring FONT_INIT = L"null";
+
 	//登録用パス
 	std::wstring fontPath_[FONT_TYPES];
 };

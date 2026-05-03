@@ -86,7 +86,8 @@ const bool Cube::IsHit(Cube& _cube)
 	VECTOR halfB = VScale(VSub(_cube.GetObb().vMax, _cube.GetObb().vMin), 0.5f);
 
 	// 各軸を順にチェック（15軸）
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < 3; ++i) 
+	{
 		const VECTOR& axisA = obb_.axis[i];
 
 		// 軸Aの投影量
@@ -101,7 +102,8 @@ const bool Cube::IsHit(Cube& _cube)
 		if (fabs(VDot(t, axisA)) > ra + rb) return false;
 	}
 
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < 3; ++i) 
+	{
 		const VECTOR& axisB = _cube.GetObb().axis[i];
 
 		float ra = halfA.x * fabs(VDot(axisB, obb_.axis[0])) +
@@ -116,7 +118,8 @@ const bool Cube::IsHit(Cube& _cube)
 	}
 
 	// 外積軸
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < 3; ++i) 
+	{
 		for (int j = 0; j < 3; ++j) {
 			VECTOR axis = VCross(obb_.axis[i], _cube.GetObb().axis[j]);
 

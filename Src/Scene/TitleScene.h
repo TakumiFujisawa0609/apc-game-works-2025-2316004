@@ -174,9 +174,6 @@ private:
 	//サウンド
 	SoundManager& soundMng_;
 
-	//ボタン格納配列
-	std::list<BTN>buttons_;
-
 	//タイトルロゴ座標
 	Vector2F logoPos_;
 

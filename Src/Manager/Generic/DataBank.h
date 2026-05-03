@@ -5,6 +5,7 @@
 #include "../Object/Character/UIData/CharacterUIData.h"
 #include "../Object/Card/CardBase.h"
 #include "../../Template/Singleton.h"
+
 class DataBank :
 	public Singleton<DataBank>
 {

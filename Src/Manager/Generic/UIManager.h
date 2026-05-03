@@ -88,11 +88,11 @@ private:
 	//フォント
 	int fontHandle_;
 
-	// デフォルトコンストラクタをprivateにして、
-	// 外部から生成できない様にする
+	//コピー禁止
 	UIManager(void);
 	UIManager(const UIManager& _copy) = delete;
 	UIManager& operator=(const UIManager& _copy) = delete;
+
 	// デストラクタも同様
 	~UIManager(void)override = default;
 

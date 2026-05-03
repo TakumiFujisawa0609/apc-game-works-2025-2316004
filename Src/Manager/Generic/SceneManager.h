@@ -125,28 +125,31 @@ private:
 	static constexpr int FOG_COLOR_G = 5;
 	static constexpr int FOG_COLOR_B = 5;
 
-	// フォグの開始距離
+	//フォグの開始距離
 	static constexpr float FOG_START = 10000.0f;
 
-	// フォグの終了距離
+	//フォグの終了距離
 	static constexpr float FOG_END = 20000.0f;
+
+	//デルタタイム
+	static constexpr float DELTA_TIME = 1.0f / 60.0f;
 
 	SCENE_ID sceneId_;
 	SCENE_ID waitSceneId_;
 
-	// 各種シーン
+	//各種シーン
 	std::list<std::shared_ptr<SceneBase>> scenes_;
 
-	// フェード
+	//フェード
 	std::unique_ptr<Fader> fader_;
 
-	// カメラ
+	//カメラ
 	std::shared_ptr<Camera> camera_;
 
-	// シーン遷移中判定
+	//シーン遷移中判定
 	bool isSceneChanging_;
 
-	// デルタタイム
+	//デルタタイム
 	std::chrono::system_clock::time_point preTime_;
 	float deltaTime_;
 

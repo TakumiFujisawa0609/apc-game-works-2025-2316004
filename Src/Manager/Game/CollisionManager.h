@@ -7,8 +7,6 @@
 #include"../Template/Singleton.h"
 #include"../Object/Common/Collider.h"
 
-class Geometry;
-
 class CollisionManager :public Singleton<CollisionManager>
 {
 	// ƒVƒ“ƒOƒ‹ƒgƒ“

@@ -68,6 +68,9 @@ public:
 		INTENSIVE_LINE_1,			//集中線画像1(複数画像でアニメーション)
 		INTENSIVE_LINE_2,			//集中線画像2(複数画像でアニメーション)
 
+		//Json
+		CHARA_DATA,
+
 		//複数画像
 		NUMBERS_IMGS,				//カード番号
 		CONTROLLER_UI_IMGS,			//コントローラーのボタンUI

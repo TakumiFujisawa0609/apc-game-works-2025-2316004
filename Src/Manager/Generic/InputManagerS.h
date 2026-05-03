@@ -8,7 +8,7 @@
 #include"InputManager.h"
 #include "../../Template/Singleton.h"
 
-/// 入力イベント
+//入力イベント
 enum class INPUT_EVENT
 {
 	OK,		//決定
@@ -36,7 +36,7 @@ enum class PEIPHERAL_TYPE
 	MAX
 };
 
-/// アナログ入力種類
+//アナログ入力種類
 enum class ANALOG_INPUT_TYPE
 {
 	NONE,

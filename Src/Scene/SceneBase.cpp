@@ -96,12 +96,11 @@ void SceneBase::DrawNowLoading(void)
 	int count = static_cast<int>(time / COMMA_TIME);
 	count %= COMMA_MAX_NUM;
 
-	std::wstring loadStr = L"Now loading";
-	std::wstring dotStr = L".";
+	std::wstring loadStr = NOW_LOAD_STR;
 
 	for (int i = 0; i < count; i++)
 	{
-		loadStr += dotStr;
+		loadStr += DOT_STR;
 	}
 	DrawStringToHandle(LOADING_STRING_POS_X, LOADING_STRING_POS_Y, loadStr.c_str(), 0xffffff, buttonFontHandle_);
 

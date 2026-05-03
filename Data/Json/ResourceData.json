@@ -211,6 +211,11 @@
       "handle": "CardDirArrowLeft.png"
     },
     {
+      "type": "json",
+      "name": "CHARA_DATA",
+      "handle": "CharaData.json"
+    },
+    {
       "type": "images",
       "name": "NUMBERS_IMGS",
       "handle": "CardNumber.png",

@@ -111,9 +111,6 @@ private:
 	//リロードカードの強さ
 	static constexpr int RELOAD_CARD_POW = -1;
 
-	//Json読み込みパス
-	const std::string JSON_CARD_DATA_PATH = "Data/Json/CharaData.json";
-
 	//プレイヤーのカードデータが入っている文字列
 	const std::string PLAYER_CARD_PATH = "PlayerCards";
 
