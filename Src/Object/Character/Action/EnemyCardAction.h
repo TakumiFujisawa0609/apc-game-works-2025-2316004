@@ -123,7 +123,7 @@ private:
     //ジャンプ攻撃時のカメラシェイク可動範囲
     static constexpr float JUMP_ATTACK_CAMERA_SHAKE_LIMIT = 30.0f;
 
-    //攻撃の半径
+    //ジャンプ攻撃初期の半径
     static constexpr float JUMP_ATK_START_RADIUS = 30.0f;						//ジャンプ攻撃の始まりの半径
 
     //エフェクトサイズ

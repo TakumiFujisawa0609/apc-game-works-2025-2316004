@@ -27,14 +27,6 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 	};
 
-	//ATK_STATUS initStatus={};
-	//atkStatusTable_ = {
-	//	{CARD_ACT_TYPE::ATTACK_ONE_SHORT,NORMAL_ATK_ONE_SHORT},
-	//	{CARD_ACT_TYPE::ATTACK_TWO,NORMAL_ATK_TWO},
-	//	{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
-	//	{CARD_ACT_TYPE::RELOAD,initStatus}		//çUåÇîªíËÇ™Ç»Ç¢Ç‡ÇÃÇÕèâä˙ílÇì¸ÇÍÇÈ
-	//};
-
 	atkStatusStrTable_ = {
 		{CARD_ACT_TYPE::ATTACK_ONE_SHORT,"AttackOneShort"},
 		{CARD_ACT_TYPE::ATTACK_ONE_MIDDLE,"AttackOneMiddle"},
