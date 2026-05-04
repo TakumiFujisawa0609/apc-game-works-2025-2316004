@@ -1,8 +1,10 @@
 #pragma once
 #include "../Object/ObjectBase.h"
+
 class EnemyRock :
     public ObjectBase
 {
+
 public:
 
     /// @brief コンストラクタ
