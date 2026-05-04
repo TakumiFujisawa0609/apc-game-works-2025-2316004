@@ -45,7 +45,7 @@ public:
 		NUM,
 	};
 
-	//攻撃のステータス
+	//攻撃のステータス(どちらも使用するステータス)
 	struct ATK_STATUS
 	{
 		float colStartCnt = 0.0f;	//当たり判定発生の時間
@@ -100,10 +100,10 @@ public:
 	/// @param _flinchTime のけぞりカウント
 	void SetFlinchCnt(float _flinchTime) { flinchCnt_ = _flinchTime; }
 
-	/// @brief 攻撃ステータスの取得
+	/// @brief 技攻撃力の取得
 	/// @param  
-	/// @return 攻撃ステータス
-	const ATK_STATUS& GetAtkStatus(void)const { return atk_; }
+	/// @return 技攻撃力
+	const float& GetAtkPoint(void)const { return atk_.atkPoint; }
 
 	//カードアクションの取得
 	const CARD_ACT_TYPE& GetCardAction(void)const { return actType_; }

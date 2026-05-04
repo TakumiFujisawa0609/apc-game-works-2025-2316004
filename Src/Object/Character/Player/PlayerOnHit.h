@@ -62,9 +62,6 @@ private:
 	//固定ダメージ
 	static constexpr int FIX_DAMAGE = 20;
 
-	//岩ダメージ
-	static constexpr int STONE_DMG = 15;
-
 	//衝突後の処理
 	void CollChara(const std::weak_ptr<Collider> _hitCol)override;		//キャラ同士
 	void CollNormalAttack(const std::weak_ptr<Collider> _hitCol);		//通常攻撃

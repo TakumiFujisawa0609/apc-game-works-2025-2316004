@@ -106,7 +106,7 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	parentChara.SetIsDamage();
 
 	//ダメージを計算
-	float damage = parentChara.GetMainAction().GetAtkStatus().atkPoint;
+	float damage = parentChara.GetMainAction().GetAtkPoint();
 
 	//ダメージ処理
 	charaObj_.Damage(static_cast<int>(damage));
@@ -130,8 +130,11 @@ void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
 	//ダメージを与えていた場合、処理を抜ける
 	if (rock.GetIsDamaged())return;
 
+	//ダメージを計算
+	float damage = rock.GetAttackPow();
+
 	//ダメージを与える
-	charaObj_.Damage(STONE_DMG);
+	charaObj_.Damage(damage);
 
 	//のけぞり時間セット
 	rock.SetIsDamaged();

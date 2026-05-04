@@ -18,7 +18,6 @@ CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _chara
 	charaObj_(_charaObj),
 	cardPresent_(_deck),
 	atkPos_(Utility3D::VECTOR_ZERO),
-	velocity_(Utility3D::VECTOR_ZERO),
 	isCombo_(false),
 	isDuelWait_(false)
 {
@@ -125,5 +124,52 @@ void CardActionBase::ComboInput(void)
 	if (actionCntl_.GetInput().GetIsAct().isCardUse)
 	{
 		isCombo_ = true;
+	}
+}
+
+void CardActionBase::LoadAttackStatus(ATK_STATUS& _atk, const std::string _dataName)
+{
+	nlohmann::json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData;
+
+	CHARACTER_TYPE chara = charaObj_.GetCharacterType();
+	std::string jsonStr = "";
+	chara == CHARACTER_TYPE::PLAYER ? jsonStr = "PlayerAttack" : jsonStr = "EnemyAttack";
+
+	for (const auto& data : j[jsonStr])
+	{
+		if (data.contains(_dataName))
+		{
+			auto& atk = data.at(_dataName);
+			if(atk.contains("colStartAnimCnt"))
+			{
+				_atk.colStartCnt = atk.value("colStartAnimCnt", 0.0f);
+			}
+			if (atk.contains("colEndAnimCnt"))
+			{
+				_atk.colEndCnt = atk.value("colEndAnimCnt", 0.0f);
+			}
+			if (atk.contains("bufferFrame"))
+			{
+				_atk.bufferFrame = atk.value("bufferFrame", 0.0f);
+			}
+			if (atk.contains("attackRadius"))
+			{
+				_atk.atkRadius = atk.value("attackRadius", 0.0f);
+			}
+			if (atk.contains("attackPoint"))
+			{
+				_atk.atkPoint = atk.value("attackPoint", 0.0f);
+			}
+		}
+	}
+	//çUåÇÉqÉbÉgîªíËÇÕfalseÇ≈äiî[Ç∑ÇÈ
+	_atk.isDamage = false;
+}
+
+void CardActionBase::LoadStatus(void)
+{
+	for (const auto& atk : atkStatusStrTable_)
+	{
+		LoadAttackStatus(atkStatusTable_[atk.first], atk.second);
 	}
 }

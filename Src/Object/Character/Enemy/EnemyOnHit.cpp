@@ -60,7 +60,7 @@ void EnemyOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	weapon.SetIsDamage();
 
 	//相手キャラの技攻撃力取得
-	const float& atkPoint = action_.GetInput().GetTargetCharacter().lock()->GetMainAction().GetAtkStatus().atkPoint;
+	const float& atkPoint = action_.GetInput().GetTargetCharacter().lock()->GetMainAction().GetAtkPoint();
 
 	//相手の数字との差が近いほどダメージを追加する
 	const int cardDif= CardSystem::GetInstance().GetCardDif();

@@ -135,7 +135,7 @@ void HpUI::LoadJsonHpUI(void)
 		//バーの左の座標
 		if (data.contains("barColor_L")) 
 		{
-			auto col = data.at("barColor_L");
+			auto& col = data.at("barColor_L");
 			barColorL_.x = col.value("red", 0.0f);
 			barColorL_.y = col.value("green", 0.0f);
 			barColorL_.z = col.value("blue", 0.0f);
@@ -145,7 +145,7 @@ void HpUI::LoadJsonHpUI(void)
 		//バーの右の座標
 		if (data.contains("barColor_R"))
 		{
-			auto col = data.at("barColor_R");
+			auto& col = data.at("barColor_R");
 			barColorR_.x = col.value("red", 0.0f);
 			barColorR_.y = col.value("green", 0.0f);
 			barColorR_.z = col.value("blue", 0.0f);

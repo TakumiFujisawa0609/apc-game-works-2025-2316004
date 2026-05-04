@@ -76,17 +76,8 @@ public:
 private:
 
     //スタンプ攻撃
-    static constexpr float STOMP_COL_START_ANIM_CNT = 22.0f;   //攻撃当たり判定開始アニメーションカウント
-    static constexpr float STOMP_COL_END_ANIM_CNT = 46.0f;     //攻撃当たり判定終了アニメーションカウント
     static constexpr float STOMP_ATK_SHAKE_CNT = 1.0f;              //カメラシェイク時間
     static constexpr int STOMP_ATK_ROCK_NUM = 9;                    //岩の生成数
-
-    //重力
-    static constexpr float GRAVITY = 0.1f;
-
-    ////攻撃2段目判定
-    static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 63.0f;   //攻撃当たり判定開始アニメーションカウント
-    static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 65.0f;     //攻撃当たり判定終了アニメーションカウント
 
     //攻撃半径広がるスピード
     static constexpr float JUMP_ATK_COL_SPD = 5.0f;
@@ -126,35 +117,18 @@ private:
 	//ジャンプアニメーションループ速度
 	static constexpr float JUMP_ATK_ANIM_ATTACK_LOOP_SPEED = 10.0f;
 
-    //ジャンプ攻撃力
-    static constexpr float JUMP_ATK_POWER = 40.0f;
-
     //ジャンプチャージ時のカメラシェイク可動範囲
     static constexpr float JUMP_CHARGE_CAMERA_SHAKE_LIMIT = 10.0f;
 
     //ジャンプ攻撃時のカメラシェイク可動範囲
     static constexpr float JUMP_ATTACK_CAMERA_SHAKE_LIMIT = 30.0f;
 
-    //攻撃ローカル座標
-    static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
-
     //攻撃の半径
-    static constexpr float ATK_SPHERE_RADIUS = 300.0f;					//通常攻撃の球体の半径
-    static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ジャンプ攻撃の始まりの半径
-	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //咆哮攻撃の球体の半径
-	static constexpr float ROLE_ATK_RADIUS = 300.0f;                     //転がる攻撃の球体の半径
+    static constexpr float JUMP_ATK_START_RADIUS = 30.0f;						//ジャンプ攻撃の始まりの半径
 
     //エフェクトサイズ
 	static constexpr float BLAST_EFF_SCL = 1.4f;            //爆発
 	static constexpr float JUMP_CHARGE_EFF_SCL = 500.0f;      //ジャンプチャージ
-
-    //ひっかき攻撃のステータス
-    static constexpr ATK_STATUS STOMP_ATK = 
-    { STOMP_COL_START_ANIM_CNT,STOMP_COL_END_ANIM_CNT,0.0f};
-
-    //ジャンプ攻撃のステータス
-    static constexpr ATK_STATUS JUMP_ATK = 
-    { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,0.0f,JUMP_ATK_RADIUS,JUMP_ATK_POWER };
 
     //攻撃カウント
     float atkCnt_;

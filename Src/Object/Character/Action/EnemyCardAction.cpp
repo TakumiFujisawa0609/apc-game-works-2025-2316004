@@ -27,18 +27,18 @@ jampCardNum_()
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 	};
 
-	atkStatusTable_ = {
-		{CARD_ACT_TYPE::STOMP_ATK, STOMP_ATK},
-		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK},
-	};
 	changeCardAction_ = {
 		{LogicBase::ENEMY_ATTACK_TYPE::STOMP,[this]() {ChangeCardAction(CARD_ACT_TYPE::STOMP_ATK); }},
 		{LogicBase::ENEMY_ATTACK_TYPE::JUMP,[this]() {ChangeCardAction(CARD_ACT_TYPE::JUMP_ATK); }},
 	};
 
+	atkStatusStrTable_ = {
+	{CARD_ACT_TYPE::JUMP_ATK,"JumpAttack"},
+	{CARD_ACT_TYPE::STOMP_ATK,"StompAttack"}
+	};
+
 	//岩の生成
 	charaObj_.AddEnemyRock(STOMP_ATK_ROCK_NUM, atk_.pos);
-
 }
 
 EnemyCardAction::~EnemyCardAction(void)
@@ -59,16 +59,16 @@ void EnemyCardAction::Load(void)
 	//敵の岩生成
 	charaObj_.LoadEnemyRock();
 
+	//攻撃ステータスロード
+	LoadStatus();
+
 }
 
 void EnemyCardAction::Init(void)
 {
 	actType_ = CARD_ACT_TYPE::NONE;
 	easing_ = std::make_unique<Easing>();
-	atkStatusTable_ = {
-		{CARD_ACT_TYPE::STOMP_ATK, STOMP_ATK},
-		{CARD_ACT_TYPE::JUMP_ATK, JUMP_ATK}
-	};
+
 	atkCnt_ = 0.0f;
 	speed_ = 0.0f;
 	jampCardNum_ = 0;
@@ -145,7 +145,7 @@ void EnemyCardAction::ChangeJumpAtk(void)
 	soundMng_.Play(ResourceManager::SRC::ENEMY_CHARGE_SE, SoundManager::PLAYTYPE::LOOP);
 
 	//ジャンプ攻撃処理
-	SetAtk(JUMP_ATK);
+	atk_ = atkStatusTable_[CARD_ACT_TYPE::JUMP_ATK];
 
 	//溜めジャンプエフェクト再生
 	effect_->Play(EffectController::EFF_TYPE::E_JUMP_CHARGE,
@@ -186,7 +186,7 @@ void EnemyCardAction::UpdateStomp(void)
 	}
 
 	//アニメーションで足をつく動作をしたら
-	if (anim_.GetAnimStep() > STOMP_COL_START_ANIM_CNT)
+	if (anim_.GetAnimStep() > atk_.colStartCnt)
 	{
 		//キャラ情報
 		const Transform& charaTrans = charaObj_.GetTransform();
@@ -224,7 +224,7 @@ void EnemyCardAction::UpdateStomp(void)
 		if (atkCnt_ > STOMP_ATK_SHAKE_CNT)
 		{
 			atkCnt_ = 0.0f;
-			atk_.atkRadius = JUMP_ATK_RADIUS;
+			atk_.atkRadius = JUMP_ATK_START_RADIUS;
 
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);
@@ -312,7 +312,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		charaObj_.MakeAttackCol(charaObj_.GetCharaTag(), Collider::TAG::NML_ATK, atk_.pos, atk_.atkRadius);
 
 		//攻撃範囲拡大
-		atk_.atkRadius = easing_->EaseFunc(JUMP_ATK_RADIUS, JUMP_ATK_GOAL_RADIUS, atkCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
+		atk_.atkRadius = easing_->EaseFunc(JUMP_ATK_START_RADIUS, JUMP_ATK_GOAL_RADIUS, atkCnt_ / JUMP_ATK_CNT_MAX, Easing::EASING_TYPE::QUAD_IN);
 		charaObj_.UpdateAttackCol(atk_.atkRadius);
 
 		//溜めのカメラシェイク()
@@ -337,7 +337,7 @@ void EnemyCardAction::UpdateJumpAtk(void)
 		if (atkCnt_ > JUMP_ATK_CNT_MAX)
 		{
 			atkCnt_ = 0.0f;
-			atk_.atkRadius = JUMP_ATK_RADIUS;
+			atk_.atkRadius = JUMP_ATK_START_RADIUS;
 
 			//アニメーションループ終了
 			anim_.SetEndMidLoop(CharacterBase::DEFAULT_ANIM_SPEED);

@@ -27,12 +27,19 @@ PlayerCardAction::PlayerCardAction(ActionController& _actCntl, CharacterBase& _c
 		{ CARD_ACT_TYPE::RELOAD, [this]() {ChangeReload(); }},
 	};
 
-	ATK_STATUS initStatus={};
-	atkStatusTable_ = {
-		{CARD_ACT_TYPE::ATTACK_ONE_SHORT,NORMAL_ATK_ONE_SHORT},
-		{CARD_ACT_TYPE::ATTACK_TWO,NORMAL_ATK_TWO},
-		{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
-		{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
+	//ATK_STATUS initStatus={};
+	//atkStatusTable_ = {
+	//	{CARD_ACT_TYPE::ATTACK_ONE_SHORT,NORMAL_ATK_ONE_SHORT},
+	//	{CARD_ACT_TYPE::ATTACK_TWO,NORMAL_ATK_TWO},
+	//	{CARD_ACT_TYPE::ATTACK_THREE,NORMAL_ATK_THREE},
+	//	{CARD_ACT_TYPE::RELOAD,initStatus}		//攻撃判定がないものは初期値を入れる
+	//};
+
+	atkStatusStrTable_ = {
+		{CARD_ACT_TYPE::ATTACK_ONE_SHORT,"AttackOneShort"},
+		{CARD_ACT_TYPE::ATTACK_ONE_MIDDLE,"AttackOneMiddle"},
+		{CARD_ACT_TYPE::ATTACK_TWO,"AttackTwo"},
+		{CARD_ACT_TYPE::ATTACK_THREE,"AttackThree"}
 	};
 
 	atk_ = {};
@@ -59,6 +66,9 @@ void PlayerCardAction::Load(void)
 	//使用エフェクトの追加
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_EFF).handleId_, EffectController::EFF_TYPE::RELOAD);
 	effect_->Add(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_END_EFF).handleId_, EffectController::EFF_TYPE::RELOAD_END);
+
+	//攻撃ステータスロード
+	LoadAttack();
 }
 
 void PlayerCardAction::Init(void)
@@ -191,6 +201,14 @@ void PlayerCardAction::SetUIReloadCnt(void)
 {
 	float per = pushReloadCnt_ / RELOAD_TIME;
 	cardPresent_.SetUIReloadCount(per);
+}
+
+void PlayerCardAction::LoadAttack(void)
+{
+	for (const auto& atk : atkStatusStrTable_)
+	{
+		LoadAttackStatus(atkStatusTable_[atk.first], atk.second);
+	}
 }
 
 void PlayerCardAction::UpdateAttack(void)
@@ -364,7 +382,7 @@ void PlayerCardAction::ChangeShortAttackOne(void)
 	anim_.Play(static_cast<int>(CharacterBase::ANIM_TYPE::ATTACK_1_SHORT), false);
 
 	//攻撃ステータスをセット
-	atk_ = NORMAL_ATK_ONE_SHORT;
+	atk_ = atkStatusTable_[CARD_ACT_TYPE::ATTACK_ONE_SHORT];
 
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
@@ -379,7 +397,7 @@ void PlayerCardAction::ChangeMiddleAttackOne(void)
 		, ATTACK_ONE_MID_ANIM_START, ATTACK_ONE_MID_ANIM_END,false);
 
 	//攻撃ステータス
-	atk_ = NORMAL_ATK_ONE_MIDDLE;
+	atk_ = atkStatusTable_[CARD_ACT_TYPE::ATTACK_ONE_MIDDLE];
 	midAtkOverCnt_ = ATTACK_ONE_MID_COMBO_TIME;
 
 	//突き攻撃の方向に向く
@@ -398,7 +416,7 @@ void PlayerCardAction::ChangeAttackTwo(void)
 	ChangeActionCardInit();
 
 	//攻撃2段階目のステータスをセット
-	atk_ = NORMAL_ATK_TWO;
+	atk_ = atkStatusTable_[CARD_ACT_TYPE::ATTACK_TWO];
 
 	cardFuncs_.push([this]() {UpdateAttack(); });
 }
@@ -413,7 +431,7 @@ void PlayerCardAction::ChangeAttackThree(void)
 	atkAnimLerpCnt_ = 0.0f;
 
 	//攻撃3段階目のステータスをセット
-	atk_ = NORMAL_ATK_THREE;
+	atk_ = atkStatusTable_[CARD_ACT_TYPE::ATTACK_THREE];
 
 	//カード初期化
 	ChangeActionCardInit();

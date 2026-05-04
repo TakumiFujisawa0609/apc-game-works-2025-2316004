@@ -114,14 +114,6 @@ void CharacterBase::LoadStatus(void)
 		{ 
 			maxStatus_.hp = data["HP"]; 
 		}
-		if (data.contains("ATK")) 
-		{
-			maxStatus_.atk = data["ATK"];
-		}
-		if (data.contains("DEF")) 
-		{
-			maxStatus_.atk = data["DEF"];
-		}
 		if (data.contains("SPD")) 
 		{
 			maxStatus_.speed = data["SPD"];

@@ -24,7 +24,11 @@ EnemyRock::~EnemyRock(void)
 
 void EnemyRock::Load(void)
 {
+	//ƒ‚ƒfƒ‹
 	trans_.modelId = ResourceManager::GetInstance().LoadModelDuplicate(ResourceManager::SRC::SPHERE_ROCK);
+
+	//ŠâUŒ‚—Í‚ğŠO•”‚©‚çæ“¾
+	LoadAttackPow();
 }
 
 void EnemyRock::Init(void)
@@ -83,4 +87,21 @@ void EnemyRock::OnHit(const std::weak_ptr<Collider> _hitCol)
 void EnemyRock::DeleteRockCollider(void)
 {
 	DeleteCollider(TAG_PRIORITY::ROCK_SPHERE);
+}
+
+void EnemyRock::LoadAttackPow(void)
+{
+	nlohmann::json j = resMng_.Load(ResourceManager::SRC::CHARA_DATA).jsonData;
+	const std::string DATA_NAME = "EnemyAttack";
+	for (const auto& data : j[DATA_NAME])
+	{
+		if (data.contains("StompAttack"))
+		{
+			auto& atk = data.at("StompAttack");
+			if (atk.contains("attackPoint"))
+			{
+				atkPow_ = atk.value("attackPoint", 0.0f);
+			}
+		}
+	}
 }

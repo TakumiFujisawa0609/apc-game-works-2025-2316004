@@ -13,6 +13,15 @@ class PlayerCardAction :
 
 public:
 
+    //攻撃種類
+    enum class ATTACK_TYPE
+    {
+        ATTACK_ONE_SHORT,       //1段目攻撃(近距離)
+        ATTACK_ONE_MIDDLE,      //1段目攻撃(中距離)
+        ATTACK_TWO,             //2段目攻撃
+        ATTACK_THREE            //3段目攻撃
+    };
+
     /// @brief コンストラクタ
     /// @param _actCntl アクションコントローラ
 	/// @param _charaObj キャラクターオブジェクト
@@ -48,15 +57,7 @@ private:
     //カプセル球の半径(プレイヤーは武器のコライダを持っているため不要)
     static constexpr float ATK_SPHERE_RADIUS = 0.0f;				    
 
-    //攻撃1段目判定(近距離)
-    static constexpr float ATTACK_ONE_POINT = 10.0f;                    //攻撃威力
-	static constexpr float ATTACK_ONE_COL_START_ANIM_CNT = 24.0f;       //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_ONE_COL_END_ANIM_CNT = 36.0f;         //攻撃当たり判定終了アニメーションカウント
-    static constexpr float ATTACK_ONE_BUFFER_FRAME = 20.0f;             //先行入力受付フレーム
-
     //攻撃1段目判定(中距離)
-	static constexpr float ATTACK_ONE_MID_COL_START_ANIM_CNT = 16.0f;   //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_ONE_MID_COL_END_ANIM_CNT = 35.0f;     //攻撃当たり判定終了アニメーションカウント
     static constexpr float ATTACK_ONE_MID_ANIM_START = 13.0f;           //アニメーションスタート位置
     static constexpr float ATTACK_ONE_MID_ANIM_END = 37.0f;             //アニメーション終了位置
     static constexpr float ATTACK_ONE_MID_COMBO_TIME = 0.2f;            //コンボ受付時間
@@ -65,15 +66,7 @@ private:
     static constexpr float ATTACK_ONE_MID_TIME = 1.0f;                  //中距離移動時間
     static constexpr float ATTACK_ONE_MID_SPD = 30.0f;                  //中距離初期速度
 
-    //攻撃2段目判定
-    static constexpr float ATTACK_TWO_POINT = 15.0f;
-	static constexpr float ATTACK_TWO_COL_START_ANIM_CNT = 23.0f;       //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_TWO_COL_END_ANIM_CNT = 35.0f;         //攻撃当たり判定終了アニメーションカウント
-
     //攻撃3段目判定
-    static constexpr float ATTACK_THREE_POINT = 25.0f;                  //攻撃威力
-	static constexpr float ATTACK_THREE_COL_START_ANIM_CNT = 73.0f;     //攻撃当たり判定開始アニメーションカウント
-	static constexpr float ATTACK_THREE_COL_END_ANIM_CNT = 83.0f;       //攻撃当たり判定終了アニメーションカウント
     static constexpr float ATTACK_THREE_ANIM_START = 60.0f;             //攻撃３段階目アニメーションスタート
     static constexpr float ATTACK_THREE_ANIM_GOAL = 86.0f;              //攻撃３段階目アニメーションゴール
     static constexpr float ATTACK_THREE_ANIM_SPD = 10.0f;               //攻撃アニメーション3段階目の溜め時のアニメ速度
@@ -90,22 +83,6 @@ private:
     static constexpr int ATTACK_ONE = 0;
     static constexpr int ATTACK_TWO = 1;
     static constexpr int ATTACK_THREE = 2;
-
-    //1段目攻撃のステータス(近距離)
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE_SHORT = 
-    { ATTACK_ONE_COL_START_ANIM_CNT,ATTACK_ONE_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS,ATTACK_ONE_POINT,{},false };
-
-    //1段目攻撃のステータス(中距離)
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_ONE_MIDDLE = 
-    { ATTACK_ONE_MID_COL_START_ANIM_CNT,ATTACK_ONE_MID_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS,ATTACK_ONE_POINT,{},false };
-
-    //2段目攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_TWO = 
-    { ATTACK_TWO_COL_START_ANIM_CNT,ATTACK_TWO_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS,ATTACK_TWO_POINT,{},false };
-
-    //3段目攻撃のステータス
-    static constexpr CardActionBase::ATK_STATUS NORMAL_ATK_THREE = 
-    { ATTACK_THREE_COL_START_ANIM_CNT,ATTACK_THREE_COL_END_ANIM_CNT,ATTACK_ONE_BUFFER_FRAME,ATK_SPHERE_RADIUS ,ATTACK_THREE_POINT,{},false };
 
     //リロードのボタン押す時間
     static constexpr float RELOAD_TIME = 3.0f;
@@ -155,6 +132,9 @@ private:
 
     //リロードカウントのセット
 	void SetUIReloadCnt(void);
+
+    //攻撃のステータスロード
+    void LoadAttack(void);
 
     //更新系
 	void UpdateAttack(void);                   //攻撃アクション

@@ -88,8 +88,6 @@ public:
 	{
 		float speed;		//移動速度
 		float hp = HP_MAX;	//体力
-		float atk;			//攻撃力
-		float def;			//防御力
 	};
 
 	//アクションの種類
@@ -297,6 +295,11 @@ public:
 	/// @param  
 	/// @return true:クリア演出終了 : false:演出終了していない
 	const bool GetIsEndDirect(void) { return isEndClearDirect_; }
+
+	/// @brief キャラクター種類の取得
+	/// @param  
+	/// @return キャラクター種類
+	const CHARACTER_TYPE GetCharacterType(void){ return characterType_; }
 
 protected:
 

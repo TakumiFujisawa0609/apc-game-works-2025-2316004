@@ -57,6 +57,9 @@ protected:
     //カードアクション遷移
     std::map<CARD_ACT_TYPE, std::function<void(void)>>changeAction_;
 
+    //攻撃アクションの文字列との対応
+    std::unordered_map<CARD_ACT_TYPE, std::string>atkStatusStrTable_;
+
     //攻撃ステータステーブル
     std::map<CARD_ACT_TYPE, ATK_STATUS>atkStatusTable_;
 
@@ -92,13 +95,19 @@ protected:
     //攻撃情報をセット
     void SetAtk(const ATK_STATUS& _actType);
 
-    //移動量
-    VECTOR velocity_;
-
     //コンボアクション遷移(あれば実装する)
     virtual void ChangeComboAction(void) {};
 
 	//コンボ入力受付
 	void ComboInput(void);
+
+    /// @brief 攻撃アクションステータスを外部ファイルから取得
+    /// @param _atk 格納する攻撃ステータス
+    /// @param _dataName 取得したいデータ名
+    void LoadAttackStatus(ATK_STATUS& _atk,const std::string _dataName);
+
+    /// @brief 攻撃ステータスを個数分ロード
+    /// @param  
+    void LoadStatus(void);
 };
 

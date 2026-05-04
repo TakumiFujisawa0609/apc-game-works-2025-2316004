@@ -32,6 +32,9 @@ public:
     /// @param _hitCol 
     void OnHit(const std::weak_ptr<Collider> _hitCol)override;
 
+    /// @brief 岩がダメージを与えたか
+    /// @param  
+    /// @return 
     const bool GetIsDamaged(void) { return isDamaged_; }
 
 	/// @brief 生存状態のセット
@@ -45,6 +48,11 @@ public:
 	/// @brief 岩の当たり判定削除
     /// @param  
     void DeleteRockCollider(void);
+
+    /// @brief 岩の攻撃力の取得
+    /// @param  
+    /// @return 岩の攻撃力
+    const float GetAttackPow(void) { return atkPow_; }
 
 private:
 
@@ -100,4 +108,10 @@ private:
 
 	//ダメージ処理済みフラグ
 	bool isDamaged_;
+
+    //攻撃力
+    float atkPow_;
+
+    //岩の攻撃力を外部から取得
+    void LoadAttackPow(void);
 };

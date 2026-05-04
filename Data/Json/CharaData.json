@@ -2,9 +2,35 @@
 	"PlayerStatus": [
 		{
 			"HP": 200,
-			"ATK": 50,
-			"DEF": 100,
 			"SPD": 10
+		}
+	],
+	"PlayerAttack": [
+		{
+			"AttackOneShort": {
+				"colStartAnimCnt": 24.0,
+				"colEndAnimCnt": 36.0,
+				"bufferFrame": 20.0,
+				"attackPoint": 10.0
+			},
+			"AttackOneMiddle": {
+				"colStartAnimCnt": 16.0,
+				"colEndAnimCnt": 35.0,
+				"bufferFrame": 20.0,
+				"attackPoint": 10.0
+			},
+			"AttackTwo": {
+				"colStartAnimCnt": 23.0,
+				"colEndAnimCnt": 35.0,
+				"bufferFrame": 20.0,
+				"attackPoint": 15.0
+			},
+			"AttackThree": {
+				"colStartAnimCnt": 73.0,
+				"colEndAnimCnt": 83.0,
+				"bufferFrame": 20.0,
+				"attackPoint": 25.0
+			}
 		}
 	],
 	"PlayerHPBar": [
@@ -101,9 +127,20 @@
 	"EnemyStatus": [
 		{
 			"HP": 200,
-			"ATK": 50,
-			"DEF": 100,
 			"SPD": 15.0
+		}
+	],
+	"EnemyAttack": [
+		{
+			"StompAttack": {
+				"colStartAnimCnt": 22.0,
+				"colEndAnimCnt": 46.0,
+				"attackPoint": 10.0
+			},
+			"JumpAttack": {
+				"attackPoint": 40.0,
+				"attackRadius": 30.0
+			}
 		}
 	],
 	"EnemyHPBar": [
