@@ -13,15 +13,6 @@ class PlayerCardAction :
 
 public:
 
-    //攻撃種類
-    enum class ATTACK_TYPE
-    {
-        ATTACK_ONE_SHORT,       //1段目攻撃(近距離)
-        ATTACK_ONE_MIDDLE,      //1段目攻撃(中距離)
-        ATTACK_TWO,             //2段目攻撃
-        ATTACK_THREE            //3段目攻撃
-    };
-
     /// @brief コンストラクタ
     /// @param _actCntl アクションコントローラ
 	/// @param _charaObj キャラクターオブジェクト
