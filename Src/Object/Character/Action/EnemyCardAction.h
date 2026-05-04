@@ -138,6 +138,7 @@ private:
     //UŒ‚ƒ[ƒJƒ‹À•W
     static constexpr VECTOR ATK_ONE_LOCAL = { 0.0f,100.0f,50.0f };
 
+    //UŒ‚‚Ì”¼Œa
     static constexpr float ATK_SPHERE_RADIUS = 300.0f;					//’ÊíUŒ‚‚Ì‹…‘Ì‚Ì”¼Œa
     static constexpr float JUMP_ATK_RADIUS = 30.0f;						//ƒWƒƒƒ“ƒvUŒ‚‚Ìn‚Ü‚è‚Ì”¼Œa
 	static constexpr float ROAR_ATK_RADIUS = 300.0f;                    //™ôšKUŒ‚‚Ì‹…‘Ì‚Ì”¼Œa

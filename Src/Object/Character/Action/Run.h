@@ -5,6 +5,7 @@
 class Run :
     public ActionBase
 {
+
 public:
 
     /// @brief コンストラクタ

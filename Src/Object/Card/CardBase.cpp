@@ -31,7 +31,6 @@ void CardBase::Init(void)
 
 void CardBase::Update(void)
 {
-
 }
 
 void CardBase::Draw(void)

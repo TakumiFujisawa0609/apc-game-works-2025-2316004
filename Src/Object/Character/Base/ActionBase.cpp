@@ -30,8 +30,3 @@ ActionBase::~ActionBase()
 void ActionBase::Release(void)
 {
 }
-
-const CardActionBase::CARD_ACT_TYPE& ActionBase::GetCardAction(void)const
-{
-	return actType_;
-}

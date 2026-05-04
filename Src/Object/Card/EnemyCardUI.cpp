@@ -141,7 +141,6 @@ void EnemyCardUI::UpdateDrawCardUI(void)
 	}
 }
 
-
 void EnemyCardUI::InitCardUI(void)
 {
 	//èD‚ğ‚·‚×‚ÄÁ‹‚·‚é

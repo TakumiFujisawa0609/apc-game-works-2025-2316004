@@ -52,31 +52,32 @@ public:
 	/// @brief シェーダの取得
 	/// @param  
 	/// @return シェーダ
-	int GetShader(void) const;
+	int GetShader(void) const { return shader_; }
 
 	/// @brief 定数バッファハンドル
 	/// @param  
 	/// @return 定数バッファ
-	int GetConstBuf(void) const;
+	int GetConstBuf(void) const { return constBuf_; }
 
 	/// @brief 定数バッファ配列の取得
 	/// @param  
 	/// @return 定数バッファ配列
-	const std::vector<FLOAT4>& GetConstBufs(void) const;
+	const std::vector<FLOAT4>& GetConstBufs(void) const { return constBufs_; }
 
 	/// @brief テクスチャの取得
 	/// @param  
 	/// @return テクスチャ
-	const std::vector<int>& GetTextures(void) const;
+	const std::vector<int>& GetTextures(void) const { return textures_; }
+	;
 
 	/// @brief テクスチャアドレスを取得
 	/// @param  
 	/// @return テクスチャアドレス
-	TEXADDRESS GetTextureAddress(void) const;
+	TEXADDRESS GetTextureAddress(void) const { return texAddress_; }
 	
 	/// @brief テクスチャアドレスを設定
 	/// @param texA テクスチャアドレス
-	void SetTextureAddress(TEXADDRESS texA);
+	void SetTextureAddress(TEXADDRESS texA) { texAddress_ = texA; }
 
 private:
 

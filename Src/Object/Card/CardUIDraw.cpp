@@ -94,7 +94,6 @@ void CardUIDraw::DrawSelectCard(void)
 	DrawCard();
 }
 
-
 void CardUIDraw::DrawCard(void)
 {
 	//‰æ‘œƒTƒCƒYæ“¾

@@ -106,6 +106,8 @@ void CharacterBase::LoadStatus(void)
 
 	characterType_ == CHARACTER_TYPE::PLAYER ? statusPath = PLAYER_STATUS_DATA 
 												: statusPath = ENEMY_STATUS_DATA;
+
+	//データを格納
 	for (const auto& data : j[statusPath])
 	{
 		if(data.contains("HP"))
@@ -125,6 +127,7 @@ void CharacterBase::LoadStatus(void)
 			maxStatus_.speed = data["SPD"];
 		}
 	}
+
 	//現在ステータスを最大値にセット
 	status_ = maxStatus_;
 }

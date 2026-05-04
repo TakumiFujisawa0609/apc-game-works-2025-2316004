@@ -72,12 +72,14 @@ void GameScene::Load(void)
 	//ボタンUIマネージャ
 	ButtonUIManager::GetInstance().Load();
 
-
+	//ステージ
 	stage_ = std::make_unique<Stage>();
 
+	//スカイドーム
 	skyDome_ = std::make_unique<SkyDome>();
 	skyDome_->Load();
 
+	//キャラクター
 	CharacterManager::GetInstance().Load();
 }
 
@@ -155,7 +157,7 @@ void GameScene::FadeUpdate(void)
 void GameScene::NormalUpdate(void)
 {
 	//ポーズ画面へ遷移
-	if (inputMng_.IsTrgDown(KEY_INPUT_P))
+	if (inputMng_.IsTrgDown(KEY_INPUT_ESCAPE)||inputMng_.IsPadBtnTrgDown(InputManager::JOYPAD_NO::PAD1,InputManager::JOYPAD_BTN::SELECT_BUTTON))
 	{
 		scnMng_.PushScene(pauseScene_);
 		return;

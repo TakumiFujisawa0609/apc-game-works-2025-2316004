@@ -27,10 +27,10 @@ bool Application::Init(void)
 {
 
 	// アプリケーションの初期設定
-	SetWindowText(L"ActionCardBattle");
+	SetWindowText(WINDOW_NAME.c_str());
 
 	// ウィンドウサイズ
-	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 32);
+	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_DEPTH);
 	ChangeWindowMode(true);
 
 	// DxLibの初期化
@@ -85,7 +85,7 @@ void Application::Run(void)
 	auto& sceneManager = SceneManager::GetInstance();
 
 	// ゲームループ
-	while (ProcessMessage() == 0 &&((CheckHitKey(KEY_INPUT_ESCAPE)) == 0&&!isGameEnd_))
+	while (ProcessMessage() == 0 &&!isGameEnd_)
 	{
 		//フレームレートを更新
 		if (!fps_->UpdateFrameRate()) continue;

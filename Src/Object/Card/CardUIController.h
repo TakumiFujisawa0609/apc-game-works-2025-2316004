@@ -213,7 +213,6 @@ private:
 	//倍率1の時のカードの強さの描画座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 89.0f,130.0f };
 
-
 	//楕円中心
 	static constexpr float CENTER_X = 80.0f;
 	static constexpr float CENTER_Y = 640.0f;

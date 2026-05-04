@@ -53,36 +53,6 @@ void PixelMaterial::SetTextureBuf(int idx, int texDiffuse)
 	textures_[idx] = texDiffuse;
 }
 
-const std::vector<FLOAT4>& PixelMaterial::GetConstBufs(void) const
-{
-	return constBufs_;
-}
-
-const std::vector<int>& PixelMaterial::GetTextures(void) const
-{
-	return textures_;
-}
-
-PixelMaterial::TEXADDRESS PixelMaterial::GetTextureAddress(void) const
-{
-	return texAddress_;
-}
-
-void PixelMaterial::SetTextureAddress(TEXADDRESS texA)
-{
-	texAddress_ = texA;
-}
-
-int PixelMaterial::GetShader(void) const
-{
-	return shader_;
-}
-
-int PixelMaterial::GetConstBuf(void) const
-{
-	return constBuf_;
-}
-
 PixelMaterial::~PixelMaterial(void)
 {
 	DeleteShader(shader_);

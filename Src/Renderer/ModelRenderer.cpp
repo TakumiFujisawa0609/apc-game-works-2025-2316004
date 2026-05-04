@@ -1,7 +1,8 @@
 #include "ModelRenderer.h"
 
-ModelRenderer::ModelRenderer(int modelId, ModelMaterial& modelMaterial)
-	: modelId_(modelId), modelMaterial_(modelMaterial)
+ModelRenderer::ModelRenderer(int modelId, ModelMaterial& modelMaterial):
+	modelId_(modelId)
+	, modelMaterial_(modelMaterial)
 {
 }
 

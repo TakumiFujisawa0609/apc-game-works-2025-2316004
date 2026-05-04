@@ -80,7 +80,6 @@ void Enemy::Load(void)
 
 void Enemy::Init(void)
 {
-
 	deck_->Init();
 
 	action_->Init();

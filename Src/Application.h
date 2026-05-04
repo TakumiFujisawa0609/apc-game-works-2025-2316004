@@ -55,6 +55,12 @@ public:
 
 private:
 
+	//ウィンドウ名
+	const std::wstring WINDOW_NAME = L"ActionCardBattle";
+
+	// カラービット数
+	static constexpr int COLOR_DEPTH = 32;
+
 	//FPS
 	std::unique_ptr<FpsControl> fps_;
 

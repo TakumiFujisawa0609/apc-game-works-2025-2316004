@@ -12,9 +12,6 @@
 
 Capsule::Capsule(const VECTOR& _pos, const Quaternion& _rot, const VECTOR _localPosTop, const VECTOR _localPosDown, const float _radius) : 
 	Geometry(_pos,_rot,_radius,_localPosTop,_localPosDown,{},-1)
-	//localPosPoint1_(_localPosTop),
-	//localPosPoint2_(_localPosDown),
-	//radius_(_radius)
 {
 	std::memset(&hitInfo_, 0, sizeof(hitInfo_));
 }
@@ -96,6 +93,7 @@ const bool Capsule::IsHit(Capsule& _capsule)
 	VECTOR d2 = VSub(_capsule.GetPosPoint2(), _capsule.GetPosPoint1());	// 線分2の方向ベクトル
 	VECTOR r = VSub(GetPosPoint1(), _capsule.GetPosPoint1());
 
+	//それぞれの内積を求める
 	float a = VDot(d1, d1); // d1・d1
 	float e = VDot(d2, d2); // d2・d2
 	float f = VDot(d2, r);
@@ -104,6 +102,8 @@ const bool Capsule::IsHit(Capsule& _capsule)
 
 	float c = VDot(d1, r);
 	float b = VDot(d1, d2);
+
+	//2つの線分がどれだけ平行であるか
 	float denom = a * e - b * b;
 
 	if (denom != 0.0f)
@@ -148,10 +148,13 @@ const bool Capsule::IsHit(Line& _line)
 	float d = VDot(u, w);
 	float e = VDot(v, w);
 
+	//どれだけ平行かを求める
 	float denom = a * c - b * b;
 	float s = 0.0f, t = 0.0f;
 
-	if (denom != 0.0f) {
+	//平行でなければ
+	if (denom != 0.0f) 
+	{
 		s = std::clamp((b * e - c * d) / denom, 0.0f, 1.0f);
 	}
 
@@ -181,12 +184,3 @@ void Capsule::HitAfter(void)
 		std::memset(&hitInfo_, 0, sizeof(hitInfo_));
 	}
 }
-
-//const VECTOR Capsule::GetCenter(void) const
-//{
-//	VECTOR top = GetPosPoint1();
-//	VECTOR down = GetPosPoint2();
-//
-//	VECTOR diff = VSub(top, down);
-//	return VAdd(down, VScale(diff, 0.5f));
-//}

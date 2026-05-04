@@ -83,6 +83,12 @@ public:
 
 private:	
 
+	//頂点シェーダのパス名(ステージと同じシェーダを使用)
+	const std::wstring VERTEX_SHADER_PATH = L"StageVS.cso";
+
+	//ピクセルシェーダのパス名
+	const std::wstring PIXEL_SHADER_PATH = L"SkyDomePS.cso";
+
 	//頂点シェーダの定数バッファ
 	static constexpr int CONST_BUF_SIZE = 1;
 

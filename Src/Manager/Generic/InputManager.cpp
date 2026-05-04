@@ -17,40 +17,43 @@ void InputManager::Init(void)
 
 	// ゲームで使用したいキーを、
 	// 事前にここで登録する
-	InputManager::GetInstance().Add(KEY_INPUT_SPACE);
-	InputManager::GetInstance().Add(KEY_INPUT_N);
+	Add(KEY_INPUT_SPACE);
+	Add(KEY_INPUT_N);
 	InputManager::GetInstance().Add(KEY_INPUT_Z);
 
 	//プレイヤー操作関連
 	//移動キー
-	InputManager::GetInstance().Add(KEY_INPUT_W);
-	InputManager::GetInstance().Add(KEY_INPUT_A);
-	InputManager::GetInstance().Add(KEY_INPUT_S);
-	InputManager::GetInstance().Add(KEY_INPUT_D);
+	Add(KEY_INPUT_W);
+	Add(KEY_INPUT_A);
+	Add(KEY_INPUT_S);
+	Add(KEY_INPUT_D);
 
 	//カード使用
-	InputManager::GetInstance().Add(KEY_INPUT_F);
-	InputManager::GetInstance().Add(KEY_INPUT_RCONTROL);
+	Add(KEY_INPUT_F);
+	Add(KEY_INPUT_RCONTROL);
 	//カードチャージ
-	InputManager::GetInstance().Add(KEY_INPUT_R);
+	Add(KEY_INPUT_R);
 
 	//ドッジ(回避)
-	InputManager::GetInstance().Add(KEY_INPUT_LSHIFT);
+	Add(KEY_INPUT_LSHIFT);
 	//カードセレクト
-	InputManager::GetInstance().Add(KEY_INPUT_E);
-	InputManager::GetInstance().Add(KEY_INPUT_Q);
-	InputManager::GetInstance().Add(KEY_INPUT_LCONTROL);
+	Add(KEY_INPUT_E);
+	Add(KEY_INPUT_Q);
+	Add(KEY_INPUT_LCONTROL);
 	//ポーズ
-	InputManager::GetInstance().Add(KEY_INPUT_P);
+	Add(KEY_INPUT_P);
 
 	//選択
-	InputManager::GetInstance().Add(KEY_INPUT_DOWN);
-	InputManager::GetInstance().Add(KEY_INPUT_UP);
-	InputManager::GetInstance().Add(KEY_INPUT_RIGHT);
-	InputManager::GetInstance().Add(KEY_INPUT_LEFT);
+	Add(KEY_INPUT_DOWN);
+	Add(KEY_INPUT_UP);
+	Add(KEY_INPUT_RIGHT);
+	Add(KEY_INPUT_LEFT);
 
 	//決定
-	InputManager::GetInstance().Add(KEY_INPUT_RETURN);
+	Add(KEY_INPUT_RETURN);
+
+	//ポーズシーンを開く
+	Add(KEY_INPUT_ESCAPE);
 
 	InputManager::MouseInfo info;
 
@@ -76,7 +79,6 @@ void InputManager::Init(void)
 
 void InputManager::Update(void)
 {
-
 	// キーボード検知
 	for (auto& p : keyInfos_)
 	{
@@ -176,8 +178,6 @@ bool InputManager::IsTrgMouseRight(void) const
 {
 	return FindMouse(MOUSE_INPUT_RIGHT).keyTrgDown;
 }
-
-
 
 const InputManager::Info& InputManager::Find(int key) const
 {

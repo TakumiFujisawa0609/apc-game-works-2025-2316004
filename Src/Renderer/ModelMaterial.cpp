@@ -79,51 +79,6 @@ void ModelMaterial::SetTextureBuf(int slot, int texDiffuse)
 	}
 }
 
-const std::vector<FLOAT4>& ModelMaterial::GetConstBufsVS(void) const
-{
-	return constBufsVS_;
-}
-
-const std::vector<FLOAT4>& ModelMaterial::GetConstBufsPS(void) const
-{
-	return constBufsPS_;
-}
-
-const std::map<int, int>& ModelMaterial::GetTextures(void) const
-{
-	return textures_;
-}
-
-ModelMaterial::TEXADDRESS ModelMaterial::GetTextureAddress(void) const
-{
-	return texAddress_;
-}
-
-void ModelMaterial::SetTextureAddress(TEXADDRESS texA)
-{
-	texAddress_ = texA;
-}
-
-int ModelMaterial::GetShaderVS(void) const
-{
-	return shaderVS_;
-}
-
-int ModelMaterial::GetShaderPS(void) const
-{
-	return shaderPS_;
-}
-
-int ModelMaterial::GetConstBufVS(void) const
-{
-	return constBufVS_;
-}
-
-int ModelMaterial::GetConstBufPS(void) const
-{
-	return constBufPS_;
-}
-
 ModelMaterial::~ModelMaterial(void)
 {
 	DeleteShader(shaderVS_);

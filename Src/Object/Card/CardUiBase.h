@@ -278,6 +278,5 @@ private:
 
 	//カード画像の配列
 	std::map<CardBase::CARD_STATUS, int> cardImgs_;
-
 };
 

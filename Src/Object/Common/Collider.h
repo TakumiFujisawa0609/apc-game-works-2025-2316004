@@ -10,7 +10,7 @@ class Collider
 
 public :
 
-	// 衝突用タグ
+	//衝突用タグ
 	enum class TAG
 	{
 		NONE,			//タグなし
@@ -84,6 +84,9 @@ public :
 	void OnHit(const std::weak_ptr<Collider> _collider);
 
 private:
+
+	//親がキャラクター出ないときのエラー文
+	const std::string NOT_CHARACTER_STR = "親がCharacterBase型ではありません";
 
 	//親
 	ObjectBase& parent_;

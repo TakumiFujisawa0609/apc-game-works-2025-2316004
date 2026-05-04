@@ -5,12 +5,14 @@
 
 class PauseScene : public SceneBase
 {
+
 public:
 
 	enum class LIST
 	{
 		RESUME,  // 続ける
 		TITLE,   // タイトルに戻る
+		GAME_END, //ゲーム終了
 		MAX
 	};
 
@@ -47,10 +49,20 @@ public:
 
 private:
 	
+	//続ける文字列
+	const std::wstring CONTINUE_STR = L"つづける";
+
+	//タイトルに戻る文字列
+	const std::wstring BACK_TITLE_STR = L"タイトルに戻る";
+
+	//ゲーム終了の文字列
+	const std::wstring GAME_END_STR = L"ゲーム終了";
+
 	//画面のアルファ値
 	static constexpr int PAUSE_ALPHA = 128; 
 
-	static constexpr int FONT_THICK = 3; // フォントの太さ
+	// フォントの太さ
+	static constexpr int FONT_THICK = 3; 
 
 	//ポーズフォント
 	int pauseFont_; 	
@@ -59,9 +71,12 @@ private:
 	int selectIndex_;
 
 	//選択リスト
-	std::wstring pauseList_[LIST_MAX];
+	std::wstring pauseList_[LIST_MAX] = { CONTINUE_STR,BACK_TITLE_STR,GAME_END_STR };
 
 	//リスト選択テーブル
 	std::unordered_map<LIST, std::function<void()>> listFuncTable_;
+
+	//シーンに入った後に行う処理
+	void OnSceneEnter(void)override;
 };
 

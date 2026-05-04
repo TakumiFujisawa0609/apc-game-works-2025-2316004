@@ -103,5 +103,4 @@ void SceneBase::DrawNowLoading(void)
 		loadStr += DOT_STR;
 	}
 	DrawStringToHandle(LOADING_STRING_POS_X, LOADING_STRING_POS_Y, loadStr.c_str(), UtilityCommon::WHITE, buttonFontHandle_);
-
 }

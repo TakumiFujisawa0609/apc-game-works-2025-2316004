@@ -15,8 +15,6 @@ int WINAPI WinMain(
 #ifdef _DEBUG
 	// メモリリークを検出
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-	//_CrtSetBreakAlloc(23749);
 #endif // _DEBUG
 
 	// インスタンスの生成

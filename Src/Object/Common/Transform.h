@@ -4,34 +4,33 @@
 #include "../../Common/Quaternion.h"
 #include "../Common/Collider.h"
 
-/// <summary>
-/// モデル制御の基本情報
-/// 大きさ：VECTOR基準
-/// 回転　：Quaternion基準
-/// 位置　：VECTOR基準
-/// </summary>
 class Transform
 {
 
 public:
 
-	// コンストラクタ
+	/// @brief コンストラクタ
+	/// @param  
 	Transform(void);
+
+	/// @brief モデルIDを設定するコンストラクタ
+	/// @param model 
 	Transform(int model);
 
-	// デストラクタ
+	/// @brief デストラクタ
+	/// @param  
 	~Transform(void);
 
-	// モデルのハンドルID
+	//モデルのハンドルID
 	int modelId;
 
-	// 大きさ
+	//大きさ
 	VECTOR scl;
 
-	// 回転
+	//クォータニオン回転
 	VECTOR rot;
 
-	// 位置
+	//位置
 	VECTOR pos;			//基本位置
 	VECTOR localPos;	//相対位置
 	VECTOR overAllPos;	//総合位置
@@ -41,13 +40,13 @@ public:
 	MATRIX matRot;		//回転(行列)
 	MATRIX matPos;		//位置(行列)
 
-	// 回転
+	//回転
 	Quaternion quaRot;
 
-	// ローカル回転
+	//ローカル回転
 	Quaternion quaRotLocal;
 
-	// コライダ
+	//コライダ
 	std::shared_ptr<Collider> collider;
 
 	/// @brief モデル制御の基本情報更新

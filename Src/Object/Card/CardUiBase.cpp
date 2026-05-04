@@ -166,6 +166,7 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 
 	int drawNumImg = cardNoImg_[num];
 	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);
+
 	//カード画像がない場合は作成して配列に挿入
 	if(it==cardImgs_.end())
 	{

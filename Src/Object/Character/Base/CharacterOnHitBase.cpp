@@ -124,6 +124,7 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 			{
 				int pHit = HitCheck_Sphere_Triangle(trans.pos, bodyRadius_
 					, hit.Position[0], hit.Position[1], hit.Position[2]);
+
 				if (pHit)
 				{
 					VECTOR normal = hit.Normal;
@@ -141,7 +142,7 @@ void CharacterOnHitBase::HitModelCommon(const std::weak_ptr<Collider> _hitCol)
 		}
 	}
 
-	////ˆÚ“®‘O‚ÌÀ•W‚ğŠi”[‚·‚é
+	//ˆÚ“®‘O‚ÌÀ•W‚ğŠi”[‚·‚é
 	moveDiff_ = trans_.pos;
 	//ˆÚ“®
 	trans_.pos = movedPos_;

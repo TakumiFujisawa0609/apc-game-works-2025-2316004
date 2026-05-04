@@ -6,6 +6,7 @@ class Easing;
 class GameClearScene :
     public SceneBase
 {
+
 public:
 
 	/// @brief コンストラクタ

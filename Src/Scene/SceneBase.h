@@ -100,5 +100,4 @@ protected:
 	
 	//unow loading......v‚Ì•`‰æ
 	void DrawNowLoading(void);
-
 };

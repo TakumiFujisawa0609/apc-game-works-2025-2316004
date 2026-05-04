@@ -49,27 +49,16 @@ void PlayerCardUI::Load(void)
 
 	//リソースのロード
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
-
 	reloadCardImg_ = resMng_.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
-
 	reloadGauge_ = resMng_.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
-
 	cardNumFrameImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
-
 	cardNumMaskImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
-
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
-
 	reloadFontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), RELOAD_FONT_SIZE,0);
-
 	cardNumBgImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_BACK).handleId_;
-
 	resMng_.Load(ResourceManager::SRC::CARD_MOVE_SE);
-
 	resMng_.Load(ResourceManager::SRC::CARD_BE_REFLECTED_SE);
-
 	resMng_.Load(ResourceManager::SRC::CARD_PUT_SE);
-
 	cardWinRes_ = ResourceManager::SRC::CARD_BREAK_SE;
 
 	imgRevolverArrow_ = resMng_.Load(ResourceManager::SRC::CARD_REVOLVER_L_ARROW).handleId_;

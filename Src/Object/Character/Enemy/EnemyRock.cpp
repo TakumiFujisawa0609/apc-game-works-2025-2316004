@@ -16,7 +16,6 @@ EnemyRock::EnemyRock(int& _num, VECTOR& _startPos):
 	isDamaged_(false),
 	modelId_(UtilityCommon::INITIAL_HANDLE)
 {
-
 }
 
 EnemyRock::~EnemyRock(void)

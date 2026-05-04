@@ -12,7 +12,6 @@ CardSystem::CardSystem(void):
 	cardDif_()
 
 {
-	
 }
 
 const CardSystem::BATTLE_RESULT CardSystem::GetResult(const int _cardPlayerNo) const

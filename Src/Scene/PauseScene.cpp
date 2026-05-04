@@ -5,12 +5,12 @@
 #include "../Manager/Resource/FontManager.h"
 #include "../Manager/Generic/SceneManager.h"
 #include "../Manager/Generic/InputManager.h"
+#include "../Manager/Generic/InputManagerS.h"
 #include "../Utility/UtilityCommon.h"
 
 PauseScene::PauseScene(void):
 	pauseFont_(UtilityCommon::INITIAL_HANDLE),
-	selectIndex_(),
-	pauseList_({ L"つづける",L"タイトルへ戻る" })
+	selectIndex_()
 {
 	//更新関数のセット
 	updateFunc_ = [this]() {LoadingUpdate(); };
@@ -21,16 +21,13 @@ PauseScene::PauseScene(void):
 	//リストごとに処理を分ける
 	listFuncTable_ =
 	{
-		{LIST::RESUME,[this]()
-		{
-			//ポーズを解除して前のシーンに戻る
-			scnMng_.PopScene();
-		}},
-		{LIST::TITLE,[this]()
-		{
-			//タイトルシーンに戻る
-			scnMng_.ChangeScene(SceneManager::SCENE_ID::TITLE);
-		}}
+		//ポーズを解除して前のシーンに戻る
+		{LIST::RESUME,[this]() {scnMng_.PopScene(); }},	
+		//タイトルシーンに戻る
+		{LIST::TITLE,[this](){scnMng_.ChangeScene(SceneManager::SCENE_ID::TITLE);}},
+		//ゲームを終了する
+		{LIST::GAME_END,[this](){Application::GetInstance().IsGameEnd(); }}
+
 	};
 }
 
@@ -53,21 +50,21 @@ void PauseScene::Release(void)
 }
 void PauseScene::NormalUpdate(void)
 {
-	if (inputMng_.IsTrgDown(KEY_INPUT_P))
+	if (inputMng_.IsTrgDown(KEY_INPUT_ESCAPE))
 	{
 		//シーンを戻す
 		scnMng_.PopScene();
 		return;
 	}
-	else if (inputMng_.IsTrgDown(KEY_INPUT_DOWN))
+	else if (inputMng_.IsTrgDown(KEY_INPUT_DOWN)||inputMngS_.IsTrgDown(INPUT_EVENT::DOWN))
 	{
 		selectIndex_ = (selectIndex_ - 1 + LIST_MAX) % LIST_MAX;
 	}
-	else if (inputMng_.IsTrgDown(KEY_INPUT_UP))
+	else if (inputMng_.IsTrgDown(KEY_INPUT_UP) || inputMngS_.IsTrgDown(INPUT_EVENT::UP))
 	{
 		selectIndex_ = (selectIndex_ + 1) % LIST_MAX;
 	}
-	else if (inputMng_.IsTrgDown(KEY_INPUT_RETURN))
+	else if (inputMng_.IsTrgDown(KEY_INPUT_RETURN)||inputMngS_.IsTrgDown(INPUT_EVENT::OK))
 	{
 		listFuncTable_[static_cast<LIST>(selectIndex_)]();
 		return;
@@ -77,7 +74,7 @@ void PauseScene::NormalUpdate(void)
 void PauseScene::NormalDraw(void)
 {
 	static constexpr int MARGINT = 50;
-	static constexpr int OFFSET_Y = 200;
+	static constexpr int OFFSET_Y = 100;
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, PAUSE_ALPHA);
 	DrawBox(
@@ -111,4 +108,10 @@ void PauseScene::NormalDraw(void)
 			pauseFont_,
 			pauseList_[i].c_str());
 	}
+}
+
+void PauseScene::OnSceneEnter(void)
+{
+	updateFunc_ = [this]() {NormalUpdate(); };
+	drawFunc_ = [this]() {NormalDraw(); };
 }

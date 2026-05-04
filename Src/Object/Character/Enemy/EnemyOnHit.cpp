@@ -13,11 +13,6 @@
 #include "../Object/Character/Base/LogicBase.h"
 #include "../Base/CharacterOnHitBase.h"
 #include "EnemyOnHit.h"
-namespace
-{
-	using TAG_PRIORITY = ObjectBase::TAG_PRIORITY;
-	using TAG = Collider::TAG;
-}
 
 EnemyOnHit::EnemyOnHit(CharacterBase& _chara, VECTOR& _movedPos, VECTOR& _moveDiff
 	, ActionController& _action, std::map<ObjectBase::TAG_PRIORITY, std::shared_ptr<Collider>>& _colParam, Transform& _trans):

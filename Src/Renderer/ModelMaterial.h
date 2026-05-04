@@ -66,48 +66,46 @@ public:
 	/// @brief 頂点シェーダの取得
 	/// @param  
 	/// @return 頂点シェーダ
-	int GetShaderVS(void) const;
+	int GetShaderVS(void) const { return shaderVS_; }
 
 	/// @brief ピクセルシェーダの取得
 	/// @param  
 	/// @return ピクセルシェーダ
-	int GetShaderPS(void) const;
+	int GetShaderPS(void) const { return shaderPS_; }
 
 	/// @brief 頂点シェーダ定数バッファハンドルの取得
 	/// @param  
 	/// @return 頂点シェーダ定数バッファハンドル
-	int GetConstBufVS(void) const;
+	int GetConstBufVS(void) const { return constBufVS_; }
 
 	/// @brief ピクセルシェーダ定数バッファハンドルの取得
 	/// @param  
 	/// @return ピクセルシェーダ定数バッファハンドル
-	int GetConstBufPS(void) const;
+	int GetConstBufPS(void) const { return constBufPS_; }
 
 	/// @brief 頂点シェーダ定数バッファの取得
 	/// @param  
 	/// @return 頂点シェーダ定数バッファ
-	const std::vector<FLOAT4>& GetConstBufsVS(void) const;
+	const std::vector<FLOAT4>& GetConstBufsVS(void) const { return constBufsVS_; }
 
 	/// @brief ピクセルシェーダ定数バッファの取得
 	/// @param  
 	/// @return ピクセルシェーダ定数バッファ
-	const std::vector<FLOAT4>& GetConstBufsPS(void) const;
+	const std::vector<FLOAT4>& GetConstBufsPS(void) const { return constBufsPS_; }
 
 	/// @brief テクスチャの取得
 	/// @param  
 	/// @return テクスチャ
-	const std::map<int, int>& GetTextures(void) const;
+	const std::map<int, int>& GetTextures(void) const { return textures_; }
 
 	/// @brief テクスチャアドレスを取得
 	/// @param  
 	/// @return テクスチャアドレス
-	TEXADDRESS GetTextureAddress(void) const;
-
-	// テクスチャアドレスを設定
+	TEXADDRESS GetTextureAddress(void) const { return texAddress_; }
 	
 	/// @brief テクスチャアドレスを設定
 	/// @param texA テクスチャアドレス
-	void SetTextureAddress(TEXADDRESS texA);
+	void SetTextureAddress(TEXADDRESS texA) { texAddress_ = texA; }
 
 private:
 

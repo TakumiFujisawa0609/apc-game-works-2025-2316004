@@ -11,7 +11,6 @@
 #include "../../Card/CardSystem.h"
 #include "../Base/CharacterBase.h"
 #include "../Base/LogicBase.h"
-
 #include "CardActionBase.h"
 
 CardActionBase::CardActionBase(ActionController& _actCntl, CharacterBase& _charaObj, CardPresenter& _deck):

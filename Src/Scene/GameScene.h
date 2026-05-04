@@ -132,6 +132,7 @@ private:
 	void ChangeOverDirection(void);
 	void ChangeNormal(void);
 	void ChangeSlow(void);
+
 	//ˆ—‚Ì•ÏX
 	void OnSceneEnter(void) override;
 

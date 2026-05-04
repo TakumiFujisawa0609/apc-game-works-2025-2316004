@@ -17,7 +17,6 @@ ObjectBase::~ObjectBase(void)
 }
 void ObjectBase::OnHit(const std::weak_ptr<Collider> _hitCol)
 {
-
 }
 
 void ObjectBase::MakeCollider(const TAG_PRIORITY _tagPriority, const std::set<Collider::TAG> _tag, std::unique_ptr<Geometry> _geometry, const std::set<Collider::TAG> _notHitTags)
@@ -25,6 +24,7 @@ void ObjectBase::MakeCollider(const TAG_PRIORITY _tagPriority, const std::set<Co
 	//情報を使ってコライダの作成
 	std::shared_ptr col = std::make_shared<Collider>(*this, _tag, std::move(_geometry), _notHitTags);
 	collider_.emplace(_tagPriority,col);
+
 	//コライダを管理マネージャーに追加
 	CollisionManager::GetInstance().AddCollider(col);
 }
@@ -53,8 +53,12 @@ const bool ObjectBase::IsAliveCollider(const Collider::TAG _chataTag, const Coll
 
 void ObjectBase::DeleteCollider(const TAG_PRIORITY _priority)
 {
+	//特定のタグを探す
 	auto it = collider_.find(_priority);
+
+	//見つからない、もしくは空の場合は飛ばす
 	if (it == collider_.end() || it->second == nullptr)return;
+
 	//コライダの削除
 	collider_[_priority]->Kill();
 

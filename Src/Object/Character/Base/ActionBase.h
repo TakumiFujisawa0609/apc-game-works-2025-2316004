@@ -106,7 +106,7 @@ public:
 	const ATK_STATUS& GetAtkStatus(void)const { return atk_; }
 
 	//カードアクションの取得
-	const CARD_ACT_TYPE& GetCardAction(void)const;
+	const CARD_ACT_TYPE& GetCardAction(void)const { return actType_; }
 
 	/// @brief ジャンプ攻撃チャージ
 	/// @param  

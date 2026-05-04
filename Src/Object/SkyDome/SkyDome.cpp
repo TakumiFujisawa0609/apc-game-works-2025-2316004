@@ -48,8 +48,8 @@ void SkyDome::Init(void)
 	trans_.Update();
 
 	material_ = std::make_unique<ModelMaterial>(
-		L"StageVS.cso", CONST_BUF_SIZE,
-		L"SkyDomePS.cso", CONST_BUF_SIZE
+		VERTEX_SHADER_PATH, CONST_BUF_SIZE,
+		PIXEL_SHADER_PATH, CONST_BUF_SIZE
 	);
 	material_->AddConstBufVS({ SIZE_SCL,0.0f,0.0f,0.0f });
 	material_->AddConstBufPS({ COLOR_SCL_BATTLE_R, COLOR_SCL_BATTLE_G, COLOR_SCL_BATTLE_B, 1.0f });

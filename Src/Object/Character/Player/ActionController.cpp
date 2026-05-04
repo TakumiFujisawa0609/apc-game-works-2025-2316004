@@ -92,11 +92,16 @@ void ActionController::Update(void)
 {
 	mainAction_[act_]->Update();
 
+	//入力方向に応じた方向転換
 	MoveDirFromInput();
 
+	//キャラクターの回転
 	charaObj_.Rotate();
 
+	//移動量の更新
 	DirAndMovePowUpdate();
+
+	//カードの移動
 	CardMove();
 }
 
@@ -117,7 +122,6 @@ ActionBase& ActionController::GetMainAction(void)
 #ifdef _DEBUG
 void ActionController::DrawDebug(void)
 {
-
 }
 #endif // _DEBUG
 
@@ -159,7 +163,6 @@ const Quaternion ActionController::GetPlayerRotY(void)
 
 void ActionController::StopResource(void)
 {
-
 }
 
 const bool ActionController::IsCardDecisionControl(void)

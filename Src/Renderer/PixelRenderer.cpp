@@ -78,25 +78,6 @@ void PixelRenderer::MakeVertex(float sX, float sY, float eX, float eY)
 	vertexs_[cnt].u = 0.0f;
 	vertexs_[cnt].v = 1.0f;
 
-	/*
-	Å@Å`Å`Å`Å`Å`Å`
-		0-----1
-		|     |
-		|     |
-		3-----2
-	Å@Å`Å`Å`Å`Å`Å`
-		0-----1
-		|  Å^
-		|Å^
-		3
-	Å@Å`Å`Å`Å`Å`Å`
-			  1
-		   Å^ |
-		 Å^   |
-		3-----2
-	Å@Å`Å`Å`Å`Å`Å`
-	*/
-
 
 	// í∏ì_ÉCÉìÉfÉbÉNÉX
 	cnt = 0;

@@ -33,9 +33,6 @@
     <ClCompile Include="Src\Common\Easing.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIController.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIDraw.cpp" />
-    <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.cpp" />
-    <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Geometry2D.cpp" />
-    <ClCompile Include="Src\Object\Common\Geometry\2DGeometry\Circle.cpp" />
     <ClCompile Include="Src\Object\Card\EnemyCardUI.cpp" />
     <ClCompile Include="Src\Object\Card\CardUIBase.cpp" />
     <ClCompile Include="Src\Object\Character\Action\Dodge.cpp" />
@@ -129,9 +126,6 @@
     <ClInclude Include="Src\Common\Easing.h" />
     <ClInclude Include="Src\Object\Card\CardUIController.h" />
     <ClInclude Include="Src\Object\Card\CardUIDraw.h" />
-    <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Rectangle.h" />
-    <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Geometry2D.h" />
-    <ClInclude Include="Src\Object\Common\Geometry\2DGeometry\Circle.h" />
     <ClInclude Include="Src\Object\Card\EnemyCardUI.h" />
     <ClInclude Include="Src\Object\Card\CardUIBase.h" />
     <ClInclude Include="Src\Object\Character\Action\Dodge.h" />

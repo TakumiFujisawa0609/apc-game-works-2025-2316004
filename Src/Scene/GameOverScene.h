@@ -4,6 +4,7 @@
 class GameOverScene :
     public SceneBase
 {
+
 public:
 
 	/// @brief コンストラクタ

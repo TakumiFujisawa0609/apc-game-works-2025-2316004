@@ -39,7 +39,6 @@ PlayerOnHit::~PlayerOnHit(void)
 
 void PlayerOnHit::Load(void)
 {
-	
 }
 
 void PlayerOnHit::Init(void)
@@ -115,7 +114,10 @@ void PlayerOnHit::CollNormalAttack(const std::weak_ptr<Collider> _hitCol)
 	//攻撃中に敵の攻撃を食らった場合、カードを消費する
 	charaObj_.SetUsedCard();
 
+	//ヒットSE再生
 	SoundManager::GetInstance().Play(ResourceManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
+
+	//のけぞり状態へ
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 	
 }
@@ -130,9 +132,14 @@ void PlayerOnHit::CollRock(const std::weak_ptr<Collider> _hitCol)
 
 	//ダメージを与える
 	charaObj_.Damage(STONE_DMG);
+
 	//のけぞり時間セット
 	rock.SetIsDamaged();
+
+	//ヒットSE再生
 	SoundManager::GetInstance().Play(ResourceManager::SRC::ENEMY_HIT_SE, SoundManager::PLAYTYPE::BACK);
+
+	//のけぞり状態へ
 	action_.ChangeAction(ActionController::ACTION_TYPE::REACT);
 }
 

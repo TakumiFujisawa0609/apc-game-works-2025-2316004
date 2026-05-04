@@ -46,9 +46,11 @@ Player::Player(void)
 	capRadius_ = CAP_RADIUS;
 
 	deck_ = std::make_shared<CardDeck>(characterType_, PLAYER_NUM);
+
 	cardPresent_ = std::make_unique<CardPresenter>(characterType_, *deck_);
 
 	weapon_ = std::make_unique<Weapon>(*this);
+
 	logic_ = std::make_unique<PlayerLogic>(trans_, isMoveable_, padNum_, InputManager::CONTROLL_TYPE::ALL);
 }
 
@@ -178,8 +180,6 @@ void Player::MoveDirFromInput(void)
 	//プレイヤー入力クラスから角度を取得
 	charaRot_.dir_ = logic_->GetDir();
 	charaRot_.dir_ = VNorm(charaRot_.dir_);
-	//charaRot_.dir_ = getDir;
-
 }
 
 void Player::SetGoalRotate(void)
