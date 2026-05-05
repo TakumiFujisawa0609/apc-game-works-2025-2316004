@@ -95,6 +95,9 @@ private:
 	//スカイドームのサイズスケール
 	static constexpr float SIZE_SCL = 1.0f;
 
+	//スカイドームローカル回転角度
+	static constexpr float LOCAL_DEG = 180.0f;
+
 	//バトル中のカラースケール
 	static constexpr float COLOR_SCL_BATTLE_R = 1.7f;		
 	static constexpr float COLOR_SCL_BATTLE_G = 0.2f;	

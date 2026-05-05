@@ -162,7 +162,7 @@ void CardUIBase::AddCardUi(const CardBase::CARD_STATUS _status)
 
 	//‰æ‘œ‚É”Ô†‚ğ‡‚í‚¹‚é
 	int num = _status.pow - 1;
-	if (num == -1) { num = 9; }
+	if (num == RELOAD_CARD_POWER) { num = MAX_CARD_POWER; }
 
 	int drawNumImg = cardNoImg_[num];
 	std::shared_ptr<CardUIController> info = std::make_shared<CardUIController>(drawNumImg);

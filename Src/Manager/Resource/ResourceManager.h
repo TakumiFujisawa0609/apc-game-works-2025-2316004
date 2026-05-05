@@ -54,7 +54,7 @@ public:
 		PLAYER_ATK_CARD_IMG,		//番号なしアタックカード
 		ENEMY_ATK_CARD_IMG,			//敵番号なしアタックカード
 		RELOAD_CARD_IMG,			//リロードカード
-		RELOAD_GAGE,				//リロードゲージ
+		RELOAD_GAUGE,				//リロードゲージ
 		P_HP_ARC_OUTLINE,			//円形アウトライン
 		P_HP_LINE_OUT_LINE,			//線形アウトライン
 		P_CARD_NUM_GAUGE_MASK,		//カード枚数ゲージマスク
@@ -67,9 +67,6 @@ public:
 		CARD_REVOLVER_L_ARROW,		//カードリボルバー回転方向の左矢印
 		INTENSIVE_LINE_1,			//集中線画像1(複数画像でアニメーション)
 		INTENSIVE_LINE_2,			//集中線画像2(複数画像でアニメーション)
-
-		//Json
-		CHARA_DATA,
 
 		//複数画像
 		NUMBERS_IMGS,				//カード番号
@@ -109,13 +106,52 @@ public:
 		//ボタン
 		MOVE_BTN_SE,					//移動ボタン
 		DESIDE_BTN_SE,					//決定ボタン
-		GAME_START_SE					//ゲームスタート音
+		GAME_START_SE,					//ゲームスタート音
+
+		//Json
+		CHARA_DATA,						//キャラクターデータ
+
+		//ピクセルシェーダ
+		STAGE_PS,					//ステージ
+		SKYDOME_PS,					//スカイドーム
+		HPBAR_PS,					//HPバー
+		ARCBAR_PS,					//円形ゲージ
+		CARD_NORMAL_PS,				//通常カード
+		CARD_RELOAD_PS,				//リロードカード
+		CARD_SELECT_PS,				//カード選択枠
+		//頂点シェーダ
+		STAGE_VS					//ステージ
 	};
 
 	struct RES_INFO
 	{
 		ResourceData::TYPE resType;
 		std::wstring typePath;
+	};
+
+	struct RESOURCE_COMMON_PARAM
+	{
+		ResourceData::TYPE type;	//素材の種類
+		SRC src;					//素材名
+		std::wstring path;			//素材のパス
+	};
+
+	struct IMGS_PARAMETA
+	{
+		int numX = 0;	//横枚数
+		int numY = 0;	//縦枚数
+		int sizeX = 0;	//横サイズ
+		int sizeY = 0;	//縦サイズ
+	};
+
+	struct SOUND_PARAMETA
+	{
+		ResourceData::SOUND_TYPE soundType=ResourceData::SOUND_TYPE::MAX;
+		float pitch = 0.0f;
+		float timeStretch = 1.0f;
+		float volume = 1.0f;
+		float loopStartTime = 0.0f;
+		float loopEndTime = 0.0f;
 	};
 
 	/// @brief 初期化
@@ -178,7 +214,8 @@ private:
 	//リソースのタイプごとの文字列
 	std::unordered_map<std::string, RES_INFO> resTypeStr_;
 
-	std::unordered_map<ResourceData::TYPE, std::function<void(void)>> pushResource_;
+	//データロード関数
+	std::unordered_map<ResourceData::TYPE, std::function<void(const nlohmann::json _data)>> loadDataFunc_;
 
 	// デフォルトコンストラクタをprivateにして、
 	// 外部から生成できない様にする
@@ -191,4 +228,19 @@ private:
 
 	// 内部ロード
 	ResourceData& _Load(SRC src);
-};
+
+	//外部ファイルからのロード	
+	const RESOURCE_COMMON_PARAM GetResourceParameter(const nlohmann::json& _data );		//共通パラメータの取得
+
+	//handleIDしか使用しない種類のロード
+	void LoadResourceCommon(const nlohmann::json& _data);
+
+	//複数画像のロード
+	void LoadResourceImages(const nlohmann::json& _data);
+
+	//サウンドのロード
+	void LoadResourceSound(const nlohmann::json& _data);
+
+	//シェーダのロード
+	void LoadResourceShader(const nlohmann::json& _data);
+};	

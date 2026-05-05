@@ -60,7 +60,7 @@ public:
 	/// @param sizeY 画像一枚のサイズY
 	ResourceData(TYPE type, const std::wstring& path, int numX, int numY, int sizeX, int sizeY);
 
-	/// @brief サウンドようのコンストラクタ
+	/// @brief サウンド用のコンストラクタ
 	/// @param type リソースの種類
 	/// @param path リソースパス
 	/// @param soundType サウンドの種類
@@ -74,6 +74,12 @@ public:
 		, const float timeStretch = 1.0f
 		, const float volume = 1.0f
 		, const int loopStartTime = 0.0f, const int loopEndTime = 0.0f);
+
+	/// @brief シェーダ用のコンストラクタ
+	/// @param type リソースの種類
+	/// @param path リソースパス
+	/// @param constBufNum 定数バッファの個数
+	ResourceData(TYPE type, const std::wstring& path, int constBufNum);
 
 	/// @brief デストラクタ
 	/// @param  
@@ -114,6 +120,9 @@ public:
 	float volume_;				//サウンドの音量
 	LONGLONG loopStartTime_;	//サウンドのループ開始時間(1秒=1000000)
 	LONGLONG loopEndTime_;		//サウンドのループ終了時間(1秒=1000000)
+
+	//シェーダの定数バッファの個数
+	int constBufNum;
 
 	//JSONデータ
 	nlohmann::json jsonData;

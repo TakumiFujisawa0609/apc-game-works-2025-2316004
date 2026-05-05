@@ -99,9 +99,31 @@ ResourceData::ResourceData(TYPE type, const std::wstring& path
 	}
 }
 
+ResourceData::ResourceData(TYPE type, const std::wstring& path, int constBufNum):
+	type_(type),
+	path_(path),
+	constBufNum(constBufNum),
+	numX_(UtilityCommon::INITIAL_HANDLE),
+	numY_(UtilityCommon::INITIAL_HANDLE),
+	sizeX_(UtilityCommon::INITIAL_HANDLE),
+	sizeY_(UtilityCommon::INITIAL_HANDLE),
+	handleId_(UtilityCommon::INITIAL_HANDLE),
+	handleIds_(nullptr),
+	soundType_(SOUND_TYPE::MAX),
+	pitch_(0.0f),
+	timeStretch_(0.0f),
+	volume_(0.0f),
+	loopStartTime_(0),
+	loopEndTime_(0)
+{
+	AddFunc();
+}
+
 ResourceData::~ResourceData(void)
 {
 	duplicateModelIds_.clear();
+	loadFunc_.clear();
+	releaseFunc_.clear();
 }
 
 void ResourceData::Load(void)

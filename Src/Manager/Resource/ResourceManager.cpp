@@ -42,7 +42,7 @@ ResourceManager::ResourceManager(void):
 		{"PLAYER_ATK_CARD_IMG" ,SRC::PLAYER_ATK_CARD_IMG},
 		{"ENEMY_ATK_CARD_IMG" ,SRC::ENEMY_ATK_CARD_IMG},
 		{"RELOAD_CARD_IMG" ,SRC::RELOAD_CARD_IMG},
-		{"RELOAD_GAGE" ,SRC::RELOAD_GAGE},
+		{"RELOAD_GAGE" ,SRC::RELOAD_GAUGE},
 		{"P_HP_ARC_OUTLINE" ,SRC::P_HP_ARC_OUTLINE },
 		{"P_HP_LINE_OUT_LINE" ,SRC::P_HP_LINE_OUT_LINE},
 		{"P_CARD_NUM_GAUGE_MASK" ,SRC::P_CARD_NUM_GAUGE_MASK},
@@ -55,8 +55,6 @@ ResourceManager::ResourceManager(void):
 		{"CARD_REVOLVER_L_ARROW" ,SRC::CARD_REVOLVER_L_ARROW},
 		{"INTENSIVE_LINE_1" ,SRC::INTENSIVE_LINE_1},
 		{"INTENSIVE_LINE_2" ,SRC::INTENSIVE_LINE_2},
-		//Json
-		{"CHARA_DATA" ,SRC::CHARA_DATA},
 		//複数画像
 		{"NUMBERS_IMGS" ,SRC::NUMBERS_IMGS},
 		{"CONTROLLER_UI_IMGS" ,SRC::CONTROLLER_UI_IMGS},
@@ -90,7 +88,19 @@ ResourceManager::ResourceManager(void):
 		{"CARD_RELOAD_FINISH_SE",SRC::CARD_RELOAD_FINISH_SE},
 		{"MOVE_BTN_SE",SRC::MOVE_BTN_SE},
 		{"DESIDE_BTN_SE",SRC::DESIDE_BTN_SE},
-		{"GAME_START_SE",SRC::GAME_START_SE}
+		{"GAME_START_SE",SRC::GAME_START_SE},
+		//Json
+		{"CHARA_DATA" ,SRC::CHARA_DATA},
+		//ピクセルシェーダ
+		{"STAGE_PS",SRC::STAGE_PS},
+		{"SKYDOME_PS",SRC::SKYDOME_PS},
+		{"HPBAR_PS",SRC::HPBAR_PS},
+		{"ARCBAR_PS",SRC::ARCBAR_PS},
+		{"CARD_NORMAL_PS",SRC::CARD_NORMAL_PS},
+		{"CARD_RELOAD_PS",SRC::CARD_RELOAD_PS},
+		{"CARD_SELECT_PS",SRC::CARD_SELECT_PS},
+		//頂点シェーダ
+		{"STAGE_VS",SRC::STAGE_VS}
 	};
 
 	//リソース種類と文字列の結び付け
@@ -100,7 +110,21 @@ ResourceManager::ResourceManager(void):
 		{"images",{ResourceData::TYPE::IMGS,Application::PATH_IMAGE}},
 		{"effect",{ResourceData::TYPE::EFFEKSEER,Application::PATH_EFFECT}},
 		{"sound",{ResourceData::TYPE::SOUND,Application::PATH_SOUND}},
-		{"json",{ResourceData::TYPE::JSON,Application::PATH_JSON}}
+		{"json",{ResourceData::TYPE::JSON,Application::PATH_JSON}},
+		{"pixelShader",{ResourceData::TYPE::PIXEL_SHADER,Application::PATH_SHADER }},
+		{"vertexShader",{ResourceData::TYPE::VERTEX_SHADER,Application::PATH_SHADER }},
+	};
+
+	loadDataFunc_ = {
+		{ResourceData::TYPE::IMG,[this](const nlohmann::json _data) {LoadResourceCommon(_data); }},
+		{ResourceData::TYPE::IMGS,[this](const nlohmann::json _data) {LoadResourceImages(_data); }},
+		{ResourceData::TYPE::MODEL,[this](const nlohmann::json _data) {LoadResourceCommon(_data); }},
+		{ResourceData::TYPE::SOUND,[this](const nlohmann::json _data) {LoadResourceSound(_data); }},
+		{ResourceData::TYPE::FONT,[this](const nlohmann::json _data) {LoadResourceCommon(_data); }},
+		{ResourceData::TYPE::EFFEKSEER,[this](const nlohmann::json _data) {LoadResourceCommon(_data); }},
+		{ResourceData::TYPE::VERTEX_SHADER,[this](const nlohmann::json _data) {LoadResourceShader(_data); }},
+		{ResourceData::TYPE::PIXEL_SHADER,[this](const nlohmann::json _data) {LoadResourceShader(_data); }},
+		{ResourceData::TYPE::JSON,[this](const nlohmann::json _data) {LoadResourceCommon(_data); }},
 	};
 }
 
@@ -112,57 +136,9 @@ void ResourceManager::Init(void)
 
 	for (const auto& data : json["ResourceData"])
 	{
-		//ハンドルとリソースの種類を読み込む
-		std::unique_ptr<ResourceData> res;
+		//タイプを読み込み、対応したロード関数を呼ぶ
 		ResourceData::TYPE type = resTypeStr_[data["type"]].resType;
-		SRC src = resStr_[data["name"]];
-		std::wstring path = resTypeStr_[data["type"]].typePath + UtilityCommon::GetWStringFromString(data["handle"]);
-
-		//リソースの配列に挿入
-		res = std::make_unique<ResourceData>(type, path);
-
-		//複数の画像を読み込んだ時は個数とサイズを読み込む
-		if (type == ResourceData::TYPE::IMGS)
-		{
-			int numX = data["numX"];
-			int numY = data["numY"];
-			int sizeX = data["sizeX"];
-			int sizeY = data["sizeY"];
-
-			res = std::make_unique<ResourceData>(type, path,
-				numX, numY, sizeX, sizeY);
-		}
-		else if(type== ResourceData::TYPE::SOUND)
-		{
-			//サウンドの種類によってパスを変える
-			ResourceData::SOUND_TYPE soundType = ResourceData::SOUND_TYPE::MAX;
-			if (data["soundtype"] == "BGM")
-			{
-				soundType = ResourceData::SOUND_TYPE::BGM;
-				path = Application::PATH_SOUND_BGM + UtilityCommon::GetWStringFromString(data["handle"]);
-			}
-			else if (data["soundtype"] == "SE")
-			{
-				soundType = ResourceData::SOUND_TYPE::SE;
-				path = Application::PATH_SOUND_SE + UtilityCommon::GetWStringFromString(data["handle"]);
-			}
-			float pitch = 0.0f;
-			float timeStretch = 1.0f;
-			float volume = 1.0f;
-			float loopStartTime = 0.0f;
-			float loopEndTime = 0.0f;
-
-			//サウンドの情報を読み込む。存在しない場合はデフォルト値を入れる
-			data.contains("pitch") ? pitch = data["pitch"] : pitch = 0.0f;
-			data.contains("timeStretch") ? timeStretch = data["timeStretch"] : timeStretch = 1.0f;
-			data.contains("volume") ? volume = data["volume"] : volume = 1.0f;
-			data.contains("loopStartTime") ? loopStartTime = data["loopStartTime"] : loopStartTime = 0.0f;
-			data.contains("loopEndTime") ? loopEndTime = data["loopEndTime"] : loopEndTime = 0.0f;
-
-			//サウンドの情報を渡す
-			res = std::make_unique<ResourceData>(type, path, soundType, pitch, timeStretch, volume, loopStartTime, loopEndTime);
-		}
-		resourcesMap_.emplace(src, std::move(res));
+		loadDataFunc_[type](data);
 	}
 
 	//Jsonを読み込み終わったので、関連の情報は解放する
@@ -275,4 +251,115 @@ ResourceData& ResourceManager::_Load(SRC src)
 
 	return *rPair->second;
 
+}
+
+const ResourceManager::RESOURCE_COMMON_PARAM ResourceManager::GetResourceParameter(const nlohmann::json& _data)
+{
+	RESOURCE_COMMON_PARAM resParam;
+	resParam.type = resTypeStr_[_data["type"]].resType;
+	resParam.src = resStr_[_data["name"]];
+	resParam.path = resTypeStr_[_data["type"]].typePath + UtilityCommon::GetWStringFromString(_data["handle"]);
+
+	//サウンドだった場合のパス
+	if (resParam.type == ResourceData::TYPE::SOUND)
+	{
+		if (_data["soundtype"] == "BGM")
+		{
+			resParam.path = Application::PATH_SOUND_BGM + UtilityCommon::GetWStringFromString(_data["handle"]);
+		}
+		else if (_data["soundtype"] == "SE")
+		{
+			resParam.path = Application::PATH_SOUND_SE + UtilityCommon::GetWStringFromString(_data["handle"]);
+		}
+	}
+
+	return resParam;
+}
+
+void ResourceManager::LoadResourceCommon(const nlohmann::json& _data)
+{
+	std::unique_ptr<ResourceData> res;
+
+	//共通パラメータの取得
+	RESOURCE_COMMON_PARAM parameter = GetResourceParameter(_data);
+
+	//リソースオブジェクト生成
+	res = std::make_unique<ResourceData>(parameter.type, parameter.path);
+
+	//配列に挿入
+	resourcesMap_.emplace(parameter.src, std::move(res));
+}
+
+void ResourceManager::LoadResourceImages(const nlohmann::json& _data)
+{
+	std::unique_ptr<ResourceData> res;
+
+	//共通パラメータの取得
+	RESOURCE_COMMON_PARAM parameter = GetResourceParameter(_data);
+
+	//読み込み
+	int numX = _data.value("numX",0);
+	int numY = _data.value("numY", 0);
+	int sizeX = _data.value("sizeX", 0);
+	int sizeY = _data.value("sizeY", 0);
+
+	//リソースオブジェクト生成
+	res = std::make_unique<ResourceData>(parameter.type, parameter.path,
+		numX, numY, sizeX, sizeY);
+
+	//配列に挿入
+	resourcesMap_.emplace(parameter.src, std::move(res));
+}
+
+void ResourceManager::LoadResourceSound(const nlohmann::json& _data)
+{
+	std::unique_ptr<ResourceData> res;
+
+	//共通パラメータの取得
+	RESOURCE_COMMON_PARAM parameter = GetResourceParameter(_data);
+
+	//サウンドの種類によってパスを変える
+	ResourceData::SOUND_TYPE soundType = ResourceData::SOUND_TYPE::MAX;
+
+	//サウンド種類によって異なるパスを指定
+	std::wstring soundTypePath = L"";
+
+	float pitch = 0.0f;
+	float timeStretch = 1.0f;
+	float volume = 1.0f;
+	float loopStartTime = 0.0f;
+	float loopEndTime = 0.0f;
+
+	//サウンドの情報を読み込む。存在しない場合はデフォルト値を入れる
+	_data.contains("pitch") ? pitch = _data.value("pitch",0.0f) : pitch = 0.0f;
+	_data.contains("timeStretch") ? timeStretch = _data.value("timeStretch", 0.0f) : timeStretch = 1.0f;
+	_data.contains("volume") ? volume = _data.value("volume", 0.0f) : volume = 1.0f;
+	_data.contains("loopStartTime") ? loopStartTime = _data.value("loopStartTime", 0.0f) : loopStartTime = 0.0f;
+	_data.contains("loopEndTime") ? loopEndTime = _data.value("loopEndTime", 0.0f) : loopEndTime = 0.0f;
+
+	//サウンドの情報を渡す
+	res = std::make_unique<ResourceData>(parameter.type, parameter.path, soundType, pitch, timeStretch, volume, loopStartTime, loopEndTime);
+
+	//配列に挿入
+	resourcesMap_.emplace(parameter.src, std::move(res));
+}
+
+void ResourceManager::LoadResourceShader(const nlohmann::json& _data)
+{
+	std::unique_ptr<ResourceData> res;
+
+	//共通パラメータの取得
+	RESOURCE_COMMON_PARAM parameter = GetResourceParameter(_data);
+
+	//定数バッファサイズ
+	int constBufNum = 0;
+
+	//定数バッファサイズを取得
+	if (_data.contains("constBufNum")) { constBufNum = _data.value("constBufNum", 0); }
+
+	//シェーダのリソース情報を渡す
+	res = std::make_unique<ResourceData>(parameter.type, parameter.path, constBufNum);
+
+	//配列に挿入
+	resourcesMap_.emplace(parameter.src, std::move(res));
 }

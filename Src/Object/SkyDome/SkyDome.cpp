@@ -36,7 +36,7 @@ void SkyDome::Init(void)
 	trans_.scl = SCALES;
 	trans_.quaRot = Quaternion::Euler(
 		0.0f,
-		UtilityCommon::Deg2RadF(180.0f),
+		UtilityCommon::Deg2RadF(LOCAL_DEG),
 		0.0f);
 	trans_.quaRotLocal = Quaternion();
 
@@ -48,8 +48,8 @@ void SkyDome::Init(void)
 	trans_.Update();
 
 	material_ = std::make_unique<ModelMaterial>(
-		VERTEX_SHADER_PATH, CONST_BUF_SIZE,
-		PIXEL_SHADER_PATH, CONST_BUF_SIZE
+		ResourceManager::SRC::STAGE_VS,
+		ResourceManager::SRC::SKYDOME_PS
 	);
 	material_->AddConstBufVS({ SIZE_SCL,0.0f,0.0f,0.0f });
 	material_->AddConstBufPS({ COLOR_SCL_BATTLE_R, COLOR_SCL_BATTLE_G, COLOR_SCL_BATTLE_B, 1.0f });

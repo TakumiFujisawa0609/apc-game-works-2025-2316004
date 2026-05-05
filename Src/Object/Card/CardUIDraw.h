@@ -89,6 +89,12 @@ private:
 	//リロードカードの割合の定数バッファスロット
 	static constexpr int RELOAD_PER_CONST_BUF_SIZE = 1;
 
+	//通常カードのトータルタイムバッファスロット
+	static constexpr int NORMAL_CARD_CONST_BUF = 0;
+
+	//通常カードの色の定数バッファ
+	static constexpr int NORMAL_CARD_CONST_BUN_NUM = 1;
+
 	//選択カードアウトラインサイズ
 	static constexpr float SELECT_CARD_OUTLINE_SIZE = 100.0f;	
 

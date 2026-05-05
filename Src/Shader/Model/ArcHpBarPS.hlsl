@@ -7,11 +7,8 @@ cbuffer cbParam : register(b4)
     float g_hp_lerp;        //補間割合
     float g_start_arc;      //スタート角度(1.0:右から反時計回り    0.75:上から反時計回り)
     float g_goal_arc;
-    
     float dummy;
 }
-
-
 
 Texture2D tex2 : register(t1); //テクスチャ
 SamplerState texSampler2 : register(s1);
@@ -21,7 +18,6 @@ float4 main(PS_INPUT PSInput) : SV_TARGET0
     float TWO_PI = 3.14159265 * 2.0f;
     float2 uv = PSInput.uv;
     float4 srcCol = tex.Sample(texSampler, uv);
-    //float4 col=
     if (srcCol.a < 0.01f)
     {
         discard;

@@ -43,7 +43,7 @@ float2 WalkPointOnRectPerimeter(float2 dim, float t)
 
 float4 main(PS_INPUT PSInput) : SV_TARGET
 {
-
+    
     const float pi = 3.1415926535;
     const float4 center_color = float4(0.0, 0.0, 0.0, 0.0);
     const float4 border_color1 = float4(0.8, 0.2, 0.3, 1.0);

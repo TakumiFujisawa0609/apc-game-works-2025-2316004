@@ -3,6 +3,9 @@
 #include <vector>
 #include <map>
 #include <DxLib.h>
+#include "../Manager/Resource/ResourceManager.h"
+
+class ResourceManager;
 
 class ModelMaterial
 {
@@ -30,10 +33,7 @@ public:
 	/// @param constBufFloat4SizeVS 頂点シェーダ定数バッファサイズ
 	/// @param shaderFileNamePS ピクセルシェーダファイル名
 	/// @param constBufFloat4SizePS ピクセルシェーダ定数バッファサイズ
-	ModelMaterial(
-		std::wstring shaderFileNameVS, int constBufFloat4SizeVS,
-		std::wstring shaderFileNamePS, int constBufFloat4SizePS
-	);
+	ModelMaterial(const ResourceManager::SRC _vsSrc,const ResourceManager::SRC _psSrc);
 
 	/// @brief // デストラクタ
 	/// @param  
@@ -115,6 +115,8 @@ private:
 	// ピクセルシェーダ
 	int shaderPS_;
 
+	//リソースマネージャ
+	ResourceManager& resMng_;
 
 	// 頂点定数バッファの確保サイズ(FLOAT4をいくつ作るか)
 	int constBufFloat4SizeVS_;

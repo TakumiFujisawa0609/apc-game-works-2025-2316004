@@ -14,6 +14,8 @@ CardUIDraw::CardUIDraw(int& _typeImg,Vector2F& _centerPos, float& _scl):
 	scl_(_scl),
 	selectEaseCnt_()
 {
+	//通常カードシェーダ
+	normalCardPSMaterial_ = std::make_unique<PixelMaterial>(ResourceManager::SRC::CARD_NORMAL_PS);
 }
 
 CardUIDraw::~CardUIDraw(void)
@@ -21,7 +23,6 @@ CardUIDraw::~CardUIDraw(void)
 }
 void CardUIDraw::Load(void)
 {
-
 }
 
 void CardUIDraw::Init(void)
@@ -47,7 +48,7 @@ void CardUIDraw::Init(void)
 		Quaternion::Euler({ 0.0f,0.0f,0.0f });
 
 	//通常カードシェーダ
-	normalCardPSMaterial_ = std::make_unique<PixelMaterial>(NORMAL_CARD_SHADER_PATH, CONST_BUF_SLOT_NUM);
+	normalCardPSMaterial_ = std::make_unique<PixelMaterial>(ResourceManager::SRC::CARD_NORMAL_PS);
 	normalCardPSMaterial_->AddTextureBuf(typeImg_);
 	normalCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	normalCardPSMaterial_->AddConstBuf({ 1.0f,0.0f, size_.x,size_.y });		//サイズ
@@ -55,28 +56,31 @@ void CardUIDraw::Init(void)
 	normalCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
 
 	//リロードカード
-	reloadCardPSMaterial_= std::make_unique<PixelMaterial>(RELOAD_CARD_SHADER_PATH, CONST_BUF_SLOT_NUM);
-	reloadCardPSMaterial_->AddTextureBuf(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_GAGE).handleId_);
+	reloadCardPSMaterial_= std::make_unique<PixelMaterial>(ResourceManager::SRC::CARD_RELOAD_PS);
+	reloadCardPSMaterial_->AddTextureBuf(ResourceManager::GetInstance().Load(ResourceManager::SRC::RELOAD_GAUGE).handleId_);
 	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	reloadCardPSMaterial_->AddConstBuf({ 1.0f,0.0f, 0.0f,1.0f });		//アウトラインの色
-	reloadCardPSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,1.0f });		//アウトラインの広がる時間
 	reloadCardPSRenderer_ = std::make_unique<PixelRenderer>(*reloadCardPSMaterial_);
 	reloadCardPSRenderer_->MakeSquareVertex(rightTopPos_, size_);
 
-	selectFramePSMaterial_ = std::make_unique<PixelMaterial>(SELECT_FRAME_SHADER_PATH, CARD_NUM_CONST_BUF_SIZE);
+	//選択枠
+	selectFramePSMaterial_ = std::make_unique<PixelMaterial>(ResourceManager::SRC::CARD_SELECT_PS);
 	selectFramePSMaterial_->AddTextureBuf(typeImg_);
 	selectFramePSMaterial_->AddConstBuf({ 0.0f,0.0f, 0.0f,0.0f });		//カードの色
 	selectFramePSRenderer_ = std::make_unique<PixelRenderer>(*selectFramePSMaterial_);
 	selectFramePSRenderer_->MakeSquareVertexFromCenter(centerPos_, size_);
+
 }
+
 void CardUIDraw::Update(void)
 {
-	selectFramePSMaterial_->SetConstBuf(0, { SceneManager::GetInstance().GetTotalTime(),1.0f, 1.0f,0.0f});
+	selectFramePSMaterial_->SetConstBuf(NORMAL_CARD_CONST_BUF, { SceneManager::GetInstance().GetTotalTime(),1.0f, 1.0f,0.0f});
 	SelectFrameEasing();
 }
+
 void CardUIDraw::Draw(void)
 {
-	normalCardPSMaterial_->SetConstBuf(1, { 0.0f,0.0f, 0.0f,1.0f });		//カードの色
+	normalCardPSMaterial_->SetConstBuf(NORMAL_CARD_CONST_BUN_NUM, { 0.0f,0.0f, 0.0f,1.0f });		//カードの色
 	DrawCard();
 }
 
@@ -88,8 +92,10 @@ void CardUIDraw::DrawSelectedFrame(void)
 
 void CardUIDraw::DrawSelectCard(void)
 {
+	//白いモヤを描画する
 	float totalTime = SceneManager::GetInstance().GetTotalTime();
-	normalCardPSMaterial_->SetConstBuf(1, { SELECT_FOG_STRENGTH,totalTime, 0.0f,1.0f });		//カードの色
+	normalCardPSMaterial_->SetConstBuf(NORMAL_CARD_CONST_BUN_NUM, { SELECT_FOG_STRENGTH,totalTime, 0.0f,1.0f });		//カードの色
+
 	//カード描画
 	DrawCard();
 }

@@ -50,7 +50,7 @@ void PlayerCardUI::Load(void)
 	//リソースのロード
 	atkCardImg_ = resMng_.Load(ResourceManager::SRC::PLAYER_ATK_CARD_IMG).handleId_;
 	reloadCardImg_ = resMng_.Load(ResourceManager::SRC::RELOAD_CARD_IMG).handleId_;
-	reloadGauge_ = resMng_.Load(ResourceManager::SRC::RELOAD_GAGE).handleId_;
+	reloadGauge_ = resMng_.Load(ResourceManager::SRC::RELOAD_GAUGE).handleId_;
 	cardNumFrameImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_FRAME).handleId_;
 	cardNumMaskImg_ = resMng_.Load(ResourceManager::SRC::P_CARD_NUM_GAUGE_MASK).handleId_;
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE,0);
@@ -66,7 +66,7 @@ void PlayerCardUI::Load(void)
 }
 void PlayerCardUI::Init(void)
 {
-	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(LINE_HP_BAR_PS_PATH, CARD_NUM_GAUGE_CONST_BUF_SIZE);
+	cardGaugePSMaterial_ = std::make_unique<PixelMaterial>(ResourceManager::SRC::HPBAR_PS);
 	cardGaugePSRenderer_ = std::make_unique<PixelRenderer>(*cardGaugePSMaterial_);
 
 	cardGaugePSMaterial_->AddTextureBuf(cardNumMaskImg_);

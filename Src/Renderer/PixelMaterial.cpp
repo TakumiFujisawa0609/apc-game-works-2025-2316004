@@ -1,17 +1,25 @@
 #include "../Application.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "PixelMaterial.h"
 
-PixelMaterial::PixelMaterial(std::wstring shaderFileName, int constBufFloat4Size)
+PixelMaterial::PixelMaterial(const ResourceManager::SRC _psSrc):
+	resMng_(ResourceManager::GetInstance())
+	, psSrc_(_psSrc)
 {
+	//素材タイプがピクセルシェーダでない場合は処理を飛ばす
+	if (resMng_.Load(_psSrc).type_ != ResourceData::TYPE::PIXEL_SHADER)
+	{
+		return;
+	}
+
 	// ピクセルシェーダのロード
-	shader_ = LoadPixelShader(
-		(Application::PATH_SHADER + shaderFileName).c_str());
+	shader_ = resMng_.Load(_psSrc).handleId_;
 
 	// 定数バッファの確保サイズ(FLOAT4をいくつ作るか)
-	constBufFloat4Size_ = constBufFloat4Size;
+	constBufFloat4Size_ = resMng_.Load(_psSrc).constBufNum;
 
 	// ピクセルシェーダー用の定数バッファを作成
-	constBuf_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4Size);
+	constBuf_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4Size_);
 
 	// テクスチャアドレス
 	texAddress_ = TEXADDRESS::CLAMP;
@@ -55,6 +63,4 @@ void PixelMaterial::SetTextureBuf(int idx, int texDiffuse)
 
 PixelMaterial::~PixelMaterial(void)
 {
-	DeleteShader(shader_);
-	DeleteShaderConstantBuffer(constBuf_);
 }

@@ -150,6 +150,9 @@ protected:
 	//カード強さ最大値
 	static constexpr int MAX_CARD_POWER = 9;
 
+	//リロードカードの強さ格納用
+	static constexpr int RELOAD_CARD_POWER = -1;
+
 	//カードUIの大きさ
 	static constexpr int GRAPH_SIZE_X = 120;
 	static constexpr int GRAPH_SIZE_Y = 160;
@@ -160,8 +163,7 @@ protected:
 	//カードのナンバーローカル座標
 	static constexpr Vector2F NUM_LOCAL_POS = { 89.0f,130.0f };
 
-	//リロードカードの強さ格納用
-	static constexpr int RELOAD_CARD_POWER = -1;
+
 
 	//カード更新関数
 	std::function<void(void)>cardUpdate_;

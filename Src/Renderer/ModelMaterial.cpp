@@ -1,30 +1,35 @@
 #include "../Application.h"
+#include "../Manager/Resource/ResourceManager.h"
 #include "ModelMaterial.h"
 
-ModelMaterial::ModelMaterial(
-	std::wstring shaderFileNameVS, int constBufFloat4SizeVS,
-	std::wstring shaderFileNamePS, int constBufFloat4SizePS)
+ModelMaterial::ModelMaterial(const ResourceManager::SRC _vsSrc, const ResourceManager::SRC _psSrc):
+	resMng_(ResourceManager::GetInstance())
 {
+	//素材タイプが異なる場合は処理を飛ばす
+	if (resMng_.Load(_vsSrc).type_ != ResourceData::TYPE::VERTEX_SHADER
+		|| resMng_.Load(_psSrc).type_ != ResourceData::TYPE::PIXEL_SHADER)
+	{
+		return;
+	}
+
 
 	// 頂点シェーダのロード
-	shaderVS_ = LoadVertexShader(
-		(Application::PATH_SHADER + shaderFileNameVS).c_str());
+	shaderVS_ = resMng_.Load(_vsSrc).handleId_;
 
 	// 頂点定数バッファの確保サイズ(FLOAT4をいくつ作るか)
-	constBufFloat4SizeVS_ = constBufFloat4SizeVS;
+	constBufFloat4SizeVS_ = resMng_.Load(_vsSrc).constBufNum;
 
 	// 頂点シェーダー用の定数バッファを作成
-	constBufVS_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4SizeVS);
+	constBufVS_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4SizeVS_);
 
 	// ピクセルシェーダのロード
-	shaderPS_ = LoadPixelShader(
-		(Application::PATH_SHADER + shaderFileNamePS).c_str());
+	shaderPS_ = resMng_.Load(_psSrc).handleId_;
 
 	// ピクセル定数バッファの確保サイズ(FLOAT4をいくつ作るか)
-	constBufFloat4SizePS_ = constBufFloat4SizePS;
+	constBufFloat4SizePS_ = resMng_.Load(_psSrc).constBufNum;
 
 	// ピクセルシェーダー用の定数バッファを作成
-	constBufPS_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4SizePS);
+	constBufPS_ = CreateShaderConstantBuffer(sizeof(FLOAT4) * constBufFloat4SizePS_);
 
 	// テクスチャアドレス
 	texAddress_ = TEXADDRESS::CLAMP;

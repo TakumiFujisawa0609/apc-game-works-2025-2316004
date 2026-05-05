@@ -43,10 +43,9 @@ void Stage::Init(void)
 	MakeCollider(TAG_PRIORITY::BODY,{ tag_ }, std::move(geo), { Collider::TAG::NML_ATK });
 
 	//ƒ}ƒeƒŠƒAƒ‹
-	constexpr int STAGE_VS_CONST_BUF = 1;
 	material_=std::make_unique<ModelMaterial>(
-		VERTEX_SHADER_PATH, STAGE_VS_CONST_BUF,
-		PIXEL_SHADER_PATH, 0
+		ResourceManager::SRC::STAGE_VS,
+		ResourceManager::SRC::STAGE_PS
 	);
 	material_->AddConstBufVS({ STAGE_UV_SCL,0.0f,0.0f,0.0f });
 	renderer_ = std::make_unique<ModelRenderer>(trans_.modelId,*material_);

@@ -26,7 +26,7 @@ DirectionUI::~DirectionUI(void)
 
 void DirectionUI::Load(void)
 {
-	//何回かフォントを使うと一定の大きさだけ大きくなる不具合が発生しているので別で作る
+	//フォント
 	fontHandle_ = CreateFontToHandle(FontManager::FONT_APRIL_GOTHIC.c_str(), FONT_SIZE, 0);
 
 	//集中線画像のロード
@@ -39,7 +39,8 @@ void DirectionUI::Load(void)
 
 void DirectionUI::Init(void)
 {
-	skipArcGaugeMaterial_ = std::make_unique<PixelMaterial>(ARC_GAUGE_SHADER_PATH.c_str(), SKIP_GAUGE_CONST_BUFF_SIZE);
+	//円形ゲージシェーダ
+	skipArcGaugeMaterial_ = std::make_unique<PixelMaterial>(ResourceManager::SRC::ARCBAR_PS);
 	skipArcGaugeRenderer_ = std::make_unique<PixelRenderer>(*skipArcGaugeMaterial_);
 
 	skipArcGaugeMaterial_->AddTextureBuf(imgSkipButtomMask_);

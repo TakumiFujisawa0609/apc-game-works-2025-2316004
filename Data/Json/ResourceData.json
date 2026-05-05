@@ -211,11 +211,6 @@
       "handle": "CardDirArrowLeft.png"
     },
     {
-      "type": "json",
-      "name": "CHARA_DATA",
-      "handle": "CharaData.json"
-    },
-    {
       "type": "images",
       "name": "NUMBERS_IMGS",
       "handle": "CardNumber.png",
@@ -396,6 +391,59 @@
       "soundtype": "SE",
       "name": "GAME_START_SE",
       "handle": "DesideButton.mp3"
+    },
+    {
+      "type": "json",
+      "name": "CHARA_DATA",
+      "handle": "CharaData.json"
+    },
+    {
+      "type": "pixelShader",
+      "name": "STAGE_PS",
+      "handle": "StagePS.cso",
+      "constBufNum": 0
+    },
+    {
+      "type": "pixelShader",
+      "name": "SKYDOME_PS",
+      "handle": "SkyDomePS.cso",
+      "constBufNum": 1
+    },
+    {
+      "type": "pixelShader",
+      "name": "HPBAR_PS",
+      "handle": "LineHpBarPS.cso",
+      "constBufNum": 3
+    },
+    {
+      "type": "pixelShader",
+      "name": "ARCBAR_PS",
+      "handle": "ArcHpBarPS.cso",
+      "constBufNum": 2
+    },
+    {
+      "type": "pixelShader",
+      "name": "CARD_NORMAL_PS",
+      "handle": "CardNormalPS.cso",
+      "constBufNum": 2
+    },
+    {
+      "type": "pixelShader",
+      "name": "CARD_RELOAD_PS",
+      "handle": "CardReloadPS.cso",
+      "constBufNum": 2
+    },
+    {
+      "type": "pixelShader",
+      "name": "CARD_SELECT_PS",
+      "handle": "SelectCardPS.cso",
+      "constBufNum": 1
+    },
+    {
+      "type": "vertexShader",
+      "name": "STAGE_VS",
+      "handle": "StageVS.cso",
+      "constBufNum": 1
     }
   ]
 }

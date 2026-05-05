@@ -17,7 +17,6 @@ float4 main(PS_INPUT PSInput) : SV_TARGET0
     {
         discard;
     }
-    //return outlineCol + srcCol;
     
     //”’‚¢ƒ‚ƒ„‚ð•t‚¯‚é
     float area = sin(g_time * 1.0);

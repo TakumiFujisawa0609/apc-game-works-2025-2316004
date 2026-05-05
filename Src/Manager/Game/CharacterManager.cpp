@@ -4,7 +4,6 @@
 #include "../Object/Character/Base/CharacterBase.h"
 #include "../Object/Character/Player/Player.h"
 #include "../Object/Character/Enemy/Enemy.h"
-
 #include "CharacterManager.h"
 
 void CharacterManager::Load(void)

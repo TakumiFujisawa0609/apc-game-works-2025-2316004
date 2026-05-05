@@ -28,7 +28,7 @@ HpUI::HpUI(CHARACTER_TYPE _charaType):
 	shakeCnt_()
 
 {
-	material_ = std::make_unique<PixelMaterial>(L"LineHpBarPS.cso", LINE_CONST_BUF);
+	material_ = std::make_unique<PixelMaterial>(ResourceManager::SRC::HPBAR_PS);
 	renderer_ = std::make_unique<PixelRenderer>(*material_);
 }
 
